@@ -1,7 +1,7 @@
 package me.panpf.javax.crypto;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import me.panpf.javax.util.Base64Compat;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -235,9 +235,9 @@ public class DESHelper {
 
     public static class Builder {
         private static final String PADDING_NO = "NoPadding";
-//        private static final String PADDING_PKCS1 = "PKCS1Padding";  // Java 不支持
+        //        private static final String PADDING_PKCS1 = "PKCS1Padding";  // Java 不支持
         private static final String PADDING_PKCS5 = "PKCS5Padding";
-//        private static final String PADDING_PKCS7 = "PKCS7Padding";  // Java 不支持
+        //        private static final String PADDING_PKCS7 = "PKCS7Padding";  // Java 不支持
         private static final String PADDING_ISO10126 = "ISO10126Padding";
 //        private static final String PADDING_OAEP = "OAEPPadding";  // Java 不支持
 //        private static final String PADDING_SSL3 = "SSL3Padding";  // Java 不支持

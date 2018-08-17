@@ -1,21 +1,11 @@
-buildscript {
-    ext.kotlin_version = '1.2.60'
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'kotlin'
+apply plugin: 'com.novoda.bintray-release'
 
 group 'me.panpf'
-version '1.0-SNAPSHOT'
+version VERSION
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.6
 
 repositories {
     jcenter()
@@ -25,16 +15,36 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains:annotations:13.0"
 }
 
 compileKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "1.6"
     }
 }
 
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "1.6"
     }
+}
+
+Properties properties = new Properties()
+File localPropertiesFile = project.file("local.properties")
+if (localPropertiesFile.exists()) {
+    InputStream inputStream = localPropertiesFile.newDataInputStream()
+    properties.load(inputStream)
+    inputStream.close()
+}
+
+publish {
+    groupId = 'me.panpf'
+    artifactId = 'java-ktx'
+    publishVersion = VERSION
+    desc = 'Java, Kotlin, Expansion'
+    website = 'https://github.com/panpf/javax'
+    userOrg = properties.getProperty("bintray.userOrg")
+    bintrayUser = properties.getProperty("bintray.user")
+    bintrayKey = properties.getProperty("bintray.apikey")
 }

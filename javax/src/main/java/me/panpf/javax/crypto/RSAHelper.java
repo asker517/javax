@@ -1,7 +1,7 @@
 package me.panpf.javax.crypto;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import me.panpf.javax.util.Base64Compat;
 
 import java.io.ByteArrayOutputStream;

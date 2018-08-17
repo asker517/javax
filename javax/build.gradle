@@ -1,7 +1,8 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'com.novoda.bintray-release'
 
 group 'me.panpf'
-version '1.0-SNAPSHOT'
+version VERSION
 
 sourceCompatibility = 1.7
 
@@ -11,4 +12,24 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.jetbrains:annotations:13.0"
+}
+
+Properties properties = new Properties()
+File localPropertiesFile = project.file("local.properties")
+if (localPropertiesFile.exists()) {
+    InputStream inputStream = localPropertiesFile.newDataInputStream()
+    properties.load(inputStream)
+    inputStream.close()
+}
+
+publish {
+    groupId = 'me.panpf'
+    artifactId = 'javax'
+    publishVersion = VERSION
+    desc = 'Java, Expansion'
+    website = 'https://github.com/panpf/javax'
+    userOrg = properties.getProperty("bintray.userOrg")
+    bintrayUser = properties.getProperty("bintray.user")
+    bintrayKey = properties.getProperty("bintray.apikey")
 }
