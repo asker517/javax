@@ -283,12 +283,12 @@ public class AESHelper {
 
     public static class Builder {
         private static final String PADDING_NO = "NoPadding";
-        //        private static final String PADDING_PKCS1 = "PKCS1Padding";   // Java 不支持
+        //    private static final String PADDING_PKCS1 = "PKCS1Padding";   // Java 不支持
         private static final String PADDING_PKCS5 = "PKCS5Padding";
-        //        private static final String PADDING_PKCS7 = "PKCS7Padding";   // Java 不支持
+        //    private static final String PADDING_PKCS7 = "PKCS7Padding";   // Java 不支持
         private static final String PADDING_ISO10126 = "ISO10126Padding";
-//        private static final String PADDING_OAEP = "OAEPPadding";  // Java 不支持
-//    private static final String PADDING_SSL3 = "SSL3Padding";  // Java 不支持
+        //    private static final String PADDING_OAEP = "OAEPPadding";  // Java 不支持
+        //    private static final String PADDING_SSL3 = "SSL3Padding";  // Java 不支持
 
         private Key key;
         private String mode;
@@ -566,6 +566,7 @@ public class AESHelper {
          * @param bytes - byte array to be filled in with bytes
          * @throws NullPointerException - if null is passed to the "bytes" argument
          */
+        @SuppressWarnings({"PointlessBitwiseExpression", "ConditionalBreakInInfiniteLoop"})
         protected synchronized void nextBytes(byte[] bytes) {
             int i, n;
             long bits; // number of bits required by Secure Hash Standard
@@ -691,8 +692,8 @@ public class AESHelper {
          * In case of incorrect array passed to the method
          * either NPE or IndexOutOfBoundException gets thrown by JVM.
          *
-         * @params arrW - integer array; arrW.length >= (BYTES_OFFSET+6); <BR>
-         * only first (BYTES_OFFSET+6) words are used
+         * @param arrW - integer array; arrW.length >= (BYTES_OFFSET+6); <BR>
+         *             only first (BYTES_OFFSET+6) words are used
          */
         private static void computeHash(int[] arrW) {
             int a = arrW[HASH_OFFSET];
@@ -767,14 +768,15 @@ public class AESHelper {
          * No checks on arguments passed to the method, that is,
          * a calling method is responsible for such checks.
          *
-         * @params intArray  - int array containing bytes to which to append;
-         * intArray.length >= (BYTES_OFFSET+6)
-         * @params byteInput - array of bytes to use for the update
-         * @params from      - the offset to start in the "byteInput" array
-         * @params to        - a number of the last byte in the input array to use,
-         * that is, for first byte "to"==0, for last byte "to"==input.length-1
+         * @param intArray  - int array containing bytes to which to append;
+         *                  intArray.length >= (BYTES_OFFSET+6)
+         * @param byteInput - array of bytes to use for the update
+         * @param fromByte  - the offset to start in the "byteInput" array
+         * @param toByte    - a number of the last byte in the input array to use,
+         *                  that is, for first byte "to"==0, for last byte "to"==input.length-1
          */
-        private static void updateHash(int[] intArray, byte[] byteInput, int fromByte, int toByte) {
+        @SuppressWarnings("OctalInteger")
+        private static void updateHash(int[] intArray, byte[] byteInput, @SuppressWarnings("SameParameterValue") int fromByte, int toByte) {
             // As intArray contains a packed bytes
             // the buffer's index is in the intArray[BYTES_OFFSET] element
             int index = intArray[BYTES_OFFSET];
@@ -832,7 +834,6 @@ public class AESHelper {
                 }
                 intArray[wordIndex] = w;
             }
-            return;
         }
     }
 }

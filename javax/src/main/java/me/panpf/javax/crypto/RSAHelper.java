@@ -484,11 +484,11 @@ public class RSAHelper {
 
     public static class Builder {
 //        private static final String PADDING_NO = "NoPadding";  // Java 不支持
-        private static final String PADDING_PKCS1 = "PKCS1Padding";  // Java 不支持
+        private static final String PADDING_PKCS1 = "PKCS1Padding";
 //        private static final String PADDING_PKCS5 = "PKCS5Padding";   // Java 不支持
 //        private static final String PADDING_PKCS7 = "PKCS7Padding";  // Java 不支持
 //        private static final String PADDING_ISO10126 = "ISO10126Padding";
-        private static final String PADDING_OAEP = "OAEPPadding";  // Java 不支持
+        private static final String PADDING_OAEP = "OAEPPadding";
 //        private static final String PADDING_SSL3 = "SSL3Padding";  // Java 不支持
 
         private String mode;

@@ -3,7 +3,6 @@ package me.panpf.javax.crypto;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.UnsupportedEncodingException;
 import java.security.*;
 
 import javax.crypto.BadPaddingException;
@@ -152,5 +151,62 @@ public class RSAHelperTest {
 //        RSAHelper rsaHelper = RSAHelper.makeBuilder().ecbMode().ssl3Padding().build();
 //        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
 //        Assert.assertEquals("testEcbSSL3Padding", SOURCE, decryptResult);
+//    }
+
+
+//    @Test
+//    public void testCbcNoPadding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().noPadding().build();
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
+//        Assert.assertEquals("testCbcNoPadding", SOURCE, decryptResult);
+//    }
+
+//    @Test
+//    public void testCbcPKCS1Padding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().pkcs1Padding().build();
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
+//        Assert.assertEquals("testCbcPKCS1Padding", SOURCE, decryptResult);
+//    }
+
+//    @Test
+//    public void testCbcPKCS5Padding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().pkcs5Padding().build();
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
+//        Assert.assertEquals("testCbcPKCS5Padding", SOURCE, decryptResult);
+//    }
+
+//    @Test
+//    public void testCbcPKCS7Padding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().pkcs7Padding().build();
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
+//        Assert.assertEquals("testCbcPKCS7Padding", SOURCE, decryptResult);
+//    }
+
+//    @Test
+//    public void testCbcISO10126Padding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().iso10126Padding().build();
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
+//        Assert.assertEquals("testCbcISO10126Padding", SOURCE, decryptResult);
+//    }
+
+//    @Test
+//    public void testCbcOAEPPadding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().oaepPadding().build();
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE_OAEP.getBytes()));
+//        Assert.assertEquals("testCbcOAEPPadding", SOURCE_OAEP, decryptResult);
+//    }
+
+//    @Test
+//    public void testCbcSSL3Padding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+//        KeyPair keyPair = RSAHelper.createKey(1024);
+//        RSAHelper rsaHelper = RSAHelper.makeBuilder().cbcMode().ssl3Padding().build();
+//        String decryptResult = rsaHelper.decrypt(keyPair.getPrivate(), rsaHelper.encrypt(keyPair.getPublic(), SOURCE.getBytes()));
+//        Assert.assertEquals("testCbcSSL3Padding", SOURCE, decryptResult);
 //    }
 }
