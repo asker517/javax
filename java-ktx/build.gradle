@@ -42,7 +42,7 @@ publish {
     groupId = 'me.panpf'
     artifactId = 'java-ktx'
     publishVersion = VERSION
-    desc = 'Java, Kotlin, Expansion'
+    desc = 'Java, Kotlin, Extensions'
     website = 'https://github.com/panpf/javax'
     userOrg = properties.getProperty("bintray.userOrg")
     bintrayUser = properties.getProperty("bintray.user")

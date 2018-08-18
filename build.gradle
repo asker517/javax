@@ -9,6 +9,3 @@ buildscript {
         classpath 'com.novoda:bintray-release:0.8.1'
     }
 }
-
-// kotlin doc 无法生成，因此禁掉
-//tasks.getByPath(":assembly-adapter-ktx:releaseAndroidJavadocs").enabled = false
