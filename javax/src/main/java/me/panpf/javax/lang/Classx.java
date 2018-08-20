@@ -17,7 +17,7 @@
 package me.panpf.javax.lang;
 
 import me.panpf.javax.util.Arrayx;
-import me.panpf.javax.util.Convert;
+import me.panpf.javax.util.Transformer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -201,9 +201,10 @@ public class Classx {
      */
     @Nullable
     public static Object callMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException, InvocationTargetException {
-        Class[] paramClazzs = params != null ? Arrayx.map(params, new Convert<Object, Class<?>>() {
+        Class[] paramClazzs = params != null ? Arrayx.map(params, new Transformer<Object, Class<?>>() {
+            @NotNull
             @Override
-            public Class<?> convert(Object o) {
+            public Class<?> transform(@NotNull Object o) {
                 return o.getClass();
             }
         }, new Class[params.length]) : null;
