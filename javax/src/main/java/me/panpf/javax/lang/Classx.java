@@ -25,10 +25,10 @@ import java.lang.reflect.*;
 import java.util.*;
 
 /**
- * Reflection tool
+ * Class tool
  */
 @SuppressWarnings({"WeakerAccess"})
-public class Reflectx {
+public class Classx {
 
     /**
      * Get the field with the specified name from the specified class
