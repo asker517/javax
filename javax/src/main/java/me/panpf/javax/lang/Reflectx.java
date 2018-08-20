@@ -96,8 +96,7 @@ public class Reflectx {
      * Get the value of the specified field
      */
     @Nullable
-    public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
-        Field field = getField(object.getClass(), fieldName);
+    public static Object getFieldValue(@NotNull Object object, @NotNull Field field) {
         field.setAccessible(true);
         try {
             return field.get(object);
@@ -109,14 +108,28 @@ public class Reflectx {
     /**
      * Set field value
      */
-    public static void setFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
-        Field field = getField(object.getClass(), fieldName);
+    public static void setFieldValue(@NotNull Object object, @NotNull Field field, @Nullable Object newValue) {
         field.setAccessible(true);
         try {
             field.set(object, newValue);
         } catch (IllegalAccessException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    /**
+     * Get the value of the specified field name
+     */
+    @Nullable
+    public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
+        return getFieldValue(object, getField(object.getClass(), fieldName));
+    }
+
+    /**
+     * Set field value by field name
+     */
+    public static void setFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
+        setFieldValue(object, getField(object.getClass(), fieldName), newValue);
     }
 
 
