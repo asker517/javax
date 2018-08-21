@@ -16,7 +16,7 @@ public class StringBuilderx {
             } else if (element instanceof CharSequence) {
                 appendable.append((CharSequence) element);
             } else if (element instanceof Character) {
-                appendable.append((char) element);
+                appendable.append((Character) element);
             } else {
                 appendable.append(element.toString());
             }

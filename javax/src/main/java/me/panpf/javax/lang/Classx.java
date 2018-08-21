@@ -64,7 +64,7 @@ public class Classx {
      */
     @Nullable
     public static Field[] getFields(@NotNull Class<?> clazz, int upwards) {
-        List<Field> fieldList = new LinkedList<>();
+        List<Field> fieldList = new LinkedList<Field>();
 
         Class currentClazz = clazz;
         int upwardsNumber = 0;
@@ -168,7 +168,7 @@ public class Classx {
      */
     @Nullable
     public static Method[] getMethods(@NotNull Class<?> clazz, int upwards) {
-        List<Method> methodList = new LinkedList<>();
+        List<Method> methodList = new LinkedList<Method>();
 
         Class currentClazz = clazz;
         int upwardsNumber = 0;
@@ -268,7 +268,7 @@ public class Classx {
      */
     @NotNull
     public static Constructor[] getConstructors(@NotNull Class<?> clazz, int upwards) {
-        List<Constructor> constructorList = new LinkedList<>();
+        List<Constructor> constructorList = new LinkedList<Constructor>();
 
         Class currentClazz = clazz;
         int upwardsNumber = 0;
@@ -304,7 +304,7 @@ public class Classx {
      */
     @NotNull
     public static Class<?>[] getHierarchyClasss(@NotNull Class<?> clazz, boolean ignoreSelf) {
-        List<Class<?>> classList = new LinkedList<>();
+        List<Class<?>> classList = new LinkedList<Class<?>>();
         Class<?> currentClazz;
         if (!ignoreSelf) {
             currentClazz = clazz;

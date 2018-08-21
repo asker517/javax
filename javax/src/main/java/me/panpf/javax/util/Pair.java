@@ -1,7 +1,5 @@
 package me.panpf.javax.util;
 
-import java.util.Objects;
-
 @SuppressWarnings("WeakerAccess")
 public class Pair<A, B> {
     public final A fst;
@@ -17,7 +15,9 @@ public class Pair<A, B> {
     }
 
     public boolean equals(Object var1) {
-        return var1 instanceof Pair && Objects.equals(this.fst, ((Pair) var1).fst) && Objects.equals(this.snd, ((Pair) var1).snd);
+        return var1 instanceof Pair
+                && (this.fst == ((Pair) var1).fst || (this.fst != null && this.fst.equals(((Pair) var1).fst)))
+                && (this.snd == ((Pair) var1).snd || (this.snd != null && this.snd.equals(((Pair) var1).snd)));
     }
 
     public int hashCode() {
