@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 Peng fei Pan <sky@panpf.me>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
@@ -10,18 +26,53 @@ public class Collectionx {
 
     public static final List EMPTY_LIST = new ArrayList(0);
 
+
+    /**
+     * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
+     */
+    public static <T> boolean isEmpty(@NotNull Collection<T> collection) {
+        return collection.size() == 0;
+    }
+
+    /**
+     * Returns `true` if the collection is not empty.
+     */
+    public static <T> boolean isNotEmpty(@NotNull Collection<T> collection) {
+        return !isEmpty(collection);
+    }
+
+    /**
+     * Returns this Collection if it's not `null` and the empty list otherwise.
+     */
+    @NotNull
+    public static <T> Collection<T> orEmpty(@Nullable Collection<T> collection) {
+        //noinspection unchecked
+        return collection != null ? collection : (Collection<T>) emptyList();
+    }
+
+    /**
+     * Returns this List if it's not `null` and the empty list otherwise.
+     */
+    @NotNull
+    public static <T> List<T> orEmpty(@Nullable List<T> list) {
+        //noinspection unchecked
+        return list != null ? list : (List<T>) emptyList();
+    }
+
     /**
      * Returns an immutable list containing only the specified object [element].
      * The returned list is serializable.
      */
-    public static <T> List<T> listOf(T element) {
-        return java.util.Collections.singletonList(element);
+    @NotNull
+    public static <T> List<T> listOf(@NotNull T element) {
+        return Collections.singletonList(element);
     }
 
     /**
      * Returns a new read-only list of given elements.  The returned list is serializable (JVM).
      */
-    public static <T> List<T> listOf(T... elements) {
+    @NotNull
+    public static <T> List<T> listOf(@NotNull T... elements) {
         //noinspection unchecked
         return elements.length > 0 ? Arrayx.asList(elements) : (List<T>) emptyList();
     }
@@ -29,6 +80,7 @@ public class Collectionx {
     /**
      * Returns an empty read-only list.  The returned list is serializable (JVM).
      */
+    @NotNull
     public static <T> List<T> emptyList() {
         //noinspection unchecked
         return EMPTY_LIST;
@@ -156,6 +208,46 @@ public class Collectionx {
         return filterIsInstanceTo(iterable, new ArrayList<R>(), clazz);
     }
 
+    public static <T> boolean filterInPlace(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate, boolean predicateResultToRemove) {
+        boolean result = false;
+        Iterator<T> iterator = iterable.iterator();
+        while (iterator.hasNext())
+            if (predicate.predicate(iterator.next()) == predicateResultToRemove) {
+                iterator.remove();
+                result = true;
+            }
+        return result;
+    }
+
+    private static <T> boolean filterInPlace(@NotNull List<T> list, @NotNull Predicate<T> predicate, boolean predicateResultToRemove) {
+        if (!(list instanceof RandomAccess)) {
+            return filterInPlace(((Iterable<T>) list), predicate, predicateResultToRemove);
+        } else {
+            int writeIndex = 0;
+            for (int readIndex = 0, size = list.size(); readIndex < size; readIndex++) {
+                T element = list.get(readIndex);
+                if (predicate.predicate(element) == predicateResultToRemove) {
+                    continue;
+                }
+
+                if (writeIndex != readIndex) {
+                    list.set(writeIndex, element);
+                }
+
+                writeIndex++;
+            }
+            if (writeIndex < list.size()) {
+                for (int removeIndex = list.size() - 1; removeIndex >= writeIndex; removeIndex--) {
+                    list.remove(removeIndex);
+                }
+
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
 
     /**
      * Applies the given [transform] function to each element of the original collection
@@ -273,7 +365,8 @@ public class Collectionx {
     /**
      * Appends all elements yielded from results of [transform] function being invoked on each element of original collection, to the given [destination].
      */
-    public static <T, R, C extends Collection<R>> C flatMapTo(Iterable<T> iterable, C destination, Transformer<T, Iterable<R>> transform) {
+    @NotNull
+    public static <T, R, C extends Collection<R>> C flatMapTo(@NotNull Iterable<T> iterable, @NotNull C destination, @NotNull Transformer<T, Iterable<R>> transform) {
         for (T element : iterable) {
             Iterable<R> list = transform.transform(element);
             addAll(destination, list);
@@ -284,7 +377,8 @@ public class Collectionx {
     /**
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original collection.
      */
-    public static <T, R> List<R> flatMap(Iterable<T> iterable, Transformer<T, Iterable<R>> transform) {
+    @NotNull
+    public static <T, R> List<R> flatMap(@NotNull Iterable<T> iterable, @NotNull Transformer<T, Iterable<R>> transform) {
         return flatMapTo(iterable, new ArrayList<R>(), transform);
     }
 
@@ -347,7 +441,7 @@ public class Collectionx {
      */
     public static <T> int count(@NotNull Iterable<T> iterable) {
         if (iterable instanceof Collection) {
-            return ((java.util.Collection) iterable).size();
+            return ((Collection) iterable).size();
         }
         int count = 0;
         for (T ignored : iterable) {
@@ -360,7 +454,7 @@ public class Collectionx {
      * Returns the number of elements matching the given [predicate].
      */
     public static <T> int count(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
-        if (iterable instanceof Collection && ((java.util.Collection) iterable).isEmpty()) {
+        if (iterable instanceof Collection && ((Collection) iterable).isEmpty()) {
             return 0;
         }
         int count = 0;
@@ -1008,7 +1102,7 @@ public class Collectionx {
 
 
     /**
-     * Adds all elements of the given [elements] collection to this [MutableCollection].
+     * Adds all elements of the given [elements] collection to this [Collection].
      */
     @SuppressWarnings("UnusedReturnValue")
     public static <T> boolean addAll(@NotNull Collection<T> collection, @NotNull Iterable<T> elements) {
@@ -1026,7 +1120,7 @@ public class Collectionx {
 
 
     /**
-     * Adds all elements of the given [elements] collection to this [MutableCollection].
+     * Adds all elements of the given [elements] collection to this [Collection].
      */
     @SuppressWarnings("UnusedReturnValue")
     public static <T> boolean addAll(@NotNull Collection<T> collection, @NotNull T[] elements) {
@@ -1037,6 +1131,46 @@ public class Collectionx {
             }
         return result;
     }
+
+
+    /**
+     * Removes all elements from this [Iterable] that match the given [predicate].
+     */
+    public static <T> boolean removeAll(Iterable<T> iterable, Predicate<T> predicate) {
+        return filterInPlace(iterable, predicate, true);
+    }
+
+    /**
+     * Removes all elements from this [List] that match the given [predicate].
+     */
+    public static <T> boolean removeAll(List<T> list, Predicate<T> predicate) {
+        return filterInPlace(list, predicate, true);
+    }
+
+    /**
+     * Removes all elements from this [MutableCollection] that are also contained in the given [elements] collection.
+     */
+    public static <T> boolean removeAll(@NotNull Collection<T> collection, Iterable<T> elements) {
+        return removeAll(collection, convertToSetForSetOperationWith(elements, collection));
+    }
+
+    /**
+     * Removes all elements from this [MutableCollection] that are also contained in the given [elements] array.
+     */
+    public static <T> boolean removeAll(@NotNull Collection<T> collection, T[] elements) {
+        return Arrayx.isNotEmpty(elements) && collection.removeAll(Arrayx.toHashSet(elements));
+    }
+
+    /**
+     * Removes all of this collection's elements that are also contained in the specified collection.
+     * Allows to overcome type-safety restriction of `removeAll` that requires to pass a collection of type `Collection<E>`.
+     *
+     * @return `true` if any of the specified elements was removed from the collection, `false` if the collection was not modified.
+     */
+    public static <T> boolean removeAll(Collection<T> collection, Collection<T> elements) {
+        return collection.removeAll(elements);
+    }
+
 
     /**
      * Splits the original collection into pair of lists,
@@ -1293,7 +1427,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<List<T>> chunked(@NotNull Iterable<T> iterable, int size) {
-        if (size <= 0) throw new IllegalArgumentException("size is 0");
+        Predicatex.require(size > 0, "size is 0");
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
@@ -1327,7 +1461,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, R> List<R> chunked(@NotNull Iterable<T> iterable, int size, @NotNull Transformer<List<T>, R> transform) {
-        if (size <= 0) throw new IllegalArgumentException("size is 0");
+        Predicatex.require(size > 0, "size is 0");
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
@@ -1604,7 +1738,7 @@ public class Collectionx {
      */
     public static <T extends Comparable<T>> void sort(@NotNull List<T> list) {
         if (list.size() > 1) {
-            java.util.Collections.sort(list);
+            Collections.sort(list);
         }
     }
 
@@ -1613,7 +1747,7 @@ public class Collectionx {
      */
     public static <T> void sortWith(@NotNull List<T> list, @NotNull Comparator<T> comparator) {
         if (list.size() > 1) {
-            java.util.Collections.sort(list, comparator);
+            Collections.sort(list, comparator);
         }
     }
 
@@ -1721,7 +1855,7 @@ public class Collectionx {
      * Reverses elements in the list in-place.
      */
     public static <T> void reverse(@NotNull List<T> list) {
-        java.util.Collections.reverse(list);
+        Collections.reverse(list);
     }
 
     /**
@@ -1964,7 +2098,8 @@ public class Collectionx {
     /**
      * Returns a list containing elements at specified [indices].
      */
-    public static <T> List<T> slice(List<T> list, Iterable<Integer> indices) {
+    @NotNull
+    public static <T> List<T> slice(@NotNull List<T> list, @NotNull Iterable<Integer> indices) {
         int size = collectionSizeOrDefault(indices, 10);
         if (size == 0) {
             //noinspection unchecked
@@ -1981,14 +2116,11 @@ public class Collectionx {
     /**
      * Returns a list containing first [n] elements.
      */
-    public static <T> List<T> take(Iterable<T> iterable, int n) {
-        if (n < 0) {
-            throw new IllegalArgumentException("Requested element count $n is less than zero.");
-        }
-        if (n == 0) {
-            //noinspection unchecked
-            return EMPTY_LIST;
-        }
+    @NotNull
+    public static <T> List<T> take(@NotNull Iterable<T> iterable, int n) {
+        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
+        //noinspection unchecked
+        if (n == 0) return EMPTY_LIST;
         if (iterable instanceof Collection) {
             if (n >= ((Collection) iterable).size()) {
                 return toList(iterable);
@@ -2010,14 +2142,10 @@ public class Collectionx {
     /**
      * Returns a list containing last [n] elements.
      */
-    public static <T> List<T> takeLast(List<T> list, int n) {
-        if (n < 0) {
-            throw new IllegalArgumentException("Requested element count $n is less than zero.");
-        }
-        if (n == 0) {
-            //noinspection unchecked
-            return EMPTY_LIST;
-        }
+    public static <T> List<T> takeLast(@NotNull List<T> list, int n) {
+        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
+        //noinspection unchecked
+        if (n == 0) return EMPTY_LIST;
         int size = list.size();
         if (n >= size) {
             return toList(list);
@@ -2043,7 +2171,8 @@ public class Collectionx {
     /**
      * Returns a list containing last elements satisfying the given [predicate].
      */
-    public static <T> List<T> takeLastWhile(List<T> list, Predicate<T> predicate) {
+    @NotNull
+    public static <T> List<T> takeLastWhile(@NotNull List<T> list, @NotNull Predicate<T> predicate) {
         if (list.isEmpty()) {
             //noinspection unchecked
             return EMPTY_LIST;
@@ -2067,7 +2196,8 @@ public class Collectionx {
     /**
      * Returns a list containing first elements satisfying the given [predicate].
      */
-    public static <T> List<T> takeWhile(Iterable<T> iterable, Predicate<T> predicate) {
+    @NotNull
+    public static <T> List<T> takeWhile(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         ArrayList<T> list = new ArrayList<T>();
         for (T item : iterable) {
             if (!predicate.predicate(item))
@@ -2077,10 +2207,509 @@ public class Collectionx {
         return list;
     }
 
-    // distinct/distinctBy
-    // intersect/subtract
-    // associate
-    // drop
-    // single
-    // element
+
+    /**
+     * Returns a list containing only distinct elements from the given collection.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source collection.
+     */
+    @NotNull
+    public static <T> List<T> distinct(@NotNull Iterable<T> iterable) {
+        return toList(toSet(iterable));
+    }
+
+    /**
+     * Returns a list containing only elements from the given collection
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source collection.
+     */
+    @NotNull
+    public static <T, K> List<T> distinctBy(@NotNull Iterable<T> iterable, @NotNull Transformer<T, K> selector) {
+        HashSet<K> set = new HashSet<K>();
+        ArrayList<T> list = new ArrayList<T>();
+        for (T e : iterable) {
+            K key = selector.transform(e);
+            if (set.add(key)) {
+                list.add(e);
+            }
+        }
+        return list;
+    }
+
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     * <p>
+     * The returned set preserves the element iteration order of the original collection.
+     */
+    @NotNull
+    public static <T> Set<T> intersect(@NotNull Iterable<T> iterable, @NotNull Iterable<T> other) {
+        Set<T> set = toSet(iterable);
+        retainAll(set, other);
+        return set;
+    }
+
+
+    private static boolean retainNothing(@NotNull Collection collection) {
+        boolean result = isNotEmpty(collection);
+        collection.clear();
+        return result;
+    }
+
+    /**
+     * Retains only elements of this [Collection] that are contained in the given [elements] array.
+     */
+    public static <T> boolean retainAll(@NotNull Collection<T> collection, @NotNull T[] elements) {
+        if (Arrayx.isNotEmpty(elements)) {
+            return collection.retainAll(Arrayx.toHashSet(elements));
+        } else {
+            return retainNothing(collection);
+        }
+    }
+
+    /**
+     * Retains only elements of this [Collection] that are contained in the given [elements] collection.
+     */
+    public static <T> boolean retainAll(@NotNull Collection<T> collection, @NotNull Iterable<T> elements) {
+        return collection.retainAll(convertToSetForSetOperationWith(elements, collection));
+    }
+
+    /**
+     * Retains only the elements in this collection that are contained in the specified collection.
+     * <p>
+     * Allows to overcome type-safety restriction of `retainAll` that requires to pass a collection of type `Collection<E>`.
+     *
+     * @return `true` if any element was removed from the collection, `false` if the collection was not modified.
+     */
+    public static <T> boolean retainAll(@NotNull Collection<T> collection, @NotNull Collection<T> elements) {
+        return collection.retainAll(elements);
+    }
+
+    /**
+     * Retains only elements of this [ Iterable] that match the given [predicate].
+     */
+    public static <T> boolean retainAll(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
+        return filterInPlace(iterable, predicate, false);
+    }
+
+    /**
+     * Retains only elements of this [MutableList] that match the given [predicate].
+     */
+    public static <T> boolean retainAll(@NotNull List<T> list, @NotNull Predicate<T> predicate) {
+        return filterInPlace(list, predicate, false);
+    }
+
+
+    /**
+     * Populates and returns the [destination] mutable map with key-value pairs
+     * provided by [transform] function applied to each element of the given collection.
+     * If any of two pairs would have the same key the last one gets added to the map.
+     */
+    @NotNull
+    public static <T, K, V, M extends Map<K, V>> M associateTo(@NotNull Iterable<T> iterable, @NotNull M destination, @NotNull Transformer<T, Pair<K, V>> transform) {
+        for (T element : iterable) {
+            Pair<K, V> pair = transform.transform(element);
+            destination.put(pair.fst, pair.snd);
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a [Map] containing key-value pairs provided by [transform] function
+     * applied to elements of the given collection.
+     * <p>
+     * If any of two pairs would have the same key the last one gets added to the map.
+     * <p>
+     * The returned map preserves the entry iteration order of the original collection.
+     */
+    @NotNull
+    public static <T, K, V> Map<K, V> associate(@NotNull Iterable<T> iterable, @NotNull Transformer<T, Pair<K, V>> transform) {
+        int capacity = Math.max(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 10)), 16);
+        return associateTo(iterable, new LinkedHashMap<K, V>(capacity), transform);
+    }
+
+    /**
+     * Populates and returns the [destination] mutable map with key-value pairs,
+     * where key is provided by the [keySelector] function and
+     * and value is provided by the [valueTransform] function applied to elements of the given collection.
+     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+     */
+    @NotNull
+    public static <T, K, V, M extends Map<K, V>> M associateByTo(@NotNull Iterable<T> iterable, @NotNull M destination, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
+        for (T element : iterable) {
+            destination.put(keySelector.transform(element), valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a [Map] containing the values provided by [valueTransform] and indexed by [keySelector] functions applied to elements of the given collection.
+     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+     * The returned map preserves the entry iteration order of the original collection.
+     */
+    @NotNull
+    public static <T, K, V> Map<K, V> associateBy(@NotNull Iterable<T> iterable, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
+        int capacity = Math.max(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 10)), 16);
+        return associateByTo(iterable, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
+    }
+
+    /**
+     * Populates and returns the [destination] mutable map with key-value pairs,
+     * where key is provided by the [keySelector] function applied to each element of the given collection
+     * and value is the element itself.
+     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+     */
+    @NotNull
+    public static <T, K, M extends Map<K, T>> M associateByTo(@NotNull Iterable<T> iterable, @NotNull M destination, @NotNull Transformer<T, K> keySelector) {
+        for (T element : iterable) {
+            destination.put(keySelector.transform(element), element);
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a [Map] containing the elements from the given collection indexed by the key
+     * returned from [keySelector] function applied to each element.
+     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+     * The returned map preserves the entry iteration order of the original collection.
+     */
+    @NotNull
+    public static <T, K> Map<K, T> associateBy(@NotNull Iterable<T> iterable, @NotNull Transformer<T, K> keySelector) {
+        int capacity = Math.max(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 10)), 16);
+        return associateByTo(iterable, new LinkedHashMap<K, T>(capacity), keySelector);
+    }
+
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static <T> List<T> drop(@NotNull Iterable<T> iterable, int n) {
+        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return toList(iterable);
+
+        ArrayList<T> list;
+        if (iterable instanceof Collection) {
+            Collection<T> collection = (Collection<T>) iterable;
+            int resultSize = collection.size() - n;
+            if (resultSize <= 0) {
+                return emptyList();
+            }
+            if (resultSize == 1) {
+                return listOf(last(collection));
+            }
+
+            list = new ArrayList<T>(resultSize);
+            if (iterable instanceof List) {
+                List<T> list1 = (List<T>) iterable;
+                if (iterable instanceof RandomAccess) {
+                    for (int index = 0, size = collection.size(); index < size; index++) {
+                        list.add(list1.get(index));
+                    }
+                } else {
+                    ListIterator<T> listIterator = list1.listIterator(n);
+                    while (listIterator.hasNext()) {
+                        T item = listIterator.next();
+                        list.add(item);
+                    }
+                }
+                return list;
+            }
+        } else {
+            list = new ArrayList<T>();
+        }
+
+        int count = 0;
+        for (T item : iterable) {
+            if (count++ >= n) {
+                list.add(item);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static <T> List<T> dropLast(@NotNull List<T> list, int n) {
+        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(list, Math.max(list.size() - n, 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> dropLastWhile(@NotNull List<T> list, @NotNull Predicate<T> predicate) {
+        if (!isEmpty(list)) {
+            ListIterator<T> iterator = list.listIterator(list.size());
+            while (iterator.hasPrevious()) {
+                if (!predicate.predicate(iterator.previous())) {
+                    return take(list, iterator.nextIndex() + 1);
+                }
+            }
+        }
+        return emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> dropWhile(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
+        boolean yielding = false;
+        ArrayList<T> list = new ArrayList<T>();
+        for (T item : iterable)
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.predicate(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        return list;
+    }
+
+
+    /**
+     * Returns the single element, or throws an exception if the list is empty or has more than one element.
+     */
+    @NotNull
+    public static <T> T single(@NotNull List<T> list) {
+        if (list.size() == 0) {
+            throw new NoSuchElementException("List is empty.");
+        } else if (list.size() == 1) {
+            return list.get(0);
+        } else {
+            throw new IllegalArgumentException("List has more than one element.");
+        }
+    }
+
+    /**
+     * Returns the single element, or throws an exception if the collection is empty or has more than one element.
+     */
+    @NotNull
+    public static <T> T single(@NotNull Iterable<T> iterable) {
+        if (iterable instanceof List) {
+            return single((List<T>) iterable);
+        } else {
+            Iterator<T> iterator = iterable.iterator();
+            if (!iterator.hasNext()) {
+                throw new NoSuchElementException("Collection is empty.");
+            }
+            T single = iterator.next();
+            if (iterator.hasNext()) {
+                throw new IllegalArgumentException("Collection has more than one element.");
+            } else {
+                return single;
+            }
+        }
+    }
+
+    /**
+     * Returns the single element matching the given [predicate], or throws exception if there is no or more than one matching element.
+     */
+    @NotNull
+    public static <T> T single(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
+        T single = null;
+        boolean found = false;
+        for (T element : iterable) {
+            if (predicate.predicate(element)) {
+                if (found) {
+                    throw new IllegalArgumentException("Collection contains more than one matching element.");
+                }
+                single = element;
+                found = true;
+            }
+        }
+        if (!found) {
+            throw new NoSuchElementException("Collection contains no element matching the predicate.");
+        }
+        return single;
+    }
+
+    /**
+     * Returns single element, or `null` if the list is empty or has more than one element.
+     */
+    @Nullable
+    public static <T> T singleOrNull(@NotNull List<T> list) {
+        return list.size() == 1 ? list.get(0) : null;
+    }
+
+    /**
+     * Returns single element, or `null` if the collection is empty or has more than one element.
+     */
+    @Nullable
+    public static <T> T singleOrNull(@NotNull Iterable<T> iterable) {
+        if (iterable instanceof List) {
+            return singleOrNull((List<T>) iterable);
+        } else {
+            Iterator<T> iterator = iterable.iterator();
+            if (!iterator.hasNext()) {
+                return null;
+            }
+            T single = iterator.next();
+            if (iterator.hasNext()) {
+                return null;
+            } else {
+                return single;
+            }
+        }
+    }
+
+    /**
+     * Returns the single element matching the given [predicate], or `null` if element was not found or more than one element was found.
+     */
+    @Nullable
+    public static <T> T singleOrNull(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
+        T single = null;
+        boolean found = false;
+        for (T element : iterable) {
+            if (predicate.predicate(element)) {
+                if (found) {
+                    return null;
+                }
+                single = element;
+                found = true;
+            }
+        }
+        if (!found) {
+            return null;
+        }
+        return single;
+    }
+
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this collection.
+     */
+    @NotNull
+    public static <T> T elementAtOrElse(@NotNull Iterable<T> iterable, int index, @NotNull Transformer<Integer, T> defaultValue) {
+        if (iterable instanceof List) {
+            return getOrElse((List<T>) iterable, index, defaultValue);
+        } else {
+            if (index < 0) {
+                return defaultValue.transform(index);
+            }
+            Iterator<T> iterator = iterable.iterator();
+            int count = 0;
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                if (index == count++) {
+                    return element;
+                }
+            }
+            return defaultValue.transform(index);
+        }
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this list.
+     */
+    @NotNull
+    public static <T> T elementAtOrElse(@NotNull List<T> list, int index, @NotNull Transformer<Integer, T> defaultValue) {
+        return index >= 0 && index <= list.size() - 1 ? list.get(index) : defaultValue.transform(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this collection.
+     */
+    @NotNull
+    public static <T> T elementAt(@NotNull Iterable<T> iterable, int index) {
+        if (iterable instanceof List) {
+            return ((List<T>) iterable).get(index);
+        } else {
+            return elementAtOrElse(iterable, index, new Transformer<Integer, T>() {
+                @NotNull
+                @Override
+                public T transform(@NotNull Integer integer) {
+                    throw new IndexOutOfBoundsException("Collection doesn't contain element at index $index.");
+                }
+            });
+        }
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this list.
+     */
+    @NotNull
+    public static <T> T elementAt(@NotNull List<T> list, int index) {
+        return list.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this collection.
+     */
+    @Nullable
+    public static <T> T elementAtOrNull(@NotNull Iterable<T> iterable, int index) {
+        if (iterable instanceof List) {
+            return getOrNull((List<T>) iterable, index);
+        } else {
+            if (index < 0) {
+                return null;
+            }
+            Iterator<T> iterator = iterable.iterator();
+            int count = 0;
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                if (index == count++)
+                    return element;
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this list.
+     */
+    @Nullable
+    public static <T> T elementAtOrNull(@NotNull List<T> list, int index) {
+        return getOrNull(list, index);
+    }
+
+
+    /**
+     * Fills the list with the provided [value].
+     * Each element in the list gets replaced with the [value].
+     */
+    public static <T> void fill(@NotNull List<T> list, @NotNull T value) {
+        Collections.fill(list, value);
+    }
+
+
+    /**
+     * Randomly shuffles elements in this mutable list.
+     */
+    public static <T> void shuffle(@NotNull List<T> list) {
+        Collections.shuffle(list);
+    }
+
+    /**
+     * Randomly shuffles elements in this mutable list using the specified [random] instance as the source of randomness.
+     */
+    public static <T> void shuffle(@NotNull List<T> list, @NotNull Random random) {
+        Collections.shuffle(list, random);
+    }
+
+    /**
+     * Returns a new list with the elements of this list randomly shuffled.
+     */
+    @NotNull
+    public static <T> List<T> shuffled(@NotNull Iterable<T> iterable) {
+        List<T> result = toList(iterable);
+        Collections.shuffle(result);
+        return result;
+    }
+
+    /**
+     * Returns a new list with the elements of this list randomly shuffled
+     * using the specified [random] instance as the source of randomness.
+     */
+    @NotNull
+    public static <T> List<T> shuffled(@NotNull Iterable<T> iterable, @NotNull Random random) {
+        List<T> result = toList(iterable);
+        Collections.shuffle(result, random);
+        return result;
+    }
 }

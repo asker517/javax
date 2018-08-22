@@ -35,6 +35,13 @@ public class Arrayx {
         return elements.length == 0;
     }
 
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static <T> boolean isNotEmpty(T[] elements) {
+        return !isEmpty(elements);
+    }
+
     public static <T> List<T> asList(T[] array) {
         return Arrays.asList(array);
     }

@@ -279,7 +279,9 @@ public class AESHelper {
         Cipher cipher;
         try {
             cipher = Cipher.getInstance(cipherAlgorithm);
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        } catch (NoSuchPaddingException e) {
             throw new IllegalArgumentException(e);
         }
 

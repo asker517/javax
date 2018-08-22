@@ -16,6 +16,7 @@
 
 package me.panpf.javax.lang;
 
+import me.panpf.javax.util.Predicatex;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -464,7 +465,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence limit(@NotNull CharSequence string, int length, @Nullable String suffix) {
-        if (length < 0) throw new IllegalArgumentException("Desired length $length is less than zero.");
+        Predicatex.require(length >= 0, "Desired length $length is less than zero.");
         if (string.length() <= length) return string;
 
         CharSequence limitString = string.subSequence(0, length);
@@ -514,7 +515,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence padStart(@NotNull CharSequence string, int length, char padChar) {
-        if (length < 0) throw new IllegalArgumentException("Desired length $length is less than zero.");
+        Predicatex.require(length >= 0, "Desired length $length is less than zero.");
         if (length <= string.length()) return string.subSequence(0, string.length());
 
         StringBuilder sb = new StringBuilder(length);
@@ -575,7 +576,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence padEnd(@NotNull CharSequence string, int length, char padChar) {
-        if (length < 0) throw new IllegalArgumentException("Desired length $length is less than zero.");
+        Predicatex.require(length >= 0, "Desired length $length is less than zero.");
         if (length <= string.length()) return string.subSequence(0, string.length());
 
         StringBuilder sb = new StringBuilder(length);
