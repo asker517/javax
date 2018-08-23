@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,11 +72,11 @@ public class ClassTest {
             throw new IllegalArgumentException(e);
         }
 
-        Field[] fields = Classx.getFields(TestField3.class);
+        Field[] fields = Classx.getFieldsWithParent(TestField3.class);
         Assert.assertNotNull(fields);
         Assert.assertEquals(fields.length, 6);
 
-        Field[] field2 = Classx.getFields(TestField3.class, 1);
+        Field[] field2 = Classx.getFieldsWithParent(TestField3.class, 1);
         Assert.assertNotNull(field2);
         Assert.assertEquals(field2.length, 4);
     }
@@ -90,39 +89,31 @@ public class ClassTest {
             Classx.callMethod(testMethod, "setUpdate", "testMethod");
         } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException(e);
-        } catch (InvocationTargetException e) {
-            throw new IllegalArgumentException(e);
         }
 
         try {
             Assert.assertEquals(Classx.callMethod(testMethod, "getUpdate"), "testMethod");
         } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException(e);
-        } catch (InvocationTargetException e) {
+        }
+
+        try {
+            Classx.callMethod(testMethod, Classx.getMethodWithParent(testMethod.getClass(), "setUpdate", String.class), "testMethod2");
+        } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
-            Classx.callMethod(testMethod, Classx.getMethod(testMethod.getClass(), "setUpdate", String.class), "testMethod2");
+            Assert.assertEquals(Classx.callMethod(testMethod, Classx.getMethodWithParent(testMethod.getClass(), "getUpdate")), "testMethod2");
         } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
 
-        try {
-            Assert.assertEquals(Classx.callMethod(testMethod, Classx.getMethod(testMethod.getClass(), "getUpdate")), "testMethod2");
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        } catch (InvocationTargetException e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        Method[] methods = Classx.getMethods(TestMethod.class);
+        Method[] methods = Classx.getMethodsWithParent(TestMethod.class);
         Assert.assertNotNull(methods);
         Assert.assertEquals(methods.length, 14);
 
-        Method[] methods2 = Classx.getMethods(TestMethod.class, 0);
+        Method[] methods2 = Classx.getMethodsWithParent(TestMethod.class, 0);
         Assert.assertNotNull(methods2);
         Assert.assertEquals(methods2.length, 2);
     }
@@ -130,44 +121,44 @@ public class ClassTest {
     @Test
     public void testConstructor() {
         try {
-            Assert.assertNotNull(Classx.getConstructor(TestConstructor.class, String.class));
+            Assert.assertNotNull(Classx.getConstructorWithParent(TestConstructor.class, String.class));
         } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException(e);
         }
 
-        Assert.assertEquals(Classx.getConstructors(TestConstructor.class).length, 4);
+        Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class).length, 4);
 
-        Assert.assertEquals(Classx.getConstructors(TestConstructor.class, 0).length, 3);
+        Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class, 0).length, 3);
     }
 
     @Test
     public void testHierarchy() {
-        Assert.assertEquals(Classx.getHierarchyClasss(TestField3.class).length, 4);
-        Assert.assertEquals(Classx.getHierarchyClasss(TestField3.class, true).length, 3);
+        Assert.assertEquals(Classx.getClassHierarchy(TestField3.class).length, 4);
+        Assert.assertEquals(Classx.getClassHierarchy(TestField3.class, true).length, 3);
     }
 
     @Test
     public void testType() {
         try {
-            Assert.assertTrue(Classx.isTypeArray(Classx.getField(TestType.class, "strings"), String.class));
+            Assert.assertTrue(Classx.isTypeArray(Classx.getFieldWithParent(TestType.class, "strings"), String.class));
         } catch (NoSuchFieldException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
-            Assert.assertFalse(Classx.isTypeArray(Classx.getField(TestType.class, "strings"), Integer.class));
+            Assert.assertFalse(Classx.isTypeArray(Classx.getFieldWithParent(TestType.class, "strings"), Integer.class));
         } catch (NoSuchFieldException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
-            Assert.assertTrue(Classx.isTypeCollection(Classx.getField(TestType.class, "stringList"), List.class, String.class));
+            Assert.assertTrue(Classx.isTypeCollection(Classx.getFieldWithParent(TestType.class, "stringList"), List.class, String.class));
         } catch (NoSuchFieldException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
-            Assert.assertFalse(Classx.isTypeCollection(Classx.getField(TestType.class, "stringList"), List.class, Integer.class));
+            Assert.assertFalse(Classx.isTypeCollection(Classx.getFieldWithParent(TestType.class, "stringList"), List.class, Integer.class));
         } catch (NoSuchFieldException e) {
             throw new IllegalArgumentException(e);
         }

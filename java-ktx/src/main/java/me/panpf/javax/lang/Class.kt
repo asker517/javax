@@ -1,0 +1,305 @@
+package me.panpf.javax.lang
+
+import java.lang.reflect.*
+import java.util.*
+
+/*
+ * Class tool
+ */
+
+/**
+ * Get the field with the specified name from the specified class
+ */
+@Throws(NoSuchFieldException::class)
+fun Class<*>.getFieldWithParent(fieldName: String): Field {
+    var field: Field? = null
+
+    var currentClazz: Class<*>? = this
+    while (field == null && currentClazz != null) {
+        try {
+            field = currentClazz.getDeclaredField(fieldName)
+        } catch (e: NoSuchFieldException) {
+            e.printStackTrace()
+        }
+
+        if (field == null) {
+            currentClazz = currentClazz.superclass
+        }
+    }
+
+    return if (field == null) {
+        throw NoSuchFieldException("Not found field by name '" + fieldName + "' in class '" + this.name + "'")
+    } else {
+        field
+    }
+}
+
+/**
+ * Get the field with the specified name from the object
+ */
+@Throws(NoSuchFieldException::class)
+fun Any.getFieldWithParent(fieldName: String): Field = this::class.java.getFieldWithParent(fieldName)
+
+/**
+ * Get all the fields of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
+ */
+fun Class<*>.getFieldsWithParent(upwards: Int = -1): Array<Field>? {
+    val fieldList = LinkedList<Field>()
+
+    var currentClazz: Class<*>? = this
+    var upwardsNumber = 0
+    while (currentClazz != null) {
+        val fields = currentClazz.declaredFields
+        if (fields != null) {
+            Collections.addAll(fieldList, *fields)
+        }
+        if (upwards == -1 || upwardsNumber++ < upwards) {
+            currentClazz = currentClazz.superclass
+        } else {
+            currentClazz = null
+        }
+    }
+
+    return if (fieldList.isEmpty()) null else fieldList.toTypedArray()
+}
+
+/**
+ * Get all the fields of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
+ */
+fun Any.getFieldsWithParent(upwards: Int = -1): Array<Field>? = this::class.java.getFieldsWithParent(upwards)
+
+/**
+ * Get the value of the specified field
+ */
+fun Any.getFieldValue(field: Field): Any? {
+    field.isAccessible = true
+    try {
+        return field.get(this)
+    } catch (e: IllegalAccessException) {
+        throw IllegalStateException(e)
+    }
+}
+
+/**
+ * Get the value of the specified field name
+ */
+@Throws(NoSuchFieldException::class)
+fun Any.getFieldValue(fieldName: String): Any? {
+    return this.getFieldValue(this.getFieldWithParent(fieldName))
+}
+
+/**
+ * Set field value
+ */
+fun Any.setFieldValue(field: Field, newValue: Any?) {
+    field.isAccessible = true
+    try {
+        field.set(this, newValue)
+    } catch (e: IllegalAccessException) {
+        throw IllegalStateException(e)
+    }
+}
+
+/**
+ * Set field value by field name
+ */
+@Throws(NoSuchFieldException::class)
+fun Any.setFieldValue(fieldName: String, newValue: Any?) {
+    this.setFieldValue(this.getFieldWithParent(fieldName), newValue)
+}
+
+
+/**
+ * Get the method with the specified name from the specified class
+ */
+@Throws(NoSuchMethodException::class)
+fun Class<*>.getMethodWithParent(methodName: String, vararg params: Class<*>): Method {
+    var method: Method? = null
+
+    var currentClazz: Class<*>? = this
+    while (method == null && currentClazz != null) {
+        try {
+            method = currentClazz.getDeclaredMethod(methodName, *params)
+        } catch (e: NoSuchMethodException) {
+            e.printStackTrace()
+        }
+
+        if (method == null) {
+            currentClazz = currentClazz.superclass
+        }
+    }
+
+    return if (method == null) {
+        throw NoSuchMethodException("Not found method by name '" + methodName + "' and params '" + Arrays.toString(params) + "' in class '" + this.name + "'")
+    } else {
+        method
+    }
+}
+
+
+/**
+ * Get the method with the specified name from the object
+ */
+@Throws(NoSuchMethodException::class)
+fun Any.getMethodWithParent(methodName: String, vararg params: Class<*>): Method = this::class.java.getMethodWithParent(methodName, *params)
+
+/**
+ * Get all the methods of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
+ */
+fun Class<*>.getMethodsWithParent(upwards: Int = -1): Array<Method>? {
+    val methodList = LinkedList<Method>()
+
+    var currentClazz: Class<*>? = this
+    var upwardsNumber = 0
+    while (currentClazz != null) {
+        val methods = currentClazz.declaredMethods
+        if (methods != null) {
+            Collections.addAll(methodList, *methods)
+        }
+        currentClazz = if (upwards == -1 || upwardsNumber++ < upwards) currentClazz.superclass else null
+    }
+
+    return if (methodList.isEmpty()) null else methodList.toTypedArray()
+}
+
+/**
+ * Method of executing of the specified object
+ */
+fun Any.callMethod(method: Method, vararg params: Any): Any? {
+    method.isAccessible = true
+    try {
+        return method.invoke(this, *params)
+    } catch (e: IllegalAccessException) {
+        throw IllegalStateException(e)
+    } catch (e: InvocationTargetException) {
+        throw IllegalStateException(e)
+    }
+}
+
+/**
+ * Method of executing the specified name of the specified object
+ */
+@Throws(NoSuchMethodException::class)
+fun Any.callMethod(methodName: String, vararg params: Any): Any? {
+    val paramClazzs = params.map { it.javaClass }.toTypedArray()
+    val method = this.getMethodWithParent(methodName, *paramClazzs)
+    return this.callMethod(method, *params)
+}
+
+
+/**
+ * Get the constructor from the specified class
+ */
+@Throws(NoSuchMethodException::class)
+fun Class<*>.getConstructorWithParent(vararg params: Class<*>): Constructor<*> {
+    var constructor: Constructor<*>? = null
+
+    var currentClazz: Class<*>? = this
+    while (constructor == null && currentClazz != null) {
+        try {
+
+            constructor = currentClazz.getDeclaredConstructor(*params)
+        } catch (e: NoSuchMethodException) {
+            e.printStackTrace()
+        }
+
+        if (constructor == null) {
+            currentClazz = currentClazz.superclass
+        }
+    }
+
+    return if (constructor == null) {
+        throw NoSuchMethodException("Not found constructor by params '" + Arrays.toString(params) + "' in class '" + this.name + "'")
+    } else {
+        constructor
+    }
+}
+
+
+/**
+ * Get the constructor from the object
+ */
+@Throws(NoSuchMethodException::class)
+fun Any.getConstructorWithParent(vararg params: Class<*>): Constructor<*> = this::class.java.getConstructorWithParent(*params)
+
+/**
+ * Get all the constructors of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
+ */
+fun Class<*>.getConstructorsWithParent(upwards: Int = -1): Array<Constructor<*>> {
+    val constructorList = LinkedList<Constructor<*>>()
+
+    var currentClazz: Class<*>? = this
+    var upwardsNumber = 0
+    while (currentClazz != null) {
+        currentClazz.declaredConstructors?.let { constructorList.addAll(it) }
+        currentClazz = if (upwards == -1 || upwardsNumber++ < upwards) {
+            currentClazz.superclass
+        } else {
+            null
+        }
+    }
+
+    return constructorList.toTypedArray()
+}
+
+/**
+ * Get all the constructors of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
+ */
+fun Any.getConstructorsWithParent(upwards: Int = -1): Array<Constructor<*>> = this::class.java.getConstructorsWithParent(upwards)
+
+
+/**
+ * Get all the inheritance lists of the specified class
+ *
+ * @param ignoreSelf Ignore myself in the return list
+ */
+fun Class<*>.getClassHierarchy(ignoreSelf: Boolean = false): Array<Class<*>> {
+    val classList = LinkedList<Class<*>>()
+    var currentClazz: Class<*>?
+    currentClazz = if (!ignoreSelf) this else this.superclass
+    while (currentClazz != null) {
+        classList.add(currentClazz)
+        currentClazz = currentClazz.superclass
+    }
+
+    return classList.toTypedArray()
+}
+
+/**
+ * Get all the inheritance lists of the object
+ *
+ * @param ignoreSelf Ignore myself in the return list
+ */
+fun Any.getClassHierarchy(ignoreSelf: Boolean = false): Array<Class<*>> = this::class.java.getClassHierarchy(ignoreSelf)
+
+
+/**
+ * Determine if the given field is an array of the specified type
+ */
+fun Field.isTypeArray(type: Class<*>): Boolean {
+    val fieldType = this.type
+    return fieldType.isArray && type.isAssignableFrom(fieldType.componentType)
+}
+
+/**
+ * Determine if a given field is a collection of the specified type
+ */
+fun Field.isTypeCollection(collectionType: Class<out Collection<*>>, type: Class<*>): Boolean {
+    val fieldType = this.type
+    return if (collectionType.isAssignableFrom(fieldType)) {
+        val first = (this.genericType as ParameterizedType).actualTypeArguments[0] as Class<*>
+        type.isAssignableFrom(first)
+    } else {
+        false
+    }
+}

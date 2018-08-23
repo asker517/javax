@@ -34,7 +34,7 @@ public class Classx {
      * Get the field with the specified name from the specified class
      */
     @NotNull
-    public static Field getField(@NotNull Class<?> clazz, @NotNull String fieldName) throws NoSuchFieldException {
+    public static Field getFieldWithParent(@NotNull Class<?> clazz, @NotNull String fieldName) throws NoSuchFieldException {
         Field field = null;
 
         Class currentClazz = clazz;
@@ -63,7 +63,7 @@ public class Classx {
      * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
      */
     @Nullable
-    public static Field[] getFields(@NotNull Class<?> clazz, int upwards) {
+    public static Field[] getFieldsWithParent(@NotNull Class<?> clazz, int upwards) {
         List<Field> fieldList = new LinkedList<Field>();
 
         Class currentClazz = clazz;
@@ -88,8 +88,8 @@ public class Classx {
      * Get all the fields of a given class and all its parent classes
      */
     @Nullable
-    public static Field[] getFields(@NotNull Class<?> clazz) {
-        return getFields(clazz, -1);
+    public static Field[] getFieldsWithParent(@NotNull Class<?> clazz) {
+        return getFieldsWithParent(clazz, -1);
     }
 
     /**
@@ -106,6 +106,14 @@ public class Classx {
     }
 
     /**
+     * Get the value of the specified field name
+     */
+    @Nullable
+    public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
+        return getFieldValue(object, getFieldWithParent(object.getClass(), fieldName));
+    }
+
+    /**
      * Set field value
      */
     public static void setFieldValue(@NotNull Object object, @NotNull Field field, @Nullable Object newValue) {
@@ -118,18 +126,10 @@ public class Classx {
     }
 
     /**
-     * Get the value of the specified field name
-     */
-    @Nullable
-    public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
-        return getFieldValue(object, getField(object.getClass(), fieldName));
-    }
-
-    /**
      * Set field value by field name
      */
     public static void setFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
-        setFieldValue(object, getField(object.getClass(), fieldName), newValue);
+        setFieldValue(object, getFieldWithParent(object.getClass(), fieldName), newValue);
     }
 
 
@@ -137,7 +137,7 @@ public class Classx {
      * Get the method with the specified name from the specified class
      */
     @NotNull
-    public static Method getMethod(@NotNull Class<?> clazz, @NotNull String methodName, @Nullable Class<?>... params) throws NoSuchMethodException {
+    public static Method getMethodWithParent(@NotNull Class<?> clazz, @NotNull String methodName, @Nullable Class<?>... params) throws NoSuchMethodException {
         Method method = null;
 
         Class currentClazz = clazz;
@@ -167,7 +167,7 @@ public class Classx {
      * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
      */
     @Nullable
-    public static Method[] getMethods(@NotNull Class<?> clazz, int upwards) {
+    public static Method[] getMethodsWithParent(@NotNull Class<?> clazz, int upwards) {
         List<Method> methodList = new LinkedList<Method>();
 
         Class currentClazz = clazz;
@@ -192,15 +192,30 @@ public class Classx {
      * Get all the methods of a given class and all its parent classes
      */
     @Nullable
-    public static Method[] getMethods(@NotNull Class<?> clazz) {
-        return getMethods(clazz, -1);
+    public static Method[] getMethodsWithParent(@NotNull Class<?> clazz) {
+        return getMethodsWithParent(clazz, -1);
+    }
+
+    /**
+     * Method of executing of the specified object
+     */
+    @Nullable
+    public static Object callMethod(@NotNull Object object, @NotNull Method method, @Nullable Object... params)  {
+        method.setAccessible(true);
+        try {
+            return method.invoke(object, params);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        } catch (InvocationTargetException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     /**
      * Method of executing the specified name of the specified object
      */
     @Nullable
-    public static Object callMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException, InvocationTargetException {
+    public static Object callMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
         Class[] paramClazzs = params != null ? Arrayx.map(params, new Transformer<Object, Class<?>>() {
             @NotNull
             @Override
@@ -208,28 +223,8 @@ public class Classx {
                 return o.getClass();
             }
         }, new Class[params.length]) : null;
-        Method method = getMethod(object.getClass(), methodName, paramClazzs);
-        method.setAccessible(true);
-        try {
-            return method.invoke(object, params);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            throw new IllegalStateException(e);
-        }
-    }
-
-    /**
-     * Method of executing of the specified object
-     */
-    @Nullable
-    public static Object callMethod(@NotNull Object object, @NotNull Method method, @Nullable Object... params) throws InvocationTargetException {
-        method.setAccessible(true);
-        try {
-            return method.invoke(object, params);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            throw new IllegalStateException(e);
-        }
+        Method method = getMethodWithParent(object.getClass(), methodName, paramClazzs);
+        return callMethod(object, method, params);
     }
 
 
@@ -237,7 +232,7 @@ public class Classx {
      * Get the constructor from the specified class
      */
     @NotNull
-    public static Constructor<?> getConstructor(@NotNull Class<?> clazz, @Nullable Class<?>... params) throws NoSuchMethodException {
+    public static Constructor<?> getConstructorWithParent(@NotNull Class<?> clazz, @Nullable Class<?>... params) throws NoSuchMethodException {
         Constructor constructor = null;
 
         Class currentClazz = clazz;
@@ -267,7 +262,7 @@ public class Classx {
      * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
      */
     @NotNull
-    public static Constructor[] getConstructors(@NotNull Class<?> clazz, int upwards) {
+    public static Constructor[] getConstructorsWithParent(@NotNull Class<?> clazz, int upwards) {
         List<Constructor> constructorList = new LinkedList<Constructor>();
 
         Class currentClazz = clazz;
@@ -292,8 +287,8 @@ public class Classx {
      * Get all the constructors of a given class and its parent classes
      */
     @NotNull
-    public static Constructor[] getConstructors(@NotNull Class<?> clazz) {
-        return getConstructors(clazz, -1);
+    public static Constructor[] getConstructorsWithParent(@NotNull Class<?> clazz) {
+        return getConstructorsWithParent(clazz, -1);
     }
 
 
@@ -303,7 +298,7 @@ public class Classx {
      * @param ignoreSelf Ignore myself in the return list
      */
     @NotNull
-    public static Class<?>[] getHierarchyClasss(@NotNull Class<?> clazz, boolean ignoreSelf) {
+    public static Class<?>[] getClassHierarchy(@NotNull Class<?> clazz, boolean ignoreSelf) {
         List<Class<?>> classList = new LinkedList<Class<?>>();
         Class<?> currentClazz;
         if (!ignoreSelf) {
@@ -323,8 +318,8 @@ public class Classx {
      * Get all the inheritance lists of the specified class
      */
     @NotNull
-    public static Class<?>[] getHierarchyClasss(@NotNull Class<?> clazz) {
-        return getHierarchyClasss(clazz, false);
+    public static Class<?>[] getClassHierarchy(@NotNull Class<?> clazz) {
+        return getClassHierarchy(clazz, false);
     }
 
 
