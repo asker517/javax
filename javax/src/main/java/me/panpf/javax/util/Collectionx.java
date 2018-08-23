@@ -1427,7 +1427,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<List<T>> chunked(@NotNull Iterable<T> iterable, int size) {
-        Predicatex.require(size > 0, "size is 0");
+        Premisex.require(size > 0, "size is 0");
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
@@ -1461,7 +1461,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, R> List<R> chunked(@NotNull Iterable<T> iterable, int size, @NotNull Transformer<List<T>, R> transform) {
-        Predicatex.require(size > 0, "size is 0");
+        Premisex.require(size > 0, "size is 0");
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
@@ -1754,10 +1754,9 @@ public class Collectionx {
     /**
      * Sorts elements in the list in-place according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <T, R extends Comparable<R>> void sortBy(@NotNull List<T> list, @NotNull NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> void sortBy(@NotNull List<T> list, @NotNull final NullableTransformer<T, R> selector) {
         if (list.size() > 1) {
-            //noinspection unchecked
-            sortWith(list, Comparisonx.compareBy((NullableTransformer<T, Comparable>) selector));
+            sortWith(list, Comparisonx.compareBy(selector));
         }
     }
 
@@ -1766,8 +1765,7 @@ public class Collectionx {
      */
     public static <T, R extends Comparable<R>> void sortByDescending(@NotNull List<T> list, @NotNull NullableTransformer<T, R> selector) {
         if (list.size() > 1) {
-            //noinspection unchecked
-            sortWith(list, Comparisonx.compareByDescending((NullableTransformer<T, Comparable>) selector));
+            sortWith(list, Comparisonx.compareByDescending(selector));
         }
     }
 
@@ -1775,8 +1773,7 @@ public class Collectionx {
      * Sorts elements in the list in-place descending according to their natural sort order.
      */
     public static <T extends Comparable<T>> void sortDescending(@NotNull List<T> list) {
-        //noinspection unchecked
-        sortWith(list, (Comparator<T>) Comparisonx.reverseOrder());
+        sortWith(list, new Comparisonx.ReverseOrderComparator<T>());
     }
 
     /**
@@ -1806,8 +1803,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, R extends Comparable<R>> List<T> sortedBy(@NotNull Iterable<T> iterable, @NotNull NullableTransformer<T, R> selector) {
-        //noinspection unchecked
-        return sortedWith(iterable, Comparisonx.compareBy((NullableTransformer<T, Comparable>) selector));
+        return sortedWith(iterable, Comparisonx.compareBy(selector));
     }
 
     /**
@@ -1837,8 +1833,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, R extends Comparable<R>> List<T> sortedByDescending(@NotNull Iterable<T> iterable, @NotNull NullableTransformer<T, R> selector) {
-        //noinspection unchecked
-        return sortedWith(iterable, Comparisonx.compareByDescending((NullableTransformer<T, Comparable>) selector));
+        return sortedWith(iterable, Comparisonx.compareByDescending(selector));
     }
 
     /**
@@ -1846,8 +1841,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T extends Comparable<T>> List<T> sortedDescending(@NotNull Iterable<T> iterable) {
-        //noinspection unchecked
-        return sortedWith(iterable, (Comparator<T>) Comparisonx.reverseOrder());
+        return sortedWith(iterable, new Comparisonx.ReverseOrderComparator<T>());
     }
 
 
@@ -2118,9 +2112,11 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> take(@NotNull Iterable<T> iterable, int n) {
-        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
-        //noinspection unchecked
-        if (n == 0) return EMPTY_LIST;
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) {
+            //noinspection unchecked
+            return EMPTY_LIST;
+        }
         if (iterable instanceof Collection) {
             if (n >= ((Collection) iterable).size()) {
                 return toList(iterable);
@@ -2143,9 +2139,11 @@ public class Collectionx {
      * Returns a list containing last [n] elements.
      */
     public static <T> List<T> takeLast(@NotNull List<T> list, int n) {
-        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
-        //noinspection unchecked
-        if (n == 0) return EMPTY_LIST;
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) {
+            //noinspection unchecked
+            return EMPTY_LIST;
+        }
         int size = list.size();
         if (n >= size) {
             return toList(list);
@@ -2310,7 +2308,7 @@ public class Collectionx {
     public static <T, K, V, M extends Map<K, V>> M associateTo(@NotNull Iterable<T> iterable, @NotNull M destination, @NotNull Transformer<T, Pair<K, V>> transform) {
         for (T element : iterable) {
             Pair<K, V> pair = transform.transform(element);
-            destination.put(pair.fst, pair.snd);
+            destination.put(pair.first, pair.second);
         }
         return destination;
     }
@@ -2386,7 +2384,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> drop(@NotNull Iterable<T> iterable, int n) {
-        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
         if (n == 0) return toList(iterable);
 
         ArrayList<T> list;
@@ -2434,7 +2432,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> dropLast(@NotNull List<T> list, int n) {
-        Predicatex.require(n >= 0, "Requested element count $n is less than zero.");
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
         return take(list, Math.max(list.size() - n, 0));
     }
 

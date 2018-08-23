@@ -11,12 +11,11 @@ public class Comparisonx {
     /**
      * Compares two nullable [Comparable] values. Null is considered less than any value.
      */
-    public static <T extends Comparable> int compareValues(@Nullable T a, @Nullable T b) {
+    public static <T extends Comparable<T>> int compareValues(@Nullable T a, @Nullable T b) {
         if (a == b) return 0;
         if (a == null) return -1;
         if (b == null) return 1;
 
-        //noinspection unchecked
         return a.compareTo(b);
     }
 
@@ -25,7 +24,7 @@ public class Comparisonx {
      * The function is applied to the given values [a] and [b] and return [Comparable] objects.
      * The result of comparison of these [Comparable] instances is returned.
      */
-    public static <T> int compareValuesBy(T a, T b, NullableTransformer<T, Comparable> selector) {
+    public static <T, R extends Comparable<R>> int compareValuesBy(T a, T b, NullableTransformer<T, R> selector) {
         return compareValues(selector.transform(a), selector.transform(b));
     }
 
@@ -33,7 +32,7 @@ public class Comparisonx {
      * Creates a comparator using the function to transform value to a [Comparable] instance for comparison.
      */
     @NotNull
-    public static <T> Comparator<T> compareBy(final NullableTransformer<T, Comparable> selector) {
+    public static <T, R extends Comparable<R>> Comparator<T> compareBy(final NullableTransformer<T, R> selector) {
         return new Comparator<T>() {
             @Override
             public int compare(T a, T b) {
@@ -46,7 +45,7 @@ public class Comparisonx {
      * Creates a descending comparator using the function to transform value to a [Comparable] instance for comparison.
      */
     @NotNull
-    public static <T> Comparator<T> compareByDescending(final NullableTransformer<T, Comparable> selector) {
+    public static <T, R extends Comparable<R>> Comparator<T> compareByDescending(final NullableTransformer<T, R> selector) {
         return new Comparator<T>() {
             @Override
             public int compare(T a, T b) {
@@ -55,48 +54,27 @@ public class Comparisonx {
         };
     }
 
-    /**
-     * Returns a comparator that compares [Comparable] objects in natural order.
-     */
-    public static <T extends Comparable<T>> Comparator<T> naturalOrder() {
-        //noinspection unchecked
-        return NaturalOrderComparator;
-    }
-
-
-    /**
-     * Returns a comparator that compares [Comparable] objects in reversed natural order.
-     */
-    public static <T extends Comparable<T>> Comparator<T> reverseOrder() {
-        //noinspection unchecked
-        return ReverseOrderComparator;
-    }
-
-    public static final Comparator NaturalOrderComparator = new Comparator<Comparable>() {
+    public static class NaturalOrderComparator<T extends Comparable<T>> implements Comparator<T> {
 
         @Override
-        public int compare(Comparable a, Comparable b) {
-            //noinspection unchecked
+        public int compare(T a, T b) {
             return a.compareTo(b);
         }
 
-        public Comparator<Comparable> reversed() {
-            //noinspection unchecked
-            return ReverseOrderComparator;
+        public Comparator<T> reversed() {
+            return new ReverseOrderComparator<T>();
         }
-    };
+    }
 
-    public static final Comparator ReverseOrderComparator = new Comparator<Comparable>() {
+    public static class ReverseOrderComparator<T extends Comparable<T>> implements Comparator<T> {
 
         @Override
-        public int compare(Comparable a, Comparable b) {
-            //noinspection unchecked
+        public int compare(T a, T b) {
             return b.compareTo(a);
         }
 
-        public Comparator<Comparable> reversed() {
-            //noinspection unchecked
-            return NaturalOrderComparator;
+        public Comparator<T> reversed() {
+            return new NaturalOrderComparator<T>();
         }
-    };
+    }
 }

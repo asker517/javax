@@ -7,7 +7,7 @@ public class IntegerTest {
 
     @Test
     public void testPad() {
-        Assert.assertEquals(Integerx.pad(10, 5), "00010");
-        Assert.assertEquals(Integerx.pad(10L, 5), "00010");
+        Assert.assertEquals(Intx.pad(10, 5), "00010");
+        Assert.assertEquals(Intx.pad(10L, 5), "00010");
     }
 }

@@ -54,7 +54,7 @@ public class ClassTest {
 
     public static class TestType {
         String[] strings = new String[]{};
-        List<String> stringList = new ArrayList<>();
+        List<String> stringList = new ArrayList<String>();
     }
 
     @Test
@@ -88,25 +88,33 @@ public class ClassTest {
 
         try {
             Classx.callMethod(testMethod, "setUpdate", "testMethod");
-        } catch (NoSuchMethodException | InvocationTargetException e) {
+        } catch (NoSuchMethodException e) {
+            throw new IllegalArgumentException(e);
+        } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
             Assert.assertEquals(Classx.callMethod(testMethod, "getUpdate"), "testMethod");
-        } catch (NoSuchMethodException | InvocationTargetException e) {
+        } catch (NoSuchMethodException e) {
+            throw new IllegalArgumentException(e);
+        } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
             Classx.callMethod(testMethod, Classx.getMethod(testMethod.getClass(), "setUpdate", String.class), "testMethod2");
-        } catch (NoSuchMethodException | InvocationTargetException e) {
+        } catch (NoSuchMethodException e) {
+            throw new IllegalArgumentException(e);
+        } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
 
         try {
             Assert.assertEquals(Classx.callMethod(testMethod, Classx.getMethod(testMethod.getClass(), "getUpdate")), "testMethod2");
-        } catch (NoSuchMethodException | InvocationTargetException e) {
+        } catch (NoSuchMethodException e) {
+            throw new IllegalArgumentException(e);
+        } catch (InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
 

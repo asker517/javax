@@ -26,6 +26,63 @@ import java.util.*
 
 
 /**
+ * Create a directory and throw an exception if it cannot be created
+ * @throws UnableCreateDirException Unable to create directory
+ */
+@Throws(UnableCreateDirException::class)
+fun File.mkdirsOrThrow(): File {
+    if (exists()) return this
+    mkdirs()
+    if (!exists()) throw UnableCreateDirException(this)
+    return this
+}
+
+/**
+ * Create a file, create its parent directory first, and throw an exception if it cannot be created
+ * @throws UnableCreateFileException Unable to create file
+ * @throws UnableCreateDirException  Unable to create parent directory
+ */
+@Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+fun File.createNewFileOrThrow(): File {
+    if (exists()) return this
+
+    parentFile.mkdirsOrThrow()
+
+    try {
+        createNewFile()
+    } catch (e: IOException) {
+        throw UnableCreateFileException(this, e)
+    }
+
+    if (!exists()) throw UnableCreateFileException(this)
+    return this
+}
+
+/**
+ * Create a file, create its parent directory first
+ * @return If true, the creation is successful.
+ */
+fun File.createNewFileNoThrow(): Boolean {
+    if (exists()) {
+        return true
+    }
+
+    val parentDir = parentFile
+    if (!parentDir.exists() && !parentDir.mkdirs()) {
+        return false
+    }
+
+    try {
+        createNewFile()
+    } catch (e: IOException) {
+        e.printStackTrace()
+        return false
+    }
+
+    return exists()
+}
+
+/**
  * Loop delete all files in the directory
  * @return If true, the clean is successful, otherwise the clean fails.
  */
@@ -81,73 +138,6 @@ fun File.cleanDir(): Boolean {
 }
 
 /**
- * Create a directory and throw an exception if it cannot be created
- * @throws UnableCreateDirException Unable to create directory
- */
-@Throws(UnableCreateDirException::class)
-fun File.mkdirsOrThrow() {
-    if (exists()) {
-        return
-    }
-
-    mkdirs()
-
-    if (!exists()) {
-        throw UnableCreateDirException(this, path)
-    }
-}
-
-/**
- * Create a file, create its parent directory first, and throw an exception if it cannot be created
- * @throws UnableCreateFileException Unable to create file
- * @throws UnableCreateDirException  Unable to create parent directory
- */
-@Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-fun File.createNewFileOrThrow(): File {
-    if (exists()) {
-        return this
-    }
-
-    parentFile.mkdirsOrThrow()
-
-    try {
-        createNewFile()
-    } catch (e: IOException) {
-        throw UnableCreateFileException(this, path, e)
-    }
-
-    if (!exists()) {
-        throw UnableCreateFileException(this, path)
-    }
-
-    return this
-}
-
-/**
- * Create a file, create its parent directory first
- * @return If true, the creation is successful.
- */
-fun File.createNewFileNoThrow(): Boolean {
-    if (exists()) {
-        return true
-    }
-
-    val parentDir = parentFile
-    if (!parentDir.exists() && !parentDir.mkdirs()) {
-        return false
-    }
-
-    try {
-        createNewFile()
-    } catch (e: IOException) {
-        e.printStackTrace()
-        return false
-    }
-
-    return exists()
-}
-
-/**
  * Get the length of the file or dir, if it is a directory, it will superimpose the length of all subfiles
  */
 fun File.lengthRecursively(): Long {
@@ -184,26 +174,28 @@ fun File.lengthRecursively(): Long {
 }
 
 class UnableCreateDirException : Exception {
+    @Suppress("MemberVisibilityCanBePrivate")
     val file: File
 
-    constructor(file: File, detailMessage: String) : super(detailMessage) {
+    constructor(file: File) : super(file.path) {
         this.file = file
     }
 
     @Suppress("unused")
-    constructor(file: File, detailMessage: String, cause: Throwable) : super(detailMessage, cause) {
+    constructor(file: File, cause: Throwable) : super(file.path, cause) {
         this.file = file
     }
 }
 
 class UnableCreateFileException : Exception {
+    @Suppress("MemberVisibilityCanBePrivate")
     val file: File
 
-    constructor(file: File, detailMessage: String) : super(detailMessage) {
+    constructor(file: File) : super(file.path) {
         this.file = file
     }
 
-    constructor(file: File, detailMessage: String, cause: Throwable) : super(detailMessage, cause) {
+    constructor(file: File, cause: Throwable) : super(file.path, cause) {
         this.file = file
     }
 }

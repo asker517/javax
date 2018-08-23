@@ -46,7 +46,7 @@ public class BoundedQueue<E> implements Queue<E> {
      * Adjust max size
      */
     public void setMaxSize(int maxSize) {
-        Predicatex.require(maxSize >= 1, "maxSize not less than 1");
+        Premisex.require(maxSize >= 1, "maxSize not less than 1");
         this.maxSize = maxSize;
         adjustSize(0);
     }
