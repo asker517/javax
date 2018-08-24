@@ -1,12 +1,12 @@
 /*
  * Copyright (C) 2018 Peng fei Pan <sky@panpf.me>
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,6 +15,8 @@
  */
 
 package me.panpf.javax.io;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -39,53 +41,17 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 
 /**
- * <b>I/O工具类，提供一些有关I/O流的便捷方法</b>
- * <br>
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字节输入流中读取字节：public static byte[] read(InputStream input, long off, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字节输入流中读取字节：public static byte[] read(InputStream input, long off)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字节输入流中读取字节：public static byte[] read(InputStream input, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字节输入流中读取字节：public static byte[] read(InputStream input)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字符输入流中读取字符：public static char[] read(Reader reader, long off, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字符输入流中读取字符：public static char[] read(Reader reader, long off)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字符输入流中读取字符：public static char[] read(Reader reader, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字符输入流中读取字符：public static char[] read(Reader reader)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字节输出流写出给定的字节数组：public static void write(OutputStream output, byte[] bytes, long off, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字节输出流写出给定的字节数组：public static void write(OutputStream output, byte[] bytes, long off)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字节输出流写出给定的字节数组：public static void write(OutputStream output, byte[] bytes, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字节输出流写出给定的字节数组：public static void write(OutputStream output, byte[] bytes)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字符输出流写出给定的字符数组：public static void write(Writer writer, char[] chars, long off, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字符输出流写出给定的字符数组：public static void write(Writer writer, char[] chars, long off)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字符输出流写出给定的字符数组：public static void write(Writer writer, char[] chars, int length)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;通过给定的字符输出流写出给定的字符数组：public static void write(Writer writer, char[] chars)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字节输入流中读取字节再通过给定的字节输出流写出：public static void outputFromInput(InputStream input, OutputStream output)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;从给定的字符输入流中读取字符再通过给定的字符输出流写出：public static void writerFromReader(Reader reader, Writer writer)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个字节输入流：public static InputStream openInputStream(File file)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个加了缓冲区的字节输入流：public static BufferedInputStream openBufferedInputStream(File file)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个字符输入流：public static Reader openReader(File file)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个使用给定的字符集编码的字符输入流：public static Reader openReader(File file, Charset charset)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个加了缓冲区的字符输入流：public static BufferedReader openBufferedReader(File file)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个使用给定的字符集编码并且加了缓冲区的字符输入流：public static BufferedReader openBufferedReader(File file, Charset charset)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个字节输出流：public static OutputStream openOutputStream(File file, boolean isAppend)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个加了缓冲区的字节输出流：public static BufferedOutputStream openBufferedOutputStream(File file, boolean isAppend)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个字符输出流：public static Writer openWriter(File file, boolean isAppend)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个使用给定的字符集编码的字符输出流：public static Writer openWriter(File file, boolean isAppend, Charset charset)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个加了缓冲区的字符输出流：public static BufferedWriter openBufferedWriter(File file, boolean isAppend)
- * <br>&nbsp;&nbsp;&nbsp;&nbsp;打开一个使用给定的字符集编码并且加了缓冲区的字符输出流：public static BufferedWriter openBufferedWriter(File file, boolean isAppend, Charset charset)
- * <br>
+ * I / O tools
  */
+@SuppressWarnings("WeakerAccess")
 public class IOX {
 
-    /**
-     * 每次最多读取的长度
-     */
-    public static final int MAX_OPERATION_LENGTH = 1024;
+    public static final int DEFAULT_BUFFER_LENGTH = 1024 * 8;
 
     /**
-     * 关闭流
-     *
-     * @param closeable
+     * CLose
      */
-    public static void close(Closeable closeable) {
+    public static void safeClose(Closeable closeable) {
         if (closeable != null) {
             if (closeable instanceof OutputStream) {
                 try {
@@ -136,7 +102,7 @@ public class IOX {
      */
     public static byte[] read(InputStream input, long off) throws IOException {
         input.skip(off);
-        byte[] bytes = new byte[MAX_OPERATION_LENGTH];
+        byte[] bytes = new byte[DEFAULT_BUFFER_LENGTH];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int number = -1;
         while ((number = input.read(bytes)) != -1) {
@@ -174,7 +140,7 @@ public class IOX {
      * @throws IOException
      */
     public static byte[] read(InputStream input) throws IOException {
-        byte[] bytes = new byte[MAX_OPERATION_LENGTH];
+        byte[] bytes = new byte[DEFAULT_BUFFER_LENGTH];
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int number = -1;
         while ((number = input.read(bytes)) != -1) {
@@ -216,7 +182,7 @@ public class IOX {
      */
     public static char[] read(Reader reader, long off) throws IOException {
         reader.skip(off);
-        char[] chars = new char[MAX_OPERATION_LENGTH];
+        char[] chars = new char[DEFAULT_BUFFER_LENGTH];
         CharArrayWriter caw = new CharArrayWriter();
         int number = -1;
         while ((number = reader.read(chars)) != -1) {
@@ -254,7 +220,7 @@ public class IOX {
      * @throws IOException
      */
     public static char[] read(Reader reader) throws IOException {
-        char[] chars = new char[MAX_OPERATION_LENGTH];
+        char[] chars = new char[DEFAULT_BUFFER_LENGTH];
         CharArrayWriter caw = new CharArrayWriter();
         int number = -1;
         while ((number = reader.read(chars)) != -1) {
@@ -374,13 +340,27 @@ public class IOX {
      * @param output 给定的字节输出流
      * @throws IOException
      */
-    public static void outputFromInput(InputStream input, OutputStream output) throws IOException {
-        byte[] bytes = new byte[MAX_OPERATION_LENGTH];
+    public static void writeFromInput(@NotNull OutputStream output, @NotNull InputStream input, int bufferLength) throws IOException {
+        byte[] bytes = new byte[bufferLength];
         int number;
-        while ((number = input.read(bytes)) != -1) {
-            output.write(bytes, 0, number);
+        try {
+            while ((number = input.read(bytes)) != -1) {
+                output.write(bytes, 0, number);
+            }
+        } finally {
+            output.flush();
         }
-        output.flush();
+    }
+
+    /**
+     * 从给定的字节输入流中读取字节再通过给定的字节输出流写出
+     *
+     * @param input  给定的字节输入流
+     * @param output 给定的字节输出流
+     * @throws IOException IOException
+     */
+    public static void writeFromInput(@NotNull OutputStream output, @NotNull InputStream input) throws IOException {
+        writeFromInput(output, input, DEFAULT_BUFFER_LENGTH);
     }
 
     /**
@@ -388,10 +368,10 @@ public class IOX {
      *
      * @param reader 给定的字符输入流
      * @param writer 给定的字符输出流
-     * @throws IOException
+     * @throws IOException IOException
      */
     public static void writerFromReader(Reader reader, Writer writer) throws IOException {
-        char[] chars = new char[MAX_OPERATION_LENGTH];
+        char[] chars = new char[DEFAULT_BUFFER_LENGTH];
         int number;
         while ((number = reader.read(chars)) != -1) {
             writer.write(chars, 0, number);

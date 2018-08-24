@@ -10,9 +10,8 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  * This class consists exclusively of static methods for obtaining
@@ -53,7 +52,6 @@ import java.util.Objects;
  * NullPointerException} to be thrown.
  *
  * @author  Xueming Shen
- * @since   1.8
  */
 
 public class Base64Compat {
@@ -110,7 +108,7 @@ public class Base64Compat {
      *          RFC 2045.
      */
     public static Encoder getMimeEncoder(int lineLength, byte[] lineSeparator) {
-        Objects.requireNonNull(lineSeparator);
+        Premisex.requireNonNull(lineSeparator);
         int[] base64 = Decoder.fromBase64;
         for (byte b : lineSeparator) {
             if (base64[b & 0xff] != -1)
@@ -281,8 +279,7 @@ public class Base64Compat {
          *
          * <p> This method first encodes all input bytes into a base64 encoded
          * byte array and then constructs a new String by using the encoded byte
-         * array and the {@link java.nio.charset.StandardCharsets#ISO_8859_1
-         * ISO-8859-1} charset.
+         * array and the "ISO-8859-1" charset.
          *
          * <p> In other words, an invocation of this method has exactly the same
          * effect as invoking
@@ -347,7 +344,7 @@ public class Base64Compat {
          *          specified Base64 encoded format
          */
         public OutputStream wrap(OutputStream os) {
-            Objects.requireNonNull(os);
+            Premisex.requireNonNull(os);
             return new EncOutputStream(os, isURL ? toBase64URL : toBase64,
                     newline, linemax, doPadding);
         }
@@ -528,7 +525,7 @@ public class Base64Compat {
          *          if {@code src} is not in valid Base64 scheme
          */
         public byte[] decode(String src) {
-            return decode(src.getBytes(StandardCharsets.ISO_8859_1));
+            return decode(src.getBytes(Charset.forName("ISO-8859-1")));
         }
 
         /**
@@ -625,7 +622,7 @@ public class Base64Compat {
          *          byte stream
          */
         public InputStream wrap(InputStream is) {
-            Objects.requireNonNull(is);
+            Premisex.requireNonNull(is);
             return new DecInputStream(is, isURL ? fromBase64URL : fromBase64, isMIME);
         }
 

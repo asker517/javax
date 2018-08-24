@@ -75,10 +75,10 @@ public class Zipx {
                     InputStream inputStream = null;
                     try {
                         inputStream = new BufferedInputStream(new FileInputStream(childFile));
-                        IOX.outputFromInput(inputStream, zipOutputStream);
+                        IOX.writeFromInput(zipOutputStream, inputStream);
                     } finally {
                         zipOutputStream.closeEntry();
-                        IOX.close(inputStream);
+                        IOX.safeClose(inputStream);
                     }
                 }
             }
@@ -88,7 +88,7 @@ public class Zipx {
             destinationFile.delete();
             throw e;
         } finally {
-            IOX.close(zipOutputStream);
+            IOX.safeClose(zipOutputStream);
         }
 
         return destinationFile;
@@ -153,16 +153,16 @@ public class Zipx {
                     OutputStream outputStream = null;
                     try {
                         inputStream = zipFile.getInputStream(zipEntry);
-                        outputStream = IOX.openOutputStream(file, false);
-                        IOX.outputFromInput(inputStream, outputStream);
+                        outputStream = new FileOutputStream(file, false);
+                        IOX.writeFromInput(outputStream, inputStream);
                     } finally {
-                        IOX.close(outputStream);
-                        IOX.close(inputStream);
+                        IOX.safeClose(outputStream);
+                        IOX.safeClose(inputStream);
                     }
                 }
             }
         } finally {
-            IOX.close(zipFile);
+            IOX.safeClose(zipFile);
         }
 
         return destinationDir;

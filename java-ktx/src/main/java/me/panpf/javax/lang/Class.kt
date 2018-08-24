@@ -45,7 +45,7 @@ fun Any.getFieldWithParent(fieldName: String): Field = this::class.java.getField
  *
  * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
  */
-fun Class<*>.getFieldsWithParent(upwards: Int = -1): Array<Field>? {
+fun Class<*>.getFieldsWithParent(upwards: Int = -1): Array<Field> {
     val fieldList = LinkedList<Field>()
 
     var currentClazz: Class<*>? = this
@@ -55,14 +55,14 @@ fun Class<*>.getFieldsWithParent(upwards: Int = -1): Array<Field>? {
         if (fields != null) {
             Collections.addAll(fieldList, *fields)
         }
-        if (upwards == -1 || upwardsNumber++ < upwards) {
-            currentClazz = currentClazz.superclass
+        currentClazz = if (upwards == -1 || upwardsNumber++ < upwards) {
+            currentClazz.superclass
         } else {
-            currentClazz = null
+            null
         }
     }
 
-    return if (fieldList.isEmpty()) null else fieldList.toTypedArray()
+    return fieldList.toTypedArray()
 }
 
 /**
@@ -70,7 +70,7 @@ fun Class<*>.getFieldsWithParent(upwards: Int = -1): Array<Field>? {
  *
  * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
  */
-fun Any.getFieldsWithParent(upwards: Int = -1): Array<Field>? = this::class.java.getFieldsWithParent(upwards)
+fun Any.getFieldsWithParent(upwards: Int = -1): Array<Field> = this::class.java.getFieldsWithParent(upwards)
 
 /**
  * Get the value of the specified field
@@ -152,7 +152,7 @@ fun Any.getMethodWithParent(methodName: String, vararg params: Class<*>): Method
  *
  * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
  */
-fun Class<*>.getMethodsWithParent(upwards: Int = -1): Array<Method>? {
+fun Class<*>.getMethodsWithParent(upwards: Int = -1): Array<Method> {
     val methodList = LinkedList<Method>()
 
     var currentClazz: Class<*>? = this
@@ -165,8 +165,15 @@ fun Class<*>.getMethodsWithParent(upwards: Int = -1): Array<Method>? {
         currentClazz = if (upwards == -1 || upwardsNumber++ < upwards) currentClazz.superclass else null
     }
 
-    return if (methodList.isEmpty()) null else methodList.toTypedArray()
+    return methodList.toTypedArray()
 }
+
+/**
+ * Get all the methods of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
+ */
+fun Any.getMethodsWithParent(upwards: Int = -1): Array<Method> = this::class.java.getMethodsWithParent(upwards)
 
 /**
  * Method of executing of the specified object
@@ -187,8 +194,8 @@ fun Any.callMethod(method: Method, vararg params: Any): Any? {
  */
 @Throws(NoSuchMethodException::class)
 fun Any.callMethod(methodName: String, vararg params: Any): Any? {
-    val paramClazzs = params.map { it.javaClass }.toTypedArray()
-    val method = this.getMethodWithParent(methodName, *paramClazzs)
+    val paramClazzArray = params.map { it.javaClass }.toTypedArray()
+    val method = this.getMethodWithParent(methodName, *paramClazzArray)
     return this.callMethod(method, *params)
 }
 

@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package me.panpf.javax
+package me.panpf.javax.io
 
-import me.panpf.javax.io.*
 import org.junit.Assert
 import org.junit.Test
 import java.io.File

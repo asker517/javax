@@ -16,6 +16,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains:annotations:13.0"
+    compile "me.panpf:kotlinx:0.2"
 }
 
 compileKotlin {

@@ -62,7 +62,7 @@ public class Classx {
      *
      * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
      */
-    @Nullable
+    @NotNull
     public static Field[] getFieldsWithParent(@NotNull Class<?> clazz, int upwards) {
         List<Field> fieldList = new LinkedList<Field>();
 
@@ -81,13 +81,13 @@ public class Classx {
         }
 
         //noinspection ToArrayCallWithZeroLengthArrayArgument
-        return fieldList.isEmpty() ? null : fieldList.toArray(new Field[fieldList.size()]);
+        return fieldList.toArray(new Field[fieldList.size()]);
     }
 
     /**
      * Get all the fields of a given class and all its parent classes
      */
-    @Nullable
+    @NotNull
     public static Field[] getFieldsWithParent(@NotNull Class<?> clazz) {
         return getFieldsWithParent(clazz, -1);
     }
@@ -166,7 +166,7 @@ public class Classx {
      *
      * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
      */
-    @Nullable
+    @NotNull
     public static Method[] getMethodsWithParent(@NotNull Class<?> clazz, int upwards) {
         List<Method> methodList = new LinkedList<Method>();
 
@@ -185,13 +185,13 @@ public class Classx {
         }
 
         //noinspection ToArrayCallWithZeroLengthArrayArgument
-        return methodList.isEmpty() ? null : methodList.toArray(new Method[methodList.size()]);
+        return methodList.toArray(new Method[methodList.size()]);
     }
 
     /**
      * Get all the methods of a given class and all its parent classes
      */
-    @Nullable
+    @NotNull
     public static Method[] getMethodsWithParent(@NotNull Class<?> clazz) {
         return getMethodsWithParent(clazz, -1);
     }

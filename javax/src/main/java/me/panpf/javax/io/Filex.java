@@ -1417,7 +1417,7 @@ public class Filex {
 //                outputStream = IOUtils.openBufferedOutputStream(saveFile, false);
 //                for (File file : files) {
 //                    inputStream = IOUtils.openBufferedInputStream(file);
-//                    IOUtils.outputFromInput(inputStream, outputStream);
+//                    IOUtils.writeFromInput(inputStream, outputStream);
 //                    inputStream.close();
 //                }
 //            }

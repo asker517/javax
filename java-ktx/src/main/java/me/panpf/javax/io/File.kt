@@ -89,6 +89,8 @@ fun File.createNewFileNoThrow(): Boolean {
 fun File.cleanDir(): Boolean {
     if (!exists() || isFile) return true
 
+    readBytes()
+
     val childFiles = listFiles()
     if (childFiles == null || childFiles.isEmpty()) return true
 

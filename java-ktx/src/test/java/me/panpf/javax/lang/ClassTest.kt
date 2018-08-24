@@ -62,13 +62,13 @@ class ClassTest {
             throw IllegalArgumentException(e)
         }
 
-        val fields = TestField3::class.java.getFieldsWithParent()
+        val fields = TestField3().getFieldsWithParent()
         Assert.assertNotNull(fields)
-        Assert.assertEquals(fields?.size?.toLong() ?: 0, 6)
+        Assert.assertEquals(fields.size.toLong(), 6)
 
-        val field2 = TestField3::class.java.getFieldsWithParent(1)
+        val field2 = TestField3().getFieldsWithParent(1)
         Assert.assertNotNull(field2)
-        Assert.assertEquals(field2?.size?.toLong() ?: 0, 4)
+        Assert.assertEquals(field2.size.toLong(), 4)
     }
 
     @Test
@@ -99,56 +99,56 @@ class ClassTest {
             throw IllegalArgumentException(e)
         }
 
-        val methods = TestMethod::class.java.getMethodsWithParent()
+        val methods = TestMethod().getMethodsWithParent()
         Assert.assertNotNull(methods)
-        Assert.assertEquals(methods?.size?.toLong() ?: 0, 14)
+        Assert.assertEquals(methods.size.toLong(), 14)
 
-        val methods2 = TestMethod::class.java.getMethodsWithParent(0)
+        val methods2 = TestMethod().getMethodsWithParent(0)
         Assert.assertNotNull(methods2)
-        Assert.assertEquals(methods2?.size?.toLong() ?: 0, 2)
+        Assert.assertEquals(methods2.size.toLong(), 2)
     }
 
     @Test
     fun testConstructor() {
         try {
-            Assert.assertNotNull(TestConstructor::class.java.getConstructorWithParent(String::class.java))
+            Assert.assertNotNull(TestConstructor().getConstructorWithParent(String::class.java))
         } catch (e: NoSuchMethodException) {
             throw IllegalArgumentException(e)
         }
 
-        Assert.assertEquals(TestConstructor::class.java.getConstructorsWithParent().size, 4)
+        Assert.assertEquals(TestConstructor().getConstructorsWithParent().size, 4)
 
-        Assert.assertEquals(TestConstructor::class.java.getConstructorsWithParent(0).size, 3)
+        Assert.assertEquals(TestConstructor().getConstructorsWithParent(0).size, 3)
     }
 
     @Test
     fun testHierarchy() {
-        Assert.assertEquals(TestField3::class.java.getClassHierarchy().size, 4)
-        Assert.assertEquals(TestField3::class.java.getClassHierarchy(true).size, 3)
+        Assert.assertEquals(TestField3().getClassHierarchy().size, 4)
+        Assert.assertEquals(TestField3().getClassHierarchy(true).size, 3)
     }
 
     @Test
     fun testType() {
         try {
-            Assert.assertTrue(TestType::class.java.getFieldWithParent("strings").isTypeArray(String::class.java))
+            Assert.assertTrue(TestType().getFieldWithParent("strings").isTypeArray(String::class.java))
         } catch (e: NoSuchFieldException) {
             throw IllegalArgumentException(e)
         }
 
         try {
-            Assert.assertFalse(TestType::class.java.getFieldWithParent("strings").isTypeArray(Int::class.java))
+            Assert.assertFalse(TestType().getFieldWithParent("strings").isTypeArray(Int::class.java))
         } catch (e: NoSuchFieldException) {
             throw IllegalArgumentException(e)
         }
 
         try {
-            Assert.assertTrue(TestType::class.java.getFieldWithParent("stringList").isTypeCollection(List::class.java, String::class.java))
+            Assert.assertTrue(TestType().getFieldWithParent("stringList").isTypeCollection(List::class.java, String::class.java))
         } catch (e: NoSuchFieldException) {
             throw IllegalArgumentException(e)
         }
 
         try {
-            Assert.assertFalse(TestType::class.java.getFieldWithParent("stringList").isTypeCollection(List::class.java, Int::class.java))
+            Assert.assertFalse(TestType().getFieldWithParent("stringList").isTypeCollection(List::class.java, Int::class.java))
         } catch (e: NoSuchFieldException) {
             throw IllegalArgumentException(e)
         }
