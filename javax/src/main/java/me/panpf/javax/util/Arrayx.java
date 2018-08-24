@@ -16,7 +16,6 @@
 
 package me.panpf.javax.util;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import me.panpf.javax.lang.Charx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -234,12 +233,12 @@ public class Arrayx {
     }
 
     @NotNull
-    public static <Data, Result> Result[] map(@NotNull Data[] datas, @NotNull Transformer<Data, Result> transformer, Result[] results) {
+    public static <T, R> R[] map(@NotNull T[] ts, @NotNull Transformer<T, R> transformer, R[] rs) {
         int index = 0;
-        for (Data data : datas) {
-            results[index++] = transformer.transform(data);
+        for (T t : ts) {
+            rs[index++] = transformer.transform(t);
         }
-        return results;
+        return rs;
     }
 
 
@@ -1068,5 +1067,194 @@ public class Arrayx {
     public static boolean any(char[] elements, Predicate<Character> predicate) {
         for (char element : elements) if (predicate.predicate(element)) return true;
         return false;
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static <T> T[] copyOf(T[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static byte[] copyOf(byte[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static short[] copyOf(short[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static int[] copyOf(int[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static long[] copyOf(long[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static float[] copyOf(float[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static double[] copyOf(double[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static boolean[] copyOf(boolean[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array.
+     */
+    public static char[] copyOf(char[] elements) {
+        return java.util.Arrays.copyOf(elements, elements.length);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static byte[] copyOf(byte[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static short[] copyOf(short[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static int[] copyOf(int[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static long[] copyOf(long[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static float[] copyOf(float[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static double[] copyOf(double[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static boolean[] copyOf(boolean[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static char[] copyOf(char[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of the original array, resized to the given [newSize].
+     */
+    public static <T> T[] copyOf(T[] elements, int newSize) {
+        return java.util.Arrays.copyOf(elements, newSize);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static <T> T[] copyOfRange(T[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static byte[] copyOfRange(byte[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static short[] copyOfRange(short[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static int[] copyOfRange(int[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static long[] copyOfRange(long[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static float[] copyOfRange(float[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static double[] copyOfRange(double[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static boolean[] copyOfRange(boolean[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    }
+
+    /**
+     * Returns new array which is a copy of range of original array.
+     */
+    public static char[] copyOfRange(char[] elements, int fromIndex, int toIndex) {
+        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 }

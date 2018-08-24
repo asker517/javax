@@ -3,7 +3,7 @@ package me.panpf.javax.util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface NullableTransformer<Data, Result> {
+public interface NullableTransformer<T, R> {
     @Nullable
-    Result transform(@NotNull Data data);
+    R transform(@NotNull T t);
 }

@@ -16,12 +16,14 @@
 
 package me.panpf.javax.io;
 
+import me.panpf.javax.lang.Charx;
+import me.panpf.javax.lang.Intx;
 import me.panpf.javax.lang.Stringx;
-import me.panpf.javax.util.Arrayx;
+import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.util.*;
 
 import static com.sun.deploy.cache.Cache.exists;
@@ -118,7 +120,7 @@ public class Filex {
 
         Collections.addAll(fileStack, childFiles);
 
-        File childFile = null;
+        File childFile;
         while (true) {
             try {
                 childFile = fileStack.pop();
@@ -200,5 +202,377 @@ public class Filex {
      */
     public static String nameWithoutExtension(File file) {
         return Stringx.substringBeforeLast(file.getName(), ".", file.getName());
+    }
+
+
+    /**
+     * Constructs a new FileInputStream of this file and returns it as a result.
+     */
+    public static FileInputStream inputStream(@NotNull File file) throws FileNotFoundException {
+        return new FileInputStream(file);
+    }
+
+    /**
+     * Returns a new [FileReader] for reading the content of this file.
+     */
+    public static InputStreamReader reader(@NotNull File file, Charset charset) throws FileNotFoundException {
+        return IOStreamx.reader(inputStream(file), charset);
+    }
+
+    /**
+     * Returns a new [FileReader] for reading the content of this file.
+     */
+    public static InputStreamReader reader(@NotNull File file) throws FileNotFoundException {
+        return reader(file, Charx.UTF_8);
+    }
+
+    /**
+     * Returns a new [BufferedReader] for reading the content of this file.
+     *
+     * @param bufferSize necessary size of the buffer.
+     */
+    public static BufferedReader bufferedReader(@NotNull File file, Charset charset, int bufferSize) throws FileNotFoundException {
+        return IOStreamx.buffered(reader(file, charset), bufferSize);
+    }
+
+    /**
+     * Returns a new [BufferedReader] for reading the content of this file.
+     *
+     * @param bufferSize necessary size of the buffer.
+     */
+    public static BufferedReader bufferedReader(@NotNull File file, int bufferSize) throws FileNotFoundException {
+        return bufferedReader(file, Charx.UTF_8, bufferSize);
+    }
+
+    /**
+     * Returns a new [BufferedReader] for reading the content of this file.
+     */
+    public static BufferedReader bufferedReader(@NotNull File file, Charset charset) throws FileNotFoundException {
+        return bufferedReader(file, charset, IOStreamx.DEFAULT_BUFFER_SIZE);
+    }
+
+    /**
+     * Returns a new [BufferedReader] for reading the content of this file.
+     */
+    public static BufferedReader bufferedReader(@NotNull File file) throws FileNotFoundException {
+        return bufferedReader(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
+    }
+
+
+    /**
+     * Gets the entire content of this file as a byte array.
+     * <p>
+     * This method is not recommended on huge files. It has an internal limitation of 2 GB byte array size.
+     *
+     * @return the entire content of this file as a byte array.
+     */
+    public static byte[] readBytes(@NotNull File file) throws IOException {
+        if (file.length() > Integer.MAX_VALUE) {
+            throw new OutOfMemoryError("File $this is too big ($length bytes) to fit in memory.");
+        }
+
+        int offset = 0;
+        int remaining = (int) file.length();
+        byte[] result = new byte[remaining];
+
+        InputStream input = inputStream(file);
+        try {
+            while (remaining > 0) {
+                int read = input.read(result, offset, remaining);
+                if (read < 0) {
+                    break;
+                }
+                remaining -= read;
+                offset += read;
+            }
+        } finally {
+            IOStreamx.safeClose(input);
+        }
+        return remaining == 0 ? result : Arrayx.copyOf(result, offset);
+    }
+
+    /**
+     * Gets the entire content of this file as a String using UTF-8 or specified [charset].
+     * <p>
+     * This method is not recommended on huge files. It has an internal limitation of 2 GB file size.
+     *
+     * @param charset character set to use.
+     * @return the entire content of this file as a String.
+     */
+    public static String readText(@NotNull File file, Charset charset) throws IOException {
+        return Arrayx.toString(readBytes(file), charset);
+    }
+
+    /**
+     * Gets the entire content of this file as a String using UTF-8 or specified [charset].
+     * <p>
+     * This method is not recommended on huge files. It has an internal limitation of 2 GB file size.
+     *
+     * @return the entire content of this file as a String.
+     */
+    public static String readText(@NotNull File file) throws IOException {
+        return readText(file, Charx.UTF_8);
+    }
+
+    /**
+     * Reads the file content as a list of lines.
+     * <p>
+     * Do not use this function for huge files.
+     *
+     * @param charset character set to use.
+     * @return list of file lines.
+     */
+    public static List<String> readLines(@NotNull File file, Charset charset) throws IOException {
+        final ArrayList<String> result = new ArrayList<String>();
+        forEachLine(file, charset, new Action<String>() {
+            @Override
+            public void action(@NotNull String s) {
+                result.add(s);
+            }
+        });
+        return result;
+    }
+
+    /**
+     * Reads the file content as a list of lines.
+     * <p>
+     * Do not use this function for huge files.
+     *
+     * @return list of file lines.
+     */
+    public static List<String> readLines(@NotNull File file) throws IOException {
+        return readLines(file, Charx.UTF_8);
+    }
+
+    /**
+     * Calls the [block] callback giving it a sequence of all the lines in this file and closes the reader once
+     * the processing is complete.
+     *
+     * @param charset character set to use
+     * @return the value returned by [block].
+     */
+    public static <T> T useLines(@NotNull File file, Charset charset, Transformer<Sequence<String>, T> block) throws FileNotFoundException {
+        BufferedReader bufferedReader = bufferedReader(file, charset);
+        T result;
+        try {
+            result = block.transform(IOStreamx.lineSequence(bufferedReader));
+        } finally {
+            IOStreamx.safeClose(bufferedReader);
+        }
+        return result;
+    }
+
+    /**
+     * Calls the [block] callback giving it a sequence of all the lines in this file and closes the reader once
+     * the processing is complete.
+     *
+     * @return the value returned by [block].
+     */
+    public static <T> T useLines(@NotNull File file, Transformer<Sequence<String>, T> block) throws FileNotFoundException {
+        return useLines(file, Charx.UTF_8, block);
+    }
+
+    /**
+     * Reads file by byte blocks and calls [action] for each block read.
+     * This functions passes the byte array and amount of bytes in the array to the [action] function.
+     * <p>
+     * You can use this function for huge files.
+     *
+     * @param action    function to process file blocks.
+     * @param blockSize size of a block, replaced by 512 if it's less, 4096 by default.
+     */
+    public static void forEachBlock(@NotNull File file, int blockSize, Action2<byte[], Integer> action) throws IOException {
+        byte[] arr = new byte[Intx.coerceAtLeast(blockSize, IOStreamx.MINIMUM_BLOCK_SIZE)];
+
+        InputStream input = inputStream(file);
+        try {
+            do {
+                int size = input.read(arr);
+                if (size <= 0) {
+                    break;
+                } else {
+                    action.action(arr, size);
+                }
+            } while (true);
+        } finally {
+            IOStreamx.safeClose(input);
+        }
+    }
+
+    /**
+     * Reads file by byte blocks and calls [action] for each block read.
+     * Block has default size which is implementation-dependent.
+     * This functions passes the byte array and amount of bytes in the array to the [action] function.
+     * <p>
+     * You can use this function for huge files.
+     *
+     * @param action function to process file blocks.
+     */
+    public static void forEachBlock(@NotNull File file, Action2<byte[], Integer> action) throws IOException {
+        forEachBlock(file, IOStreamx.DEFAULT_BLOCK_SIZE, action);
+    }
+
+    /**
+     * Reads this file line by line using the specified [charset] and calls [action] for each line.
+     * Default charset is UTF-8.
+     * <p>
+     * You may use this function on huge files.
+     *
+     * @param charset character set to use.
+     * @param action  function to process file lines.
+     */
+    public static void forEachLine(@NotNull File file, Charset charset, Action<String> action) throws IOException {
+        // Note: close is called at forEachLine
+        IOStreamx.forEachLine(new BufferedReader(new InputStreamReader(new FileInputStream(file), charset)), action);
+    }
+
+    /**
+     * Reads this file line by line using the specified [charset] and calls [action] for each line.
+     * Default charset is UTF-8.
+     * <p>
+     * You may use this function on huge files.
+     *
+     * @param action function to process file lines.
+     */
+    public static void forEachLine(@NotNull File file, Action<String> action) throws IOException {
+        // Note: close is called at forEachLine
+        forEachLine(file, Charx.UTF_8, action);
+    }
+
+
+    /**
+     * Constructs a new FileOutputStream of this file and returns it as a result.
+     */
+    public static FileOutputStream outputStream(@NotNull File file) throws FileNotFoundException {
+        return new FileOutputStream(file);
+    }
+
+    /**
+     * Returns a new [FileWriter] for writing the content of this file.
+     */
+    public static OutputStreamWriter writer(@NotNull File file, Charset charset) throws FileNotFoundException {
+        return IOStreamx.writer(outputStream(file), charset);
+    }
+
+    /**
+     * Returns a new [FileWriter] for writing the content of this file.
+     */
+    public static OutputStreamWriter writer(@NotNull File file) throws FileNotFoundException {
+        return writer(file, Charx.UTF_8);
+    }
+
+    /**
+     * Returns a new [BufferedWriter] for writing the content of this file.
+     *
+     * @param bufferSize necessary size of the buffer.
+     */
+    public static BufferedWriter bufferedWriter(@NotNull File file, Charset charset, int bufferSize) throws FileNotFoundException {
+        return IOStreamx.buffered(writer(file, charset), bufferSize);
+    }
+
+    /**
+     * Returns a new [BufferedWriter] for writing the content of this file.
+     *
+     * @param bufferSize necessary size of the buffer.
+     */
+    public static BufferedWriter bufferedWriter(@NotNull File file, int bufferSize) throws FileNotFoundException {
+        return IOStreamx.buffered(writer(file, Charx.UTF_8), bufferSize);
+    }
+
+    /**
+     * Returns a new [BufferedWriter] for writing the content of this file.
+     */
+    public static BufferedWriter bufferedWriter(@NotNull File file, Charset charset) throws FileNotFoundException {
+        return IOStreamx.buffered(writer(file, charset), IOStreamx.DEFAULT_BUFFER_SIZE);
+    }
+
+    /**
+     * Returns a new [BufferedWriter] for writing the content of this file.
+     */
+    public static BufferedWriter bufferedWriter(@NotNull File file) throws FileNotFoundException {
+        return bufferedWriter(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
+    }
+
+    /**
+     * Returns a new [PrintWriter] for writing the content of this file.
+     */
+    public static PrintWriter printWriter(@NotNull File file, Charset charset) throws FileNotFoundException {
+        return new PrintWriter(bufferedWriter(file, charset));
+    }
+
+    /**
+     * Returns a new [PrintWriter] for writing the content of this file.
+     */
+    public static PrintWriter printWriter(@NotNull File file) throws FileNotFoundException {
+        return printWriter(file, Charx.UTF_8);
+    }
+
+    /**
+     * Sets the content of this file as an [array] of bytes.
+     * If this file already exists, it becomes overwritten.
+     *
+     * @param array byte array to write into this file.
+     */
+    public static void writeBytes(@NotNull File file, byte[] array) throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(file);
+        try {
+            outputStream.write(array);
+        } finally {
+            IOStreamx.safeClose(outputStream);
+        }
+    }
+
+    /**
+     * Appends an [array] of bytes to the content of this file.
+     *
+     * @param array byte array to append to this file.
+     */
+    public static void appendBytes(@NotNull File file, byte[] array) throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(file, true);
+        try {
+            outputStream.write(array);
+        } finally {
+            IOStreamx.safeClose(outputStream);
+        }
+    }
+
+    /**
+     * Sets the content of this file as [text] encoded using UTF-8 or specified [charset].
+     * If this file exists, it becomes overwritten.
+     *
+     * @param text    text to write into file.
+     * @param charset character set to use.
+     */
+    public static void writeText(@NotNull File file, String text, Charset charset) throws IOException {
+        writeBytes(file, Stringx.toByteArray(text, charset));
+    }
+
+    /**
+     * Sets the content of this file as [text] encoded using UTF-8 or specified [charset].
+     * If this file exists, it becomes overwritten.
+     *
+     * @param text text to write into file.
+     */
+    public static void writeText(@NotNull File file, String text) throws IOException {
+        writeText(file, text, Charx.UTF_8);
+    }
+
+    /**
+     * Appends [text] to the content of this file using UTF-8 or the specified [charset].
+     *
+     * @param text    text to append to file.
+     * @param charset character set to use.
+     */
+    public static void appendText(@NotNull File file, String text, Charset charset) throws IOException {
+        appendBytes(file, Stringx.toByteArray(text, charset));
+    }
+
+    /**
+     * Appends [text] to the content of this file using UTF-8 or the specified [charset].
+     *
+     * @param text    text to append to file.
+     */
+    public static void appendText(@NotNull File file, String text) throws IOException {
+        appendText(file, text, Charx.UTF_8);
     }
 }

@@ -2,7 +2,7 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface Transformer<Data, Result> {
+public interface Transformer<T, R> {
     @NotNull
-    Result transform(@NotNull Data data);
+    R transform(@NotNull T t);
 }

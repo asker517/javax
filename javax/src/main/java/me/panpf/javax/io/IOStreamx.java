@@ -35,7 +35,20 @@ import java.util.NoSuchElementException;
 @SuppressWarnings("WeakerAccess")
 public class IOStreamx {
 
+    /**
+     * Returns the default buffer size when working with buffered streams.
+     */
     public static final int DEFAULT_BUFFER_SIZE = 1024 * 8;
+
+    /**
+     * Returns the default block size for forEachBlock().
+     */
+    public static final int DEFAULT_BLOCK_SIZE = 4096;
+
+    /**
+     * Returns the minimum block size for forEachBlock().
+     */
+    public static final int MINIMUM_BLOCK_SIZE = 512;
 
     /**
      * Close
@@ -362,7 +375,7 @@ public class IOStreamx {
                             nextValue = reader.readLine();
                         } catch (IOException e) {
                             e.printStackTrace();
-                            nextValue = null;
+                            throw new IllegalStateException("hasNextIOException", e);
                         }
                         if (nextValue == null) {
                             done = true;
@@ -396,7 +409,14 @@ public class IOStreamx {
      * @return the value returned by [block].
      */
     public static <T> T useLines(Reader reader, Transformer<Sequence<String>, T> block) {
-        return block.transform(lineSequence(buffered(reader)));
+        BufferedReader bufferedReader = buffered(reader);
+        T t;
+        try {
+            t = block.transform(lineSequence(bufferedReader));
+        } finally {
+            IOStreamx.safeClose(bufferedReader);
+        }
+        return t;
     }
 
 
@@ -406,22 +426,34 @@ public class IOStreamx {
      *
      * @param action function to process file lines.
      */
-    public static void forEachLine(Reader reader, final Action<String> action) {
-        useLines(reader, new Transformer<Sequence<String>, Object>() {
-            @NotNull
-            @Override
-            public Object transform(@NotNull Sequence<String> stringSequence) {
-                Sequencex.forEach(stringSequence, action);
-                return null;
+    public static void forEachLine(Reader reader, final Action<String> action) throws IOException {
+        try {
+            useLines(reader, new Transformer<Sequence<String>, Object>() {
+                @NotNull
+                @Override
+                public Object transform(@NotNull Sequence<String> stringSequence) {
+                    Sequencex.forEach(stringSequence, action);
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            if (e instanceof IllegalStateException) {
+                if ("hasNextIOException".equals(e.getMessage()) && e.getCause() instanceof IOException) {
+                    throw (IOException) e.getCause();
+                } else {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                throw new RuntimeException(e);
             }
-        });
+        }
     }
 
     /**
      * Reads this reader content as a list of lines.
      * Do not use this function for huge files.
      */
-    public static List<String> readLines(Reader reader) {
+    public static List<String> readLines(Reader reader) throws IOException {
         final List<String> result = new ArrayList<String>();
         forEachLine(reader, new Action<String>() {
             @Override

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException
 
 
 @Throws(FileNotFoundException::class)
-inline fun requireFileExist(file: File) {
+fun requireFileExist(file: File) {
     if (!file.exists()) {
         throw FileNotFoundException(file.path)
     }

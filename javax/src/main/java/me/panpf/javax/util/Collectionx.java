@@ -254,10 +254,10 @@ public class Collectionx {
      * and appends the results to the given [destination].
      */
     @NotNull
-    public static <Data, Result, D extends Collection<Result>> D mapTo(@NotNull Iterable<Data> iterable, @NotNull D destination,
-                                                                       @NotNull Transformer<Data, Result> transform) {
-        for (Data data : iterable) {
-            destination.add(transform.transform(data));
+    public static <T, R, D extends Collection<R>> D mapTo(@NotNull Iterable<T> iterable, @NotNull D destination,
+                                                          @NotNull Transformer<T, R> transform) {
+        for (T t : iterable) {
+            destination.add(transform.transform(t));
         }
         return destination;
     }
@@ -267,8 +267,8 @@ public class Collectionx {
      * to each element in the original collection.
      */
     @NotNull
-    public static <Data, Result> List<Result> map(@NotNull Iterable<Data> iterable, @NotNull Transformer<Data, Result> transform) {
-        return mapTo(iterable, new ArrayList<Result>(collectionSizeOrDefault(iterable, 10)), transform);
+    public static <T, R> List<R> map(@NotNull Iterable<T> iterable, @NotNull Transformer<T, R> transform) {
+        return mapTo(iterable, new ArrayList<R>(collectionSizeOrDefault(iterable, 10)), transform);
     }
 
 
@@ -280,11 +280,11 @@ public class Collectionx {
      *                  and returns the result of the transform applied to the element.
      */
     @NotNull
-    public static <Data, Result, D extends Collection<Result>> D mapIndexedTo(@NotNull Iterable<Data> iterable, @NotNull D destination,
-                                                                              @NotNull IndexedTransformer<Data, Result> transform) {
+    public static <T, R, D extends Collection<R>> D mapIndexedTo(@NotNull Iterable<T> iterable, @NotNull D destination,
+                                                                 @NotNull IndexedTransformer<T, R> transform) {
         int index = 0;
-        for (Data data : iterable) {
-            destination.add(transform.transform(index, data));
+        for (T t : iterable) {
+            destination.add(transform.transform(index, t));
         }
         return destination;
     }
@@ -297,8 +297,8 @@ public class Collectionx {
      *                  and returns the result of the transform applied to the element.
      */
     @NotNull
-    public static <Data, Result> List<Result> mapIndexed(@NotNull Iterable<Data> iterable, @NotNull IndexedTransformer<Data, Result> transform) {
-        return mapIndexedTo(iterable, new ArrayList<Result>(collectionSizeOrDefault(iterable, 10)), transform);
+    public static <T, R> List<R> mapIndexed(@NotNull Iterable<T> iterable, @NotNull IndexedTransformer<T, R> transform) {
+        return mapIndexedTo(iterable, new ArrayList<R>(collectionSizeOrDefault(iterable, 10)), transform);
     }
 
 
@@ -307,12 +307,12 @@ public class Collectionx {
      * and appends only the non-null results to the given [destination].
      */
     @NotNull
-    public static <Data, Result, D extends Collection<Result>> D mapNotNullTo(@NotNull Iterable<Data> iterable, @NotNull D destination,
-                                                                              @NotNull NullableTransformer<Data, Result> transform) {
-        for (Data data : iterable) {
-            Result result = transform.transform(data);
-            if (result != null) {
-                destination.add(result);
+    public static <T, R, D extends Collection<R>> D mapNotNullTo(@NotNull Iterable<T> iterable, @NotNull D destination,
+                                                                 @NotNull NullableTransformer<T, R> transform) {
+        for (T t : iterable) {
+            R r = transform.transform(t);
+            if (r != null) {
+                destination.add(r);
             }
         }
         return destination;
@@ -323,8 +323,8 @@ public class Collectionx {
      * to each element in the original collection.
      */
     @NotNull
-    public static <Data, Result> List<Result> mapNotNull(@NotNull Iterable<Data> iterable, @NotNull NullableTransformer<Data, Result> transform) {
-        return mapNotNullTo(iterable, new ArrayList<Result>(collectionSizeOrDefault(iterable, 10)), transform);
+    public static <T, R> List<R> mapNotNull(@NotNull Iterable<T> iterable, @NotNull NullableTransformer<T, R> transform) {
+        return mapNotNullTo(iterable, new ArrayList<R>(collectionSizeOrDefault(iterable, 10)), transform);
     }
 
 
@@ -336,13 +336,13 @@ public class Collectionx {
      *                  and returns the result of the transform applied to the element.
      */
     @NotNull
-    public static <Data, Result, D extends Collection<Result>> D mapIndexedNotNullTo(@NotNull Iterable<Data> iterable, @NotNull D destination,
-                                                                                     @NotNull NullableIndexedTransformer<Data, Result> transform) {
+    public static <T, R, D extends Collection<R>> D mapIndexedNotNullTo(@NotNull Iterable<T> iterable, @NotNull D destination,
+                                                                        @NotNull NullableIndexedTransformer<T, R> transform) {
         int index = 0;
-        for (Data data : iterable) {
-            Result result = transform.transform(index, data);
-            if (result != null) {
-                destination.add(result);
+        for (T t : iterable) {
+            R r = transform.transform(index, t);
+            if (r != null) {
+                destination.add(r);
             }
         }
         return destination;
@@ -356,9 +356,9 @@ public class Collectionx {
      *                  and returns the result of the transform applied to the element.
      */
     @NotNull
-    public static <Data, Result> List<Result> mapIndexedNotNull(@NotNull Iterable<Data> iterable,
-                                                                @NotNull NullableIndexedTransformer<Data, Result> transform) {
-        return mapIndexedNotNullTo(iterable, new ArrayList<Result>(collectionSizeOrDefault(iterable, 10)), transform);
+    public static <T, R> List<R> mapIndexedNotNull(@NotNull Iterable<T> iterable,
+                                                   @NotNull NullableIndexedTransformer<T, R> transform) {
+        return mapIndexedNotNullTo(iterable, new ArrayList<R>(collectionSizeOrDefault(iterable, 10)), transform);
     }
 
 
