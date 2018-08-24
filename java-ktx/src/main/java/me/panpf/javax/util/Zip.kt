@@ -1,8 +1,7 @@
 package me.panpf.javax.util
 
-import me.panpf.javax.io.createNewFileOrThrow
-import me.panpf.javax.io.mkdirsOrThrow
-import me.panpf.javax.io.writeFromInput
+import me.panpf.javax.io.createNewFileWithThrow
+import me.panpf.javax.io.mkdirsWithThrow
 import me.panpf.kotlinx.use
 import java.io.*
 import java.util.*
@@ -45,7 +44,7 @@ fun compressionFiles(sourceFiles: Array<File>?, destinationFile: File, zipEntryN
             } else {
                 zipOutputStream.putNextEntry(ZipEntry(zipEntryNameTransform(childFile)))
                 BufferedInputStream(FileInputStream(childFile)).use {
-                    zipOutputStream.writeFromInput(it)
+                    it.copyTo(zipOutputStream)
                 }
                 zipOutputStream.closeEntry()
             }
@@ -103,13 +102,13 @@ fun decompression(zipSourceFile: File, destinationDir: File): File {
             val zipEntry = entries.nextElement() as ZipEntry
             val file = File(destinationDir, zipEntry.name)
             if (zipEntry.isDirectory) {
-                file.mkdirsOrThrow()
+                file.mkdirsWithThrow()
             } else {
-                file.createNewFileOrThrow()
+                file.createNewFileWithThrow()
 
                 FileOutputStream(file, false).use({ file.delete() }) { outputStream ->
                     zipFile.getInputStream(zipEntry).use { inputStream ->
-                        outputStream.writeFromInput(inputStream)
+                        inputStream.copyTo(outputStream)
                     }
                 }
             }

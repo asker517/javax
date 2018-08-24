@@ -23,7 +23,7 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 import me.panpf.javax.io.Filex;
-import me.panpf.javax.io.IOX;
+import me.panpf.javax.io.IOStreamx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -75,10 +75,10 @@ public class Zipx {
                     InputStream inputStream = null;
                     try {
                         inputStream = new BufferedInputStream(new FileInputStream(childFile));
-                        IOX.writeFromInput(zipOutputStream, inputStream);
+                        IOStreamx.copyTo(inputStream, zipOutputStream);
                     } finally {
                         zipOutputStream.closeEntry();
-                        IOX.safeClose(inputStream);
+                        IOStreamx.safeClose(inputStream);
                     }
                 }
             }
@@ -88,7 +88,7 @@ public class Zipx {
             destinationFile.delete();
             throw e;
         } finally {
-            IOX.safeClose(zipOutputStream);
+            IOStreamx.safeClose(zipOutputStream);
         }
 
         return destinationFile;
@@ -146,23 +146,23 @@ public class Zipx {
                 ZipEntry zipEntry = (ZipEntry) entries.nextElement();
                 File file = new File(destinationDir, zipEntry.getName());
                 if (zipEntry.isDirectory()) {
-                    Filex.mkdirsOrThrow(file);
+                    Filex.mkdirsWithThrow(file);
                 } else {
-                    Filex.createNewFileOrThrow(file);
+                    Filex.createNewFileWithThrow(file);
                     InputStream inputStream = null;
                     OutputStream outputStream = null;
                     try {
                         inputStream = zipFile.getInputStream(zipEntry);
                         outputStream = new FileOutputStream(file, false);
-                        IOX.writeFromInput(outputStream, inputStream);
+                        IOStreamx.copyTo(inputStream, outputStream);
                     } finally {
-                        IOX.safeClose(outputStream);
-                        IOX.safeClose(inputStream);
+                        IOStreamx.safeClose(outputStream);
+                        IOStreamx.safeClose(inputStream);
                     }
                 }
             }
         } finally {
-            IOX.safeClose(zipFile);
+            IOStreamx.safeClose(zipFile);
         }
 
         return destinationDir;

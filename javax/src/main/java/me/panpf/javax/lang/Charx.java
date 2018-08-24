@@ -19,11 +19,15 @@ package me.panpf.javax.lang;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.charset.Charset;
+
 /**
  * Character tool class
  */
 @SuppressWarnings({"WeakerAccess"})
 public class Charx {
+
+    public static final Charset UTF_8 = Charset.forName("UTF-8");
 
     /**
      * Returns `true` if this character is equal to the [other] character, optionally ignoring character case.

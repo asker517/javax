@@ -30,11 +30,22 @@ import java.util.*
  * @throws UnableCreateDirException Unable to create directory
  */
 @Throws(UnableCreateDirException::class)
-fun File.mkdirsOrThrow(): File {
+fun File.mkdirsWithThrow(): File {
     if (exists()) return this
     mkdirs()
     if (!exists()) throw UnableCreateDirException(this)
     return this
+}
+
+/**
+ * Create a directory
+ * @return If true, the creation is successful.
+ */
+@Throws(UnableCreateDirException::class)
+fun File.mkdirsWith(): Boolean {
+    if (exists()) return true
+    mkdirs()
+    return exists()
 }
 
 /**
@@ -43,10 +54,9 @@ fun File.mkdirsOrThrow(): File {
  * @throws UnableCreateDirException  Unable to create parent directory
  */
 @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-fun File.createNewFileOrThrow(): File {
+fun File.createNewFileWithThrow(): File {
     if (exists()) return this
-
-    parentFile.mkdirsOrThrow()
+    parentFile.mkdirsWithThrow()
 
     try {
         createNewFile()
@@ -62,15 +72,9 @@ fun File.createNewFileOrThrow(): File {
  * Create a file, create its parent directory first
  * @return If true, the creation is successful.
  */
-fun File.createNewFileNoThrow(): Boolean {
-    if (exists()) {
-        return true
-    }
-
-    val parentDir = parentFile
-    if (!parentDir.exists() && !parentDir.mkdirs()) {
-        return false
-    }
+fun File.createNewFileWith(): Boolean {
+    if (exists()) return true
+    if(!parentFile.mkdirsWith()) return false
 
     try {
         createNewFile()
@@ -88,8 +92,6 @@ fun File.createNewFileNoThrow(): Boolean {
  */
 fun File.cleanDir(): Boolean {
     if (!exists() || isFile) return true
-
-    readBytes()
 
     val childFiles = listFiles()
     if (childFiles == null || childFiles.isEmpty()) return true
@@ -123,16 +125,16 @@ fun File.cleanDir(): Boolean {
         }
     }
 
-    var dir: File?
+    var childDir: File?
     while (true) {
         try {
-            dir = dirStack.pop()
+            childDir = dirStack.pop()
         } catch (e: EmptyStackException) {
             break
         }
 
-        if (dir != null && dir.exists()) {
-            result = result and dir.delete()
+        if (childDir != null && childDir.exists()) {
+            result = result and childDir.delete()
         }
     }
 
@@ -143,36 +145,31 @@ fun File.cleanDir(): Boolean {
  * Get the length of the file or dir, if it is a directory, it will superimpose the length of all subfiles
  */
 fun File.lengthRecursively(): Long {
-    if (!exists()) {
-        return 0
-    }
+    if (!exists()) return 0
+    if (isFile) return length()
 
-    if (isFile) {
-        return length()
-    } else {
-        var length: Long = 0
+    var length: Long = 0
 
-        val fileQueue = LinkedList<File>()
-        fileQueue.add(this)
+    val fileQueue = LinkedList<File>()
+    fileQueue.add(this)
 
-        var childFile: File?
-        while (true) {
-            childFile = fileQueue.poll()
-            if (childFile == null || !childFile.exists()) {
-                break
-            }
+    var childFile: File?
+    while (true) {
+        childFile = fileQueue.poll()
+        if (childFile == null || !childFile.exists()) {
+            break
+        }
 
-            if (childFile.isFile) {
-                length += childFile.length()
-            } else {
-                val childChildFiles = childFile.listFiles()
-                if (childChildFiles != null && childChildFiles.isNotEmpty()) {
-                    Collections.addAll(fileQueue, *childChildFiles)
-                }
+        if (childFile.isFile) {
+            length += childFile.length()
+        } else {
+            val childChildFiles = childFile.listFiles()
+            if (childChildFiles != null && childChildFiles.isNotEmpty()) {
+                Collections.addAll(fileQueue, *childChildFiles)
             }
         }
-        return length
     }
+    return length
 }
 
 class UnableCreateDirException : Exception {

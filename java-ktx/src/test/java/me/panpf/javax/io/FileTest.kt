@@ -29,11 +29,11 @@ class FileTest {
         val testFile2 = File(dir, "test2.txt")
 
         Assert.assertFalse(testFile1.exists())
-        testFile1.createNewFileOrThrow()
+        testFile1.createNewFileWithThrow()
         Assert.assertTrue(testFile1.exists())
 
         Assert.assertFalse(testFile2.exists())
-        testFile2.createNewFileNoThrow()
+        testFile2.createNewFileWith()
         Assert.assertTrue(testFile2.exists())
 
         dir.cleanDir()
@@ -50,11 +50,11 @@ class FileTest {
         val testFile2 = File(dir, "test2.txt")
 
         Assert.assertFalse(testFile1.exists())
-        testFile1.createNewFileOrThrow()
+        testFile1.createNewFileWithThrow()
         Assert.assertTrue(testFile1.exists())
 
         Assert.assertFalse(testFile2.exists())
-        testFile2.createNewFileNoThrow()
+        testFile2.createNewFileWith()
         Assert.assertTrue(testFile2.exists())
 
         dir.deleteRecursively()
@@ -67,11 +67,11 @@ class FileTest {
         val dir2 = File("/tmp/javaxCreateDirTest2")
 
         Assert.assertFalse(dir1.exists())
-        dir1.mkdirsOrThrow()
+        dir1.mkdirsWithThrow()
         Assert.assertTrue(dir1.exists())
 
         Assert.assertFalse(dir2.exists())
-        dir2.mkdirsOrThrow()
+        dir2.mkdirsWithThrow()
         Assert.assertTrue(dir2.exists())
 
         dir1.deleteRecursively()
@@ -98,12 +98,12 @@ class FileTest {
         val dir = File("/tmp/javaxLengthWithDirTest")
 
         val childFile1 = File(dir, "test1.txt")
-        childFile1.createNewFileOrThrow()
+        childFile1.createNewFileWithThrow()
         childFile1.writeText("111")
         Assert.assertEquals(childFile1.length(), 3)
 
         val childFile2 = File(dir, "test2.txt")
-        childFile2.createNewFileOrThrow()
+        childFile2.createNewFileWithThrow()
         childFile2.writeText("111")
         Assert.assertEquals(childFile2.length(), 3)
 

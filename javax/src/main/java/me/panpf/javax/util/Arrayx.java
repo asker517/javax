@@ -17,9 +17,11 @@
 package me.panpf.javax.util;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
+import me.panpf.javax.lang.Charx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -273,6 +275,21 @@ public class Arrayx {
     @NotNull
     public static <T> HashSet<T> toHashSet(@NotNull T[] elements) {
         return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements.length)));
+    }
+
+
+    /**
+     * Converts the contents of this byte array to a string using the specified [charset].
+     */
+    public static String toString(byte[] bytes, Charset charset) {
+        return new String(bytes, charset);
+    }
+
+    /**
+     * Converts the contents of this byte array to a string using the specified [charset].
+     */
+    public static String toString(byte[] bytes) {
+        return toString(bytes, Charx.UTF_8);
     }
 
 

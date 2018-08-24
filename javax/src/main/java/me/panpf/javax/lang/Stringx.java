@@ -20,6 +20,7 @@ import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.nio.charset.Charset;
 import java.util.Collection;
 
 import static java.lang.Character.isLowerCase;
@@ -1010,5 +1011,19 @@ public class Stringx {
         }
         int index = lastIndexOf(string, delimiter, string.length() - 1, false);
         return index == -1 ? missingDelimiterValue : string.substring(index + delimiter.length(), string.length());
+    }
+
+    /**
+     * Encodes the contents of this string using the specified character set and returns the resulting byte array.
+     */
+    public static byte[] toByteArray(String string, Charset charset) {
+        return string.getBytes(charset);
+    }
+
+    /**
+     * Encodes the contents of this string using UTF-8 set and returns the resulting byte array.
+     */
+    public static byte[] toByteArray(String string) {
+        return string.getBytes(Charx.UTF_8);
     }
 }
