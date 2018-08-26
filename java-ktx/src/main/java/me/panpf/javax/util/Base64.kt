@@ -8,365 +8,365 @@ import java.nio.charset.Charset
  */
 
 
-fun ByteArray.encodeToString(): String {
+fun ByteArray.base64EncodeToString(): String {
     return Base64.getEncoder().encodeToString(this)
 }
 
-fun String.encodeToString(): String {
+fun String.base64EncodeToString(): String {
     return Base64.getEncoder().encodeToString(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.encodeToString(): String {
+fun ByteBuffer.base64EncodeToString(): String {
     return Base64.getEncoder().encodeToString(this.array())
 }
 
 
-fun ByteArray.encodeToBytes(): ByteArray {
+fun ByteArray.base64EncodeToBytes(): ByteArray {
     return Base64.getEncoder().encode(this)
 }
 
-fun String.encodeToBytes(): ByteArray {
+fun String.base64EncodeToBytes(): ByteArray {
     return Base64.getEncoder().encode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.encodeToBytes(): ByteArray {
+fun ByteBuffer.base64EncodeToBytes(): ByteArray {
     return Base64.getEncoder().encode(this.array())
 }
 
 
-fun ByteArray.encodeTo(dst: ByteArray): Int {
+fun ByteArray.base64EncodeTo(dst: ByteArray): Int {
     return Base64.getEncoder().encode(this, dst)
 }
 
-fun String.encodeTo(dst: ByteArray): Int {
+fun String.base64EncodeTo(dst: ByteArray): Int {
     return Base64.getEncoder().encode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.encodeTo(dst: ByteArray): Int {
+fun ByteBuffer.base64EncodeTo(dst: ByteArray): Int {
     return Base64.getEncoder().encode(this.array(), dst)
 }
 
 
-fun ByteArray.encodeToBuffer(): ByteBuffer {
+fun ByteArray.base64EncodeToBuffer(): ByteBuffer {
     return Base64.getEncoder().encode(ByteBuffer.wrap(this))
 }
 
-fun String.encodeToBuffer(): ByteBuffer {
+fun String.base64EncodeToBuffer(): ByteBuffer {
     return Base64.getEncoder().encode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.encodeToBuffer(): ByteBuffer {
+fun ByteBuffer.base64EncodeToBuffer(): ByteBuffer {
     return Base64.getEncoder().encode(this)
 }
 
 
-fun ByteArray.urlEncodeToString(): String {
+fun ByteArray.base64UrlEncodeToString(): String {
     return Base64.getUrlEncoder().encodeToString(this)
 }
 
-fun String.urlEncodeToString(): String {
+fun String.base64UrlEncodeToString(): String {
     return Base64.getUrlEncoder().encodeToString(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.urlEncodeToString(): String {
+fun ByteBuffer.base64UrlEncodeToString(): String {
     return Base64.getUrlEncoder().encodeToString(this.array())
 }
 
 
-fun ByteArray.urlEncodeToBytes(): ByteArray {
+fun ByteArray.base64UrlEncodeToBytes(): ByteArray {
     return Base64.getUrlEncoder().encode(this)
 }
 
-fun String.urlEncodeToBytes(): ByteArray {
+fun String.base64UrlEncodeToBytes(): ByteArray {
     return Base64.getUrlEncoder().encode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.urlEncodeToBytes(): ByteArray {
+fun ByteBuffer.base64UrlEncodeToBytes(): ByteArray {
     return Base64.getUrlEncoder().encode(this.array())
 }
 
 
-fun ByteArray.urlEncodeTo(dst: ByteArray): Int {
+fun ByteArray.base64UrlEncodeTo(dst: ByteArray): Int {
     return Base64.getUrlEncoder().encode(this, dst)
 }
 
-fun String.urlEncodeTo(dst: ByteArray): Int {
+fun String.base64UrlEncodeTo(dst: ByteArray): Int {
     return Base64.getUrlEncoder().encode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.urlEncodeTo(dst: ByteArray): Int {
+fun ByteBuffer.base64UrlEncodeTo(dst: ByteArray): Int {
     return Base64.getUrlEncoder().encode(this.array(), dst)
 }
 
 
-fun ByteArray.urlEncodeToBuffer(): ByteBuffer {
+fun ByteArray.base64UrlEncodeToBuffer(): ByteBuffer {
     return Base64.getUrlEncoder().encode(ByteBuffer.wrap(this))
 }
 
-fun String.urlEncodeToBuffer(): ByteBuffer {
+fun String.base64UrlEncodeToBuffer(): ByteBuffer {
     return Base64.getUrlEncoder().encode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.urlEncodeToBuffer(): ByteBuffer {
+fun ByteBuffer.base64UrlEncodeToBuffer(): ByteBuffer {
     return Base64.getUrlEncoder().encode(this)
 }
 
 
-fun ByteArray.mimeEncodeToString(): String {
+fun ByteArray.base64MimeEncodeToString(): String {
     return Base64.getMimeEncoder().encodeToString(this)
 }
 
-fun String.mimeEncodeToString(): String {
+fun String.base64MimeEncodeToString(): String {
     return Base64.getMimeEncoder().encodeToString(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.mimeEncodeToString(): String {
+fun ByteBuffer.base64MimeEncodeToString(): String {
     return Base64.getMimeEncoder().encodeToString(this.array())
 }
 
 
-fun ByteArray.mimeEncodeToBytes(): ByteArray {
+fun ByteArray.base64MimeEncodeToBytes(): ByteArray {
     return Base64.getMimeEncoder().encode(this)
 }
 
-fun String.mimeEncodeToBytes(): ByteArray {
+fun String.base64MimeEncodeToBytes(): ByteArray {
     return Base64.getMimeEncoder().encode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.mimeEncodeToBytes(): ByteArray {
+fun ByteBuffer.base64MimeEncodeToBytes(): ByteArray {
     return Base64.getMimeEncoder().encode(this.array())
 }
 
 
-fun ByteArray.mimeEncodeTo(dst: ByteArray): Int {
+fun ByteArray.base64MimeEncodeTo(dst: ByteArray): Int {
     return Base64.getMimeEncoder().encode(this, dst)
 }
 
-fun String.mimeEncodeTo(dst: ByteArray): Int {
+fun String.base64MimeEncodeTo(dst: ByteArray): Int {
     return Base64.getMimeEncoder().encode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.mimeEncodeTo(dst: ByteArray): Int {
+fun ByteBuffer.base64MimeEncodeTo(dst: ByteArray): Int {
     return Base64.getMimeEncoder().encode(this.array(), dst)
 }
 
 
-fun ByteArray.mimeEncodeToBuffer(): ByteBuffer {
+fun ByteArray.base64MimeEncodeToBuffer(): ByteBuffer {
     return Base64.getMimeEncoder().encode(ByteBuffer.wrap(this))
 }
 
-fun String.mimeEncodeToBuffer(): ByteBuffer {
+fun String.base64MimeEncodeToBuffer(): ByteBuffer {
     return Base64.getMimeEncoder().encode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.mimeEncodeToBuffer(): ByteBuffer {
+fun ByteBuffer.base64MimeEncodeToBuffer(): ByteBuffer {
     return Base64.getMimeEncoder().encode(this)
 }
 
 
-fun ByteArray.mimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String {
+fun ByteArray.base64MimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encodeToString(this)
 }
 
-fun String.mimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String {
+fun String.base64MimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encodeToString(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.mimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String {
+fun ByteBuffer.base64MimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encodeToString(this.array())
 }
 
 
-fun ByteArray.mimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray {
+fun ByteArray.base64MimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this)
 }
 
-fun String.mimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray {
+fun String.base64MimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.mimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray {
+fun ByteBuffer.base64MimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this.array())
 }
 
 
-fun ByteArray.mimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int {
+fun ByteArray.base64MimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this, dst)
 }
 
-fun String.mimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int {
+fun String.base64MimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.mimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int {
+fun ByteBuffer.base64MimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this.array(), dst)
 }
 
 
-fun ByteArray.mimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer {
+fun ByteArray.base64MimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(ByteBuffer.wrap(this))
 }
 
-fun String.mimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer {
+fun String.base64MimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.mimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer {
+fun ByteBuffer.base64MimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer {
     return Base64.getMimeEncoder(lineLength, lineSeparator).encode(this)
 }
 
 
-fun ByteArray.decodeToBytes(): ByteArray {
+fun ByteArray.base64DecodeToBytes(): ByteArray {
     return Base64.getDecoder().decode(this)
 }
 
-fun String.decodeToBytes(): ByteArray {
+fun String.base64DecodeToBytes(): ByteArray {
     return Base64.getDecoder().decode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.decodeToBytes(): ByteArray {
+fun ByteBuffer.base64DecodeToBytes(): ByteArray {
     return Base64.getDecoder().decode(this).array()
 }
 
 
-fun ByteArray.decodeToString(): String {
+fun ByteArray.base64DecodeToString(): String {
     return String(Base64.getDecoder().decode(this), Charset.forName("UTF-8"))
 }
 
-fun String.decodeToString(): String {
+fun String.base64DecodeToString(): String {
     return String(Base64.getDecoder().decode(this.toByteArray(Charset.forName("UTF-8"))), Charset.forName("UTF-8"))
 }
 
-fun ByteBuffer.decodeToString(): String {
+fun ByteBuffer.base64DecodeToString(): String {
     return String(Base64.getDecoder().decode(this).array(), Charset.forName("UTF-8"))
 }
 
 
-fun ByteArray.decodeTo(dst: ByteArray): Int {
+fun ByteArray.base64DecodeTo(dst: ByteArray): Int {
     return Base64.getDecoder().decode(this, dst)
 }
 
-fun String.decodeTo(dst: ByteArray): Int {
+fun String.base64DecodeTo(dst: ByteArray): Int {
     return Base64.getDecoder().decode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.decodeTo(dst: ByteArray): Int {
+fun ByteBuffer.base64DecodeTo(dst: ByteArray): Int {
     return Base64.getDecoder().decode(this.array(), dst)
 }
 
 
-fun ByteArray.decodeToBuffer(): ByteBuffer {
+fun ByteArray.base64DecodeToBuffer(): ByteBuffer {
     return Base64.getDecoder().decode(ByteBuffer.wrap(this))
 }
 
-fun String.decodeToBuffer(): ByteBuffer {
+fun String.base64DecodeToBuffer(): ByteBuffer {
     return Base64.getDecoder().decode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.decodeToBuffer(): ByteBuffer {
+fun ByteBuffer.base64DecodeToBuffer(): ByteBuffer {
     return Base64.getDecoder().decode(this)
 }
 
 
-fun ByteArray.urlDecodeToBytes(): ByteArray {
+fun ByteArray.base64UrlDecodeToBytes(): ByteArray {
     return Base64.getUrlDecoder().decode(this)
 }
 
-fun String.urlDecodeToBytes(): ByteArray {
+fun String.base64UrlDecodeToBytes(): ByteArray {
     return Base64.getUrlDecoder().decode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.urlDecodeToBytes(): ByteArray {
+fun ByteBuffer.base64UrlDecodeToBytes(): ByteArray {
     return Base64.getUrlDecoder().decode(this).array()
 }
 
 
-fun ByteArray.urlDecodeToString(): String {
+fun ByteArray.base64UrlDecodeToString(): String {
     return String(Base64.getUrlDecoder().decode(this), Charset.forName("UTF-8"))
 }
 
-fun String.urlDecodeToString(): String {
+fun String.base64UrlDecodeToString(): String {
     return String(Base64.getUrlDecoder().decode(this.toByteArray(Charset.forName("UTF-8"))), Charset.forName("UTF-8"))
 }
 
-fun ByteBuffer.urlDecodeToString(): String {
+fun ByteBuffer.base64UrlDecodeToString(): String {
     return String(Base64.getUrlDecoder().decode(this).array(), Charset.forName("UTF-8"))
 }
 
 
-fun ByteArray.urlDecodeTo(dst: ByteArray): Int {
+fun ByteArray.base64UrlDecodeTo(dst: ByteArray): Int {
     return Base64.getUrlDecoder().decode(this, dst)
 }
 
-fun String.urlDecodeTo(dst: ByteArray): Int {
+fun String.base64UrlDecodeTo(dst: ByteArray): Int {
     return Base64.getUrlDecoder().decode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.urlDecodeTo(dst: ByteArray): Int {
+fun ByteBuffer.base64UrlDecodeTo(dst: ByteArray): Int {
     return Base64.getUrlDecoder().decode(this.array(), dst)
 }
 
 
-fun ByteArray.urlDecodeToBuffer(): ByteBuffer {
+fun ByteArray.base64UrlDecodeToBuffer(): ByteBuffer {
     return Base64.getUrlDecoder().decode(ByteBuffer.wrap(this))
 }
 
-fun String.urlDecodeToBuffer(): ByteBuffer {
+fun String.base64UrlDecodeToBuffer(): ByteBuffer {
     return Base64.getUrlDecoder().decode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.urlDecodeToBuffer(): ByteBuffer {
+fun ByteBuffer.base64UrlDecodeToBuffer(): ByteBuffer {
     return Base64.getUrlDecoder().decode(this)
 }
 
 
-fun ByteArray.mimeDecodeToBytes(): ByteArray {
+fun ByteArray.base64MimeDecodeToBytes(): ByteArray {
     return Base64.getMimeDecoder().decode(this)
 }
 
-fun String.mimeDecodeToBytes(): ByteArray {
+fun String.base64MimeDecodeToBytes(): ByteArray {
     return Base64.getMimeDecoder().decode(this.toByteArray(Charset.forName("UTF-8")))
 }
 
-fun ByteBuffer.mimeDecodeToBytes(): ByteArray {
+fun ByteBuffer.base64MimeDecodeToBytes(): ByteArray {
     return Base64.getMimeDecoder().decode(this).array()
 }
 
 
-fun ByteArray.mimeDecodeToString(): String {
+fun ByteArray.base64MimeDecodeToString(): String {
     return String(Base64.getMimeDecoder().decode(this), Charset.forName("UTF-8"))
 }
 
-fun String.mimeDecodeToString(): String {
+fun String.base64MimeDecodeToString(): String {
     return String(Base64.getMimeDecoder().decode(this.toByteArray(Charset.forName("UTF-8"))), Charset.forName("UTF-8"))
 }
 
-fun ByteBuffer.mimeDecodeToString(): String {
+fun ByteBuffer.base64MimeDecodeToString(): String {
     return String(Base64.getMimeDecoder().decode(this).array(), Charset.forName("UTF-8"))
 }
 
 
-fun ByteArray.mimeDecodeTo(dst: ByteArray): Int {
+fun ByteArray.base64MimeDecodeTo(dst: ByteArray): Int {
     return Base64.getMimeDecoder().decode(this, dst)
 }
 
-fun String.mimeDecodeTo(dst: ByteArray): Int {
+fun String.base64MimeDecodeTo(dst: ByteArray): Int {
     return Base64.getMimeDecoder().decode(this.toByteArray(Charset.forName("UTF-8")), dst)
 }
 
-fun ByteBuffer.mimeDecodeTo(dst: ByteArray): Int {
+fun ByteBuffer.base64MimeDecodeTo(dst: ByteArray): Int {
     return Base64.getMimeDecoder().decode(this.array(), dst)
 }
 
 
-fun ByteArray.mimeDecodeToBuffer(): ByteBuffer {
+fun ByteArray.base64MimeDecodeToBuffer(): ByteBuffer {
     return Base64.getMimeDecoder().decode(ByteBuffer.wrap(this))
 }
 
-fun String.mimeDecodeToBuffer(): ByteBuffer {
+fun String.base64MimeDecodeToBuffer(): ByteBuffer {
     return Base64.getMimeDecoder().decode(ByteBuffer.wrap(this.toByteArray(Charset.forName("UTF-8"))))
 }
 
-fun ByteBuffer.mimeDecodeToBuffer(): ByteBuffer {
+fun ByteBuffer.base64MimeDecodeToBuffer(): ByteBuffer {
     return Base64.getMimeDecoder().decode(this)
 }

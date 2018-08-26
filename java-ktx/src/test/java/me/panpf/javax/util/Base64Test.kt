@@ -26,83 +26,83 @@ class Base64Test {
 
     @Test
     fun testToBytes() {
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.encodeToBytes().decodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.encodeToBytes().decodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).encodeToBytes().decodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.encodeToString().decodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).encodeToBuffer().decodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64EncodeToBytes().base64DecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.base64EncodeToBytes().base64DecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).base64EncodeToBytes().base64DecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64EncodeToString().base64DecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).base64EncodeToBuffer().base64DecodeToBytes())
 
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.urlEncodeToBytes().urlDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.urlEncodeToBytes().urlDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).urlEncodeToBytes().urlDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.urlEncodeToString().urlDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.urlEncodeToBuffer().urlDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64UrlEncodeToBytes().base64UrlDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.base64UrlEncodeToBytes().base64UrlDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).base64UrlEncodeToBytes().base64UrlDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64UrlEncodeToString().base64UrlDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64UrlEncodeToBuffer().base64UrlDecodeToBytes())
 
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.mimeEncodeToBytes().mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.mimeEncodeToBytes().mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeToBytes().mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.mimeEncodeToString().mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.mimeEncodeToBuffer().mimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToBytes().base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.base64MimeEncodeToBytes().base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToBytes().base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToString().base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToBuffer().base64MimeDecodeToBytes())
 
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.mimeEncodeToBytes(10, ",".toByteArray()).mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.mimeEncodeToBytes(10, ",".toByteArray()).mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeToBytes(10, ",".toByteArray()).mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.mimeEncodeToString(10, ",".toByteArray()).mimeDecodeToBytes())
-        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.mimeEncodeToBuffer(10, ",".toByteArray()).mimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToBytes(10, ",".toByteArray()).base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE_BYTES.base64MimeEncodeToBytes(10, ",".toByteArray()).base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToBytes(10, ",".toByteArray()).base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToString(10, ",".toByteArray()).base64MimeDecodeToBytes())
+        Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToBuffer(10, ",".toByteArray()).base64MimeDecodeToBytes())
     }
 
     @Test
     fun testToString() {
-        Assert.assertEquals(SOURCE, SOURCE.encodeToString().decodeToString())
-        Assert.assertEquals(SOURCE, SOURCE_BYTES.encodeToString().decodeToString())
-        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).encodeToString().decodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.encodeToBytes().decodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.encodeToBuffer().decodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64EncodeToString().base64DecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE_BYTES.base64EncodeToString().base64DecodeToString())
+        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).base64EncodeToString().base64DecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64EncodeToBytes().base64DecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64EncodeToBuffer().base64DecodeToString())
 
-        Assert.assertEquals(SOURCE, SOURCE.urlEncodeToString().urlDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE_BYTES.urlEncodeToString().urlDecodeToString())
-        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).urlEncodeToString().urlDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.urlEncodeToBytes().urlDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.urlEncodeToBuffer().urlDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64UrlEncodeToString().base64UrlDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE_BYTES.base64UrlEncodeToString().base64UrlDecodeToString())
+        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).base64UrlEncodeToString().base64UrlDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64UrlEncodeToBytes().base64UrlDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64UrlEncodeToBuffer().base64UrlDecodeToString())
 
-        Assert.assertEquals(SOURCE, SOURCE.mimeEncodeToString().mimeDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE_BYTES.mimeEncodeToString().mimeDecodeToString())
-        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeToString().mimeDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.mimeEncodeToBytes().mimeDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.mimeEncodeToBuffer().mimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64MimeEncodeToString().base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE_BYTES.base64MimeEncodeToString().base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToString().base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64MimeEncodeToBytes().base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64MimeEncodeToBuffer().base64MimeDecodeToString())
 
-        Assert.assertEquals(SOURCE, SOURCE.mimeEncodeToString(10, ",".toByteArray()).mimeDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE_BYTES.mimeEncodeToString(10, ",".toByteArray()).mimeDecodeToString())
-        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeToString(10, ",".toByteArray()).mimeDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.mimeEncodeToBytes(10, ",".toByteArray()).mimeDecodeToString())
-        Assert.assertEquals(SOURCE, SOURCE.mimeEncodeToBuffer(10, ",".toByteArray()).mimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64MimeEncodeToString(10, ",".toByteArray()).base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE_BYTES.base64MimeEncodeToString(10, ",".toByteArray()).base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToString(10, ",".toByteArray()).base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64MimeEncodeToBytes(10, ",".toByteArray()).base64MimeDecodeToString())
+        Assert.assertEquals(SOURCE, SOURCE.base64MimeEncodeToBuffer(10, ",".toByteArray()).base64MimeDecodeToString())
     }
 
     @Test
     fun testToBuffer() {
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.encodeToBuffer().decodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.encodeToBuffer().decodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).encodeToBuffer().decodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.encodeToBytes().decodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.encodeToString().decodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64EncodeToBuffer().base64DecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.base64EncodeToBuffer().base64DecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).base64EncodeToBuffer().base64DecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64EncodeToBytes().base64DecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64EncodeToString().base64DecodeToBuffer().array())
 
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.urlEncodeToBuffer().urlDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.urlEncodeToBuffer().urlDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).urlEncodeToBuffer().urlDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.urlEncodeToBytes().urlDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.urlEncodeToString().urlDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64UrlEncodeToBuffer().base64UrlDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.base64UrlEncodeToBuffer().base64UrlDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).base64UrlEncodeToBuffer().base64UrlDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64UrlEncodeToBytes().base64UrlDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64UrlEncodeToString().base64UrlDecodeToBuffer().array())
 
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.mimeEncodeToBuffer().mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.mimeEncodeToBuffer().mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeToBuffer().mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.mimeEncodeToBytes().mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.mimeEncodeToString().mimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64MimeEncodeToBuffer().base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.base64MimeEncodeToBuffer().base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToBuffer().base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64MimeEncodeToBytes().base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64MimeEncodeToString().base64MimeDecodeToBuffer().array())
 
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.mimeEncodeToBuffer(10, ",".toByteArray()).mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.mimeEncodeToBuffer(10, ",".toByteArray()).mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeToBuffer(10, ",".toByteArray()).mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.mimeEncodeToBytes(10, ",".toByteArray()).mimeDecodeToBuffer().array())
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.mimeEncodeToString(10, ",".toByteArray()).mimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64MimeEncodeToBuffer(10, ",".toByteArray()).base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE_BYTES.base64MimeEncodeToBuffer(10, ",".toByteArray()).base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToBuffer(10, ",".toByteArray()).base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64MimeEncodeToBytes(10, ",".toByteArray()).base64MimeDecodeToBuffer().array())
+        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), SOURCE.base64MimeEncodeToString(10, ",".toByteArray()).base64MimeDecodeToBuffer().array())
     }
 
     @Test
@@ -113,70 +113,70 @@ class Base64Test {
         var decodeLength: Int
 
         // encodeTo
-        encodeLength = SOURCE.encodeTo(encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).decodeTo(decodeResult)
+        encodeLength = SOURCE.base64EncodeTo(encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64DecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = SOURCE_BYTES.encodeTo(encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).decodeTo(decodeResult)
+        encodeLength = SOURCE_BYTES.base64EncodeTo(encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64DecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).encodeTo(encodeResult)
-        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).decodeTo(decodeResult)
+        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).base64EncodeTo(encodeResult)
+        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).base64DecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        decodeLength = SOURCE.encodeToString().decodeTo(decodeResult)
+        decodeLength = SOURCE.base64EncodeToString().base64DecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
 
         // urlEncodeTo
-        encodeLength = SOURCE.urlEncodeTo(encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).urlDecodeTo(decodeResult)
+        encodeLength = SOURCE.base64UrlEncodeTo(encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64UrlDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = SOURCE_BYTES.urlEncodeTo(encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).urlDecodeTo(decodeResult)
+        encodeLength = SOURCE_BYTES.base64UrlEncodeTo(encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64UrlDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).urlEncodeTo(encodeResult)
-        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).urlDecodeTo(decodeResult)
+        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).base64UrlEncodeTo(encodeResult)
+        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).base64UrlDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        decodeLength = SOURCE.urlEncodeToString().urlDecodeTo(decodeResult)
+        decodeLength = SOURCE.base64UrlEncodeToString().base64UrlDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
 
         // mimeEncodeTo
-        encodeLength = SOURCE.mimeEncodeTo(encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).mimeDecodeTo(decodeResult)
+        encodeLength = SOURCE.base64MimeEncodeTo(encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = SOURCE_BYTES.mimeEncodeTo(encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).mimeDecodeTo(decodeResult)
+        encodeLength = SOURCE_BYTES.base64MimeEncodeTo(encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeTo(encodeResult)
-        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).mimeDecodeTo(decodeResult)
+        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeTo(encodeResult)
+        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        decodeLength = SOURCE.mimeEncodeToString().mimeDecodeTo(decodeResult)
+        decodeLength = SOURCE.base64MimeEncodeToString().base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
 
         // mimeEncodeTo int lineLength, @NotNull byte[] lineSeparator
-        encodeLength = SOURCE.mimeEncodeTo(10, ",".toByteArray(), encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).mimeDecodeTo(decodeResult)
+        encodeLength = SOURCE.base64MimeEncodeTo(10, ",".toByteArray(), encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = SOURCE_BYTES.mimeEncodeTo(10, ",".toByteArray(), encodeResult)
-        decodeLength = encodeResult.copyOf(encodeLength).mimeDecodeTo(decodeResult)
+        encodeLength = SOURCE_BYTES.base64MimeEncodeTo(10, ",".toByteArray(), encodeResult)
+        decodeLength = encodeResult.copyOf(encodeLength).base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).mimeEncodeTo(10, ",".toByteArray(), encodeResult)
-        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).mimeDecodeTo(decodeResult)
+        encodeLength = ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeTo(10, ",".toByteArray(), encodeResult)
+        decodeLength = ByteBuffer.wrap(encodeResult.copyOf(encodeLength)).base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
 
-        decodeLength = SOURCE.mimeEncodeToString().mimeDecodeTo(decodeResult)
+        decodeLength = SOURCE.base64MimeEncodeToString().base64MimeDecodeTo(decodeResult)
         Assert.assertEquals(SOURCE, String(decodeResult, 0, decodeLength))
     }
 
