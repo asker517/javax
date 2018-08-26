@@ -2,6 +2,7 @@ package me.panpf.javax.util
 
 import me.panpf.javax.io.createNewFileWithThrow
 import me.panpf.javax.io.mkdirsWithThrow
+import me.panpf.javax.io.requireExist
 import me.panpf.kotlinx.use
 import java.io.*
 import java.util.*
@@ -63,7 +64,7 @@ fun compressionFiles(sourceFiles: Array<File>?, destinationFile: File, zipEntryN
  */
 @Throws(IOException::class)
 fun compressionDir(sourceDirectory: File, destinationFile: File): File {
-    requireFileExist(sourceDirectory)
+    sourceDirectory.requireExist()
     require(sourceDirectory.isDirectory) { sourceDirectory.path + " not directory" }
     return compressionFiles(sourceDirectory.listFiles(), destinationFile) {
         it.path.replace(sourceDirectory.path + "/", "")
@@ -93,7 +94,7 @@ fun compressionDir(sourceDirectory: File): File {
  */
 @Throws(IOException::class)
 fun decompression(zipSourceFile: File, destinationDir: File): File {
-    requireFileExist(zipSourceFile)
+    zipSourceFile.requireExist()
     require(!destinationDir.exists() || destinationDir.isDirectory) { destinationDir.path + " not directory" }
 
     ZipFile(zipSourceFile).use { zipFile ->

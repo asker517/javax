@@ -17,12 +17,33 @@
 package me.panpf.javax.io
 
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.IOException
 import java.util.*
 
 /*
  * File related extension methods or properties
  */
+
+
+@Throws(FileNotFoundException::class)
+fun File.requireExist() {
+    if (!this.exists()) {
+        throw FileNotFoundException(this.path)
+    }
+}
+
+fun File.requireIsDir() {
+    if (!this.isDirectory) {
+        throw IllegalArgumentException("Must be a directory： " + this.path)
+    }
+}
+
+fun File.requireIsFile() {
+    if (!this.isFile) {
+        throw IllegalArgumentException("Must be a file： " + this.path)
+    }
+}
 
 
 /**

@@ -15,7 +15,7 @@ import java.util.Iterator;
  *
  * @param T the type of elements in the sequence.
  */
-public interface Sequence<T> {
+public interface Sequence<T> extends Iterable<T> {
     /**
      * Returns an [Iterator] that returns the values from the sequence.
      *

@@ -103,7 +103,7 @@ public class Zipx {
      * @throws IOException IO exceptions
      */
     public static File compressionDir(@NotNull final File sourceDirectory, @NotNull File destinationFile) throws IOException {
-        Premisex.requireFileExist(sourceDirectory);
+        Filex.requireExist(sourceDirectory);
         Premisex.require(sourceDirectory.isDirectory(), sourceDirectory.getPath() + " not directory");
         return compressionFiles(sourceDirectory.listFiles(), destinationFile, new Transformer<File, String>() {
             @NotNull
@@ -136,7 +136,7 @@ public class Zipx {
      */
     @NotNull
     public static File decompression(@NotNull File zipSourceFile, @NotNull File destinationDir) throws IOException {
-        Premisex.requireFileExist(zipSourceFile);
+        Filex.requireExist(zipSourceFile);
         Premisex.require(!destinationDir.exists() || destinationDir.isDirectory(), destinationDir.getPath() + " not directory");
 
         ZipFile zipFile = new ZipFile(zipSourceFile);
@@ -177,6 +177,6 @@ public class Zipx {
      */
     @NotNull
     public static File decompression(@NotNull File zipSourceFile) throws IOException {
-        return decompression(zipSourceFile, new File(zipSourceFile.getParentFile(), Filex.nameWithoutExtension(zipSourceFile)));
+        return decompression(zipSourceFile, new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile)));
     }
 }

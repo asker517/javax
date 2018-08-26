@@ -222,7 +222,7 @@ public class Classx {
             public Class<?> transform(@NotNull Object o) {
                 return o.getClass();
             }
-        }, new Class[params.length]) : null;
+        }).toArray(new Class[params.length]) : null;
         Method method = getMethodWithParent(object.getClass(), methodName, paramClazzs);
         return callMethod(object, method, params);
     }

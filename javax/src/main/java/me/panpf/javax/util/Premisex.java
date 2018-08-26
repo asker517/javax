@@ -2,9 +2,6 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 @SuppressWarnings("WeakerAccess")
 public class Premisex {
 
@@ -45,7 +42,7 @@ public class Premisex {
      * @param obj     the object reference to check for nullity
      * @param message detail message to be used in the event that a {@code
      *                NullPointerException} is thrown
-     * @param <T> the type of the reference
+     * @param <T>     the type of the reference
      * @return {@code obj} if not {@code null}
      * @throws NullPointerException if {@code obj} is {@code null}
      */
@@ -61,9 +58,35 @@ public class Premisex {
         }
     }
 
-    public static void requireFileExist(@NotNull File file) throws FileNotFoundException {
-        if (!file.exists()) {
-            throw new FileNotFoundException(file.getPath());
-        }
+    public static void require(boolean result) {
+        require(result, "Failed requirement.");
+    }
+
+    public static boolean areEqual(Object first, Object second) {
+        return first == null ? second == null : first.equals(second);
+    }
+
+    public static boolean areEqual(Double first, Double second) {
+        return first == null ? second == null : second != null && first.doubleValue() == second.doubleValue();
+    }
+
+    public static boolean areEqual(Double first, double second) {
+        return first != null && first.doubleValue() == second;
+    }
+
+    public static boolean areEqual(double first, Double second) {
+        return second != null && first == second.doubleValue();
+    }
+
+    public static boolean areEqual(Float first, Float second) {
+        return first == null ? second == null : second != null && first.floatValue() == second.floatValue();
+    }
+
+    public static boolean areEqual(Float first, float second) {
+        return first != null && first.floatValue() == second;
+    }
+
+    public static boolean areEqual(float first, Float second) {
+        return second != null && first == second.floatValue();
     }
 }

@@ -278,6 +278,20 @@ public class Stringx {
         return startsWith((CharSequence) string, prefix, false);
     }
 
+    /**
+     * Returns `true` if this char sequence starts with the specified character.
+     */
+    public static boolean startsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase){
+        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(0), charr, ignoreCase);
+    }
+
+    /**
+     * Returns `true` if this char sequence starts with the specified character.
+     */
+    public static boolean startsWith(@NotNull CharSequence charSequence, char charr){
+        return startsWith(charSequence, charr, false);
+    }
+
 
     /**
      * Return `tru`e if the specified character sequence end with the specified suffix
@@ -315,6 +329,20 @@ public class Stringx {
      */
     public static boolean endsWith(@NotNull String string, @NotNull String suffix) {
         return endsWith((CharSequence) string, suffix, false);
+    }
+
+    /**
+     * Returns `true` if this char sequence ends with the specified character.
+     */
+    public static boolean endsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase){
+        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(charSequence.length()-1), charr, ignoreCase);
+    }
+
+    /**
+     * Returns `true` if this char sequence ends with the specified character.
+     */
+    public static boolean endsWith(@NotNull CharSequence charSequence, char charr){
+        return endsWith(charSequence, charr, false);
     }
 
 
@@ -782,6 +810,15 @@ public class Stringx {
     }
 
     /**
+     * Returns the index within this string of the first occurrence of the specified character, starting from the specified [startIndex].
+     *
+     * @return An index of the first occurrence of [char] or -1 if none is found.
+     */
+    public static int indexOf(CharSequence charSequence, char delimiter, int startIndex) {
+        return indexOf(charSequence, delimiter, startIndex, false);
+    }
+
+    /**
      * Returns the index within this char sequence of the first occurrence of the specified [string],
      * starting from the specified [startIndex].
      *
@@ -794,6 +831,16 @@ public class Stringx {
         } else {
             return ((String) charSequence).indexOf(string, startIndex);
         }
+    }
+
+    /**
+     * Returns the index within this char sequence of the first occurrence of the specified [string],
+     * starting from the specified [startIndex].
+     *
+     * @return An index of the first occurrence of [string] or `-1` if none is found.
+     */
+    public static int indexOf(CharSequence charSequence, String string, int startIndex) {
+        return indexOf(charSequence, string, startIndex, false);
     }
 
     /**

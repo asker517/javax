@@ -19,8 +19,103 @@ package me.panpf.javax.io
 import org.junit.Assert
 import org.junit.Test
 import java.io.File
+import java.io.FileNotFoundException
 
 class FileTest {
+
+    @Test
+    fun testRequireExist() {
+        val testFile = File("/tmp/testRequireExist")
+        testFile.delete()
+
+        Assert.assertFalse(try {
+            testFile.requireExist()
+            true
+        } catch (e: FileNotFoundException) {
+            false
+        })
+
+        testFile.createNewFileWith()
+
+        Assert.assertTrue(try {
+            testFile.requireExist()
+            true
+        } catch (e: FileNotFoundException) {
+            false
+        })
+
+        testFile.delete()
+    }
+
+    @Test
+    fun testRequireIsDir() {
+        val testDir = File("/tmp/testRequireIsDir")
+
+        // 不存在时
+        testDir.deleteRecursively()
+        Assert.assertFalse(try {
+            testDir.requireIsDir()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        })
+
+        // 文件
+        testDir.createNewFileWith()
+        Assert.assertFalse(try {
+            testDir.requireIsDir()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        })
+
+        // 目录
+        testDir.deleteRecursively()
+        testDir.mkdirsWith()
+        Assert.assertTrue(try {
+            testDir.requireIsDir()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        })
+
+        testDir.deleteRecursively()
+    }
+
+    @Test
+    fun testRequireIsFile() {
+        val testFile = File("/tmp/testRequireIsFile")
+
+        // 不存在时
+        testFile.deleteRecursively()
+        Assert.assertFalse(try {
+            testFile.requireIsFile()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        })
+
+        // 目录
+        testFile.mkdirsWith()
+        Assert.assertFalse(try {
+            testFile.requireIsFile()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        })
+
+        // 文件
+        testFile.deleteRecursively()
+        testFile.createNewFileWith()
+        Assert.assertTrue(try {
+            testFile.requireIsFile()
+            true
+        } catch (e: IllegalArgumentException) {
+            false
+        })
+
+        testFile.deleteRecursively()
+    }
 
     @Test
     fun testCleanDir() {
@@ -83,19 +178,19 @@ class FileTest {
 
     @Test
     fun testNameSuffix() {
-        val file = File("/tmp/test.txt")
+        val file = File("/tmp/testNameSuffix.txt")
         Assert.assertEquals(file.extension, "txt")
     }
 
     @Test
     fun testSimpleName() {
-        val file = File("/tmp/test.txt")
-        Assert.assertEquals(file.nameWithoutExtension, "test")
+        val file = File("/tmp/testSimpleName.txt")
+        Assert.assertEquals(file.nameWithoutExtension, "testSimpleName")
     }
 
     @Test
     fun testLengthWithDir() {
-        val dir = File("/tmp/javaxLengthWithDirTest")
+        val dir = File("/tmp/testLengthWithDir")
 
         val childFile1 = File(dir, "test1.txt")
         childFile1.createNewFileWithThrow()

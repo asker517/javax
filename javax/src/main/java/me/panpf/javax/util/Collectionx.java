@@ -418,6 +418,17 @@ public class Collectionx {
     }
 
     /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T, A extends Appendable> A joinTo(@NotNull Iterable<T> iterable, @NotNull A buffer, @Nullable CharSequence separator) {
+        return joinTo(iterable, buffer, separator, null, null, -1, null, null);
+    }
+
+    /**
      * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
      * <p>
      * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
@@ -428,6 +439,17 @@ public class Collectionx {
                                           @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
                                           @Nullable CharSequence truncated, @Nullable Transformer<T, CharSequence> transform) {
         return joinTo(iterable, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToString(@NotNull Iterable<T> iterable, @Nullable CharSequence separator) {
+        return joinTo(iterable, new StringBuilder(), separator, null, null, -1, null, null).toString();
     }
 
     @NotNull
