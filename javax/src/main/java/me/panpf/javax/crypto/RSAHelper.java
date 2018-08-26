@@ -16,9 +16,9 @@
 
 package me.panpf.javax.crypto;
 
+import me.panpf.javax.util.Base64x;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import me.panpf.javax.util.Base64Compat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class RSAHelper {
      */
     @NotNull
     public static PublicKey pubKey(@NotNull String publicKeyText) throws InvalidKeySpecException {
-        byte[] buffer = Base64Compat.getDecoder().decode(publicKeyText.getBytes());
+        byte[] buffer = Base64x.getDecoder().decode(publicKeyText.getBytes());
         KeyFactory keyFactory;
         try {
             keyFactory = KeyFactory.getInstance(ALGORITHM);
@@ -78,7 +78,7 @@ public class RSAHelper {
      */
     @NotNull
     public static PrivateKey priKey(@NotNull String privateKeyText) throws InvalidKeySpecException {
-        byte[] buffer = Base64Compat.getDecoder().decode(privateKeyText.getBytes());
+        byte[] buffer = Base64x.getDecoder().decode(privateKeyText.getBytes());
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
         KeyFactory keyFactory;
         try {
@@ -114,7 +114,7 @@ public class RSAHelper {
      */
     @NotNull
     public static String keyToBase64(@NotNull Key key) {
-        return Base64Compat.getEncoder().encodeToString(key.getEncoded());
+        return Base64x.getEncoder().encodeToString(key.getEncoded());
     }
 
     /**
@@ -168,7 +168,7 @@ public class RSAHelper {
     @NotNull
     public static String signToBase64(@NotNull PrivateKey priKey, @NotNull byte[] textBytes)
             throws InvalidKeyException, SignatureException {
-        return Base64Compat.getEncoder().encodeToString(sign(priKey, textBytes));
+        return Base64x.getEncoder().encodeToString(sign(priKey, textBytes));
     }
 
     /**
@@ -183,7 +183,7 @@ public class RSAHelper {
     @NotNull
     public static String signToBase64(@NotNull PrivateKey priKey, @NotNull String text)
             throws InvalidKeyException, SignatureException {
-        return Base64Compat.getEncoder().encodeToString(sign(priKey, text.getBytes()));
+        return Base64x.getEncoder().encodeToString(sign(priKey, text.getBytes()));
     }
 
     /**
@@ -261,7 +261,7 @@ public class RSAHelper {
      */
     public static boolean verifyFromBase64(@NotNull PublicKey pubKey, @NotNull byte[] data, @NotNull byte[] signBytes)
             throws InvalidKeyException, SignatureException {
-        return verify(pubKey, data, Base64Compat.getDecoder().decode(signBytes));
+        return verify(pubKey, data, Base64x.getDecoder().decode(signBytes));
     }
 
     /**
@@ -275,7 +275,7 @@ public class RSAHelper {
      */
     public static boolean verifyFromBase64(@NotNull PublicKey pubKey, @NotNull byte[] data, @NotNull String sign)
             throws InvalidKeyException, SignatureException {
-        return verify(pubKey, data, Base64Compat.getDecoder().decode(sign.getBytes()));
+        return verify(pubKey, data, Base64x.getDecoder().decode(sign.getBytes()));
     }
 
     /**
@@ -289,7 +289,7 @@ public class RSAHelper {
      */
     public static boolean verifyFromBase64(@NotNull PublicKey pubKey, @NotNull String text, @NotNull byte[] signBytes)
             throws InvalidKeyException, SignatureException {
-        return verify(pubKey, text.getBytes(), Base64Compat.getDecoder().decode(signBytes));
+        return verify(pubKey, text.getBytes(), Base64x.getDecoder().decode(signBytes));
     }
 
     /**
@@ -303,7 +303,7 @@ public class RSAHelper {
      */
     public static boolean verifyFromBase64(@NotNull PublicKey pubKey, @NotNull String text, @NotNull String sign)
             throws InvalidKeyException, SignatureException {
-        return verify(pubKey, text.getBytes(), Base64Compat.getDecoder().decode(sign.getBytes()));
+        return verify(pubKey, text.getBytes(), Base64x.getDecoder().decode(sign.getBytes()));
     }
 
 
@@ -370,7 +370,7 @@ public class RSAHelper {
     @NotNull
     public String encryptToBase64(@NotNull Key key, @NotNull byte[] textBytes)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return Base64Compat.getEncoder().encodeToString(encrypt(key, textBytes));
+        return Base64x.getEncoder().encodeToString(encrypt(key, textBytes));
     }
 
     /**
@@ -386,7 +386,7 @@ public class RSAHelper {
     @NotNull
     public String encryptToBase64(@NotNull Key key, @NotNull String text)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return Base64Compat.getEncoder().encodeToString(encrypt(key, text.getBytes()));
+        return Base64x.getEncoder().encodeToString(encrypt(key, text.getBytes()));
     }
 
     /**
@@ -436,7 +436,7 @@ public class RSAHelper {
     @NotNull
     public String decryptFromBase64(@NotNull Key key, @NotNull byte[] cipherTextBytes)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(key, Base64Compat.getDecoder().decode(cipherTextBytes));
+        return decrypt(key, Base64x.getDecoder().decode(cipherTextBytes));
     }
 
     /**
@@ -452,7 +452,7 @@ public class RSAHelper {
     @NotNull
     public String decryptFromBase64(@NotNull Key key, @NotNull String cipherText)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(key, Base64Compat.getDecoder().decode(cipherText.getBytes()));
+        return decrypt(key, Base64x.getDecoder().decode(cipherText.getBytes()));
     }
 
     private Cipher createCipher(@NotNull Key key, int opMode) throws InvalidKeyException {

@@ -16,7 +16,7 @@
 
 package me.panpf.javax.crypto;
 
-import me.panpf.javax.util.Base64Compat;
+import me.panpf.javax.util.Base64x;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -88,7 +88,7 @@ public class AESHelper {
      */
     @NotNull
     public static String keyToBase64(Key key) {
-        return Base64Compat.getEncoder().encodeToString(key.getEncoded());
+        return Base64x.getEncoder().encodeToString(key.getEncoded());
     }
 
     /**
@@ -119,7 +119,7 @@ public class AESHelper {
      */
     @NotNull
     public static Key keyFromBase64(@NotNull String passwordBase64) {
-        return new SecretKeySpec(Base64Compat.getDecoder().decode(passwordBase64), ALGORITHM);
+        return new SecretKeySpec(Base64x.getDecoder().decode(passwordBase64), ALGORITHM);
     }
 
 
@@ -187,7 +187,7 @@ public class AESHelper {
     @NotNull
     public String encryptToBase64(@NotNull byte[] textBytes) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-        return Base64Compat.getEncoder().encodeToString(encrypt(textBytes));
+        return Base64x.getEncoder().encodeToString(encrypt(textBytes));
     }
 
     /**
@@ -202,7 +202,7 @@ public class AESHelper {
     @NotNull
     public String encryptToBase64(@NotNull String text) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-        return Base64Compat.getEncoder().encodeToString(encrypt(text.getBytes()));
+        return Base64x.getEncoder().encodeToString(encrypt(text.getBytes()));
     }
 
     /**
@@ -249,7 +249,7 @@ public class AESHelper {
     @NotNull
     public String decryptFromBase64(@NotNull byte[] cipherTextBytes) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64Compat.getDecoder().decode(cipherTextBytes));
+        return decrypt(Base64x.getDecoder().decode(cipherTextBytes));
     }
 
     /**
@@ -264,7 +264,7 @@ public class AESHelper {
     @NotNull
     public String decryptFromBase64(@NotNull String cipherText) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64Compat.getDecoder().decode(cipherText.getBytes()));
+        return decrypt(Base64x.getDecoder().decode(cipherText.getBytes()));
     }
 
     @NotNull

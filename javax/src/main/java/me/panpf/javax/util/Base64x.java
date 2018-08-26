@@ -54,9 +54,9 @@ import java.util.Arrays;
  * @author  Xueming Shen
  */
 
-public class Base64Compat {
+public class Base64x {
 
-    private Base64Compat() {}
+    private Base64x() {}
 
     /**
      * Returns a {@link Encoder} that encodes using the
@@ -229,7 +229,7 @@ public class Base64Compat {
 
         /**
          * Encodes all bytes from the specified byte array into a newly-allocated
-         * byte array using the {@link Base64Compat} encoding scheme. The returned byte
+         * byte array using the {@link Base64x} encoding scheme. The returned byte
          * array is of the length of the resulting bytes.
          *
          * @param   src
@@ -248,7 +248,7 @@ public class Base64Compat {
 
         /**
          * Encodes all bytes from the specified byte array using the
-         * {@link Base64Compat} encoding scheme, writing the resulting bytes to the
+         * {@link Base64x} encoding scheme, writing the resulting bytes to the
          * given output byte array, starting at offset 0.
          *
          * <p> It is the responsibility of the invoker of this method to make
@@ -274,7 +274,7 @@ public class Base64Compat {
         }
 
         /**
-         * Encodes the specified byte array into a String using the {@link Base64Compat}
+         * Encodes the specified byte array into a String using the {@link Base64x}
          * encoding scheme.
          *
          * <p> This method first encodes all input bytes into a base64 encoded
@@ -297,7 +297,7 @@ public class Base64Compat {
 
         /**
          * Encodes all remaining bytes from the specified byte buffer into
-         * a newly-allocated ByteBuffer using the {@link Base64Compat} encoding
+         * a newly-allocated ByteBuffer using the {@link Base64x} encoding
          * scheme.
          *
          * Upon return, the source buffer's position will be updated to
@@ -330,7 +330,7 @@ public class Base64Compat {
         }
 
         /**
-         * Wraps an output stream for encoding byte data using the {@link Base64Compat}
+         * Wraps an output stream for encoding byte data using the {@link Base64x}
          * encoding scheme.
          *
          * <p> It is recommended to promptly close the returned output stream after
@@ -487,7 +487,7 @@ public class Base64Compat {
         static final Decoder RFC2045         = new Decoder(false, true);
 
         /**
-         * Decodes all bytes from the input byte array using the {@link Base64Compat}
+         * Decodes all bytes from the input byte array using the {@link Base64x}
          * encoding scheme, writing the results into a newly-allocated output
          * byte array. The returned byte array is of the length of the resulting
          * bytes.
@@ -511,7 +511,7 @@ public class Base64Compat {
 
         /**
          * Decodes a Base64 encoded String into a newly-allocated byte array
-         * using the {@link Base64Compat} encoding scheme.
+         * using the {@link Base64x} encoding scheme.
          *
          * <p> An invocation of this method has exactly the same effect as invoking
          * {@code decode(src.getBytes(StandardCharsets.ISO_8859_1))}
@@ -529,7 +529,7 @@ public class Base64Compat {
         }
 
         /**
-         * Decodes all bytes from the input byte array using the {@link Base64Compat}
+         * Decodes all bytes from the input byte array using the {@link Base64x}
          * encoding scheme, writing the results into the given output byte array,
          * starting at offset 0.
          *
@@ -562,7 +562,7 @@ public class Base64Compat {
         }
 
         /**
-         * Decodes all bytes from the input byte buffer using the {@link Base64Compat}
+         * Decodes all bytes from the input byte buffer using the {@link Base64x}
          * encoding scheme, writing the results into a newly-allocated ByteBuffer.
          *
          * <p> Upon return, the source buffer's position will be updated to
@@ -607,7 +607,7 @@ public class Base64Compat {
         }
 
         /**
-         * Returns an input stream for decoding {@link Base64Compat} encoded byte stream.
+         * Returns an input stream for decoding {@link Base64x} encoded byte stream.
          *
          * <p> The {@code read}  methods of the returned {@code InputStream} will
          * throw {@code IOException} when reading bytes that cannot be decoded.

@@ -16,9 +16,9 @@
 
 package me.panpf.javax.crypto;
 
+import me.panpf.javax.util.Base64x;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import me.panpf.javax.util.Base64Compat;
 
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -139,7 +139,7 @@ public class DESHelper {
     @NotNull
     public String encryptToBase64(@NotNull byte[] textBytes)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return Base64Compat.getEncoder().encodeToString(encrypt(textBytes));
+        return Base64x.getEncoder().encodeToString(encrypt(textBytes));
     }
 
     /**
@@ -154,7 +154,7 @@ public class DESHelper {
     @NotNull
     public String encryptToBase64(@NotNull String text)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return Base64Compat.getEncoder().encodeToString(encrypt(text.getBytes()));
+        return Base64x.getEncoder().encodeToString(encrypt(text.getBytes()));
     }
 
     /**
@@ -201,7 +201,7 @@ public class DESHelper {
     @NotNull
     public String decryptFromBase64(@NotNull byte[] cipherTextBytes)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64Compat.getDecoder().decode(cipherTextBytes));
+        return decrypt(Base64x.getDecoder().decode(cipherTextBytes));
     }
 
     /**
@@ -216,7 +216,7 @@ public class DESHelper {
     @NotNull
     public String decryptFromBase64(@NotNull String cipherText)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64Compat.getDecoder().decode(cipherText.getBytes()));
+        return decrypt(Base64x.getDecoder().decode(cipherText.getBytes()));
     }
 
     @NotNull
