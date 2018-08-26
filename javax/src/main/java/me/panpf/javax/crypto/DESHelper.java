@@ -139,7 +139,7 @@ public class DESHelper {
     @NotNull
     public String encryptToBase64(@NotNull byte[] textBytes)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return Base64x.getEncoder().encodeToString(encrypt(textBytes));
+        return Base64x.encodeToString(encrypt(textBytes));
     }
 
     /**
@@ -154,7 +154,7 @@ public class DESHelper {
     @NotNull
     public String encryptToBase64(@NotNull String text)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return Base64x.getEncoder().encodeToString(encrypt(text.getBytes()));
+        return Base64x.encodeToString(encrypt(text.getBytes()));
     }
 
     /**
@@ -201,7 +201,7 @@ public class DESHelper {
     @NotNull
     public String decryptFromBase64(@NotNull byte[] cipherTextBytes)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.getDecoder().decode(cipherTextBytes));
+        return decrypt(Base64x.decodeToBytes(cipherTextBytes));
     }
 
     /**
@@ -216,7 +216,7 @@ public class DESHelper {
     @NotNull
     public String decryptFromBase64(@NotNull String cipherText)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.getDecoder().decode(cipherText.getBytes()));
+        return decrypt(Base64x.decodeToBytes(cipherText.getBytes()));
     }
 
     @NotNull
