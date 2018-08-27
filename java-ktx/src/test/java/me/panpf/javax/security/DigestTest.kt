@@ -26,21 +26,21 @@ class DigestTest {
 
     @Test
     fun testDigest() {
-        Assert.assertEquals(TEST_TEXT.getMD5(), TEXT_MD5)
-        Assert.assertEquals(TEST_TEXT.getMD5_16(), TEXT_MD5_16)
-        Assert.assertEquals(TEST_TEXT.getSHA1(), TEXT_SHA1)
-        Assert.assertEquals(TEST_TEXT.getSHA256(), TEXT_SHA256)
-        Assert.assertEquals(TEST_TEXT.getSHA512(), TEXT_SHA512)
+        Assert.assertEquals(TEST_TEXT.getMD5Digest(), TEXT_MD5)
+        Assert.assertEquals(TEST_TEXT.getMD516Digest(), TEXT_MD5_16)
+        Assert.assertEquals(TEST_TEXT.getSHA1Digest(), TEXT_SHA1)
+        Assert.assertEquals(TEST_TEXT.getSHA256Digest(), TEXT_SHA256)
+        Assert.assertEquals(TEST_TEXT.getSHA512Digest(), TEXT_SHA512)
 
         val file = File("/tmp/testDigest.tmp")
         file.writeText("禅诗灵韵妙和声，秋叶飘飞过江东。一抹时光生惬意，妍媚红尘缱绻中。\n" +
                 "禅诗灵韵妙和声，秋叶飘飞过江东。一抹时光生惬意，妍媚红尘缱绻中。")
 
-        Assert.assertEquals(file.getMD5(), FILE_MD5)
-        Assert.assertEquals(file.getMD5_16(), FILE_MD5_16)
-        Assert.assertEquals(file.getSHA1(), FILE_SHA1)
-        Assert.assertEquals(file.getSHA256(), FILE_SHA256)
-        Assert.assertEquals(file.getSHA512(), FILE_SHA512)
+        Assert.assertEquals(file.getMD5Digest(), FILE_MD5)
+        Assert.assertEquals(file.getMD516Digest(), FILE_MD5_16)
+        Assert.assertEquals(file.getSHA1Digest(), FILE_SHA1)
+        Assert.assertEquals(file.getSHA256Digest(), FILE_SHA256)
+        Assert.assertEquals(file.getSHA512Digest(), FILE_SHA512)
 
         file.delete()
     }

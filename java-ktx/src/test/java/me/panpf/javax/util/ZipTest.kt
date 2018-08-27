@@ -1,7 +1,7 @@
 package me.panpf.javax.util
 
 import me.panpf.javax.io.createNewFileWithThrow
-import me.panpf.javax.security.getMD5
+import me.panpf.javax.security.getMD5Digest
 import org.junit.Assert
 import org.junit.Test
 
@@ -39,13 +39,13 @@ class ZipTest {
 
         decompressionSourceFile.zipDecompressionTo(decompressionDstDir)
 
-        Assert.assertEquals(file1.getMD5(), File(decompressionDstDir, "file1").getMD5())
-        Assert.assertEquals(file2.getMD5(), File(decompressionDstDir, "file2").getMD5())
-        Assert.assertEquals(file3.getMD5(), File(decompressionDstDir, "file3").getMD5())
-        Assert.assertEquals(file41.getMD5(), File(decompressionDstDir, "dir4/file41").getMD5())
-        Assert.assertEquals(file42.getMD5(), File(decompressionDstDir, "dir4/file42").getMD5())
-        Assert.assertEquals(file51.getMD5(), File(decompressionDstDir, "dir5/file51").getMD5())
-        Assert.assertEquals(file52.getMD5(), File(decompressionDstDir, "dir5/file52").getMD5())
+        Assert.assertEquals(file1.getMD5Digest(), File(decompressionDstDir, "file1").getMD5Digest())
+        Assert.assertEquals(file2.getMD5Digest(), File(decompressionDstDir, "file2").getMD5Digest())
+        Assert.assertEquals(file3.getMD5Digest(), File(decompressionDstDir, "file3").getMD5Digest())
+        Assert.assertEquals(file41.getMD5Digest(), File(decompressionDstDir, "dir4/file41").getMD5Digest())
+        Assert.assertEquals(file42.getMD5Digest(), File(decompressionDstDir, "dir4/file42").getMD5Digest())
+        Assert.assertEquals(file51.getMD5Digest(), File(decompressionDstDir, "dir5/file51").getMD5Digest())
+        Assert.assertEquals(file52.getMD5Digest(), File(decompressionDstDir, "dir5/file52").getMD5Digest())
 
         dir.deleteRecursively()
         dstFile.deleteRecursively()
