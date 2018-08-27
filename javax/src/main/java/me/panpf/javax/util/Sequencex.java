@@ -1,5 +1,7 @@
 package me.panpf.javax.util;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -12,7 +14,7 @@ public class Sequencex {
      * <p>
      * [IllegalStateException] is thrown on iterating the returned sequence from the second time.
      */
-    public static <T> Sequence<T> constrainOnce(Sequence<T> sequence) {
+    public static <T> Sequence<T> constrainOnce(@NotNull Sequence<T> sequence) {
         return sequence instanceof ConstrainedOnceSequence ? sequence : new ConstrainedOnceSequence<T>(sequence);
     }
 
@@ -24,6 +26,7 @@ public class Sequencex {
             this.sequenceRef = new AtomicReference<Sequence<T>>(sequence);
         }
 
+        @NotNull
         @Override
         public Iterator<T> iterator() {
             Sequence<T> sequence = sequenceRef.getAndSet(null);
@@ -39,10 +42,9 @@ public class Sequencex {
      *
      * The operation is _terminal_.
      */
-    public static <T> void forEach(Sequence<T> sequence, Action<T> action) {
-        Iterator<T> iterator = sequence.iterator();
-        while (iterator.hasNext()) {
-            action.action(iterator.next());
+    public static <T> void forEach(@NotNull Sequence<T> sequence, @NotNull Action<T> action) {
+        for (T aSequence : sequence) {
+            action.action(aSequence);
         }
     }
 }

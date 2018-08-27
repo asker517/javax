@@ -1158,28 +1158,28 @@ public class Collectionx {
     /**
      * Removes all elements from this [Iterable] that match the given [predicate].
      */
-    public static <T> boolean removeAll(Iterable<T> iterable, Predicate<T> predicate) {
+    public static <T> boolean removeAll(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         return filterInPlace(iterable, predicate, true);
     }
 
     /**
      * Removes all elements from this [List] that match the given [predicate].
      */
-    public static <T> boolean removeAll(List<T> list, Predicate<T> predicate) {
+    public static <T> boolean removeAll(@NotNull List<T> list, @NotNull Predicate<T> predicate) {
         return filterInPlace(list, predicate, true);
     }
 
     /**
      * Removes all elements from this [MutableCollection] that are also contained in the given [elements] collection.
      */
-    public static <T> boolean removeAll(@NotNull Collection<T> collection, Iterable<T> elements) {
+    public static <T> boolean removeAll(@NotNull Collection<T> collection, @NotNull Iterable<T> elements) {
         return removeAll(collection, convertToSetForSetOperationWith(elements, collection));
     }
 
     /**
      * Removes all elements from this [MutableCollection] that are also contained in the given [elements] array.
      */
-    public static <T> boolean removeAll(@NotNull Collection<T> collection, T[] elements) {
+    public static <T> boolean removeAll(@NotNull Collection<T> collection, @NotNull T[] elements) {
         return Arrayx.isNotEmpty(elements) && collection.removeAll(Arrayx.toHashSet(elements));
     }
 
@@ -1189,7 +1189,7 @@ public class Collectionx {
      *
      * @return `true` if any of the specified elements was removed from the collection, `false` if the collection was not modified.
      */
-    public static <T> boolean removeAll(Collection<T> collection, Collection<T> elements) {
+    public static <T> boolean removeAll(@NotNull Collection<T> collection, @NotNull Collection<T> elements) {
         return collection.removeAll(elements);
     }
 

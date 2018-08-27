@@ -1,6 +1,7 @@
 package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("WeakerAccess")
 public class Premisex {
@@ -21,7 +22,8 @@ public class Premisex {
      * @throws NullPointerException if {@code obj} is {@code null}
      */
     @SuppressWarnings("UnusedReturnValue")
-    public static <T> T requireNonNull(T obj) {
+    @NotNull
+    public static <T> T requireNonNull(@Nullable T obj) {
         if (obj == null)
             throw new NullPointerException();
         return obj;
@@ -46,7 +48,8 @@ public class Premisex {
      * @return {@code obj} if not {@code null}
      * @throws NullPointerException if {@code obj} is {@code null}
      */
-    public static <T> T requireNonNull(T obj, String message) {
+    @NotNull
+    public static <T> T requireNonNull(@Nullable T obj, String message) {
         if (obj == null)
             throw new NullPointerException(message);
         return obj;
@@ -62,15 +65,15 @@ public class Premisex {
         require(result, "Failed requirement.");
     }
 
-    public static boolean areEqual(Object first, Object second) {
+    public static boolean areEqual(@Nullable Object first, @Nullable Object second) {
         return first == null ? second == null : first.equals(second);
     }
 
-    public static boolean areEqual(Double first, Double second) {
+    public static boolean areEqual(@Nullable Double first, @Nullable Double second) {
         return first == null ? second == null : second != null && first.doubleValue() == second.doubleValue();
     }
 
-    public static boolean areEqual(Double first, double second) {
+    public static boolean areEqual(@Nullable Double first, double second) {
         return first != null && first.doubleValue() == second;
     }
 
@@ -78,15 +81,15 @@ public class Premisex {
         return second != null && first == second.doubleValue();
     }
 
-    public static boolean areEqual(Float first, Float second) {
+    public static boolean areEqual(@Nullable Float first, @Nullable Float second) {
         return first == null ? second == null : second != null && first.floatValue() == second.floatValue();
     }
 
-    public static boolean areEqual(Float first, float second) {
+    public static boolean areEqual(@Nullable Float first, float second) {
         return first != null && first.floatValue() == second;
     }
 
-    public static boolean areEqual(float first, Float second) {
+    public static boolean areEqual(float first, @Nullable Float second) {
         return second != null && first == second.floatValue();
     }
 }

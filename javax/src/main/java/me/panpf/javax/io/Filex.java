@@ -403,7 +403,7 @@ public class Filex {
      *
      * @return `true` if this path starts with [other] path, `false` otherwise.
      */
-    public static boolean startsWith(File self, File other) {
+    public static boolean startsWith(@NotNull File self, @NotNull File other) {
         FilePathComponents components = toComponents(self);
         FilePathComponents otherComponents = toComponents(other);
         if (components.root != otherComponents.root) {
@@ -422,7 +422,7 @@ public class Filex {
      *
      * @return `true` if this path starts with [other] path, `false` otherwise.
      */
-    public static boolean startsWith(File self, String other) {
+    public static boolean startsWith(@NotNull File self, @NotNull String other) {
         return startsWith(self, new File(other));
     }
 
@@ -458,7 +458,7 @@ public class Filex {
      *
      * @return `true` if this path ends with [other] path, `false` otherwise.
      */
-    public static boolean endsWith(File self, String other) {
+    public static boolean endsWith(@NotNull File self, @NotNull String other) {
         return endsWith(self, new File(other));
     }
 
@@ -540,7 +540,8 @@ public class Filex {
      *
      * @return concatenated this.parent and [relative] paths, or just [relative] if it's absolute or this has no parent.
      */
-    public static File resolveSibling(File self, File relative) {
+    @NotNull
+    public static File resolveSibling(@NotNull File self, @NotNull File relative) {
         FilePathComponents components = toComponents(self);
         File parentSubPath = components.size == 0 ? new File("..") : components.subPath(0, components.size - 1);
         return resolve(resolve(components.root, parentSubPath), relative);
@@ -553,7 +554,8 @@ public class Filex {
      *
      * @return concatenated this.parent and [relative] paths, or just [relative] if it's absolute or this has no parent.
      */
-    public static File resolveSibling(File self, String relative) {
+    @NotNull
+    public static File resolveSibling(@NotNull File self, @NotNull String relative) {
         return resolveSibling(self, new File(relative));
     }
 
@@ -622,6 +624,7 @@ public class Filex {
      * @throws IOException              in case of input/output error.
      * @throws IllegalArgumentException if [prefix] is shorter than three symbols.
      */
+    @NotNull
     public static File createTempFile(@Nullable File directory) throws IOException {
         return createTempFile("tmp", null, directory);
     }
@@ -630,6 +633,7 @@ public class Filex {
      * Returns [path][File.path] of this File using the invariant separator '/' to
      * separate the names in the name sequence.
      */
+    @NotNull
     public String getInvariantSeparatorsPath(@NotNull File file) {
         return File.separatorChar != '/' ? file.getPath().replace(File.separatorChar, '/') : file.getPath();
     }
@@ -645,7 +649,8 @@ public class Filex {
     /**
      * Returns file's name without an getExtension.
      */
-    public static String getNameWithoutExtension(File file) {
+    @NotNull
+    public static String getNameWithoutExtension(@NotNull File file) {
         return Stringx.substringBeforeLast(file.getName(), ".", file.getName());
     }
 
@@ -673,7 +678,8 @@ public class Filex {
      * @return File with relative path from [base] to this.
      * @throws IllegalArgumentException if this and base paths have different roots.
      */
-    public static File relativeTo(File self, File base) {
+    @NotNull
+    public static File relativeTo(@NotNull File self, @NotNull File base) {
         return new File(toRelativeString(self, base));
     }
 
@@ -684,7 +690,8 @@ public class Filex {
      *
      * @return File with relative path from [base] to this, or `this` if this and base paths have different roots.
      */
-    public static File relativeToOrSelf(File self, File base) {
+    @NotNull
+    public static File relativeToOrSelf(@NotNull File self, @NotNull File base) {
         String relative = toRelativeStringOrNull(self, base);
         return relative != null ? new File(relative) : self;
     }
@@ -697,7 +704,7 @@ public class Filex {
      * @return File with relative path from [base] to this, or `null` if this and base paths have different roots.
      */
     @Nullable
-    public static File relativeToOrNull(File self, File base) {
+    public static File relativeToOrNull(@NotNull File self, @NotNull File base) {
         String relative = toRelativeStringOrNull(self, base);
         return relative != null ? new File(relative) : null;
     }
@@ -812,6 +819,7 @@ public class Filex {
      * Returns root component of this abstract name, like / from /home/user, or C:\ from C:\file.tmp,
      * or //my.host/home for //my.host/home/user
      */
+    @NotNull
     public static File getRoot(@NotNull File file) {
         return new File(getRootName(file));
     }
@@ -906,6 +914,7 @@ public class Filex {
      *                                  or [endIndex] is greater than existing number of components,
      *                                  or [beginIndex] is greater than [endIndex].
      */
+    @NotNull
     public static File subPath(@NotNull File file, int beginIndex, int endIndex) {
         return toComponents(file).subPath(beginIndex, endIndex);
     }
@@ -921,13 +930,15 @@ public class Filex {
     /**
      * Returns a new [FileReader] for reading the content of this file.
      */
-    public static InputStreamReader reader(@NotNull File file, Charset charset) throws FileNotFoundException {
+    @NotNull
+    public static InputStreamReader reader(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
         return IOStreamx.reader(inputStream(file), charset);
     }
 
     /**
      * Returns a new [FileReader] for reading the content of this file.
      */
+    @NotNull
     public static InputStreamReader reader(@NotNull File file) throws FileNotFoundException {
         return reader(file, Charx.UTF_8);
     }
@@ -937,7 +948,8 @@ public class Filex {
      *
      * @param bufferSize necessary size of the buffer.
      */
-    public static BufferedReader bufferedReader(@NotNull File file, Charset charset, int bufferSize) throws FileNotFoundException {
+    @NotNull
+    public static BufferedReader bufferedReader(@NotNull File file, @NotNull Charset charset, int bufferSize) throws FileNotFoundException {
         return IOStreamx.buffered(reader(file, charset), bufferSize);
     }
 
@@ -946,6 +958,7 @@ public class Filex {
      *
      * @param bufferSize necessary size of the buffer.
      */
+    @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, int bufferSize) throws FileNotFoundException {
         return bufferedReader(file, Charx.UTF_8, bufferSize);
     }
@@ -953,13 +966,15 @@ public class Filex {
     /**
      * Returns a new [BufferedReader] for reading the content of this file.
      */
-    public static BufferedReader bufferedReader(@NotNull File file, Charset charset) throws FileNotFoundException {
+    @NotNull
+    public static BufferedReader bufferedReader(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
         return bufferedReader(file, charset, IOStreamx.DEFAULT_BUFFER_SIZE);
     }
 
     /**
      * Returns a new [BufferedReader] for reading the content of this file.
      */
+    @NotNull
     public static BufferedReader bufferedReader(@NotNull File file) throws FileNotFoundException {
         return bufferedReader(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
     }
@@ -972,6 +987,7 @@ public class Filex {
      *
      * @return the entire content of this file as a byte array.
      */
+    @NotNull
     public static byte[] readBytes(@NotNull File file) throws IOException {
         if (file.length() > Integer.MAX_VALUE) {
             throw new OutOfMemoryError("File " + file.getPath() + " is too big (" + file.length() + " bytes) to fit in memory.");
@@ -1005,7 +1021,8 @@ public class Filex {
      * @param charset character set to use.
      * @return the entire content of this file as a String.
      */
-    public static String readText(@NotNull File file, Charset charset) throws IOException {
+    @NotNull
+    public static String readText(@NotNull File file, @NotNull Charset charset) throws IOException {
         return Arrayx.toString(readBytes(file), charset);
     }
 
@@ -1016,6 +1033,7 @@ public class Filex {
      *
      * @return the entire content of this file as a String.
      */
+    @NotNull
     public static String readText(@NotNull File file) throws IOException {
         return readText(file, Charx.UTF_8);
     }
@@ -1028,7 +1046,8 @@ public class Filex {
      * @param charset character set to use.
      * @return list of file lines.
      */
-    public static List<String> readLines(@NotNull File file, Charset charset) throws IOException {
+    @NotNull
+    public static List<String> readLines(@NotNull File file, @NotNull Charset charset) throws IOException {
         final ArrayList<String> result = new ArrayList<String>();
         forEachLine(file, charset, new Action<String>() {
             @Override
@@ -1046,6 +1065,7 @@ public class Filex {
      *
      * @return list of file lines.
      */
+    @NotNull
     public static List<String> readLines(@NotNull File file) throws IOException {
         return readLines(file, Charx.UTF_8);
     }
@@ -1057,7 +1077,8 @@ public class Filex {
      * @param charset character set to use
      * @return the value returned by [block].
      */
-    public static <T> T useLines(@NotNull File file, Charset charset, Transformer<Sequence<String>, T> block) throws FileNotFoundException {
+    @NotNull
+    public static <T> T useLines(@NotNull File file, @NotNull Charset charset, @NotNull Transformer<Sequence<String>, T> block) throws FileNotFoundException {
         BufferedReader bufferedReader = bufferedReader(file, charset);
         T result;
         try {
@@ -1074,7 +1095,8 @@ public class Filex {
      *
      * @return the value returned by [block].
      */
-    public static <T> T useLines(@NotNull File file, Transformer<Sequence<String>, T> block) throws FileNotFoundException {
+    @NotNull
+    public static <T> T useLines(@NotNull File file, @NotNull Transformer<Sequence<String>, T> block) throws FileNotFoundException {
         return useLines(file, Charx.UTF_8, block);
     }
 
@@ -1087,7 +1109,7 @@ public class Filex {
      * @param action    function to process file blocks.
      * @param blockSize size of a block, replaced by 512 if it's less, 4096 by default.
      */
-    public static void forEachBlock(@NotNull File file, int blockSize, Action2<byte[], Integer> action) throws IOException {
+    public static void forEachBlock(@NotNull File file, int blockSize, @NotNull Action2<byte[], Integer> action) throws IOException {
         byte[] arr = new byte[Intx.coerceAtLeast(blockSize, IOStreamx.MINIMUM_BLOCK_SIZE)];
 
         InputStream input = inputStream(file);
@@ -1114,7 +1136,7 @@ public class Filex {
      *
      * @param action function to process file blocks.
      */
-    public static void forEachBlock(@NotNull File file, Action2<byte[], Integer> action) throws IOException {
+    public static void forEachBlock(@NotNull File file, @NotNull Action2<byte[], Integer> action) throws IOException {
         forEachBlock(file, IOStreamx.DEFAULT_BLOCK_SIZE, action);
     }
 
@@ -1127,7 +1149,7 @@ public class Filex {
      * @param charset character set to use.
      * @param action  function to process file lines.
      */
-    public static void forEachLine(@NotNull File file, Charset charset, Action<String> action) throws IOException {
+    public static void forEachLine(@NotNull File file, @NotNull Charset charset, @NotNull Action<String> action) throws IOException {
         // Note: close is called at forEachLine
         IOStreamx.forEachLine(new BufferedReader(new InputStreamReader(new FileInputStream(file), charset)), action);
     }
@@ -1140,7 +1162,7 @@ public class Filex {
      *
      * @param action function to process file lines.
      */
-    public static void forEachLine(@NotNull File file, Action<String> action) throws IOException {
+    public static void forEachLine(@NotNull File file, @NotNull Action<String> action) throws IOException {
         // Note: close is called at forEachLine
         forEachLine(file, Charx.UTF_8, action);
     }
@@ -1149,6 +1171,7 @@ public class Filex {
     /**
      * Constructs a new FileOutputStream of this file and returns it as a result.
      */
+    @NotNull
     public static FileOutputStream outputStream(@NotNull File file) throws FileNotFoundException {
         return new FileOutputStream(file);
     }
@@ -1156,13 +1179,15 @@ public class Filex {
     /**
      * Returns a new [FileWriter] for writing the content of this file.
      */
-    public static OutputStreamWriter writer(@NotNull File file, Charset charset) throws FileNotFoundException {
+    @NotNull
+    public static OutputStreamWriter writer(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
         return IOStreamx.writer(outputStream(file), charset);
     }
 
     /**
      * Returns a new [FileWriter] for writing the content of this file.
      */
+    @NotNull
     public static OutputStreamWriter writer(@NotNull File file) throws FileNotFoundException {
         return writer(file, Charx.UTF_8);
     }
@@ -1172,7 +1197,8 @@ public class Filex {
      *
      * @param bufferSize necessary size of the buffer.
      */
-    public static BufferedWriter bufferedWriter(@NotNull File file, Charset charset, int bufferSize) throws FileNotFoundException {
+    @NotNull
+    public static BufferedWriter bufferedWriter(@NotNull File file, @NotNull Charset charset, int bufferSize) throws FileNotFoundException {
         return IOStreamx.buffered(writer(file, charset), bufferSize);
     }
 
@@ -1181,6 +1207,7 @@ public class Filex {
      *
      * @param bufferSize necessary size of the buffer.
      */
+    @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, int bufferSize) throws FileNotFoundException {
         return IOStreamx.buffered(writer(file, Charx.UTF_8), bufferSize);
     }
@@ -1188,13 +1215,15 @@ public class Filex {
     /**
      * Returns a new [BufferedWriter] for writing the content of this file.
      */
-    public static BufferedWriter bufferedWriter(@NotNull File file, Charset charset) throws FileNotFoundException {
+    @NotNull
+    public static BufferedWriter bufferedWriter(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
         return IOStreamx.buffered(writer(file, charset), IOStreamx.DEFAULT_BUFFER_SIZE);
     }
 
     /**
      * Returns a new [BufferedWriter] for writing the content of this file.
      */
+    @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file) throws FileNotFoundException {
         return bufferedWriter(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
     }
@@ -1202,13 +1231,15 @@ public class Filex {
     /**
      * Returns a new [PrintWriter] for writing the content of this file.
      */
-    public static PrintWriter printWriter(@NotNull File file, Charset charset) throws FileNotFoundException {
+    @NotNull
+    public static PrintWriter printWriter(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
         return new PrintWriter(bufferedWriter(file, charset));
     }
 
     /**
      * Returns a new [PrintWriter] for writing the content of this file.
      */
+    @NotNull
     public static PrintWriter printWriter(@NotNull File file) throws FileNotFoundException {
         return printWriter(file, Charx.UTF_8);
     }
@@ -1219,7 +1250,7 @@ public class Filex {
      *
      * @param array byte array to write into this file.
      */
-    public static void writeBytes(@NotNull File file, byte[] array) throws IOException {
+    public static void writeBytes(@NotNull File file, @NotNull byte[] array) throws IOException {
         FileOutputStream outputStream = new FileOutputStream(file);
         try {
             outputStream.write(array);
@@ -1233,7 +1264,7 @@ public class Filex {
      *
      * @param array byte array to append to this file.
      */
-    public static void appendBytes(@NotNull File file, byte[] array) throws IOException {
+    public static void appendBytes(@NotNull File file, @NotNull byte[] array) throws IOException {
         FileOutputStream outputStream = new FileOutputStream(file, true);
         try {
             outputStream.write(array);
@@ -1249,7 +1280,7 @@ public class Filex {
      * @param text    text to write into file.
      * @param charset character set to use.
      */
-    public static void writeText(@NotNull File file, String text, Charset charset) throws IOException {
+    public static void writeText(@NotNull File file,@NotNull  String text, @NotNull Charset charset) throws IOException {
         writeBytes(file, Stringx.toByteArray(text, charset));
     }
 
@@ -1259,7 +1290,7 @@ public class Filex {
      *
      * @param text text to write into file.
      */
-    public static void writeText(@NotNull File file, String text) throws IOException {
+    public static void writeText(@NotNull File file, @NotNull String text) throws IOException {
         writeText(file, text, Charx.UTF_8);
     }
 
@@ -1269,7 +1300,7 @@ public class Filex {
      * @param text    text to append to file.
      * @param charset character set to use.
      */
-    public static void appendText(@NotNull File file, String text, Charset charset) throws IOException {
+    public static void appendText(@NotNull File file, @NotNull String text, @NotNull Charset charset) throws IOException {
         appendBytes(file, Stringx.toByteArray(text, charset));
     }
 
@@ -1278,7 +1309,7 @@ public class Filex {
      *
      * @param text text to append to file.
      */
-    public static void appendText(@NotNull File file, String text) throws IOException {
+    public static void appendText(@NotNull File file, @NotNull String text) throws IOException {
         appendText(file, text, Charx.UTF_8);
     }
 
@@ -1289,7 +1320,7 @@ public class Filex {
      * @param direction walk direction, top-down (by default) or bottom-up.
      */
     @NotNull
-    public static FileTreeWalk walk(@NotNull File file, FileWalkDirection direction) {
+    public static FileTreeWalk walk(@NotNull File file, @NotNull FileWalkDirection direction) {
         return new FileTreeWalk(file, direction);
     }
 

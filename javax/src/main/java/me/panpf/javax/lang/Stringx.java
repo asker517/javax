@@ -665,7 +665,7 @@ public class Stringx {
      * @param otherOffset the start offset in the other string of the substring to compare.
      * @param length      the length of the substring to compare.
      */
-    public static boolean regionMatches(String self, int thisOffset, String other, int otherOffset, int length, boolean ignoreCase) {
+    public static boolean regionMatches(@NotNull String self, int thisOffset, @NotNull String other, int otherOffset, int length, boolean ignoreCase) {
         if (!ignoreCase) {
             return self.regionMatches(thisOffset, other, otherOffset, length);
         } else {
@@ -677,7 +677,7 @@ public class Stringx {
      * Implementation of [regionMatches] for CharSequences.
      * Invoked when it's already known that arguments are not Strings, so that no additional type checks are performed.
      */
-    public static boolean regionMatchesImpl(CharSequence self, int thisOffset, CharSequence other, int otherOffset, int length, boolean ignoreCase) {
+    public static boolean regionMatchesImpl(@NotNull CharSequence self, int thisOffset, @NotNull CharSequence other, int otherOffset, int length, boolean ignoreCase) {
         if ((otherOffset < 0) || (thisOffset < 0) || (thisOffset > self.length() - length)
                 || (otherOffset > other.length() - length)) {
             return false;
@@ -693,7 +693,7 @@ public class Stringx {
 
 
     @Nullable
-    private static Pair<Integer, String> findAnyOf(final CharSequence charSequence, Collection<String> strings, int startIndex, final boolean ignoreCase, boolean last) {
+    private static Pair<Integer, String> findAnyOf(@NotNull final CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, final boolean ignoreCase, boolean last) {
         if (!ignoreCase && strings.size() == 1) {
             String string = Collectionx.single(strings);
             int index = !last ? indexOf(charSequence, string, startIndex, false) : lastIndexOf(charSequence, string, startIndex, false);
@@ -744,7 +744,7 @@ public class Stringx {
      * that matches this string at that position.
      */
     @Nullable
-    public static Pair<Integer, String> indAnyOf(CharSequence charSequence, Collection<String> strings, int startIndex, boolean ignoreCase) {
+    public static Pair<Integer, String> indAnyOf(@NotNull CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
         return findAnyOf(charSequence, strings, startIndex, ignoreCase, false);
     }
 
@@ -760,11 +760,11 @@ public class Stringx {
      * that matches this string at that position.
      */
     @Nullable
-    public static Pair<Integer, String> findLastAnyOf(CharSequence charSequence, Collection<String> strings, int startIndex, boolean ignoreCase) {
+    public static Pair<Integer, String> findLastAnyOf(@NotNull CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
         return findAnyOf(charSequence, strings, startIndex, ignoreCase, true);
     }
 
-    private static int indexOf(CharSequence self, CharSequence other, int startIndex, int endIndex, boolean ignoreCase, boolean last) {
+    private static int indexOf(@NotNull CharSequence self, @NotNull CharSequence other, int startIndex, int endIndex, boolean ignoreCase, boolean last) {
         int finalStartIndex;
         int finalEndIndex;
         int step;
@@ -801,7 +801,7 @@ public class Stringx {
      * @param ignoreCase `true` to ignore character case when matching a character. By default `false`.
      * @return An index of the first occurrence of [char] or -1 if none is found.
      */
-    public static int indexOf(CharSequence charSequence, char delimiter, int startIndex, boolean ignoreCase) {
+    public static int indexOf(@NotNull CharSequence charSequence, char delimiter, int startIndex, boolean ignoreCase) {
         if (ignoreCase || !(charSequence instanceof String)) {
             return indexOfAny(charSequence, Arrayx.charArrayOf(delimiter), startIndex, ignoreCase);
         } else {
@@ -814,7 +814,7 @@ public class Stringx {
      *
      * @return An index of the first occurrence of [char] or -1 if none is found.
      */
-    public static int indexOf(CharSequence charSequence, char delimiter, int startIndex) {
+    public static int indexOf(@NotNull CharSequence charSequence, char delimiter, int startIndex) {
         return indexOf(charSequence, delimiter, startIndex, false);
     }
 
@@ -825,7 +825,7 @@ public class Stringx {
      * @param ignoreCase `true` to ignore character case when matching a string. By default `false`.
      * @return An index of the first occurrence of [string] or `-1` if none is found.
      */
-    public static int indexOf(CharSequence charSequence, String string, int startIndex, boolean ignoreCase) {
+    public static int indexOf(@NotNull CharSequence charSequence, @NotNull String string, int startIndex, boolean ignoreCase) {
         if (ignoreCase || !(charSequence instanceof String)) {
             return indexOf(charSequence, string, startIndex, charSequence.length(), ignoreCase, false);
         } else {
@@ -839,7 +839,7 @@ public class Stringx {
      *
      * @return An index of the first occurrence of [string] or `-1` if none is found.
      */
-    public static int indexOf(CharSequence charSequence, String string, int startIndex) {
+    public static int indexOf(@NotNull CharSequence charSequence, @NotNull String string, int startIndex) {
         return indexOf(charSequence, string, startIndex, false);
     }
 
@@ -850,7 +850,7 @@ public class Stringx {
      * @param ignoreCase `true` to ignore character case when matching a character. By default `false`.
      * @return An index of the first occurrence of matched character from [chars] or -1 if none of [chars] are found.
      */
-    public static int indexOfAny(CharSequence charSequence, char[] chars, int startIndex, final boolean ignoreCase) {
+    public static int indexOfAny(@NotNull CharSequence charSequence, char[] chars, int startIndex, final boolean ignoreCase) {
         if (!ignoreCase && chars.length == 1 && charSequence instanceof String) {
             char charr = Arrayx.single(chars);
             return ((String) charSequence).indexOf(charr, startIndex);
@@ -880,7 +880,7 @@ public class Stringx {
      * the beginning to the end of this string, and finds at each position the first element in [strings]
      * that matches this string at that position.
      */
-    public static int indexOfAny(CharSequence charSequence, Collection<String> strings, int startIndex, boolean ignoreCase) {
+    public static int indexOfAny(@NotNull CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
         Pair<Integer, String> pair = findAnyOf(charSequence, strings, startIndex, ignoreCase, false);
         return pair != null ? pair.first : -1;
     }
@@ -894,7 +894,7 @@ public class Stringx {
      * @param ignoreCase `true` to ignore character case when matching a character. By default `false`.
      * @return An index of the first occurrence of [char] or -1 if none is found.
      */
-    public static int lastIndexOf(CharSequence charSequence, char charr, int startIndex, Boolean ignoreCase) {
+    public static int lastIndexOf(@NotNull CharSequence charSequence, char charr, int startIndex, Boolean ignoreCase) {
         if (ignoreCase || !(charSequence instanceof String)) {
             return lastIndexOfAny(charSequence, Arrayx.charArrayOf(charr), startIndex, ignoreCase);
         } else {
@@ -910,7 +910,7 @@ public class Stringx {
      * @param ignoreCase `true` to ignore character case when matching a string. By default `false`.
      * @return An index of the first occurrence of [string] or -1 if none is found.
      */
-    public static int lastIndexOf(CharSequence charSequence, String string, int startIndex, boolean ignoreCase) {
+    public static int lastIndexOf(@NotNull CharSequence charSequence, @NotNull String string, int startIndex, boolean ignoreCase) {
         if (ignoreCase || !(charSequence instanceof String)) {
             return indexOf(charSequence, string, startIndex, 0, ignoreCase, true);
         } else {
@@ -927,7 +927,7 @@ public class Stringx {
      * @param ignoreCase `true` to ignore character case when matching a character. By default `false`.
      * @return An index of the last occurrence of matched character from [chars] or -1 if none of [chars] are found.
      */
-    public static int lastIndexOfAny(CharSequence charSequence, char[] chars, int startIndex, final boolean ignoreCase) {
+    public static int lastIndexOfAny(@NotNull CharSequence charSequence, char[] chars, int startIndex, final boolean ignoreCase) {
         if (!ignoreCase && chars.length == 1 && charSequence instanceof String) {
             char charr = Arrayx.single(chars);
             return ((String) charSequence).lastIndexOf(charr, startIndex);
@@ -958,7 +958,7 @@ public class Stringx {
      * the end toward the beginning of this string, and finds at each position the first element in [strings]
      * that matches this string at that position.
      */
-    public static int lastIndexOfAny(CharSequence charSequence, Collection<String> strings, int startIndex, boolean ignoreCase) {
+    public static int lastIndexOfAny(@NotNull CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
         Pair<Integer, String> pair = findAnyOf(charSequence, strings, startIndex, ignoreCase, true);
         return pair != null ? pair.first : -1;
     }
@@ -968,6 +968,7 @@ public class Stringx {
      * Returns a substring before the first occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringBefore(@NotNull String string, char delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -980,6 +981,7 @@ public class Stringx {
      * Returns a substring before the first occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringBefore(@NotNull String string, @NotNull String delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -992,6 +994,7 @@ public class Stringx {
      * Returns a substring after the first occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringAfter(@NotNull String string, char delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -1004,6 +1007,7 @@ public class Stringx {
      * Returns a substring after the first occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringAfter(@NotNull String string, @NotNull String delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -1016,6 +1020,7 @@ public class Stringx {
      * Returns a substring before the last occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringBeforeLast(@NotNull String string, char delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -1028,6 +1033,7 @@ public class Stringx {
      * Returns a substring before the last occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringBeforeLast(@NotNull String string, @NotNull String delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -1040,6 +1046,7 @@ public class Stringx {
      * Returns a substring after the last occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringAfterLast(@NotNull String string, char delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -1052,6 +1059,7 @@ public class Stringx {
      * Returns a substring after the last occurrence of [delimiter].
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
+    @NotNull
     public static String substringAfterLast(@NotNull String string, @NotNull String delimiter, @Nullable String missingDelimiterValue) {
         if (missingDelimiterValue == null) {
             missingDelimiterValue = string;
@@ -1063,14 +1071,16 @@ public class Stringx {
     /**
      * Encodes the contents of this string using the specified character set and returns the resulting byte array.
      */
-    public static byte[] toByteArray(String string, Charset charset) {
+    @NotNull
+    public static byte[] toByteArray(@NotNull String string, @NotNull Charset charset) {
         return string.getBytes(charset);
     }
 
     /**
      * Encodes the contents of this string using UTF-8 set and returns the resulting byte array.
      */
-    public static byte[] toByteArray(String string) {
+    @NotNull
+    public static byte[] toByteArray(@NotNull String string) {
         return string.getBytes(Charx.UTF_8);
     }
 }

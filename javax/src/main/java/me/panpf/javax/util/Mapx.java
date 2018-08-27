@@ -29,7 +29,7 @@ public class Mapx {
      * puts its result into the map under the given key and returns it.
      */
     @NotNull
-    public static <K, V> V getOrPut(Map<K, V> map, K key, DefaultValue<V> defaultValue) {
+    public static <K, V> V getOrPut(@NotNull Map<K, V> map, K key, @NotNull DefaultValue<V> defaultValue) {
         V value = map.get(key);
         if (value == null) {
             V answer = defaultValue.get();

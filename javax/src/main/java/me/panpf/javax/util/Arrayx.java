@@ -228,7 +228,8 @@ public class Arrayx {
         return elements.length > 0;
     }
 
-    public static <T> List<T> asList(T[] array) {
+    @NotNull
+    public static <T> List<T> asList(@NotNull T[] array) {
         return Arrays.asList(array);
     }
 
@@ -292,14 +293,16 @@ public class Arrayx {
     /**
      * Converts the contents of this byte array to a string using the specified [charset].
      */
-    public static String toString(byte[] bytes, Charset charset) {
+    @NotNull
+    public static String toString(@NotNull byte[] bytes, @NotNull Charset charset) {
         return new String(bytes, charset);
     }
 
     /**
      * Converts the contents of this byte array to a string using the specified [charset].
      */
-    public static String toString(byte[] bytes) {
+    @NotNull
+    public static String toString(@NotNull byte[] bytes) {
         return toString(bytes, Charx.UTF_8);
     }
 
@@ -1484,63 +1487,63 @@ public class Arrayx {
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(byte[] elements) {
+    public static boolean any(@NotNull byte[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(short[] elements) {
+    public static boolean any(@NotNull short[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(int[] elements) {
+    public static boolean any(@NotNull int[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(long[] elements) {
+    public static boolean any(@NotNull long[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(float[] elements) {
+    public static boolean any(@NotNull float[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(double[] elements) {
+    public static boolean any(@NotNull double[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(boolean[] elements) {
+    public static boolean any(@NotNull boolean[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
-    public static boolean any(char[] elements) {
+    public static boolean any(@NotNull char[] elements) {
         return !isEmpty(elements);
     }
 
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static <T> boolean any(T[] elements, Predicate<T> predicate) {
+    public static <T> boolean any(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
         for (T element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1548,7 +1551,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(byte[] elements, Predicate<Byte> predicate) {
+    public static boolean any(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
         for (byte element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1556,7 +1559,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(short[] elements, Predicate<Short> predicate) {
+    public static boolean any(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
         for (short element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1564,7 +1567,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(int[] elements, Predicate<Integer> predicate) {
+    public static boolean any(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
         for (int element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1572,7 +1575,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(long[] elements, Predicate<Long> predicate) {
+    public static boolean any(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
         for (long element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1580,7 +1583,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(float[] elements, Predicate<Float> predicate) {
+    public static boolean any(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
         for (float element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1588,7 +1591,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(double[] elements, Predicate<Double> predicate) {
+    public static boolean any(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
         for (double element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1596,7 +1599,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(boolean[] elements, Predicate<Boolean> predicate) {
+    public static boolean any(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
         for (boolean element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1604,7 +1607,7 @@ public class Arrayx {
     /**
      * Returns `true` if at least one element matches the given [predicate].
      */
-    public static boolean any(char[] elements, Predicate<Character> predicate) {
+    public static boolean any(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         for (char element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
@@ -1612,189 +1615,216 @@ public class Arrayx {
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static <T> T[] copyOf(T[] elements) {
+    @NotNull
+    public static <T> T[] copyOf(@NotNull T[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static byte[] copyOf(byte[] elements) {
+    @NotNull
+    public static byte[] copyOf(@NotNull byte[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static short[] copyOf(short[] elements) {
+    @NotNull
+    public static short[] copyOf(@NotNull short[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static int[] copyOf(int[] elements) {
+    @NotNull
+    public static int[] copyOf(@NotNull int[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static long[] copyOf(long[] elements) {
+    @NotNull
+    public static long[] copyOf(@NotNull long[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static float[] copyOf(float[] elements) {
+    @NotNull
+    public static float[] copyOf(@NotNull float[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static double[] copyOf(double[] elements) {
+    @NotNull
+    public static double[] copyOf(@NotNull double[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static boolean[] copyOf(boolean[] elements) {
+    @NotNull
+    public static boolean[] copyOf(@NotNull boolean[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
-    public static char[] copyOf(char[] elements) {
+    @NotNull
+    public static char[] copyOf(@NotNull char[] elements) {
         return java.util.Arrays.copyOf(elements, elements.length);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static byte[] copyOf(byte[] elements, int newSize) {
+    @NotNull
+    public static byte[] copyOf(@NotNull byte[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static short[] copyOf(short[] elements, int newSize) {
+    @NotNull
+    public static short[] copyOf(@NotNull short[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static int[] copyOf(int[] elements, int newSize) {
+    @NotNull
+    public static int[] copyOf(@NotNull int[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static long[] copyOf(long[] elements, int newSize) {
+    @NotNull
+    public static long[] copyOf(@NotNull long[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static float[] copyOf(float[] elements, int newSize) {
+    @NotNull
+    public static float[] copyOf(@NotNull float[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static double[] copyOf(double[] elements, int newSize) {
+    @NotNull
+    public static double[] copyOf(@NotNull double[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static boolean[] copyOf(boolean[] elements, int newSize) {
+    @NotNull
+    public static boolean[] copyOf(@NotNull boolean[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static char[] copyOf(char[] elements, int newSize) {
+    @NotNull
+    public static char[] copyOf(@NotNull char[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
-    public static <T> T[] copyOf(T[] elements, int newSize) {
+    @NotNull
+    public static <T> T[] copyOf(@NotNull T[] elements, int newSize) {
         return java.util.Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static <T> T[] copyOfRange(T[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static <T> T[] copyOfRange(@NotNull T[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static byte[] copyOfRange(byte[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static byte[] copyOfRange(@NotNull byte[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static short[] copyOfRange(short[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static short[] copyOfRange(@NotNull short[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static int[] copyOfRange(int[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static int[] copyOfRange(@NotNull int[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static long[] copyOfRange(long[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static long[] copyOfRange(@NotNull long[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static float[] copyOfRange(float[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static float[] copyOfRange(@NotNull float[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static double[] copyOfRange(double[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static double[] copyOfRange(@NotNull double[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static boolean[] copyOfRange(boolean[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static boolean[] copyOfRange(@NotNull boolean[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
-    public static char[] copyOfRange(char[] elements, int fromIndex, int toIndex) {
+    @NotNull
+    public static char[] copyOfRange(@NotNull char[] elements, int fromIndex, int toIndex) {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
