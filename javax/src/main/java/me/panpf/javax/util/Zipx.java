@@ -42,8 +42,8 @@ public class Zipx {
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressionFiles(@Nullable File[] sourceFiles, @NotNull File destinationFile,
-                                        @NotNull Transformer<File, String> zipEntryNameTransform) throws IOException {
+    public static File compressionFilesTo(@Nullable File[] sourceFiles, @NotNull File destinationFile,
+                                          @NotNull Transformer<File, String> zipEntryNameTransform) throws IOException {
         ZipOutputStream zipOutputStream = null;
         try {
             zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(destinationFile, false)));
@@ -102,10 +102,10 @@ public class Zipx {
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressionDir(@NotNull final File sourceDirectory, @NotNull File destinationFile) throws IOException {
+    public static File compressionDirTo(@NotNull final File sourceDirectory, @NotNull File destinationFile) throws IOException {
         Filex.requireExist(sourceDirectory);
         Premisex.require(sourceDirectory.isDirectory(), sourceDirectory.getPath() + " not directory");
-        return compressionFiles(sourceDirectory.listFiles(), destinationFile, new Transformer<File, String>() {
+        return compressionFilesTo(sourceDirectory.listFiles(), destinationFile, new Transformer<File, String>() {
             @NotNull
             @Override
             public String transform(@NotNull File file) {
@@ -122,7 +122,7 @@ public class Zipx {
      * @throws IOException IO exceptions
      */
     public static File compressionDir(@NotNull File sourceDirectory) throws IOException {
-        return compressionDir(sourceDirectory, new File(sourceDirectory.getPath() + ".zip"));
+        return compressionDirTo(sourceDirectory, new File(sourceDirectory.getPath() + ".zip"));
     }
 
 
@@ -135,7 +135,7 @@ public class Zipx {
      * @throws IOException IO exceptions. include ZipException, UnableCreateDirException, UnableCreateFileException
      */
     @NotNull
-    public static File decompression(@NotNull File zipSourceFile, @NotNull File destinationDir) throws IOException {
+    public static File decompressionTo(@NotNull File zipSourceFile, @NotNull File destinationDir) throws IOException {
         Filex.requireExist(zipSourceFile);
         Premisex.require(!destinationDir.exists() || destinationDir.isDirectory(), destinationDir.getPath() + " not directory");
 
@@ -177,6 +177,6 @@ public class Zipx {
      */
     @NotNull
     public static File decompression(@NotNull File zipSourceFile) throws IOException {
-        return decompression(zipSourceFile, new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile)));
+        return decompressionTo(zipSourceFile, new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile)));
     }
 }
