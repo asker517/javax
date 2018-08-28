@@ -1,5 +1,6 @@
 package me.panpf.javax.lang;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -183,5 +184,14 @@ public class StringTest {
         assertEquals(Stringx.padEnd("今天天气晴", 5), "今天天气晴");
         assertEquals(Stringx.padEnd("今天天气晴", 10), "今天天气晴     ");
         assertEquals(Stringx.padEnd("今天天气晴", 10, '.'), "今天天气晴.....");
+    }
+
+    @Test
+    public void testContains() {
+        Assert.assertTrue(Stringx.orContains("今天天气晴", new String[]{"哈", "天"}));
+        Assert.assertFalse(Stringx.orContains("今天天气晴", new String[]{"哈"}));
+
+        Assert.assertTrue(Stringx.andContains("今天天气晴", new String[]{"晴", "天"}));
+        Assert.assertFalse(Stringx.andContains("今天天气晴", new String[]{"哈", "天"}));
     }
 }

@@ -1083,4 +1083,30 @@ public class Stringx {
     public static byte[] toByteArray(@NotNull String string) {
         return string.getBytes(Charx.UTF_8);
     }
+
+    /**
+     * Return true if the specified string contains one of the strings in [params]
+     */
+    public static boolean orContains(@NotNull String string, @NotNull String[] params) {
+        for (String param : params) {
+            if (string.contains(param)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Return true if the specified string contains all the strings in[params]
+     */
+    public static boolean andContains(@NotNull String string, @NotNull String[] params) {
+        for (String param : params) {
+            if (!string.contains(param)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

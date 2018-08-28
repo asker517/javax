@@ -152,12 +152,32 @@ fun Long.formatFileSize(decimalPlacesLength: Int = 2, decimalPlacesFillZero: Boo
 /**
  * Returns the formatted file length that can be displayed, up to EB
  *
+ * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
+ * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
+ */
+fun Long.formatFileSize(decimalPlacesFillZero: Boolean = false): String {
+    return this.formatFileSize(2, decimalPlacesFillZero)
+}
+
+/**
+ * Returns the formatted file length that can be displayed, up to EB
+ *
  * @param decimalPlacesLength   Keep a few decimal places
  * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
  * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
  */
 fun Int.formatFileSize(decimalPlacesLength: Int = 2, decimalPlacesFillZero: Boolean = false): String {
     return this.toLong().formatFileSize(decimalPlacesLength, decimalPlacesFillZero)
+}
+
+/**
+ * Returns the formatted file length that can be displayed, up to EB
+ *
+ * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
+ * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
+ */
+fun Int.formatFileSize(decimalPlacesFillZero: Boolean = false): String {
+    return this.toLong().formatFileSize(2, decimalPlacesFillZero)
 }
 
 /**
@@ -196,4 +216,62 @@ fun Long.formatShortFileSize(): String {
  */
 fun Int.formatShortFileSize(): String {
     return this.toLong().formatFileSize(0, false)
+}
+
+private const val ONE_DAY_MILLISECONDS = (1000 * 60 * 60 * 24).toLong()
+private const val ONE_HOUR_MILLISECONDS = (1000 * 60 * 60).toLong()
+private const val ONE_MINUTE_MILLISECONDS = (1000 * 60).toLong()
+private const val ONE_SECOND_MILLISECONDS: Long = 1000
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String {
+    val finalTotalTimeMillis = if (this >= 0) this else 0
+
+    return when {
+        !ignoreMillisecond && finalTotalTimeMillis < ONE_SECOND_MILLISECONDS -> // millisecond
+            finalTotalTimeMillis.toString() + "ms"
+        finalTotalTimeMillis < ONE_MINUTE_MILLISECONDS -> {
+            // second
+            val second = finalTotalTimeMillis / ONE_SECOND_MILLISECONDS
+            val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
+            second.toString() + "s" + if (millisecond > 0) millisecond.toString() + "ms" else ""
+        }
+        finalTotalTimeMillis < ONE_HOUR_MILLISECONDS -> {
+            // minute
+            val minute = finalTotalTimeMillis / ONE_MINUTE_MILLISECONDS
+            val second = finalTotalTimeMillis % ONE_MINUTE_MILLISECONDS / ONE_SECOND_MILLISECONDS
+            val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
+            minute.toString() + "m" + (if (second > 0) second.toString() + "s" else "") + if (millisecond > 0) millisecond.toString() + "ms" else ""
+        }
+        finalTotalTimeMillis < ONE_DAY_MILLISECONDS -> {
+            // hour
+            val hour = finalTotalTimeMillis / ONE_HOUR_MILLISECONDS
+            val minute = finalTotalTimeMillis % ONE_HOUR_MILLISECONDS / ONE_MINUTE_MILLISECONDS
+            val second = finalTotalTimeMillis % ONE_MINUTE_MILLISECONDS / ONE_SECOND_MILLISECONDS
+            val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
+            hour.toString() + "h" + (if (minute > 0) minute.toString() + "m" else "") + (if (second > 0) second.toString() + "s" else "") + if (millisecond > 0) millisecond.toString() + "ms" else ""
+        }
+        else -> {
+            // day
+            val day = finalTotalTimeMillis / ONE_DAY_MILLISECONDS
+            val hour = finalTotalTimeMillis % ONE_DAY_MILLISECONDS / ONE_HOUR_MILLISECONDS
+            val minute = finalTotalTimeMillis % ONE_HOUR_MILLISECONDS / ONE_MINUTE_MILLISECONDS
+            val second = finalTotalTimeMillis % ONE_MINUTE_MILLISECONDS / ONE_SECOND_MILLISECONDS
+            val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
+            "${day}d${if (hour > 0) hour.toString() + "h" else ""}${if (minute > 0) minute.toString() + "m" else ""}${if (second > 0) second.toString() + "s" else ""}${if (millisecond > 0) millisecond.toString() + "ms" else ""}"
+        }
+    }
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Int.formatTotalTime(ignoreMillisecond: Boolean = false): String {
+    return this.toLong().formatTotalTime(ignoreMillisecond)
 }

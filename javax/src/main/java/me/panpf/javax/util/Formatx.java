@@ -278,4 +278,72 @@ public class Formatx {
     public static String shortFileSize(long fileSize) {
         return fileSize(fileSize, 0, false);
     }
+
+    private static final long ONE_DAY_MILLISECONDS = 1000 * 60 * 60 * 24;
+    private static final long ONE_HOUR_MILLISECONDS = 1000 * 60 * 60;
+    private static final long ONE_MINUTE_MILLISECONDS = 1000 * 60;
+    private static final long ONE_SECOND_MILLISECONDS = 1000;
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    public static String totalTime(long totalTimeMillis, boolean ignoreMillisecond) {
+        long finalTotalTimeMillis = totalTimeMillis >= 0 ? totalTimeMillis : 0;
+
+        if (!ignoreMillisecond && finalTotalTimeMillis < ONE_SECOND_MILLISECONDS) {
+            // millisecond
+            return finalTotalTimeMillis + "ms";
+        } else if (finalTotalTimeMillis < ONE_MINUTE_MILLISECONDS) {
+            // second
+            long second = finalTotalTimeMillis / ONE_SECOND_MILLISECONDS;
+            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
+            return second + "s" + (millisecond > 0 ? millisecond + "ms" : "");
+        } else if (finalTotalTimeMillis < ONE_HOUR_MILLISECONDS) {
+            // minute
+            long minute = finalTotalTimeMillis / (ONE_MINUTE_MILLISECONDS);
+            long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
+            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
+            return minute + "m" + (second > 0 ? second + "s" : "") + (millisecond > 0 ? millisecond + "ms" : "");
+        } else if (finalTotalTimeMillis < ONE_DAY_MILLISECONDS) {
+            // hour
+            long hour = finalTotalTimeMillis / (ONE_HOUR_MILLISECONDS);
+            long minute = finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS);
+            long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
+            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
+            return hour + "h" + (minute > 0 ? minute + "m" : "") + (second > 0 ? second + "s" : "") + (millisecond > 0 ? millisecond + "ms" : "");
+        } else {
+            // day
+            long day = finalTotalTimeMillis / ONE_DAY_MILLISECONDS;
+            long hour = finalTotalTimeMillis % (ONE_DAY_MILLISECONDS) / (ONE_HOUR_MILLISECONDS);
+            long minute = finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS);
+            long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
+            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
+            return day + "d" + (hour > 0 ? hour + "h" : "") + (minute > 0 ? minute + "m" : "") + (second > 0 ? second + "s" : "") + (millisecond > 0 ? millisecond + "ms" : "");
+        }
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    public static String totalTime(long totalTimeMillis) {
+        return totalTime(totalTimeMillis, false);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    public static String totalTime(int totalTime, boolean ignoreMillisecond) {
+        return totalTime((long) totalTime, ignoreMillisecond);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    public static String totalTime(int totalTime) {
+        return totalTime((long) totalTime, false);
+    }
 }
