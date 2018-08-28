@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Peng fei Pan <sky@panpf.me>
+ * Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,6 +71,8 @@ public class IOStreamx {
             }
         }
     }
+
+    /* ******************************************* From Kotlin Standard library ********************************************************* */
 
     /**
      * Creates a new byte input stream for the string.

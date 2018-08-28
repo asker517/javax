@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Peng fei Pan <sky@panpf.me>
+ * Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import java.util.*;
  */
 @SuppressWarnings("WeakerAccess")
 public class Arrayx {
+
+    /* ******************************************* From Kotlin Standard library ********************************************************* */
 
     /**
      * Returns an array containing the specified elements.

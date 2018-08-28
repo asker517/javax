@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Peng fei Pan <sky@panpf.me>
+ * Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,14 @@
 
 package me.panpf.javax.lang;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
-
 /**
  * Integer tool class
  */
+@SuppressWarnings("WeakerAccess")
 public class Intx {
+
+    /* ******************************************* From Kotlin Standard library ********************************************************* */
+
     /**
      * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
      */

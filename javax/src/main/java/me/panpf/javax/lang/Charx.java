@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Peng fei Pan <sky@panpf.me>
+ * Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ import java.nio.charset.Charset;
 public class Charx {
 
     public static final Charset UTF_8 = Charset.forName("UTF-8");
+
+    /* ******************************************* From Kotlin Standard library ********************************************************* */
 
     /**
      * Returns `true` if this character is equal to the [other] character, optionally ignoring character case.
