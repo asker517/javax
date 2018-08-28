@@ -64,7 +64,7 @@ fun String.getMD5Digest(): String = this.getDigest("MD5")
 /**
  * Get the message digest of the text using the MD5 algorithm, only the middle 16 bits are reserved
  */
-fun String.getMD516Digest(): String = this.getDigest("MD5").substring(8, 24)
+fun String.getMD5_16Digest(): String = this.getDigest("MD5").substring(8, 24)
 
 /**
  * Get the message digest of the text using the SHA1 algorithm
@@ -89,7 +89,7 @@ fun File.getMD5Digest(): String = this.getDigest("MD5")
 /**
  * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
  */
-fun File.getMD516Digest(): String = this.getDigest("MD5").substring(8, 24)
+fun File.getMD5_16Digest(): String = this.getDigest("MD5").substring(8, 24)
 
 /**
  * Get the message digest of the file using the SHA1 algorithm

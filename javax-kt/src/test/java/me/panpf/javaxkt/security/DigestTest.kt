@@ -27,7 +27,7 @@ class DigestTest {
     @Test
     fun testDigest() {
         Assert.assertEquals(TEST_TEXT.getMD5Digest(), TEXT_MD5)
-        Assert.assertEquals(TEST_TEXT.getMD516Digest(), TEXT_MD5_16)
+        Assert.assertEquals(TEST_TEXT.getMD5_16Digest(), TEXT_MD5_16)
         Assert.assertEquals(TEST_TEXT.getSHA1Digest(), TEXT_SHA1)
         Assert.assertEquals(TEST_TEXT.getSHA256Digest(), TEXT_SHA256)
         Assert.assertEquals(TEST_TEXT.getSHA512Digest(), TEXT_SHA512)
@@ -37,7 +37,7 @@ class DigestTest {
                 "禅诗灵韵妙和声，秋叶飘飞过江东。一抹时光生惬意，妍媚红尘缱绻中。")
 
         Assert.assertEquals(file.getMD5Digest(), FILE_MD5)
-        Assert.assertEquals(file.getMD516Digest(), FILE_MD5_16)
+        Assert.assertEquals(file.getMD5_16Digest(), FILE_MD5_16)
         Assert.assertEquals(file.getSHA1Digest(), FILE_SHA1)
         Assert.assertEquals(file.getSHA256Digest(), FILE_SHA256)
         Assert.assertEquals(file.getSHA512Digest(), FILE_SHA512)
