@@ -1,1 +1,1 @@
-include ':javax',':java-ktx'
+include ':javax',':javax-kt'

@@ -1,0 +1,51 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'com.novoda.bintray-release'
+
+group 'me.panpf'
+version VERSION
+
+sourceCompatibility = 1.7
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile "org.jetbrains:annotations:13.0"
+    compile "me.panpf:kotlinx:0.2"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.6"
+    }
+}
+
+Properties properties = new Properties()
+File localPropertiesFile = project.file("local.properties")
+if (localPropertiesFile.exists()) {
+    InputStream inputStream = localPropertiesFile.newDataInputStream()
+    properties.load(inputStream)
+    inputStream.close()
+}
+
+publish {
+    groupId = 'me.panpf'
+    artifactId = 'javax-kt'
+    publishVersion = VERSION
+    desc = 'Java, Kotlin, Extensions'
+    website = 'https://github.com/panpf/javax'
+    userOrg = properties.getProperty("bintray.userOrg")
+    bintrayUser = properties.getProperty("bintray.user")
+    bintrayKey = properties.getProperty("bintray.apikey")
+}
