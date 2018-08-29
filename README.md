@@ -27,9 +27,9 @@ compile "me.panpf:javax-kt:$lastVersion"
 ### 目录
 
 #### Crypto
-* AESHelper: [Java][AESHelper_java] ([Test][AESHelper_java_test]) | [Kotlin][AESHelper_kotlin] ([Test][AESHelper_kotlin_test])
-* DESHelper: [Java][DESHelper_java] ([Test][DESHelper_java_test]) | [Kotlin][DESHelper_kotlin] ([Test][DESHelper_kotlin_test])
-* RSAHelper: [Java][RSAHelper_java] ([Test][RSAHelper_java_test]) | [Kotlin][RSAHelper_kotlin] ([Test][RSAHelper_kotlin_test])
+* Aes: [Java][Aes_java] ([Test][Aes_java_test]) | [Kotlin][Aes_kotlin] ([Test][Aes_kotlin_test])
+* Des: [Java][Des_java] ([Test][Des_java_test]) | [Kotlin][Des_kotlin] ([Test][Des_kotlin_test])
+* Rsa: [Java][Rsa_java] ([Test][Rsa_java_test]) | [Kotlin][Rsa_kotlin] ([Test][Rsa_kotlin_test])
 
 #### IO
 * File: [Java][File_java] ([Test][File_java_test]) | [Kotlin][File_kotlin] ([Test][File_kotlin_test])
@@ -82,20 +82,20 @@ compile "me.panpf:javax-kt:$lastVersion"
 [KTVersionBadgeLink]:https://bintray.com/panpf/maven/javax-kt/_latestVersion
 [CHANGELOG.md]: CHANGELOG.md
 
-[AESHelper_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/AESHelper.java
-[AESHelper_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/crypto/AESHelperTest.java
-[AESHelper_kotlin]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/AESHelper.java
-[AESHelper_kotlin_test]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/crypto/AESHelperTest.kt
+[Aes_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Aesx.java
+[Aes_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/crypto/AesTest.java
+[Aes_kotlin]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/Aes.kt
+[Aes_kotlin_test]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/crypto/AesTest.kt
 
-[DESHelper_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/DESHelper.java
-[DESHelper_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/crypto/DESHelperTest.java
-[DESHelper_kotlin]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/DESHelper.java
-[DESHelper_kotlin_test]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/crypto/DESHelperTest.kt
+[Des_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Desx.java
+[Des_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/crypto/DesTest.java
+[Des_kotlin]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/Des.kt
+[Des_kotlin_test]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/crypto/DesTest.kt
 
-[RSAHelper_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/RSAHelper.java
-[RSAHelper_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/crypto/RSAHelperTest.java
-[RSAHelper_kotlin]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/RSAHelper.java
-[RSAHelper_kotlin_test]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/crypto/RSAHelperTest.kt
+[Rsa_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Rsax.java
+[Rsa_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/crypto/RsaTest.java
+[Rsa_kotlin]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/Rsa.kt
+[Rsa_kotlin_test]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/crypto/RsaTest.kt
 
 [File_java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/io/Filex.java
 [File_java_test]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/io/FileTest.java
