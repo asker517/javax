@@ -450,6 +450,17 @@ public class Collectionx {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     @NotNull
+    public static <T> String joinToString(@NotNull Iterable<T> iterable, @Nullable CharSequence separator, @NotNull Transformer<T, CharSequence> transform) {
+        return joinTo(iterable, new StringBuilder(), separator, null, null, -1, null, transform).toString();
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
     public static <T> String joinToString(@NotNull Iterable<T> iterable, @Nullable CharSequence separator) {
         return joinTo(iterable, new StringBuilder(), separator, null, null, -1, null, null).toString();
     }

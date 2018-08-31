@@ -38,7 +38,7 @@ public class Digestx {
      * Get the message digest of the input stream using the specified [algorithm]
      */
     @NotNull
-    public static String getDigest(@NotNull String algorithm, @NotNull InputStream inputStream) throws IOException {
+    public static String getDigest(@NotNull InputStream inputStream, @NotNull String algorithm) throws IOException {
         MessageDigest messageDigest;
         try {
             messageDigest = MessageDigest.getInstance(algorithm);
@@ -66,30 +66,54 @@ public class Digestx {
     }
 
     /**
-     * Get the message digest of the text using the specified [algorithm]
+     * Get the message digest of the input stream using the MD5 algorithm
      */
     @NotNull
-    public static String getDigest(@NotNull String algorithm, @NotNull String text) {
-        InputStream inputStream = null;
-        try {
-            inputStream = IOStreamx.byteInputStream(text);
-            return getDigest(algorithm, inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            IOStreamx.safeClose(inputStream);
-        }
+    public static String getMD5(@NotNull InputStream inputStream) throws IOException {
+        return getDigest(inputStream, "MD5");
     }
 
     /**
-     * Get the message digest of the file using the specified [algorithm]
+     * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
      */
     @NotNull
-    public static String getDigest(@NotNull String algorithm, @NotNull File file) {
+    public static String getMD5_16(@NotNull InputStream inputStream) throws IOException {
+        return getDigest(inputStream, "MD5").substring(8, 24);
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA1 algorithm
+     */
+    @NotNull
+    public static String getSHA1(@NotNull InputStream inputStream) throws IOException {
+        return getDigest(inputStream, "SHA1");
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA-256 algorithm
+     */
+    @NotNull
+    public static String getSHA256(@NotNull InputStream inputStream) throws IOException {
+        return getDigest(inputStream, "SHA-256");
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA-512 algorithm
+     */
+    @NotNull
+    public static String getSHA512(@NotNull InputStream inputStream) throws IOException {
+        return getDigest(inputStream, "SHA-512");
+    }
+
+    /**
+     * Get the message digest of the text using the specified [algorithm]
+     */
+    @NotNull
+    public static String getDigest(@NotNull String text, @NotNull String algorithm) {
         InputStream inputStream = null;
         try {
-            inputStream = Filex.inputStream(file);
-            return getDigest(algorithm, inputStream);
+            inputStream = IOStreamx.byteInputStream(text);
+            return getDigest(inputStream, algorithm);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -102,7 +126,7 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull String text) {
-        return getDigest("MD5", text);
+        return getDigest(text, "MD5");
     }
 
     /**
@@ -110,7 +134,7 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull String text) {
-        return getDigest("MD5", text).substring(8, 24);
+        return getDigest(text, "MD5").substring(8, 24);
     }
 
     /**
@@ -118,7 +142,7 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull String text) {
-        return getDigest("SHA1", text);
+        return getDigest(text, "SHA1");
     }
 
     /**
@@ -126,7 +150,7 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull String text) {
-        return getDigest("SHA-256", text);
+        return getDigest(text, "SHA-256");
     }
 
     /**
@@ -134,7 +158,23 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull String text) {
-        return getDigest("SHA-512", text);
+        return getDigest(text, "SHA-512");
+    }
+
+    /**
+     * Get the message digest of the file using the specified [algorithm]
+     */
+    @NotNull
+    public static String getDigest(@NotNull File file, @NotNull String algorithm) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getDigest(inputStream, algorithm);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -142,7 +182,7 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull File file) {
-        return getDigest("MD5", file);
+        return getDigest(file, "MD5");
     }
 
     /**
@@ -150,7 +190,7 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull File file) {
-        return getDigest("MD5", file).substring(8, 24);
+        return getDigest(file, "MD5").substring(8, 24);
     }
 
     /**
@@ -158,7 +198,7 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull File file) {
-        return getDigest("SHA1", file);
+        return getDigest(file, "SHA1");
     }
 
     /**
@@ -166,7 +206,7 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull File file) {
-        return getDigest("SHA-256", file);
+        return getDigest(file, "SHA-256");
     }
 
     /**
@@ -174,6 +214,6 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull File file) {
-        return getDigest("SHA-512", file);
+        return getDigest(file, "SHA-512");
     }
 }

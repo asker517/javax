@@ -63,14 +63,34 @@ fun InputStream.getDigest(algorithm: String): String {
 }
 
 /**
+ * Get the message digest of the input stream using the MD5 algorithm
+ */
+fun InputStream.getMD5Digest(): String = this.getDigest("MD5")
+
+/**
+ * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
+ */
+fun InputStream.getMD5_16Digest(): String = this.getDigest("MD5").substring(8, 24)
+
+/**
+ * Get the message digest of the input stream using the SHA1 algorithm
+ */
+fun InputStream.getSHA1Digest(): String = this.getDigest("SHA1")
+
+/**
+ * Get the message digest of the input stream using the SHA-256 algorithm
+ */
+fun InputStream.getSHA256Digest(): String = this.getDigest("SHA-256")
+
+/**
+ * Get the message digest of the input stream using the SHA-512 algorithm
+ */
+fun InputStream.getSHA512Digest(): String = this.getDigest("SHA-512")
+
+/**
  * Get the message digest of the text using the specified [algorithm]
  */
 fun String.getDigest(algorithm: String): String = this.byteInputStream().use { it.getDigest(algorithm) }
-
-/**
- * Get the message digest of the file using the specified [algorithm]
- */
-fun File.getDigest(algorithm: String): String = this.inputStream().use { it.getDigest(algorithm) }
 
 /**
  * Get the message digest of the text using the MD5 algorithm
@@ -96,6 +116,11 @@ fun String.getSHA256Digest(): String = this.getDigest("SHA-256")
  * Get the message digest of the text using the SHA-512 algorithm
  */
 fun String.getSHA512Digest(): String = this.getDigest("SHA-512")
+
+/**
+ * Get the message digest of the file using the specified [algorithm]
+ */
+fun File.getDigest(algorithm: String): String = this.inputStream().use { it.getDigest(algorithm) }
 
 /**
  * Get the message digest of the file using the MD5 algorithm
