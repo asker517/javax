@@ -51,7 +51,7 @@ fun File.requireIsFile() {
  * @throws UnableCreateDirException Unable to create directory
  */
 @Throws(UnableCreateDirException::class)
-fun File.mkdirsWithThrow(): File {
+fun File.mkdirsOrThrow(): File {
     if (exists()) return this
     mkdirs()
     if (!exists()) throw UnableCreateDirException(this)
@@ -63,7 +63,7 @@ fun File.mkdirsWithThrow(): File {
  * @return If true, the creation is successful.
  */
 @Throws(UnableCreateDirException::class)
-fun File.mkdirsWith(): Boolean {
+fun File.mkdirsCheck(): Boolean {
     if (exists()) return true
     mkdirs()
     return exists()
@@ -75,9 +75,9 @@ fun File.mkdirsWith(): Boolean {
  * @throws UnableCreateDirException  Unable to create parent directory
  */
 @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-fun File.createNewFileWithThrow(): File {
+fun File.createNewFileOrThrow(): File {
     if (exists()) return this
-    parentFile.mkdirsWithThrow()
+    parentFile.mkdirsOrThrow()
 
     try {
         createNewFile()
@@ -93,9 +93,9 @@ fun File.createNewFileWithThrow(): File {
  * Create a file, create its parent directory first
  * @return If true, the creation is successful.
  */
-fun File.createNewFileWith(): Boolean {
+fun File.createNewFileCheck(): Boolean {
     if (exists()) return true
-    if(!parentFile.mkdirsWith()) return false
+    if(!parentFile.mkdirsCheck()) return false
 
     try {
         createNewFile()

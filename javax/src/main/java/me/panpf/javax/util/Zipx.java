@@ -146,9 +146,9 @@ public class Zipx {
                 ZipEntry zipEntry = (ZipEntry) entries.nextElement();
                 File file = new File(destinationDir, zipEntry.getName());
                 if (zipEntry.isDirectory()) {
-                    Filex.mkdirsWithThrow(file);
+                    Filex.mkdirsOrThrow(file);
                 } else {
-                    Filex.createNewFileWithThrow(file);
+                    Filex.createNewFileOrThrow(file);
                     InputStream inputStream = null;
                     OutputStream outputStream = null;
                     try {

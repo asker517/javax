@@ -58,7 +58,7 @@ public class Filex {
      * @throws UnableCreateDirException Unable to create directory
      */
     @NotNull
-    public static File mkdirsWithThrow(@NotNull File dir) throws UnableCreateDirException {
+    public static File mkdirsOrThrow(@NotNull File dir) throws UnableCreateDirException {
         if (dir.exists()) return dir;
         //noinspection ResultOfMethodCallIgnored
         dir.mkdirs();
@@ -71,7 +71,7 @@ public class Filex {
      *
      * @return If true, the creation is successful.
      */
-    public static boolean mkdirsWith(@NotNull File dir) {
+    public static boolean mkdirsCheck(@NotNull File dir) {
         if (dir.exists()) return true;
         //noinspection ResultOfMethodCallIgnored
         dir.mkdirs();
@@ -85,9 +85,9 @@ public class Filex {
      * @throws UnableCreateDirException  Unable to create parent directory
      */
     @NotNull
-    public static File createNewFileWithThrow(@NotNull File file) throws UnableCreateFileException, UnableCreateDirException {
+    public static File createNewFileOrThrow(@NotNull File file) throws UnableCreateFileException, UnableCreateDirException {
         if (file.exists()) return file;
-        mkdirsWithThrow(file.getParentFile());
+        mkdirsOrThrow(file.getParentFile());
 
         try {
             //noinspection ResultOfMethodCallIgnored
@@ -105,9 +105,9 @@ public class Filex {
      *
      * @return If true, the creation is successful.
      */
-    public static boolean createNewFileWith(@NotNull File file) {
+    public static boolean createNewFileCheck(@NotNull File file) {
         if (file.exists()) return true;
-        if (!mkdirsWith(file.getParentFile())) return false;
+        if (!mkdirsCheck(file.getParentFile())) return false;
 
         try {
             //noinspection ResultOfMethodCallIgnored

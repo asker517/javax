@@ -16,8 +16,8 @@
 
 package me.panpf.javaxkt.util
 
-import me.panpf.javaxkt.io.createNewFileWithThrow
-import me.panpf.javaxkt.io.mkdirsWithThrow
+import me.panpf.javaxkt.io.createNewFileOrThrow
+import me.panpf.javaxkt.io.mkdirsOrThrow
 import me.panpf.javaxkt.io.requireExist
 import me.panpf.kotlinx.use
 import java.io.*
@@ -115,9 +115,9 @@ fun File.zipDecompressionTo(destinationDir: File): File {
             val zipEntry = entries.nextElement() as ZipEntry
             val file = File(destinationDir, zipEntry.name)
             if (zipEntry.isDirectory) {
-                file.mkdirsWithThrow()
+                file.mkdirsOrThrow()
             } else {
-                file.createNewFileWithThrow()
+                file.createNewFileOrThrow()
 
                 FileOutputStream(file, false).use({ file.delete() }) { outputStream ->
                     zipFile.getInputStream(zipEntry).use { inputStream ->
