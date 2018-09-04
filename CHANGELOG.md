@@ -1,4 +1,4 @@
-## 0.5 pre
+## 0.5
 * Digest 增加 InputStream 系列方法
 * Collectionx 增加 joinToString(@NotNull Iterable<T>, @Nullable CharSequence, @NotNull Transformer<T, CharSequence>) 方法
 * File mkdirsWithThrow() 重命名为 mkdirsOrThrow，createNewFileWithThrow 重命名为 createNewFileOrThrow，mkdirsWith() 重命名为 mkdirsCheck，createNewFileWith 重命名为 createNewFileCheck
