@@ -19,7 +19,6 @@ package me.panpf.javaxkt.util
 import me.panpf.javaxkt.io.createNewFileOrThrow
 import me.panpf.javaxkt.io.mkdirsOrThrow
 import me.panpf.javaxkt.io.requireExist
-import me.panpf.kotlinx.use
 import java.io.*
 import java.util.*
 import java.util.zip.ZipEntry
@@ -36,35 +35,40 @@ import java.util.zip.ZipOutputStream
  */
 @Throws(IOException::class)
 fun Array<File>?.zipCompressionTo(destinationFile: File, zipEntryNameTransform: (File) -> String): File {
-    ZipOutputStream(BufferedOutputStream(FileOutputStream(destinationFile, false))).use({ destinationFile.delete() }) { zipOutputStream ->
-        val files = Stack<File>()
-        this?.let { files.addAll(it) }
+    try {
+        ZipOutputStream(BufferedOutputStream(FileOutputStream(destinationFile, false))).use { zipOutputStream ->
+            val files = Stack<File>()
+            this?.let { files.addAll(it) }
 
-        while (true) {
-            val childFile: File
-            try {
-                childFile = files.pop()
-            } catch (e: EmptyStackException) {
-                break
-            }
-
-            if (!childFile.exists()) {
-                continue
-            }
-
-            if (childFile.isDirectory) {
-                val fileList = childFile.listFiles()
-                if (fileList != null) {
-                    Collections.addAll(files, *fileList)
+            while (true) {
+                val childFile: File
+                try {
+                    childFile = files.pop()
+                } catch (e: EmptyStackException) {
+                    break
                 }
-            } else {
-                zipOutputStream.putNextEntry(ZipEntry(zipEntryNameTransform(childFile)))
-                BufferedInputStream(FileInputStream(childFile)).use {
-                    it.copyTo(zipOutputStream)
+
+                if (!childFile.exists()) {
+                    continue
                 }
-                zipOutputStream.closeEntry()
+
+                if (childFile.isDirectory) {
+                    val fileList = childFile.listFiles()
+                    if (fileList != null) {
+                        Collections.addAll(files, *fileList)
+                    }
+                } else {
+                    zipOutputStream.putNextEntry(ZipEntry(zipEntryNameTransform(childFile)))
+                    BufferedInputStream(FileInputStream(childFile)).use {
+                        it.copyTo(zipOutputStream)
+                    }
+                    zipOutputStream.closeEntry()
+                }
             }
         }
+    } catch (e: Throwable) {
+        destinationFile.delete()
+        throw e
     }
     return destinationFile
 }
@@ -119,10 +123,15 @@ fun File.zipDecompressionTo(destinationDir: File): File {
             } else {
                 file.createNewFileOrThrow()
 
-                FileOutputStream(file, false).use({ file.delete() }) { outputStream ->
-                    zipFile.getInputStream(zipEntry).use { inputStream ->
-                        inputStream.copyTo(outputStream)
+                try {
+                    FileOutputStream(file, false).use{ outputStream ->
+                        zipFile.getInputStream(zipEntry).use { inputStream ->
+                            inputStream.copyTo(outputStream)
+                        }
                     }
+                } catch (e: Throwable) {
+                    file.delete()
+                    throw e
                 }
             }
         }
