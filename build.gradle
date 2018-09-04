@@ -1,11 +1,10 @@
 buildscript {
-    ext.kotlin_version = '1.2.31'
     repositories {
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.novoda:bintray-release:0.8.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
+        classpath "com.novoda:bintray-release:$BINTRAY_RELEASE"
     }
 }

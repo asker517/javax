@@ -2,6 +2,8 @@
 
 ![Platform][platform_java_icon]
 ![Platform][platform_kotlin_icon]
+![SourceCompatibility][source_compatibility_icon]
+![TargetCompatibility][target_compatibility_icon]
 [![License][license_image]][license_link]
 
 对 Java 标准库的扩展，提供一些工具方法，以及从 Kotlin 标准库中提取的 File、IO、基本类型、String、Array、Collection 相关的工具方法（Kotlin 版本没有）
@@ -25,9 +27,8 @@ compile "me.panpf:javax-kt:$lastVersion"
 ```
 
 依赖：
-* org.jetbrains.kotlin:kotlin-stdlib-jdk8: 1.2.31
+* org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.50
 * org.jetbrains:annotations: 13.0
-* me.panpf:[kotlinx][kotlinx]: 0.2
 
 请自行替换 `$lastVersion` 为最新的版本 [![Download][KTVersionBadgeIcon]][KTVersionBadgeLink]
 
@@ -92,7 +93,8 @@ compile "me.panpf:javax-kt:$lastVersion"
 [KTVersionBadgeIcon]: https://api.bintray.com/packages/panpf/maven/javax-kt/images/download.svg
 [KTVersionBadgeLink]:https://bintray.com/panpf/maven/javax-kt/_latestVersion
 [CHANGELOG.md]: CHANGELOG.md
-[kotlinx]: https://github.com/panpf/kotlinx
+[source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
+[target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
 
 [Aesx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Aesx.java
 [AesTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/crypto/AesTest.java
