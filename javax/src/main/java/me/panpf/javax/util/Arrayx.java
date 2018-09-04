@@ -647,24 +647,463 @@ public class Arrayx {
 
 
     /**
-     * Applies the given [transform] function to each element of the original array
-     * and appends the results to the given [destination].
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
      */
-    @NotNull
-    public static <T, R> List<R> mapTo(@NotNull T[] source, @NotNull List<R> destination, @NotNull Transformer<T, R> transform) {
-        for (T t : source) {
-            destination.add(transform.transform(t));
-        }
-        return destination;
+    public static <T, R> List<R> map(@NotNull T[] elements, @NotNull Transformer<T, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    @NotNull
-    public static <T, R> List<R> map(@NotNull T[] ts, @NotNull Transformer<T, R> transformer) {
-        return mapTo(ts, new ArrayList<R>(ts.length), transformer);
+    public static <R> List<R> map(byte[] elements, @NotNull Transformer<Byte, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(short[] elements, @NotNull Transformer<Short, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(int[] elements, @NotNull Transformer<Integer, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(long[] elements, @NotNull Transformer<Long, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(float[] elements, @NotNull Transformer<Float, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(double[] elements, @NotNull Transformer<Double, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(boolean[] elements, @NotNull Transformer<Boolean, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <R> List<R> map(char[] elements, @NotNull Transformer<Character, R> transform) {
+        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <T, R, C extends Collection<R>> C mapTo(@NotNull T[] elements, C destination, Transformer<T, R> transform) {
+        for (T item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(byte[] elements, C destination, @NotNull Transformer<Byte, R> transform) {
+        for (byte item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(short[] elements, C destination, @NotNull Transformer<Short, R> transform) {
+        for (short item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(int[] elements, C destination, @NotNull Transformer<Integer, R> transform) {
+        for (int item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(long[] elements, C destination, @NotNull Transformer<Long, R> transform) {
+        for (long item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(float[] elements, C destination, @NotNull Transformer<Float, R> transform) {
+        for (float item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(double[] elements, C destination, @NotNull Transformer<Double, R> transform) {
+        for (double item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(boolean[] elements, C destination, @NotNull Transformer<Boolean, R> transform) {
+        for (boolean item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
+     */
+    public static <R, C extends Collection<R>> C mapTo(char[] elements, C destination, @NotNull Transformer<Character, R> transform) {
+        for (char item : elements) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
+
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <T, R> List<R> mapIndexed(@NotNull T[] elements, IndexedTransformer<T, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(byte[] elements, IndexedTransformer<Byte, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(short[] elements, IndexedTransformer<Short, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(int[] elements, IndexedTransformer<Integer, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(long[] elements, IndexedTransformer<Long, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(float[] elements, IndexedTransformer<Float, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(double[] elements, IndexedTransformer<Double, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(boolean[] elements, IndexedTransformer<Boolean, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R> List<R> mapIndexed(char[] elements, IndexedTransformer<Character, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    }
+
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <T, R, C extends Collection<R>> C mapIndexedTo(@NotNull T[] elements, C destination, IndexedTransformer<T, R> transform) {
+        int index = 0;
+        for (T item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(byte[] elements, C destination, IndexedTransformer<Byte, R> transform) {
+        int index = 0;
+        for (byte item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(short[] elements, C destination, IndexedTransformer<Short, R> transform) {
+        int index = 0;
+        for (short item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(int[] elements, C destination, IndexedTransformer<Integer, R> transform) {
+        int index = 0;
+        for (int item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(long[] elements, C destination, IndexedTransformer<Long, R> transform) {
+        int index = 0;
+        for (long item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(float[] elements, C destination, IndexedTransformer<Float, R> transform) {
+        int index = 0;
+        for (float item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(double[] elements, C destination, IndexedTransformer<Double, R> transform) {
+        int index = 0;
+        for (double item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(boolean[] elements, C destination, IndexedTransformer<Boolean, R> transform) {
+        int index = 0;
+        for (boolean item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <R, C extends Collection<R>> C mapIndexedTo(char[] elements, C destination, IndexedTransformer<Character, R> transform) {
+        int index = 0;
+        for (char item : elements) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
+    }
+
+
+    /**
+     * Returns a list containing only the non-null results of applying the given [transform] function
+     * to each element in the original array.
+     */
+    public static <T, R> List<R> mapNotNull(@NotNull T[] elements, NullableTransformer<T, R> transform) {
+        return mapNotNullTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Applies the given [transform] function to each element in the original array
+     * and appends only the non-null results to the given [destination].
+     */
+    public static <T, R, C extends Collection<R>> C mapNotNullTo(@NotNull T[] elements, C destination, NullableTransformer<T, R> transform) {
+        for (T item : elements) {
+            R r = transform.transform(item);
+            if (r != null) {
+                destination.add(r);
+            }
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a list containing only the non-null results of applying the given [transform] function
+     * to each element and its index in the original array.
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <T, R> List<R> mapIndexedNotNull(@NotNull T[] elements, NullableIndexedTransformer<T, R> transform) {
+        return mapIndexedNotNullTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Applies the given [transform] function to each element and its index in the original array
+     * and appends only the non-null results to the given [destination].
+     *
+     * @param transform function that takes the index of an element and the element itself
+     *                  and returns the result of the transform applied to the element.
+     */
+    public static <T, R, C extends Collection<R>> C mapIndexedNotNullTo(@NotNull T[] elements, C destination, NullableIndexedTransformer<T, R> transform) {
+        int index = 0;
+        for (T item : elements) {
+            R r = transform.transform(index++, item);
+            if (r != null) {
+                destination.add(r);
+            }
+        }
+        return destination;
     }
 
 
