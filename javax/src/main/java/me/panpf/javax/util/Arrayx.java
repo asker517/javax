@@ -1830,6 +1830,862 @@ public class Arrayx {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static <T> Iterator<T> iterator(@NotNull T[] elements) {
+        return new ArrayIterator<>(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Byte> iterator(@NotNull byte[] elements) {
+        return new ArrayByteIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Character> iterator(@NotNull char[] elements) {
+        return new ArrayCharIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Short> iterator(@NotNull short[] elements) {
+        return new ArrayShortIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Float> iterator(@NotNull float[] elements) {
+        return new ArrayFloatIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Integer> iterator(@NotNull int[] elements) {
+        return new ArrayIntIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Double> iterator(@NotNull double[] elements) {
+        return new ArrayDoubleIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Long> iterator(@NotNull long[] elements) {
+        return new ArrayLongIterator(elements);
+    }
+
+    /**
+     * Return a array iterator of original array.
+     */
+    @NotNull
+    public static Iterator<Boolean> iterator(@NotNull boolean[] elements) {
+        return new ArrayBooleanIterator(elements);
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static <T> Iterable<T> asIterable(@NotNull final T[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<T>() {
+            @NotNull
+            @Override
+            public Iterator<T> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Byte> asIterable(@NotNull final byte[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Byte>() {
+            @NotNull
+            @Override
+            public Iterator<Byte> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Short> asIterable(@NotNull final short[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Short>() {
+            @NotNull
+            @Override
+            public Iterator<Short> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Integer> asIterable(@NotNull final int[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Integer>() {
+            @NotNull
+            @Override
+            public Iterator<Integer> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Long> asIterable(@NotNull final long[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Long>() {
+            @NotNull
+            @Override
+            public Iterator<Long> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Float> asIterable(@NotNull final float[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Float>() {
+            @NotNull
+            @Override
+            public Iterator<Float> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Double> asIterable(@NotNull final double[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Double>() {
+            @NotNull
+            @Override
+            public Iterator<Double> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Boolean> asIterable(@NotNull final boolean[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Boolean>() {
+            @NotNull
+            @Override
+            public Iterator<Boolean> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Iterable<Character> asIterable(@NotNull final char[] elements) {
+        if (isEmpty(elements)) return Collectionx.emptyList();
+        return new Iterable<Character>() {
+            @NotNull
+            @Override
+            public Iterator<Character> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <T, K> Map<K, List<T>> groupBy(@NotNull T[] elements, @NotNull Transformer<T, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<T>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Byte>> groupBy(@NotNull byte[] elements, @NotNull Transformer<Byte, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Byte>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Short>> groupBy(@NotNull short[] elements, @NotNull Transformer<Short, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Short>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Integer>> groupBy(@NotNull int[] elements, @NotNull Transformer<Integer, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Integer>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Long>> groupBy(@NotNull long[] elements, @NotNull Transformer<Long, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Long>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Float>> groupBy(@NotNull float[] elements, @NotNull Transformer<Float, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Float>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Double>> groupBy(@NotNull double[] elements, @NotNull Transformer<Double, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Double>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Boolean>> groupBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Boolean>>(), keySelector);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and returns a map where each group key is associated with a list of corresponding elements.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K> Map<K, List<Character>> groupBy(@NotNull char[] elements, @NotNull Transformer<Character, K> keySelector) {
+        return groupByTo(elements, new LinkedHashMap<K, List<Character>>(), keySelector);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <T, K, V> Map<K, List<V>> groupBy(@NotNull T[] elements, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull byte[] elements, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull short[] elements, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull int[] elements, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull long[] elements, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull float[] elements, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull double[] elements, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and returns a map where each group key is associated with a list of corresponding values.
+     * <p>
+     * The returned map preserves the entry iteration order of the keys produced from the original array.
+     */
+    @NotNull
+    public static <K, V> Map<K, List<V>> groupBy(@NotNull char[] elements, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
+        return groupByTo(elements, new LinkedHashMap<K, List<V>>(), keySelector, valueTransform);
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <T, K, M extends Map<K, List<T>>> M groupByTo(@NotNull T[] elements, @NotNull M destination, @NotNull Transformer<T, K> keySelector) {
+        DefaultValue<List<T>> defaultValue = new DefaultValue<List<T>>() {
+            @NotNull
+            @Override
+            public List<T> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (T element : elements) {
+            K key = keySelector.transform(element);
+            List<T> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Byte>>> M groupByTo(@NotNull byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, K> keySelector) {
+        DefaultValue<List<Byte>> defaultValue = new DefaultValue<List<Byte>>() {
+            @NotNull
+            @Override
+            public List<Byte> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (byte element : elements) {
+            K key = keySelector.transform(element);
+            List<Byte> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Short>>> M groupByTo(@NotNull short[] elements, @NotNull M destination, @NotNull Transformer<Short, K> keySelector) {
+        DefaultValue<List<Short>> defaultValue = new DefaultValue<List<Short>>() {
+            @NotNull
+            @Override
+            public List<Short> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (short element : elements) {
+            K key = keySelector.transform(element);
+            List<Short> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Integer>>> M groupByTo(@NotNull int[] elements, @NotNull M destination, @NotNull Transformer<Integer, K> keySelector) {
+        DefaultValue<List<Integer>> defaultValue = new DefaultValue<List<Integer>>() {
+            @NotNull
+            @Override
+            public List<Integer> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (int element : elements) {
+            K key = keySelector.transform(element);
+            List<Integer> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Long>>> M groupByTo(@NotNull long[] elements, @NotNull M destination, @NotNull Transformer<Long, K> keySelector) {
+        DefaultValue<List<Long>> defaultValue = new DefaultValue<List<Long>>() {
+            @NotNull
+            @Override
+            public List<Long> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (long element : elements) {
+            K key = keySelector.transform(element);
+            List<Long> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Float>>> M groupByTo(@NotNull float[] elements, @NotNull M destination, @NotNull Transformer<Float, K> keySelector) {
+        DefaultValue<List<Float>> defaultValue = new DefaultValue<List<Float>>() {
+            @NotNull
+            @Override
+            public List<Float> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (float element : elements) {
+            K key = keySelector.transform(element);
+            List<Float> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Double>>> M groupByTo(@NotNull double[] elements, @NotNull M destination, @NotNull Transformer<Double, K> keySelector) {
+        DefaultValue<List<Double>> defaultValue = new DefaultValue<List<Double>>() {
+            @NotNull
+            @Override
+            public List<Double> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (double element : elements) {
+            K key = keySelector.transform(element);
+            List<Double> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Boolean>>> M groupByTo(@NotNull boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, K> keySelector) {
+        DefaultValue<List<Boolean>> defaultValue = new DefaultValue<List<Boolean>>() {
+            @NotNull
+            @Override
+            public List<Boolean> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (boolean element : elements) {
+            K key = keySelector.transform(element);
+            List<Boolean> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements of the original array by the key returned by the given [keySelector] function
+     * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, M extends Map<K, List<Character>>> M groupByTo(@NotNull char[] elements, @NotNull M destination, @NotNull Transformer<Character, K> keySelector) {
+        DefaultValue<List<Character>> defaultValue = new DefaultValue<List<Character>>() {
+            @NotNull
+            @Override
+            public List<Character> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (char element : elements) {
+            K key = keySelector.transform(element);
+            List<Character> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(element);
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <T, K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull T[] elements, @NotNull M destination, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (T element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (byte element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull short[] elements, @NotNull M destination, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (short element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull int[] elements, @NotNull M destination, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (int element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull long[] elements, @NotNull M destination, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (long element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull float[] elements, @NotNull M destination, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (float element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull double[] elements, @NotNull M destination, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (double element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (boolean element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups values returned by the [valueTransform] function applied to each element of the original array
+     * by the key returned by the given [keySelector] function applied to the element
+     * and puts to the [destination] map each group key associated with a list of corresponding values.
+     *
+     * @return The [destination] map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, List<V>>> M groupByTo(@NotNull char[] elements, @NotNull M destination, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
+        DefaultValue<List<V>> defaultValue = new DefaultValue<List<V>>() {
+            @NotNull
+            @Override
+            public List<V> get() {
+                return new ArrayList<>();
+            }
+        };
+        for (char element : elements) {
+            K key = keySelector.transform(element);
+            List<V> list = Mapx.getOrPut(destination, key, defaultValue);
+            list.add(valueTransform.transform(element));
+        }
+        return destination;
+    }
+
+    /**
+     * Creates a [Grouping] source from an array to be used later with one of group-and-fold operations
+     * using the specified [keySelector] function to extract a key from each element.
+     */
+    @NotNull
+    public static <T, K> Grouping<T, K> groupingBy(@NotNull final T[] elements, @NotNull final Transformer<T, K> keySelector) {
+        return new Grouping<T, K>() {
+            @Override
+            public Iterator<T> sourceIterator() {
+                return Arrayx.iterator(elements);
+            }
+
+            @Override
+            public K keyOf(T element) {
+                return keySelector.transform(element);
+            }
+        };
+    }
+
 //    /**
 //     * Returns `true` if all elements match the given [predicate].
 //     */
@@ -1900,78 +2756,6 @@ public class Arrayx {
 //    public inline fun CharArray.all(predicate: (Char) -> Boolean): Boolean {
 //        for (element in this) if (!predicate(element)) return false
 //        return true
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun <T> Array<out T>.asIterable(): Iterable<T> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun ByteArray.asIterable(): Iterable<Byte> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun ShortArray.asIterable(): Iterable<Short> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun IntArray.asIterable(): Iterable<Int> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun LongArray.asIterable(): Iterable<Long> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun FloatArray.asIterable(): Iterable<Float> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun DoubleArray.asIterable(): Iterable<Double> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun BooleanArray.asIterable(): Iterable<Boolean> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
-//    }
-//
-//    /**
-//     * Creates an [Iterable] instance that wraps the original array returning its elements when being iterated.
-//     */
-//    public fun CharArray.asIterable(): Iterable<Char> {
-//        if (isEmpty()) return emptyList()
-//        return Iterable { this.iterator() }
 //    }
 //
 //    /**

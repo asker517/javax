@@ -50,6 +50,8 @@ class Base64Test {
         Assert.assertArrayEquals(SOURCE_BYTES, ByteBuffer.wrap(SOURCE_BYTES).base64MimeEncodeToBytes(10, ",".toByteArray()).base64MimeDecodeToBytes())
         Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToString(10, ",".toByteArray()).base64MimeDecodeToBytes())
         Assert.assertArrayEquals(SOURCE_BYTES, SOURCE.base64MimeEncodeToBuffer(10, ",".toByteArray()).base64MimeDecodeToBytes())
+
+        arrayOf("").iterator()
     }
 
     @Test
