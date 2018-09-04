@@ -1111,4 +1111,20 @@ public class Stringx {
 
         return true;
     }
+
+    /**
+     * Converts the contents of this byte array to a string using the specified [charset].
+     */
+    @NotNull
+    public static String valueOf(@NotNull byte[] bytes, @NotNull Charset charset) {
+        return new String(bytes, charset);
+    }
+
+    /**
+     * Converts the contents of this byte array to a string using the specified [charset].
+     */
+    @NotNull
+    public static String valueOf(@NotNull byte[] bytes) {
+        return valueOf(bytes, Charx.UTF_8);
+    }
 }

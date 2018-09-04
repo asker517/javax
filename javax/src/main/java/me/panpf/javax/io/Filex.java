@@ -1023,7 +1023,7 @@ public class Filex {
      */
     @NotNull
     public static String readText(@NotNull File file, @NotNull Charset charset) throws IOException {
-        return Arrayx.toString(readBytes(file), charset);
+        return Stringx.valueOf(readBytes(file), charset);
     }
 
     /**

@@ -68,8 +68,5 @@ class ZipTest {
         dir.deleteRecursively()
         dstFile.deleteRecursively()
         decompressionDstDir.deleteRecursively()
-
-        byteArrayOf().toTypedArray()
-        byteArrayOf().asList()
     }
 }

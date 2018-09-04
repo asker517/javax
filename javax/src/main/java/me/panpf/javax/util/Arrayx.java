@@ -32,6 +32,10 @@ public class Arrayx {
 
     /* ******************************************* From Kotlin Standard library ********************************************************* */
 
+
+    /* **************************************************** array of **************************************************** */
+
+
     /**
      * Returns an array containing the specified elements.
      */
@@ -103,6 +107,9 @@ public class Arrayx {
     public static boolean[] booleanArrayOf(boolean... elements) {
         return elements;
     }
+
+
+    /* **************************************************** empty **************************************************** */
 
 
     /**
@@ -231,25 +238,104 @@ public class Arrayx {
         return elements.length > 0;
     }
 
+
+    /* **************************************************** to array, list, set **************************************************** */
+
+
     /**
-     * Applies the given [transform] function to each element of the original array
-     * and appends the results to the given [destination].
+     * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    @NotNull
-    public static <T, R> List<R> mapTo(@NotNull T[] source, @NotNull List<R> destination, @NotNull Transformer<T, R> transform) {
-        for (T t : source) {
-            destination.add(transform.transform(t));
+    public static Byte[] toTypedArray(@NotNull byte[] elements) {
+        Byte[] result = new Byte[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
         }
-        return destination;
+        return result;
     }
 
     /**
-     * Returns a list containing the results of applying the given [transform] function
-     * to each element in the original array.
+     * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    @NotNull
-    public static <T, R> List<R> map(@NotNull T[] ts, @NotNull Transformer<T, R> transformer) {
-        return mapTo(ts, new ArrayList<R>(ts.length), transformer);
+    public static Short[] toTypedArray(@NotNull short[] elements) {
+        Short[] result = new Short[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a *typed* object array containing all of the elements of this primitive array.
+     */
+    public static Integer[] toTypedArray(@NotNull int[] elements) {
+        Integer[] result = new Integer[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a *typed* object array containing all of the elements of this primitive array.
+     */
+    public static Long[] toTypedArray(@NotNull long[] elements) {
+        Long[] result = new Long[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a *typed* object array containing all of the elements of this primitive array.
+     */
+    public static Float[] toTypedArray(@NotNull float[] elements) {
+        Float[] result = new Float[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a *typed* object array containing all of the elements of this primitive array.
+     */
+    public static Double[] toTypedArray(@NotNull double[] elements) {
+        Double[] result = new Double[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a *typed* object array containing all of the elements of this primitive array.
+     */
+    public static Boolean[] toTypedArray(@NotNull boolean[] elements) {
+        Boolean[] result = new Boolean[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a *typed* object array containing all of the elements of this primitive array.
+     */
+    public static Character[] toTypedArray(@NotNull char[] elements) {
+        Character[] result = new Character[elements.length];
+        int index = 0;
+        while (index++ < elements.length) {
+            result[index] = elements[index];
+        }
+        return result;
     }
 
 
@@ -261,6 +347,7 @@ public class Arrayx {
         Collections.addAll(destination, elements);
         return destination;
     }
+
 
     /**
      * Returns a [List] all elements.
@@ -365,6 +452,27 @@ public class Arrayx {
         }
         return list;
     }
+
+    /**
+     * Returns a [Set] all elements.
+     * The returned set preserves the element iteration order of the original collection.
+     */
+    @NotNull
+    public static <T> Set<T> toSet(@NotNull T[] elements) {
+        return toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static <T> HashSet<T> toHashSet(@NotNull T[] elements) {
+        return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements.length)));
+    }
+
+
+    /* **************************************************** as list **************************************************** */
+
 
     /**
      * Returns a [List] that wraps the original array.
@@ -534,39 +642,33 @@ public class Arrayx {
         };
     }
 
-    /**
-     * Returns a [Set] all elements.
-     * The returned set preserves the element iteration order of the original collection.
-     */
-    @NotNull
-    public static <T> Set<T> toSet(@NotNull T[] elements) {
-        return toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(elements.length)));
-    }
 
-    /**
-     * Returns a [HashSet] of all elements.
-     */
-    @NotNull
-    public static <T> HashSet<T> toHashSet(@NotNull T[] elements) {
-        return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements.length)));
-    }
+    /* **************************************************** map **************************************************** */
 
 
     /**
-     * Converts the contents of this byte array to a string using the specified [charset].
+     * Applies the given [transform] function to each element of the original array
+     * and appends the results to the given [destination].
      */
     @NotNull
-    public static String toString(@NotNull byte[] bytes, @NotNull Charset charset) {
-        return new String(bytes, charset);
+    public static <T, R> List<R> mapTo(@NotNull T[] source, @NotNull List<R> destination, @NotNull Transformer<T, R> transform) {
+        for (T t : source) {
+            destination.add(transform.transform(t));
+        }
+        return destination;
     }
 
     /**
-     * Converts the contents of this byte array to a string using the specified [charset].
+     * Returns a list containing the results of applying the given [transform] function
+     * to each element in the original array.
      */
     @NotNull
-    public static String toString(@NotNull byte[] bytes) {
-        return toString(bytes, Charx.UTF_8);
+    public static <T, R> List<R> map(@NotNull T[] ts, @NotNull Transformer<T, R> transformer) {
+        return mapTo(ts, new ArrayList<R>(ts.length), transformer);
     }
+
+
+    /* **************************************************** reverse **************************************************** */
 
 
     /**
@@ -924,6 +1026,25 @@ public class Arrayx {
     }
 
 
+    /* **************************************************** sort **************************************************** */
+
+
+    /**
+     * Sorts the array in-place according to the natural order of its elements.
+     */
+    public static <T extends Comparable<T>> void sort(@NotNull T[] elements) {
+        sortWith(elements, new Comparisonx.NaturalOrderComparator<T>());
+    }
+
+    /**
+     * Sorts the array in-place according to the natural order of its elements.
+     *
+     * @throws ClassCastException if any element of the array is not [Comparable].
+     */
+    public static <T> void sort(@NotNull T[] elements) {
+        if (elements.length > 1) java.util.Arrays.sort(elements);
+    }
+
     /**
      * Sorts the array in-place.
      */
@@ -970,22 +1091,6 @@ public class Arrayx {
      * Sorts the array in-place.
      */
     public static void sort(@NotNull char[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
-    }
-
-    /**
-     * Sorts the array in-place according to the natural order of its elements.
-     */
-    public static <T extends Comparable<T>> void sort(@NotNull T[] elements) {
-        sortWith(elements, new Comparisonx.NaturalOrderComparator<T>());
-    }
-
-    /**
-     * Sorts the array in-place according to the natural order of its elements.
-     *
-     * @throws ClassCastException if any element of the array is not [Comparable].
-     */
-    public static <T> void sort(@NotNull T[] elements) {
         if (elements.length > 1) java.util.Arrays.sort(elements);
     }
 
@@ -1043,21 +1148,6 @@ public class Arrayx {
      */
     public static void sort(@NotNull char[] elements, int fromIndex, int toIndex) {
         java.util.Arrays.sort(elements, fromIndex, toIndex);
-    }
-
-
-    /**
-     * Sorts elements in the array in-place according to natural sort order of the value returned by specified [selector] function.
-     */
-    public static <T, R extends Comparable<R>> void sortBy(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
-        if (elements.length > 1) sortWith(elements, Comparisonx.compareBy(selector));
-    }
-
-    /**
-     * Sorts elements in the array in-place descending according to natural sort order of the value returned by specified [selector] function.
-     */
-    public static <T, R extends Comparable<R>> void sortByDescending(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
-        if (elements.length > 1) sortWith(elements, Comparisonx.compareByDescending(selector));
     }
 
 
@@ -1140,6 +1230,37 @@ public class Arrayx {
 
 
     /**
+     * Sorts the array in-place according to the order specified by the given [comparator].
+     */
+    public static <T> void sortWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
+        if (elements.length > 1) java.util.Arrays.sort(elements, comparator);
+    }
+
+    /**
+     * Sorts a range in the array in-place with the given [comparator].
+     */
+    public static <T> void sortWith(@NotNull T[] elements, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
+        java.util.Arrays.sort(elements, fromIndex, toIndex, comparator);
+    }
+
+
+    /**
+     * Sorts elements in the array in-place according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <T, R extends Comparable<R>> void sortBy(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
+        if (elements.length > 1) sortWith(elements, Comparisonx.compareBy(selector));
+    }
+
+
+    /**
+     * Sorts elements in the array in-place descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <T, R extends Comparable<R>> void sortByDescending(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
+        if (elements.length > 1) sortWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+
+    /**
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
@@ -1201,6 +1322,311 @@ public class Arrayx {
     @NotNull
     public static List<Character> sorted(@NotNull char[] elements) {
         return asList(sortedArray(elements));
+    }
+
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static <T extends Comparable<T>> List<T> sortedDescending(@NotNull T[] elements) {
+        return Arrayx.sortedWith(elements, new Comparisonx.ReverseOrderComparator<T>());
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Byte> sortedDescending(@NotNull byte[] elements) {
+        byte[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Short> sortedDescending(@NotNull short[] elements) {
+        short[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Integer> sortedDescending(@NotNull int[] elements) {
+        int[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Long> sortedDescending(@NotNull long[] elements) {
+        long[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Float> sortedDescending(@NotNull float[] elements) {
+        float[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Double> sortedDescending(@NotNull double[] elements) {
+        double[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static List<Character> sortedDescending(@NotNull char[] elements) {
+        char[] result = Arrayx.copyOf(elements);
+        Arrayx.sort(result);
+        return Arrayx.reversed(result);
+    }
+
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static <T> List<T> sortedWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
+        return Arrayx.asList(Arrayx.sortedArrayWith(elements, comparator));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Byte> sortedWith(@NotNull byte[] elements, @NotNull Comparator<Byte> comparator) {
+        Byte[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Short> sortedWith(@NotNull short[] elements, @NotNull Comparator<Short> comparator) {
+        Short[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Integer> sortedWith(@NotNull int[] elements, @NotNull Comparator<Integer> comparator) {
+        Integer[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Long> sortedWith(@NotNull long[] elements, @NotNull Comparator<Long> comparator) {
+        Long[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Float> sortedWith(@NotNull float[] elements, @NotNull Comparator<Float> comparator) {
+        Float[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Double> sortedWith(@NotNull double[] elements, @NotNull Comparator<Double> comparator) {
+        Double[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Boolean> sortedWith(@NotNull boolean[] elements, @NotNull Comparator<Boolean> comparator) {
+        Boolean[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+    /**
+     * Returns a list of all elements sorted according to the specified [comparator].
+     */
+    @NotNull
+    public static List<Character> sortedWith(@NotNull char[] elements, @NotNull Comparator<Character> comparator) {
+        Character[] result = Arrayx.toTypedArray(elements);
+        Arrayx.sortWith(result, comparator);
+        return Arrayx.asList(result);
+    }
+
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <T, R extends Comparable<R>> List<T> sortedBy(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Byte> sortedBy(@NotNull byte[] elements, @NotNull NullableTransformer<Byte, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Short> sortedBy(@NotNull short[] elements, @NotNull NullableTransformer<Short, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Integer> sortedBy(@NotNull int[] elements, @NotNull NullableTransformer<Integer, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Long> sortedBy(@NotNull long[] elements, @NotNull NullableTransformer<Long, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Float> sortedBy(@NotNull float[] elements, @NotNull NullableTransformer<Float, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Double> sortedBy(@NotNull double[] elements, @NotNull NullableTransformer<Double, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Boolean> sortedBy(@NotNull boolean[] elements, @NotNull NullableTransformer<Boolean, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
+     */
+    @NotNull
+    public static <R extends Comparable<R>> List<Character> sortedBy(@NotNull char[] elements, @NotNull NullableTransformer<Character, R> selector) {
+        return sortedWith(elements, Comparisonx.compareBy(selector));
+    }
+
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <T, R extends Comparable<R>> List<T> sortedByDescending(@NotNull T[] elements, NullableTransformer<T, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Byte> sortedByDescending(@NotNull byte[] elements, NullableTransformer<Byte, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Short> sortedByDescending(@NotNull short[] elements, NullableTransformer<Short, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Integer> sortedByDescending(@NotNull int[] elements, NullableTransformer<Integer, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Long> sortedByDescending(@NotNull long[] elements, NullableTransformer<Long, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Float> sortedByDescending(@NotNull float[] elements, NullableTransformer<Float, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Double> sortedByDescending(@NotNull double[] elements, NullableTransformer<Double, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Boolean> sortedByDescending(@NotNull boolean[] elements, NullableTransformer<Boolean, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
+    }
+
+    /**
+     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
+     */
+    public static <R extends Comparable<R>> List<Character> sortedByDescending(@NotNull char[] elements, NullableTransformer<Character, R> selector) {
+        return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
 
@@ -1291,337 +1717,109 @@ public class Arrayx {
         sort(result);
         return result;
     }
-//
-///**
-// * Returns an array with all elements of this array sorted descending according to their natural sort order.
-// */
-//    public static <T : Comparable<T>> Array<T>.sortedArrayDescending(): Array<T> {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortWith(reverseOrder()) }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static sortedArrayDescending(@NotNull byte[] elements, ): ByteArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static  sortedArrayDescending(@NotNull short[] elements): ShortArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static  sortedArrayDescending(@NotNull int[] elements, ): IntArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static  sortedArrayDescending(@NotNull long[] elements, ): LongArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static sortedArrayDescending(@NotNull float[] elements, ): FloatArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static sortedArrayDescending(@NotNull double[] elements, ): DoubleArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted descending according to their natural sort order.
-//     */
-//    public static sortedArrayDescending(@NotNull char[] elements, ): CharArray {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortDescending() }
-//    }
-//
-//    /**
-//     * Returns an array with all elements of this array sorted according the specified [comparator].
-//     */
-//    public static <T> sortedArrayWith(@NotNull T[] elements, comparator: Comparator<in T>): Array<out T> {
-//        if (isEmpty()) return this
-//        return this.copyOf().apply { sortWith(comparator) }
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <T, R : Comparable<R>> sortedBy(@NotNull T[] elements, crossinline selector: (T) -> R?): List<T> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedBy(@NotNull byte[] elements, crossinline selector: (Byte) -> R?): List<Byte> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>>  sortedBy(@NotNull short[] elements, crossinline selector: (Short) -> R?): List<Short> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>>  sortedBy(@NotNull int[] elements, crossinline selector: (Int) -> R?): List<Int> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>>  sortedBy(@NotNull long[] elements, crossinline selector: (Long) -> R?): List<Long> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedBy(@NotNull float[] elements, crossinline selector: (Float) -> R?): List<Float> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedBy(@NotNull double[] elements, crossinline selector: (Double) -> R?): List<Double> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> BooleanArray.sortedBy(crossinline selector: (Boolean) -> R?): List<Boolean> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedBy(@NotNull char[] elements, crossinline selector: (Char) -> R?): List<Char> {
-//        return sortedWith(compareBy(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <T, R : Comparable<R>> sortedByDescending(@NotNull T[] elements, crossinline selector: (T) -> R?): List<T> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedByDescending(@NotNull byte[] elements, crossinline selector: (Byte) -> R?): List<Byte> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>>  sortedByDescending(@NotNull short[] elements, crossinline selector: (Short) -> R?): List<Short> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>>  sortedByDescending(@NotNull int[] elements, crossinline selector: (Int) -> R?): List<Int> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>>  sortedByDescending(@NotNull long[] elements, crossinline selector: (Long) -> R?): List<Long> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedByDescending(@NotNull float[] elements, crossinline selector: (Float) -> R?): List<Float> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedByDescending(@NotNull double[] elements, crossinline selector: (Double) -> R?): List<Double> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> BooleanArray.sortedByDescending(crossinline selector: (Boolean) -> R?): List<Boolean> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
-//     */
-//    public static <R : Comparable<R>> sortedByDescending(@NotNull char[] elements, crossinline selector: (Char) -> R?): List<Char> {
-//        return sortedWith(compareByDescending(selector))
-//    }
-//
-///**
-// * Returns a list of all elements sorted descending according to their natural sort order.
-// */
-//    public static <T : Comparable<T>> sortedDescending(@NotNull T[] elements, ): List<T> {
-//        return sortedWith(reverseOrder())
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static sortedDescending(@NotNull byte[] elements, ): List<Byte> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static  sortedDescending(@NotNull short[] elements, ): List<Short> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static  sortedDescending(@NotNull int[] elements, ): List<Int> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static  sortedDescending(@NotNull long[] elements, ): List<Long> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static sortedDescending(@NotNull float[] elements, ): List<Float> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static sortedDescending(@NotNull double[] elements, ): List<Double> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted descending according to their natural sort order.
-//     */
-//    public static sortedDescending(@NotNull char[] elements, ): List<Char> {
-//        return copyOf().apply { sort() }.reversed()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static <T> sortedWith(@NotNull T[] elements, comparator: Comparator<in T>): List<T> {
-//        return sortedArrayWith(comparator).asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static sortedWith(@NotNull byte[] elements, comparator: Comparator<in Byte>): List<Byte> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static  sortedWith(@NotNull short[] elements, comparator: Comparator<in Short>): List<Short> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static  sortedWith(@NotNull int[] elements, comparator: Comparator<in Int>): List<Int> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static  sortedWith(@NotNull long[] elements, comparator: Comparator<in Long>): List<Long> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static sortedWith(@NotNull float[] elements, comparator: Comparator<in Float>): List<Float> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static sortedWith(@NotNull double[] elements, comparator: Comparator<in Double>): List<Double> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static BooleanArray.sortedWith(comparator: Comparator<in Boolean>): List<Boolean> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
-//
-//    /**
-//     * Returns a list of all elements sorted according to the specified [comparator].
-//     */
-//    public static sortedWith(@NotNull char[] elements, comparator: Comparator<in Char>): List<Char> {
-//        return toTypedArray().apply { sortWith(comparator) }.asList()
-//    }
+
 
     /**
-     * Sorts the array in-place according to the order specified by the given [comparator].
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
-    public static <T> void sortWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
-        if (elements.length > 1) java.util.Arrays.sort(elements, comparator);
+    @NotNull
+    public static <T extends Comparable<T>> T[] sortedArrayDescending(@NotNull T[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        T[] result = Arrayx.copyOf(elements);
+        Arrayx.sortWith(elements, new Comparisonx.ReverseOrderComparator<T>());
+        return result;
     }
 
     /**
-     * Sorts a range in the array in-place with the given [comparator].
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
-    public static <T> void sortWith(@NotNull T[] elements, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex, comparator);
+    @NotNull
+    public static byte[] sortedArrayDescending(@NotNull byte[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        byte[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
     }
+
+    /**
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static short[] sortedArrayDescending(@NotNull short[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        short[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
+    }
+
+    /**
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static int[] sortedArrayDescending(@NotNull int[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        int[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
+    }
+
+    /**
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static long[] sortedArrayDescending(@NotNull long[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        long[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
+    }
+
+    /**
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static float[] sortedArrayDescending(@NotNull float[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        float[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
+    }
+
+    /**
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static double[] sortedArrayDescending(@NotNull double[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        double[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
+    }
+
+    /**
+     * Returns an array with all elements of this array sorted descending according to their natural sort order.
+     */
+    @NotNull
+    public static char[] sortedArrayDescending(@NotNull char[] elements) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        char[] result = Arrayx.copyOf(elements);
+        Arrayx.sortDescending(elements);
+        return result;
+    }
+
+
+    /**
+     * Returns an array with all elements of this array sorted according the specified [comparator].
+     */
+    public static <T> T[] sortedArrayWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
+        if (Arrayx.isEmpty(elements)) return elements;
+        T[] result = Arrayx.copyOf(elements);
+        Arrayx.sortWith(elements, comparator);
+        return result;
+    }
+
+
+    /* **************************************************** single **************************************************** */
 
 
     /**
@@ -2130,6 +2328,10 @@ public class Arrayx {
         return single;
     }
 
+
+    /* **************************************************** any **************************************************** */
+
+
     /**
      * Returns `true` if array has at least one element.
      */
@@ -2264,6 +2466,9 @@ public class Arrayx {
         for (char element : elements) if (predicate.predicate(element)) return true;
         return false;
     }
+
+
+    /* **************************************************** copy **************************************************** */
 
     /**
      * Returns new array which is a copy of the original array.
@@ -2481,6 +2686,10 @@ public class Arrayx {
         return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
+
+    /* **************************************************** iterator **************************************************** */
+
+
     /**
      * Return a array iterator of original array.
      */
@@ -2687,6 +2896,10 @@ public class Arrayx {
             }
         };
     }
+
+
+    /* **************************************************** group **************************************************** */
+
 
     /**
      * Groups elements of the original array by the key returned by the given [keySelector] function
