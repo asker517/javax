@@ -3,7 +3,7 @@
 * Collectionx 增加 joinToString(@NotNull Iterable<T>, @Nullable CharSequence, @NotNull Transformer<T, CharSequence>) 方法
 * File mkdirsWithThrow() 重命名为 mkdirsOrThrow，createNewFileWithThrow 重命名为 createNewFileOrThrow，mkdirsWith() 重命名为 mkdirsCheck，createNewFileWith 重命名为 createNewFileCheck
 * javax-kt 移除对 kotlinx 的依赖
-* Array 增加 group()、iterator()、asIterable()、toList()、asList()、sorted()、sortedArray()、reverse() reversed、reversedArray、map 系列方法
+* Arrayx 增加 group()、iterator()、asIterable()、toList()、asList()、sorted()、sortedArray()、reverse() reversed、reversedArray、map 系列方法
 * Arrayx 删除 toString(byte[]) 方法
 
 ## v0.4
