@@ -4,7 +4,7 @@
 * File mkdirsWithThrow() 重命名为 mkdirsOrThrow，createNewFileWithThrow 重命名为 createNewFileOrThrow，mkdirsWith() 重命名为 mkdirsCheck，createNewFileWith 重命名为 createNewFileCheck
 * javax-kt 移除对 kotlinx 的依赖
 * Array 增加 group()、iterator()、asIterable()、toList()、asList()、sorted()、sortedArray()、reverse() reversed、reversedArray 系列方法
-* Arrayx 删除 toString(byte[]) 方法，Stringx 新增 valueOf(Byte[]) 方法
+* Arrayx 删除 toString(byte[]) 方法
 
 ## v0.4
 

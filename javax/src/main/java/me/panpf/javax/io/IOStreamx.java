@@ -283,7 +283,7 @@ public class IOStreamx {
      */
     @NotNull
     public static String readText(@NotNull URL url, @NotNull Charset charset) throws IOException {
-        return Stringx.valueOf(readBytes(url), charset);
+        return new String(readBytes(url), charset);
     }
 
     /**
