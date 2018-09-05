@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Intx;
+import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -1129,7 +1129,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             T tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1144,7 +1144,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             byte tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1159,7 +1159,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             short tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1174,7 +1174,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             int tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1189,7 +1189,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             long tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1204,7 +1204,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             float tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1219,7 +1219,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             double tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1234,7 +1234,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             boolean tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1249,7 +1249,7 @@ public class Arrayx {
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
-        for (int index : Intx.rangeTo(0, midPoint)) {
+        for (int index : Numberx.rangeTo(0, midPoint)) {
             char tmp = elements[index];
             elements[index] = elements[reverseIndex];
             elements[reverseIndex] = tmp;
@@ -1372,7 +1372,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         byte[] result = new byte[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1386,7 +1386,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         short[] result = new short[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1400,7 +1400,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         int[] result = new int[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1414,7 +1414,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         long[] result = new long[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1428,7 +1428,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         float[] result = new float[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1442,7 +1442,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         double[] result = new double[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1456,7 +1456,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         boolean[] result = new boolean[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -1470,7 +1470,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return elements;
         char[] result = new char[elements.length];
         int lastIndex = elements.length - 1;
-        for (int i : Intx.rangeTo(0, lastIndex)) {
+        for (int i : Numberx.rangeTo(0, lastIndex)) {
             result[lastIndex - i] = elements[i];
         }
         return result;
@@ -4213,7 +4213,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Double max = elements[0];
         if (max.isNaN()) return max;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Double e = elements[i];
             if (e.isNaN()) return e;
             if (max < e) max = e;
@@ -4231,7 +4231,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Float max = elements[0];
         if (max.isNaN()) return max;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Float e = elements[i];
             if (e.isNaN()) return e;
             if (max < e) max = e;
@@ -4246,7 +4246,7 @@ public class Arrayx {
     public static <T extends Comparable<T>> T max(@NotNull T[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         T max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
             if (max.compareTo(e) < 0) max = e;
         }
@@ -4260,7 +4260,7 @@ public class Arrayx {
     public static Byte max(@NotNull byte[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         byte max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
             if (max < e) max = e;
         }
@@ -4274,7 +4274,7 @@ public class Arrayx {
     public static Short max(@NotNull short[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         short max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
             if (max < e) max = e;
         }
@@ -4288,7 +4288,7 @@ public class Arrayx {
     public static Integer max(@NotNull int[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         int max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
             if (max < e) max = e;
         }
@@ -4302,7 +4302,7 @@ public class Arrayx {
     public static Long max(@NotNull long[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         long max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
             if (max < e) max = e;
         }
@@ -4319,7 +4319,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Float max = elements[0];
         if (max.isNaN()) return max;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Float e = elements[i];
             if (e.isNaN()) return e;
             if (max < e) max = e;
@@ -4337,7 +4337,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Double max = elements[0];
         if (max.isNaN()) return max;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Double e = elements[i];
             if (e.isNaN()) return e;
             if (max < e) max = e;
@@ -4352,7 +4352,7 @@ public class Arrayx {
     public static Character max(@NotNull char[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         char max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
             if (max < e) max = e;
         }
@@ -4367,7 +4367,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         T maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4386,7 +4386,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         byte maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4405,7 +4405,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         short maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4424,7 +4424,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         int maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4443,7 +4443,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         long maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4462,7 +4462,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         float maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             float e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4481,7 +4481,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         double maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             double e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4500,7 +4500,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         boolean maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             boolean e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4519,7 +4519,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         char maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
             R v = selector.transform(e);
             if (maxValue.compareTo(v) < 0) {
@@ -4537,7 +4537,7 @@ public class Arrayx {
     public static <T> T maxWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         T max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4551,7 +4551,7 @@ public class Arrayx {
     public static Byte maxWith(@NotNull byte[] elements, @NotNull Comparator<Byte> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         byte max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4565,7 +4565,7 @@ public class Arrayx {
     public static Short maxWith(@NotNull short[] elements, @NotNull Comparator<Short> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         short max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4579,7 +4579,7 @@ public class Arrayx {
     public static Integer maxWith(@NotNull int[] elements, @NotNull Comparator<Integer> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         int max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4593,7 +4593,7 @@ public class Arrayx {
     public static Long maxWith(@NotNull long[] elements, @NotNull Comparator<Long> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         long max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4607,7 +4607,7 @@ public class Arrayx {
     public static Float maxWith(@NotNull float[] elements, @NotNull Comparator<Float> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         float max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             float e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4621,7 +4621,7 @@ public class Arrayx {
     public static Double maxWith(@NotNull double[] elements, @NotNull Comparator<Double> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         double max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             double e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4635,7 +4635,7 @@ public class Arrayx {
     public static Boolean maxWith(@NotNull boolean[] elements, @NotNull Comparator<Boolean> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         boolean max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             boolean e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4649,7 +4649,7 @@ public class Arrayx {
     public static Character maxWith(@NotNull char[] elements, @NotNull Comparator<Character> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         char max = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
             if (comparator.compare(max, e) < 0) max = e;
         }
@@ -4670,7 +4670,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Double min = elements[0];
         if (min.isNaN()) return min;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Double e = elements[i];
             if (e.isNaN()) return e;
             if (min > e) min = e;
@@ -4688,7 +4688,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Float min = elements[0];
         if (min.isNaN()) return min;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Float e = elements[i];
             if (e.isNaN()) return e;
             if (min > e) min = e;
@@ -4703,7 +4703,7 @@ public class Arrayx {
     public static <T extends Comparable<T>> T min(@NotNull T[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         T min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
             if (min.compareTo(e) > 0) min = e;
         }
@@ -4717,7 +4717,7 @@ public class Arrayx {
     public static Byte min(@NotNull byte[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         byte min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
             if (min > e) min = e;
         }
@@ -4731,7 +4731,7 @@ public class Arrayx {
     public static Short min(@NotNull short[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         short min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
             if (min > e) min = e;
         }
@@ -4745,7 +4745,7 @@ public class Arrayx {
     public static Integer min(@NotNull int[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         int min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
             if (min > e) min = e;
         }
@@ -4759,7 +4759,7 @@ public class Arrayx {
     public static Long min(@NotNull long[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         long min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
             if (min > e) min = e;
         }
@@ -4776,7 +4776,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Float min = elements[0];
         if (min.isNaN()) return min;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Float e = elements[i];
             if (e.isNaN()) return e;
             if (min > e) min = e;
@@ -4794,7 +4794,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         Double min = elements[0];
         if (min.isNaN()) return min;
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             Double e = elements[i];
             if (e.isNaN()) return e;
             if (min > e) min = e;
@@ -4809,7 +4809,7 @@ public class Arrayx {
     public static Character min(@NotNull char[] elements) {
         if (Arrayx.isEmpty(elements)) return null;
         char min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
             if (min > e) min = e;
         }
@@ -4824,7 +4824,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         T minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4843,7 +4843,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         byte minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4862,7 +4862,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         short minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4881,7 +4881,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         int minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4900,7 +4900,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         long minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4919,7 +4919,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         float minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             float e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4938,7 +4938,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         double minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             double e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4957,7 +4957,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         boolean minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             boolean e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4976,7 +4976,7 @@ public class Arrayx {
         if (Arrayx.isEmpty(elements)) return null;
         char minElem = elements[0];
         R minValue = selector.transform(minElem);
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
             R v = selector.transform(e);
             if (minValue.compareTo(v) > 0) {
@@ -4994,7 +4994,7 @@ public class Arrayx {
     public static <T> T minWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         T min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5008,7 +5008,7 @@ public class Arrayx {
     public static Byte minWith(@NotNull byte[] elements, @NotNull Comparator<Byte> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         byte min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5022,7 +5022,7 @@ public class Arrayx {
     public static Short minWith(@NotNull short[] elements, @NotNull Comparator<Short> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         short min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5036,7 +5036,7 @@ public class Arrayx {
     public static Integer minWith(@NotNull int[] elements, @NotNull Comparator<Integer> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         int min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5050,7 +5050,7 @@ public class Arrayx {
     public static Long minWith(@NotNull long[] elements, @NotNull Comparator<Long> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         long min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5064,7 +5064,7 @@ public class Arrayx {
     public static Float minWith(@NotNull float[] elements, @NotNull Comparator<Float> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         float min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             float e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5078,7 +5078,7 @@ public class Arrayx {
     public static Double minWith(@NotNull double[] elements, @NotNull Comparator<Double> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         double min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             double e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5092,7 +5092,7 @@ public class Arrayx {
     public static Boolean minWith(@NotNull boolean[] elements, @NotNull Comparator<Boolean> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         boolean min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             boolean e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }
@@ -5106,7 +5106,7 @@ public class Arrayx {
     public static Character minWith(@NotNull char[] elements, @NotNull Comparator<Character> comparator) {
         if (Arrayx.isEmpty(elements)) return null;
         char min = elements[0];
-        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+        for (int i : Numberx.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
             if (comparator.compare(min, e) > 0) min = e;
         }

@@ -685,7 +685,7 @@ public class Stringx {
             return false;
         }
 
-        for (int index : Intx.unitlTo(0, self.length())) {
+        for (int index : Numberx.unitlTo(0, self.length())) {
             if (!Charx.equals(self.charAt(thisOffset + index), (other.charAt(otherOffset + index)), ignoreCase)) {
                 return false;
             }
@@ -702,8 +702,8 @@ public class Stringx {
             return index < 0 ? null : Pair.of(index, string);
         }
 
-        IntRange indices = !last ? Intx.rangeTo(Intx.coerceAtLeast(startIndex, 0), charSequence.length())
-                : Intx.downTo(Intx.coerceAtMost(startIndex, charSequence.length() - 1), 0);
+        IntRange indices = !last ? Numberx.rangeTo(Numberx.coerceAtLeast(startIndex, 0), charSequence.length())
+                : Numberx.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0);
 
         if (charSequence instanceof String) {
             for (final int index : indices) {
@@ -772,23 +772,23 @@ public class Stringx {
         int step;
 
         if (!last) {
-            finalStartIndex = Intx.coerceAtLeast(startIndex, 0);
-            finalEndIndex = Intx.coerceAtMost(endIndex, self.length());
+            finalStartIndex = Numberx.coerceAtLeast(startIndex, 0);
+            finalEndIndex = Numberx.coerceAtMost(endIndex, self.length());
             step = 1;
         } else {
-            finalStartIndex = Intx.coerceAtMost(startIndex, self.length() - 1);
-            finalEndIndex = Intx.coerceAtLeast(endIndex, 0);
+            finalStartIndex = Numberx.coerceAtMost(startIndex, self.length() - 1);
+            finalEndIndex = Numberx.coerceAtLeast(endIndex, 0);
             step = -1;
         }
 
         if (self instanceof String && other instanceof String) { // smart cast
-            for (int index : Intx.range(finalStartIndex, finalEndIndex, step)) {
+            for (int index : Numberx.range(finalStartIndex, finalEndIndex, step)) {
                 if (regionMatches((String) other, 0, (String) self, index, other.length(), ignoreCase)) {
                     return index;
                 }
             }
         } else {
-            for (int index : Intx.range(finalStartIndex, finalEndIndex, step)) {
+            for (int index : Numberx.range(finalStartIndex, finalEndIndex, step)) {
                 if (regionMatchesImpl(other, 0, self, index, other.length(), ignoreCase))
                     return index;
             }
@@ -857,7 +857,7 @@ public class Stringx {
             char charr = Arrayx.single(chars);
             return ((String) charSequence).indexOf(charr, startIndex);
         } else {
-            for (int index = Intx.coerceAtLeast(startIndex, 0), size = charSequence.length(); index < size; index++) {
+            for (int index = Numberx.coerceAtLeast(startIndex, 0), size = charSequence.length(); index < size; index++) {
                 final char charAtIndex = charSequence.charAt(index);
                 if (Arrayx.any(chars, new Predicate<Character>() {
                     @Override
@@ -935,7 +935,7 @@ public class Stringx {
             return ((String) charSequence).lastIndexOf(charr, startIndex);
         }
 
-        for (int index : Intx.downTo(Intx.coerceAtMost(startIndex, charSequence.length() - 1), 0)) {
+        for (int index : Numberx.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0)) {
             final char charAtIndex = charSequence.charAt(index);
             if (Arrayx.any(chars, new Predicate<Character>() {
                 @Override

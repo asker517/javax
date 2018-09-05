@@ -47,7 +47,7 @@ compile "me.panpf:javax-kt:$lastVersion"
 
 #### Lang
 * Class: [Classx.java] ([Test][ClassTest.java]) | [Class.kt] ([Test][ClassTest.kt])
-* Int: [Intx.java]
+* Number: [Numberx.java] ([Test][NumberTest.java]) | [Number.kt] ([Test][NumberTest.kt])
 * String: [Stringx.java] ([Test][StringTest.java]) | [String.kt] ([Test][StringTest.kt])
 
 #### Security
@@ -123,7 +123,10 @@ compile "me.panpf:javax-kt:$lastVersion"
 [Class.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/Class.kt
 [ClassTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ClassTest.kt
 
-[Intx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Intx.java
+[Numberx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Numberx.java
+[NumberTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/NumberTest.java
+[Number.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/Number.kt
+[NumberTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/NumberTest.kt
 
 [Stringx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Stringx.java
 [StringTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/StringTest.java

@@ -16,11 +16,52 @@
 
 package me.panpf.javax.lang;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Integer tool class
  */
 @SuppressWarnings("WeakerAccess")
-public class Intx {
+public class Numberx {
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static float scale(float number, int newScale, @NotNull RoundingMode roundingMode) {
+        return new BigDecimal(number).setScale(newScale, roundingMode).floatValue();
+    }
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static float scale(float number, int newScale) {
+        return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).floatValue();
+    }
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static double scale(double number, int newScale, @NotNull RoundingMode roundingMode) {
+        return new BigDecimal(number).setScale(newScale, roundingMode).doubleValue();
+    }
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static double scale(double number, int newScale) {
+        return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 
     /* ******************************************* From Kotlin Standard library ********************************************************* */
 

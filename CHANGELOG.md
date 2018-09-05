@@ -1,4 +1,7 @@
-## 0.5
+## v0.6 pre
+* Intx 重命名为 Numberx 并增加 scale 系列方法
+
+## v0.5
 * Digest 增加 InputStream 系列方法
 * Collectionx 扩展 join 系列方法
 * File mkdirsWithThrow() 重命名为 mkdirsOrThrow，createNewFileWithThrow 重命名为 createNewFileOrThrow，mkdirsWith() 重命名为 mkdirsCheck，createNewFileWith 重命名为 createNewFileCheck

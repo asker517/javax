@@ -17,7 +17,7 @@
 package me.panpf.javax.io;
 
 import me.panpf.javax.lang.Charx;
-import me.panpf.javax.lang.Intx;
+import me.panpf.javax.lang.Numberx;
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
@@ -730,7 +730,7 @@ public class Filex {
 
         // Annihilate differing base components by adding required number of .. parts
         StringBuilder res = new StringBuilder();
-        for (int i : Intx.downTo(baseCount - 1, sameCount)) {
+        for (int i : Numberx.downTo(baseCount - 1, sameCount)) {
             if ("..".equals(baseComponents.segments.get(i).getName())) {
                 return null;
             }
@@ -1110,7 +1110,7 @@ public class Filex {
      * @param blockSize size of a block, replaced by 512 if it's less, 4096 by default.
      */
     public static void forEachBlock(@NotNull File file, int blockSize, @NotNull Action2<byte[], Integer> action) throws IOException {
-        byte[] arr = new byte[Intx.coerceAtLeast(blockSize, IOStreamx.MINIMUM_BLOCK_SIZE)];
+        byte[] arr = new byte[Numberx.coerceAtLeast(blockSize, IOStreamx.MINIMUM_BLOCK_SIZE)];
 
         InputStream input = inputStream(file);
         try {
