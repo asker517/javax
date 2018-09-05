@@ -1,4 +1,4 @@
-## v0.6 pre
+## v0.6
 * Intx 重命名为 Numberx 并增加 scale 系列方法
 * Format 强制设置 roundingMode 为 RoundingMode.HALF_UP
 
