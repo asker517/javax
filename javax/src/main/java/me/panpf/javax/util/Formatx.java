@@ -18,6 +18,7 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -45,20 +46,9 @@ public class Formatx {
             }
         }
         buffString.append(suffix);
-        return new DecimalFormat(buffString.toString()).format(value);
-    }
-
-    /**
-     * Format a float number
-     *
-     * @param value                 Value
-     * @param suffix                Suffix
-     * @param decimalPlacesLength   Keep a few decimal places
-     * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
-     */
-    @NotNull
-    public static String format(float value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
-        return format((double) value, suffix, decimalPlacesLength, decimalPlacesFillZero);
+        DecimalFormat format = new DecimalFormat(buffString.toString());
+        format.setRoundingMode(RoundingMode.HALF_UP);
+        return format.format(value);
     }
 
 
@@ -72,6 +62,17 @@ public class Formatx {
     @NotNull
     public static String percent(double value, int decimalPlacesLength, boolean decimalPlacesFillZero) {
         return format(value, "%", decimalPlacesLength, decimalPlacesFillZero);
+    }
+
+    /**
+     * Calculate the percentage
+     *
+     * @param value                 Value
+     * @param decimalPlacesLength   Keep a few decimal places
+     */
+    @NotNull
+    public static String percent(double value, int decimalPlacesLength) {
+        return format(value, "%", decimalPlacesLength, false);
     }
 
     /**
@@ -98,6 +99,18 @@ public class Formatx {
     }
 
     /**
+     * Calculate the percentage
+     *
+     * @param value1                value1
+     * @param value2                value2
+     * @param decimalPlacesLength   Keep a few decimal places
+     */
+    @NotNull
+    public static String percent(double value1, double value2, int decimalPlacesLength) {
+        return percent(value1 / value2, decimalPlacesLength, false);
+    }
+
+    /**
      * Calculate the percentage, Leave two decimal places by default
      *
      * @param value1 value1
@@ -105,6 +118,20 @@ public class Formatx {
      */
     public static String percent(double value1, double value2) {
         return percent(value1 / value2, 2, false);
+    }
+
+
+    /**
+     * Format a float number
+     *
+     * @param value                 Value
+     * @param suffix                Suffix
+     * @param decimalPlacesLength   Keep a few decimal places
+     * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
+     */
+    @NotNull
+    public static String format(float value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
+        return format((double) value, suffix, decimalPlacesLength, decimalPlacesFillZero);
     }
 
     /**
@@ -117,6 +144,17 @@ public class Formatx {
     @NotNull
     public static String percent(float value, int decimalPlacesLength, boolean decimalPlacesFillZero) {
         return format(value, "%", decimalPlacesLength, decimalPlacesFillZero);
+    }
+
+    /**
+     * Calculate the percentage
+     *
+     * @param value                 Value
+     * @param decimalPlacesLength   Keep a few decimal places
+     */
+    @NotNull
+    public static String percent(float value, int decimalPlacesLength) {
+        return format(value, "%", decimalPlacesLength, false);
     }
 
     /**
@@ -143,6 +181,18 @@ public class Formatx {
     }
 
     /**
+     * Calculate the percentage
+     *
+     * @param value1                value1
+     * @param value2                value2
+     * @param decimalPlacesLength   Keep a few decimal places
+     */
+    @NotNull
+    public static String percent(float value1, float value2, int decimalPlacesLength) {
+        return percent(value1 / value2, decimalPlacesLength, false);
+    }
+
+    /**
      * Calculate the percentage, Leave two decimal places by default
      *
      * @param value1 value1
@@ -151,6 +201,7 @@ public class Formatx {
     public static String percent(float value1, float value2) {
         return percent(value1 / value2, 2, false);
     }
+
 
     /**
      * Calculate the percentage
@@ -165,6 +216,17 @@ public class Formatx {
         return percent(value1 / (double) value2, decimalPlacesLength, decimalPlacesFillZero);
     }
 
+    /**
+     * Calculate the percentage
+     *
+     * @param value1                value1
+     * @param value2                value2
+     * @param decimalPlacesLength   Keep a few decimal places
+     */
+    @NotNull
+    public static String percent(int value1, int value2, int decimalPlacesLength) {
+        return percent(value1 / (double) value2, decimalPlacesLength, false);
+    }
 
     /**
      * Calculate the percentage, Leave two decimal places by default
@@ -175,6 +237,7 @@ public class Formatx {
     public static String percent(int value1, int value2) {
         return percent(value1 / (double) value2, 2, false);
     }
+
 
     /**
      * Calculate the percentage
@@ -189,6 +252,17 @@ public class Formatx {
         return percent(value1 / (double) value2, decimalPlacesLength, decimalPlacesFillZero);
     }
 
+    /**
+     * Calculate the percentage
+     *
+     * @param value1                value1
+     * @param value2                value2
+     * @param decimalPlacesLength   Keep a few decimal places
+     */
+    @NotNull
+    public static String percent(long value1, long value2, int decimalPlacesLength) {
+        return percent(value1 / (double) value2, decimalPlacesLength, false);
+    }
 
     /**
      * Calculate the percentage, Leave two decimal places by default

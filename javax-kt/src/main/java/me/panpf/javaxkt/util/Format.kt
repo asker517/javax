@@ -16,6 +16,7 @@
 
 package me.panpf.javaxkt.util
 
+import java.math.RoundingMode
 import java.text.DecimalFormat
 
 /*
@@ -40,7 +41,9 @@ fun Double.format(suffix: String, decimalPlacesLength: Int = 2, decimalPlacesFil
         }
     }
     buffString.append(suffix)
-    return DecimalFormat(buffString.toString()).format(this)
+    val format = DecimalFormat(buffString.toString())
+    format.roundingMode = RoundingMode.HALF_UP
+    return format.format(this)
 }
 
 /**

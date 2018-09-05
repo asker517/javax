@@ -1,5 +1,6 @@
 ## v0.6 pre
 * Intx 重命名为 Numberx 并增加 scale 系列方法
+* Format 强制设置 roundingMode 为 RoundingMode.HALF_UP
 
 ## v0.5
 * Digest 增加 InputStream 系列方法
