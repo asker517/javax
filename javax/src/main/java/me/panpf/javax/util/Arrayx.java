@@ -20,6 +20,7 @@ import me.panpf.javax.lang.Intx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -29,6 +30,19 @@ import java.util.*;
 public class Arrayx {
 
     /* ******************************************* From Kotlin Standard library ********************************************************* */
+
+    /**
+     * Returns an original collection containing all the non-`null` elements, throwing an [IllegalArgumentException] if there are any `null` elements.
+     */
+    @NotNull
+    public static <T> T[] requireNoNulls(@NotNull T[] elements) {
+        for (T element : elements) {
+            if (element == null) {
+                throw new IllegalArgumentException("null element found in " + Arrays.toString(elements) + ".");
+            }
+        }
+        return elements;
+    }
 
 
     /* **************************************************** array of **************************************************** */
@@ -3999,5 +4013,2472 @@ public class Arrayx {
                 return keySelector.transform(element);
             }
         };
+    }
+
+
+    /* **************************************************** count **************************************************** */
+
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static <T> int count(@NotNull T[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull byte[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull short[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull int[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull long[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull float[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull double[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull boolean[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements in this array.
+     */
+    public static int count(@NotNull char[] elements) {
+        return elements.length;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static <T> int count(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        int count = 0;
+        for (T element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        int count = 0;
+        for (byte element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        int count = 0;
+        for (short element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        int count = 0;
+        for (int element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        int count = 0;
+        for (long element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        int count = 0;
+        for (float element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        int count = 0;
+        for (double element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        int count = 0;
+        for (boolean element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     */
+    public static int count(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        int count = 0;
+        for (char element : elements) {
+            if (predicate.predicate(element)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    /* **************************************************** max **************************************************** */
+
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Double max(@NotNull Double[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Double max = elements[0];
+        if (max.isNaN()) return max;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Double e = elements[i];
+            if (e.isNaN()) return e;
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Float max(@NotNull Float[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Float max = elements[0];
+        if (max.isNaN()) return max;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Float e = elements[i];
+            if (e.isNaN()) return e;
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static <T extends Comparable<T>> T max(@NotNull T[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        T max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            T e = elements[i];
+            if (max.compareTo(e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Byte max(@NotNull byte[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        byte max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            byte e = elements[i];
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Short max(@NotNull short[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        short max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            short e = elements[i];
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Integer max(@NotNull int[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        int max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            int e = elements[i];
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Long max(@NotNull long[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        long max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            long e = elements[i];
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Float max(@NotNull float[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Float max = elements[0];
+        if (max.isNaN()) return max;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Float e = elements[i];
+            if (e.isNaN()) return e;
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Double max(@NotNull double[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Double max = elements[0];
+        if (max.isNaN()) return max;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Double e = elements[i];
+            if (e.isNaN()) return e;
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the largest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Character max(@NotNull char[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        char max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            char e = elements[i];
+            if (max < e) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <T, R extends Comparable<R>> T maxBy(@NotNull T[] elements, @NotNull Transformer<T, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        T maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            T e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Byte maxBy(@NotNull byte[] elements, @NotNull Transformer<Byte, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        byte maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            byte e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Short maxBy(@NotNull short[] elements, @NotNull Transformer<Short, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        short maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            short e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Integer maxBy(@NotNull int[] elements, @NotNull Transformer<Integer, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        int maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            int e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Long maxBy(@NotNull long[] elements, @NotNull Transformer<Long, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        long maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            long e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Float maxBy(@NotNull float[] elements, @NotNull Transformer<Float, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        float maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            float e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Double maxBy(@NotNull double[] elements, @NotNull Transformer<Double, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        double maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            double e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Boolean maxBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        boolean maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            boolean e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element yielding the largest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Character maxBy(@NotNull char[] elements, @NotNull Transformer<Character, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        char maxElem = elements[0];
+        R maxValue = selector.transform(maxElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            char e = elements[i];
+            R v = selector.transform(e);
+            if (maxValue.compareTo(v) < 0) {
+                maxElem = e;
+                maxValue = v;
+            }
+        }
+        return maxElem;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static <T> T maxWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        T max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            T e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Byte maxWith(@NotNull byte[] elements, @NotNull Comparator<Byte> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        byte max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            byte e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Short maxWith(@NotNull short[] elements, @NotNull Comparator<Short> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        short max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            short e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Integer maxWith(@NotNull int[] elements, @NotNull Comparator<Integer> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        int max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            int e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Long maxWith(@NotNull long[] elements, @NotNull Comparator<Long> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        long max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            long e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Float maxWith(@NotNull float[] elements, @NotNull Comparator<Float> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        float max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            float e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Double maxWith(@NotNull double[] elements, @NotNull Comparator<Double> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        double max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            double e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Boolean maxWith(@NotNull boolean[] elements, @NotNull Comparator<Boolean> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        boolean max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            boolean e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+    /**
+     * Returns the first element having the largest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Character maxWith(@NotNull char[] elements, @NotNull Comparator<Character> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        char max = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            char e = elements[i];
+            if (comparator.compare(max, e) < 0) max = e;
+        }
+        return max;
+    }
+
+
+    /* **************************************************** min **************************************************** */
+
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Double min(@NotNull Double[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Double min = elements[0];
+        if (min.isNaN()) return min;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Double e = elements[i];
+            if (e.isNaN()) return e;
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Float min(@NotNull Float[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Float min = elements[0];
+        if (min.isNaN()) return min;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Float e = elements[i];
+            if (e.isNaN()) return e;
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static <T extends Comparable<T>> T min(@NotNull T[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        T min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            T e = elements[i];
+            if (min.compareTo(e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Byte min(@NotNull byte[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        byte min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            byte e = elements[i];
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Short min(@NotNull short[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        short min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            short e = elements[i];
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Integer min(@NotNull int[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        int min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            int e = elements[i];
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Long min(@NotNull long[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        long min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            long e = elements[i];
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Float min(@NotNull float[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Float min = elements[0];
+        if (min.isNaN()) return min;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Float e = elements[i];
+            if (e.isNaN()) return e;
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     * <p>
+     * If any of elements is `NaN` returns `NaN`.
+     */
+    @Nullable
+    public static Double min(@NotNull double[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        Double min = elements[0];
+        if (min.isNaN()) return min;
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            Double e = elements[i];
+            if (e.isNaN()) return e;
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the smallest element or `null` if there are no elements.
+     */
+    @Nullable
+    public static Character min(@NotNull char[] elements) {
+        if (Arrayx.isEmpty(elements)) return null;
+        char min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            char e = elements[i];
+            if (min > e) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <T, R extends Comparable<R>> T minBy(@NotNull T[] elements, @NotNull Transformer<T, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        T minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            T e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Byte minBy(@NotNull byte[] elements, @NotNull Transformer<Byte, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        byte minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            byte e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Short minBy(@NotNull short[] elements, @NotNull Transformer<Short, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        short minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            short e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Integer minBy(@NotNull int[] elements, @NotNull Transformer<Integer, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        int minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            int e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Long minBy(@NotNull long[] elements, @NotNull Transformer<Long, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        long minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            long e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Float minBy(@NotNull float[] elements, @NotNull Transformer<Float, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        float minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            float e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Double minBy(@NotNull double[] elements, @NotNull Transformer<Double, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        double minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            double e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Boolean minBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        boolean minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            boolean e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element yielding the smallest value of the given function or `null` if there are no elements.
+     */
+    @Nullable
+    public static <R extends Comparable<R>> Character minBy(@NotNull char[] elements, @NotNull Transformer<Character, R> selector) {
+        if (Arrayx.isEmpty(elements)) return null;
+        char minElem = elements[0];
+        R minValue = selector.transform(minElem);
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            char e = elements[i];
+            R v = selector.transform(e);
+            if (minValue.compareTo(v) > 0) {
+                minElem = e;
+                minValue = v;
+            }
+        }
+        return minElem;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static <T> T minWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        T min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            T e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Byte minWith(@NotNull byte[] elements, @NotNull Comparator<Byte> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        byte min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            byte e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Short minWith(@NotNull short[] elements, @NotNull Comparator<Short> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        short min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            short e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Integer minWith(@NotNull int[] elements, @NotNull Comparator<Integer> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        int min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            int e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Long minWith(@NotNull long[] elements, @NotNull Comparator<Long> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        long min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            long e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Float minWith(@NotNull float[] elements, @NotNull Comparator<Float> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        float min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            float e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Double minWith(@NotNull double[] elements, @NotNull Comparator<Double> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        double min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            double e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Boolean minWith(@NotNull boolean[] elements, @NotNull Comparator<Boolean> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        boolean min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            boolean e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+    /**
+     * Returns the first element having the smallest value according to the provided [comparator] or `null` if there are no elements.
+     */
+    @Nullable
+    public static Character minWith(@NotNull char[] elements, @NotNull Comparator<Character> comparator) {
+        if (Arrayx.isEmpty(elements)) return null;
+        char min = elements[0];
+        for (int i : Intx.rangeTo(1, elements.length - 1)) {
+            char e = elements[i];
+            if (comparator.compare(min, e) > 0) min = e;
+        }
+        return min;
+    }
+
+
+    /* **************************************************** join **************************************************** */
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T, A extends Appendable> A joinTo(@NotNull T[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                     @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                     @Nullable CharSequence truncated, @Nullable Transformer<T, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (T element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                StringBuilderx.appendElement(buffer, element, transform);
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull byte[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Byte, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (byte element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull short[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Short, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (short element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull int[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Integer, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (int element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull long[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Long, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (long element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull float[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Float, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (float element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull double[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Double, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (double element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull boolean[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Boolean, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (boolean element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(String.valueOf(element));
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <A extends Appendable> A joinTo(@NotNull char[] elements, @NotNull A buffer, @Nullable CharSequence separator,
+                                                  @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                  @Nullable CharSequence truncated, @Nullable Transformer<Character, CharSequence> transform) throws IOException {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "";
+        buffer.append(prefix);
+        int count = 0;
+        for (char element : elements) {
+            if (++count > 1) buffer.append(separator);
+            if (limit < 0 || count <= limit) {
+                if (transform != null)
+                    buffer.append(transform.transform(element));
+                else
+                    buffer.append(element);
+            } else {
+                break;
+            }
+        }
+        if (limit >= 0 && count > limit) buffer.append(truncated);
+        buffer.append(postfix);
+        return buffer;
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToString(@NotNull T[] elements, @Nullable CharSequence separator,
+                                          @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                          @Nullable CharSequence truncated, @Nullable Transformer<T, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToString(@NotNull T[] elements, @Nullable CharSequence separator, @Nullable Transformer<T, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToString(@NotNull T[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToString(@NotNull T[] elements, @Nullable Transformer<T, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToString(@NotNull T[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToArrayString(@NotNull T[] elements, @Nullable Transformer<T, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T> String joinToArrayString(@NotNull T[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(byte[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Byte, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull byte[] elements, @Nullable CharSequence separator, @Nullable Transformer<Byte, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull byte[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull byte[] elements, @Nullable Transformer<Byte, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull byte[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull byte[] elements, @Nullable Transformer<Byte, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull byte[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(short[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Short, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull short[] elements, @Nullable CharSequence separator, @Nullable Transformer<Short, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull short[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull short[] elements, @Nullable Transformer<Short, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull short[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull short[] elements, @Nullable Transformer<Short, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull short[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(int[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Integer, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull int[] elements, @Nullable CharSequence separator, @Nullable Transformer<Integer, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull int[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull int[] elements, @Nullable Transformer<Integer, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull int[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull int[] elements, @Nullable Transformer<Integer, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull int[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(long[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Long, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull long[] elements, @Nullable CharSequence separator, @Nullable Transformer<Long, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull long[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull long[] elements, @Nullable Transformer<Long, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull long[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull long[] elements, @Nullable Transformer<Long, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull long[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(float[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Float, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull float[] elements, @Nullable CharSequence separator, @Nullable Transformer<Float, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull float[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull float[] elements, @Nullable Transformer<Float, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull float[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull float[] elements, @Nullable Transformer<Float, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull float[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(double[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Double, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull double[] elements, @Nullable CharSequence separator, @Nullable Transformer<Double, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull double[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull double[] elements, @Nullable Transformer<Double, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull double[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull double[] elements, @Nullable Transformer<Double, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull double[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(boolean[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Boolean, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull boolean[] elements, @Nullable CharSequence separator, @Nullable Transformer<Boolean, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull boolean[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull boolean[] elements, @Nullable Transformer<Boolean, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull boolean[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull boolean[] elements, @Nullable Transformer<Boolean, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull boolean[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(char[] elements, @Nullable CharSequence separator,
+                                      @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                      @Nullable CharSequence truncated, @Nullable Transformer<Character, CharSequence> transform) {
+        try {
+            return joinTo(elements, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull char[] elements, @Nullable CharSequence separator, @Nullable Transformer<Character, CharSequence> transform) {
+        return joinToString(elements, separator, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull char[] elements, @Nullable CharSequence separator) {
+        return joinToString(elements, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull char[] elements, @Nullable Transformer<Character, CharSequence> transform) {
+        return joinToString(elements, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToString(@NotNull char[] elements) {
+        return joinToString(elements, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull char[] elements, @Nullable Transformer<Character, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static String joinToArrayString(@NotNull char[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+
+    /* **************************************************** sum **************************************************** */
+
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static int sum(@NotNull Byte[] elements) {
+        int sum = 0;
+        for (byte element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static int sum(@NotNull Short[] elements) {
+        int sum = 0;
+        for (short element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static int sum(@NotNull Integer[] elements) {
+        int sum = 0;
+        for (int element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static long sum(@NotNull Long[] elements) {
+        long sum = 0;
+        for (long element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static float sum(@NotNull Float[] elements) {
+        float sum = 0;
+        for (float element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static double sum(@NotNull Double[] elements) {
+        double sum = 0;
+        for (double element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static int sum(@NotNull byte[] elements) {
+        int sum = 0;
+        for (byte element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static int sum(@NotNull short[] elements) {
+        int sum = 0;
+        for (short element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static int sum(@NotNull int[] elements) {
+        int sum = 0;
+        for (int element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static long sum(@NotNull long[] elements) {
+        long sum = 0;
+        for (long element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static float sum(@NotNull float[] elements) {
+        float sum = 0;
+        for (float element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all elements in the array.
+     */
+    public static double sum(@NotNull double[] elements) {
+        double sum = 0;
+        for (double element : elements) {
+            sum += element;
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static <T> int sumBy(@NotNull T[] elements,@NotNull  Transformer<T, Integer> selector) {
+        int sum = 0;
+        for (T element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull byte[] elements, @NotNull Transformer<Byte, Integer> selector) {
+        int sum = 0;
+        for (byte element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull short[] elements, @NotNull Transformer<Short, Integer> selector) {
+        int sum = 0;
+        for (short element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull int[] elements, @NotNull Transformer<Integer, Integer> selector) {
+        int sum = 0;
+        for (int element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull long[] elements, @NotNull Transformer<Long, Integer> selector) {
+        int sum = 0;
+        for (long element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull float[] elements, @NotNull Transformer<Float, Integer> selector) {
+        int sum = 0;
+        for (float element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull double[] elements, @NotNull Transformer<Double, Integer> selector) {
+        int sum = 0;
+        for (double element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, Integer> selector) {
+        int sum = 0;
+        for (boolean element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static int sumBy(@NotNull char[] elements, @NotNull Transformer<Character, Integer> selector) {
+        int sum = 0;
+        for (char element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static <T> double sumByDouble(@NotNull T[] elements, @NotNull Transformer<T, Double> selector) {
+        double sum = 0.0;
+        for (T element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull byte[] elements, @NotNull Transformer<Byte, Double> selector) {
+        double sum = 0.0;
+        for (byte element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull short[] elements, @NotNull Transformer<Short, Double> selector) {
+        double sum = 0.0;
+        for (short element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull int[] elements, @NotNull Transformer<Integer, Double> selector) {
+        double sum = 0.0;
+        for (int element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull long[] elements, @NotNull Transformer<Long, Double> selector) {
+        double sum = 0.0;
+        for (long element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull float[] elements, @NotNull Transformer<Float, Double> selector) {
+        double sum = 0.0;
+        for (float element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull double[] elements, @NotNull Transformer<Double, Double> selector) {
+        double sum = 0.0;
+        for (double element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull boolean[] elements, @NotNull Transformer<Boolean, Double> selector) {
+        double sum = 0.0;
+        for (boolean element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
+    }
+
+    /**
+     * Returns the sum of all values produced by [selector] function applied to each element in the array.
+     */
+    public static double sumByDouble(@NotNull char[] elements, @NotNull Transformer<Character, Double> selector) {
+        double sum = 0.0;
+        for (char element : elements) {
+            sum += selector.transform(element);
+        }
+        return sum;
     }
 }
