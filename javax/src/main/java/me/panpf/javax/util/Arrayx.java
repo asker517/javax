@@ -16,12 +16,10 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Intx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -1712,7 +1710,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Byte> sorted(@NotNull byte[] elements) {
-        return asList(sortedArray(elements));
+        Byte[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
     /**
@@ -1720,7 +1720,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Short> sorted(@NotNull short[] elements) {
-        return asList(sortedArray(elements));
+        Short[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
     /**
@@ -1728,7 +1730,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Integer> sorted(@NotNull int[] elements) {
-        return asList(sortedArray(elements));
+        Integer[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
     /**
@@ -1736,7 +1740,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Long> sorted(@NotNull long[] elements) {
-        return asList(sortedArray(elements));
+        Long[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
     /**
@@ -1744,7 +1750,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Float> sorted(@NotNull float[] elements) {
-        return asList(sortedArray(elements));
+        Float[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
     /**
@@ -1752,7 +1760,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Double> sorted(@NotNull double[] elements) {
-        return asList(sortedArray(elements));
+        Double[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
     /**
@@ -1760,7 +1770,9 @@ public class Arrayx {
      */
     @NotNull
     public static List<Character> sorted(@NotNull char[] elements) {
-        return asList(sortedArray(elements));
+        Character[] result = toTypedArray(elements);
+        sort(result);
+        return asList(result);
     }
 
 
