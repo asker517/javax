@@ -16,8 +16,6 @@
 
 package me.panpf.javax.lang;
 
-import me.panpf.javax.util.Premisex;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -32,10 +30,6 @@ public class IntProgressionIterator implements Iterator<Integer> {
     private boolean hasNext;
 
     IntProgressionIterator(int start, int endInclusive, int step) {
-        Premisex.require(step != 0, "`step` cannot be 0");
-        Premisex.require(step > 0 && start < endInclusive, "`start` must be less than `endInclusive`");
-        Premisex.require(step < 0 && start > endInclusive, "`start` must be greater than `endInclusive`");
-
         this.step = step;
         finalElement = endInclusive;
         hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;

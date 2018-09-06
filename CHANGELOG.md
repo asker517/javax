@@ -1,5 +1,6 @@
-## 0.7 pre1
+## 0.6.1
 * Arrayx 增加 plus, contentToString
+* Number 修复 range(1, 1) 崩溃的 bug，并增加 downUntilTo 方法
 
 ## v0.6
 * Intx 重命名为 Numberx 并增加 scale 系列方法

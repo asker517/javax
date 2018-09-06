@@ -206,23 +206,35 @@ public class Numberx {
         return self > maximumValue ? maximumValue : self;
     }
 
-    public static IntRange range(int start, int end, int step) {
+    public static IntRange rangeTo(int start, int end, int step) {
         return new IntRange(start, end, step);
     }
 
-    public static IntRange unitl(int start, int end, int step) {
+    public static IntRange rangeTo(int start, int end) {
+        return rangeTo(start, end, 1);
+    }
+
+    public static IntRange untilTo(int start, int end, int step) {
         return new IntRange(start, end - 1, step);
     }
 
-    public static IntRange rangeTo(int start, int end) {
-        return new IntRange(start, end, 1);
+    public static IntRange untilTo(int start, int end) {
+        return untilTo(start, end, 1);
     }
 
-    public static IntRange unitlTo(int start, int end) {
-        return new IntRange(start, end - 1, 1);
+    public static IntRange downTo(int start, int end, int step) {
+        return new IntRange(start, end, step);
     }
 
     public static IntRange downTo(int start, int end) {
-        return new IntRange(start, end, -1);
+        return downTo(start, end, -1);
+    }
+
+    public static IntRange downUntilTo(int start, int end, int step) {
+        return new IntRange(start, end + 1, step);
+    }
+
+    public static IntRange downUntilTo(int start, int end) {
+        return downUntilTo(start, end, -1);
     }
 }

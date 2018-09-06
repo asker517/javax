@@ -685,7 +685,7 @@ public class Stringx {
             return false;
         }
 
-        for (int index : Numberx.unitlTo(0, self.length())) {
+        for (int index : Numberx.untilTo(0, self.length())) {
             if (!Charx.equals(self.charAt(thisOffset + index), (other.charAt(otherOffset + index)), ignoreCase)) {
                 return false;
             }
@@ -782,13 +782,13 @@ public class Stringx {
         }
 
         if (self instanceof String && other instanceof String) { // smart cast
-            for (int index : Numberx.range(finalStartIndex, finalEndIndex, step)) {
+            for (int index : Numberx.rangeTo(finalStartIndex, finalEndIndex, step)) {
                 if (regionMatches((String) other, 0, (String) self, index, other.length(), ignoreCase)) {
                     return index;
                 }
             }
         } else {
-            for (int index : Numberx.range(finalStartIndex, finalEndIndex, step)) {
+            for (int index : Numberx.rangeTo(finalStartIndex, finalEndIndex, step)) {
                 if (regionMatchesImpl(other, 0, self, index, other.length(), ignoreCase))
                     return index;
             }
