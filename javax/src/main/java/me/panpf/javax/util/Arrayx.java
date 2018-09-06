@@ -6149,6 +6149,80 @@ public class Arrayx {
     }
 
 
+    /* **************************************************** contentToString **************************************************** */
+
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    public static <T> String contentToString(@NotNull T[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    public static String contentToString(@NotNull byte[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull short[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull int[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull long[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull float[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull double[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull boolean[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@NotNull char[] elements) {
+        return java.util.Arrays.toString(elements);
+    }
+
+
     /* **************************************************** sum **************************************************** */
 
 
@@ -6480,5 +6554,341 @@ public class Arrayx {
             sum += selector.transform(element);
         }
         return sum;
+    }
+
+
+    /* **************************************************** plus **************************************************** */
+
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static <T> T[] plus(@NotNull T[] elements, @NotNull T element) {
+        int index = elements.length;
+        T[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static byte[] plus(@NotNull byte[] elements, byte element) {
+        int index = elements.length;
+        byte[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static short[] plus(@NotNull short[] elements, short element) {
+        int index = elements.length;
+        short[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static int[] plus(@NotNull int[] elements, int element) {
+        int index = elements.length;
+        int[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static long[] plus(@NotNull long[] elements, long element) {
+        int index = elements.length;
+        long[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static float[] plus(@NotNull float[] elements, float element) {
+        int index = elements.length;
+        float[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static double[] plus(@NotNull double[] elements, double element) {
+        int index = elements.length;
+        double[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static boolean[] plus(@NotNull boolean[] elements, boolean element) {
+        int index = elements.length;
+        boolean[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static char[] plus(@NotNull char[] elements, char element) {
+        int index = elements.length;
+        char[] result = java.util.Arrays.copyOf(elements, index + 1);
+        result[index] = element;
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static <T> T[] plus(@NotNull T[] selfElements, @NotNull Collection<T> elements) {
+        int index = selfElements.length;
+        T[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (T element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static byte[] plus(@NotNull byte[] selfElements, @NotNull Collection<Byte> elements) {
+        int index = selfElements.length;
+        byte[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (byte element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static short[] plus(@NotNull short[] selfElements, @NotNull Collection<Short> elements) {
+        int index = selfElements.length;
+        short[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (short element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static int[] plus(@NotNull int[] selfElements, @NotNull Collection<Integer> elements) {
+        int index = selfElements.length;
+        int[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (int element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static long[] plus(@NotNull long[] selfElements, @NotNull Collection<Long> elements) {
+        int index = selfElements.length;
+        long[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (long element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static float[] plus(@NotNull float[] selfElements, @NotNull Collection<Float> elements) {
+        int index = selfElements.length;
+        float[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (float element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static double[] plus(@NotNull double[] selfElements, @NotNull Collection<Double> elements) {
+        int index = selfElements.length;
+        double[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (double element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static boolean[] plus(@NotNull boolean[] selfElements, @NotNull Collection<Boolean> elements) {
+        int index = selfElements.length;
+        boolean[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (boolean element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
+     */
+    @NotNull
+    public static char[] plus(@NotNull char[] selfElements, @NotNull Collection<Character> elements) {
+        int index = selfElements.length;
+        char[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        for (char element : elements) {
+            result[index++] = element;
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static <T> T[] plus(@NotNull T[] selfElements, @NotNull T[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        T[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static byte[] plus(@NotNull byte[] selfElements, @NotNull byte[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        byte[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static short[] plus(@NotNull short[] selfElements, @NotNull short[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        short[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static int[] plus(@NotNull int[] selfElements, @NotNull int[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        int[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static long[] plus(@NotNull long[] selfElements, @NotNull long[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        long[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static float[] plus(@NotNull float[] selfElements, @NotNull float[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        float[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static double[] plus(@NotNull double[] selfElements, @NotNull double[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        double[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static boolean[] plus(@NotNull boolean[] selfElements, @NotNull boolean[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        boolean[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
+     */
+    @NotNull
+    public static char[] plus(@NotNull char[] selfElements, @NotNull char[] elements) {
+        int thisSize = selfElements.length;
+        int arraySize = elements.length;
+        char[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        System.arraycopy(elements, 0, result, thisSize, arraySize);
+        return result;
+    }
+
+    /**
+     * Returns an array containing all elements of the original array and then the given [element].
+     */
+    @NotNull
+    public static <T> T[] plusElement(@NotNull T[] elements, @NotNull T element) {
+        return plus(elements, element);
     }
 }
