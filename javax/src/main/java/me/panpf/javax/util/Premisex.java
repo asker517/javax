@@ -22,7 +22,93 @@ import org.jetbrains.annotations.Nullable;
 @SuppressWarnings("WeakerAccess")
 public class Premisex {
 
+    public static void checkInRange(byte value, byte minValue, byte maxValue) {
+        if (value < minValue || value > maxValue) {
+            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkInRange(short value, short minValue, short maxValue) {
+        if (value < minValue || value > maxValue) {
+            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkInRange(int value, int minValue, int maxValue) {
+        if (value < minValue || value > maxValue) {
+            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkInRange(long value, long minValue, long maxValue) {
+        if (value < minValue || value > maxValue) {
+            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkInRange(float value, float minValue, float maxValue) {
+        if (value < minValue || value > maxValue) {
+            String message = String.format("value %s must be >= %s && <= %s", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkInRange(double value, double minValue, double maxValue) {
+        if (value < minValue || value > maxValue) {
+            String message = String.format("value %s must be >= %s && <= %s", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkNotInRange(byte value, byte minValue, byte maxValue) {
+        if (value >= minValue && value <= maxValue) {
+            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkNotInRange(short value, short minValue, short maxValue) {
+        if (value >= minValue && value <= maxValue) {
+            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkNotInRange(int value, int minValue, int maxValue) {
+        if (value >= minValue && value <= maxValue) {
+            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkNotInRange(long value, long minValue, long maxValue) {
+        if (value >= minValue && value <= maxValue) {
+            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkNotInRange(float value, float minValue, float maxValue) {
+        if (value >= minValue && value <= maxValue) {
+            String message = String.format("value %s must be < %s || > %s", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+    public static void checkNotInRange(double value, double minValue, double maxValue) {
+        if (value >= minValue && value <= maxValue) {
+            String message = String.format("value %s must be < %s || > %s", value, minValue, maxValue);
+            throw new IllegalArgumentException(message);
+        }
+    }
+
+
     /* ******************************************* From Kotlin Standard library ********************************************************* */
+
 
     /**
      * Checks that the specified object reference is not {@code null}. This

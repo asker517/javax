@@ -3,6 +3,7 @@
 * 增加 Throwable
 * File 增加 listRecursively
 * Number 增加 toByte、toShort、toInt 等方法
+* Premise 增加 checkInRange、checkNotInRange
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString
