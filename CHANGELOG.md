@@ -1,6 +1,7 @@
 ## 0.6.2
 * Arrayx 增加 indices, contains, indexOf
 * 增加 Throwable
+* File 增加 listRecursively
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString

@@ -20,7 +20,9 @@ import me.panpf.javaxkt.io.*
 import org.junit.Assert
 import org.junit.Test
 import java.io.File
+import java.io.FileFilter
 import java.io.FileNotFoundException
+import java.io.FilenameFilter
 
 class FileTest {
 
@@ -207,5 +209,54 @@ class FileTest {
 
         dir.deleteRecursively()
         Assert.assertFalse(dir.exists())
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testList() {
+        val testDir = File("/tmp/testList")
+
+        val testFile11 = File(testDir, "dir1/file1")
+        val testFile12 = File(testDir, "dir1/file2")
+        val testFile13 = File(testDir, "dir1/file3")
+
+        val testFile21 = File(testDir, "dir2/file1")
+        val testFile22 = File(testDir, "dir2/file2")
+        val testFile23 = File(testDir, "dir2/file3")
+
+        val testFile31 = File(testDir, "dir3/file1")
+        val testFile32 = File(testDir, "dir3/file2")
+        val testFile33 = File(testDir, "dir3/file3")
+
+        val testFile4 = File(testDir, "file4")
+        val testFile5 = File(testDir, "file5")
+        val testFile6 = File(testDir, "file6")
+
+        testFile11.createNewFileOrThrow()
+        testFile12.createNewFileOrThrow()
+        testFile13.createNewFileOrThrow()
+        testFile21.createNewFileOrThrow()
+        testFile22.createNewFileOrThrow()
+        testFile23.createNewFileOrThrow()
+        testFile31.createNewFileOrThrow()
+        testFile32.createNewFileOrThrow()
+        testFile33.createNewFileOrThrow()
+        testFile4.createNewFileOrThrow()
+        testFile5.createNewFileOrThrow()
+        testFile6.createNewFileOrThrow()
+
+        val childPaths = testDir.listRecursively()
+        Assert.assertEquals((childPaths?.size ?: 0).toLong(), 15)
+
+        val childFiles = testDir.listFilesRecursively()
+        Assert.assertEquals((childFiles?.size ?: 0).toLong(), 15)
+
+        val childFiles2 = testDir.listFilesRecursively(FileFilter { pathname -> pathname.isFile })
+        Assert.assertEquals((childFiles2?.size ?: 0).toLong(), 12)
+
+        val childFiles3 = testDir.listFilesRecursively(FilenameFilter { dir, name -> dir.isFile && name.endsWith("2") })
+        Assert.assertEquals((childFiles3?.size ?: 0).toLong(), 3)
+
+        testDir.deleteRecursively()
     }
 }

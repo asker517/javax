@@ -207,6 +207,118 @@ public class Filex {
         return length;
     }
 
+    /**
+     * Return the path to the file under this directory and all its subdirectories
+     */
+    @Nullable
+    public static String[] listRecursively(@NotNull File dir) {
+        if (!dir.exists()) return null;
+        if (dir.isFile()) return null;
+
+        List<String> files = new LinkedList<>();
+
+        Queue<File> dirQueue = new LinkedList<>();
+        dirQueue.add(dir);
+
+        while (true) {
+            File currentDir = dirQueue.poll();
+            if (currentDir == null || !currentDir.exists()) break;
+
+            String[] childPaths = currentDir.list();
+            if (childPaths == null) continue;
+
+            for (String childPath : childPaths) {
+                File childFile = new File(currentDir, childPath);
+                if (!childFile.exists()) continue;
+                files.add(childFile.getPath().replace(dir.getPath() + File.separator, ""));
+
+                if (childFile.isDirectory()) {
+                    dirQueue.add(childFile);
+                }
+            }
+        }
+        return files.isEmpty() ? null : files.toArray(new String[0]);
+    }
+
+    /**
+     * Return files in this directory and all its subdirectories
+     */
+    @Nullable
+    public static File[] listFilesRecursively(@NotNull File dir, @Nullable FileFilter fileFilter) {
+        if (!dir.exists()) return null;
+        if (dir.isFile()) return null;
+
+        List<File> files = new LinkedList<>();
+
+        Queue<File> dirQueue = new LinkedList<>();
+        dirQueue.add(dir);
+
+        while (true) {
+            File currentDir = dirQueue.poll();
+            if (currentDir == null || !currentDir.exists()) break;
+
+            File[] childFiles = currentDir.listFiles();
+            if (childFiles == null) continue;
+
+            for (File childFile : childFiles) {
+                if (!childFile.exists()) continue;
+
+                if (fileFilter == null || fileFilter.accept(childFile)) {
+                    files.add(childFile);
+                }
+
+                if (childFile.isDirectory()) {
+                    dirQueue.add(childFile);
+                }
+            }
+        }
+        return files.isEmpty() ? null : files.toArray(new File[0]);
+    }
+
+    /**
+     * Return files in this directory and all its subdirectories
+     */
+    @Nullable
+    public static File[] listFilesRecursively(@NotNull File dir, @Nullable FilenameFilter filenameFilter) {
+        if (!dir.exists()) return null;
+        if (dir.isFile()) return null;
+
+        List<File> files = new LinkedList<>();
+
+        Queue<File> dirQueue = new LinkedList<>();
+        dirQueue.add(dir);
+
+        File currentDir;
+        while (true) {
+            currentDir = dirQueue.poll();
+            if (currentDir == null || !currentDir.exists()) break;
+
+            File[] childFiles = currentDir.listFiles();
+            if (childFiles == null) continue;
+
+            for (File childFile : childFiles) {
+                if (!childFile.exists()) continue;
+
+                if (filenameFilter == null || filenameFilter.accept(childFile, childFile.getName())) {
+                    files.add(childFile);
+                }
+
+                if (childFile.isDirectory()) {
+                    dirQueue.add(childFile);
+                }
+            }
+        }
+        return files.isEmpty() ? null : files.toArray(new File[0]);
+    }
+
+    /**
+     * Return files in this directory and all its subdirectories
+     */
+    @Nullable
+    public static File[] listFilesRecursively(@NotNull File dir) {
+        return listFilesRecursively(dir, (FileFilter) null);
+    }
+
     /* ******************************************* From Kotlin Standard library ********************************************************* */
 
     /**
@@ -1280,7 +1392,7 @@ public class Filex {
      * @param text    text to write into file.
      * @param charset character set to use.
      */
-    public static void writeText(@NotNull File file,@NotNull  String text, @NotNull Charset charset) throws IOException {
+    public static void writeText(@NotNull File file, @NotNull String text, @NotNull Charset charset) throws IOException {
         writeBytes(file, Stringx.toByteArray(text, charset));
     }
 

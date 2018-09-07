@@ -22,9 +22,7 @@ import me.panpf.javax.io.UnableCreateFileException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class FileTest {
 
@@ -222,5 +220,63 @@ public class FileTest {
 
         Filex.deleteRecursively(dir);
         Assert.assertFalse(dir.exists());
+    }
+
+    @Test
+    public void testList() throws UnableCreateFileException, UnableCreateDirException {
+        File testDir = new File("/tmp/testList");
+
+        File testFile11 = new File(testDir, "dir1/file1");
+        File testFile12 = new File(testDir, "dir1/file2");
+        File testFile13 = new File(testDir, "dir1/file3");
+
+        File testFile21 = new File(testDir, "dir2/file1");
+        File testFile22 = new File(testDir, "dir2/file2");
+        File testFile23 = new File(testDir, "dir2/file3");
+
+        File testFile31 = new File(testDir, "dir3/file1");
+        File testFile32 = new File(testDir, "dir3/file2");
+        File testFile33 = new File(testDir, "dir3/file3");
+
+        File testFile4 = new File(testDir, "file4");
+        File testFile5 = new File(testDir, "file5");
+        File testFile6 = new File(testDir, "file6");
+
+        Filex.createNewFileOrThrow(testFile11);
+        Filex.createNewFileOrThrow(testFile12);
+        Filex.createNewFileOrThrow(testFile13);
+        Filex.createNewFileOrThrow(testFile21);
+        Filex.createNewFileOrThrow(testFile22);
+        Filex.createNewFileOrThrow(testFile23);
+        Filex.createNewFileOrThrow(testFile31);
+        Filex.createNewFileOrThrow(testFile32);
+        Filex.createNewFileOrThrow(testFile33);
+        Filex.createNewFileOrThrow(testFile4);
+        Filex.createNewFileOrThrow(testFile5);
+        Filex.createNewFileOrThrow(testFile6);
+
+        String[] childPaths = Filex.listRecursively(testDir);
+        Assert.assertEquals(childPaths != null ? childPaths.length : 0, 15);
+
+        File[] childFiles = Filex.listFilesRecursively(testDir);
+        Assert.assertEquals(childFiles != null ? childFiles.length : 0, 15);
+
+        File[] childFiles2 = Filex.listFilesRecursively(testDir, new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isFile();
+            }
+        });
+        Assert.assertEquals(childFiles2 != null ? childFiles2.length : 0, 12);
+
+        File[] childFiles3 = Filex.listFilesRecursively(testDir, new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return dir.isFile() && name.endsWith("2");
+            }
+        });
+        Assert.assertEquals(childFiles3 != null ? childFiles3.length : 0, 3);
+
+        Filex.deleteRecursively(testDir);
     }
 }

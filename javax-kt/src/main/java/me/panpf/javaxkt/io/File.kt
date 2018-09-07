@@ -16,9 +16,7 @@
 
 package me.panpf.javaxkt.io
 
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.IOException
+import java.io.*
 import java.util.*
 
 /*
@@ -193,29 +191,107 @@ fun File.lengthRecursively(): Long {
     return length
 }
 
-class UnableCreateDirException : Exception {
-    @Suppress("MemberVisibilityCanBePrivate")
-    val file: File
+/**
+ * Return the path to the file under this directory and all its subdirectories
+ */
+fun File.listRecursively(): Array<String>? {
+    if (!this.exists()) return null
+    if (this.isFile) return null
 
-    constructor(file: File) : super(file.path) {
-        this.file = file
-    }
+    val files = LinkedList<String>()
 
-    @Suppress("unused")
-    constructor(file: File, cause: Throwable) : super(file.path, cause) {
-        this.file = file
+    val dirQueue = LinkedList<File>()
+    dirQueue.add(this)
+
+    while (true) {
+        val currentDir = dirQueue.poll()
+        if (currentDir == null || !currentDir.exists()) break
+
+        val childPaths = currentDir.list() ?: continue
+
+        for (childPath in childPaths) {
+            val childFile = File(currentDir, childPath)
+            if (!childFile.exists()) continue
+            files.add(childFile.path.replace(this.path + File.separator, ""))
+
+            if (childFile.isDirectory) {
+                dirQueue.add(childFile)
+            }
+        }
     }
+    return if (files.isEmpty()) null else files.toTypedArray()
 }
 
-class UnableCreateFileException : Exception {
-    @Suppress("MemberVisibilityCanBePrivate")
-    val file: File
+/**
+ * Return files in this directory and all its subdirectories
+ */
+fun File.listFilesRecursively(fileFilter: FileFilter?): Array<File>? {
+    if (!this.exists()) return null
+    if (this.isFile) return null
 
-    constructor(file: File) : super(file.path) {
-        this.file = file
-    }
+    val files = LinkedList<File>()
 
-    constructor(file: File, cause: Throwable) : super(file.path, cause) {
-        this.file = file
+    val dirQueue = LinkedList<File>()
+    dirQueue.add(this)
+
+    while (true) {
+        val currentDir = dirQueue.poll()
+        if (currentDir == null || !currentDir.exists()) break
+
+        val childFiles = currentDir.listFiles() ?: continue
+
+        for (childFile in childFiles) {
+            if (!childFile.exists()) continue
+
+            if (fileFilter == null || fileFilter.accept(childFile)) {
+                files.add(childFile)
+            }
+
+            if (childFile.isDirectory) {
+                dirQueue.add(childFile)
+            }
+        }
     }
+    return if (files.isEmpty()) null else files.toTypedArray()
+}
+
+/**
+ * Return files in this directory and all its subdirectories
+ */
+fun File.listFilesRecursively(filenameFilter: FilenameFilter?): Array<File>? {
+    if (!this.exists()) return null
+    if (this.isFile) return null
+
+    val files = LinkedList<File>()
+
+    val dirQueue = LinkedList<File>()
+    dirQueue.add(this)
+
+    var currentDir: File?
+    while (true) {
+        currentDir = dirQueue.poll()
+        if (currentDir == null || !currentDir.exists()) break
+
+        val childFiles = currentDir.listFiles() ?: continue
+
+        for (childFile in childFiles) {
+            if (!childFile.exists()) continue
+
+            if (filenameFilter == null || filenameFilter.accept(childFile, childFile.name)) {
+                files.add(childFile)
+            }
+
+            if (childFile.isDirectory) {
+                dirQueue.add(childFile)
+            }
+        }
+    }
+    return if (files.isEmpty()) null else files.toTypedArray()
+}
+
+/**
+ * Return files in this directory and all its subdirectories
+ */
+fun File.listFilesRecursively(): Array<File>? {
+    return this.listFilesRecursively(null as FileFilter?)
 }
