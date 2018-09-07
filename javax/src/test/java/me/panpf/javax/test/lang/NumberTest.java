@@ -80,4 +80,46 @@ public class NumberTest {
         Assert.assertEquals(Collectionx.count(Numberx.downUntilTo(0, 1)), 0);
         Assert.assertEquals(Collectionx.count(Numberx.downUntilTo(1, 0)), 1);
     }
+
+    @Test
+    public void testToByte() {
+        Assert.assertEquals(String.valueOf(Numberx.toByteOrDefault("5", (byte) 4)), String.valueOf(5));
+        Assert.assertEquals(String.valueOf(Numberx.toByteOrDefault("g", (byte) 4)), String.valueOf(4));
+        Assert.assertEquals(String.valueOf(Numberx.toByteOrZero("g")), String.valueOf(0));
+    }
+
+    @Test
+    public void testToShort() {
+        Assert.assertEquals(String.valueOf(Numberx.toShortOrDefault("5", (short) 4)), String.valueOf(5));
+        Assert.assertEquals(String.valueOf(Numberx.toShortOrDefault("g", (short) 4)), String.valueOf(4));
+        Assert.assertEquals(String.valueOf(Numberx.toShortOrZero("g")), String.valueOf(0));
+    }
+
+    @Test
+    public void testToInt() {
+        Assert.assertEquals(String.valueOf(Numberx.toIntOrDefault("5", 4)), String.valueOf(5));
+        Assert.assertEquals(String.valueOf(Numberx.toIntOrDefault("g", 4)), String.valueOf(4));
+        Assert.assertEquals(String.valueOf(Numberx.toIntOrZero("g")), String.valueOf(0));
+    }
+
+    @Test
+    public void testToLong() {
+        Assert.assertEquals(String.valueOf(Numberx.toLongOrDefault("5", 4)), String.valueOf(5));
+        Assert.assertEquals(String.valueOf(Numberx.toLongOrDefault("g", 4)), String.valueOf(4));
+        Assert.assertEquals(String.valueOf(Numberx.toLongOrZero("g")), String.valueOf(0));
+    }
+
+    @Test
+    public void testToFloat() {
+        Assert.assertEquals(String.valueOf(Numberx.toFloatOrDefault("5.5", 4.5f)), String.valueOf(5.5f));
+        Assert.assertEquals(String.valueOf(Numberx.toFloatOrDefault("g", 4.4f)), String.valueOf(4.4f));
+        Assert.assertEquals(String.valueOf(Numberx.toFloatOrZero("g")), String.valueOf(0.0f));
+    }
+
+    @Test
+    public void testToDouble() {
+        Assert.assertEquals(String.valueOf(Numberx.toDoubleOrDefault("5.5", 4.4d)), String.valueOf(5.5d));
+        Assert.assertEquals(String.valueOf(Numberx.toDoubleOrDefault("g", 4.4d)), String.valueOf(4.4d));
+        Assert.assertEquals(String.valueOf(Numberx.toDoubleOrZero("g")), String.valueOf(0.0d));
+    }
 }

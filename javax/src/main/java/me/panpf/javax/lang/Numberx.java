@@ -17,6 +17,7 @@
 package me.panpf.javax.lang;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -236,5 +237,131 @@ public class Numberx {
 
     public static IntRange downUntilTo(int start, int end) {
         return downUntilTo(start, end, -1);
+    }
+
+    /**
+     * Convert a String to an byte, returning a default value if the conversion fails.
+     */
+    public static byte toByteOrDefault(@Nullable String str, byte defaultValue) {
+        if (str == null || str.length() == 0) {
+            return defaultValue;
+        }
+        try {
+            return Byte.parseByte(str);
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Convert a String to a byte, returning 0 if the conversion fails.
+     */
+    public static byte toByteOrZero(@Nullable String str) {
+        return toByteOrDefault(str, (byte) 0);
+    }
+
+    /**
+     * Convert a String to an short, returning a default value if the conversion fails.
+     */
+    public static short toShortOrDefault(@Nullable String str, short defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        }
+        try {
+            return Short.parseShort(str);
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Convert a String to a short, returning 0 if the conversion fails.
+     */
+    public static short toShortOrZero(@Nullable String str) {
+        return toShortOrDefault(str, (short) 0);
+    }
+
+    /**
+     * Convert a String to an int, returning a default value if the conversion fails.
+     */
+    public static int toIntOrDefault(@Nullable String str, int defaultValue) {
+        if (str == null || str.length() == 0) {
+            return defaultValue;
+        }
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Convert a String to a int, returning 0 if the conversion fails.
+     */
+    public static int toIntOrZero(@Nullable String str) {
+        return toIntOrDefault(str, 0);
+    }
+
+    /**
+     * Convert a String to an long, returning a default value if the conversion fails.
+     */
+    public static long toLongOrDefault(@Nullable String str, long defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        }
+        try {
+            return Long.parseLong(str);
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Convert a String to a long, returning 0L if the conversion fails.
+     */
+    public static long toLongOrZero(@Nullable String str) {
+        return toLongOrDefault(str, 0L);
+    }
+
+    /**
+     * Convert a String to an float, returning a default value if the conversion fails.
+     */
+    public static float toFloatOrDefault(@Nullable String str, float defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        }
+        try {
+            return Float.parseFloat(str);
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Convert a String to a float, returning 0.0f if the conversion fails.
+     */
+    public static float toFloatOrZero(@Nullable String str) {
+        return toFloatOrDefault(str, 0.0f);
+    }
+
+    /**
+     * Convert a String to an double, returning a default value if the conversion fails.
+     */
+    public static double toDoubleOrDefault(@Nullable String str, double defaultValue) {
+        if (str == null) {
+            return defaultValue;
+        }
+        try {
+            return Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Convert a String to a double, returning 0.0d if the conversion fails.
+     */
+    public static double toDoubleOrZero(@Nullable String str) {
+        return toDoubleOrDefault(str, 0.0d);
     }
 }

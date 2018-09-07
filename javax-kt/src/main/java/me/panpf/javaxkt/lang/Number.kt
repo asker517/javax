@@ -195,3 +195,130 @@ infix fun Byte.downUntilTo(to: Short): IntProgression {
 infix fun Short.downUntilTo(to: Short): IntProgression {
     return IntProgression.fromClosedRange(this.toInt(), to.toInt() + 1, -1)
 }
+
+
+/**
+ * Convert a String to an byte, returning a default value if the conversion fails.
+ */
+fun String?.toByteOrDefault(defaultValue: Byte): Byte {
+    if (this == null || this.isEmpty()) {
+        return defaultValue
+    }
+    return try {
+        java.lang.Byte.parseByte(this)
+    } catch (nfe: NumberFormatException) {
+        defaultValue
+    }
+}
+
+/**
+ * Convert a String to a byte, returning 0 if the conversion fails.
+ */
+fun String?.toByteOrZero(): Byte {
+    return this.toByteOrDefault(0.toByte())
+}
+
+/**
+ * Convert a String to an short, returning a default value if the conversion fails.
+ */
+fun String?.toShortOrDefault(defaultValue: Short): Short {
+    if (this == null) {
+        return defaultValue
+    }
+    return try {
+        return java.lang.Short.parseShort(this)
+    } catch (nfe: NumberFormatException) {
+        defaultValue
+    }
+}
+
+/**
+ * Convert a String to a short, returning 0 if the conversion fails.
+ */
+fun String?.toShortOrZero(): Short {
+    return this.toShortOrDefault(0.toShort())
+}
+
+/**
+ * Convert a String to an int, returning a default value if the conversion fails.
+ */
+fun String?.toIntOrDefault(defaultValue: Int): Int {
+    if (this == null || this.isEmpty()) {
+        return defaultValue
+    }
+    return try {
+        Integer.parseInt(this)
+    } catch (nfe: NumberFormatException) {
+        defaultValue
+    }
+}
+
+/**
+ * Convert a String to a int, returning 0 if the conversion fails.
+ */
+fun String?.toIntOrZero(): Int {
+    return this.toIntOrDefault(0)
+}
+
+/**
+ * Convert a String to an long, returning a default value if the conversion fails.
+ */
+fun String?.toLongOrDefault(defaultValue: Long): Long {
+    if (this == null) {
+        return defaultValue
+    }
+    return try {
+        java.lang.Long.parseLong(this)
+    } catch (nfe: NumberFormatException) {
+        defaultValue
+    }
+}
+
+/**
+ * Convert a String to a long, returning 0L if the conversion fails.
+ */
+fun String?.toLongOrZero(): Long {
+    return this.toLongOrDefault(0L)
+}
+
+/**
+ * Convert a String to an float, returning a default value if the conversion fails.
+ */
+fun String?.toFloatOrDefault(defaultValue: Float): Float {
+    if (this == null) {
+        return defaultValue
+    }
+    return try {
+        java.lang.Float.parseFloat(this)
+    } catch (nfe: NumberFormatException) {
+        defaultValue
+    }
+}
+
+/**
+ * Convert a String to a float, returning 0.0f if the conversion fails.
+ */
+fun String?.toFloatOrZero(): Float {
+    return this.toFloatOrDefault(0.0f)
+}
+
+/**
+ * Convert a String to an double, returning a default value if the conversion fails.
+ */
+fun String?.toDoubleOrDefault(defaultValue: Double): Double {
+    if (this == null) {
+        return defaultValue
+    }
+    return try {
+        java.lang.Double.parseDouble(this)
+    } catch (nfe: NumberFormatException) {
+        defaultValue
+    }
+}
+
+/**
+ * Convert a String to a double, returning 0.0d if the conversion fails.
+ */
+fun String?.toDoubleOrZero(): Double {
+    return this.toDoubleOrDefault(0.0)
+}
