@@ -16,6 +16,7 @@
 
 package me.panpf.javax.util;
 
+import me.panpf.javax.lang.IntRange;
 import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -6890,5 +6891,484 @@ public class Arrayx {
     @NotNull
     public static <T> T[] plusElement(@NotNull T[] elements, @NotNull T element) {
         return plus(elements, element);
+    }
+
+
+    /* **************************************************** indices **************************************************** */
+
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static <T> IntRange indices(@NotNull T[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull byte[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull short[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull int[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull long[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull float[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull double[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull boolean[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+    /**
+     * Returns the range of valid indices for the array.
+     */
+    @NotNull
+    public static IntRange indices(@NotNull char[] elements){
+        return Numberx.untilTo(0, elements.length);
+    }
+
+
+    /* **************************************************** indexOf **************************************************** */
+
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static <T> int indexOf(@NotNull T[] elements, @NotNull T element) {
+        if (element == null) {
+            for (int index : indices(elements)) {
+                if (elements[index] == null) {
+                    return index;
+                }
+            }
+        } else {
+            for (int index : indices(elements)) {
+                if (element == elements[index]) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull byte[] elements, byte element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull short[] elements, short element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull int[] elements, int element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull long[] elements, long element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull float[] elements, float element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull double[] elements, double element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull boolean[] elements, boolean element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns first index of [element], or -1 if the array does not contain element.
+     */
+    public static int indexOf(@NotNull char[] elements, char element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static <T> int indexOfFirst(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the first element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfFirst(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (int index : indices(elements)) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static <T> int indexOfLast(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last element matching the given [predicate], or -1 if the array does not contain such element.
+     */
+    public static int indexOfLast(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (int index : Collectionx.reversed(indices(elements))) {
+            if (predicate.predicate(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+
+    /* **************************************************** contains **************************************************** */
+
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static <T> boolean contains(@NotNull T[] elements, @NotNull T element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull byte[] elements, byte element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull short[] elements, short element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull int[] elements, int element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull long[] elements, long element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull float[] elements, float element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull double[] elements, double element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull boolean[] elements, boolean element) {
+        return indexOf(elements, element) >= 0;
+    }
+
+    /**
+     * Returns `true` if [element] is found in the array.
+     */
+    public static boolean contains(@NotNull char[] elements, char element) {
+        return indexOf(elements, element) >= 0;
     }
 }

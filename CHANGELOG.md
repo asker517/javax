@@ -1,3 +1,6 @@
+## 0.6.2
+* Arrayx 增加 indices, contains, indexOf
+
 ## 0.6.1
 * Arrayx 增加 plus, contentToString
 * Number 修复 range(1, 1) 崩溃的 bug，并增加 downUntilTo 方法
