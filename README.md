@@ -36,24 +36,25 @@ compile "me.panpf:javax-kt:$lastVersion"
 
 ### 索引
 
-#### Crypto
+#### crypto
 * Aes: [Aesx.java] ([Test][AesTest.java]) | [Aes.kt] ([Test][AesTest.kt])
 * Des: [Desx.java] ([Test][DesTest.java]) | [Des.kt] ([Test][DesTest.kt])
 * Rsa: [Rsax.java] ([Test][RsaTest.java]) | [Rsa.kt] ([Test][RsaTest.kt])
 
-#### IO
+#### io
 * File: [Filex.java] ([Test][FileTest.java]) | [File.kt] ([Test][FileTest.kt])
 * IOStream: [IOStreamx.java]
 
-#### Lang
+#### lang
 * Class: [Classx.java] ([Test][ClassTest.java]) | [Class.kt] ([Test][ClassTest.kt])
 * Number: [Numberx.java] ([Test][NumberTest.java]) | [Number.kt] ([Test][NumberTest.kt])
 * String: [Stringx.java] ([Test][StringTest.java]) | [String.kt] ([Test][StringTest.kt])
+* Throwable: [Throwablex.java] ([Test][ThrowableTest.java]) | [Throwable.kt] ([Test][ThrowableTest.kt])
 
-#### Security
+#### security
 * Digest: [Digestx.java] ([Test][DigestTest.java]) | [Digest.kt] ([Test][DigestTest.kt])
 
-#### Util
+#### util
 * Array: [Arrayx.java]
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
 * Collection: [Collectionx.java]
@@ -132,6 +133,11 @@ compile "me.panpf:javax-kt:$lastVersion"
 [StringTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/StringTest.java
 [String.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/String.kt
 [StringTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/StringTest.kt
+
+[Throwablex.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Throwablex.java
+[ThrowableTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/ThrowableTest.java
+[Throwable.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/Throwable.kt
+[ThrowableTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ThrowableTest.kt
 
 [Digestx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/security/Digestx.java
 [DigestTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/security/DigestTest.java
