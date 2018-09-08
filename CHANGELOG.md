@@ -5,6 +5,7 @@
 * Number 增加 toByte、toShort、toInt 等方法
 * Premise 增加 checkInRange、checkNotInRange
 * Arrayx 增加 forEach, filter
+* File 的 requireExist, requireIsDir, requireIsFile 移到 Premise 中
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString

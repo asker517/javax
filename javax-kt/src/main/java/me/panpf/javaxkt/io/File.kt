@@ -24,26 +24,6 @@ import java.util.*
  */
 
 
-@Throws(FileNotFoundException::class)
-fun File.requireExist() {
-    if (!this.exists()) {
-        throw FileNotFoundException(this.path)
-    }
-}
-
-fun File.requireIsDir() {
-    if (!this.isDirectory) {
-        throw IllegalArgumentException("Must be a directory： " + this.path)
-    }
-}
-
-fun File.requireIsFile() {
-    if (!this.isFile) {
-        throw IllegalArgumentException("Must be a file： " + this.path)
-    }
-}
-
-
 /**
  * Create a directory and throw an exception if it cannot be created
  * @throws UnableCreateDirException Unable to create directory

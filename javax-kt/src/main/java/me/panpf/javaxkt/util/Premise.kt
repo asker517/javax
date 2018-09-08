@@ -1,5 +1,28 @@
 package me.panpf.javaxkt.util
 
+import java.io.File
+import java.io.FileNotFoundException
+
+
+@Throws(FileNotFoundException::class)
+fun File.requireExist() {
+    if (!this.exists()) {
+        throw FileNotFoundException(this.path)
+    }
+}
+
+fun File.requireIsDir() {
+    if (!this.isDirectory) {
+        throw IllegalArgumentException("Must be a directory： " + this.path)
+    }
+}
+
+fun File.requireIsFile() {
+    if (!this.isFile) {
+        throw IllegalArgumentException("Must be a file： " + this.path)
+    }
+}
+
 
 fun Byte.checkInRange(minValue: Byte, maxValue: Byte) {
     if (this < minValue || this > maxValue) {

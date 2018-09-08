@@ -19,6 +19,7 @@ package me.panpf.javax.test.io;
 import me.panpf.javax.io.Filex;
 import me.panpf.javax.io.UnableCreateDirException;
 import me.panpf.javax.io.UnableCreateFileException;
+import me.panpf.javax.util.Premisex;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class FileTest {
 
         boolean result;
         try {
-            Filex.requireExist(testFile);
+            Premisex.requireExist(testFile);
             result = true;
         } catch (FileNotFoundException e) {
             result = false;
@@ -43,7 +44,7 @@ public class FileTest {
         Filex.createNewFileCheck(testFile);
 
         try {
-            Filex.requireExist(testFile);
+            Premisex.requireExist(testFile);
             result = true;
         } catch (FileNotFoundException e) {
             result = false;
@@ -61,7 +62,7 @@ public class FileTest {
         Filex.deleteRecursively(testDir);
         boolean result;
         try {
-            Filex.requireIsDir(testDir);
+            Premisex.requireIsDir(testDir);
             result = true;
         } catch (IllegalArgumentException e) {
             result = false;
@@ -71,7 +72,7 @@ public class FileTest {
         // 文件
         Filex.createNewFileCheck(testDir);
         try {
-            Filex.requireIsDir(testDir);
+            Premisex.requireIsDir(testDir);
             result = true;
         } catch (IllegalArgumentException e) {
             result = false;
@@ -82,7 +83,7 @@ public class FileTest {
         Filex.deleteRecursively(testDir);
         Filex.mkdirsCheck(testDir);
         try {
-            Filex.requireIsDir(testDir);
+            Premisex.requireIsDir(testDir);
             result = true;
         } catch (IllegalArgumentException e) {
             result = false;
@@ -100,7 +101,7 @@ public class FileTest {
         Filex.deleteRecursively(testFile);
         boolean result;
         try {
-            Filex.requireIsFile(testFile);
+            Premisex.requireIsFile(testFile);
             result = true;
         } catch (IllegalArgumentException e) {
             result = false;
@@ -110,7 +111,7 @@ public class FileTest {
         // 目录
         Filex.mkdirsCheck(testFile);
         try {
-            Filex.requireIsFile(testFile);
+            Premisex.requireIsFile(testFile);
             result = true;
         } catch (IllegalArgumentException e) {
             result = false;
@@ -121,7 +122,7 @@ public class FileTest {
         Filex.deleteRecursively(testFile);
         Filex.createNewFileCheck(testFile);
         try {
-            Filex.requireIsFile(testFile);
+            Premisex.requireIsFile(testFile);
             result = true;
         } catch (IllegalArgumentException e) {
             result = false;

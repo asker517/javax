@@ -19,6 +19,9 @@ package me.panpf.javax.util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 @SuppressWarnings("WeakerAccess")
 public class Premisex {
 
@@ -167,6 +170,24 @@ public class Premisex {
 
     public static void require(boolean result) {
         require(result, "Failed requirement.");
+    }
+
+    public static void requireExist(@NotNull File file) throws FileNotFoundException {
+        if (!file.exists()) {
+            throw new FileNotFoundException(file.getPath());
+        }
+    }
+
+    public static void requireIsDir(@NotNull File file) {
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException("Must be a directory： " + file.getPath());
+        }
+    }
+
+    public static void requireIsFile(@NotNull File file) {
+        if (!file.isFile()) {
+            throw new IllegalArgumentException("Must be a file： " + file.getPath());
+        }
     }
 
     public static boolean areEqual(@Nullable Object first, @Nullable Object second) {

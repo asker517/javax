@@ -34,24 +34,6 @@ import java.util.*;
 @SuppressWarnings("WeakerAccess")
 public class Filex {
 
-    public static void requireExist(@NotNull File file) throws FileNotFoundException {
-        if (!file.exists()) {
-            throw new FileNotFoundException(file.getPath());
-        }
-    }
-
-    public static void requireIsDir(@NotNull File file) {
-        if (!file.isDirectory()) {
-            throw new IllegalArgumentException("Must be a directory： " + file.getPath());
-        }
-    }
-
-    public static void requireIsFile(@NotNull File file) {
-        if (!file.isFile()) {
-            throw new IllegalArgumentException("Must be a file： " + file.getPath());
-        }
-    }
-
     /**
      * Create a directory and throw an exception if it cannot be created
      *
@@ -343,7 +325,7 @@ public class Filex {
      */
     @NotNull
     public static File copyTo(@NotNull File source, @NotNull File target, boolean overwrite, int bufferSize) throws IOException {
-        requireExist(source);
+        Premisex.requireExist(source);
 
         if (target.exists() && (!overwrite || !target.delete())) {
             throw new FileAlreadyExistsException(source, target, "The destination file already exists.");

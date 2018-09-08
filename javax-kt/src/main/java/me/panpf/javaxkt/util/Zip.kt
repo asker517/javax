@@ -18,7 +18,6 @@ package me.panpf.javaxkt.util
 
 import me.panpf.javaxkt.io.createNewFileOrThrow
 import me.panpf.javaxkt.io.mkdirsOrThrow
-import me.panpf.javaxkt.io.requireExist
 import java.io.*
 import java.util.*
 import java.util.zip.ZipEntry

@@ -87,7 +87,7 @@ public class FileTreeWalk implements Sequence<File> {
         public DirectoryState(@NotNull File rootDir) {
             super(rootDir);
 
-            Filex.requireIsDir(rootDir);
+            Premisex.requireIsDir(rootDir);
         }
     }
 
@@ -275,7 +275,7 @@ public class FileTreeWalk implements Sequence<File> {
 
             SingleFileState(@NotNull File rootFile) {
                 super(rootFile);
-                Filex.requireIsFile(rootFile);
+                Premisex.requireIsFile(rootFile);
             }
 
             private boolean visited = false;
