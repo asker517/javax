@@ -17,6 +17,10 @@
 package me.panpf.javax.test.lang;
 
 import me.panpf.javax.lang.Classx;
+import me.panpf.javax.util.Arrayx;
+import me.panpf.javax.util.Predicate;
+import me.panpf.javax.util.Transformer;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -89,11 +93,21 @@ public class ClassTest {
             throw new IllegalArgumentException(e);
         }
 
-        Field[] fields = Classx.getFieldsWithParent(TestField3.class);
+        Field[] fields = Arrayx.filter(Classx.getFieldsWithParent(TestField3.class), new Predicate<Field>() {
+            @Override
+            public boolean predicate(@NotNull Field field) {
+                return !field.getName().equals("$jacocoData");
+            }
+        }).toArray(new Field[0]);
         Assert.assertNotNull(fields);
         Assert.assertEquals(fields.length, 6);
 
-        Field[] field2 = Classx.getFieldsWithParent(TestField3.class, 1);
+        Field[] field2 = Arrayx.filter(Classx.getFieldsWithParent(TestField3.class, 1), new Predicate<Field>() {
+            @Override
+            public boolean predicate(@NotNull Field field) {
+                return !field.getName().equals("$jacocoData");
+            }
+        }).toArray(new Field[0]);
         Assert.assertNotNull(field2);
         Assert.assertEquals(field2.length, 4);
     }
@@ -126,11 +140,21 @@ public class ClassTest {
             throw new IllegalArgumentException(e);
         }
 
-        Method[] methods = Classx.getMethodsWithParent(TestMethod.class);
+        Method[] methods = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class), new Predicate<Method>() {
+            @Override
+            public boolean predicate(@NotNull Method field) {
+                return !field.getName().equals("$jacocoInit");
+            }
+        }).toArray(new Method[0]);
         Assert.assertNotNull(methods);
         Assert.assertEquals(methods.length, 14);
 
-        Method[] methods2 = Classx.getMethodsWithParent(TestMethod.class, 0);
+        Method[] methods2 = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class, 0), new Predicate<Method>() {
+            @Override
+            public boolean predicate(@NotNull Method field) {
+                return !field.getName().equals("$jacocoInit");
+            }
+        }).toArray(new Method[0]);
         Assert.assertNotNull(methods2);
         Assert.assertEquals(methods2.length, 2);
     }

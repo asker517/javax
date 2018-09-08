@@ -1,6 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
 apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'jacoco'
 
 group 'me.panpf'
 version VERSION
@@ -36,3 +37,12 @@ publish {
     bintrayUser = properties.getProperty("bintray.user")
     bintrayKey = properties.getProperty("bintray.apikey")
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport

@@ -79,11 +79,11 @@ class ClassTest {
             throw IllegalArgumentException(e)
         }
 
-        val fields = TestField3().getFieldsWithParent()
+        val fields = TestField3().getFieldsWithParent().filter { it.name != "\$jacocoData" }.toTypedArray()
         Assert.assertNotNull(fields)
         Assert.assertEquals(fields.size.toLong(), 6)
 
-        val field2 = TestField3().getFieldsWithParent(1)
+        val field2 = TestField3().getFieldsWithParent(1).filter { it.name != "\$jacocoData" }.toTypedArray()
         Assert.assertNotNull(field2)
         Assert.assertEquals(field2.size.toLong(), 4)
     }
@@ -116,11 +116,11 @@ class ClassTest {
             throw IllegalArgumentException(e)
         }
 
-        val methods = TestMethod().getMethodsWithParent()
+        val methods = TestMethod().getMethodsWithParent().filter { it.name != "\$jacocoInit" }.toTypedArray()
         Assert.assertNotNull(methods)
         Assert.assertEquals(methods.size.toLong(), 14)
 
-        val methods2 = TestMethod().getMethodsWithParent(0)
+        val methods2 = TestMethod().getMethodsWithParent(0).filter { it.name != "\$jacocoInit" }.toTypedArray()
         Assert.assertNotNull(methods2)
         Assert.assertEquals(methods2.size.toLong(), 2)
     }

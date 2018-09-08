@@ -5,6 +5,8 @@
 ![SourceCompatibility][source_compatibility_icon]
 ![TargetCompatibility][target_compatibility_icon]
 [![License][license_image]][license_link]
+![converage_java][converage_java]
+![converage_kotlin][converage_kotlin]
 
 Extensions to the Java standard library, some tool methods, and tool methods related to File, IO,
 primitive types, String, Array, and Collection extracted from the Kotlin standard library (not available in the Kotlin version)
@@ -156,6 +158,8 @@ Please view the [CHANGELOG.md] file
 [CHANGELOG.md]: CHANGELOG.md
 [source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
 [target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
+[converage_java]: https://img.shields.io/badge/ConverageJava-24%25-orange.svg
+[converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-74%25-orange.svg
 
 [Aesx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Aesx.java
 [AesTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/crypto/AesTest.java
