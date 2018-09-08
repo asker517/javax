@@ -21,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 @SuppressWarnings("WeakerAccess")
 public class Premisex {
@@ -188,6 +189,19 @@ public class Premisex {
         if (!file.isFile()) {
             throw new IllegalArgumentException("Must be a file： " + file.getPath());
         }
+    }
+
+    /**
+     * Returns an original collection containing all the non-`null` elements, throwing an [IllegalArgumentException] if there are any `null` elements.
+     */
+    @NotNull
+    public static <T> T[] requireNoNulls(@NotNull T[] elements) {
+        for (T element : elements) {
+            if (element == null) {
+                throw new IllegalArgumentException("null element found in " + Arrays.toString(elements) + ".");
+            }
+        }
+        return elements;
     }
 
     public static boolean areEqual(@Nullable Object first, @Nullable Object second) {

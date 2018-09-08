@@ -32,19 +32,6 @@ public class Arrayx {
 
     /* ******************************************* From Kotlin Standard library ********************************************************* */
 
-    /**
-     * Returns an original collection containing all the non-`null` elements, throwing an [IllegalArgumentException] if there are any `null` elements.
-     */
-    @NotNull
-    public static <T> T[] requireNoNulls(@NotNull T[] elements) {
-        for (T element : elements) {
-            if (element == null) {
-                throw new IllegalArgumentException("null element found in " + Arrays.toString(elements) + ".");
-            }
-        }
-        return elements;
-    }
-
 
     /* **************************************************** array of **************************************************** */
 
