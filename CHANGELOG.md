@@ -4,6 +4,7 @@
 * File 增加 listRecursively
 * Number 增加 toByte、toShort、toInt 等方法
 * Premise 增加 checkInRange、checkNotInRange
+* Arrayx 增加 forEach, filter
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString

@@ -6362,7 +6362,7 @@ public class Arrayx {
     /**
      * Returns the sum of all values produced by [selector] function applied to each element in the array.
      */
-    public static <T> int sumBy(@NotNull T[] elements,@NotNull  Transformer<T, Integer> selector) {
+    public static <T> int sumBy(@NotNull T[] elements, @NotNull Transformer<T, Integer> selector) {
         int sum = 0;
         for (T element : elements) {
             sum += selector.transform(element);
@@ -6901,7 +6901,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static <T> IntRange indices(@NotNull T[] elements){
+    public static <T> IntRange indices(@NotNull T[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6909,7 +6909,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull byte[] elements){
+    public static IntRange indices(@NotNull byte[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6917,7 +6917,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull short[] elements){
+    public static IntRange indices(@NotNull short[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6925,7 +6925,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull int[] elements){
+    public static IntRange indices(@NotNull int[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6933,7 +6933,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull long[] elements){
+    public static IntRange indices(@NotNull long[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6941,7 +6941,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull float[] elements){
+    public static IntRange indices(@NotNull float[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6949,7 +6949,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull double[] elements){
+    public static IntRange indices(@NotNull double[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6957,7 +6957,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull boolean[] elements){
+    public static IntRange indices(@NotNull boolean[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -6965,7 +6965,7 @@ public class Arrayx {
      * Returns the range of valid indices for the array.
      */
     @NotNull
-    public static IntRange indices(@NotNull char[] elements){
+    public static IntRange indices(@NotNull char[] elements) {
         return Numberx.untilTo(0, elements.length);
     }
 
@@ -7370,5 +7370,790 @@ public class Arrayx {
      */
     public static boolean contains(@NotNull char[] elements, char element) {
         return indexOf(elements, element) >= 0;
+    }
+
+
+    /* **************************************************** forEach **************************************************** */
+
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static <T> void forEach(@NotNull T[] elements, @NotNull Action<T> action) {
+        for (T element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull byte[] elements, @NotNull Action<Byte> action) {
+        for (byte element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull short[] elements, @NotNull Action<Short> action) {
+        for (short element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull int[] elements, @NotNull Action<Integer> action) {
+        for (int element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull long[] elements, @NotNull Action<Long> action) {
+        for (long element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull float[] elements, @NotNull Action<Float> action) {
+        for (float element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull double[] elements, @NotNull Action<Double> action) {
+        for (double element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull boolean[] elements, @NotNull Action<Boolean> action) {
+        for (boolean element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element.
+     */
+    public static void forEach(@NotNull char[] elements, @NotNull Action<Character> action) {
+        for (char element : elements) action.action(element);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static <T> void forEachIndexed(@NotNull T[] elements, @NotNull IndexedAction<T> action) {
+        int index = 0;
+        for (T item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull byte[] elements, @NotNull IndexedAction<Byte> action) {
+        int index = 0;
+        for (byte item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull short[] elements, @NotNull IndexedAction<Short> action) {
+        int index = 0;
+        for (short item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull int[] elements, @NotNull IndexedAction<Integer> action) {
+        int index = 0;
+        for (int item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull long[] elements, @NotNull IndexedAction<Long> action) {
+        int index = 0;
+        for (long item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull float[] elements, @NotNull IndexedAction<Float> action) {
+        int index = 0;
+        for (float item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull double[] elements, @NotNull IndexedAction<Double> action) {
+        int index = 0;
+        for (double item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull boolean[] elements, @NotNull IndexedAction<Boolean> action) {
+        int index = 0;
+        for (boolean item : elements) action.action(index++, item);
+    }
+
+    /**
+     * Performs the given [action] on each element, providing sequential index with the element.
+     *
+     * @param action function that takes the index of an element and the element itself
+     *               and performs the desired action on the element.
+     */
+    public static void forEachIndexed(@NotNull char[] elements, @NotNull IndexedAction<Character> action) {
+        int index = 0;
+        for (char item : elements) action.action(index++, item);
+    }
+
+
+    /* **************************************************** filter **************************************************** */
+
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> filter(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        return filterTo(elements, new ArrayList<T>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Byte> filter(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        return filterTo(elements, new ArrayList<Byte>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Short> filter(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        return filterTo(elements, new ArrayList<Short>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Integer> filter(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        return filterTo(elements, new ArrayList<Integer>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Long> filter(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        return filterTo(elements, new ArrayList<Long>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Float> filter(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        return filterTo(elements, new ArrayList<Float>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Double> filter(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        return filterTo(elements, new ArrayList<Double>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Boolean> filter(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        return filterTo(elements, new ArrayList<Boolean>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     */
+    @NotNull
+    public static List<Character> filter(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        return filterTo(elements, new ArrayList<Character>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <T> List<T> filterIndexed(@NotNull T[] elements, @NotNull IndexedPredicate<T> predicate) {
+        return filterIndexedTo(elements, new ArrayList<T>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Byte> filterIndexed(@NotNull byte[] elements, @NotNull IndexedPredicate<Byte> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Byte>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Short> filterIndexed(@NotNull short[] elements, @NotNull IndexedPredicate<Short> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Short>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Integer> filterIndexed(@NotNull int[] elements, @NotNull IndexedPredicate<Integer> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Integer>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Long> filterIndexed(@NotNull long[] elements, @NotNull IndexedPredicate<Long> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Long>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Float> filterIndexed(@NotNull float[] elements, @NotNull IndexedPredicate<Float> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Float>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Double> filterIndexed(@NotNull double[] elements, @NotNull IndexedPredicate<Double> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Double>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Boolean> filterIndexed(@NotNull boolean[] elements, @NotNull IndexedPredicate<Boolean> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Boolean>(), predicate);
+    }
+
+    /**
+     * Returns a list containing only elements matching the given [predicate].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static List<Character> filterIndexed(@NotNull char[] elements, @NotNull IndexedPredicate<Character> predicate) {
+        return filterIndexedTo(elements, new ArrayList<Character>(), predicate);
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <T, C extends Collection<T>> C filterIndexedTo(@NotNull T[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<T> predicate) {
+        forEachIndexed(elements, new IndexedAction<T>() {
+            @Override
+            public void action(int index, @NotNull T element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Byte>> C filterIndexedTo(@NotNull byte[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Byte> predicate) {
+        forEachIndexed(elements, new IndexedAction<Byte>() {
+            @Override
+            public void action(int index, @NotNull Byte element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Short>> C filterIndexedTo(@NotNull short[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Short> predicate) {
+        forEachIndexed(elements, new IndexedAction<Short>() {
+            @Override
+            public void action(int index, @NotNull Short element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Integer>> C filterIndexedTo(@NotNull int[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Integer> predicate) {
+        forEachIndexed(elements, new IndexedAction<Integer>() {
+            @Override
+            public void action(int index, @NotNull Integer element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Long>> C filterIndexedTo(@NotNull long[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Long> predicate) {
+        forEachIndexed(elements, new IndexedAction<Long>() {
+            @Override
+            public void action(int index, @NotNull Long element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Float>> C filterIndexedTo(@NotNull float[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Float> predicate) {
+        forEachIndexed(elements, new IndexedAction<Float>() {
+            @Override
+            public void action(int index, @NotNull Float element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Double>> C filterIndexedTo(@NotNull double[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Double> predicate) {
+        forEachIndexed(elements, new IndexedAction<Double>() {
+            @Override
+            public void action(int index, @NotNull Double element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Boolean>> C filterIndexedTo(@NotNull boolean[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Boolean> predicate) {
+        forEachIndexed(elements, new IndexedAction<Boolean>() {
+            @Override
+            public void action(int index, @NotNull Boolean element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of an element and the element itself
+     *                  and returns the result of predicate evaluation on the element.
+     */
+    @NotNull
+    public static <C extends Collection<Character>> C filterIndexedTo(@NotNull char[] elements, @NotNull final C destination, @NotNull final IndexedPredicate<Character> predicate) {
+        forEachIndexed(elements, new IndexedAction<Character>() {
+            @Override
+            public void action(int index, @NotNull Character element) {
+                if (predicate.predicate(index, element)) {
+                    destination.add(element);
+                }
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Returns a list containing all elements that are instances of specified class.
+     */
+    @NotNull
+    public static <R> List<R> filterIsInstance(@NotNull Object[] elements, @NotNull Class<R> klass) {
+        return filterIsInstanceTo(elements, new ArrayList<R>(), klass);
+    }
+
+    /**
+     * Appends all elements that are instances of specified class to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<R>, R> C filterIsInstanceTo(@NotNull Object[] elements, @NotNull C destination, @NotNull Class<R> klass) {
+        for (Object element : elements) {
+            if (klass.isInstance(element)) {
+                //noinspection unchecked
+                destination.add((R) element);
+            }
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> filterNot(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        return filterNotTo(elements, new ArrayList<T>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Byte> filterNot(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        return filterNotTo(elements, new ArrayList<Byte>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Short> filterNot(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        return filterNotTo(elements, new ArrayList<Short>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Integer> filterNot(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        return filterNotTo(elements, new ArrayList<Integer>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Long> filterNot(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        return filterNotTo(elements, new ArrayList<Long>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Float> filterNot(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        return filterNotTo(elements, new ArrayList<Float>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Double> filterNot(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        return filterNotTo(elements, new ArrayList<Double>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Boolean> filterNot(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        return filterNotTo(elements, new ArrayList<Boolean>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements not matching the given [predicate].
+     */
+    @NotNull
+    public static List<Character> filterNot(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        return filterNotTo(elements, new ArrayList<Character>(), predicate);
+    }
+
+    /**
+     * Returns a list containing all elements that are not `null`.
+     */
+    @NotNull
+    public static <T> List<T> filterNotNull(@NotNull T[] elements) {
+        return filterNotNullTo(elements, new ArrayList<T>());
+    }
+
+    /**
+     * Appends all elements that are not `null` to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<T>, T> C filterNotNullTo(@NotNull T[] elements, @NotNull C destination) {
+        for (T element : elements) if (element != null) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <T, C extends Collection<T>> C filterNotTo(@NotNull T[] elements, @NotNull C destination, @NotNull Predicate<T> predicate) {
+        for (T element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Byte>> C filterNotTo(@NotNull byte[] elements, @NotNull C destination, @NotNull Predicate<Byte> predicate) {
+        for (byte element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Short>> C filterNotTo(@NotNull short[] elements, @NotNull C destination, @NotNull Predicate<Short> predicate) {
+        for (short element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Integer>> C filterNotTo(@NotNull int[] elements, @NotNull C destination, @NotNull Predicate<Integer> predicate) {
+        for (int element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Long>> C filterNotTo(@NotNull long[] elements, @NotNull C destination, @NotNull Predicate<Long> predicate) {
+        for (long element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Float>> C filterNotTo(@NotNull float[] elements, @NotNull C destination, @NotNull Predicate<Float> predicate) {
+        for (float element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Double>> C filterNotTo(@NotNull double[] elements, @NotNull C destination, @NotNull Predicate<Double> predicate) {
+        for (double element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Boolean>> C filterNotTo(@NotNull boolean[] elements, @NotNull C destination, @NotNull Predicate<Boolean> predicate) {
+        for (boolean element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Character>> C filterNotTo(@NotNull char[] elements, @NotNull C destination, @NotNull Predicate<Character> predicate) {
+        for (char element : elements) if (!predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <T, C extends Collection<T>> C filterTo(@NotNull T[] elements, @NotNull C destination, @NotNull Predicate<T> predicate) {
+        for (T element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Byte>> C filterTo(@NotNull byte[] elements, @NotNull C destination, @NotNull Predicate<Byte> predicate) {
+        for (byte element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Short>> C filterTo(@NotNull short[] elements, @NotNull C destination, @NotNull Predicate<Short> predicate) {
+        for (short element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Integer>> C filterTo(@NotNull int[] elements, @NotNull C destination, @NotNull Predicate<Integer> predicate) {
+        for (int element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Long>> C filterTo(@NotNull long[] elements, @NotNull C destination, @NotNull Predicate<Long> predicate) {
+        for (long element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Float>> C filterTo(@NotNull float[] elements, @NotNull C destination, @NotNull Predicate<Float> predicate) {
+        for (float element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Double>> C filterTo(@NotNull double[] elements, @NotNull C destination, @NotNull Predicate<Double> predicate) {
+        for (double element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Boolean>> C filterTo(@NotNull boolean[] elements, @NotNull C destination, @NotNull Predicate<Boolean> predicate) {
+        for (boolean element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Collection<Character>> C filterTo(@NotNull char[] elements, @NotNull C destination, @NotNull Predicate<Character> predicate) {
+        for (char element : elements) if (predicate.predicate(element)) destination.add(element);
+        return destination;
     }
 }
