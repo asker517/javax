@@ -6,55 +6,61 @@
 ![TargetCompatibility][target_compatibility_icon]
 [![License][license_image]][license_link]
 
-对 Java 标准库的扩展，提供一些工具方法，以及从 Kotlin 标准库中提取的 File、IO、基本类型、String、Array、Collection 相关的工具方法（Kotlin 版本没有）
+Extensions to the Java standard library, some tool methods, and tool methods related to File, IO,
+primitive types, String, Array, and Collection extracted from the Kotlin standard library (not available in the Kotlin version)
 
-### 导入
+## Getting Started
 
-#### Java 版：
+### Java version：
+
+Add the following to your `build.gradle` file
+
 ```grovvy
 compile "me.panpf:javax:$lastVersion"
 ```
 
-请自行替换 `$lastVersion` 为最新的版本 [![Download][VersionBadgeIcon]][VersionBadgeLink]
+Please replace `$lastVersion` with the latest version: [![Download][VersionBadgeIcon]][VersionBadgeLink]
 
-依赖：
+Dependencies：
 * org.jetbrains:annotations: 13.0
 
-#### Kotlin 版：
+### Kotlin version：
+
+Add the following to your `build.gradle` file
 
 ```grovvy
 compile "me.panpf:javax-kt:$lastVersion"
 ```
 
-依赖：
+Dependencies：
 * org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.50
 * org.jetbrains:annotations: 13.0
 
-请自行替换 `$lastVersion` 为最新的版本 [![Download][KTVersionBadgeIcon]][KTVersionBadgeLink]
+Please replace `$lastVersion` with the latest version: [![Download][KTVersionBadgeIcon]][KTVersionBadgeLink]
 
-你可以根据需要选择一个版本导入，如果你的项目是 Java 加 Kotlin 混合开发的那么两个版本都可以导入，因为两个版本采用了不同的包名所以不会有类重复问题
+`You can add Java or Kotlin versions to your project as needed. If your project is Java and Kotlin mixed development, then both versions can be imported, because there are different package names, so there will be no class duplicates.`
 
-### 索引
+## Index
 
-#### crypto
+### crypto
 * Aes: [Aesx.java] ([Test][AesTest.java]) | [Aes.kt] ([Test][AesTest.kt])
 * Des: [Desx.java] ([Test][DesTest.java]) | [Des.kt] ([Test][DesTest.kt])
 * Rsa: [Rsax.java] ([Test][RsaTest.java]) | [Rsa.kt] ([Test][RsaTest.kt])
 
-#### io
+### io
 * File: [Filex.java] ([Test][FileTest.java]) | [File.kt] ([Test][FileTest.kt])
 * IOStream: [IOStreamx.java]
 
-#### lang
+### lang
 * Class: [Classx.java] ([Test][ClassTest.java]) | [Class.kt] ([Test][ClassTest.kt])
 * Number: [Numberx.java] ([Test][NumberTest.java]) | [Number.kt] ([Test][NumberTest.kt])
 * String: [Stringx.java] ([Test][StringTest.java]) | [String.kt] ([Test][StringTest.kt])
 * Throwable: [Throwablex.java] ([Test][ThrowableTest.java]) | [Throwable.kt] ([Test][ThrowableTest.kt])
 
-#### security
+### security
 * Digest: [Digestx.java] ([Test][DigestTest.java]) | [Digest.kt] ([Test][DigestTest.kt])
 
-#### util
+### util
 * Array: [Arrayx.java]
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
 * Collection: [Collectionx.java]
@@ -64,12 +70,12 @@ compile "me.panpf:javax-kt:$lastVersion"
 * Premise: [Premisex.java] ([Test][PremiseTest.java]) | [Premise.kt] ([Test][PremiseTest.kt])
 * Zip: [Zipx.java] ([Test][ZipTest.java]) | [Zip.kt] ([Test][ZipTest.kt])
 
-### 更新日志
+## Change log
 
-请查看 [CHANGELOG.md] 文件
+Please view the [CHANGELOG.md] file
 
 
-### License
+## License
     Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
 
     Licensed under the Apache License, Version 2.0 (the "License");
