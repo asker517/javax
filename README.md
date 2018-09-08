@@ -34,7 +34,6 @@ compile "me.panpf:javax-kt:$lastVersion"
 
 Dependencies：
 * org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.50
-* org.jetbrains:annotations: 13.0
 
 Please replace `$lastVersion` with the latest version: [![Download][KTVersionBadgeIcon]][KTVersionBadgeLink]
 
