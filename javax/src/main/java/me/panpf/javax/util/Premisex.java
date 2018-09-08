@@ -173,7 +173,7 @@ public class Premisex {
         require(result, "Failed requirement.");
     }
 
-    public static void requireExist(@NotNull File file) throws FileNotFoundException {
+    public static void requireFileExist(@NotNull File file) throws FileNotFoundException {
         if (!file.exists()) {
             throw new FileNotFoundException(file.getPath());
         }

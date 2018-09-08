@@ -7,6 +7,7 @@
 * Arrayx 增加 forEach, filter
 * File 的 requireExist, requireIsDir, requireIsFile 移到 Premise 中
 * Arrayx 的 requireNoNulls, 移到 Premise 中
+* requireExist rename to requireFileExist
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString

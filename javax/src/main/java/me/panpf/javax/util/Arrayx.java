@@ -482,7 +482,6 @@ public class Arrayx {
         return Arrays.asList(array);
     }
 
-
     /**
      * Returns a [List] that wraps the original array.
      */
@@ -501,7 +500,6 @@ public class Arrayx {
             }
         };
     }
-
 
     /**
      * Returns a [List] that wraps the original array.
@@ -522,7 +520,6 @@ public class Arrayx {
         };
     }
 
-
     /**
      * Returns a [List] that wraps the original array.
      */
@@ -541,7 +538,6 @@ public class Arrayx {
             }
         };
     }
-
 
     /**
      * Returns a [List] that wraps the original array.
@@ -562,7 +558,6 @@ public class Arrayx {
         };
     }
 
-
     /**
      * Returns a [List] that wraps the original array.
      */
@@ -581,7 +576,6 @@ public class Arrayx {
             }
         };
     }
-
 
     /**
      * Returns a [List] that wraps the original array.
@@ -602,7 +596,6 @@ public class Arrayx {
         };
     }
 
-
     /**
      * Returns a [List] that wraps the original array.
      */
@@ -621,7 +614,6 @@ public class Arrayx {
             }
         };
     }
-
 
     /**
      * Returns a [List] that wraps the original array.

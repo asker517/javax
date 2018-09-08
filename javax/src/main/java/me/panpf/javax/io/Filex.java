@@ -325,7 +325,7 @@ public class Filex {
      */
     @NotNull
     public static File copyTo(@NotNull File source, @NotNull File target, boolean overwrite, int bufferSize) throws IOException {
-        Premisex.requireExist(source);
+        Premisex.requireFileExist(source);
 
         if (target.exists() && (!overwrite || !target.delete())) {
             throw new FileAlreadyExistsException(source, target, "The destination file already exists.");

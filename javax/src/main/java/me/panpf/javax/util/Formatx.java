@@ -36,7 +36,7 @@ public class Formatx {
      * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
      */
     @NotNull
-    public static String format(double value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
+    public static String formatDouble(double value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
         StringBuilder buffString = new StringBuilder();
         buffString.append("#");
         if (decimalPlacesLength > 0) {
@@ -51,6 +51,19 @@ public class Formatx {
         return format.format(value);
     }
 
+    /**
+     * Format a float number
+     *
+     * @param value                 Value
+     * @param suffix                Suffix
+     * @param decimalPlacesLength   Keep a few decimal places
+     * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
+     */
+    @NotNull
+    public static String formatFloat(float value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
+        return formatDouble((double) value, suffix, decimalPlacesLength, decimalPlacesFillZero);
+    }
+
 
     /**
      * Calculate the percentage
@@ -61,18 +74,18 @@ public class Formatx {
      */
     @NotNull
     public static String percent(double value, int decimalPlacesLength, boolean decimalPlacesFillZero) {
-        return format(value, "%", decimalPlacesLength, decimalPlacesFillZero);
+        return formatDouble(value, "%", decimalPlacesLength, decimalPlacesFillZero);
     }
 
     /**
      * Calculate the percentage
      *
-     * @param value                 Value
-     * @param decimalPlacesLength   Keep a few decimal places
+     * @param value               Value
+     * @param decimalPlacesLength Keep a few decimal places
      */
     @NotNull
     public static String percent(double value, int decimalPlacesLength) {
-        return format(value, "%", decimalPlacesLength, false);
+        return formatDouble(value, "%", decimalPlacesLength, false);
     }
 
     /**
@@ -101,9 +114,9 @@ public class Formatx {
     /**
      * Calculate the percentage
      *
-     * @param value1                value1
-     * @param value2                value2
-     * @param decimalPlacesLength   Keep a few decimal places
+     * @param value1              value1
+     * @param value2              value2
+     * @param decimalPlacesLength Keep a few decimal places
      */
     @NotNull
     public static String percent(double value1, double value2, int decimalPlacesLength) {
@@ -116,22 +129,9 @@ public class Formatx {
      * @param value1 value1
      * @param value2 value2
      */
+    @NotNull
     public static String percent(double value1, double value2) {
         return percent(value1 / value2, 2, false);
-    }
-
-
-    /**
-     * Format a float number
-     *
-     * @param value                 Value
-     * @param suffix                Suffix
-     * @param decimalPlacesLength   Keep a few decimal places
-     * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
-     */
-    @NotNull
-    public static String format(float value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
-        return format((double) value, suffix, decimalPlacesLength, decimalPlacesFillZero);
     }
 
     /**
@@ -143,18 +143,18 @@ public class Formatx {
      */
     @NotNull
     public static String percent(float value, int decimalPlacesLength, boolean decimalPlacesFillZero) {
-        return format(value, "%", decimalPlacesLength, decimalPlacesFillZero);
+        return formatFloat(value, "%", decimalPlacesLength, decimalPlacesFillZero);
     }
 
     /**
      * Calculate the percentage
      *
-     * @param value                 Value
-     * @param decimalPlacesLength   Keep a few decimal places
+     * @param value               Value
+     * @param decimalPlacesLength Keep a few decimal places
      */
     @NotNull
     public static String percent(float value, int decimalPlacesLength) {
-        return format(value, "%", decimalPlacesLength, false);
+        return formatFloat(value, "%", decimalPlacesLength, false);
     }
 
     /**
@@ -164,7 +164,7 @@ public class Formatx {
      */
     @NotNull
     public static String percent(float value) {
-        return format(value, "%", 2, false);
+        return formatFloat(value, "%", 2, false);
     }
 
     /**
@@ -183,9 +183,9 @@ public class Formatx {
     /**
      * Calculate the percentage
      *
-     * @param value1                value1
-     * @param value2                value2
-     * @param decimalPlacesLength   Keep a few decimal places
+     * @param value1              value1
+     * @param value2              value2
+     * @param decimalPlacesLength Keep a few decimal places
      */
     @NotNull
     public static String percent(float value1, float value2, int decimalPlacesLength) {
@@ -198,6 +198,7 @@ public class Formatx {
      * @param value1 value1
      * @param value2 value2
      */
+    @NotNull
     public static String percent(float value1, float value2) {
         return percent(value1 / value2, 2, false);
     }
@@ -219,9 +220,9 @@ public class Formatx {
     /**
      * Calculate the percentage
      *
-     * @param value1                value1
-     * @param value2                value2
-     * @param decimalPlacesLength   Keep a few decimal places
+     * @param value1              value1
+     * @param value2              value2
+     * @param decimalPlacesLength Keep a few decimal places
      */
     @NotNull
     public static String percent(int value1, int value2, int decimalPlacesLength) {
@@ -255,9 +256,9 @@ public class Formatx {
     /**
      * Calculate the percentage
      *
-     * @param value1                value1
-     * @param value2                value2
-     * @param decimalPlacesLength   Keep a few decimal places
+     * @param value1              value1
+     * @param value2              value2
+     * @param decimalPlacesLength Keep a few decimal places
      */
     @NotNull
     public static String percent(long value1, long value2, int decimalPlacesLength) {
@@ -270,6 +271,7 @@ public class Formatx {
      * @param value1 value1
      * @param value2 value2
      */
+    @NotNull
     public static String percent(long value1, long value2) {
         return percent(value1 / (double) value2, 2, false);
     }
@@ -283,21 +285,22 @@ public class Formatx {
      * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
      * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
      */
+    @NotNull
     public static String fileSize(long fileSize, int decimalPlacesLength, boolean decimalPlacesFillZero) {
         if (fileSize < 1024) {
             return fileSize + " B";
         } else if (fileSize < 1024L * 1024) {
-            return format(fileSize / 1024f, " KB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(fileSize / 1024f, " KB", decimalPlacesLength, decimalPlacesFillZero);
         } else if (fileSize < 1024L * 1024 * 1024) {
-            return format(fileSize / 1024f / 1024f, " MB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(fileSize / 1024f / 1024f, " MB", decimalPlacesLength, decimalPlacesFillZero);
         } else if (fileSize < 1024L * 1024 * 1024 * 1024) {
-            return format(fileSize / 1024f / 1024f / 1024f, " GB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(fileSize / 1024f / 1024f / 1024f, " GB", decimalPlacesLength, decimalPlacesFillZero);
         } else if (fileSize < 1024L * 1024 * 1024 * 1024 * 1024) {
-            return format(fileSize / 1024f / 1024f / 1024f / 1024f, " TB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(fileSize / 1024f / 1024f / 1024f / 1024f, " TB", decimalPlacesLength, decimalPlacesFillZero);
         } else if (fileSize < 1024L * 1024 * 1024 * 1024 * 1024 * 1024) {
-            return format(fileSize / 1024f / 1024f / 1024f / 1024f / 1024f, " PB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(fileSize / 1024f / 1024f / 1024f / 1024f / 1024f, " PB", decimalPlacesLength, decimalPlacesFillZero);
         } else {
-            return format(fileSize / 1024f / 1024f / 1024f / 1024f / 1024f / 1024f, " EB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(fileSize / 1024f / 1024f / 1024f / 1024f / 1024f / 1024f, " EB", decimalPlacesLength, decimalPlacesFillZero);
         }
     }
 
@@ -308,6 +311,7 @@ public class Formatx {
      * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
      * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
      */
+    @NotNull
     public static String fileSize(long fileSize, boolean decimalPlacesFillZero) {
         return fileSize(fileSize, 2, decimalPlacesFillZero);
     }
@@ -318,6 +322,7 @@ public class Formatx {
      * @param fileSize File size
      * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
      */
+    @NotNull
     public static String fileSize(long fileSize) {
         return fileSize(fileSize, 2, false);
     }
@@ -329,6 +334,7 @@ public class Formatx {
      * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
      * @return For example: 300 B, 150.3 KB, 500.5 MB, 300 GB
      */
+    @NotNull
     public static String mediumFileSize(long fileSize, boolean decimalPlacesFillZero) {
         return fileSize(fileSize, 1, decimalPlacesFillZero);
     }
@@ -339,6 +345,7 @@ public class Formatx {
      * @param fileSize File size
      * @return For example: 300 B, 150.3 KB, 500.5 MB, 300 GB
      */
+    @NotNull
     public static String mediumFileSize(long fileSize) {
         return fileSize(fileSize, 1, false);
     }
@@ -349,6 +356,7 @@ public class Formatx {
      * @param fileSize File size
      * @return For example: 300 B, 150 KB, 500 MB, 300 GB
      */
+    @NotNull
     public static String shortFileSize(long fileSize) {
         return fileSize(fileSize, 0, false);
     }
@@ -363,6 +371,7 @@ public class Formatx {
      *
      * @param ignoreMillisecond Ignore milliseconds
      */
+    @NotNull
     public static String totalTime(long totalTimeMillis, boolean ignoreMillisecond) {
         long finalTotalTimeMillis = totalTimeMillis >= 0 ? totalTimeMillis : 0;
 
@@ -401,6 +410,7 @@ public class Formatx {
     /**
      * Returns the total time of formatting that can be displayed
      */
+    @NotNull
     public static String totalTime(long totalTimeMillis) {
         return totalTime(totalTimeMillis, false);
     }
@@ -410,6 +420,7 @@ public class Formatx {
      *
      * @param ignoreMillisecond Ignore milliseconds
      */
+    @NotNull
     public static String totalTime(int totalTime, boolean ignoreMillisecond) {
         return totalTime((long) totalTime, ignoreMillisecond);
     }
@@ -417,6 +428,7 @@ public class Formatx {
     /**
      * Returns the total time of formatting that can be displayed
      */
+    @NotNull
     public static String totalTime(int totalTime) {
         return totalTime((long) totalTime, false);
     }

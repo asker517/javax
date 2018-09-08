@@ -34,7 +34,7 @@ public class FileTest {
 
         boolean result;
         try {
-            Premisex.requireExist(testFile);
+            Premisex.requireFileExist(testFile);
             result = true;
         } catch (FileNotFoundException e) {
             result = false;
@@ -44,7 +44,7 @@ public class FileTest {
         Filex.createNewFileCheck(testFile);
 
         try {
-            Premisex.requireExist(testFile);
+            Premisex.requireFileExist(testFile);
             result = true;
         } catch (FileNotFoundException e) {
             result = false;
