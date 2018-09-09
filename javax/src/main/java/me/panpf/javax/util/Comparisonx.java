@@ -95,4 +95,202 @@ public class Comparisonx {
             return new NaturalOrderComparator<T>();
         }
     }
+
+    /**
+     * Returns the greater of two values.
+     * If values are equal, returns the first one.
+     */
+    public static <T extends Comparable<T>> T maxOf(T a, T b) {
+        return a.compareTo(b) >= 0 ? a : b;
+    }
+
+    /**
+     * Returns the greater of two values.
+     */
+    public static byte maxOf(byte a, byte b) {
+        return (byte) Math.max((int) a, (int) b);
+    }
+
+    /**
+     * Returns the greater of two values.
+     */
+    public static short maxOf(short a, short b) {
+        return (short) Math.max((int) a, (int) b);
+    }
+
+    /**
+     * Returns the greater of two values.
+     */
+    public static int maxOf(int a, int b) {
+        return Math.max(a, b);
+    }
+
+    /**
+     * Returns the greater of two values.
+     */
+    public static long maxOf(long a, long b) {
+        return Math.max(a, b);
+    }
+
+    /**
+     * Returns the greater of two values.
+     */
+    public static float maxOf(float a, float b) {
+        return Math.max(a, b);
+    }
+
+    /**
+     * Returns the greater of two values.
+     */
+    public static double maxOf(double a, double b) {
+        return Math.max(a, b);
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static <T extends Comparable<T>> T maxOf(T a, T b, T c) {
+        return maxOf(a, maxOf(b, c));
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static byte maxOf(byte a, byte b, byte c) {
+        return (byte) Math.max((int) a, Math.max((int) b, (int) c));
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static short maxOf(short a, short b, short c) {
+        return (short) Math.max((int) a, Math.max((int) b, (int) c));
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static int maxOf(int a, int b, int c) {
+        return maxOf(a, maxOf(b, c));
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static long maxOf(long a, long b, long c) {
+        return maxOf(a, maxOf(b, c));
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static float maxOf(float a, float b, float c) {
+        return maxOf(a, maxOf(b, c));
+    }
+
+    /**
+     * Returns the greater of three values.
+     */
+    public static double maxOf(double a, double b, double c) {
+        return maxOf(a, maxOf(b, c));
+    }
+
+    /**
+     * Returns the smaller of two values.
+     * If values are equal, returns the first one.
+     */
+    public static <T extends Comparable<T>> T minOf(T a, T b) {
+        return a.compareTo(b) <= 0 ? a : b;
+    }
+
+    /**
+     * Returns the smaller of two values.
+     */
+    public static byte minOf(byte a, byte b) {
+        return (byte) Math.min((int) a, (int) b);
+    }
+
+    /**
+     * Returns the smaller of two values.
+     */
+    public static short minOf(short a, short b) {
+        return (short) Math.min((int) a, (int) b);
+    }
+
+    /**
+     * Returns the smaller of two values.
+     */
+    public static int minOf(int a, int b) {
+        return Math.min(a, b);
+    }
+
+    /**
+     * Returns the smaller of two values.
+     */
+    public static long minOf(long a, long b) {
+        return Math.min(a, b);
+    }
+
+    /**
+     * Returns the smaller of two values.
+     */
+    public static float minOf(float a, float b) {
+        return Math.min(a, b);
+    }
+
+    /**
+     * Returns the smaller of two values.
+     */
+    public static double minOf(double a, double b) {
+        return Math.min(a, b);
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static <T extends Comparable<T>> T minOf(T a, T b, T c) {
+        return minOf(a, minOf(b, c));
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static byte minOf(byte a, byte b, byte c) {
+        return (byte) Math.min((int) a, Math.min((int) b, (int) c));
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static short minOf(short a, short b, short c) {
+        return (short) Math.min((int) a, Math.min((int) b, (int) c));
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static int minOf(int a, int b, int c) {
+        return minOf(a, minOf(b, c));
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static long minOf(long a, long b, long c) {
+        return minOf(a, minOf(b, c));
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static float minOf(float a, float b, float c) {
+        return minOf(a, minOf(b, c));
+    }
+
+    /**
+     * Returns the smaller of three values.
+     */
+    public static double minOf(double a, double b, double c) {
+        return minOf(a, minOf(b, c));
+    }
 }

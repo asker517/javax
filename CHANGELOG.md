@@ -9,6 +9,7 @@
 * Arrayx 的 requireNoNulls, 移到 Premise 中
 * requireExist rename to requireFileExist
 * Kotlin 版本移除 annotations 依赖
+* Comparisonx 增加 maxOf, minOf
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString

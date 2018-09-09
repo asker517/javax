@@ -116,7 +116,7 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
     associate, associateByTo, associateBy, drop, dropLast, dropLastWhile, dropWhile, single, singleOrNull, elementAtOrElse,
     elementAt, elementAtOrNull, fill, shuffle, shuffled
 * Comparison: [Comparisonx.java]
-    * compareValues, compareValuesBy, compareBy, compareByDescending
+    * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf
 * Format: [Formatx.java] ([Test][FormatTest.java]) | [Format.kt] ([Test][FormatTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize, totalTime
 * Map: [Mapx.java]
