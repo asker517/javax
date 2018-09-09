@@ -16,16 +16,18 @@
 
 package me.panpf.javax.lang;
 
+import me.panpf.javax.util.IntProgression;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
-public class IntRange implements Iterable<Integer> {
+public class IntRange extends IntProgression {
     private int first;
     private int endInclusive;
     private int step;
 
     public IntRange(int first, int endInclusive, int step) {
+        super(first, endInclusive, step);
         this.first = first;
         this.endInclusive = endInclusive;
         this.step = step;
@@ -35,5 +37,17 @@ public class IntRange implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new IntProgressionIterator(first, endInclusive, step);
+    }
+
+    public boolean isEmpty(){
+        return first > getLast();
+    }
+
+    public int getEndInclusive() {
+        return getLast();
+    }
+
+    public int getStart(){
+        return getFirst();
     }
 }

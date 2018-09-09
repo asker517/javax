@@ -1,5 +1,6 @@
 package me.panpf.javax.util;
 
+import me.panpf.javax.lang.IntRange;
 import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -7,1420 +8,419 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class Arrayx3 {
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static <T> drop(@NotNull T[] elements, n: Integer): List<T> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull byte[] elements, n: Integer): List<Byte> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull short[] elements, n: Integer): List<Short> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull int[] elements, n: Integer): List<Integer> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull long[] elements, n: Integer): List<Long> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull float[] elements, n: Integer): List<Float> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull double[] elements, n: Integer): List<Double> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull boolean[] elements, n: Integer): List<Boolean> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first [n] elements.
-////     */
-////    public static drop(@NotNull char[] elements, n: Integer): List<Character> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return takeLast((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static <T> dropLast(@NotNull T[] elements, n: Integer): List<T> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull byte[] elements, n: Integer): List<Byte> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull short[] elements, n: Integer): List<Short> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull int[] elements, n: Integer): List<Integer> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull long[] elements, n: Integer): List<Long> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull float[] elements, n: Integer): List<Float> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull double[] elements, n: Integer): List<Double> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull boolean[] elements, n: Integer): List<Boolean> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last [n] elements.
-////     */
-////    public static dropLast(@NotNull char[] elements, n: Integer): List<Character> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        return take((size - n).coerceAtLeast(0))
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static <T> dropLastWhile(@NotNull T[] elements, Predicate<T> predicate): List<T> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull byte[] elements, Predicate<Byte> predicate): List<Byte> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull short[] elements, Predicate<Short> predicate): List<Short> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull int[] elements, Predicate<Integer> predicate): List<Integer> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull long[] elements, Predicate<Long> predicate): List<Long> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull float[] elements, Predicate<Float> predicate): List<Float> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull double[] elements, Predicate<Double> predicate): List<Double> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull boolean[] elements, Predicate<Boolean> predicate): List<Boolean> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except last elements that satisfy the given [predicate].
-////     */
-////    public static dropLastWhile(@NotNull char[] elements, Predicate<Character> predicate): List<Character> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return take(index + 1)
-////            }
-////        }
-////        return emptyList()
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static <T> dropWhile(@NotNull T[] elements, Predicate<T> predicate): List<T> {
-////        var yielding = false
-////        val list = ArrayList<T>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull byte[] elements, Predicate<Byte> predicate): List<Byte> {
-////        var yielding = false
-////        val list = ArrayList<Byte>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull short[] elements, Predicate<Short> predicate): List<Short> {
-////        var yielding = false
-////        val list = ArrayList<Short>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull int[] elements, Predicate<Integer> predicate): List<Integer> {
-////        var yielding = false
-////        val list = ArrayList<Integer>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull long[] elements, Predicate<Long> predicate): List<Long> {
-////        var yielding = false
-////        val list = ArrayList<Long>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull float[] elements, Predicate<Float> predicate): List<Float> {
-////        var yielding = false
-////        val list = ArrayList<Float>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull double[] elements, Predicate<Double> predicate): List<Double> {
-////        var yielding = false
-////        val list = ArrayList<Double>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull boolean[] elements, Predicate<Boolean> predicate): List<Boolean> {
-////        var yielding = false
-////        val list = ArrayList<Boolean>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing all elements except first elements that satisfy the given [predicate].
-////     */
-////    public static dropWhile(@NotNull char[] elements, Predicate<Character> predicate): List<Character> {
-////        var yielding = false
-////        val list = ArrayList<Character>()
-////        for (item in this)
-////            if (yielding)
-////                list.add(item)
-////            else if (!predicate(item)) {
-////                list.add(item)
-////                yielding = true
-////            }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static <T> slice(@NotNull T[] elements, indices: IntRange): List<T> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull byte[] elements, indices: IntRange): List<Byte> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull short[] elements, indices: IntRange): List<Short> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull int[] elements, indices: IntRange): List<Integer> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull long[] elements, indices: IntRange): List<Long> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull float[] elements, indices: IntRange): List<Float> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull double[] elements, indices: IntRange): List<Double> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull boolean[] elements, indices: IntRange): List<Boolean> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static slice(@NotNull char[] elements, indices: IntRange): List<Character> {
-////        if (indices.isEmpty()) return listOf()
-////        return copyOfRange(indices.start, indices.endInclusive + 1).asList()
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static <T> slice(@NotNull T[] elements, indices: Iterable<Integer>): List<T> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<T>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull byte[] elements, indices: Iterable<Integer>): List<Byte> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Byte>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull short[] elements, indices: Iterable<Integer>): List<Short> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Short>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull int[] elements, indices: Iterable<Integer>): List<Integer> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Integer>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull long[] elements, indices: Iterable<Integer>): List<Long> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Long>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull float[] elements, indices: Iterable<Integer>): List<Float> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Float>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull double[] elements, indices: Iterable<Integer>): List<Double> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Double>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull boolean[] elements, indices: Iterable<Integer>): List<Boolean> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Boolean>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing elements at specified [indices].
-////     */
-////    public static slice(@NotNull char[] elements, indices: Iterable<Integer>): List<Character> {
-////        val size = indices.collectionSizeOrDefault(10)
-////        if (size == 0) return emptyList()
-////        val list = ArrayList<Character>(size)
-////        for (index in indices) {
-////            list.add(get(index))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static <T> Array<T>.sliceArray(indices: Collection<Integer>): Array<T> {
-////        val result = arrayOfNulls(this, indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull byte[] elements, indices: Collection<Integer>): byte[] {
-////        val result = byte[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull short[] elements, indices: Collection<Integer>): short[] {
-////        val result = short[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull int[] elements, indices: Collection<Integer>): int[] {
-////        val result = int[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull long[] elements, indices: Collection<Integer>): long[] {
-////        val result = long[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull float[] elements, indices: Collection<Integer>): float[] {
-////        val result = float[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull double[] elements, indices: Collection<Integer>): double[] {
-////        val result = double[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull boolean[] elements, indices: Collection<Integer>): boolean[] {
-////        val result = boolean[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns an array containing elements of this array at specified [indices].
-////     */
-////    public static sliceArray(@NotNull char[] elements, indices: Collection<Integer>): char[] {
-////        val result = char[](indices.size)
-////        var targetIndex = 0
-////        for (sourceIndex in indices) {
-////            result[targetIndex++] = this[sourceIndex]
-////        }
-////        return result
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static <T> Array<T>.sliceArray(indices: IntRange): Array<T> {
-////        if (indices.isEmpty()) return copyOfRange(0, 0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull byte[] elements, indices: IntRange): byte[] {
-////        if (indices.isEmpty()) return byte[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull short[] elements, indices: IntRange): short[] {
-////        if (indices.isEmpty()) return short[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull int[] elements, indices: IntRange): int[] {
-////        if (indices.isEmpty()) return int[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull long[] elements, indices: IntRange): long[] {
-////        if (indices.isEmpty()) return long[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull float[] elements, indices: IntRange): float[] {
-////        if (indices.isEmpty()) return float[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull double[] elements, indices: IntRange): double[] {
-////        if (indices.isEmpty()) return double[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull boolean[] elements, indices: IntRange): boolean[] {
-////        if (indices.isEmpty()) return boolean[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing elements at indices in the specified [indices] range.
-////     */
-////    public static sliceArray(@NotNull char[] elements, indices: IntRange): char[] {
-////        if (indices.isEmpty()) return char[](0)
-////        return copyOfRange(indices.start, indices.endInclusive + 1)
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static <T> take(@NotNull T[] elements, n: Integer): List<T> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<T>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull byte[] elements, n: Integer): List<Byte> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Byte>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull short[] elements, n: Integer): List<Short> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Short>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull int[] elements, n: Integer): List<Integer> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Integer>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull long[] elements, n: Integer): List<Long> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Long>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull float[] elements, n: Integer): List<Float> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Float>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull double[] elements, n: Integer): List<Double> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Double>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull boolean[] elements, n: Integer): List<Boolean> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Boolean>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first [n] elements.
-////     */
-////    public static take(@NotNull char[] elements, n: Integer): List<Character> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[0])
-////        var count = 0
-////        val list = ArrayList<Character>(n)
-////        for (item in this) {
-////            if (count++ == n)
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static <T> takeLast(@NotNull T[] elements, n: Integer): List<T> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<T>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull byte[] elements, n: Integer): List<Byte> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Byte>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull short[] elements, n: Integer): List<Short> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Short>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull int[] elements, n: Integer): List<Integer> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Integer>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull long[] elements, n: Integer): List<Long> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Long>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull float[] elements, n: Integer): List<Float> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Float>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull double[] elements, n: Integer): List<Double> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Double>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull boolean[] elements, n: Integer): List<Boolean> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Boolean>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last [n] elements.
-////     */
-////    public static takeLast(@NotNull char[] elements, n: Integer): List<Character> {
-////        require(n >= 0) { "Requested element count $n is less than zero." }
-////        if (n == 0) return emptyList()
-////        val size = size
-////        if (n >= size) return toList()
-////        if (n == 1) return listOf(this[size - 1])
-////        val list = ArrayList<Character>(n)
-////        for (index in size - n until size)
-////        list.add(this[index])
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static <T> takeLastWhile(@NotNull T[] elements, Predicate<T> predicate): List<T> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull byte[] elements, Predicate<Byte> predicate): List<Byte> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull short[] elements, Predicate<Short> predicate): List<Short> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull int[] elements, Predicate<Integer> predicate): List<Integer> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull long[] elements, Predicate<Long> predicate): List<Long> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull float[] elements, Predicate<Float> predicate): List<Float> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull double[] elements, Predicate<Double> predicate): List<Double> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull boolean[] elements, Predicate<Boolean> predicate): List<Boolean> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing last elements satisfying the given [predicate].
-////     */
-////    public static takeLastWhile(@NotNull char[] elements, Predicate<Character> predicate): List<Character> {
-////        for (index in lastIndex downTo 0) {
-////            if (!predicate(this[index])) {
-////                return drop(index + 1)
-////            }
-////        }
-////        return toList()
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static <T> takeWhile(@NotNull T[] elements, Predicate<T> predicate): List<T> {
-////        val list = ArrayList<T>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull byte[] elements, Predicate<Byte> predicate): List<Byte> {
-////        val list = ArrayList<Byte>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull short[] elements, Predicate<Short> predicate): List<Short> {
-////        val list = ArrayList<Short>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull int[] elements, Predicate<Integer> predicate): List<Integer> {
-////        val list = ArrayList<Integer>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull long[] elements, Predicate<Long> predicate): List<Long> {
-////        val list = ArrayList<Long>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull float[] elements, Predicate<Float> predicate): List<Float> {
-////        val list = ArrayList<Float>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull double[] elements, Predicate<Double> predicate): List<Double> {
-////        val list = ArrayList<Double>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull boolean[] elements, Predicate<Boolean> predicate): List<Boolean> {
-////        val list = ArrayList<Boolean>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list containing first elements satisfying the given [predicate].
-////     */
-////    public static takeWhile(@NotNull char[] elements, Predicate<Character> predicate): List<Character> {
-////        val list = ArrayList<Character>()
-////        for (item in this) {
-////            if (!predicate(item))
-////                break
-////                list.add(item)
-////        }
-////        return list
-////    }
-////
-////
-////
-////    /**
-////     * Returns `true` if the two specified arrays are *deeply* equal to one another,
-////     * i.e. contain the same number of the same elements in the same order.
-////     *
-////     * If two corresponding elements are nested arrays, they are also compared deeply.
-////     * If any of arrays contains itself on any nesting level the behavior is undefined.
-////     */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static <T> contentDeepEquals(@NotNull T[] elements, T[] other): boolean {
-////        return java.util.Arrays.deepEquals(this, other)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// * Nested arrays are treated as lists too.
-//// *
-//// * If any of arrays contains itself on any nesting level the behavior is undefined.
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static <T> contentDeepHashCode(@NotNull T[] elements, ): int {
-////        return java.util.Arrays.deepHashCode(this)
-////    }
-////
-/////**
-//// * Returns a string representation of the contents of this array as if it is a [List].
-//// * Nested arrays are treated as lists too.
-//// *
-//// * If any of arrays contains itself on any nesting level that reference
-//// * is rendered as `"[...]"` to prevent recursion.
-//// *
-//// * @sample samples.collections.Arrays.ContentOperations.contentDeepToString
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static <T> contentDeepToString(@NotNull T[] elements, ): String {
-////        return java.util.Arrays.deepToString(this)
-////    }
-////
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static <T> contentHashCode(@NotNull T[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull byte[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull short[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull int[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull long[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull float[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull double[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull boolean[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-/////**
-//// * Returns a hash code based on the contents of this array as if it is [List].
-//// */
-////    @SinceKotlin("1.1")
-////    @kotlin.internal.InlineOnly
-////    public static contentHashCode(@NotNull char[] elements, ): int {
-////        return java.util.Arrays.hashCode(this)
-////    }
-////
-////
-////
-////
+
+
+    /*
+     * slice
+     */
+
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static <T> List<T> slice(@NotNull T[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Byte> slice(@NotNull byte[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Short> slice(@NotNull short[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Integer> slice(@NotNull int[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Long> slice(@NotNull long[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Float> slice(@NotNull float[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Double> slice(@NotNull double[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Boolean> slice(@NotNull boolean[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static List<Character> slice(@NotNull char[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Collectionx.emptyList();
+        return Arrayx.asList(Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static <T> List<T> slice(@NotNull T[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<T> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Byte> slice(@NotNull byte[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Byte> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Short> slice(@NotNull short[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Short> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Integer> slice(@NotNull int[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Integer> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Long> slice(@NotNull long[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Long> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Float> slice(@NotNull float[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Float> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Double> slice(@NotNull double[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Double> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Boolean> slice(@NotNull boolean[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Boolean> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing elements at specified [indices].
+     */
+    @NotNull
+    public static List<Character> slice(@NotNull char[] elements, @NotNull Iterable<Integer> indices) {
+        int size = Collectionx.collectionSizeOrDefault(indices, 10);
+        if (size == 0) return Collectionx.emptyList();
+        List<Character> list = new ArrayList<>(size);
+        for (int index : indices) {
+            list.add(elements[index]);
+        }
+        return list;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static <T> T[] sliceArray(@NotNull T[] elements, @NotNull Collection<Integer> indices) {
+        ArrayList<T> result = new ArrayList<>(indices.size());
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result.add(targetIndex++, elements[sourceIndex]);
+        }
+        //noinspection unchecked
+        return (T[]) result.toArray();
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static byte[] sliceArray(@NotNull byte[] elements, @NotNull Collection<Integer> indices) {
+        byte[] result = new byte[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static short[] sliceArray(@NotNull short[] elements, @NotNull Collection<Integer> indices) {
+        short[] result = new short[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static int[] sliceArray(@NotNull int[] elements, @NotNull Collection<Integer> indices) {
+        int[] result = new int[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static long[] sliceArray(@NotNull long[] elements, @NotNull Collection<Integer> indices) {
+        long[] result = new long[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static float[] sliceArray(@NotNull float[] elements, @NotNull Collection<Integer> indices) {
+        float[] result = new float[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static double[] sliceArray(@NotNull double[] elements, @NotNull Collection<Integer> indices) {
+        double[] result = new double[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static boolean[] sliceArray(@NotNull boolean[] elements, @NotNull Collection<Integer> indices) {
+        boolean[] result = new boolean[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns an array containing elements of this array at specified [indices].
+     */
+    @NotNull
+    public static char[] sliceArray(@NotNull char[] elements, @NotNull Collection<Integer> indices) {
+        char[] result = new char[indices.size()];
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
+        }
+        return result;
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static <T> T[] sliceArray(@NotNull T[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return Arrayx.copyOfRange(elements, 0, 0);
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static byte[] sliceArray(@NotNull byte[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new byte[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static short[] sliceArray(@NotNull short[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new short[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static int[] sliceArray(@NotNull int[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new int[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static long[] sliceArray(@NotNull long[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new long[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static float[] sliceArray(@NotNull float[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new float[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static double[] sliceArray(@NotNull double[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new double[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static boolean[] sliceArray(@NotNull boolean[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new boolean[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a list containing elements at indices in the specified [indices] range.
+     */
+    @NotNull
+    public static char[] sliceArray(@NotNull char[] elements, @NotNull IntRange indices) {
+        if (indices.isEmpty()) return new char[0];
+        return Arrayx.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
+    }
+//
 //    /**
 //     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
 //     *
@@ -2518,7 +1518,4 @@ public class Arrayx3 {
 ////        }
 ////        return list
 ////    }
-////
-
-
 }

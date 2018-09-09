@@ -29,7 +29,7 @@ public class IntProgressionIterator implements Iterator<Integer> {
     private int next;
     private boolean hasNext;
 
-    IntProgressionIterator(int start, int endInclusive, int step) {
+    public IntProgressionIterator(int start, int endInclusive, int step) {
         this.step = step;
         finalElement = endInclusive;
         hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;

@@ -549,7 +549,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -561,7 +561,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -573,7 +573,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -585,7 +585,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -597,7 +597,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -609,7 +609,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -621,7 +621,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -633,7 +633,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -645,7 +645,7 @@ public class Arrayx {
 
     /**
      * Returns a mutable set containing all distinct elements from the given array.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12406,7 +12406,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12418,7 +12418,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12430,7 +12430,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12442,7 +12442,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12454,7 +12454,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12466,7 +12466,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12478,7 +12478,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12490,7 +12490,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12502,7 +12502,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by both this set and the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12520,7 +12520,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12532,7 +12532,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12544,7 +12544,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12556,7 +12556,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12568,7 +12568,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12580,7 +12580,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12592,7 +12592,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12604,7 +12604,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12616,7 +12616,7 @@ public class Arrayx {
 
     /**
      * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
-     *
+     * <p>
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
@@ -12635,7 +12635,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted according to the specified [comparator], otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12646,10 +12646,11 @@ public class Arrayx {
     public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
         return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element, comparator);
     }
+
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted according to the specified [comparator], otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12664,7 +12665,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12679,7 +12680,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12694,7 +12695,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12709,7 +12710,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12724,7 +12725,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12739,7 +12740,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12754,7 +12755,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12769,7 +12770,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12784,7 +12785,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12799,7 +12800,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12814,7 +12815,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12829,7 +12830,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12844,7 +12845,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12859,7 +12860,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12874,7 +12875,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12889,7 +12890,7 @@ public class Arrayx {
     /**
      * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
      * The array is expected to be sorted, otherwise the result is undefined.
-     *
+     * <p>
      * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
      *
      * @return the index of the element, if it is contained in the array within the specified range;
@@ -12899,5 +12900,1124 @@ public class Arrayx {
      */
     public static int binarySearch(@NotNull char[] elements, char element) {
         return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+
+    /*
+     * contentHashCode
+     */
+
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static <T> int contentHashCode(@NotNull T[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull byte[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull short[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull int[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull long[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull float[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull double[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull boolean[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     */
+    public static int contentHashCode(@NotNull char[] elements) {
+        return java.util.Arrays.hashCode(elements);
+    }
+
+
+    /*
+     * content
+     */
+
+
+    /**
+     * Returns `true` if the two specified arrays are *deeply* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     * <p>
+     * If two corresponding elements are nested arrays, they are also compared deeply.
+     * If any of arrays contains itself on any nesting level the behavior is undefined.
+     */
+    public static <T> boolean contentDeepEquals(@NotNull T[] elements, T[] other) {
+        return java.util.Arrays.deepEquals(elements, other);
+    }
+
+    /**
+     * Returns a hash code based on the contents of this array as if it is [List].
+     * Nested arrays are treated as lists too.
+     * <p>
+     * If any of arrays contains itself on any nesting level the behavior is undefined.
+     */
+    public static <T> int contentDeepHashCode(@NotNull T[] elements) {
+        return java.util.Arrays.deepHashCode(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of this array as if it is a [List].
+     * Nested arrays are treated as lists too.
+     * <p>
+     * If any of arrays contains itself on any nesting level that reference
+     * is rendered as `"[...]"` to prevent recursion.
+     */
+    @NotNull
+    public static <T> String contentDeepToString(@NotNull T[] elements) {
+        return java.util.Arrays.deepToString(elements);
+    }
+
+
+    /*
+     * drop
+     */
+
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static <T> List<T> drop(@NotNull T[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Byte> drop(@NotNull byte[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Short> drop(@NotNull short[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Integer> drop(@NotNull int[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Long> drop(@NotNull long[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Float> drop(@NotNull float[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Double> drop(@NotNull double[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Boolean> drop(@NotNull boolean[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except first [n] elements.
+     */
+    @NotNull
+    public static List<Character> drop(@NotNull char[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static <T> List<T> dropLast(@NotNull T[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Byte> dropLast(@NotNull byte[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Short> dropLast(@NotNull short[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Integer> dropLast(@NotNull int[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Long> dropLast(@NotNull long[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Float> dropLast(@NotNull float[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Double> dropLast(@NotNull double[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Boolean> dropLast(@NotNull boolean[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last [n] elements.
+     */
+    @NotNull
+    public static List<Character> dropLast(@NotNull char[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> dropLastWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Byte> dropLastWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Short> dropLastWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Integer> dropLastWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Long> dropLastWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Float> dropLastWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Double> dropLastWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Boolean> dropLastWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except last elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Character> dropLastWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return take(elements, index + 1);
+            }
+        }
+        return Collectionx.emptyList();
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> dropWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        boolean yielding = false;
+        List<T> list = new ArrayList<T>();
+        for (T item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Byte> dropWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        boolean yielding = false;
+        List<Byte> list = new ArrayList<>();
+        for (byte item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Short> dropWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        boolean yielding = false;
+        List<Short> list = new ArrayList<>();
+        for (short item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Integer> dropWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        boolean yielding = false;
+        List<Integer> list = new ArrayList<>();
+        for (int item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Long> dropWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        boolean yielding = false;
+        List<Long> list = new ArrayList<>();
+        for (long item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Float> dropWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        boolean yielding = false;
+        List<Float> list = new ArrayList<>();
+        for (float item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Double> dropWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        boolean yielding = false;
+        List<Double> list = new ArrayList<>();
+        for (double item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Boolean> dropWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        boolean yielding = false;
+        List<Boolean> list = new ArrayList<>();
+        for (boolean item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing all elements except first elements that satisfy the given [predicate].
+     */
+    @NotNull
+    public static List<Character> dropWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        boolean yielding = false;
+        List<Character> list = new ArrayList<>();
+        for (char item : elements) {
+            if (yielding) {
+                list.add(item);
+            } else if (!predicate.accept(item)) {
+                list.add(item);
+                yielding = true;
+            }
+        }
+        return list;
+    }
+
+
+    /*
+     * take
+     */
+
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static <T> List<T> take(@NotNull T[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<T> list = new ArrayList<>(n);
+        for (T item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Byte> take(@NotNull byte[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Byte> list = new ArrayList<>(n);
+        for (byte item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Short> take(@NotNull short[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Short> list = new ArrayList<>(n);
+        for (short item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Integer> take(@NotNull int[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Integer> list = new ArrayList<>(n);
+        for (int item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Long> take(@NotNull long[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Long> list = new ArrayList<>(n);
+        for (long item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Float> take(@NotNull float[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Float> list = new ArrayList<>(n);
+        for (float item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Double> take(@NotNull double[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Double> list = new ArrayList<>(n);
+        for (double item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Boolean> take(@NotNull boolean[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Boolean> list = new ArrayList<>(n);
+        for (boolean item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first [n] elements.
+     */
+    @NotNull
+    public static List<Character> take(@NotNull char[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        if (n >= elements.length) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[0]);
+        int count = 0;
+        List<Character> list = new ArrayList<>(n);
+        for (char item : elements) {
+            if (count++ == n)
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static <T> List<T> takeLast(@NotNull T[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<T> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Byte> takeLast(@NotNull byte[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Byte> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Short> takeLast(@NotNull short[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Short> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Integer> takeLast(@NotNull int[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Integer> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Long> takeLast(@NotNull long[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Long> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Float> takeLast(@NotNull float[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Float> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Double> takeLast(@NotNull double[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Double> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Boolean> takeLast(@NotNull boolean[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Boolean> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last [n] elements.
+     */
+    @NotNull
+    public static List<Character> takeLast(@NotNull char[] elements, int n) {
+        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        if (n == 0) return Collectionx.emptyList();
+        int size = elements.length;
+        if (n >= size) return Arrayx.toList(elements);
+        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        List<Character> list = new ArrayList<>(n);
+        for (int index : Numberx.untilTo(size - n, elements.length))
+            list.add(elements[index]);
+        return list;
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> takeLastWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Byte> takeLastWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Short> takeLastWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Integer> takeLastWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Long> takeLastWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Float> takeLastWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Double> takeLastWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Boolean> takeLastWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing last elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Character> takeLastWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (int index : Numberx.downTo(elements.length - 1, 0)) {
+            if (!predicate.accept(elements[index])) {
+                return drop(elements, index + 1);
+            }
+        }
+        return Arrayx.toList(elements);
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static <T> List<T> takeWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        List<T> list = new ArrayList<>();
+        for (T item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Byte> takeWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        List<Byte> list = new ArrayList<>();
+        for (byte item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Short> takeWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        List<Short> list = new ArrayList<>();
+        for (short item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Integer> takeWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        List<Integer> list = new ArrayList<>();
+        for (int item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Long> takeWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        List<Long> list = new ArrayList<>();
+        for (long item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Float> takeWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        List<Float> list = new ArrayList<>();
+        for (float item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Double> takeWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        List<Double> list = new ArrayList<>();
+        for (double item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Boolean> takeWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        List<Boolean> list = new ArrayList<>();
+        for (boolean item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing first elements satisfying the given [predicate].
+     */
+    @NotNull
+    public static List<Character> takeWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        List<Character> list = new ArrayList<>();
+        for (char item : elements) {
+            if (!predicate.accept(item))
+                break;
+            list.add(item);
+        }
+        return list;
     }
 }

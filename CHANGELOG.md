@@ -16,6 +16,7 @@
 find, findLast, getOrElse, getOrNull, elementAt, elementAtOrElse, elementAtOrNull, contentEquals, flatMap,
 flatMapTo, average, none, reduce, reduceIndexed, reduceRight, reduceRightIndexed, fold, foldIndexed, foldRight,
 foldRightIndexed, intersect, subtract, binarySearch,
+* Arrayx 增加 drop, take, slice
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString
