@@ -2481,7 +2481,7 @@ public class Arrayx {
         T single = null;
         boolean found = false;
         for (T element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2498,7 +2498,7 @@ public class Arrayx {
         char single = 0;
         boolean found = false;
         for (char element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2515,7 +2515,7 @@ public class Arrayx {
         byte single = 0;
         boolean found = false;
         for (byte element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2532,7 +2532,7 @@ public class Arrayx {
         short single = 0;
         boolean found = false;
         for (short element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2549,7 +2549,7 @@ public class Arrayx {
         int single = 0;
         boolean found = false;
         for (int element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2566,7 +2566,7 @@ public class Arrayx {
         long single = 0;
         boolean found = false;
         for (long element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2583,7 +2583,7 @@ public class Arrayx {
         float single = 0;
         boolean found = false;
         for (float element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2600,7 +2600,7 @@ public class Arrayx {
         double single = 0;
         boolean found = false;
         for (double element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2617,7 +2617,7 @@ public class Arrayx {
         boolean single = false;
         boolean found = false;
         for (boolean element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) throw new IllegalArgumentException("Array contains more than one matching element.");
                 single = element;
                 found = true;
@@ -2635,7 +2635,7 @@ public class Arrayx {
         T single = null;
         boolean found = false;
         for (T element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2653,7 +2653,7 @@ public class Arrayx {
         char single = 0;
         boolean found = false;
         for (char element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2671,7 +2671,7 @@ public class Arrayx {
         byte single = 0;
         boolean found = false;
         for (byte element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2689,7 +2689,7 @@ public class Arrayx {
         short single = 0;
         boolean found = false;
         for (short element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2707,7 +2707,7 @@ public class Arrayx {
         int single = 0;
         boolean found = false;
         for (int element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2725,7 +2725,7 @@ public class Arrayx {
         long single = 0;
         boolean found = false;
         for (long element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2743,7 +2743,7 @@ public class Arrayx {
         float single = 0;
         boolean found = false;
         for (float element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2761,7 +2761,7 @@ public class Arrayx {
         double single = 0;
         boolean found = false;
         for (double element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2779,7 +2779,7 @@ public class Arrayx {
         boolean single = false;
         boolean found = false;
         for (boolean element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) return null;
                 single = element;
                 found = true;
@@ -2862,7 +2862,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static <T> boolean any(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
-        for (T element : elements) if (predicate.predicate(element)) return true;
+        for (T element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2870,7 +2870,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
-        for (byte element : elements) if (predicate.predicate(element)) return true;
+        for (byte element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2878,7 +2878,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
-        for (short element : elements) if (predicate.predicate(element)) return true;
+        for (short element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2886,7 +2886,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
-        for (int element : elements) if (predicate.predicate(element)) return true;
+        for (int element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2894,7 +2894,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
-        for (long element : elements) if (predicate.predicate(element)) return true;
+        for (long element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2902,7 +2902,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
-        for (float element : elements) if (predicate.predicate(element)) return true;
+        for (float element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2910,7 +2910,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
-        for (double element : elements) if (predicate.predicate(element)) return true;
+        for (double element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2918,7 +2918,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
-        for (boolean element : elements) if (predicate.predicate(element)) return true;
+        for (boolean element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -2926,7 +2926,7 @@ public class Arrayx {
      * Returns `true` if at least one element matches the given [predicate].
      */
     public static boolean any(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
-        for (char element : elements) if (predicate.predicate(element)) return true;
+        for (char element : elements) if (predicate.accept(element)) return true;
         return false;
     }
 
@@ -4094,7 +4094,7 @@ public class Arrayx {
     public static <T> int count(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
         int count = 0;
         for (T element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4107,7 +4107,7 @@ public class Arrayx {
     public static int count(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
         int count = 0;
         for (byte element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4120,7 +4120,7 @@ public class Arrayx {
     public static int count(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
         int count = 0;
         for (short element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4133,7 +4133,7 @@ public class Arrayx {
     public static int count(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
         int count = 0;
         for (int element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4146,7 +4146,7 @@ public class Arrayx {
     public static int count(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
         int count = 0;
         for (long element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4159,7 +4159,7 @@ public class Arrayx {
     public static int count(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
         int count = 0;
         for (float element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4172,7 +4172,7 @@ public class Arrayx {
     public static int count(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
         int count = 0;
         for (double element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4185,7 +4185,7 @@ public class Arrayx {
     public static int count(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
         int count = 0;
         for (boolean element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -4198,7 +4198,7 @@ public class Arrayx {
     public static int count(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         int count = 0;
         for (char element : elements) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -7115,7 +7115,7 @@ public class Arrayx {
      */
     public static <T> int indexOfFirst(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7127,7 +7127,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7139,7 +7139,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7151,7 +7151,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7163,7 +7163,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7175,7 +7175,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7187,7 +7187,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7199,7 +7199,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7211,7 +7211,7 @@ public class Arrayx {
      */
     public static int indexOfFirst(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         for (int index : indices(elements)) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7223,7 +7223,7 @@ public class Arrayx {
      */
     public static <T> int indexOfLast(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7235,7 +7235,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7247,7 +7247,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7259,7 +7259,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7271,7 +7271,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7283,7 +7283,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7295,7 +7295,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7307,7 +7307,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -7319,7 +7319,7 @@ public class Arrayx {
      */
     public static int indexOfLast(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
-            if (predicate.predicate(elements[index])) {
+            if (predicate.accept(elements[index])) {
                 return index;
             }
         }
@@ -8027,7 +8027,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T, C extends Collection<T>> C filterNotTo(@NotNull T[] elements, @NotNull C destination, @NotNull Predicate<T> predicate) {
-        for (T element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (T element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8036,7 +8036,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Byte>> C filterNotTo(@NotNull byte[] elements, @NotNull C destination, @NotNull Predicate<Byte> predicate) {
-        for (byte element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (byte element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8045,7 +8045,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Short>> C filterNotTo(@NotNull short[] elements, @NotNull C destination, @NotNull Predicate<Short> predicate) {
-        for (short element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (short element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8054,7 +8054,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Integer>> C filterNotTo(@NotNull int[] elements, @NotNull C destination, @NotNull Predicate<Integer> predicate) {
-        for (int element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (int element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8063,7 +8063,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Long>> C filterNotTo(@NotNull long[] elements, @NotNull C destination, @NotNull Predicate<Long> predicate) {
-        for (long element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (long element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8072,7 +8072,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Float>> C filterNotTo(@NotNull float[] elements, @NotNull C destination, @NotNull Predicate<Float> predicate) {
-        for (float element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (float element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8081,7 +8081,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Double>> C filterNotTo(@NotNull double[] elements, @NotNull C destination, @NotNull Predicate<Double> predicate) {
-        for (double element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (double element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8090,7 +8090,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Boolean>> C filterNotTo(@NotNull boolean[] elements, @NotNull C destination, @NotNull Predicate<Boolean> predicate) {
-        for (boolean element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (boolean element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8099,7 +8099,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Character>> C filterNotTo(@NotNull char[] elements, @NotNull C destination, @NotNull Predicate<Character> predicate) {
-        for (char element : elements) if (!predicate.predicate(element)) destination.add(element);
+        for (char element : elements) if (!predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8108,7 +8108,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T, C extends Collection<T>> C filterTo(@NotNull T[] elements, @NotNull C destination, @NotNull Predicate<T> predicate) {
-        for (T element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (T element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8117,7 +8117,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Byte>> C filterTo(@NotNull byte[] elements, @NotNull C destination, @NotNull Predicate<Byte> predicate) {
-        for (byte element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (byte element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8126,7 +8126,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Short>> C filterTo(@NotNull short[] elements, @NotNull C destination, @NotNull Predicate<Short> predicate) {
-        for (short element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (short element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8135,7 +8135,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Integer>> C filterTo(@NotNull int[] elements, @NotNull C destination, @NotNull Predicate<Integer> predicate) {
-        for (int element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (int element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8144,7 +8144,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Long>> C filterTo(@NotNull long[] elements, @NotNull C destination, @NotNull Predicate<Long> predicate) {
-        for (long element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (long element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8153,7 +8153,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Float>> C filterTo(@NotNull float[] elements, @NotNull C destination, @NotNull Predicate<Float> predicate) {
-        for (float element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (float element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8162,7 +8162,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Double>> C filterTo(@NotNull double[] elements, @NotNull C destination, @NotNull Predicate<Double> predicate) {
-        for (double element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (double element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8171,7 +8171,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Boolean>> C filterTo(@NotNull boolean[] elements, @NotNull C destination, @NotNull Predicate<Boolean> predicate) {
-        for (boolean element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (boolean element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8180,7 +8180,7 @@ public class Arrayx {
      */
     @NotNull
     public static <C extends Collection<Character>> C filterTo(@NotNull char[] elements, @NotNull C destination, @NotNull Predicate<Character> predicate) {
-        for (char element : elements) if (predicate.predicate(element)) destination.add(element);
+        for (char element : elements) if (predicate.accept(element)) destination.add(element);
         return destination;
     }
 
@@ -8908,5 +8908,182 @@ public class Arrayx {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
+    }
+
+
+    /*
+     * partition
+     */
+
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static <T> Pair<List<T>, List<T>> partition(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        List<T> first = new ArrayList<>();
+        List<T> second = new ArrayList<>();
+        for (T element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Byte>, List<Byte>> partition(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        List<Byte> first = new ArrayList<>();
+        List<Byte> second = new ArrayList<>();
+        for (byte element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Short>, List<Short>> partition(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        List<Short> first = new ArrayList<>();
+        List<Short> second = new ArrayList<>();
+        for (short element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Integer>, List<Integer>> partition(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        List<Integer> first = new ArrayList<>();
+        List<Integer> second = new ArrayList<>();
+        for (int element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Long>, List<Long>> partition(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        List<Long> first = new ArrayList<>();
+        List<Long> second = new ArrayList<>();
+        for (long element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Float>, List<Float>> partition(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        List<Float> first = new ArrayList<>();
+        List<Float> second = new ArrayList<>();
+        for (float element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Double>, List<Double>> partition(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        List<Double> first = new ArrayList<>();
+        List<Double> second = new ArrayList<>();
+        for (double element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Boolean>, List<Boolean>> partition(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        List<Boolean> first = new ArrayList<>();
+        List<Boolean> second = new ArrayList<>();
+        for (boolean element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
+    }
+
+    /**
+     * Splits the original array into pair of lists,
+     * where *first* list contains elements for which [predicate] yielded `true`,
+     * while *second* list contains elements for which [predicate] yielded `false`.
+     */
+    @NotNull
+    public static Pair<List<Character>, List<Character>> partition(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        List<Character> first = new ArrayList<>();
+        List<Character> second = new ArrayList<>();
+        for (char element : elements) {
+            if (predicate.accept(element)) {
+                first.add(element);
+            } else {
+                second.add(element);
+            }
+        }
+        return new Pair<>(first, second);
     }
 }

@@ -709,7 +709,7 @@ public class Stringx {
             for (final int index : indices) {
                 String matchingString = Collectionx.firstOrNull(strings, new Predicate<String>() {
                     @Override
-                    public boolean predicate(@NotNull String s) {
+                    public boolean accept(@NotNull String s) {
                         return regionMatches(s, 0, (String) charSequence, index, s.length(), ignoreCase);
                     }
                 });
@@ -721,7 +721,7 @@ public class Stringx {
             for (final int index : indices) {
                 String matchingString = Collectionx.firstOrNull(strings, new Predicate<String>() {
                     @Override
-                    public boolean predicate(@NotNull String s) {
+                    public boolean accept(@NotNull String s) {
                         return regionMatchesImpl(s, 0, charSequence, index, s.length(), ignoreCase);
                     }
                 });
@@ -861,7 +861,7 @@ public class Stringx {
                 final char charAtIndex = charSequence.charAt(index);
                 if (Arrayx.any(chars, new Predicate<Character>() {
                     @Override
-                    public boolean predicate(@NotNull Character character) {
+                    public boolean accept(@NotNull Character character) {
                         return Charx.equals(character, charAtIndex, ignoreCase);
                     }
                 })) {
@@ -939,7 +939,7 @@ public class Stringx {
             final char charAtIndex = charSequence.charAt(index);
             if (Arrayx.any(chars, new Predicate<Character>() {
                 @Override
-                public boolean predicate(@NotNull Character character) {
+                public boolean accept(@NotNull Character character) {
                     return Charx.equals(character, charAtIndex, ignoreCase);
                 }
             })) ;

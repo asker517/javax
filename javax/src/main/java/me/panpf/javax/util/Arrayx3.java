@@ -1,10 +1,8 @@
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Arrayx3 {
@@ -5288,7 +5286,7 @@ public class Arrayx3 {
 ////    /**
 ////     * Returns `true` if no elements match the given [predicate].
 ////     */
-////    public static none(int[] elements, predicate: (Integer) -> Boolean): Boolean {
+////    public static none(int[] elements, Predicate<Integer> predicate): Boolean {
 ////        for (element in this) if (predicate(element)) return false
 ////        return true
 ////    }
@@ -5328,7 +5326,7 @@ public class Arrayx3 {
 ////    /**
 ////     * Returns `true` if no elements match the given [predicate].
 ////     */
-////    public static none(char[] elements, predicate: (Character) -> Boolean): Boolean {
+////    public static none(char[] elements, Predicate<Character> predicate): Boolean {
 ////        for (element in this) if (predicate(element)) return false
 ////        return true
 ////    }
@@ -5864,167 +5862,7 @@ public class Arrayx3 {
 ////        return accumulator
 ////    }
 ////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static <T> partition(@NotNull T[] elements, Predicate<T> predicate): Pair<List<T>, List<T>> {
-////        val first = ArrayList<T>()
-////        val second = ArrayList<T>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(byte[] elements, Predicate<Byte> predicate): Pair<List<Byte>, List<Byte>> {
-////        val first = ArrayList<Byte>()
-////        val second = ArrayList<Byte>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(short[] elements, Predicate<Short> predicate): Pair<List<Short>, List<Short>> {
-////        val first = ArrayList<Short>()
-////        val second = ArrayList<Short>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(int[] elements, predicate: (Integer) -> Boolean): Pair<List<Integer>, List<Integer>> {
-////        val first = ArrayList<Integer>()
-////        val second = ArrayList<Integer>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(long[] elements, Predicate<Long> predicate): Pair<List<Long>, List<Long>> {
-////        val first = ArrayList<Long>()
-////        val second = ArrayList<Long>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(float[] elements, Predicate<Float> predicate): Pair<List<Float>, List<Float>> {
-////        val first = ArrayList<Float>()
-////        val second = ArrayList<Float>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(double[] elements, Predicate<Double> predicate): Pair<List<Double>, List<Double>> {
-////        val first = ArrayList<Double>()
-////        val second = ArrayList<Double>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(boolean[] elements, Predicate<Boolean> predicate): Pair<List<Boolean>, List<Boolean>> {
-////        val first = ArrayList<Boolean>()
-////        val second = ArrayList<Boolean>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
-////    /**
-////     * Splits the original array into pair of lists,
-////     * where *first* list contains elements for which [predicate] yielded `true`,
-////     * while *second* list contains elements for which [predicate] yielded `false`.
-////     */
-////    public static partition(char[] elements, predicate: (Character) -> Boolean): Pair<List<Character>, List<Character>> {
-////        val first = ArrayList<Character>()
-////        val second = ArrayList<Character>()
-////        for (element in this) {
-////            if (predicate(element)) {
-////                first.add(element)
-////            } else {
-////                second.add(element)
-////            }
-////        }
-////        return Pair(first, second)
-////    }
-////
+
+
 
 }

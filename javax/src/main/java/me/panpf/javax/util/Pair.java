@@ -21,7 +21,7 @@ public class Pair<A, B> {
     public final A first;
     public final B second;
 
-    private Pair(A var1, B var2) {
+    public Pair(A var1, B var2) {
         this.first = var1;
         this.second = var2;
     }

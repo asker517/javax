@@ -102,7 +102,7 @@ public class Collectionx {
     public static <T, C extends Collection<T>> C filterTo(@NotNull Iterable<T> iterable, @NotNull C destination,
                                                           @NotNull Predicate<T> predicate) {
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 destination.add(element);
             }
         }
@@ -116,7 +116,7 @@ public class Collectionx {
     public static <T, C extends Collection<T>> C filterNotTo(@NotNull Iterable<T> iterable, @NotNull C destination,
                                                              @NotNull Predicate<T> predicate) {
         for (T element : iterable) {
-            if (!predicate.predicate(element)) {
+            if (!predicate.accept(element)) {
                 destination.add(element);
             }
         }
@@ -216,7 +216,7 @@ public class Collectionx {
         boolean result = false;
         Iterator<T> iterator = iterable.iterator();
         while (iterator.hasNext())
-            if (predicate.predicate(iterator.next()) == predicateResultToRemove) {
+            if (predicate.accept(iterator.next()) == predicateResultToRemove) {
                 iterator.remove();
                 result = true;
             }
@@ -230,7 +230,7 @@ public class Collectionx {
             int writeIndex = 0;
             for (int readIndex = 0, size = list.size(); readIndex < size; readIndex++) {
                 T element = list.get(readIndex);
-                if (predicate.predicate(element) == predicateResultToRemove) {
+                if (predicate.accept(element) == predicateResultToRemove) {
                     continue;
                 }
 
@@ -523,7 +523,7 @@ public class Collectionx {
         }
         int count = 0;
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 count++;
             }
         }
@@ -747,7 +747,7 @@ public class Collectionx {
     @NotNull
     public static <T> T first(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 return element;
             }
         }
@@ -781,7 +781,7 @@ public class Collectionx {
     @Nullable
     public static <T> T firstOrNull(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 return element;
             }
         }
@@ -813,7 +813,7 @@ public class Collectionx {
         ListIterator<T> iterator = list.listIterator(list.size());
         while (iterator.hasPrevious()) {
             T element = iterator.previous();
-            if (predicate.predicate(element)) return element;
+            if (predicate.accept(element)) return element;
         }
         throw new NoSuchElementException("List contains no element matching the predicate.");
     }
@@ -877,7 +877,7 @@ public class Collectionx {
         T last = null;
         boolean found = false;
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 last = element;
                 found = true;
             }
@@ -905,7 +905,7 @@ public class Collectionx {
         ListIterator<T> iterator = list.listIterator(list.size());
         while (iterator.hasPrevious()) {
             T element = iterator.previous();
-            if (predicate.predicate(element)) return element;
+            if (predicate.accept(element)) return element;
         }
         return null;
     }
@@ -938,7 +938,7 @@ public class Collectionx {
     public static <T> T lastOrNull(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         T last = null;
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 last = element;
             }
         }
@@ -1246,7 +1246,7 @@ public class Collectionx {
         List<T> first = new ArrayList<T>();
         List<T> second = new ArrayList<T>();
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 first.add(element);
             } else {
                 second.add(element);
@@ -1388,7 +1388,7 @@ public class Collectionx {
             return true;
         }
         for (T element : iterable) {
-            if (!predicate.predicate(element)) {
+            if (!predicate.accept(element)) {
                 return false;
             }
         }
@@ -1414,7 +1414,7 @@ public class Collectionx {
             return false;
         } else {
             for (T element : iterable) {
-                if (predicate.predicate(element)) {
+                if (predicate.accept(element)) {
                     return true;
                 }
             }
@@ -1441,7 +1441,7 @@ public class Collectionx {
             return true;
         } else {
             for (T element : iterable) {
-                if (predicate.predicate(element)) {
+                if (predicate.accept(element)) {
                     return false;
                 }
             }
@@ -1556,7 +1556,7 @@ public class Collectionx {
         final boolean[] removed = new boolean[]{false};
         return filterTo(iterable, result, new Predicate<T>() {
             @Override
-            public boolean predicate(@NotNull T t) {
+            public boolean accept(@NotNull T t) {
                 if (!removed[0] && t.equals(element)) {
                     removed[0] = true;
                     return false;
@@ -1576,7 +1576,7 @@ public class Collectionx {
         final HashSet<T> other = Arrayx.toHashSet(elements);
         return filterNot(iterable, new Predicate<T>() {
             @Override
-            public boolean predicate(@NotNull T t) {
+            public boolean accept(@NotNull T t) {
                 return other.contains(t);
             }
         });
@@ -1591,7 +1591,7 @@ public class Collectionx {
         if (other.isEmpty()) return toList(iterable);
         return filterNot(iterable, new Predicate<T>() {
             @Override
-            public boolean predicate(@NotNull T t) {
+            public boolean accept(@NotNull T t) {
                 return other.contains(t);
             }
         });
@@ -2241,7 +2241,7 @@ public class Collectionx {
         }
         ListIterator<T> iterator = list.listIterator(list.size());
         while (iterator.hasPrevious()) {
-            if (!predicate.predicate(iterator.previous())) {
+            if (!predicate.accept(iterator.previous())) {
                 iterator.next();
                 int expectedSize = list.size() - iterator.nextIndex();
                 if (expectedSize == 0) return emptyList();
@@ -2262,7 +2262,7 @@ public class Collectionx {
     public static <T> List<T> takeWhile(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         ArrayList<T> list = new ArrayList<T>();
         for (T item : iterable) {
-            if (!predicate.predicate(item))
+            if (!predicate.accept(item))
                 break;
             list.add(item);
         }
@@ -2508,7 +2508,7 @@ public class Collectionx {
         if (!isEmpty(list)) {
             ListIterator<T> iterator = list.listIterator(list.size());
             while (iterator.hasPrevious()) {
-                if (!predicate.predicate(iterator.previous())) {
+                if (!predicate.accept(iterator.previous())) {
                     return take(list, iterator.nextIndex() + 1);
                 }
             }
@@ -2526,7 +2526,7 @@ public class Collectionx {
         for (T item : iterable)
             if (yielding) {
                 list.add(item);
-            } else if (!predicate.predicate(item)) {
+            } else if (!predicate.accept(item)) {
                 list.add(item);
                 yielding = true;
             }
@@ -2577,7 +2577,7 @@ public class Collectionx {
         T single = null;
         boolean found = false;
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) {
                     throw new IllegalArgumentException("Collection contains more than one matching element.");
                 }
@@ -2628,7 +2628,7 @@ public class Collectionx {
         T single = null;
         boolean found = false;
         for (T element : iterable) {
-            if (predicate.predicate(element)) {
+            if (predicate.accept(element)) {
                 if (found) {
                     return null;
                 }

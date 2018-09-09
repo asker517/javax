@@ -95,7 +95,7 @@ public class ClassTest {
 
         Field[] fields = Arrayx.filter(Classx.getFieldsWithParent(TestField3.class), new Predicate<Field>() {
             @Override
-            public boolean predicate(@NotNull Field field) {
+            public boolean accept(@NotNull Field field) {
                 return !field.getName().equals("$jacocoData");
             }
         }).toArray(new Field[0]);
@@ -104,7 +104,7 @@ public class ClassTest {
 
         Field[] field2 = Arrayx.filter(Classx.getFieldsWithParent(TestField3.class, 1), new Predicate<Field>() {
             @Override
-            public boolean predicate(@NotNull Field field) {
+            public boolean accept(@NotNull Field field) {
                 return !field.getName().equals("$jacocoData");
             }
         }).toArray(new Field[0]);
@@ -142,7 +142,7 @@ public class ClassTest {
 
         Method[] methods = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class), new Predicate<Method>() {
             @Override
-            public boolean predicate(@NotNull Method field) {
+            public boolean accept(@NotNull Method field) {
                 return !field.getName().equals("$jacocoInit");
             }
         }).toArray(new Method[0]);
@@ -151,7 +151,7 @@ public class ClassTest {
 
         Method[] methods2 = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class, 0), new Predicate<Method>() {
             @Override
-            public boolean predicate(@NotNull Method field) {
+            public boolean accept(@NotNull Method field) {
                 return !field.getName().equals("$jacocoInit");
             }
         }).toArray(new Method[0]);
