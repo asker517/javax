@@ -1,12 +1,13 @@
-//package me.panpf.javax.util;
-//
-//import org.jetbrains.annotations.NotNull;
-//
-//import java.util.ArrayList;
-//import java.util.Collection;
-//import java.util.List;
-//
-//public class Arrayx3 {
+package me.panpf.javax.util;
+
+import me.panpf.javax.lang.Numberx;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class Arrayx3 {
 ////    /**
 ////     * Returns the last element.
 ////     * @throws [NoSuchElementException] if the array is empty.
@@ -1840,7 +1841,7 @@
 //// */
 ////    @SinceKotlin("1.1")
 ////    @kotlin.internal.InlineOnly
-////    public infix static contentEquals(@NotNull short[] elements, other: short[]): Boolean {
+////    public infix static contentEquals(@NotNull short[] elements, short[] other): Boolean {
 ////        return java.util.Arrays.equals(this, other)
 ////    }
 ////
@@ -1850,7 +1851,7 @@
 //// */
 ////    @SinceKotlin("1.1")
 ////    @kotlin.internal.InlineOnly
-////    public infix static contentEquals(@NotNull int[] elements, other: int[]): Boolean {
+////    public infix static contentEquals(@NotNull int[] elements, int[] other): Boolean {
 ////        return java.util.Arrays.equals(this, other)
 ////    }
 ////
@@ -1860,7 +1861,7 @@
 //// */
 ////    @SinceKotlin("1.1")
 ////    @kotlin.internal.InlineOnly
-////    public infix static contentEquals(@NotNull long[] elements, other: long[]): Boolean {
+////    public infix static contentEquals(@NotNull long[] elements, long[] other): Boolean {
 ////        return java.util.Arrays.equals(this, other)
 ////    }
 ////
@@ -1870,7 +1871,7 @@
 //// */
 ////    @SinceKotlin("1.1")
 ////    @kotlin.internal.InlineOnly
-////    public infix static contentEquals(@NotNull float[] elements, other: float[]): Boolean {
+////    public infix static contentEquals(@NotNull float[] elements, float[] other): Boolean {
 ////        return java.util.Arrays.equals(this, other)
 ////    }
 ////
@@ -1880,7 +1881,7 @@
 //// */
 ////    @SinceKotlin("1.1")
 ////    @kotlin.internal.InlineOnly
-////    public infix static contentEquals(@NotNull double[] elements, other: double[]): Boolean {
+////    public infix static contentEquals(@NotNull double[] elements, double[] other): Boolean {
 ////        return java.util.Arrays.equals(this, other)
 ////    }
 ////
@@ -1900,7 +1901,7 @@
 //// */
 ////    @SinceKotlin("1.1")
 ////    @kotlin.internal.InlineOnly
-////    public infix static contentEquals(@NotNull char[] elements, other: char[]): Boolean {
+////    public infix static contentEquals(@NotNull char[] elements, char[] other): Boolean {
 ////        return java.util.Arrays.equals(this, other)
 ////    }
 ////
@@ -6025,515 +6026,5 @@
 ////        return Pair(first, second)
 ////    }
 ////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <T, R> zip(@NotNull T[] elements, other: Array<R>): List<Pair<T, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(byte[] elements, other: Array<R>): List<Pair<Byte, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(short[] elements, other: Array<R>): List<Pair<Short, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(int[] elements, other: Array<R>): List<Pair<Integer, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(long[] elements, other: Array<R>): List<Pair<Long, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(float[] elements, other: Array<R>): List<Pair<Float, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(double[] elements, other: Array<R>): List<Pair<Double, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(boolean[] elements, other: Array<R>): List<Pair<Boolean, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(char[] elements, other: Array<R>): List<Pair<Character, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <T, R, V> zip(@NotNull T[] elements, other: Array<R>, transform: (a: T, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(byte[] elements, other: Array<R>, transform: (a: Byte, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(short[] elements, other: Array<R>, transform: (a: Short, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(int[] elements, other: Array<R>, transform: (a: Integer, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(long[] elements, other: Array<R>, transform: (a: Long, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(float[] elements, other: Array<R>, transform: (a: Float, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(double[] elements, other: Array<R>, transform: (a: Double, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(boolean[] elements, other: Array<R>, transform: (a: Boolean, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(char[] elements, other: Array<R>, transform: (a: Character, b: R) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <T, R> zip(@NotNull T[] elements, other: Iterable<R>): List<Pair<T, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(byte[] elements, other: Iterable<R>): List<Pair<Byte, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(short[] elements, other: Iterable<R>): List<Pair<Short, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(int[] elements, other: Iterable<R>): List<Pair<Integer, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(long[] elements, other: Iterable<R>): List<Pair<Long, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(float[] elements, other: Iterable<R>): List<Pair<Float, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(double[] elements, other: Iterable<R>): List<Pair<Double, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(boolean[] elements, other: Iterable<R>): List<Pair<Boolean, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static <R> zip(char[] elements, other: Iterable<R>): List<Pair<Character, R>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <T, R, V> zip(@NotNull T[] elements, other: Iterable<R>, transform: (a: T, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(byte[] elements, other: Iterable<R>, transform: (a: Byte, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(short[] elements, other: Iterable<R>, transform: (a: Short, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(int[] elements, other: Iterable<R>, transform: (a: Integer, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(long[] elements, other: Iterable<R>, transform: (a: Long, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(float[] elements, other: Iterable<R>, transform: (a: Float, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(double[] elements, other: Iterable<R>, transform: (a: Double, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(boolean[] elements, other: Iterable<R>, transform: (a: Boolean, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <R, V> zip(char[] elements, other: Iterable<R>, transform: (a: Character, b: R) -> V): List<V> {
-////        val arraySize = size
-////        val list = ArrayList<V>(minOf(other.collectionSizeOrDefault(10), arraySize))
-////        var i = 0
-////        for (element in other) {
-////            if (i >= arraySize) break
-////            list.add(transform(this[i++], element))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(byte[] elements, other: ByteArray): List<Pair<Byte, Byte>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(short[] elements, other: short[]): List<Pair<Short, Short>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(int[] elements, other: IntArray): List<Pair<Integer, Integer>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(long[] elements, other: long[]): List<Pair<Long, Long>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(float[] elements, other: float[]): List<Pair<Float, Float>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(double[] elements, other: double[]): List<Pair<Double, Double>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(boolean[] elements, other: boolean[]): List<Pair<Boolean, Boolean>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
-////     */
-////    public infix static zip(char[] elements, other: char[]): List<Pair<Character, Character>> {
-////        return zip(other) { t1, t2 -> t1 to t2 }
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(byte[] elements, other: ByteArray, transform: (a: Byte, b: Byte) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(short[] elements, other: short[], transform: (a: Short, b: Short) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(int[] elements, other: IntArray, transform: (a: Integer, b: Integer) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(long[] elements, other: long[], transform: (a: Long, b: Long) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(float[] elements, other: float[], transform: (a: Float, b: Float) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(double[] elements, other: double[], transform: (a: Double, b: Double) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(boolean[] elements, other: boolean[], transform: (a: Boolean, b: Boolean) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-////
-////    /**
-////     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
-////     */
-////    public static <V> zip(char[] elements, other: char[], transform: (a: Character, b: Character) -> V): List<V> {
-////        val size = minOf(size, other.size)
-////        val list = ArrayList<V>(size)
-////        for (i in 0 until size) {
-////            list.add(transform(this[i], other[i]))
-////        }
-////        return list
-////    }
-//}
+
+}

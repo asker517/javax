@@ -33,7 +33,9 @@ public class Arrayx {
     /* ******************************************* From Kotlin Standard library ********************************************************* */
 
 
-    /* **************************************************** array of **************************************************** */
+    /*
+     * array of
+     */
 
 
     /**
@@ -109,7 +111,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** empty **************************************************** */
+    /*
+     * empty
+     */
 
 
     /**
@@ -239,7 +243,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** to array, list, set **************************************************** */
+    /*
+     * to array, list, set
+     */
 
 
     /**
@@ -471,7 +477,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** as list **************************************************** */
+    /*
+     * as list
+     */
 
 
     /**
@@ -635,7 +643,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** map **************************************************** */
+    /*
+     * map
+     */
 
 
     /**
@@ -1099,7 +1109,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** reverse **************************************************** */
+    /*
+     * reverse
+     */
 
 
     /**
@@ -1457,7 +1469,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** sort **************************************************** */
+    /*
+     * sort
+     */
 
 
     /**
@@ -2264,7 +2278,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** single **************************************************** */
+    /*
+     * single
+     */
 
 
     /**
@@ -2774,7 +2790,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** any **************************************************** */
+    /*
+     * any
+     */
 
 
     /**
@@ -2913,7 +2931,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** copy **************************************************** */
+    /*
+     * copy
+     */
 
     /**
      * Returns new array which is a copy of the original array.
@@ -3132,7 +3152,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** iterator **************************************************** */
+    /*
+     * iterator
+     */
 
 
     /**
@@ -3343,7 +3365,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** group **************************************************** */
+    /*
+     * group
+     */
 
 
     /**
@@ -3996,7 +4020,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** count **************************************************** */
+    /*
+     * count
+     */
 
 
     /**
@@ -4180,7 +4206,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** max **************************************************** */
+    /*
+     * max
+     */
 
 
     /**
@@ -4637,7 +4665,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** min **************************************************** */
+    /*
+     * min
+     */
 
 
     /**
@@ -5094,7 +5124,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** join **************************************************** */
+    /*
+     * join
+     */
 
     /**
      * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -6129,7 +6161,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** contentToString **************************************************** */
+    /*
+     * contentToString
+     */
 
 
     /**
@@ -6203,7 +6237,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** sum **************************************************** */
+    /*
+     * sum
+     */
 
 
     /**
@@ -6537,7 +6573,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** plus **************************************************** */
+    /*
+     * plus
+     */
 
 
     /**
@@ -6873,7 +6911,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** indices **************************************************** */
+    /*
+     * indices
+     */
 
 
     /**
@@ -6949,7 +6989,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** indexOf **************************************************** */
+    /*
+     * indexOf
+     */
 
 
     /**
@@ -7285,7 +7327,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** contains **************************************************** */
+    /*
+     * contains
+     */
 
 
     /**
@@ -7352,7 +7396,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** forEach **************************************************** */
+    /*
+     * forEach
+     */
 
 
     /**
@@ -7518,7 +7564,9 @@ public class Arrayx {
     }
 
 
-    /* **************************************************** filter **************************************************** */
+    /*
+     * filter
+     */
 
 
     /**
@@ -8134,5 +8182,731 @@ public class Arrayx {
     public static <C extends Collection<Character>> C filterTo(@NotNull char[] elements, @NotNull C destination, @NotNull Predicate<Character> predicate) {
         for (char element : elements) if (predicate.predicate(element)) destination.add(element);
         return destination;
+    }
+
+
+    /*
+     * zip
+     */
+
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <T, R> List<Pair<T, R>> zip(@NotNull T[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<T, R, Pair<T, R>>() {
+            @NotNull
+            @Override
+            public Pair<T, R> transform(@NotNull T t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Byte, R>> zip(@NotNull byte[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Byte, R, Pair<Byte, R>>() {
+            @NotNull
+            @Override
+            public Pair<Byte, R> transform(@NotNull Byte t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Short, R>> zip(@NotNull short[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Short, R, Pair<Short, R>>() {
+            @NotNull
+            @Override
+            public Pair<Short, R> transform(@NotNull Short t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Integer, R>> zip(@NotNull int[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Integer, R, Pair<Integer, R>>() {
+            @NotNull
+            @Override
+            public Pair<Integer, R> transform(@NotNull Integer t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Long, R>> zip(@NotNull long[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Long, R, Pair<Long, R>>() {
+            @NotNull
+            @Override
+            public Pair<Long, R> transform(@NotNull Long t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Float, R>> zip(@NotNull float[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Float, R, Pair<Float, R>>() {
+            @NotNull
+            @Override
+            public Pair<Float, R> transform(@NotNull Float t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Double, R>> zip(@NotNull double[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Double, R, Pair<Double, R>>() {
+            @NotNull
+            @Override
+            public Pair<Double, R> transform(@NotNull Double t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Boolean, R>> zip(@NotNull boolean[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Boolean, R, Pair<Boolean, R>>() {
+            @NotNull
+            @Override
+            public Pair<Boolean, R> transform(@NotNull Boolean t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Character, R>> zip(@NotNull char[] elements, @NotNull R[] other) {
+        return zip(elements, other, new Transformer2<Character, R, Pair<Character, R>>() {
+            @NotNull
+            @Override
+            public Pair<Character, R> transform(@NotNull Character t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <T, R, V> List<V> zip(@NotNull T[] elements, @NotNull R[] other, @NotNull Transformer2<T, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull byte[] elements, @NotNull R[] other, @NotNull Transformer2<Byte, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull short[] elements, @NotNull R[] other, @NotNull Transformer2<Short, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull int[] elements, @NotNull R[] other, @NotNull Transformer2<Integer, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull long[] elements, @NotNull R[] other, @NotNull Transformer2<Long, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull float[] elements, @NotNull R[] other, @NotNull Transformer2<Float, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull double[] elements, @NotNull R[] other, @NotNull Transformer2<Double, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull boolean[] elements, @NotNull R[] other, @NotNull Transformer2<Boolean, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull char[] elements, @NotNull R[] other, @NotNull Transformer2<Character, R, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <T, R> List<Pair<T, R>> zip(@NotNull T[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<T, R, Pair<T, R>>() {
+            @NotNull
+            @Override
+            public Pair<T, R> transform(@NotNull T t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Byte, R>> zip(@NotNull byte[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Byte, R, Pair<Byte, R>>() {
+            @NotNull
+            @Override
+            public Pair<Byte, R> transform(@NotNull Byte t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Short, R>> zip(@NotNull short[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Short, R, Pair<Short, R>>() {
+            @NotNull
+            @Override
+            public Pair<Short, R> transform(@NotNull Short t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Integer, R>> zip(@NotNull int[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Integer, R, Pair<Integer, R>>() {
+            @NotNull
+            @Override
+            public Pair<Integer, R> transform(@NotNull Integer t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Long, R>> zip(@NotNull long[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Long, R, Pair<Long, R>>() {
+            @NotNull
+            @Override
+            public Pair<Long, R> transform(@NotNull Long t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Float, R>> zip(@NotNull float[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Float, R, Pair<Float, R>>() {
+            @NotNull
+            @Override
+            public Pair<Float, R> transform(@NotNull Float t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Double, R>> zip(@NotNull double[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Double, R, Pair<Double, R>>() {
+            @NotNull
+            @Override
+            public Pair<Double, R> transform(@NotNull Double t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Boolean, R>> zip(@NotNull boolean[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Boolean, R, Pair<Boolean, R>>() {
+            @NotNull
+            @Override
+            public Pair<Boolean, R> transform(@NotNull Boolean t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R> List<Pair<Character, R>> zip(@NotNull char[] elements, @NotNull Iterable<R> other) {
+        return zip(elements, other, new Transformer2<Character, R, Pair<Character, R>>() {
+            @NotNull
+            @Override
+            public Pair<Character, R> transform(@NotNull Character t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <T, R, V> List<V> zip(@NotNull T[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<T, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull byte[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Byte, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull short[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Short, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull int[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Integer, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull long[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Long, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull float[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Float, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull double[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Double, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull boolean[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Boolean, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <R, V> List<V> zip(@NotNull char[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Character, R, V> transform) {
+        int arraySize = elements.length;
+        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        int i = 0;
+        for (R element : other) {
+            if (i >= arraySize) break;
+            list.add(transform.transform(elements[i++], element));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Byte, Byte>> zip(@NotNull byte[] elements, @NotNull byte[] other) {
+        return zip(elements, other, new Transformer2<Byte, Byte, Pair<Byte, Byte>>() {
+            @NotNull
+            @Override
+            public Pair<Byte, Byte> transform(@NotNull Byte t, @NotNull Byte r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Short, Short>> zip(@NotNull short[] elements, @NotNull short[] other) {
+        return zip(elements, other, new Transformer2<Short, Short, Pair<Short, Short>>() {
+            @NotNull
+            @Override
+            public Pair<Short, Short> transform(@NotNull Short t, @NotNull Short r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Integer, Integer>> zip(@NotNull int[] elements, @NotNull int[] other) {
+        return zip(elements, other, new Transformer2<Integer, Integer, Pair<Integer, Integer>>() {
+            @NotNull
+            @Override
+            public Pair<Integer, Integer> transform(@NotNull Integer t, @NotNull Integer r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Long, Long>> zip(@NotNull long[] elements, @NotNull long[] other) {
+        return zip(elements, other, new Transformer2<Long, Long, Pair<Long, Long>>() {
+            @NotNull
+            @Override
+            public Pair<Long, Long> transform(@NotNull Long t, @NotNull Long r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Float, Float>> zip(@NotNull float[] elements, @NotNull float[] other) {
+        return zip(elements, other, new Transformer2<Float, Float, Pair<Float, Float>>() {
+            @NotNull
+            @Override
+            public Pair<Float, Float> transform(@NotNull Float t, @NotNull Float r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Double, Double>> zip(@NotNull double[] elements, @NotNull double[] other) {
+        return zip(elements, other, new Transformer2<Double, Double, Pair<Double, Double>>() {
+            @NotNull
+            @Override
+            public Pair<Double, Double> transform(@NotNull Double t, @NotNull Double r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Boolean, Boolean>> zip(@NotNull boolean[] elements, @NotNull boolean[] other) {
+        return zip(elements, other, new Transformer2<Boolean, Boolean, Pair<Boolean, Boolean>>() {
+            @NotNull
+            @Override
+            public Pair<Boolean, Boolean> transform(@NotNull Boolean t, @NotNull Boolean r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of pairs built from elements of both collections with same indexes. List has length of shortest collection.
+     */
+    @NotNull
+    public static List<Pair<Character, Character>> zip(@NotNull char[] elements, @NotNull char[] other) {
+        return zip(elements, other, new Transformer2<Character, Character, Pair<Character, Character>>() {
+            @NotNull
+            @Override
+            public Pair<Character, Character> transform(@NotNull Character t, @NotNull Character r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull byte[] elements, @NotNull byte[] other, @NotNull Transformer2<Byte, Byte, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull short[] elements, @NotNull short[] other, @NotNull Transformer2<Short, Short, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull int[] elements, @NotNull int[] other, @NotNull Transformer2<Integer, Integer, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull long[] elements, @NotNull long[] other, @NotNull Transformer2<Long, Long, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull float[] elements, @NotNull float[] other, @NotNull Transformer2<Float, Float, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull double[] elements, @NotNull double[] other, @NotNull Transformer2<Double, Double, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull boolean[] elements, @NotNull boolean[] other, @NotNull Transformer2<Boolean, Boolean, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of values built from elements of both collections with same indexes using provided [transform]. List has length of shortest collection.
+     */
+    @NotNull
+    public static <V> List<V> zip(@NotNull char[] elements, @NotNull char[] other, @NotNull Transformer2<Character, Character, V> transform) {
+        int size = Comparisonx.minOf(elements.length, other.length);
+        List<V> list = new ArrayList<V>(size);
+        for (int i : Numberx.untilTo(0, size)) {
+            list.add(transform.transform(elements[i], other[i]));
+        }
+        return list;
     }
 }
