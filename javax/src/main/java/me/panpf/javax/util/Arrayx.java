@@ -244,7 +244,7 @@ public class Arrayx {
 
 
     /*
-     * to array, list, set
+     * toTypedArray
      */
 
 
@@ -345,6 +345,11 @@ public class Arrayx {
     }
 
 
+    /*
+     * toCollection
+     */
+
+
     /**
      * Appends all elements to the given [destination] collection.
      */
@@ -353,6 +358,83 @@ public class Arrayx {
         Collections.addAll(destination, elements);
         return destination;
     }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Byte>> C toCollection(@NotNull byte[] elements, @NotNull C destination) {
+        for (byte element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Short>> C toCollection(@NotNull short[] elements, @NotNull C destination) {
+        for (short element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Integer>> C toCollection(@NotNull int[] elements, @NotNull C destination) {
+        for (int element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Long>> C toCollection(@NotNull long[] elements, @NotNull C destination) {
+        for (long element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Float>> C toCollection(@NotNull float[] elements, @NotNull C destination) {
+        for (float element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Double>> C toCollection(@NotNull double[] elements, @NotNull C destination) {
+        for (double element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Boolean>> C toCollection(@NotNull boolean[] elements, @NotNull C destination) {
+        for (boolean element : elements) destination.add(element);
+        return destination;
+    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     */
+    @NotNull
+    public static <C extends Collection<Character>> C toCollection(@NotNull char[] elements, @NotNull C destination) {
+        for (char element : elements) destination.add(element);
+        return destination;
+    }
+
+
+    /*
+     * toList
+     */
 
 
     /**
@@ -459,14 +541,125 @@ public class Arrayx {
         return list;
     }
 
+
+    /*
+     * toSet
+     */
+
+
     /**
-     * Returns a [Set] all elements.
-     * The returned set preserves the element iteration order of the original collection.
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
     public static <T> Set<T> toSet(@NotNull T[] elements) {
-        return toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(elements.length)));
+        Set<T> set = new LinkedHashSet<T>(Mapx.mapCapacity(elements.length));
+        Collections.addAll(set, elements);
+        return set;
     }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Byte> toSet(@NotNull byte[] elements) {
+        Set<Byte> set = new LinkedHashSet<Byte>(Mapx.mapCapacity(elements.length));
+        for (byte item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Short> toSet(@NotNull short[] elements) {
+        Set<Short> set = new LinkedHashSet<Short>(Mapx.mapCapacity(elements.length));
+        for (short item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Integer> toSet(@NotNull int[] elements) {
+        Set<Integer> set = new LinkedHashSet<Integer>(Mapx.mapCapacity(elements.length));
+        for (int item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Long> toSet(@NotNull long[] elements) {
+        Set<Long> set = new LinkedHashSet<Long>(Mapx.mapCapacity(elements.length));
+        for (long item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Float> toSet(@NotNull float[] elements) {
+        Set<Float> set = new LinkedHashSet<Float>(Mapx.mapCapacity(elements.length));
+        for (float item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Double> toSet(@NotNull double[] elements) {
+        Set<Double> set = new LinkedHashSet<Double>(Mapx.mapCapacity(elements.length));
+        for (double item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Boolean> toSet(@NotNull boolean[] elements) {
+        Set<Boolean> set = new LinkedHashSet<Boolean>(Mapx.mapCapacity(elements.length));
+        for (boolean item : elements) set.add(item);
+        return set;
+    }
+
+    /**
+     * Returns a mutable set containing all distinct elements from the given array.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Character> toSet(@NotNull char[] elements) {
+        Set<Character> set = new LinkedHashSet<Character>(Mapx.mapCapacity(elements.length));
+        for (char item : elements) set.add(item);
+        return set;
+    }
+
+
+    /*
+     * toHashSet
+     */
+
 
     /**
      * Returns a [HashSet] of all elements.
@@ -476,9 +669,73 @@ public class Arrayx {
         return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements.length)));
     }
 
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Byte> toHashSet(@NotNull byte[] elements) {
+        return toCollection(elements, new HashSet<Byte>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Short> toHashSet(@NotNull short[] elements) {
+        return toCollection(elements, new HashSet<Short>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Integer> toHashSet(@NotNull int[] elements) {
+        return toCollection(elements, new HashSet<Integer>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Long> toHashSet(@NotNull long[] elements) {
+        return toCollection(elements, new HashSet<Long>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Float> toHashSet(@NotNull float[] elements) {
+        return toCollection(elements, new HashSet<Float>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Double> toHashSet(@NotNull double[] elements) {
+        return toCollection(elements, new HashSet<Double>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Boolean> toHashSet(@NotNull boolean[] elements) {
+        return toCollection(elements, new HashSet<Boolean>(Mapx.mapCapacity(elements.length)));
+    }
+
+    /**
+     * Returns a [HashSet] of all elements.
+     */
+    @NotNull
+    public static HashSet<Character> toHashSet(@NotNull char[] elements) {
+        return toCollection(elements, new HashSet<Character>(Mapx.mapCapacity(elements.length)));
+    }
+
 
     /*
-     * as list
+     * asList
      */
 
 
@@ -2928,6 +3185,83 @@ public class Arrayx {
     public static boolean any(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         for (char element : elements) if (predicate.accept(element)) return true;
         return false;
+    }
+
+
+    /*
+     * copy
+     */
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static <T> boolean all(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (T element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (byte element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (short element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (long element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (float element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (double element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (boolean element : elements) if (!predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if all elements match the given [predicate].
+     */
+    public static boolean all(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (char element : elements) if (!predicate.accept(element)) return false;
+        return true;
     }
 
 
@@ -9085,5 +9419,3485 @@ public class Arrayx {
             }
         }
         return new Pair<>(first, second);
+    }
+
+
+    /*
+     * first
+     */
+
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    @NotNull
+    public static <T> T first(@NotNull T[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static byte first(@NotNull byte[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static short first(@NotNull short[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static int first(@NotNull int[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static long first(@NotNull long[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static float first(@NotNull float[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static double first(@NotNull double[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static boolean first(@NotNull boolean[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns first element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static char first(@NotNull char[] elements) {
+        if (elements.length == 0) throw new NoSuchElementException("Array is empty.");
+        return elements[0];
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    @NotNull
+    public static <T> T first(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (T element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static byte first(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (byte element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static short first(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (short element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static int first(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static long first(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (long element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static float first(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (float element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static double first(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (double element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static boolean first(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (boolean element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static char first(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (char element : elements) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static <T> T firstOrNull(@NotNull T[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Byte firstOrNull(@NotNull byte[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Short firstOrNull(@NotNull short[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Integer firstOrNull(@NotNull int[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Long firstOrNull(@NotNull long[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Float firstOrNull(@NotNull float[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Double firstOrNull(@NotNull double[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Boolean firstOrNull(@NotNull boolean[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Character firstOrNull(@NotNull char[] elements) {
+        return elements.length == 0 ? null : elements[0];
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static <T> T firstOrNull(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (T element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Byte firstOrNull(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (byte element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Short firstOrNull(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (short element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Integer firstOrNull(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Long firstOrNull(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (long element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Float firstOrNull(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (float element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Double firstOrNull(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (double element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Boolean firstOrNull(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (boolean element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if element was not found.
+     */
+    @Nullable
+    public static Character firstOrNull(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (char element : elements) if (predicate.accept(element)) return element;
+        return null;
+    }
+
+
+    /*
+     * last
+     */
+
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    @NotNull
+    public static <T> T last(@NotNull T[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static byte last(@NotNull byte[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static short last(@NotNull short[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static int last(@NotNull int[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static long last(@NotNull long[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static float last(@NotNull float[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static double last(@NotNull double[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static boolean last(@NotNull boolean[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element.
+     *
+     * @throws NoSuchElementException if the array is empty.
+     */
+    public static char last(@NotNull char[] elements) {
+        if (elements.length == 0)
+            throw new NoSuchElementException("Array is empty.");
+        return elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    @NotNull
+    public static <T> T last(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            T element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static byte last(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            byte element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static short last(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            short element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static int last(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            int element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static long last(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            long element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static float last(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            float element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static double last(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            double element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static boolean last(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            boolean element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns the last element matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such element is found.
+     */
+    public static char last(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            char element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Array contains no element matching the predicate.");
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static <T> int lastIndexOf(@NotNull T[] elements, @NotNull T element) {
+        if (element == null) {
+            for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+                if (elements[index] == null) {
+                    return index;
+                }
+            }
+        } else {
+            for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+                if (element.equals(elements[index])) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull byte[] elements, byte element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull short[] elements, short element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull int[] elements, int element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull long[] elements, long element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull float[] elements, float element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull double[] elements, double element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull boolean[] elements, boolean element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull char[] elements, char element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static <T> T lastOrNull(@NotNull T[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Byte lastOrNull(@NotNull byte[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Short lastOrNull(@NotNull short[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Integer lastOrNull(@NotNull int[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Long lastOrNull(@NotNull long[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Float lastOrNull(@NotNull float[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Double lastOrNull(@NotNull double[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Boolean lastOrNull(@NotNull boolean[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element, or `null` if the array is empty.
+     */
+    @Nullable
+    public static Character lastOrNull(@NotNull char[] elements) {
+        return elements.length == 0 ? null : elements[elements.length - 1];
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static <T> T lastOrNull(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            T element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Byte lastOrNull(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            byte element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Short lastOrNull(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            short element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Integer lastOrNull(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            int element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Long lastOrNull(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            long element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Float lastOrNull(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            float element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Double lastOrNull(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            double element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Boolean lastOrNull(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            boolean element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Character lastOrNull(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            char element = elements[index];
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
+
+
+    /*
+     * find
+     */
+
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static <T> T find(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Byte find(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Short find(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Integer find(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Long find(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Float find(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Double find(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Boolean find(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the first element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Character find(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        return firstOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static <T> T findLast(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Byte findLast(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Short findLast(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Integer findLast(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Long findLast(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Float findLast(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Double findLast(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Boolean findLast(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+    /**
+     * Returns the last element matching the given [predicate], or `null` if no such element was found.
+     */
+    @Nullable
+    public static Character findLast(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        return lastOrNull(elements, predicate);
+    }
+
+
+    /*
+     * get
+     */
+
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    @NotNull
+    public static <T> T getOrElse(@NotNull T[] elements, int index, @NotNull IndexedDefaultValue<T> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static byte getOrElse(@NotNull byte[] elements, int index, @NotNull IndexedDefaultValue<Byte> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static short getOrElse(@NotNull short[] elements, int index, @NotNull IndexedDefaultValue<Short> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static int getOrElse(@NotNull int[] elements, int index, @NotNull IndexedDefaultValue<Integer> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static long getOrElse(@NotNull long[] elements, int index, @NotNull IndexedDefaultValue<Long> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static float getOrElse(@NotNull float[] elements, int index, @NotNull IndexedDefaultValue<Float> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static double getOrElse(@NotNull double[] elements, int index, @NotNull IndexedDefaultValue<Double> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static boolean getOrElse(@NotNull boolean[] elements, int index, @NotNull IndexedDefaultValue<Boolean> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static char getOrElse(@NotNull char[] elements, int index, @NotNull IndexedDefaultValue<Character> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static <T> T getOrNull(@NotNull T[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Byte getOrNull(@NotNull byte[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Short getOrNull(@NotNull short[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Integer getOrNull(@NotNull int[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Long getOrNull(@NotNull long[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Float getOrNull(@NotNull float[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Double getOrNull(@NotNull double[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Boolean getOrNull(@NotNull boolean[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Character getOrNull(@NotNull char[] elements, int index) {
+        return (index >= 0 && index <= elements.length - 1) ? elements[index] : null;
+    }
+
+
+    /*
+     * elementAt
+     */
+
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    @NotNull
+    public static <T> T elementAt(@NotNull T[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static byte elementAt(@NotNull byte[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static short elementAt(@NotNull short[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static int elementAt(@NotNull int[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static long elementAt(@NotNull long[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static float elementAt(@NotNull float[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static double elementAt(@NotNull double[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static boolean elementAt(@NotNull boolean[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
+     */
+    public static char elementAt(@NotNull char[] elements, int index) {
+        return elements[index];
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    @NotNull
+    public static <T> T elementAtOrElse(@NotNull T[] elements, int index, @NotNull IndexedDefaultValue<T> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static byte elementAtOrElse(@NotNull byte[] elements, int index, @NotNull IndexedDefaultValue<Byte> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static short elementAtOrElse(@NotNull short[] elements, int index, @NotNull IndexedDefaultValue<Short> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static int elementAtOrElse(@NotNull int[] elements, int index, @NotNull IndexedDefaultValue<Integer> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static long elementAtOrElse(@NotNull long[] elements, int index, @NotNull IndexedDefaultValue<Long> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static float elementAtOrElse(@NotNull float[] elements, int index, @NotNull IndexedDefaultValue<Float> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static double elementAtOrElse(@NotNull double[] elements, int index, @NotNull IndexedDefaultValue<Double> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static boolean elementAtOrElse(@NotNull boolean[] elements, int index, @NotNull IndexedDefaultValue<Boolean> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
+     */
+    public static char elementAtOrElse(@NotNull char[] elements, int index, @NotNull IndexedDefaultValue<Character> defaultValue) {
+        return index >= 0 && index <= elements.length - 1 ? elements[index] : defaultValue.get(index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static <T> T elementAtOrNull(@NotNull T[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Byte elementAtOrNull(@NotNull byte[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Short elementAtOrNull(@NotNull short[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Integer elementAtOrNull(@NotNull int[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Long elementAtOrNull(@NotNull long[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Float elementAtOrNull(@NotNull float[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Double elementAtOrNull(@NotNull double[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Boolean elementAtOrNull(@NotNull boolean[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+    /**
+     * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
+     */
+    @Nullable
+    public static Character elementAtOrNull(@NotNull char[] elements, int index) {
+        return Arrayx.getOrNull(elements, index);
+    }
+
+
+    /*
+     * contentEquals
+     */
+
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static <T> boolean contentEquals(@NotNull T[] elements, @NotNull T[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull byte[] elements, @NotNull byte[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull short[] elements, @NotNull short[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull int[] elements, @NotNull int[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull long[] elements, @NotNull long[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull float[] elements, @NotNull float[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull double[] elements, @NotNull double[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull boolean[] elements, @NotNull boolean[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+    /**
+     * Returns `true` if the two specified arrays are *structurally* equal to one another,
+     * i.e. contain the same number of the same elements in the same order.
+     */
+    public static boolean contentEquals(@NotNull char[] elements, @NotNull char[] other) {
+        return java.util.Arrays.equals(elements, other);
+    }
+
+
+    /*
+     * contentEquals
+     */
+
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <T, R> List<R> flatMap(@NotNull T[] elements, @NotNull Transformer<T, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull byte[] elements, @NotNull Transformer<Byte, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull short[] elements, @NotNull Transformer<Short, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull int[] elements, @NotNull Transformer<Integer, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull long[] elements, @NotNull Transformer<Long, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull float[] elements, @NotNull Transformer<Float, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull double[] elements, @NotNull Transformer<Double, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull boolean[] elements, @NotNull Transformer<Boolean, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
+     */
+    @NotNull
+    public static <R> List<R> flatMap(@NotNull char[] elements, @NotNull Transformer<Character, Iterable<R>> transform) {
+        return flatMapTo(elements, new ArrayList<R>(), transform);
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <T, R, C extends Collection<R>> C flatMapTo(@NotNull T[] elements, @NotNull C destination, @NotNull Transformer<T, Iterable<R>> transform) {
+        for (T element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull byte[] elements, @NotNull C destination, @NotNull Transformer<Byte, Iterable<R>> transform) {
+        for (byte element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull short[] elements, @NotNull C destination, @NotNull Transformer<Short, Iterable<R>> transform) {
+        for (short element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull int[] elements, @NotNull C destination, @NotNull Transformer<Integer, Iterable<R>> transform) {
+        for (int element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull long[] elements, @NotNull C destination, @NotNull Transformer<Long, Iterable<R>> transform) {
+        for (long element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull float[] elements, @NotNull C destination, @NotNull Transformer<Float, Iterable<R>> transform) {
+        for (float element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull double[] elements, @NotNull C destination, @NotNull Transformer<Double, Iterable<R>> transform) {
+        for (double element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull boolean[] elements, @NotNull C destination, @NotNull Transformer<Boolean, Iterable<R>> transform) {
+        for (boolean element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C flatMapTo(@NotNull char[] elements, @NotNull C destination, @NotNull Transformer<Character, Iterable<R>> transform) {
+        for (char element : elements) {
+            Iterable<R> list = transform.transform(element);
+            Collectionx.addAll(destination, list);
+        }
+        return destination;
+    }
+
+
+    /*
+     * average
+     */
+
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double averageOfByte(@NotNull Byte[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (Byte element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double averageOfShort(@NotNull Short[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (Short element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double averageOfInt(@NotNull Integer[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (Integer element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double averageOfLong(@NotNull Long[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (Long element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double averageOfFloat(@NotNull Float[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (Float element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double averageOfDouble(@NotNull Double[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (Double element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double average(@NotNull byte[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (byte element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double average(@NotNull short[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (short element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double average(@NotNull int[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (int element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double average(@NotNull long[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (long element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double average(@NotNull float[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (float element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+    /**
+     * Returns an average value of elements in the array.
+     */
+    public static double average(@NotNull double[] elements) {
+        double sum = 0.0d;
+        int count = 0;
+        for (double element : elements) {
+            sum += element;
+            count += 1;
+        }
+        return count == 0 ? Double.NaN : sum / count;
+    }
+
+
+    /*
+     * average
+     */
+
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static <T> boolean none(@NotNull T[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull byte[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull short[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull int[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull long[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull float[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull double[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull boolean[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if the array has no elements.
+     */
+    public static boolean none(@NotNull char[] elements) {
+        return Arrayx.isEmpty(elements);
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static <T> boolean none(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+        for (T element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+        for (byte element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+        for (short element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+        for (int element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+        for (long element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+        for (float element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+        for (double element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        for (boolean element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+    /**
+     * Returns `true` if no elements match the given [predicate].
+     */
+    public static boolean none(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+        for (char element : elements) if (predicate.accept(element)) return false;
+        return true;
+    }
+
+
+    /*
+     * reduce
+     */
+
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <S, T extends S> S reduce(@NotNull T[] elements, @NotNull Operation<T, S> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        S accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static byte reduce(@NotNull byte[] elements, @NotNull Operation<Byte, Byte> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        byte accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static short reduce(@NotNull short[] elements, @NotNull Operation<Short, Short> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        short accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static int reduce(@NotNull int[] elements, @NotNull Operation<Integer, Integer> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static long reduce(@NotNull long[] elements, @NotNull Operation<Long, Long> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        long accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static float reduce(@NotNull float[] elements, @NotNull Operation<Float, Float> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        float accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static double reduce(@NotNull double[] elements, @NotNull Operation<Double, Double> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        double accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static boolean reduce(@NotNull boolean[] elements, @NotNull Operation<Boolean, Boolean> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        boolean accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
+     */
+    public static char reduce(@NotNull char[] elements, @NotNull Operation<Character, Character> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        char accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <S, T extends S> S reduceIndexed(@NotNull T[] elements, @NotNull IndexedOperation<T, S> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        S accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static byte reduceIndexed(@NotNull byte[] elements, @NotNull IndexedOperation<Byte, Byte> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        byte accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static short reduceIndexed(@NotNull short[] elements, @NotNull IndexedOperation<Short, Short> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        short accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static int reduceIndexed(@NotNull int[] elements, @NotNull IndexedOperation<Integer, Integer> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static long reduceIndexed(@NotNull long[] elements, @NotNull IndexedOperation<Long, Long> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        long accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static float reduceIndexed(@NotNull float[] elements, @NotNull IndexedOperation<Float, Float> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        float accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static double reduceIndexed(@NotNull double[] elements, @NotNull IndexedOperation<Double, Double> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        double accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static boolean reduceIndexed(@NotNull boolean[] elements, @NotNull IndexedOperation<Boolean, Boolean> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        boolean accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with the first element and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself and calculates the next accumulator value.
+     */
+    public static char reduceIndexed(@NotNull char[] elements, @NotNull IndexedOperation<Character, Character> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        char accumulator = elements[0];
+        for (int index : Numberx.rangeTo(1, elements.length - 1)) {
+            accumulator = operation.operation(index, accumulator, elements[index]);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <S, T extends S> S reduceRight(@NotNull T[] elements, @NotNull RightOperation<T, S> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        S accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static byte reduceRight(@NotNull byte[] elements, @NotNull RightOperation<Byte, Byte> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        byte accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static short reduceRight(@NotNull short[] elements, @NotNull RightOperation<Short, Short> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        short accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static int reduceRight(@NotNull int[] elements, @NotNull RightOperation<Integer, Integer> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static long reduceRight(@NotNull long[] elements, @NotNull RightOperation<Long, Long> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        long accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static float reduceRight(@NotNull float[] elements, @NotNull RightOperation<Float, Float> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        float accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static double reduceRight(@NotNull double[] elements, @NotNull RightOperation<Double, Double> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        double accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static boolean reduceRight(@NotNull boolean[] elements, @NotNull RightOperation<Boolean, Boolean> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        boolean accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
+     */
+    public static char reduceRight(@NotNull char[] elements, @NotNull RightOperation<Character, Character> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        char accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <S, T extends S> S reduceRightIndexed(@NotNull T[] elements, @NotNull IndexedRightOperation<T, S> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        S accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static byte reduceRightIndexed(@NotNull byte[] elements, @NotNull IndexedRightOperation<Byte, Byte> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        byte accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static short reduceRightIndexed(@NotNull short[] elements, @NotNull IndexedRightOperation<Short, Short> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        short accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static int reduceRightIndexed(@NotNull int[] elements, @NotNull IndexedRightOperation<Integer, Integer> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static long reduceRightIndexed(@NotNull long[] elements, @NotNull IndexedRightOperation<Long, Long> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        long accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static float reduceRightIndexed(@NotNull float[] elements, @NotNull IndexedRightOperation<Float, Float> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        float accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static double reduceRightIndexed(@NotNull double[] elements, @NotNull IndexedRightOperation<Double, Double> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        double accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static boolean reduceRightIndexed(@NotNull boolean[] elements, @NotNull IndexedRightOperation<Boolean, Boolean> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        boolean accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with last element and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    public static char reduceRightIndexed(@NotNull char[] elements, @NotNull IndexedRightOperation<Character, Character> operation) {
+        int index = elements.length - 1;
+        if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        char accumulator = elements[index--];
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+
+    /*
+     * fold
+     */
+
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <T, R> R fold(@NotNull T[] elements, @NotNull R initial, @NotNull Operation<T, R> operation) {
+        R accumulator = initial;
+        for (T element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull byte[] elements, @NotNull R initial, @NotNull Operation<Byte, R> operation) {
+        R accumulator = initial;
+        for (byte element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull short[] elements, @NotNull R initial, @NotNull Operation<Short, R> operation) {
+        R accumulator = initial;
+        for (short element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull int[] elements, @NotNull R initial, @NotNull Operation<Integer, R> operation) {
+        R accumulator = initial;
+        for (int element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull long[] elements, @NotNull R initial, @NotNull Operation<Long, R> operation) {
+        R accumulator = initial;
+        for (long element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull float[] elements, @NotNull R initial, @NotNull Operation<Float, R> operation) {
+        R accumulator = initial;
+        for (float element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull double[] elements, @NotNull R initial, @NotNull Operation<Double, R> operation) {
+        R accumulator = initial;
+        for (double element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull boolean[] elements, @NotNull R initial, @NotNull Operation<Boolean, R> operation) {
+        R accumulator = initial;
+        for (boolean element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     */
+    @NotNull
+    public static <R> R fold(@NotNull char[] elements, @NotNull R initial, @NotNull Operation<Character, R> operation) {
+        R accumulator = initial;
+        for (char element : elements) accumulator = operation.operation(accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <T, R> R foldIndexed(@NotNull T[] elements, @NotNull R initial, @NotNull IndexedOperation<T, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (T element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull byte[] elements, @NotNull R initial, @NotNull IndexedOperation<Byte, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (byte element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull short[] elements, @NotNull R initial, @NotNull IndexedOperation<Short, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (short element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull int[] elements, @NotNull R initial, @NotNull IndexedOperation<Integer, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (int element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull long[] elements, @NotNull R initial, @NotNull IndexedOperation<Long, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (long element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull float[] elements, @NotNull R initial, @NotNull IndexedOperation<Float, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (float element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull double[] elements, @NotNull R initial, @NotNull IndexedOperation<Double, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (double element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull boolean[] elements, @NotNull R initial, @NotNull IndexedOperation<Boolean, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (boolean element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right
+     * to current accumulator value and each element with its index in the original array.
+     *
+     * @param operation function that takes the index of an element, current accumulator value
+     *                  and the element itself, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldIndexed(@NotNull char[] elements, @NotNull R initial, @NotNull IndexedOperation<Character, R> operation) {
+        int index = 0;
+        R accumulator = initial;
+        for (char element : elements) accumulator = operation.operation(index++, accumulator, element);
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <T, R> R foldRight(@NotNull T[] elements, @NotNull R initial, @NotNull RightOperation<T, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull byte[] elements, @NotNull R initial, @NotNull RightOperation<Byte, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull short[] elements, @NotNull R initial, @NotNull RightOperation<Short, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull int[] elements, @NotNull R initial, @NotNull RightOperation<Integer, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull long[] elements, @NotNull R initial, @NotNull RightOperation<Long, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull float[] elements, @NotNull R initial, @NotNull RightOperation<Float, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull double[] elements, @NotNull R initial, @NotNull RightOperation<Double, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull boolean[] elements, @NotNull R initial, @NotNull RightOperation<Boolean, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRight(@NotNull char[] elements, @NotNull R initial, @NotNull RightOperation<Character, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(elements[index--], accumulator);
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <T, R> R foldRightIndexed(@NotNull T[] elements, @NotNull R initial, @NotNull IndexedRightOperation<T, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull byte[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Byte, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull short[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Short, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull int[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Integer, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull long[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Long, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull float[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Float, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull double[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Double, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull boolean[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Boolean, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from right to left
+     * to each element with its index in the original array and current accumulator value.
+     *
+     * @param operation function that takes the index of an element, the element itself
+     *                  and current accumulator value, and calculates the next accumulator value.
+     */
+    @NotNull
+    public static <R> R foldRightIndexed(@NotNull char[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Character, R> operation) {
+        int index = elements.length - 1;
+        R accumulator = initial;
+        while (index >= 0) {
+            accumulator = operation.operation(index, elements[index], accumulator);
+            --index;
+        }
+        return accumulator;
+    }
+
+
+    /*
+     * intersect
+     */
+
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static <T> Set<T> intersect(@NotNull T[] elements, @NotNull Iterable<T> other) {
+        Set<T> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Byte> intersect(@NotNull byte[] elements, @NotNull Iterable<Byte> other) {
+        Set<Byte> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Short> intersect(@NotNull short[] elements, @NotNull Iterable<Short> other) {
+        Set<Short> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Integer> intersect(@NotNull int[] elements, @NotNull Iterable<Integer> other) {
+        Set<Integer> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Long> intersect(@NotNull long[] elements, @NotNull Iterable<Long> other) {
+        Set<Long> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Float> intersect(@NotNull float[] elements, @NotNull Iterable<Float> other) {
+        Set<Float> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Double> intersect(@NotNull double[] elements, @NotNull Iterable<Double> other) {
+        Set<Double> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Boolean> intersect(@NotNull boolean[] elements, @NotNull Iterable<Boolean> other) {
+        Set<Boolean> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by both this set and the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Character> intersect(@NotNull char[] elements, @NotNull Iterable<Character> other) {
+        Set<Character> set = Arrayx.toSet(elements);
+        Collectionx.retainAll(set, other);
+        return set;
+    }
+
+
+    /*
+     * subtract
+     */
+
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static <T> Set<T> subtract(@NotNull T[] elements, @NotNull Iterable<T> other) {
+        Set<T> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Byte> subtract(@NotNull byte[] elements, @NotNull Iterable<Byte> other) {
+        Set<Byte> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Short> subtract(@NotNull short[] elements, @NotNull Iterable<Short> other) {
+        Set<Short> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Integer> subtract(@NotNull int[] elements, @NotNull Iterable<Integer> other) {
+        Set<Integer> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Long> subtract(@NotNull long[] elements, @NotNull Iterable<Long> other) {
+        Set<Long> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Float> subtract(@NotNull float[] elements, @NotNull Iterable<Float> other) {
+        Set<Float> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Double> subtract(@NotNull double[] elements, @NotNull Iterable<Double> other) {
+        Set<Double> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Boolean> subtract(@NotNull boolean[] elements, @NotNull Iterable<Boolean> other) {
+        Set<Boolean> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+    /**
+     * Returns a set containing all elements that are contained by this array and not contained by the specified collection.
+     *
+     * The returned set preserves the element iteration order of the original array.
+     */
+    @NotNull
+    public static Set<Character> subtract(@NotNull char[] elements, @NotNull Iterable<Character> other) {
+        Set<Character> set = Arrayx.toSet(elements);
+        Collectionx.removeAll(set, other);
+        return set;
+    }
+
+
+    /*
+     * binarySearch
+     */
+
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted according to the specified [comparator], otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted according to the specified [comparator].
+     */
+    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element, comparator);
+    }
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted according to the specified [comparator], otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted according to the specified [comparator].
+     */
+    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element, comparator);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull byte[] elements, byte element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull byte[] elements, byte element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull short[] elements, short element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull short[] elements, short element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull int[] elements, int element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull int[] elements, int element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull long[] elements, long element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull long[] elements, long element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull float[] elements, float element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull float[] elements, float element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull double[] elements, double element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull double[] elements, double element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull char[] elements, char element, int fromIndex, int toIndex) {
+        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+    }
+
+    /**
+     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
+     * The array is expected to be sorted, otherwise the result is undefined.
+     *
+     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
+     *
+     * @return the index of the element, if it is contained in the array within the specified range;
+     * otherwise, the inverted insertion point `(-insertion point - 1)`.
+     * The insertion point is defined as the index at which the element should be inserted,
+     * so that the array (or the specified subrange of array) still remains sorted.
+     */
+    public static int binarySearch(@NotNull char[] elements, char element) {
+        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
     }
 }

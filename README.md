@@ -97,7 +97,10 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
     single, singleOrNull, any, copyOf, copyOfRange, iterator, asIterable, groupBy, groupByTo, groupingBy, count, max, maxBy,
     maxWith, min, minBy, minWith, joinTo, joinToString, joinToArrayString, contentToString, sum, sumBy, sumByDouble,
     plus, plusElement, indices, indexOf, indexOfFirst, contains, forEach, forEachIndexed, filter, filterIndexed, filterIndexedTo,
-    filterNot, filterNotNull, filterNotNullTo, filterNotTo, filterTo, zip, partition
+    filterNot, filterNotNull, filterNotNullTo, filterNotTo, filterTo, zip, partition, all, first, firstOrNull, last, lastIndexOf, lastOrNull,
+    find, findLast, getOrElse, getOrNull, elementAt, elementAtOrElse, elementAtOrNull, contentEquals, flatMap,
+    flatMapTo, average, none, reduce, reduceIndexed, reduceRight, reduceRightIndexed, fold, foldIndexed, foldRight,
+    foldRightIndexed, intersect, subtract, binarySearch,
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
     * encodeToString, encodeToBytes, encodeTo, encodeToBuffer, urlEncodeToString, urlEncodeToBytes, urlEncodeTo, urlEncodeToBuffer,
     mimeEncodeToString, mimeEncodeToBytes, mimeEncodeTo, mimeEncodeToBuffer, decodeToBytes, decodeToString, decodeTo, decodeToBuffer,

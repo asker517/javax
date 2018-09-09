@@ -12,6 +12,10 @@
 * Comparisonx 增加 maxOf, minOf
 * Arrayx 增加 zip
 * Arrayx 增加 partition
+* Arrayx 完善 toCollection, toSet, toHashSet, 增加 all, first, firstOrNull, last, lastIndexOf, lastOrNull,
+find, findLast, getOrElse, getOrNull, elementAt, elementAtOrElse, elementAtOrNull, contentEquals, flatMap,
+flatMapTo, average, none, reduce, reduceIndexed, reduceRight, reduceRightIndexed, fold, foldIndexed, foldRight,
+foldRightIndexed, intersect, subtract, binarySearch,
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString
