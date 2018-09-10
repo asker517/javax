@@ -45,42 +45,39 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
 
 ### crypto
 * Aes: [Aesx.java] ([Test][AesTest.java]) | [Aes.kt] ([Test][AesTest.kt])
-    * createKey, createKeyByPassword, keyFromBytes, keyFromBase64, encrypt, encryptToBase64, decrypt,
-    decryptFromBase64, decryptToString, decryptToStringFromBase64,
+    * createKey, createKeyByPassword, keyFromBytes, keyFromBase64, encrypt, encryptToBase64,
+    * decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64,
 * Des: [Desx.java] ([Test][DesTest.java]) | [Des.kt] ([Test][DesTest.kt])
-    * createKeyByPassword, encrypt, encryptToBase64, decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64,
+    * createKeyByPassword, encrypt, encryptToBase64,
+    * decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64,
 * Rsa: [Rsax.java] ([Test][RsaTest.java]) | [Rsa.kt] ([Test][RsaTest.kt])
     * createKey, pubKeyFromBase64, priKeyFromBase64, sign, signToBase64, verify, verifyFromBase64,
-    encrypt, encryptToBase64, decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64
+    * encrypt, encryptToBase64, decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64
 
 ### io
 * File: [Filex.java] ([Test][FileTest.java]) | [File.kt] ([Test][FileTest.kt])
     * mkdirsOrThrow, mkdirsCheck, createNewFileOrThrow, createNewFileCheck, cleanDir, lengthRecursively,
-    listRecursively, listFilesRecursively, copyTo, copyRecursively, deleteRecursively, startsWith, endsWith,
-    normalize, resolve, resolveSibling, createTempDir, createTempFile, getInvariantSeparatorsPath, getExtension,
-    getNameWithoutExtension, toRelativeString, relative, getRootLength, getRootName, isRooted, toComponents,
-    subPath, inputStream, reader, bufferedReader, readBytes, readText, readLines, useLines, forEachBlock,
-    forEachLine, outputStream, writer, bufferedWriter, printWriter, writeBytes, appendBytes, writeText,
-    appendText, walk, walkTopDown, walkBottomUp
+    * listRecursively, listFilesRecursively, copyTo, copyRecursively, deleteRecursively, startsWith, endsWith,
+    * normalize, resolve, resolveSibling, createTempDir, createTempFile, getInvariantSeparatorsPath, getExtension,
+    * getNameWithoutExtension, toRelativeString, relative, getRootLength, getRootName, isRooted, toComponents,
+    * subPath, inputStream, reader, bufferedReader, readBytes, readText, readLines, useLines, forEachBlock,
+    * forEachLine, outputStream, writer, bufferedWriter, printWriter, writeBytes, appendBytes, writeText,
+    * appendText, walk, walkTopDown, walkBottomUp
 * IOStream: [IOStreamx.java]
     * safeClose, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
-    readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,
+    * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,
 
 ### lang
 * Class: [Classx.java] ([Test][ClassTest.java]) | [Class.kt] ([Test][ClassTest.kt])
-    * getFieldWithParent, getFieldsWithParent, getFieldValue, setFieldValue, getMethodWithParent, getMethodsWithParent,
-    callMethod, getConstructorWithParent, getConstructorsWithParent, getClassHierarchy, isTypeArray, isTypeCollection
+    * getFieldWithParent, getFieldsWithParent, getFieldValue, setFieldValue,
+    * getMethodWithParent, getMethodsWithParent, callMethod,
+    * getConstructorWithParent, getConstructorsWithParent, getClassHierarchy, isTypeArray, isTypeCollection
 * Number: [Numberx.java] ([Test][NumberTest.java]) | [Number.kt] ([Test][NumberTest.kt])
-    * scale, pad, coerceAtLeast, coerceAtMost, rangeTo, untilTo, downTo, downUntilTo, toByteOrDefault, toByteOrZero,
-    toShortOrDefault, toShortOrZero, toIntOrDefault, toIntOrZero, toLongOrDefault, toLongOrZero,
-    toFloatOrDefault, toFloatOrZero, toDoubleOrDefault, toDoubleOrZero
+    * scale, pad, coerce, rangeTo, untilTo, downTo, downUntilTo, to\*OrDefault, to\*OrZero
 * String: [Stringx.java] ([Test][StringTest.java]) | [String.kt] ([Test][StringTest.kt])
-    * isBlank, isNotBlank, isNullOrBlank, isNotNullOrBlank, isAllBlank, isAllNotBlank, isAllNullOrBlank, isAllNotNullOrBlank,
-    isEmpty, isNotEmpty, isNullOrEmpty, isNotNullOrEmpty, isAllEmpty, isAllNotEmpty, isAllNullOrEmpty, isAllNotNullOrEmpty,
-    isDigit, isChinese, isLetterOrDigit, startsWith, endsWith, equals, orEmpty, orDefault, emptyToNull, blankToNull,
-    removeChar, removeFirstChar, removeLastChar, capitalize, decapitalize, limit, padStart, padEnd, regionMatches,
-    findAnyOf, findLastAnyOf, indexOf, indexOfAny, lastIndexOf, lastIndexOfAny, substringBefore, substringBeforeLast,
-    substringAfterLast, toByteArray, orContains, andContains
+    * isBlank, isEmpty, isDigit, isChinese, isLetterOrDigit, startsWith, endsWith, equals, orEmpty, orDefault,
+    * emptyToNull, blankToNull, remove, capitalize, decapitalize, limit, pad, regionMatches, find, indexOf,
+    * substring, toByteArray, orContains, andContains
 * Throwable: [Throwablex.java] ([Test][ThrowableTest.java]) | [Throwable.kt] ([Test][ThrowableTest.kt])
     * stackTraceToString
 
@@ -90,34 +87,17 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
 
 ### util
 * Array: [Arrayx.java]
-    * arrayOf, isEmpty, isNotEmpty, toTypedArray, toCollection, toList, toSet, toHashSet, asList,
-    map, mapTo, mapIndexed, mapIndexedTo, mapNotNull, mapNotNullTo, mapIndexedNotNull, mapIndexedNotNullTo,
-    reverse, reversed, reversedArray, sort, sortDescending, sortWith, sortBy, sortByDescending, sorted,
-    sortedDescending, sortedWith, sortedWith, sortedBy, sortedByDescending, sortedArray, sortedArrayDescending, sortedArrayWith,
-    single, singleOrNull, any, copyOf, copyOfRange, iterator, asIterable, groupBy, groupByTo, groupingBy, count, max, maxBy,
-    maxWith, min, minBy, minWith, joinTo, joinToString, joinToArrayString, contentToString, sum, sumBy, sumByDouble,
-    plus, plusElement, indices, indexOf, indexOfFirst, contains, forEach, forEachIndexed, filter, filterIndexed, filterIndexedTo,
-    filterNot, filterNotNull, filterNotNullTo, filterNotTo, filterTo, zip, partition, all, first, firstOrNull, last, lastIndexOf, lastOrNull,
-    find, findLast, getOrElse, getOrNull, elementAt, elementAtOrElse, elementAtOrNull, contentEquals, flatMap,
-    flatMapTo, average, none, reduce, reduceIndexed, reduceRight, reduceRightIndexed, fold, foldIndexed, foldRight,
-    foldRightIndexed, intersect, subtract, binarySearch, drop, take, slice, associate, withIndex
+    * arrayOf, isEmpty, isNotEmpty, toTypedArray, toCollection, toList, toSet, toHashSet, asList, map, reverse, sort,
+    * single, any, copyOf, iterator, asIterable, groupBy, groupingBy, count, max, min, join, contentToString, sum, plus,
+    * indices, indexOf, contains, forEach, filter, zip, partition, all, first, last, find, get, elementAt, contentEquals,
+    * flatMap, average, none, reduce, fold, intersect, subtract, binarySearch, drop, take, slice, associate, withIndex
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
-    * encodeToString, encodeToBytes, encodeTo, encodeToBuffer, urlEncodeToString, urlEncodeToBytes, urlEncodeTo, urlEncodeToBuffer,
-    mimeEncodeToString, mimeEncodeToBytes, mimeEncodeTo, mimeEncodeToBuffer, decodeToBytes, decodeToString, decodeTo, decodeToBuffer,
-    urlDecodeToBytes, urlDecodeToString, urlDecodeTo, urlDecodeToBuffer, mimeDecodeToBytes, mimeDecodeToString, mimeDecodeTo, mimeDecodeToBuffer,
+    * encode, urlEncode, mimeEncode, decode, urlDecode, mimeDecode,
 * Collection: [Collectionx.java]
-    * isEmpty, isNotEmpty, orEmpty, listOf, emptyList, collectionSizeOrDefault, filterTo, filterNotTo, filterNotNullTo,
-    filterIndexedTo, filterIsInstanceTo, filter, filterNot, filterNotNull, filterIndexed, filterIsInstance, filterInPlace,
-    mapTo, map, mapIndexedTo, mapIndexed, mapNotNullTo, mapNotNull, mapIndexedNotNullTo, mapIndexedNotNull, flatMapTo,
-    flatMap, joinTo, joinToString, joinToArrayString, count, average, sum, sumBy, sumByDouble, first, firstOrNull, last,
-    lastIndexOf, lastOrNull, find, findLast, getOrElse, getOrNull, max, maxBy, maxWith, min, minBy, minWith, addAll, removeAll,
-    partition, toCollection, toList, toSet, toSortedSet, toHashSet, safeToConvertToSet, convertToSetForSetOperationWith,
-    convertToSetForSetOperation, union, all, any, contains, forEach, forEachIndexed, chunked, minus, minusElement, plus,
-    plusElement, groupByTo, groupBy, groupingBy, sortWith, sortBy, sortByDescending, sortedWith, sortedBy, sortedByDescending,
-    reverse, indexOf, indexOfFirst, indexOfLast, fold, foldIndexed, foldRight, foldRightIndexed, reduce, reduceIndexed, reduceRight,
-    reduceRightIndexed, slice, take, takeLast, takeLastWhile, takeWhile, distinct, distinctBy, intersect, retainAll, associateTo,
-    associate, associateByTo, associateBy, drop, dropLast, dropLastWhile, dropWhile, single, singleOrNull, elementAtOrElse,
-    elementAt, elementAtOrNull, fill, shuffle, shuffled
+    * isEmpty, isNotEmpty, orEmpty, listOf, emptyList, collectionSizeOrDefault, filter, map, flatMap, join, count,
+    * average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList, toSet, toHashSet,
+    * convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold,
+    * reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
 * Comparison: [Comparisonx.java]
     * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf
 * Format: [Formatx.java] ([Test][FormatTest.java]) | [Format.kt] ([Test][FormatTest.kt])
@@ -125,7 +105,8 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
 * Map: [Mapx.java]
     * mapCapacity, getOrPut
 * Premise: [Premisex.java] ([Test][PremiseTest.java]) | [Premise.kt] ([Test][PremiseTest.kt])
-    * checkInRange, checkNotInRange, requireNonNull, require, requireFileExist, requireIsDir, requireIsFile, requireNoNulls, areEqual
+    * requireNonNull, require, requireFileExist, requireIsDir, requireIsFile, requireNoNulls
+    * checkInRange, checkNotInRange, areEqual
 * Zip: [Zipx.java] ([Test][ZipTest.java]) | [Zip.kt] ([Test][ZipTest.kt])
     * compressionFilesTo, compressionDirTo, compressionDir, decompressionTo, decompression
 
