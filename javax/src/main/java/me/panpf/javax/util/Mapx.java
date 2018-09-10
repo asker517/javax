@@ -57,4 +57,9 @@ public class Mapx {
             return value;
         }
     }
+
+    public static <K, V> Map<K, V> put(Map<K, V> map, Pair<K, V> pair) {
+        map.put(pair.first, pair.second);
+        return map;
+    }
 }

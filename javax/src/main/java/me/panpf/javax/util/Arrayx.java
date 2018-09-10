@@ -14020,4 +14020,253 @@ public class Arrayx {
         }
         return list;
     }
+
+
+    /*
+     * distinct
+     */
+
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <T> List<T> distinct(@NotNull T[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Byte> distinct(@NotNull byte[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Short> distinct(@NotNull short[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Integer> distinct(@NotNull int[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Long> distinct(@NotNull long[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Float> distinct(@NotNull float[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Double> distinct(@NotNull double[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Boolean> distinct(@NotNull boolean[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only distinct elements from the given array.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static List<Character> distinct(@NotNull char[] elements) {
+        return Collectionx.toList(Arrayx.toSet(elements));
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <T, K> List<T> distinctBy(@NotNull T[] elements, @NotNull Transformer<T, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<T> list = new ArrayList<>();
+        for (T e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Byte> distinctBy(@NotNull byte[] elements, @NotNull Transformer<Byte, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Byte> list = new ArrayList<>();
+        for (byte e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Short> distinctBy(@NotNull short[] elements, @NotNull Transformer<Short, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Short> list = new ArrayList<>();
+        for (short e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Integer> distinctBy(@NotNull int[] elements, @NotNull Transformer<Integer, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Integer> list = new ArrayList<>();
+        for (int e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Long> distinctBy(@NotNull long[] elements, @NotNull Transformer<Long, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Long> list = new ArrayList<>();
+        for (long e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Float> distinctBy(@NotNull float[] elements, @NotNull Transformer<Float, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Float> list = new ArrayList<>();
+        for (float e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Double> distinctBy(@NotNull double[] elements, @NotNull Transformer<Double, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Double> list = new ArrayList<>();
+        for (double e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Boolean> distinctBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Boolean> list = new ArrayList<>();
+        for (boolean e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list containing only elements from the given array
+     * having distinct keys returned by the given [selector] function.
+     * <p>
+     * The elements in the resulting list are in the same order as they were in the source array.
+     */
+    @NotNull
+    public static <K> List<Character> distinctBy(@NotNull char[] elements, @NotNull Transformer<Character, K> selector) {
+        HashSet<K> set = new HashSet<>();
+        List<Character> list = new ArrayList<>();
+        for (char e : elements) {
+            K key = selector.transform(e);
+            if (set.add(key)) list.add(e);
+        }
+        return list;
+    }
 }
