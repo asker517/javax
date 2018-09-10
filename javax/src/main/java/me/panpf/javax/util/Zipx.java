@@ -109,7 +109,7 @@ public class Zipx {
             @NotNull
             @Override
             public String transform(@NotNull File file) {
-                return file.getPath().replace(sourceDirectory.getPath() + "/", "");
+                return file.getPath().replace(sourceDirectory.getPath() + File.separator, "");
             }
         });
     }

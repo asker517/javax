@@ -84,7 +84,7 @@ fun File.zipCompressionDirTo(destinationFile: File): File {
     this.requireExist()
     require(this.isDirectory) { this.path + " not directory" }
     return this.listFiles().zipCompressionTo(destinationFile) {
-        it.path.replace(this.path + "/", "")
+        it.path.replace(this.path + File.separator, "")
     }
 }
 
