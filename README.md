@@ -1,12 +1,12 @@
 # JAVAX
 
-![Platform][platform_java_icon]
-![Platform][platform_kotlin_icon]
+[![Platform][platform_java_icon]][platform_java_link]
+[![Platform][platform_kotlin_icon]][platform_kotlin_link]
 ![SourceCompatibility][source_compatibility_icon]
 ![TargetCompatibility][target_compatibility_icon]
-[![License][license_image]][license_link]
 ![converage_java][converage_java]
 ![converage_kotlin][converage_kotlin]
+[![License][license_icon]][license_link]
 
 Extensions to the Java standard library, some tool methods, and tool methods related to File, IO,
 primitive types, String, Array, and Collection extracted from the Kotlin standard library (not available in the Kotlin version)
@@ -21,7 +21,7 @@ Add the following to your `build.gradle` file
 compile "me.panpf:javax:$lastVersion"
 ```
 
-Please replace `$lastVersion` with the latest version: [![Download][VersionBadgeIcon]][VersionBadgeLink]
+Please replace `$lastVersion` with the latest version: [![Download][version_java_icon]][version_java_link]
 
 Dependencies：
 * org.jetbrains:annotations: 13.0
@@ -37,7 +37,7 @@ compile "me.panpf:javax-kt:$lastVersion"
 Dependencies：
 * org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.50
 
-Please replace `$lastVersion` with the latest version: [![Download][KTVersionBadgeIcon]][KTVersionBadgeLink]
+Please replace `$lastVersion` with the latest version: [![Download][version_kotlin_icon]][version_kotlin_link]
 
 `You can add Java or Kotlin versions to your project as needed. If your project is Java and Kotlin mixed development, then both versions can be imported, because there are different package names, so there will be no class duplicates.`
 
@@ -135,18 +135,21 @@ Please view the [CHANGELOG.md] file
 
 
 [platform_java_icon]: https://img.shields.io/badge/Platform-Java-red.svg
+[platform_java_link]: https://www.java.com
 [platform_kotlin_icon]: https://img.shields.io/badge/Platform-Kotlin-blue.svg
-[license_image]: https://img.shields.io/badge/License-Apache%202-blue.svg
+[platform_kotlin_link]: http://kotlinlang.org
+[license_icon]: https://img.shields.io/badge/License-Apache%202-blue.svg
 [license_link]: https://www.apache.org/licenses/LICENSE-2.0
-[VersionBadgeIcon]: https://api.bintray.com/packages/panpf/maven/javax/images/download.svg
-[VersionBadgeLink]:https://bintray.com/panpf/maven/javax/_latestVersion
-[KTVersionBadgeIcon]: https://api.bintray.com/packages/panpf/maven/javax-kt/images/download.svg
-[KTVersionBadgeLink]:https://bintray.com/panpf/maven/javax-kt/_latestVersion
-[CHANGELOG.md]: CHANGELOG.md
+[version_java_icon]: https://api.bintray.com/packages/panpf/maven/javax/images/download.svg
+[version_java_link]:https://bintray.com/panpf/maven/javax/_latestVersion
+[version_kotlin_icon]: https://api.bintray.com/packages/panpf/maven/javax-kt/images/download.svg
+[version_kotlin_link]: https://bintray.com/panpf/maven/javax-kt/_latestVersion
 [source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
 [target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
 [converage_java]: https://img.shields.io/badge/ConverageJava-24%25-orange.svg
 [converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-74%25-orange.svg
+
+[CHANGELOG.md]: CHANGELOG.md
 
 [Aesx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Aesx.java
 [AesTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/crypto/AesTest.java
