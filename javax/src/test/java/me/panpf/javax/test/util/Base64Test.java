@@ -23,6 +23,7 @@ import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 
 public class Base64Test {
 
@@ -119,15 +120,15 @@ public class Base64Test {
 
         // encodeTo
         encodeLength = Base64x.encodeTo(SOURCE, encodeResult);
-        decodeLength = Base64x.decodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.decodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.encodeTo(SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.decodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.decodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.encodeTo(ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.decodeTo(ByteBuffer.wrap(Arrayx.copyOf(encodeResult, encodeLength)), decodeResult);
+        decodeLength = Base64x.decodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         decodeLength = Base64x.decodeTo(Base64x.encodeToString(SOURCE), decodeResult);
@@ -136,15 +137,15 @@ public class Base64Test {
 
         // urlEncodeTo
         encodeLength = Base64x.urlEncodeTo(SOURCE, encodeResult);
-        decodeLength = Base64x.urlDecodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.urlDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.urlEncodeTo(SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.urlDecodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.urlDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.urlEncodeTo(ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.urlDecodeTo(ByteBuffer.wrap(Arrayx.copyOf(encodeResult, encodeLength)), decodeResult);
+        decodeLength = Base64x.urlDecodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         decodeLength = Base64x.urlDecodeTo(Base64x.urlEncodeToString(SOURCE), decodeResult);
@@ -153,15 +154,15 @@ public class Base64Test {
 
         // mimeEncodeTo
         encodeLength = Base64x.mimeEncodeTo(SOURCE, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.mimeEncodeTo(SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.mimeEncodeTo(ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(ByteBuffer.wrap(Arrayx.copyOf(encodeResult, encodeLength)), decodeResult);
+        decodeLength = Base64x.mimeDecodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         decodeLength = Base64x.mimeDecodeTo(Base64x.mimeEncodeToString(SOURCE), decodeResult);
@@ -170,15 +171,15 @@ public class Base64Test {
 
         // mimeEncodeTo int lineLength, @NotNull byte[] lineSeparator
         encodeLength = Base64x.mimeEncodeTo(10, ",".getBytes(), SOURCE, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.mimeEncodeTo(10, ",".getBytes(), SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrayx.copyOf(encodeResult, encodeLength), decodeResult);
+        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         encodeLength = Base64x.mimeEncodeTo(10, ",".getBytes(), ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(ByteBuffer.wrap(Arrayx.copyOf(encodeResult, encodeLength)), decodeResult);
+        decodeLength = Base64x.mimeDecodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
         Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
 
         decodeLength = Base64x.mimeDecodeTo(Base64x.mimeEncodeToString(SOURCE), decodeResult);

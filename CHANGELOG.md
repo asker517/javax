@@ -1,22 +1,20 @@
 ## 0.6.2
-* Arrayx 增加 indices, contains, indexOf
 * 增加 Throwable
-* File 增加 listRecursively
 * Number 增加 toByte、toShort、toInt 等方法
 * Premise 增加 checkInRange、checkNotInRange
-* Arrayx 增加 forEach, filter
-* File 的 requireExist, requireIsDir, requireIsFile 移到 Premise 中
-* Arrayx 的 requireNoNulls, 移到 Premise 中
-* requireExist rename to requireFileExist
+* File
+    * 增加 listRecursively
+    * requireExist, requireIsDir, requireIsFile 移到 Premise 中，并且 requireExist rename to requireFileExist
 * Kotlin 版本移除 annotations 依赖
 * Comparisonx 增加 maxOf, minOf
-* Arrayx 增加 zip
-* Arrayx 增加 partition
-* Arrayx 完善 toCollection, toSet, toHashSet, 增加 all, first, firstOrNull, last, lastIndexOf, lastOrNull,
-find, findLast, getOrElse, getOrNull, elementAt, elementAtOrElse, elementAtOrNull, contentEquals, flatMap,
-flatMapTo, average, none, reduce, reduceIndexed, reduceRight, reduceRightIndexed, fold, foldIndexed, foldRight,
-foldRightIndexed, intersect, subtract, binarySearch,
-* Arrayx 增加 drop, take, slice, distinct, associate, withIndex
+* Arrayx
+    * requireNoNulls, 移到 Premise 中
+    * 完善 toCollection, toSet, toHashSet
+    * 增加 indices, contains, indexOf, forEach, filter, zip, partition, all, first, firstOrNull, last, lastIndexOf, lastOrNull,
+    find, findLast, getOrElse, getOrNull, elementAt, elementAtOrElse, elementAtOrNull, contentEquals, flatMap,
+    flatMapTo, average, none, reduce, reduceIndexed, reduceRight, reduceRightIndexed, fold, foldIndexed, foldRight,
+    foldRightIndexed, intersect, subtract, binarySearch,  drop, take, slice, distinct, associate, withIndex
+* 增加 Arrayx2
 
 ## 0.6.1
 * Arrayx 增加 plus, contentToString

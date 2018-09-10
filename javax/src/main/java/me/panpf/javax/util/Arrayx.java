@@ -2054,7 +2054,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Byte> sortedDescending(@NotNull byte[] elements) {
-        byte[] result = Arrayx.copyOf(elements);
+        byte[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2064,7 +2064,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Short> sortedDescending(@NotNull short[] elements) {
-        short[] result = Arrayx.copyOf(elements);
+        short[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2074,7 +2074,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Integer> sortedDescending(@NotNull int[] elements) {
-        int[] result = Arrayx.copyOf(elements);
+        int[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2084,7 +2084,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Long> sortedDescending(@NotNull long[] elements) {
-        long[] result = Arrayx.copyOf(elements);
+        long[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2094,7 +2094,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Float> sortedDescending(@NotNull float[] elements) {
-        float[] result = Arrayx.copyOf(elements);
+        float[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2104,7 +2104,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Double> sortedDescending(@NotNull double[] elements) {
-        double[] result = Arrayx.copyOf(elements);
+        double[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2114,7 +2114,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Character> sortedDescending(@NotNull char[] elements) {
-        char[] result = Arrayx.copyOf(elements);
+        char[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
     }
@@ -2352,7 +2352,7 @@ public class Arrayx {
     @NotNull
     public static <T extends Comparable<T>> T[] sortedArray(@NotNull T[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        T[] result = copyOf(elements);
+        T[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2363,7 +2363,7 @@ public class Arrayx {
     @NotNull
     public static byte[] sortedArray(@NotNull byte[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        byte[] result = copyOf(elements);
+        byte[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2374,7 +2374,7 @@ public class Arrayx {
     @NotNull
     public static short[] sortedArray(@NotNull short[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        short[] result = copyOf(elements);
+        short[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2385,7 +2385,7 @@ public class Arrayx {
     @NotNull
     public static int[] sortedArray(@NotNull int[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        int[] result = copyOf(elements);
+        int[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2396,7 +2396,7 @@ public class Arrayx {
     @NotNull
     public static long[] sortedArray(@NotNull long[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        long[] result = copyOf(elements);
+        long[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2407,7 +2407,7 @@ public class Arrayx {
     @NotNull
     public static float[] sortedArray(@NotNull float[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        float[] result = copyOf(elements);
+        float[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2418,7 +2418,7 @@ public class Arrayx {
     @NotNull
     public static double[] sortedArray(@NotNull double[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        double[] result = copyOf(elements);
+        double[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2429,7 +2429,7 @@ public class Arrayx {
     @NotNull
     public static char[] sortedArray(@NotNull char[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        char[] result = copyOf(elements);
+        char[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
     }
@@ -2441,7 +2441,7 @@ public class Arrayx {
     @NotNull
     public static <T extends Comparable<T>> T[] sortedArrayDescending(@NotNull T[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        T[] result = Arrayx.copyOf(elements);
+        T[] result = Arrayx2.copyOf(elements);
         Arrayx.sortWith(elements, new Comparisonx.ReverseOrderComparator<T>());
         return result;
     }
@@ -2452,7 +2452,7 @@ public class Arrayx {
     @NotNull
     public static byte[] sortedArrayDescending(@NotNull byte[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        byte[] result = Arrayx.copyOf(elements);
+        byte[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2463,7 +2463,7 @@ public class Arrayx {
     @NotNull
     public static short[] sortedArrayDescending(@NotNull short[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        short[] result = Arrayx.copyOf(elements);
+        short[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2474,7 +2474,7 @@ public class Arrayx {
     @NotNull
     public static int[] sortedArrayDescending(@NotNull int[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        int[] result = Arrayx.copyOf(elements);
+        int[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2485,7 +2485,7 @@ public class Arrayx {
     @NotNull
     public static long[] sortedArrayDescending(@NotNull long[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        long[] result = Arrayx.copyOf(elements);
+        long[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2496,7 +2496,7 @@ public class Arrayx {
     @NotNull
     public static float[] sortedArrayDescending(@NotNull float[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        float[] result = Arrayx.copyOf(elements);
+        float[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2507,7 +2507,7 @@ public class Arrayx {
     @NotNull
     public static double[] sortedArrayDescending(@NotNull double[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        double[] result = Arrayx.copyOf(elements);
+        double[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2518,7 +2518,7 @@ public class Arrayx {
     @NotNull
     public static char[] sortedArrayDescending(@NotNull char[] elements) {
         if (Arrayx.isEmpty(elements)) return elements;
-        char[] result = Arrayx.copyOf(elements);
+        char[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
     }
@@ -2529,7 +2529,7 @@ public class Arrayx {
      */
     public static <T> T[] sortedArrayWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
         if (Arrayx.isEmpty(elements)) return elements;
-        T[] result = Arrayx.copyOf(elements);
+        T[] result = Arrayx2.copyOf(elements);
         Arrayx.sortWith(elements, comparator);
         return result;
     }
@@ -3189,7 +3189,7 @@ public class Arrayx {
 
 
     /*
-     * copy
+     * all
      */
 
     /**
@@ -3262,227 +3262,6 @@ public class Arrayx {
     public static boolean all(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         for (char element : elements) if (!predicate.accept(element)) return false;
         return true;
-    }
-
-
-    /*
-     * copy
-     */
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static <T> T[] copyOf(@NotNull T[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static byte[] copyOf(@NotNull byte[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static short[] copyOf(@NotNull short[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static int[] copyOf(@NotNull int[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static long[] copyOf(@NotNull long[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static float[] copyOf(@NotNull float[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static double[] copyOf(@NotNull double[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static boolean[] copyOf(@NotNull boolean[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array.
-     */
-    @NotNull
-    public static char[] copyOf(@NotNull char[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static byte[] copyOf(@NotNull byte[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static short[] copyOf(@NotNull short[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static int[] copyOf(@NotNull int[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static long[] copyOf(@NotNull long[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static float[] copyOf(@NotNull float[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static double[] copyOf(@NotNull double[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static boolean[] copyOf(@NotNull boolean[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static char[] copyOf(@NotNull char[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of the original array, resized to the given [newSize].
-     */
-    @NotNull
-    public static <T> T[] copyOf(@NotNull T[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static <T> T[] copyOfRange(@NotNull T[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static byte[] copyOfRange(@NotNull byte[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static short[] copyOfRange(@NotNull short[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static int[] copyOfRange(@NotNull int[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static long[] copyOfRange(@NotNull long[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static float[] copyOfRange(@NotNull float[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static double[] copyOfRange(@NotNull double[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static boolean[] copyOfRange(@NotNull boolean[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
-    }
-
-    /**
-     * Returns new array which is a copy of range of original array.
-     */
-    @NotNull
-    public static char[] copyOfRange(@NotNull char[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
 
@@ -6496,82 +6275,6 @@ public class Arrayx {
 
 
     /*
-     * contentToString
-     */
-
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    public static <T> String contentToString(@NotNull T[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    public static String contentToString(@NotNull byte[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull short[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull int[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull long[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull float[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull double[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull boolean[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull char[] elements) {
-        return java.util.Arrays.toString(elements);
-    }
-
-
-    /*
      * sum
      */
 
@@ -6918,7 +6621,7 @@ public class Arrayx {
     @NotNull
     public static <T> T[] plus(@NotNull T[] elements, @NotNull T element) {
         int index = elements.length;
-        T[] result = java.util.Arrays.copyOf(elements, index + 1);
+        T[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6929,7 +6632,7 @@ public class Arrayx {
     @NotNull
     public static byte[] plus(@NotNull byte[] elements, byte element) {
         int index = elements.length;
-        byte[] result = java.util.Arrays.copyOf(elements, index + 1);
+        byte[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6940,7 +6643,7 @@ public class Arrayx {
     @NotNull
     public static short[] plus(@NotNull short[] elements, short element) {
         int index = elements.length;
-        short[] result = java.util.Arrays.copyOf(elements, index + 1);
+        short[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6951,7 +6654,7 @@ public class Arrayx {
     @NotNull
     public static int[] plus(@NotNull int[] elements, int element) {
         int index = elements.length;
-        int[] result = java.util.Arrays.copyOf(elements, index + 1);
+        int[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6962,7 +6665,7 @@ public class Arrayx {
     @NotNull
     public static long[] plus(@NotNull long[] elements, long element) {
         int index = elements.length;
-        long[] result = java.util.Arrays.copyOf(elements, index + 1);
+        long[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6973,7 +6676,7 @@ public class Arrayx {
     @NotNull
     public static float[] plus(@NotNull float[] elements, float element) {
         int index = elements.length;
-        float[] result = java.util.Arrays.copyOf(elements, index + 1);
+        float[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6984,7 +6687,7 @@ public class Arrayx {
     @NotNull
     public static double[] plus(@NotNull double[] elements, double element) {
         int index = elements.length;
-        double[] result = java.util.Arrays.copyOf(elements, index + 1);
+        double[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -6995,7 +6698,7 @@ public class Arrayx {
     @NotNull
     public static boolean[] plus(@NotNull boolean[] elements, boolean element) {
         int index = elements.length;
-        boolean[] result = java.util.Arrays.copyOf(elements, index + 1);
+        boolean[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -7006,7 +6709,7 @@ public class Arrayx {
     @NotNull
     public static char[] plus(@NotNull char[] elements, char element) {
         int index = elements.length;
-        char[] result = java.util.Arrays.copyOf(elements, index + 1);
+        char[] result = Arrayx2.copyOf(elements, index + 1);
         result[index] = element;
         return result;
     }
@@ -7017,7 +6720,7 @@ public class Arrayx {
     @NotNull
     public static <T> T[] plus(@NotNull T[] selfElements, @NotNull Collection<T> elements) {
         int index = selfElements.length;
-        T[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        T[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (T element : elements) {
             result[index++] = element;
         }
@@ -7030,7 +6733,7 @@ public class Arrayx {
     @NotNull
     public static byte[] plus(@NotNull byte[] selfElements, @NotNull Collection<Byte> elements) {
         int index = selfElements.length;
-        byte[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        byte[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (byte element : elements) {
             result[index++] = element;
         }
@@ -7043,7 +6746,7 @@ public class Arrayx {
     @NotNull
     public static short[] plus(@NotNull short[] selfElements, @NotNull Collection<Short> elements) {
         int index = selfElements.length;
-        short[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        short[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (short element : elements) {
             result[index++] = element;
         }
@@ -7056,7 +6759,7 @@ public class Arrayx {
     @NotNull
     public static int[] plus(@NotNull int[] selfElements, @NotNull Collection<Integer> elements) {
         int index = selfElements.length;
-        int[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        int[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (int element : elements) {
             result[index++] = element;
         }
@@ -7069,7 +6772,7 @@ public class Arrayx {
     @NotNull
     public static long[] plus(@NotNull long[] selfElements, @NotNull Collection<Long> elements) {
         int index = selfElements.length;
-        long[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        long[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (long element : elements) {
             result[index++] = element;
         }
@@ -7082,7 +6785,7 @@ public class Arrayx {
     @NotNull
     public static float[] plus(@NotNull float[] selfElements, @NotNull Collection<Float> elements) {
         int index = selfElements.length;
-        float[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        float[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (float element : elements) {
             result[index++] = element;
         }
@@ -7095,7 +6798,7 @@ public class Arrayx {
     @NotNull
     public static double[] plus(@NotNull double[] selfElements, @NotNull Collection<Double> elements) {
         int index = selfElements.length;
-        double[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        double[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (double element : elements) {
             result[index++] = element;
         }
@@ -7108,7 +6811,7 @@ public class Arrayx {
     @NotNull
     public static boolean[] plus(@NotNull boolean[] selfElements, @NotNull Collection<Boolean> elements) {
         int index = selfElements.length;
-        boolean[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        boolean[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (boolean element : elements) {
             result[index++] = element;
         }
@@ -7121,7 +6824,7 @@ public class Arrayx {
     @NotNull
     public static char[] plus(@NotNull char[] selfElements, @NotNull Collection<Character> elements) {
         int index = selfElements.length;
-        char[] result = java.util.Arrays.copyOf(selfElements, index + elements.size());
+        char[] result = Arrayx2.copyOf(selfElements, index + elements.size());
         for (char element : elements) {
             result[index++] = element;
         }
@@ -7135,7 +6838,7 @@ public class Arrayx {
     public static <T> T[] plus(@NotNull T[] selfElements, @NotNull T[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        T[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        T[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7147,7 +6850,7 @@ public class Arrayx {
     public static byte[] plus(@NotNull byte[] selfElements, @NotNull byte[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        byte[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        byte[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7159,7 +6862,7 @@ public class Arrayx {
     public static short[] plus(@NotNull short[] selfElements, @NotNull short[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        short[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        short[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7171,7 +6874,7 @@ public class Arrayx {
     public static int[] plus(@NotNull int[] selfElements, @NotNull int[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        int[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        int[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7183,7 +6886,7 @@ public class Arrayx {
     public static long[] plus(@NotNull long[] selfElements, @NotNull long[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        long[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        long[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7195,7 +6898,7 @@ public class Arrayx {
     public static float[] plus(@NotNull float[] selfElements, @NotNull float[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        float[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        float[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7207,7 +6910,7 @@ public class Arrayx {
     public static double[] plus(@NotNull double[] selfElements, @NotNull double[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        double[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        double[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7219,7 +6922,7 @@ public class Arrayx {
     public static boolean[] plus(@NotNull boolean[] selfElements, @NotNull boolean[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        boolean[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        boolean[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -7231,7 +6934,7 @@ public class Arrayx {
     public static char[] plus(@NotNull char[] selfElements, @NotNull char[] elements) {
         int thisSize = selfElements.length;
         int arraySize = elements.length;
-        char[] result = java.util.Arrays.copyOf(selfElements, thisSize + arraySize);
+        char[] result = Arrayx2.copyOf(selfElements, thisSize + arraySize);
         System.arraycopy(elements, 0, result, thisSize, arraySize);
         return result;
     }
@@ -10787,84 +10490,6 @@ public class Arrayx {
 
 
     /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static <T> boolean contentEquals(@NotNull T[] elements, @NotNull T[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull byte[] elements, @NotNull byte[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull short[] elements, @NotNull short[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull int[] elements, @NotNull int[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull long[] elements, @NotNull long[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull float[] elements, @NotNull float[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull double[] elements, @NotNull double[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull boolean[] elements, @NotNull boolean[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-    /**
-     * Returns `true` if the two specified arrays are *structurally* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     */
-    public static boolean contentEquals(@NotNull char[] elements, @NotNull char[] other) {
-        return java.util.Arrays.equals(elements, other);
-    }
-
-
-    /*
-     * contentEquals
-     */
-
-
-    /**
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
@@ -11208,7 +10833,7 @@ public class Arrayx {
 
 
     /*
-     * average
+     * none
      */
 
 
@@ -12628,390 +12253,6 @@ public class Arrayx {
 
 
     /*
-     * binarySearch
-     */
-
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted according to the specified [comparator], otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted according to the specified [comparator].
-     */
-    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element, comparator);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted according to the specified [comparator], otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted according to the specified [comparator].
-     */
-    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element, comparator);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull byte[] elements, byte element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull byte[] elements, byte element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull short[] elements, short element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull short[] elements, short element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull int[] elements, int element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull int[] elements, int element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull long[] elements, long element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull long[] elements, long element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull float[] elements, float element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull float[] elements, float element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull double[] elements, double element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull double[] elements, double element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull char[] elements, char element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
-    }
-
-    /**
-     * Searches the array or the range of the array for the provided [element] using the binary search algorithm.
-     * The array is expected to be sorted, otherwise the result is undefined.
-     * <p>
-     * If the array contains multiple elements equal to the specified [element], there is no guarantee which one will be found.
-     *
-     * @return the index of the element, if it is contained in the array within the specified range;
-     * otherwise, the inverted insertion point `(-insertion point - 1)`.
-     * The insertion point is defined as the index at which the element should be inserted,
-     * so that the array (or the specified subrange of array) still remains sorted.
-     */
-    public static int binarySearch(@NotNull char[] elements, char element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
-    }
-
-
-    /*
-     * contentHashCode
-     */
-
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static <T> int contentHashCode(@NotNull T[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull byte[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull short[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull int[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull long[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull float[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull double[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull boolean[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     */
-    public static int contentHashCode(@NotNull char[] elements) {
-        return java.util.Arrays.hashCode(elements);
-    }
-
-
-    /*
-     * content
-     */
-
-
-    /**
-     * Returns `true` if the two specified arrays are *deeply* equal to one another,
-     * i.e. contain the same number of the same elements in the same order.
-     * <p>
-     * If two corresponding elements are nested arrays, they are also compared deeply.
-     * If any of arrays contains itself on any nesting level the behavior is undefined.
-     */
-    public static <T> boolean contentDeepEquals(@NotNull T[] elements, T[] other) {
-        return java.util.Arrays.deepEquals(elements, other);
-    }
-
-    /**
-     * Returns a hash code based on the contents of this array as if it is [List].
-     * Nested arrays are treated as lists too.
-     * <p>
-     * If any of arrays contains itself on any nesting level the behavior is undefined.
-     */
-    public static <T> int contentDeepHashCode(@NotNull T[] elements) {
-        return java.util.Arrays.deepHashCode(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of this array as if it is a [List].
-     * Nested arrays are treated as lists too.
-     * <p>
-     * If any of arrays contains itself on any nesting level that reference
-     * is rendered as `"[...]"` to prevent recursion.
-     */
-    @NotNull
-    public static <T> String contentDeepToString(@NotNull T[] elements) {
-        return java.util.Arrays.deepToString(elements);
-    }
-
-
-    /*
      * drop
      */
 
@@ -14268,5 +13509,136 @@ public class Arrayx {
             if (set.add(key)) list.add(e);
         }
         return list;
+    }
+
+
+    /*
+     * withIndex
+     */
+
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    public static <T> Iterable<IndexedValue<T>> withIndex(@NotNull final T[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<T>>() {
+            @NotNull
+            @Override
+            public Iterator<T> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Byte>> withIndex(@NotNull final byte[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Byte>>() {
+            @NotNull
+            @Override
+            public Iterator<Byte> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Short>> withIndex(@NotNull final short[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Short>>() {
+            @NotNull
+            @Override
+            public Iterator<Short> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Integer>> withIndex(@NotNull final int[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Integer>>() {
+            @NotNull
+            @Override
+            public Iterator<Integer> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Long>> withIndex(@NotNull final long[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Long>>() {
+            @NotNull
+            @Override
+            public Iterator<Long> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Float>> withIndex(@NotNull final float[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Float>>() {
+            @NotNull
+            @Override
+            public Iterator<Float> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Double>> withIndex(@NotNull final double[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Double>>() {
+            @NotNull
+            @Override
+            public Iterator<Double> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Boolean>> withIndex(@NotNull final boolean[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Boolean>>() {
+            @NotNull
+            @Override
+            public Iterator<Boolean> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
+    }
+
+    /**
+     * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
+     */
+    @NotNull
+    public static Iterable<IndexedValue<Character>> withIndex(@NotNull final char[] elements) {
+        return new IndexingIterable<>(new DefaultValue<Iterator<Character>>() {
+            @NotNull
+            @Override
+            public Iterator<Character> get() {
+                return Arrayx.iterator(elements);
+            }
+        });
     }
 }

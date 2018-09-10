@@ -88,9 +88,12 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
 ### util
 * Array: [Arrayx.java]
     * arrayOf, isEmpty, isNotEmpty, toTypedArray, toCollection, toList, toSet, toHashSet, asList, map, reverse, sort,
-    * single, any, copyOf, iterator, asIterable, groupBy, groupingBy, count, max, min, join, contentToString, sum, plus,
-    * indices, indexOf, contains, forEach, filter, zip, partition, all, first, last, find, get, elementAt, contentEquals,
-    * flatMap, average, none, reduce, fold, intersect, subtract, binarySearch, drop, take, slice, associate, withIndex
+    * single, any, iterator, asIterable, groupBy, groupingBy, count, max, min, join, sum, plus, indices, indexOf,
+    * contains, forEach, filter, zip, partition, all, first, last, find, get, elementAt, flatMap, average, none,
+    * reduce, fold, intersect, subtract, drop, take, distinct, withIndex
+* Array2: [Arrayx2.java]
+    * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString, contentEquals,
+    * binarySearch, copyOf, slice, associate
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
     * encode, urlEncode, mimeEncode, decode, urlDecode, mimeDecode,
 * Collection: [Collectionx.java]
@@ -166,6 +169,9 @@ Please view the [CHANGELOG.md] file
 [FileTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/io/FileTest.kt
 
 [IOStreamx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/io/IOStreamx.java
+[IOStreamTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/io/IOStreamTest.java
+[IOStream.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/io/IOStream.kt
+[IOStreamTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/io/IOStreamTest.kt
 
 [Classx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Classx.java
 [ClassTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/ClassTest.java
@@ -193,6 +199,14 @@ Please view the [CHANGELOG.md] file
 [DigestTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/security/DigestTest.kt
 
 [Arrayx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Arrayx.java
+[ArrayTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/ArrayTest.java
+[Array.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Array.kt
+[ArrayTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/ArrayTest.kt
+
+[Arrayx2.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Array2.java
+[Array2Test.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/Array2Test.java
+[Array2.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Array2.kt
+[Array2Test.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/Array2Test.kt
 
 [Base64x.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Base64x.java
 [Base64Test.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/Base64Test.java
@@ -200,15 +214,24 @@ Please view the [CHANGELOG.md] file
 [Base64Test.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/Base64Test.kt
 
 [Collectionx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Collectionx.java
+[CollectionTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/CollectionTest.java
+[Collection.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Collection.kt
+[CollectionTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/CollectionTest.kt
 
 [Comparisonx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Comparisonx.java
+[ComparisonTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/ComparisonTest.java
+[Comparison.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Comparison.kt
+[ComparisonTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/ComparisonTest.kt
 
 [Formatx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Formatx.java
 [FormatTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/FormatTest.java
 [Format.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Format.kt
 [FormatTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/FormatTest.kt
 
-[Mapx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Mapx.java
+[Mapx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Map.java
+[MapTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/MapTest.java
+[Map.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Map.kt
+[MapTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/MapTest.kt
 
 [Premisex.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Premisex.java
 [PremiseTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/PremiseTest.java

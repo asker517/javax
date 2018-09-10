@@ -1104,7 +1104,7 @@ public class Filex {
         } finally {
             IOStreamx.safeClose(input);
         }
-        return remaining == 0 ? result : Arrayx.copyOf(result, offset);
+        return remaining == 0 ? result : Arrays.copyOf(result, offset);
     }
 
     /**
