@@ -203,7 +203,7 @@ Please view the [CHANGELOG.md] file
 [Array.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Array.kt
 [ArrayTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/ArrayTest.kt
 
-[Arrayx2.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Array2.java
+[Arrayx2.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Arrayx2.java
 [Array2Test.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/Array2Test.java
 [Array2.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Array2.kt
 [Array2Test.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/Array2Test.kt
