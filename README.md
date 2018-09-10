@@ -92,8 +92,8 @@ Please replace `$lastVersion` with the latest version: [![Download][KTVersionBad
     * contains, forEach, filter, zip, partition, all, first, last, find, get, elementAt, flatMap, average, none,
     * reduce, fold, intersect, subtract, drop, take, distinct, withIndex
 * Array2: [Arrayx2.java]
-    * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString, contentEquals,
-    * binarySearch, copyOf, slice, associate
+    * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
+    * contentEquals, binarySearch, copyOf, slice, associate
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
     * encode, urlEncode, mimeEncode, decode, urlDecode, mimeDecode,
 * Collection: [Collectionx.java]
