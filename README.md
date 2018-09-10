@@ -151,97 +151,97 @@ Please view the [CHANGELOG.md] file
 
 [CHANGELOG.md]: CHANGELOG.md
 
-[Aesx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Aesx.java
-[AesTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/crypto/AesTest.java
-[Aes.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/Aes.kt
-[AesTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/AesTest.kt
+[Aesx.java]: javax/src/main/java/me/panpf/javax/crypto/Aesx.java
+[AesTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/AesTest.java
+[Aes.kt]: javax-kt/src/main/java/me/panpf/javaxkt/crypto/Aes.kt
+[AesTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/AesTest.kt
 
-[Desx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Desx.java
-[DesTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/crypto/DesTest.java
-[Des.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/Des.kt
-[DesTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/DesTest.kt
+[Desx.java]: javax/src/main/java/me/panpf/javax/crypto/Desx.java
+[DesTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/DesTest.java
+[Des.kt]: javax-kt/src/main/java/me/panpf/javaxkt/crypto/Des.kt
+[DesTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/DesTest.kt
 
-[Rsax.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/crypto/Rsax.java
-[RsaTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/crypto/RsaTest.java
-[Rsa.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/crypto/Rsa.kt
-[RsaTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/RsaTest.kt
+[Rsax.java]: javax/src/main/java/me/panpf/javax/crypto/Rsax.java
+[RsaTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/RsaTest.java
+[Rsa.kt]: javax-kt/src/main/java/me/panpf/javaxkt/crypto/Rsa.kt
+[RsaTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/RsaTest.kt
 
-[Filex.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/io/Filex.java
-[FileTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/io/FileTest.java
-[File.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/io/File.kt
-[FileTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/io/FileTest.kt
+[Filex.java]: javax/src/main/java/me/panpf/javax/io/Filex.java
+[FileTest.java]: javax/src/test/java/me/panpf/javax/test/io/FileTest.java
+[File.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/File.kt
+[FileTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/FileTest.kt
 
-[IOStreamx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/io/IOStreamx.java
-[IOStreamTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/io/IOStreamTest.java
-[IOStream.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/io/IOStream.kt
-[IOStreamTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/io/IOStreamTest.kt
+[IOStreamx.java]: javax/src/main/java/me/panpf/javax/io/IOStreamx.java
+[IOStreamTest.java]: javax/src/test/java/me/panpf/javax/test/io/IOStreamTest.java
+[IOStream.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/IOStream.kt
+[IOStreamTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/IOStreamTest.kt
 
-[Classx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Classx.java
-[ClassTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/ClassTest.java
-[Class.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/Class.kt
-[ClassTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ClassTest.kt
+[Classx.java]: javax/src/main/java/me/panpf/javax/lang/Classx.java
+[ClassTest.java]: javax/src/test/java/me/panpf/javax/test/lang/ClassTest.java
+[Class.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Class.kt
+[ClassTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ClassTest.kt
 
-[Numberx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Numberx.java
-[NumberTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/NumberTest.java
-[Number.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/Number.kt
-[NumberTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/NumberTest.kt
+[Numberx.java]: javax/src/main/java/me/panpf/javax/lang/Numberx.java
+[NumberTest.java]: javax/src/test/java/me/panpf/javax/test/lang/NumberTest.java
+[Number.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Number.kt
+[NumberTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/NumberTest.kt
 
-[Stringx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Stringx.java
-[StringTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/StringTest.java
-[String.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/String.kt
-[StringTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/StringTest.kt
+[Stringx.java]: javax/src/main/java/me/panpf/javax/lang/Stringx.java
+[StringTest.java]: javax/src/test/java/me/panpf/javax/test/lang/StringTest.java
+[String.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/String.kt
+[StringTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/StringTest.kt
 
-[Throwablex.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/lang/Throwablex.java
-[ThrowableTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/lang/ThrowableTest.java
-[Throwable.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/lang/Throwable.kt
-[ThrowableTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ThrowableTest.kt
+[Throwablex.java]: javax/src/main/java/me/panpf/javax/lang/Throwablex.java
+[ThrowableTest.java]: javax/src/test/java/me/panpf/javax/test/lang/ThrowableTest.java
+[Throwable.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Throwable.kt
+[ThrowableTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ThrowableTest.kt
 
-[Digestx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/security/Digestx.java
-[DigestTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/security/DigestTest.java
-[Digest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/security/Digest.kt
-[DigestTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/security/DigestTest.kt
+[Digestx.java]: javax/src/main/java/me/panpf/javax/security/Digestx.java
+[DigestTest.java]: javax/src/test/java/me/panpf/javax/test/security/DigestTest.java
+[Digest.kt]: javax-kt/src/main/java/me/panpf/javaxkt/security/Digest.kt
+[DigestTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/security/DigestTest.kt
 
-[Arrayx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Arrayx.java
-[ArrayTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/ArrayTest.java
-[Array.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Array.kt
-[ArrayTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/ArrayTest.kt
+[Arrayx.java]: javax/src/main/java/me/panpf/javax/util/Arrayx.java
+[ArrayTest.java]: javax/src/test/java/me/panpf/javax/test/util/ArrayTest.java
+[Array.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Array.kt
+[ArrayTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/ArrayTest.kt
 
-[Arrayx2.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Arrayx2.java
-[Array2Test.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/Array2Test.java
-[Array2.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Array2.kt
-[Array2Test.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/Array2Test.kt
+[Arrayx2.java]: javax/src/main/java/me/panpf/javax/util/Arrayx2.java
+[Array2Test.java]: javax/src/test/java/me/panpf/javax/test/util/Array2Test.java
+[Array2.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Array2.kt
+[Array2Test.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/Array2Test.kt
 
-[Base64x.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Base64x.java
-[Base64Test.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/Base64Test.java
-[Base64.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Base64.kt
-[Base64Test.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/Base64Test.kt
+[Base64x.java]: javax/src/main/java/me/panpf/javax/util/Base64x.java
+[Base64Test.java]: javax/src/test/java/me/panpf/javax/test/util/Base64Test.java
+[Base64.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Base64.kt
+[Base64Test.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/Base64Test.kt
 
-[Collectionx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Collectionx.java
-[CollectionTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/CollectionTest.java
-[Collection.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Collection.kt
-[CollectionTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/CollectionTest.kt
+[Collectionx.java]: javax/src/main/java/me/panpf/javax/util/Collectionx.java
+[CollectionTest.java]: javax/src/test/java/me/panpf/javax/test/util/CollectionTest.java
+[Collection.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Collection.kt
+[CollectionTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/CollectionTest.kt
 
-[Comparisonx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Comparisonx.java
-[ComparisonTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/ComparisonTest.java
-[Comparison.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Comparison.kt
-[ComparisonTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/ComparisonTest.kt
+[Comparisonx.java]: javax/src/main/java/me/panpf/javax/util/Comparisonx.java
+[ComparisonTest.java]: javax/src/test/java/me/panpf/javax/test/util/ComparisonTest.java
+[Comparison.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Comparison.kt
+[ComparisonTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/ComparisonTest.kt
 
-[Formatx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Formatx.java
-[FormatTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/FormatTest.java
-[Format.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Format.kt
-[FormatTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/FormatTest.kt
+[Formatx.java]: javax/src/main/java/me/panpf/javax/util/Formatx.java
+[FormatTest.java]: javax/src/test/java/me/panpf/javax/test/util/FormatTest.java
+[Format.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Format.kt
+[FormatTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/FormatTest.kt
 
-[Mapx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Map.java
-[MapTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/MapTest.java
-[Map.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Map.kt
-[MapTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/MapTest.kt
+[Mapx.java]: javax/src/main/java/me/panpf/javax/util/Map.java
+[MapTest.java]: javax/src/test/java/me/panpf/javax/test/util/MapTest.java
+[Map.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Map.kt
+[MapTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/MapTest.kt
 
-[Premisex.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Premisex.java
-[PremiseTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/PremiseTest.java
-[Premise.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Premise.kt
-[PremiseTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/PremiseTest.kt
+[Premisex.java]: javax/src/main/java/me/panpf/javax/util/Premisex.java
+[PremiseTest.java]: javax/src/test/java/me/panpf/javax/test/util/PremiseTest.java
+[Premise.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Premise.kt
+[PremiseTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/PremiseTest.kt
 
-[Zipx.java]: https://github.com/panpf/javax/blob/master/javax/src/main/java/me/panpf/javax/util/Zipx.java
-[ZipTest.java]: https://github.com/panpf/javax/blob/master/javax/src/test/java/me/panpf/javax/test/util/ZipTest.java
-[Zip.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/main/java/me/panpf/javaxkt/util/Zip.kt
-[ZipTest.kt]: https://github.com/panpf/javax/blob/master/javax-kt/src/test/java/me/panpf/javaxkt/test/util/ZipTest.kt
+[Zipx.java]: javax/src/main/java/me/panpf/javax/util/Zipx.java
+[ZipTest.java]: javax/src/test/java/me/panpf/javax/test/util/ZipTest.java
+[Zip.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Zip.kt
+[ZipTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/ZipTest.kt
