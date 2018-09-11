@@ -6,8 +6,6 @@ import java.util.Calendar
 import java.util.GregorianCalendar
 
 
-
-
 /*
  * Date related extension
  */
@@ -23,7 +21,7 @@ fun String.toDate(format: SimpleDateFormat): Date {
 }
 
 fun String.toDate(pattern: String, locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
-    return toDate(SimpleDateFormat(pattern, locale))
+    return this.toDate(SimpleDateFormat(pattern, locale))
 }
 
 fun String.toDateYMD(locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
@@ -87,39 +85,55 @@ fun Date.formatYMDCompact(locale: Locale = Locale.getDefault(Locale.Category.FOR
  */
 
 
-fun Date.add(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), field: Int, amount: Int): Date {
+fun Date.add(field: Int, amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
     val calendar = Calendar.getInstance(timeZone, locale)
     calendar.timeInMillis = time
     calendar.add(field, amount)
     return Date(calendar.timeInMillis)
 }
 
-fun Date.addYear(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.YEAR, amount)
+fun Date.addYear(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.YEAR, amount, timeZone, locale)
 }
 
-fun Date.addMonth(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.MONTH, amount)
+fun Date.addMonth(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.MONTH, amount, timeZone, locale)
 }
 
-fun Date.addDayOfMonth(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.DAY_OF_MONTH, amount)
+fun Date.addDayOfWeek(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.DAY_OF_WEEK, amount, timeZone, locale)
 }
 
-fun Date.addHourOfDay(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.HOUR_OF_DAY, amount)
+fun Date.addDayOfWeekInMonth(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.DAY_OF_WEEK_IN_MONTH, amount, timeZone, locale)
 }
 
-fun Date.addMinute(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.MINUTE, amount)
+fun Date.addDayOfMonth(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.DAY_OF_MONTH, amount, timeZone, locale)
 }
 
-fun Date.addSecond(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.SECOND, amount)
+fun Date.addDayOfYear(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.DAY_OF_YEAR, amount, timeZone, locale)
 }
 
-fun Date.addMillisecond(timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT), amount: Int): Date {
-    return add(timeZone, locale, Calendar.MILLISECOND, amount)
+fun Date.addHour(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.HOUR, amount, timeZone, locale)
+}
+
+fun Date.addHourOfDay(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.HOUR_OF_DAY, amount, timeZone, locale)
+}
+
+fun Date.addMinute(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.MINUTE, amount, timeZone, locale)
+}
+
+fun Date.addSecond(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.SECOND, amount, timeZone, locale)
+}
+
+fun Date.addMillisecond(amount: Int, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Date {
+    return add(Calendar.MILLISECOND, amount, timeZone, locale)
 }
 
 
@@ -127,87 +141,60 @@ fun Date.addMillisecond(timeZone: TimeZone = TimeZone.getDefault(), locale: Loca
  * Compare
  */
 
-/**
- *
- *
- * Checks if two date objects are on the same day ignoring time.
- *
- *
- *
- *
- *
- * 28 Mar 2002 13:45 and 28 Mar 2002 06:01 would return true. 28 Mar 2002
- * 13:45 and 12 Mar 2002 13:45 would return false.
- *
- *
- * @param date1 the first date, not altered, not null
- * @param date2 the second date, not altered, not null
- * @return true if they represent the same day
- * @throws IllegalArgumentException if either date is `null`
- * @since 2.1
- */
-fun isSameDay(date1: Date?, date2: Date?): Boolean {
-    if (date1 == null || date2 == null) {
-        throw IllegalArgumentException("The date must not be null")
-    }
-    val cal1 = Calendar.getInstance()
-    cal1.time = date1
-    val cal2 = Calendar.getInstance()
-    cal2.time = date2
-    return isSameDay(cal1, cal2)
+fun Calendar.isSameDay(cal2: Calendar): Boolean {
+    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA)
+            && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+            && this.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
 }
 
-/**
- *
- *
- * Checks if two calendar objects are on the same day ignoring time.
- *
- *
- *
- *
- *
- * 28 Mar 2002 13:45 and 28 Mar 2002 06:01 would return true. 28 Mar 2002
- * 13:45 and 12 Mar 2002 13:45 would return false.
- *
- *
- * @param cal1 the first calendar, not altered, not null
- * @param cal2 the second calendar, not altered, not null
- * @return true if they represent the same day
- * @throws IllegalArgumentException if either calendar is `null`
- * @since 2.1
- */
-fun isSameDay(cal1: Calendar?, cal2: Calendar?): Boolean {
-    if (cal1 == null || cal2 == null) {
-        throw IllegalArgumentException("The date must not be null")
-    }
-    return (cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA)
-            && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1
-            .get(Calendar.DAY_OF_YEAR) == cal2
-            .get(Calendar.DAY_OF_YEAR))
+fun Date.isSameDay(date2: Date, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Boolean {
+    val cal1 = Calendar.getInstance(timeZone, locale).apply { time = this@isSameDay }
+    val cal2 = Calendar.getInstance(timeZone, locale).apply { time = date2 }
+    return cal1.isSameDay(cal2)
 }
 
-/**
- * 相对时间，两个毫秒时间的相对时间在一周之内为true
- *
- * @param ms1
- * @param ms2
- * @return
- */
-fun isSameWeek(ms1: Long, ms2: Long): Boolean {
-    val res = ms1 - ms2
-    return !(res > MILLIS_PER_WEEK || res < -MILLIS_PER_WEEK)
+fun Long.isSameDay(date2: Long, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Boolean {
+    val cal1 = Calendar.getInstance(timeZone, locale).apply { timeInMillis = this@isSameDay }
+    val cal2 = Calendar.getInstance(timeZone, locale).apply { timeInMillis = date2 }
+    return cal1.isSameDay(cal2)
 }
 
-/**
- * 相对时间 是否在同一个月内
- *
- * @param ms1
- * @param ms2
- * @return
- */
-fun isSameMonth(ms1: Long, ms2: Long): Boolean {
-    val res = ms1 - ms2
-    return !(res > MILLIS_PER_MONTH || res < -MILLIS_PER_MONTH)
+// 涉及到周日还是周一是一周的开始的问题
+
+fun Calendar.isSameWeek(cal2: Calendar): Boolean {
+    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA)
+            && this.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR)
+}
+
+fun Date.isSameWeek(date2: Date, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Boolean {
+    val cal1 = Calendar.getInstance(timeZone, locale).apply { time = this@isSameWeek }
+    val cal2 = Calendar.getInstance(timeZone, locale).apply { time = date2 }
+    return cal1.isSameWeek(cal2)
+}
+
+fun Long.isSameWeek(date2: Long, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Boolean {
+    val cal1 = Calendar.getInstance(timeZone, locale).apply { timeInMillis = this@isSameWeek }
+    val cal2 = Calendar.getInstance(timeZone, locale).apply { timeInMillis = date2 }
+    return cal1.isSameDay(cal2)
+}
+
+
+fun Calendar.isSameMonth(cal2: Calendar): Boolean {
+    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA)
+            && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
+}
+
+fun Date.isSameMonth(date2: Date, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Boolean {
+    val cal1 = Calendar.getInstance(timeZone, locale).apply { time = this@isSameMonth }
+    val cal2 = Calendar.getInstance(timeZone, locale).apply { time = date2 }
+    return cal1.isSameMonth(cal2)
+}
+
+fun Long.isSameMonth(date2: Long, timeZone: TimeZone = TimeZone.getDefault(), locale: Locale = Locale.getDefault(Locale.Category.FORMAT)): Boolean {
+    val cal1 = Calendar.getInstance(timeZone, locale).apply { timeInMillis = this@isSameMonth }
+    val cal2 = Calendar.getInstance(timeZone, locale).apply { timeInMillis = date2 }
+    return cal1.isSameMonth(cal2)
 }
 
 
@@ -216,19 +203,26 @@ fun isSameMonth(ms1: Long, ms2: Long): Boolean {
  */
 
 
-infix operator fun Date.rangeTo(other: Date) = DateRange(this, other, 1)
+infix fun Date.dayRangeTo(other: Date) = DayRange(this, other, 1)
 
-infix fun Date.downTo(other: Date) = DateRange(this, other, -1)
+infix fun Date.dayDownTo(other: Date) = DayRange(this, other, -1)
 
-class DateRange(override val start: Date, override val endInclusive: Date, val step: Int) : Iterable<Date>, ClosedRange<Date> {
-    override fun iterator(): Iterator<Date> = DateIterator(start, endInclusive, step)
+infix fun Date.dayUntilTo(other: Date) = DayRange(this, other.addDayOfMonth(-1), 1)
+
+infix fun Date.dayDownUntilTo(other: Date) = DayRange(this, other.addDayOfMonth(1), -1)
+
+// 还要有 YearRange, MonthRange, HourRange, MinuteRange, SecondRange, MillisecondRange
+
+class DayRange(override val start: Date, override val endInclusive: Date, val step: Int) : Iterable<Date>, ClosedRange<Date> {
+    override fun iterator(): Iterator<Date> = DayIterator(start, endInclusive, step)
 }
 
-class DateIterator(first: Date, private val last: Date, val step: Int) : Iterator<Date> {
+class DayIterator(first: Date, private val last: Date, val step: Int) : Iterator<Date> {
     var hasNext: Boolean
     var next: Date
 
     init {
+        // 抽出 day 再比较
         hasNext = when {
             step > 0 -> first <= last
             step < 0 -> first >= last
@@ -242,6 +236,7 @@ class DateIterator(first: Date, private val last: Date, val step: Int) : Iterato
         val result = next
         next = next.addDayOfMonth(step)
         hasNext = when {
+            // 抽出 day 再比较
             step > 0 -> next <= last
             step < 0 -> next >= last
             else -> false
@@ -249,6 +244,8 @@ class DateIterator(first: Date, private val last: Date, val step: Int) : Iterato
         return result
     }
 }
+
+// 说不得还要出一套 Day、month year、hour、minute、second、millisecond 比大小的方法
 
 
 fun getNextTime(currentTime: Long, intervalHour: Int, disabledLimits: Array<HourOfDayLimit>?): Long {
