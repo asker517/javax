@@ -126,7 +126,15 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull String text) {
-        return getDigest(text, "MD5");
+        InputStream inputStream = null;
+        try {
+            inputStream = IOStreamx.byteInputStream(text);
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -134,7 +142,15 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull String text) {
-        return getDigest(text, "MD5").substring(8, 24);
+        InputStream inputStream = null;
+        try {
+            inputStream = IOStreamx.byteInputStream(text);
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -142,7 +158,15 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull String text) {
-        return getDigest(text, "SHA1");
+        InputStream inputStream = null;
+        try {
+            inputStream = IOStreamx.byteInputStream(text);
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -150,7 +174,15 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull String text) {
-        return getDigest(text, "SHA-256");
+        InputStream inputStream = null;
+        try {
+            inputStream = IOStreamx.byteInputStream(text);
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -158,7 +190,15 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull String text) {
-        return getDigest(text, "SHA-512");
+        InputStream inputStream = null;
+        try {
+            inputStream = IOStreamx.byteInputStream(text);
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -182,7 +222,15 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull File file) {
-        return getDigest(file, "MD5");
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -190,7 +238,15 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull File file) {
-        return getDigest(file, "MD5").substring(8, 24);
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -198,7 +254,15 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull File file) {
-        return getDigest(file, "SHA1");
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -206,7 +270,15 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull File file) {
-        return getDigest(file, "SHA-256");
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 
     /**
@@ -214,6 +286,14 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull File file) {
-        return getDigest(file, "SHA-512");
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
     }
 }
