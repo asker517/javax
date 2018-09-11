@@ -1,3 +1,8 @@
+## 0.6.3
+* 修复 Zip 中 compressionDirTo() 方法 使用 '/' 作为文件路径分隔符导致在 Windows 上没有正确的返回文件名的 bug
+* IOStream.kt 增加 safeClose()
+* Digest 中 File 相关方法抛出 IOException
+
 ## 0.6.2
 * 增加 Throwable
 * Number 增加 toByte、toShort、toInt 等方法

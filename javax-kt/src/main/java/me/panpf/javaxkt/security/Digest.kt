@@ -16,6 +16,7 @@
 
 package me.panpf.javaxkt.security
 
+import me.panpf.javaxkt.io.safeClose
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -91,60 +92,150 @@ fun InputStream.getSHA512Digest(): String = this.getDigest("SHA-512")
 /**
  * Get the message digest of the text using the specified [algorithm]
  */
-fun String.getDigest(algorithm: String): String = this.byteInputStream().use { it.getDigest(algorithm) }
+fun String.getDigest(algorithm: String): String {
+    val inputStream = this.byteInputStream()
+    try {
+        return inputStream.getDigest(algorithm)
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the text using the MD5 algorithm
  */
-fun String.getMD5Digest(): String = this.byteInputStream().use { it.getMD5Digest() }
+fun String.getMD5Digest(): String {
+    val inputStream = this.byteInputStream()
+    try {
+        return inputStream.getMD5Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the text using the MD5 algorithm, only the middle 16 bits are reserved
  */
-fun String.getMD5_16Digest(): String = this.byteInputStream().use { it.getMD5_16Digest() }
+fun String.getMD5_16Digest(): String {
+    val inputStream = this.byteInputStream()
+    try {
+        return inputStream.getMD5_16Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the text using the SHA1 algorithm
  */
-fun String.getSHA1Digest(): String = this.byteInputStream().use { it.getSHA1Digest() }
+fun String.getSHA1Digest(): String {
+    val inputStream = this.byteInputStream()
+    try {
+        return inputStream.getSHA1Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the text using the SHA-256 algorithm
  */
-fun String.getSHA256Digest(): String = this.byteInputStream().use { it.getSHA256Digest() }
+fun String.getSHA256Digest(): String {
+    val inputStream = this.byteInputStream()
+    try {
+        return inputStream.getSHA256Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the text using the SHA-512 algorithm
  */
-fun String.getSHA512Digest(): String = this.byteInputStream().use { it.getSHA512Digest() }
+fun String.getSHA512Digest(): String {
+    val inputStream = this.byteInputStream()
+    try {
+        return inputStream.getSHA512Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 
 /**
  * Get the message digest of the file using the specified [algorithm]
  */
-fun File.getDigest(algorithm: String): String = this.inputStream().use { it.getDigest(algorithm) }
+@Throws(IOException::class)
+fun File.getDigest(algorithm: String): String {
+    val inputStream = this.inputStream()
+    try {
+        return inputStream.getDigest(algorithm)
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the file using the MD5 algorithm
  */
-fun File.getMD5Digest(): String = this.inputStream().use { it.getMD5Digest() }
+@Throws(IOException::class)
+fun File.getMD5Digest(): String {
+    val inputStream = this.inputStream()
+    try {
+        return inputStream.getMD5Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
  */
-fun File.getMD5_16Digest(): String = this.inputStream().use { it.getMD5_16Digest() }
+@Throws(IOException::class)
+fun File.getMD5_16Digest(): String {
+    val inputStream = this.inputStream()
+    try {
+        return inputStream.getMD5_16Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the file using the SHA1 algorithm
  */
-fun File.getSHA1Digest(): String = this.inputStream().use { it.getSHA1Digest() }
+@Throws(IOException::class)
+fun File.getSHA1Digest(): String {
+    val inputStream = this.inputStream()
+    try {
+        return inputStream.getSHA1Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the file using the SHA-256 algorithm
  */
-fun File.getSHA256Digest(): String = this.inputStream().use { it.getSHA256Digest() }
+@Throws(IOException::class)
+fun File.getSHA256Digest(): String {
+    val inputStream = this.inputStream()
+    try {
+        return inputStream.getSHA256Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}
 
 /**
  * Get the message digest of the file using the SHA-512 algorithm
  */
-fun File.getSHA512Digest(): String = this.inputStream().use { it.getSHA512Digest() }
+@Throws(IOException::class)
+fun File.getSHA512Digest(): String {
+    val inputStream = this.inputStream()
+    try {
+        return inputStream.getSHA512Digest()
+    } finally {
+        inputStream.safeClose()
+    }
+}

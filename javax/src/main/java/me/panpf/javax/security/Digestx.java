@@ -110,9 +110,8 @@ public class Digestx {
      */
     @NotNull
     public static String getDigest(@NotNull String text, @NotNull String algorithm) {
-        InputStream inputStream = null;
+        InputStream inputStream = IOStreamx.byteInputStream(text);
         try {
-            inputStream = IOStreamx.byteInputStream(text);
             return getDigest(inputStream, algorithm);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -126,9 +125,8 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull String text) {
-        InputStream inputStream = null;
+        InputStream inputStream = IOStreamx.byteInputStream(text);
         try {
-            inputStream = IOStreamx.byteInputStream(text);
             return getMD5(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -142,9 +140,8 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull String text) {
-        InputStream inputStream = null;
+        InputStream inputStream = IOStreamx.byteInputStream(text);
         try {
-            inputStream = IOStreamx.byteInputStream(text);
             return getMD5_16(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -158,9 +155,8 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull String text) {
-        InputStream inputStream = null;
+        InputStream inputStream = IOStreamx.byteInputStream(text);
         try {
-            inputStream = IOStreamx.byteInputStream(text);
             return getSHA1(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -174,9 +170,8 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull String text) {
-        InputStream inputStream = null;
+        InputStream inputStream = IOStreamx.byteInputStream(text);
         try {
-            inputStream = IOStreamx.byteInputStream(text);
             return getSHA256(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -190,9 +185,8 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull String text) {
-        InputStream inputStream = null;
+        InputStream inputStream = IOStreamx.byteInputStream(text);
         try {
-            inputStream = IOStreamx.byteInputStream(text);
             return getSHA512(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -205,13 +199,10 @@ public class Digestx {
      * Get the message digest of the file using the specified [algorithm]
      */
     @NotNull
-    public static String getDigest(@NotNull File file, @NotNull String algorithm) {
-        InputStream inputStream = null;
+    public static String getDigest(@NotNull File file, @NotNull String algorithm) throws IOException {
+        InputStream inputStream = Filex.inputStream(file);
         try {
-            inputStream = Filex.inputStream(file);
             return getDigest(inputStream, algorithm);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -221,13 +212,10 @@ public class Digestx {
      * Get the message digest of the file using the MD5 algorithm
      */
     @NotNull
-    public static String getMD5(@NotNull File file) {
-        InputStream inputStream = null;
+    public static String getMD5(@NotNull File file) throws IOException {
+        InputStream inputStream = Filex.inputStream(file);
         try {
-            inputStream = Filex.inputStream(file);
             return getMD5(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -237,13 +225,10 @@ public class Digestx {
      * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
      */
     @NotNull
-    public static String getMD5_16(@NotNull File file) {
-        InputStream inputStream = null;
+    public static String getMD5_16(@NotNull File file) throws IOException {
+        InputStream inputStream = Filex.inputStream(file);
         try {
-            inputStream = Filex.inputStream(file);
             return getMD5_16(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -253,13 +238,10 @@ public class Digestx {
      * Get the message digest of the file using the SHA1 algorithm
      */
     @NotNull
-    public static String getSHA1(@NotNull File file) {
-        InputStream inputStream = null;
+    public static String getSHA1(@NotNull File file) throws IOException {
+        InputStream inputStream = Filex.inputStream(file);
         try {
-            inputStream = Filex.inputStream(file);
             return getSHA1(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -269,13 +251,10 @@ public class Digestx {
      * Get the message digest of the file using the SHA-256 algorithm
      */
     @NotNull
-    public static String getSHA256(@NotNull File file) {
-        InputStream inputStream = null;
+    public static String getSHA256(@NotNull File file) throws IOException {
+        InputStream inputStream = Filex.inputStream(file);
         try {
-            inputStream = Filex.inputStream(file);
             return getSHA256(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -285,13 +264,10 @@ public class Digestx {
      * Get the message digest of the file using the SHA-512 algorithm
      */
     @NotNull
-    public static String getSHA512(@NotNull File file) {
-        InputStream inputStream = null;
+    public static String getSHA512(@NotNull File file) throws IOException {
+        InputStream inputStream = Filex.inputStream(file);
         try {
-            inputStream = Filex.inputStream(file);
             return getSHA512(inputStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } finally {
             IOStreamx.safeClose(inputStream);
         }

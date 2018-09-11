@@ -63,7 +63,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * subPath, inputStream, reader, bufferedReader, readBytes, readText, readLines, useLines, forEachBlock,
     * forEachLine, outputStream, writer, bufferedWriter, printWriter, writeBytes, appendBytes, writeText,
     * appendText, walk, walkTopDown, walkBottomUp
-* IOStream: [IOStreamx.java]
+* IOStream: [IOStreamx.java] ([Test][IOStreamTest.java]) | [IOStream.kt] ([Test][IOStreamTest.kt])
     * safeClose, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
     * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,
 
