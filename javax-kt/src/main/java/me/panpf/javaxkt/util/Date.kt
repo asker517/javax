@@ -34,6 +34,8 @@ fun Date.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int
  * toDate
  */
 
+fun Long.toDate(): Date = Date(this)
+
 
 fun String.toDate(format: SimpleDateFormat): Date {
     return format.parse(this)
@@ -61,6 +63,10 @@ fun String.toDateYMD(locale: Locale? = null): Date {
 
 fun String.toDateYMDCompact(locale: Locale? = null): Date {
     return this.toDate("yyyyMMdd", locale)
+}
+
+fun String.toDateYMDH(locale: Locale? = null): Date {
+    return this.toDate("yyyy-MM-dd HH", locale)
 }
 
 fun String.toDateYMDHM(locale: Locale? = null): Date {
@@ -107,6 +113,10 @@ fun String.toMillisecondYMD(locale: Locale? = null): Long {
 
 fun String.toMillisecondYMDCompact(locale: Locale? = null): Long {
     return this.toMillisecond("yyyyMMdd", locale)
+}
+
+fun String.toMillisecondYMDH(locale: Locale? = null): Long {
+    return this.toMillisecond("yyyy-MM-dd HH", locale)
 }
 
 fun String.toMillisecondYMDHM(locale: Locale? = null): Long {
@@ -156,6 +166,10 @@ fun Date.formatYMDCompact(locale: Locale? = null): String {
     return format("yyyyMMdd", locale)
 }
 
+fun Date.formatYMDH(locale: Locale? = null): String {
+    return format("yyyy-MM-dd HH", locale)
+}
+
 fun Date.formatYMDHM(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm", locale)
 }
@@ -195,6 +209,10 @@ fun Long.formatYMD(locale: Locale? = null): String {
 
 fun Long.formatYMDCompact(locale: Locale? = null): String {
     return format("yyyyMMdd", locale)
+}
+
+fun Long.formatYMDH(locale: Locale? = null): String {
+    return format("yyyy-MM-dd HH", locale)
 }
 
 fun Long.formatYMDHM(locale: Locale? = null): String {
@@ -866,37 +884,198 @@ fun Long.differMillisecond(target: Long, amount: Int, firstDayOfWeek: Int? = nul
  */
 
 
-infix fun Date.yearRangeTo(other: Date): YearRange = YearRange(this, other, 1)
+infix fun Date.yearRangeTo(endInclusive: Date): YearRange = YearRange(this, endInclusive, 1)
 
-infix fun Date.yearDownTo(other: Date): YearRange = YearRange(this, other, -1)
+infix fun Date.yearDownTo(endInclusive: Date): YearRange = YearRange(this, endInclusive, -1)
 
 infix fun Date.yearUntilTo(other: Date): YearRange = YearRange(this, other.addYear(-1), 1)
 
 infix fun Date.yearDownUntilTo(other: Date): YearRange = YearRange(this, other.addYear(1), -1)
 
 
-infix fun Date.monthRangeTo(other: Date): MonthRange = MonthRange(this, other, 1)
+infix fun Long.yearRangeTo(endInclusive: Long): YearRange = this.toDate().yearRangeTo(endInclusive.toDate())
 
-infix fun Date.monthDownTo(other: Date): MonthRange = MonthRange(this, other, -1)
+infix fun Long.yearDownTo(endInclusive: Long): YearRange = this.toDate().yearDownTo(endInclusive.toDate())
 
-infix fun Date.monthUntilTo(other: Date): MonthRange = MonthRange(this, other.addMonth(-1), 1)
+infix fun Long.yearUntilTo(end: Long): YearRange = this.toDate().yearUntilTo(end.toDate())
 
-infix fun Date.monthDownUntilTo(other: Date): MonthRange = MonthRange(this, other.addMonth(1), -1)
+infix fun Long.yearDownUntilTo(end: Long): YearRange = this.toDate().yearDownUntilTo(end.toDate())
 
 
-infix fun Date.dayRangeTo(other: Date): DayRange = DayRange(this, other, 1)
+infix fun String.yearYRangeTo(endInclusive: String): YearRange = this.toDateY().yearRangeTo(endInclusive.toDateY())
 
-infix fun Date.dayDownTo(other: Date): DayRange = DayRange(this, other, -1)
+infix fun String.yearYDownTo(endInclusive: String): YearRange = this.toDateY().yearDownTo(endInclusive.toDateY())
 
-infix fun Date.dayUntilTo(other: Date): DayRange = DayRange(this, other.addDayOfMonth(-1), 1)
+infix fun String.yearYUntilTo(end: String): YearRange = this.toDateY().yearUntilTo(end.toDateY())
 
-infix fun Date.dayDownUntilTo(other: Date): DayRange = DayRange(this, other.addDayOfMonth(1), -1)
+infix fun String.yearYDownUntilTo(end: String): YearRange = this.toDateY().yearDownUntilTo(end.toDateY())
 
-// 还要有 YearRange, MonthRange, HourRange, MinuteRange, SecondRange, MillisecondRange
 
-class YearRange(override val start: Date, override val endInclusive: Date, private val step: Int) : Iterable<Date>, ClosedRange<Date> {
+infix fun Date.monthRangeTo(endInclusive: Date): MonthRange = MonthRange(this, endInclusive, 1)
 
-    override fun iterator(): Iterator<Date> = YearIterator(start, endInclusive, step)
+infix fun Date.monthDownTo(endInclusive: Date): MonthRange = MonthRange(this, endInclusive, -1)
+
+infix fun Date.monthUntilTo(end: Date): MonthRange = MonthRange(this, end.addMonth(-1), 1)
+
+infix fun Date.monthDownUntilTo(end: Date): MonthRange = MonthRange(this, end.addMonth(1), -1)
+
+
+infix fun Long.monthRangeTo(endInclusive: Long): MonthRange = this.toDate().monthRangeTo(endInclusive.toDate())
+
+infix fun Long.monthDownTo(endInclusive: Long): MonthRange = this.toDate().monthDownTo(endInclusive.toDate())
+
+infix fun Long.monthUntilTo(end: Long): MonthRange = this.toDate().monthUntilTo(end.toDate())
+
+infix fun Long.monthDownUntilTo(end: Long): MonthRange = this.toDate().monthDownUntilTo(end.toDate())
+
+
+infix fun String.monthYMRangeTo(endInclusive: String): MonthRange = this.toDateYM().monthRangeTo(endInclusive.toDateYM())
+
+infix fun String.monthYMDownTo(endInclusive: String): MonthRange = this.toDateYM().monthDownTo(endInclusive.toDateYM())
+
+infix fun String.monthYMUntilTo(end: String): MonthRange = this.toDateYM().monthUntilTo(end.toDateYM())
+
+infix fun String.monthYMDownUntilTo(end: String): MonthRange = this.toDateYM().monthDownUntilTo(end.toDateYM())
+
+
+infix fun Date.dayRangeTo(endInclusive: Date): DayRange = DayRange(this, endInclusive, 1)
+
+infix fun Date.dayDownTo(endInclusive: Date): DayRange = DayRange(this, endInclusive, -1)
+
+infix fun Date.dayUntilTo(end: Date): DayRange = DayRange(this, end.addDayOfMonth(-1), 1)
+
+infix fun Date.dayDownUntilTo(end: Date): DayRange = DayRange(this, end.addDayOfMonth(1), -1)
+
+
+infix fun Long.dayRangeTo(endInclusive: Long): DayRange = this.toDate().dayRangeTo(endInclusive.toDate())
+
+infix fun Long.dayDownTo(endInclusive: Long): DayRange = this.toDate().dayDownTo(endInclusive.toDate())
+
+infix fun Long.dayUntilTo(end: Long): DayRange = this.toDate().dayUntilTo(end.toDate())
+
+infix fun Long.dayDownUntilTo(end: Long): DayRange = this.toDate().dayDownUntilTo(end.toDate())
+
+
+infix fun String.dayYMDRangeTo(endInclusive: String): DayRange = this.toDateYMD().dayRangeTo(endInclusive.toDateYMD())
+
+infix fun String.dayYMDDownTo(endInclusive: String): DayRange = this.toDateYMD().dayDownTo(endInclusive.toDateYMD())
+
+infix fun String.dayYMDUntilTo(end: String): DayRange = this.toDateYMD().dayUntilTo(end.toDateYMD())
+
+infix fun String.dayYMDDownUntilTo(end: String): DayRange = this.toDateYMD().dayDownUntilTo(end.toDateYMD())
+
+
+infix fun Date.hourRangeTo(endInclusive: Date): HourRange = HourRange(this, endInclusive, 1)
+
+infix fun Date.hourDownTo(endInclusive: Date): HourRange = HourRange(this, endInclusive, -1)
+
+infix fun Date.hourUntilTo(end: Date): HourRange = HourRange(this, end.addHourOfDay(-1), 1)
+
+infix fun Date.hourDownUntilTo(end: Date): HourRange = HourRange(this, end.addHourOfDay(1), -1)
+
+
+infix fun Long.hourRangeTo(endInclusive: Long): HourRange = this.toDate().hourRangeTo(endInclusive.toDate())
+
+infix fun Long.hourDownTo(endInclusive: Long): HourRange = this.toDate().hourDownTo(endInclusive.toDate())
+
+infix fun Long.hourUntilTo(end: Long): HourRange = this.toDate().hourUntilTo(end.toDate())
+
+infix fun Long.hourDownUntilTo(end: Long): HourRange = this.toDate().hourDownUntilTo(end.toDate())
+
+
+infix fun String.hourYMDHRangeTo(endInclusive: String): HourRange = this.toDateYMDH().hourRangeTo(endInclusive.toDateYMDH())
+
+infix fun String.hourYMDHDownTo(endInclusive: String): HourRange = this.toDateYMDH().hourDownTo(endInclusive.toDateYMDH())
+
+infix fun String.hourYMDHUntilTo(end: String): HourRange = this.toDateYMDH().hourUntilTo(end.toDateYMDH())
+
+infix fun String.hourYMDHDownUntilTo(end: String): HourRange = this.toDateYMDH().hourDownUntilTo(end.toDateYMDH())
+
+
+infix fun Date.minuteRangeTo(endInclusive: Date): MinuteRange = MinuteRange(this, endInclusive, 1)
+
+infix fun Date.minuteDownTo(endInclusive: Date): MinuteRange = MinuteRange(this, endInclusive, -1)
+
+infix fun Date.minuteUntilTo(end: Date): MinuteRange = MinuteRange(this, end.addMinute(-1), 1)
+
+infix fun Date.minuteDownUntilTo(end: Date): MinuteRange = MinuteRange(this, end.addMinute(1), -1)
+
+
+infix fun Long.minuteRangeTo(endInclusive: Long): MinuteRange = this.toDate().minuteRangeTo(endInclusive.toDate())
+
+infix fun Long.minuteDownTo(endInclusive: Long): MinuteRange = this.toDate().minuteDownTo(endInclusive.toDate())
+
+infix fun Long.minuteUntilTo(end: Long): MinuteRange = this.toDate().minuteUntilTo(end.toDate())
+
+infix fun Long.minuteDownUntilTo(end: Long): MinuteRange = this.toDate().minuteDownUntilTo(end.toDate())
+
+
+infix fun String.minuteYMDHMRangeTo(endInclusive: String): MinuteRange = this.toDateYMDHM().minuteRangeTo(endInclusive.toDateYMDHM())
+
+infix fun String.minuteYMDHMDownTo(endInclusive: String): MinuteRange = this.toDateYMDHM().minuteDownTo(endInclusive.toDateYMDHM())
+
+infix fun String.minuteYMDHMUntilTo(end: String): MinuteRange = this.toDateYMDHM().minuteUntilTo(end.toDateYMDHM())
+
+infix fun String.minuteYMDHMDownUntilTo(end: String): MinuteRange = this.toDateYMDHM().minuteDownUntilTo(end.toDateYMDHM())
+
+
+infix fun Date.secondRangeTo(endInclusive: Date): SecondRange = SecondRange(this, endInclusive, 1)
+
+infix fun Date.secondDownTo(endInclusive: Date): SecondRange = SecondRange(this, endInclusive, -1)
+
+infix fun Date.secondUntilTo(end: Date): SecondRange = SecondRange(this, end.addSecond(-1), 1)
+
+infix fun Date.secondDownUntilTo(end: Date): SecondRange = SecondRange(this, end.addSecond(1), -1)
+
+
+infix fun Long.secondRangeTo(endInclusive: Long): SecondRange = this.toDate().secondRangeTo(endInclusive.toDate())
+
+infix fun Long.secondDownTo(endInclusive: Long): SecondRange = this.toDate().secondDownTo(endInclusive.toDate())
+
+infix fun Long.secondUntilTo(end: Long): SecondRange = this.toDate().secondUntilTo(end.toDate())
+
+infix fun Long.secondDownUntilTo(end: Long): SecondRange = this.toDate().secondDownUntilTo(end.toDate())
+
+
+infix fun String.secondYMDHMSRangeTo(endInclusive: String): SecondRange = this.toDateYMDHMS().secondRangeTo(endInclusive.toDateYMDHMS())
+
+infix fun String.secondYMDHMSDownTo(endInclusive: String): SecondRange = this.toDateYMDHMS().secondDownTo(endInclusive.toDateYMDHMS())
+
+infix fun String.secondYMDHMSUntilTo(end: String): SecondRange = this.toDateYMDHMS().secondUntilTo(end.toDateYMDHMS())
+
+infix fun String.secondYMDHMSDownUntilTo(end: String): SecondRange = this.toDateYMDHMS().secondDownUntilTo(end.toDateYMDHMS())
+
+
+infix fun Date.millisecondRangeTo(endInclusive: Date): MillisecondRange = MillisecondRange(this, endInclusive, 1)
+
+infix fun Date.millisecondDownTo(endInclusive: Date): MillisecondRange = MillisecondRange(this, endInclusive, -1)
+
+infix fun Date.millisecondUntilTo(end: Date): MillisecondRange = MillisecondRange(this, end.addMillisecond(-1), 1)
+
+infix fun Date.millisecondDownUntilTo(end: Date): MillisecondRange = MillisecondRange(this, end.addMillisecond(1), -1)
+
+
+infix fun Long.millisecondRangeTo(endInclusive: Long): MillisecondRange = this.toDate().millisecondRangeTo(endInclusive.toDate())
+
+infix fun Long.millisecondDownTo(endInclusive: Long): MillisecondRange = this.toDate().millisecondDownTo(endInclusive.toDate())
+
+infix fun Long.millisecondUntilTo(end: Long): MillisecondRange = this.toDate().millisecondUntilTo(end.toDate())
+
+infix fun Long.millisecondDownUntilTo(end: Long): MillisecondRange = this.toDate().millisecondDownUntilTo(end.toDate())
+
+
+infix fun String.millisecondYMDHMSMRangeTo(endInclusive: String): MillisecondRange = this.toDateYMDHMSM().millisecondRangeTo(endInclusive.toDateYMDHMSM())
+
+infix fun String.millisecondYMDHMSMDownTo(endInclusive: String): MillisecondRange = this.toDateYMDHMSM().millisecondDownTo(endInclusive.toDateYMDHMSM())
+
+infix fun String.millisecondYMDHMSMUntilTo(end: String): MillisecondRange = this.toDateYMDHMSM().millisecondUntilTo(end.toDateYMDHMSM())
+
+infix fun String.millisecondYMDHMSMDownUntilTo(end: String): MillisecondRange = this.toDateYMDHMSM().millisecondDownUntilTo(end.toDateYMDHMSM())
+
+
+abstract class DateRange(override val start: Date, override val endInclusive: Date, val step: Int) : Iterable<Date>, ClosedRange<Date> {
+
+    override fun iterator(): Iterator<Date> = IteratorInternal(this, start, endInclusive, step)
 
     override fun contains(value: Date): Boolean {
         @Suppress("ConvertTwoComparisonsToRangeCheck")
@@ -914,147 +1093,67 @@ class YearRange(override val start: Date, override val endInclusive: Date, priva
             else -> true
         }
     }
-}
 
-class YearIterator(first: Date, private val last: Date, private val step: Int) : Iterator<Date> {
-    var hasNext: Boolean
-    var next: Date
+    abstract fun nextDate(date: Date): Date
 
-    init {
-        hasNext = when {
-            step > 0 -> first <= last
-            step < 0 -> first >= last
-            else -> false
-        }
-        next = if (hasNext) first else last
-    }
+    class IteratorInternal(val range: DateRange, first: Date, private val last: Date, private val step: Int) : Iterator<Date> {
+        var hasNext: Boolean
+        var next: Date
 
-    override fun hasNext(): Boolean {
-        return hasNext
-    }
-
-    override fun next(): Date {
-        if (!hasNext) {
-            throw NoSuchElementException()
+        init {
+            hasNext = when {
+                step > 0 -> first <= last
+                step < 0 -> first >= last
+                else -> false
+            }
+            next = if (hasNext) first else last
         }
 
-        val result = next
-        next = next.addYear(step)
-        hasNext = when {
-            step > 0 -> next <= last
-            step < 0 -> next >= last
-            else -> false
+        override fun hasNext(): Boolean {
+            return hasNext
         }
-        return result
-    }
-}
 
-class MonthRange(override val start: Date, override val endInclusive: Date, private val step: Int) : Iterable<Date>, ClosedRange<Date> {
+        override fun next(): Date {
+            if (!hasNext) {
+                throw NoSuchElementException()
+            }
 
-    override fun iterator(): Iterator<Date> = MonthIterator(start, endInclusive, step)
-
-    override fun contains(value: Date): Boolean {
-        @Suppress("ConvertTwoComparisonsToRangeCheck")
-        return when {
-            step > 0 -> value >= start && value <= endInclusive
-            step < 0 -> value <= start && value >= endInclusive
-            else -> false
-        }
-    }
-
-    override fun isEmpty(): Boolean {
-        return when {
-            step > 0 -> start > endInclusive
-            step < 0 -> start < endInclusive
-            else -> true
+            val result = next
+            next = range.nextDate(next)
+            hasNext = when {
+                step > 0 -> next <= last
+                step < 0 -> next >= last
+                else -> false
+            }
+            return result
         }
     }
 }
 
-class MonthIterator(first: Date, private val last: Date, private val step: Int) : Iterator<Date> {
-    var hasNext: Boolean
-    var next: Date
-
-    init {
-        hasNext = when {
-            step > 0 -> first <= last
-            step < 0 -> first >= last
-            else -> false
-        }
-        next = if (hasNext) first else last
-    }
-
-    override fun hasNext(): Boolean {
-        return hasNext
-    }
-
-    override fun next(): Date {
-        if (!hasNext) {
-            throw NoSuchElementException()
-        }
-
-        val result = next
-        next = next.addMonth(step)
-        hasNext = when {
-            step > 0 -> next <= last
-            step < 0 -> next >= last
-            else -> false
-        }
-        return result
-    }
+class YearRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addYear(step)
 }
 
-class DayRange(override val start: Date, override val endInclusive: Date, private val step: Int) : Iterable<Date>, ClosedRange<Date> {
-
-    override fun iterator(): Iterator<Date> = DayIterator(start, endInclusive, step)
-
-    override fun contains(value: Date): Boolean {
-        @Suppress("ConvertTwoComparisonsToRangeCheck")
-        return when {
-            step > 0 -> value >= start && value <= endInclusive
-            step < 0 -> value <= start && value >= endInclusive
-            else -> false
-        }
-    }
-
-    override fun isEmpty(): Boolean {
-        return when {
-            step > 0 -> start > endInclusive
-            step < 0 -> start < endInclusive
-            else -> true
-        }
-    }
+class MonthRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addMonth(step)
 }
 
-class DayIterator(first: Date, private val last: Date, private val step: Int) : Iterator<Date> {
-    var hasNext: Boolean
-    var next: Date
+class DayRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addDayOfMonth(step)
+}
 
-    init {
-        hasNext = when {
-            step > 0 -> first <= last
-            step < 0 -> first >= last
-            else -> false
-        }
-        next = if (hasNext) first else last
-    }
+class HourRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addHourOfDay(step)
+}
 
-    override fun hasNext(): Boolean {
-        return hasNext
-    }
+class MinuteRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addMinute(step)
+}
 
-    override fun next(): Date {
-        if (!hasNext) {
-            throw NoSuchElementException()
-        }
+class SecondRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addSecond(step)
+}
 
-        val result = next
-        next = next.addDayOfMonth(step)
-        hasNext = when {
-            step > 0 -> next <= last
-            step < 0 -> next >= last
-            else -> false
-        }
-        return result
-    }
+class MillisecondRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
+    override fun nextDate(date: Date): Date = date.addMillisecond(step)
 }
