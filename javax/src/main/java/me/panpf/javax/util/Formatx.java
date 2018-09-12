@@ -432,4 +432,34 @@ public class Formatx {
     public static String totalTime(int totalTime) {
         return totalTime((long) totalTime, false);
     }
+
+
+
+//    public static String formatTotalTimeZH(Context context, long useTimeMilliseconds, boolean ignoreSeconds) {
+//        useTimeMilliseconds = useTimeMilliseconds >= 0 ? useTimeMilliseconds : 0;
+//
+//        long seconds = useTimeMilliseconds / 1000;
+//        long minutes = seconds / 60;
+//        long hour = minutes / 60;
+//        long minuteValue = minutes % 60;
+//        long secondValue = seconds % 60;
+//
+//        StringBuilder builder = new StringBuilder();
+//
+//        if (hour > 0) {
+//            builder.append(hour).append(context.getString(R.string.time_hour));
+//        }
+//        if (minuteValue > 0) {
+//            builder.append(minuteValue).append(context.getString(R.string.time_minute));
+//        }
+//        if (secondValue > 0 && (!ignoreSeconds || builder.length() <= 0)) {
+//            builder.append(secondValue).append(context.getString(R.string.time_second));
+//        }
+//
+//        if (builder.length() == 0) {
+//            builder.append(0).append(context.getString(R.string.time_second));
+//        }
+//
+//        return builder.toString();
+//    }
 }
