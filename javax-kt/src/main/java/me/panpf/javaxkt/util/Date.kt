@@ -3,6 +3,7 @@ package me.panpf.javaxkt.util
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar
+import kotlin.math.absoluteValue
 
 
 /*
@@ -518,10 +519,16 @@ fun Calendar.isSameMonthOfYear(target: Calendar): Boolean {
     return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.MONTH) == target.get(Calendar.MONTH)
 }
 
-// TODO 跨年或者跨月的时候可能会有问题
 fun Calendar.isSameWeek(target: Calendar): Boolean {
-    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.WEEK_OF_MONTH) == target.get(Calendar.WEEK_OF_MONTH)
+    if (this.get(Calendar.ERA) != target.get(Calendar.ERA)) return false
+    return when {
+    // 年份一样可以直接用 WEEK_OF_YEAR 对比
+        this.get(Calendar.YEAR) == target.get(Calendar.YEAR) -> this.get(Calendar.WEEK_OF_YEAR) == target.get(Calendar.WEEK_OF_YEAR)
+    // day 只相差 7 天说明是年末那几天，也可以直接用 WEEK_OF_YEAR 对比
+        this.differDayOfYear(target, 7) -> this.get(Calendar.WEEK_OF_YEAR) == target.get(Calendar.WEEK_OF_YEAR)
+    // day 相差超 7 天以上绝不可能是同一周
+        else -> false
+    }
 }
 
 fun Calendar.isSameWeekOfYear(target: Calendar): Boolean {
@@ -769,80 +776,132 @@ fun Long.isSameMillisecondOfSecond(target: Long, timeZone: TimeZone? = null, loc
 
 fun Calendar.differYear(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.YEAR, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.YEAR, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differMonth(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.MONTH, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.MONTH, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differWeekOfYear(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.WEEK_OF_YEAR, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.WEEK_OF_YEAR, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differWeekOfMonth(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.WEEK_OF_MONTH, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.WEEK_OF_MONTH, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differDayOfYear(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.DAY_OF_YEAR, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.WEEK_OF_MONTH, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differDayOfMonth(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.DAY_OF_MONTH, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.DAY_OF_MONTH, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differDayOfWeek(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.DAY_OF_WEEK, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.DAY_OF_WEEK, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differDayOfWeekInMonth(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.DAY_OF_WEEK_IN_MONTH, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.DAY_OF_WEEK_IN_MONTH, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differHourOfDay(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.HOUR_OF_DAY, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.HOUR_OF_DAY, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differHour(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.HOUR, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.HOUR, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differMinute(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.MINUTE, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.MINUTE, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differSecond(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.SECOND, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.SECOND, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 fun Calendar.differMillisecond(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
-    this.add(Calendar.MILLISECOND, amount)
-    return if (amount > 0) target.timeInMillis <= target.timeInMillis else target.timeInMillis >= target.timeInMillis
+    val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
+    val cacheTimeInMillis = this.timeInMillis
+    this.add(Calendar.MILLISECOND, finalAmount)
+    val newTimeInMillis = this.timeInMillis
+    this.timeInMillis = cacheTimeInMillis
+    return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
 
 

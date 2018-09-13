@@ -277,8 +277,12 @@ class DateTest {
     fun testSameWeek() {
         Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-05".toDateYMD()))
         Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-11".toDateYMD()))
+        Assert.assertTrue("2018-08-31".toDateYMD().isSameWeek("2018-09-01".toDateYMD()))
+        Assert.assertTrue("2018-12-31".toDateYMD().isSameWeek("2019-01-01".toDateYMD()))
+        Assert.assertTrue("2019-01-01".toDateYMD().isSameWeek("2018-12-31".toDateYMD()))
         Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeek("2018-08-04".toMillisecondYMD()))
         Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeek("2018-08-12".toMillisecondYMD()))
+        Assert.assertFalse("2019-12-31".toMillisecondYMD().isSameWeek("2018-12-31".toMillisecondYMD()))
 
         Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-06".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
         Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-12".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
