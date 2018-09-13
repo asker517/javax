@@ -10,7 +10,9 @@ import kotlin.math.absoluteValue
  * Date related extension
  */
 
-
+/**
+ * Create a Calendar
+ */
 fun Long.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Calendar {
     return when {
         timeZone != null && locale != null -> Calendar.getInstance(timeZone, locale)
@@ -25,7 +27,9 @@ fun Long.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int
     }
 }
 
-
+/**
+ * Create a Calendar
+ */
 fun Date.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Calendar {
     return time.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
 }
@@ -35,49 +39,84 @@ fun Date.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int
  * toDate
  */
 
+/**
+ * Millisecond to Date
+ */
 fun Long.toDate(): Date = Date(this)
 
-
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDate(format: SimpleDateFormat): Date {
     return format.parse(this)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDate(pattern: String, locale: Locale? = null): Date {
     return this.toDate(if (locale != null) SimpleDateFormat(pattern, locale) else SimpleDateFormat(pattern))
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateY(locale: Locale? = null): Date {
     return this.toDate("yyyy", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYM(locale: Locale? = null): Date {
     return this.toDate("yyyy-MM", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMCompact(locale: Locale? = null): Date {
     return this.toDate("yyyyMM", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMD(locale: Locale? = null): Date {
     return this.toDate("yyyy-MM-dd", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMDCompact(locale: Locale? = null): Date {
     return this.toDate("yyyyMMdd", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMDH(locale: Locale? = null): Date {
     return this.toDate("yyyy-MM-dd HH", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMDHM(locale: Locale? = null): Date {
     return this.toDate("yyyy-MM-dd HH:mm", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMDHMS(locale: Locale? = null): Date {
     return this.toDate("yyyy-MM-dd HH:mm:ss", locale)
 }
 
+/**
+ * Convert formatted date string to Date
+ */
 fun String.toDateYMDHMSM(locale: Locale? = null): Date {
     return this.toDate("yyyy-MM-dd HH:mm:ss SSS", locale)
 }
@@ -88,46 +127,79 @@ fun String.toDateYMDHMSM(locale: Locale? = null): Date {
  */
 
 
+/**
+ * Convert formatted date string to millisecond
+ */
 fun String.toMillisecond(format: SimpleDateFormat): Long {
     return format.parse(this).time
 }
 
+/**
+ * Convert formatted date string to millisecond
+ */
 fun String.toMillisecond(pattern: String, locale: Locale? = null): Long {
     return this.toMillisecond(if (locale != null) SimpleDateFormat(pattern, locale) else SimpleDateFormat(pattern))
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy'
+ */
 fun String.toMillisecondY(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy-MM'
+ */
 fun String.toMillisecondYM(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy-MM", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyyMM'
+ */
 fun String.toMillisecondYMCompact(locale: Locale? = null): Long {
     return this.toMillisecond("yyyyMM", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd'
+ */
 fun String.toMillisecondYMD(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy-MM-dd", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyyMMdd'
+ */
 fun String.toMillisecondYMDCompact(locale: Locale? = null): Long {
     return this.toMillisecond("yyyyMMdd", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH'
+ */
 fun String.toMillisecondYMDH(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy-MM-dd HH", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm'
+ */
 fun String.toMillisecondYMDHM(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy-MM-dd HH:mm", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss'
+ */
 fun String.toMillisecondYMDHMS(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy-MM-dd HH:mm:ss", locale)
 }
 
+/**
+ * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss SSS'
+ */
 fun String.toMillisecondYMDHMSM(locale: Locale? = null): Long {
     return this.toMillisecond("yyyy-MM-dd HH:mm:ss SSS", locale)
 }
@@ -138,92 +210,157 @@ fun String.toMillisecondYMDHMSM(locale: Locale? = null): Long {
  */
 
 
+/**
+ * Convert Date to a formatted string
+ */
 fun Date.format(format: SimpleDateFormat): String {
     return format.format(this)
 }
 
-
+/**
+ * Convert Date to a formatted string
+ */
 fun Date.format(pattern: String, locale: Locale? = null): String {
     return this.format(if (locale != null) SimpleDateFormat(pattern, locale) else SimpleDateFormat(pattern))
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy'
+ */
 fun Date.formatY(locale: Locale? = null): String {
     return format("yyyy", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM'
+ */
 fun Date.formatYM(locale: Locale? = null): String {
     return format("yyyy-MM", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyyMM'
+ */
 fun Date.formatYMCompact(locale: Locale? = null): String {
     return format("yyyyMM", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd'
+ */
 fun Date.formatYMD(locale: Locale? = null): String {
     return format("yyyy-MM-dd", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyyMMdd'
+ */
 fun Date.formatYMDCompact(locale: Locale? = null): String {
     return format("yyyyMMdd", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH'
+ */
 fun Date.formatYMDH(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm'
+ */
 fun Date.formatYMDHM(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
+ */
 fun Date.formatYMDHMS(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm:ss", locale)
 }
 
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
+ */
 fun Date.formatYMDHMSM(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm:ss SSS", locale)
 }
 
 
+/**
+ * Convert millisecond to a formatted string
+ */
 fun Long.format(format: SimpleDateFormat): String {
     return Date(this).format(format)
 }
 
+/**
+ * Convert millisecond to a formatted string
+ */
 fun Long.format(pattern: String, locale: Locale? = null): String {
     return format(if (locale != null) SimpleDateFormat(pattern, locale) else SimpleDateFormat(pattern))
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy'
+ */
 fun Long.formatY(locale: Locale? = null): String {
     return format("yyyy", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy-MM'
+ */
 fun Long.formatYM(locale: Locale? = null): String {
     return format("yyyy-MM", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyyMM'
+ */
 fun Long.formatYMCompact(locale: Locale? = null): String {
     return format("yyyyMM", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd'
+ */
 fun Long.formatYMD(locale: Locale? = null): String {
     return format("yyyy-MM-dd", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyyMMdd'
+ */
 fun Long.formatYMDCompact(locale: Locale? = null): String {
     return format("yyyyMMdd", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH'
+ */
 fun Long.formatYMDH(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm'
+ */
 fun Long.formatYMDHM(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
+ */
 fun Long.formatYMDHMS(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm:ss", locale)
 }
 
+/**
+ * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
+ */
 fun Long.formatYMDHMSM(locale: Locale? = null): String {
     return format("yyyy-MM-dd HH:mm:ss SSS", locale)
 }
