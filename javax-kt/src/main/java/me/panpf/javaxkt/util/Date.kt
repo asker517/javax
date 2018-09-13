@@ -505,182 +505,260 @@ fun Long.addMillisecond(amount: Int, timeZone: TimeZone? = null, locale: Locale?
  */
 
 
-
-fun Calendar.isSameYear(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
+fun Calendar.isSameYear(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
 }
 
-fun Calendar.isSameMonth(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
+fun Calendar.isSameMonth(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH)
 }
 
-fun Calendar.isSameWeekOfYear(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.WEEK_OF_YEAR) == cal2.get(Calendar.WEEK_OF_YEAR)
+fun Calendar.isSameMonthOfYear(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.MONTH) == target.get(Calendar.MONTH)
 }
 
-fun Calendar.isSameWeekOfMonth(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.WEEK_OF_MONTH) == cal2.get(Calendar.WEEK_OF_MONTH)
+// TODO 跨年或者跨月的时候可能会有问题
+fun Calendar.isSameWeek(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.WEEK_OF_MONTH) == target.get(Calendar.WEEK_OF_MONTH)
 }
 
-fun Calendar.isSameDayOfYear(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
+fun Calendar.isSameWeekOfYear(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.WEEK_OF_YEAR) == target.get(Calendar.WEEK_OF_YEAR)
 }
 
-fun Calendar.isSameDayOfMonth(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
+fun Calendar.isSameWeekOfMonth(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.WEEK_OF_MONTH) == target.get(Calendar.WEEK_OF_MONTH)
 }
 
-fun Calendar.isSameDayOfWeek(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_WEEK) == cal2.get(Calendar.DAY_OF_WEEK)
+fun Calendar.isSameDay(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == target.get(Calendar.DAY_OF_MONTH)
 }
 
-fun Calendar.isSameDayOfWeekInMonth(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_WEEK_IN_MONTH) == cal2.get(Calendar.DAY_OF_WEEK_IN_MONTH)
+fun Calendar.isSameDayOfYear(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.DAY_OF_YEAR) == target.get(Calendar.DAY_OF_YEAR)
 }
 
-fun Calendar.isSameHourOfDay(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
-            && this.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY)
+fun Calendar.isSameDayOfMonth(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.DAY_OF_MONTH) == target.get(Calendar.DAY_OF_MONTH)
 }
 
-fun Calendar.isSameHour(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
-            && this.get(Calendar.HOUR) == cal2.get(Calendar.HOUR)
+fun Calendar.isSameDayOfWeek(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.DAY_OF_WEEK) == target.get(Calendar.DAY_OF_WEEK)
 }
 
-fun Calendar.isSameMinute(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
-            && this.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) && this.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE)
+fun Calendar.isSameDayOfWeekInMonth(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.DAY_OF_WEEK_IN_MONTH) == target.get(Calendar.DAY_OF_WEEK_IN_MONTH)
 }
 
-fun Calendar.isSameSecond(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
-            && this.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) && this.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE)
-            && this.get(Calendar.SECOND) == cal2.get(Calendar.SECOND)
+fun Calendar.isSameHour(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == target.get(Calendar.DAY_OF_MONTH)
+            && this.get(Calendar.HOUR_OF_DAY) == target.get(Calendar.HOUR_OF_DAY)
 }
 
-fun Calendar.isSameMillisecond(cal2: Calendar): Boolean {
-    return this.get(Calendar.ERA) == cal2.get(Calendar.ERA) && this.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-            && this.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
-            && this.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) && this.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE)
-            && this.get(Calendar.SECOND) == cal2.get(Calendar.SECOND) && this.get(Calendar.MILLISECOND) == cal2.get(Calendar.MILLISECOND)
+fun Calendar.isSameHourOf24H(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.HOUR_OF_DAY) == target.get(Calendar.HOUR_OF_DAY)
 }
 
-
-fun Date.isSameYear(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameYear(date2.createCalendar(null, null, timeZone, locale))
+fun Calendar.isSameHourOf12H(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.HOUR) == target.get(Calendar.HOUR)
 }
 
-fun Date.isSameMonth(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMonth(date2.createCalendar(null, null, timeZone, locale))
+fun Calendar.isSameMinute(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == target.get(Calendar.DAY_OF_MONTH)
+            && this.get(Calendar.HOUR_OF_DAY) == target.get(Calendar.HOUR_OF_DAY) && this.get(Calendar.MINUTE) == target.get(Calendar.MINUTE)
 }
 
-fun Date.isSameWeekOfYear(date2: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfYear(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Calendar.isSameMinuteOfHour(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.MINUTE) == target.get(Calendar.MINUTE)
 }
 
-fun Date.isSameWeekOfMonth(date2: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfMonth(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Calendar.isSameSecond(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == target.get(Calendar.DAY_OF_MONTH)
+            && this.get(Calendar.HOUR_OF_DAY) == target.get(Calendar.HOUR_OF_DAY) && this.get(Calendar.MINUTE) == target.get(Calendar.MINUTE)
+            && this.get(Calendar.SECOND) == target.get(Calendar.SECOND)
 }
 
-fun Date.isSameDayOfYear(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfYear(date2.createCalendar(null, null, timeZone, locale))
+fun Calendar.isSameSecondOfMinute(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.SECOND) == target.get(Calendar.SECOND)
 }
 
-fun Date.isSameDayOfMonth(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfMonth(date2.createCalendar(null, null, timeZone, locale))
+fun Calendar.isSameMillisecond(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.YEAR) == target.get(Calendar.YEAR)
+            && this.get(Calendar.MONTH) == target.get(Calendar.MONTH) && this.get(Calendar.DAY_OF_MONTH) == target.get(Calendar.DAY_OF_MONTH)
+            && this.get(Calendar.HOUR_OF_DAY) == target.get(Calendar.HOUR_OF_DAY) && this.get(Calendar.MINUTE) == target.get(Calendar.MINUTE)
+            && this.get(Calendar.SECOND) == target.get(Calendar.SECOND) && this.get(Calendar.MILLISECOND) == target.get(Calendar.MILLISECOND)
 }
 
-fun Date.isSameDayOfWeek(date2: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeek(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-fun Date.isSameDayOfWeekInMonth(date2: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeekInMonth(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-fun Date.isSameHourOfDay(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHourOfDay(date2.createCalendar(null, null, timeZone, locale))
-}
-
-fun Date.isSameHour(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHour(date2.createCalendar(null, null, timeZone, locale))
-}
-
-fun Date.isSameMinute(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMinute(date2.createCalendar(null, null, timeZone, locale))
-}
-
-fun Date.isSameSecond(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameSecond(date2.createCalendar(null, null, timeZone, locale))
-}
-
-fun Date.isSameMillisecond(date2: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMillisecond(date2.createCalendar(null, null, timeZone, locale))
+fun Calendar.isSameMillisecondOfSecond(target: Calendar): Boolean {
+    return this.get(Calendar.ERA) == target.get(Calendar.ERA) && this.get(Calendar.MILLISECOND) == target.get(Calendar.MILLISECOND)
 }
 
 
-fun Long.isSameYear(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameYear(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameYear(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameYear(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameMonth(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMonth(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMonth(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMonth(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameWeekOfYear(date2: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfYear(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameMonthOfYear(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMonthOfYear(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameWeekOfMonth(date2: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfMonth(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameWeek(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
 }
 
-fun Long.isSameDayOfYear(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfYear(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameWeekOfYear(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
 }
 
-fun Long.isSameDayOfMonth(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfMonth(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameWeekOfMonth(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
 }
 
-fun Long.isSameDayOfWeek(date2: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeek(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameDay(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameDay(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameDayOfWeekInMonth(date2: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeekInMonth(date2.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameDayOfYear(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameDayOfYear(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameHourOfDay(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHourOfDay(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameDayOfMonth(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameDayOfMonth(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameHour(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHour(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameDayOfWeek(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
 }
 
-fun Long.isSameMinute(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMinute(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameDayOfWeekInMonth(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
 }
 
-fun Long.isSameSecond(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameSecond(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameHour(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameHour(target.createCalendar(null, null, timeZone, locale))
 }
 
-fun Long.isSameMillisecond(date2: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMillisecond(date2.createCalendar(null, null, timeZone, locale))
+fun Date.isSameHourOf24H(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameHourOf24H(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameHourOf12H(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameHourOf12H(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameMinute(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMinute(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameMinuteOfHour(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMinuteOfHour(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameSecond(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameSecond(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameSecondOfMinute(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameSecondOfMinute(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameMillisecond(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMillisecond(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Date.isSameMillisecondOfSecond(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMillisecondOfSecond(target.createCalendar(null, null, timeZone, locale))
+}
+
+
+fun Long.isSameYear(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameYear(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameMonth(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMonth(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameMonthOfYear(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMonthOfYear(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameWeek(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+}
+
+fun Long.isSameWeekOfYear(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+}
+
+fun Long.isSameWeekOfMonth(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+}
+
+fun Long.isSameDay(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameDay(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameDayOfYear(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameDayOfYear(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameDayOfMonth(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameDayOfMonth(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameDayOfWeek(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+}
+
+fun Long.isSameDayOfWeekInMonth(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+}
+
+fun Long.isSameHour(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameHour(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameHourOf24H(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameHourOf24H(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameHourOf12H(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameHourOf12H(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameMinute(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMinute(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameMinuteOfHour(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMinuteOfHour(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameSecond(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameSecond(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameSecondOfMinute(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameSecondOfMinute(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameMillisecond(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMillisecond(target.createCalendar(null, null, timeZone, locale))
+}
+
+fun Long.isSameMillisecondOfSecond(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(null, null, timeZone, locale).isSameMillisecondOfSecond(target.createCalendar(null, null, timeZone, locale))
 }
 
 

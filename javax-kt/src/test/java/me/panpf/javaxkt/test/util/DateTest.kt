@@ -35,6 +35,7 @@ class DateTest {
         Assert.assertEquals("2018-06-23".toMillisecondYMD().formatYMD(), "2018-06-23")
         Assert.assertEquals("20180623".toMillisecondYMDCompact().formatYMDCompact(), "20180623")
 
+        Assert.assertEquals("2018-06-23 21".toMillisecondYMDH().formatYMDH(), "2018-06-23 21")
         Assert.assertEquals("2018-06-23 21:59".toMillisecondYMDHM().formatYMDHM(), "2018-06-23 21:59")
         Assert.assertEquals("2018-06-23 21:59:01".toMillisecondYMDHMS().formatYMDHMS(), "2018-06-23 21:59:01")
         Assert.assertEquals("2018-06-23 21:59:01 999".toMillisecondYMDHMSM().formatYMDHMSM(), "2018-06-23 21:59:01 999")
@@ -164,75 +165,227 @@ class DateTest {
     @Test
     fun testYearIterator() {
         Assert.assertEquals("2018".yearYRangeTo("2021").joinToString { it.formatY() }, "2018, 2019, 2020, 2021")
-        Assert.assertEquals("2018".toMillisecondY().yearRangeTo("2015".toMillisecondY()).joinToString { it.formatY() }, "")
-
         Assert.assertEquals("2018".yearYUntilTo("2022").joinToString { it.formatY() }, "2018, 2019, 2020, 2021")
-        Assert.assertEquals("2018".toMillisecondY().yearUntilTo("2015".toMillisecondY()).joinToString { it.formatY() }, "")
-
         Assert.assertEquals("2018".yearYDownTo("2015").joinToString { it.formatY() }, "2018, 2017, 2016, 2015")
-        Assert.assertEquals("2018".toMillisecondY().yearDownTo("2021".toMillisecondY()).joinToString { it.formatY() }, "")
-
         Assert.assertEquals("2018".yearYDownUntilTo("2014").joinToString { it.formatY() }, "2018, 2017, 2016, 2015")
+
+        Assert.assertEquals("2018".toMillisecondY().yearRangeTo("2015".toMillisecondY()).joinToString { it.formatY() }, "")
+        Assert.assertEquals("2018".toMillisecondY().yearUntilTo("2015".toMillisecondY()).joinToString { it.formatY() }, "")
+        Assert.assertEquals("2018".toMillisecondY().yearDownTo("2021".toMillisecondY()).joinToString { it.formatY() }, "")
         Assert.assertEquals("2018".toMillisecondY().yearDownUntilTo("2021".toMillisecondY()).joinToString { it.formatY() }, "")
     }
 
     @Test
     fun testMonthIterator() {
         Assert.assertEquals("2018-08".monthYMRangeTo("2018-11").joinToString { it.formatYM() }, "2018-08, 2018-09, 2018-10, 2018-11")
-        Assert.assertEquals("2018-08".toMillisecondYM().monthRangeTo("2018-05".toMillisecondYM()).joinToString { it.formatYM() }, "")
-
-        Assert.assertEquals("2018-08".monthYMDownTo("2018-05").joinToString { it.formatYM() }, "2018-08, 2018-07, 2018-06, 2018-05")
-        Assert.assertEquals("2018-08".toMillisecondYM().monthDownTo("2018-11".toMillisecondYM()).joinToString { it.formatYM() }, "")
-
         Assert.assertEquals("2018-08".monthYMUntilTo("2018-12").joinToString { it.formatYM() }, "2018-08, 2018-09, 2018-10, 2018-11")
-        Assert.assertEquals("2018-08".toMillisecondYM().monthUntilTo("2018-05".toMillisecondYM()).joinToString { it.formatYM() }, "")
-
+        Assert.assertEquals("2018-08".monthYMDownTo("2018-05").joinToString { it.formatYM() }, "2018-08, 2018-07, 2018-06, 2018-05")
         Assert.assertEquals("2018-08".monthYMDownUntilTo("2018-04").joinToString { it.formatYM() }, "2018-08, 2018-07, 2018-06, 2018-05")
+
+        Assert.assertEquals("2018-08".toMillisecondYM().monthRangeTo("2018-05".toMillisecondYM()).joinToString { it.formatYM() }, "")
+        Assert.assertEquals("2018-08".toMillisecondYM().monthUntilTo("2018-05".toMillisecondYM()).joinToString { it.formatYM() }, "")
+        Assert.assertEquals("2018-08".toMillisecondYM().monthDownTo("2018-11".toMillisecondYM()).joinToString { it.formatYM() }, "")
         Assert.assertEquals("2018-08".toMillisecondYM().monthDownUntilTo("2018-11".toMillisecondYM()).joinToString { it.formatYM() }, "")
     }
 
     @Test
     fun testDayIterator() {
         Assert.assertEquals("2018-08-06".dayYMDRangeTo("2018-08-09").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-07, 2018-08-08, 2018-08-09")
-        Assert.assertEquals("2018-08-06".toMillisecondYMD().dayRangeTo("2018-08-03".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
-
-        Assert.assertEquals("2018-08-06".dayYMDDownTo("2018-08-03").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-05, 2018-08-04, 2018-08-03")
-        Assert.assertEquals("2018-08-06".toMillisecondYMD().dayDownTo("2018-08-09".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
-
         Assert.assertEquals("2018-08-06".dayYMDUntilTo("2018-08-10").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-07, 2018-08-08, 2018-08-09")
-        Assert.assertEquals("2018-08-06".toMillisecondYMD().dayUntilTo("2018-08-02".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
-
+        Assert.assertEquals("2018-08-06".dayYMDDownTo("2018-08-03").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-05, 2018-08-04, 2018-08-03")
         Assert.assertEquals("2018-08-06".dayYMDDownUntilTo("2018-08-02").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-05, 2018-08-04, 2018-08-03")
+
+        Assert.assertEquals("2018-08-06".toMillisecondYMD().dayRangeTo("2018-08-03".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
+        Assert.assertEquals("2018-08-06".toMillisecondYMD().dayUntilTo("2018-08-02".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
+        Assert.assertEquals("2018-08-06".toMillisecondYMD().dayDownTo("2018-08-09".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
         Assert.assertEquals("2018-08-06".toMillisecondYMD().dayDownUntilTo("2018-08-010".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
     }
 
     @Test
     fun testHourIterator() {
         Assert.assertEquals("2018-08-06 18".hourYMDHRangeTo("2018-08-06 21").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 19, 2018-08-06 20, 2018-08-06 21")
-        Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourRangeTo("2018-08-06 15".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
-
-        Assert.assertEquals("2018-08-06 18".hourYMDHDownTo("2018-08-06 15").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 17, 2018-08-06 16, 2018-08-06 15")
-        Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourDownTo("2018-08-06 21".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
-
         Assert.assertEquals("2018-08-06 18".hourYMDHUntilTo("2018-08-06 22").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 19, 2018-08-06 20, 2018-08-06 21")
-        Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourUntilTo("2018-08-06 14".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
-
+        Assert.assertEquals("2018-08-06 18".hourYMDHDownTo("2018-08-06 15").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 17, 2018-08-06 16, 2018-08-06 15")
         Assert.assertEquals("2018-08-06 18".hourYMDHDownUntilTo("2018-08-06 14").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 17, 2018-08-06 16, 2018-08-06 15")
+
+        Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourRangeTo("2018-08-06 15".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
+        Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourUntilTo("2018-08-06 14".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
+        Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourDownTo("2018-08-06 21".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
         Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourDownUntilTo("2018-08-06 22".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
     }
 
     @Test
     fun testMinuteIterator() {
         Assert.assertEquals("2018-08-06 18:22".minuteYMDHMRangeTo("2018-08-06 18:25").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:23, 2018-08-06 18:24, 2018-08-06 18:25")
-        Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteRangeTo("2018-08-06 18:19".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
-
-        Assert.assertEquals("2018-08-06 18:22".minuteYMDHMDownTo("2018-08-06 18:19").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:21, 2018-08-06 18:20, 2018-08-06 18:19")
-        Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteDownTo("2018-08-06 18:25".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
-
         Assert.assertEquals("2018-08-06 18:22".minuteYMDHMUntilTo("2018-08-06 18:26").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:23, 2018-08-06 18:24, 2018-08-06 18:25")
-        Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteUntilTo("2018-08-06 18:18".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
-
+        Assert.assertEquals("2018-08-06 18:22".minuteYMDHMDownTo("2018-08-06 18:19").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:21, 2018-08-06 18:20, 2018-08-06 18:19")
         Assert.assertEquals("2018-08-06 18:22".minuteYMDHMDownUntilTo("2018-08-06 18:18").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:21, 2018-08-06 18:20, 2018-08-06 18:19")
+
+        Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteRangeTo("2018-08-06 18:19".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
+        Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteUntilTo("2018-08-06 18:18".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
+        Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteDownTo("2018-08-06 18:25".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
         Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteDownUntilTo("2018-08-06 18:25".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
+    }
+
+    @Test
+    fun testSecondIterator() {
+        Assert.assertEquals("2018-08-06 18:22:15".secondYMDHMSRangeTo("2018-08-06 18:22:18").joinToString { it.formatYMDHMS() }, "2018-08-06 18:22:15, 2018-08-06 18:22:16, 2018-08-06 18:22:17, 2018-08-06 18:22:18")
+        Assert.assertEquals("2018-08-06 18:22:15".secondYMDHMSUntilTo("2018-08-06 18:22:19").joinToString { it.formatYMDHMS() }, "2018-08-06 18:22:15, 2018-08-06 18:22:16, 2018-08-06 18:22:17, 2018-08-06 18:22:18")
+        Assert.assertEquals("2018-08-06 18:22:15".secondYMDHMSDownTo("2018-08-06 18:22:12").joinToString { it.formatYMDHMS() }, "2018-08-06 18:22:15, 2018-08-06 18:22:14, 2018-08-06 18:22:13, 2018-08-06 18:22:12")
+        Assert.assertEquals("2018-08-06 18:22:15".secondYMDHMSDownUntilTo("2018-08-06 18:22:11").joinToString { it.formatYMDHMS() }, "2018-08-06 18:22:15, 2018-08-06 18:22:14, 2018-08-06 18:22:13, 2018-08-06 18:22:12")
+
+        Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondRangeTo("2018-08-06 18:22:12".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondUntilTo("2018-08-06 18:22:11".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondDownTo("2018-08-06 18:22:18".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondDownUntilTo("2018-08-06 18:22:19".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+    }
+
+    @Test
+    fun testMillisecondIterator() {
+        Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 669").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 667, 2018-08-06 18:22:15 668, 2018-08-06 18:22:15 669")
+        Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMUntilTo("2018-08-06 18:22:15 670").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 667, 2018-08-06 18:22:15 668, 2018-08-06 18:22:15 669")
+        Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMDownTo("2018-08-06 18:22:15 663").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 665, 2018-08-06 18:22:15 664, 2018-08-06 18:22:15 663")
+        Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMDownUntilTo("2018-08-06 18:22:15 662").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 665, 2018-08-06 18:22:15 664, 2018-08-06 18:22:15 663")
+
+        Assert.assertEquals("2018-08-06 18:22:15 666".toMillisecondYMDHMSM().millisecondRangeTo("2018-08-06 18:22:15 663".toMillisecondYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15 666".toMillisecondYMDHMSM().millisecondUntilTo("2018-08-06 18:22:15 662".toMillisecondYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15 666".toMillisecondYMDHMSM().millisecondDownTo("2018-08-06 18:22:15 669".toMillisecondYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15 666".toMillisecondYMDHMSM().millisecondDownUntilTo("2018-08-06 18:22:15 670".toMillisecondYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+    }
+
+    @Test
+    fun testSameYear() {
+        Assert.assertTrue("2018".toDateY().isSameYear("2018".toDateY()))
+        Assert.assertFalse("2018".toMillisecondY().isSameYear("2017".toMillisecondY()))
+        Assert.assertFalse("2018".toMillisecondY().isSameYear("2019".toMillisecondY()))
+    }
+
+    @Test
+    fun testSameMonth() {
+        Assert.assertTrue("2018-08".toDateYM().isSameMonth("2018-08".toDateYM()))
+        Assert.assertTrue("2018-08".toDateYM().isSameMonth("2018-08-01".toDateYMD()))
+        Assert.assertTrue("2018-08".toDateYM().isSameMonth("2018-08-31".toDateYMD()))
+        Assert.assertFalse("2018-08".toMillisecondYM().isSameMonth("2018-09".toMillisecondYM()))
+        Assert.assertFalse("2018-08".toMillisecondYM().isSameMonth("2017-08".toMillisecondYM()))
+        Assert.assertFalse("2018-08".toMillisecondYM().isSameMonth("2019-08".toMillisecondYM()))
+
+        Assert.assertTrue("2018-08".toDateYM().isSameMonthOfYear("2019-08".toDateYM()))
+        Assert.assertFalse("2018-08".toMillisecondYM().isSameMonthOfYear("2019-07".toMillisecondYM()))
+    }
+
+    @Test
+    fun testSameWeek() {
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-05".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-11".toDateYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeek("2018-08-04".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeek("2018-08-12".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-06".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeek("2018-08-12".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeek("2018-08-05".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeek("2018-08-13".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfYear("2019-08-04".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfYear("2019-08-10".toDateYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfYear("2019-08-03".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfYear("2019-08-11".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfYear("2019-08-05".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfYear("2019-08-11".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfYear("2019-08-04".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfYear("2019-08-12".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfMonth("2018-07-08".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfMonth("2018-07-14".toDateYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfMonth("2018-07-07".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfMonth("2018-07-15".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfMonth("2018-07-02".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameWeekOfMonth("2018-07-08".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfMonth("2018-07-01".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameWeekOfMonth("2018-07-09".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+    }
+
+    @Test
+    fun testSameDay() {
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDay("2018-08-07 01".toDateYMDH()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDay("2018-08-07 23".toDateYMDH()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDay("2018-08-08".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDay("2018-08-06".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDay("2017-08-07".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDay("2019-08-07".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfYear("2016-08-06".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfYear("2016-08-06 01".toDateYMDH()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfYear("2016-08-06 23".toDateYMDH()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfYear("2016-08-07".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfMonth("2018-07-07".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfMonth("2019-08-07".toDateYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfMonth("2018-08-06".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeek("2018-08-14".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeek("2018-08-21".toDateYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfWeek("2018-08-08".toMillisecondYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfWeek("2018-08-15".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeek("2018-08-14".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeek("2018-08-21".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfWeek("2018-08-08".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfWeek("2018-08-15".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeekInMonth("2018-08-01".toDateYMD()))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeekInMonth("2018-08-07".toDateYMD()))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfWeekInMonth("2018-07-08".toMillisecondYMD()))
+
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeekInMonth("2018-08-01".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertTrue("2018-08-07".toDateYMD().isSameDayOfWeekInMonth("2018-08-07".toDateYMD(), firstDayOfWeek = Calendar.MONDAY))
+        Assert.assertFalse("2018-08-07".toMillisecondYMD().isSameDayOfWeekInMonth("2018-07-08".toMillisecondYMD(), firstDayOfWeek = Calendar.MONDAY))
+    }
+
+    @Test
+    fun testSameHour() {
+        Assert.assertTrue("2018-08-07 13".toDateYMDH().isSameHour("2018-08-07 13:01".toDateYMDHM()))
+        Assert.assertTrue("2018-08-07 13".toDateYMDH().isSameHour("2018-08-07 13:59".toDateYMDHM()))
+        Assert.assertFalse("2018-08-07 13".toMillisecondYMDH().isSameHour("2018-08-07 14:00".toMillisecondYMDHM()))
+        Assert.assertFalse("2018-08-07 13".toMillisecondYMDH().isSameHour("2018-08-07 12:59".toMillisecondYMDHM()))
+
+        Assert.assertTrue("2018-08-07 13".toDateYMDH().isSameHourOf24H("2018-08-06 13".toDateYMDH()))
+        Assert.assertFalse("2018-08-07 13".toMillisecondYMDH().isSameHourOf24H("2018-08-06 14".toMillisecondYMDH()))
+
+        Assert.assertTrue("2018-08-07 13".toDateYMDH().isSameHourOf12H("2018-08-07 01".toDateYMDH()))
+        Assert.assertFalse("2018-08-07 13".toMillisecondYMDH().isSameHourOf12H("2018-08-07 02".toMillisecondYMDH()))
+    }
+
+    @Test
+    fun testSameMinute() {
+        Assert.assertTrue("2018-08-07 13:01".toDateYMDHM().isSameMinute("2018-08-07 13:01:01".toDateYMDHMS()))
+        Assert.assertTrue("2018-08-07 13:01".toDateYMDHM().isSameMinute("2018-08-07 13:01:59".toDateYMDHMS()))
+        Assert.assertFalse("2018-08-07 13:01".toMillisecondYMDHM().isSameMinute("2018-08-07 13:02:00".toMillisecondYMDHMS()))
+        Assert.assertFalse("2018-08-07 13:01".toMillisecondYMDHM().isSameMinute("2018-08-07 13:00:59".toMillisecondYMDHMS()))
+
+        Assert.assertTrue("2018-08-07 13:01".toDateYMDHM().isSameMinuteOfHour("2018-08-07 14:01".toDateYMDHM()))
+        Assert.assertFalse("2018-08-07 13:01".toMillisecondYMDHM().isSameMinuteOfHour("2018-08-07 14:02".toMillisecondYMDHM()))
+    }
+
+    @Test
+    fun testSameSecond() {
+        Assert.assertTrue("2018-08-07 13:01:25".toDateYMDHMS().isSameSecond("2018-08-07 13:01:25 001".toDateYMDHMSM()))
+        Assert.assertTrue("2018-08-07 13:01:25".toDateYMDHMS().isSameSecond("2018-08-07 13:01:25 999".toDateYMDHMSM()))
+        Assert.assertFalse("2018-08-07 13:01:25".toMillisecondYMDHMS().isSameSecond("2018-08-07 13:01:26 000".toMillisecondYMDHMSM()))
+        Assert.assertFalse("2018-08-07 13:01:25".toMillisecondYMDHMS().isSameSecond("2018-08-07 13:01:24 999".toMillisecondYMDHMSM()))
+
+        Assert.assertTrue("2018-08-07 13:01:25".toDateYMDHMS().isSameSecondOfMinute("2018-08-07 13:02:25".toDateYMDHMS()))
+        Assert.assertFalse("2018-08-07 13:01:25".toMillisecondYMDHMS().isSameSecondOfMinute("2018-08-07 13:02:26".toMillisecondYMDHMS()))
+    }
+
+    @Test
+    fun testSameMillisecond() {
+        Assert.assertTrue("2018-08-07 13:01:25 333".toDateYMDHMSM().isSameMillisecond("2018-08-07 13:01:25 333".toDateYMDHMSM()))
+        Assert.assertFalse("2018-08-07 13:01:25 333".toDateYMDHMSM().isSameMillisecond("2018-08-07 13:01:26 334".toDateYMDHMSM()))
+        Assert.assertFalse("2018-08-07 13:01:25 333".toMillisecondYMDHMSM().isSameMillisecond("2018-08-07 13:01:26 332".toMillisecondYMDHMSM()))
+
+        Assert.assertTrue("2018-08-07 13:01:25 333".toDateYMDHMSM().isSameMillisecondOfSecond("2018-08-07 13:01:26 333".toDateYMDHMSM()))
+        Assert.assertFalse("2018-08-07 13:01:25 333".toMillisecondYMDHMSM().isSameMillisecondOfSecond("2018-08-07 13:01:26 334".toMillisecondYMDHMSM()))
     }
 }
