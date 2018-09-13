@@ -392,4 +392,121 @@ class DateTest {
         Assert.assertTrue("2018-08-07 13:01:25 333".toDateYMDHMSM().isSameMillisecondOfSecond("2018-08-07 13:01:26 333".toDateYMDHMSM()))
         Assert.assertFalse("2018-08-07 13:01:25 333".toMillisecondYMDHMSM().isSameMillisecondOfSecond("2018-08-07 13:01:26 334".toMillisecondYMDHMSM()))
     }
+
+    @Test
+    fun testDifferYear() {
+        Assert.assertTrue("2018".toDateY().differYear("2011".toDateY(), 7))
+        Assert.assertTrue("2018".toDateY().differYear("2025".toDateY(), 7))
+
+        Assert.assertFalse("2018".toMillisecondY().differYear("2010".toMillisecondY(), 7))
+        Assert.assertFalse("2018".toMillisecondY().differYear("2026".toMillisecondY(), 7))
+    }
+
+    @Test
+    fun testDifferMonth() {
+        Assert.assertTrue("2018-05".toDateYM().differMonth("2018-12".toDateYM(), 7))
+        Assert.assertTrue("2018-05".toDateYM().differMonth("2017-10".toDateYM(), 7))
+
+        Assert.assertFalse("2018-05".toMillisecondYM().differMonth("2019-01".toMillisecondYM(), 7))
+        Assert.assertFalse("2018-05".toMillisecondYM().differMonth("2017-09".toMillisecondYM(), 7))
+    }
+
+    @Test
+    fun testDifferWeekOfYear() {
+        Assert.assertTrue("2018-05-28".toDateYMD().differWeekOfYear("2018-06-25".toDateYMD(), 4))
+        Assert.assertTrue("2018-05-28".toDateYMD().differWeekOfYear("2018-04-30".toDateYMD(), 4))
+
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differWeekOfYear("2018-06-26".toMillisecondYMD(), 4))
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differWeekOfYear("2018-04-29".toMillisecondYMD(), 4))
+    }
+
+    @Test
+    fun testDifferWeekOfMonth() {
+        Assert.assertTrue("2018-05-28".toDateYMD().differWeekOfMonth("2018-06-25".toDateYMD(), 4))
+        Assert.assertTrue("2018-05-28".toDateYMD().differWeekOfMonth("2018-04-30".toDateYMD(), 4))
+
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differWeekOfMonth("2018-06-26".toMillisecondYMD(), 4))
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differWeekOfMonth("2018-04-29".toMillisecondYMD(), 4))
+    }
+
+    @Test
+    fun testDifferDayOfYear() {
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfYear("2018-06-04".toDateYMD(), 7))
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfYear("2018-05-21".toDateYMD(), 7))
+
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfYear("2018-06-05".toMillisecondYMD(), 7))
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfYear("2018-05-20".toMillisecondYMD(), 7))
+    }
+
+    @Test
+    fun testDifferDayOfMonth() {
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfMonth("2018-06-04".toDateYMD(), 7))
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfMonth("2018-05-21".toDateYMD(), 7))
+
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfMonth("2018-06-05".toMillisecondYMD(), 7))
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfMonth("2018-05-20".toMillisecondYMD(), 7))
+    }
+
+    @Test
+    fun testDifferDayOfWeek() {
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfWeek("2018-06-04".toDateYMD(), 7))
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfWeek("2018-05-21".toDateYMD(), 7))
+
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfWeek("2018-06-05".toMillisecondYMD(), 7))
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfWeek("2018-05-20".toMillisecondYMD(), 7))
+    }
+
+    @Test
+    fun testDifferDayOfWeekInMonth() {
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfWeekInMonth("2018-06-25".toDateYMD(), 4))
+        Assert.assertTrue("2018-05-28".toDateYMD().differDayOfWeekInMonth("2018-04-30".toDateYMD(), 4))
+
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfWeekInMonth("2018-06-26".toMillisecondYMD(), 4))
+        Assert.assertFalse("2018-05-28".toMillisecondYMD().differDayOfWeekInMonth("2018-04-29".toMillisecondYMD(), 4))
+    }
+
+    @Test
+    fun testDifferHourOfDay() {
+        Assert.assertTrue("2018-05-28 20".toDateYMDH().differHourOfDay("2018-05-29 3".toDateYMDH(), 7))
+        Assert.assertTrue("2018-05-28 20".toDateYMDH().differHourOfDay("2018-05-28 13".toDateYMDH(), 7))
+
+        Assert.assertFalse("2018-05-28 20".toMillisecondYMDH().differHourOfDay("2018-05-29 4".toMillisecondYMDH(), 7))
+        Assert.assertFalse("2018-05-28 20".toMillisecondYMDH().differHourOfDay("2018-05-28 12".toMillisecondYMDH(), 7))
+    }
+
+    @Test
+    fun testDifferHour() {
+        Assert.assertTrue("2018-05-28 08".toDateYMDH().differHour("2018-05-28 15".toDateYMDH(), 7))
+        Assert.assertTrue("2018-05-28 08".toDateYMDH().differHour("2018-05-28 01".toDateYMDH(), 7))
+
+        Assert.assertFalse("2018-05-28 08".toMillisecondYMDH().differHour("2018-05-28 16".toMillisecondYMDH(), 7))
+        Assert.assertFalse("2018-05-28 08".toMillisecondYMDH().differHour("2018-05-28 00".toMillisecondYMDH(), 7))
+    }
+
+    @Test
+    fun testDifferMinute() {
+        Assert.assertTrue("2018-05-28 08:58".toDateYMDHM().differMinute("2018-05-28 09:05".toDateYMDHM(), 7))
+        Assert.assertTrue("2018-05-28 08:58".toDateYMDHM().differMinute("2018-05-28 08:51".toDateYMDHM(), 7))
+
+        Assert.assertFalse("2018-05-28 08:58".toMillisecondYMDHM().differMinute("2018-05-28 09:06".toMillisecondYMDHM(), 7))
+        Assert.assertFalse("2018-05-28 08:58".toMillisecondYMDHM().differMinute("2018-05-28 08:50".toMillisecondYMDHM(), 7))
+    }
+
+    @Test
+    fun testDifferSecond() {
+        Assert.assertTrue("2018-05-28 08:58:58".toDateYMDHMS().differSecond("2018-05-28 08:59:05".toDateYMDHMS(), 7))
+        Assert.assertTrue("2018-05-28 08:58:58".toDateYMDHMS().differSecond("2018-05-28 08:58:51".toDateYMDHMS(), 7))
+
+        Assert.assertFalse("2018-05-28 08:58:58".toMillisecondYMDHMS().differSecond("2018-05-28 08:59:06".toMillisecondYMDHMS(), 7))
+        Assert.assertFalse("2018-05-28 08:58:58".toMillisecondYMDHMS().differSecond("2018-05-28 08:58:50".toMillisecondYMDHMS(), 7))
+    }
+
+    @Test
+    fun testDifferMillisecond() {
+        Assert.assertTrue("2018-05-28 08:58:58 888".toDateYMDHMSM().differMillisecond("2018-05-28 08:58:58 895".toDateYMDHMSM(), 7))
+        Assert.assertTrue("2018-05-28 08:58:58 888".toDateYMDHMSM().differMillisecond("2018-05-28 08:58:58 881".toDateYMDHMSM(), 7))
+
+        Assert.assertFalse("2018-05-28 08:58:58 888".toMillisecondYMDHMSM().differMillisecond("2018-05-28 08:58:58 896".toMillisecondYMDHMSM(), 7))
+        Assert.assertFalse("2018-05-28 08:58:58 888".toMillisecondYMDHMSM().differMillisecond("2018-05-28 08:58:58 850".toMillisecondYMDHMSM(), 7))
+    }
 }

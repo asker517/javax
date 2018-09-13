@@ -818,7 +818,7 @@ fun Calendar.differDayOfYear(target: Calendar, amount: Int): Boolean {
     if (amount == 0) return true
     val finalAmount = if (this.timeInMillis < target.timeInMillis) amount.absoluteValue else amount.absoluteValue * -1
     val cacheTimeInMillis = this.timeInMillis
-    this.add(Calendar.WEEK_OF_MONTH, finalAmount)
+    this.add(Calendar.DAY_OF_YEAR, finalAmount)
     val newTimeInMillis = this.timeInMillis
     this.timeInMillis = cacheTimeInMillis
     return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
@@ -1233,7 +1233,7 @@ abstract class DateRange(override val start: Date, override val endInclusive: Da
 
     abstract fun nextDate(date: Date): Date
 
-    class IteratorInternal(val range: DateRange, first: Date, private val last: Date, private val step: Int) : Iterator<Date> {
+    class IteratorInternal(private val range: DateRange, first: Date, private val last: Date, private val step: Int) : Iterator<Date> {
         var hasNext: Boolean
         var next: Date
 
