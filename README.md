@@ -94,6 +94,9 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Array2: [Arrayx2.java]
     * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
     * contentEquals, binarySearch, copyOf, slice, associate
+* Date: [Datex.java] ([Test][DateTest.java]) | [Date.kt] ([Test][DateTest.kt])
+    * createCalendar, toDate, toMillisecond, format, getYear, getMonth, get\*, addYear, addMonth, add\*,
+    * isSameYear, isSameMonth, isSame\*, differYear, differMonth, differ\*
 * Base64: [Base64x.java] ([Test][Base64Test.java]) | [Base64.kt] ([Test][Base64Test.kt])
     * encode, urlEncode, mimeEncode, decode, urlDecode, mimeDecode,
 * Collection: [Collectionx.java]
@@ -110,10 +113,13 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Premise: [Premisex.java] ([Test][PremiseTest.java]) | [Premise.kt] ([Test][PremiseTest.kt])
     * requireNonNull, require, requireFileExist, requireIsDir, requireIsFile, requireNoNulls
     * checkInRange, checkNotInRange, areEqual
+* Range: [Rangex.java] ([Test][RangeTest.java]) | [Range.kt] ([Test][RangeTest.kt])
+    * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
+    * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Zip: [Zipx.java] ([Test][ZipTest.java]) | [Zip.kt] ([Test][ZipTest.kt])
     * compressionFilesTo, compressionDirTo, compressionDir, decompressionTo, decompression
 
-## Change log
+## Change Log
 
 Please view the [CHANGELOG.md] file
 
@@ -211,6 +217,11 @@ Please view the [CHANGELOG.md] file
 [Array2.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Array2.kt
 [Array2Test.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/Array2Test.kt
 
+[Datex.java]: javax/src/main/java/me/panpf/javax/util/Datex.java
+[DateTest.java]: javax/src/test/java/me/panpf/javax/test/util/DateTest.java
+[Date.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Date.kt
+[DateTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/DateTest.kt
+
 [Base64x.java]: javax/src/main/java/me/panpf/javax/util/Base64x.java
 [Base64Test.java]: javax/src/test/java/me/panpf/javax/test/util/Base64Test.java
 [Base64.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Base64.kt
@@ -240,6 +251,11 @@ Please view the [CHANGELOG.md] file
 [PremiseTest.java]: javax/src/test/java/me/panpf/javax/test/util/PremiseTest.java
 [Premise.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Premise.kt
 [PremiseTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/PremiseTest.kt
+
+[Rangex.java]: javax/src/main/java/me/panpf/javax/util/Rangex.java
+[RangeTest.java]: javax/src/test/java/me/panpf/javax/test/util/RangeTest.java
+[Range.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Range.kt
+[RangeTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/RangeTest.kt
 
 [Zipx.java]: javax/src/main/java/me/panpf/javax/util/Zipx.java
 [ZipTest.java]: javax/src/test/java/me/panpf/javax/test/util/ZipTest.java
