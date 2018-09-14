@@ -33,6 +33,7 @@ class DateTest {
         Assert.assertEquals("2018-06-23".toDateYMD().formatYMD(), "2018-06-23")
         Assert.assertEquals("20180623".toDateYMDCompact().formatYMDCompact(), "20180623")
 
+        Assert.assertEquals("2018-06-23 21".toDateYMDH().formatYMDH(), "2018-06-23 21")
         Assert.assertEquals("2018-06-23 21:59".toDateYMDHM().formatYMDHM(), "2018-06-23 21:59")
         Assert.assertEquals("2018-06-23 21:59:01".toDateYMDHMS().formatYMDHMS(), "2018-06-23 21:59:01")
         Assert.assertEquals("2018-06-23 21:59:01 999".toDateYMDHMSM().formatYMDHMSM(), "2018-06-23 21:59:01 999")

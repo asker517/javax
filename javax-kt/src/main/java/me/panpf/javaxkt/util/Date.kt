@@ -30,16 +30,9 @@ import kotlin.math.absoluteValue
 /**
  * Create a Calendar
  */
-fun Long.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Calendar {
-    return when {
-        timeZone != null && locale != null -> Calendar.getInstance(timeZone, locale)
-        timeZone == null && locale != null -> Calendar.getInstance(locale)
-        timeZone != null && locale == null -> Calendar.getInstance(timeZone)
-        else -> Calendar.getInstance()
-    }.apply {
+fun Long.createCalendar(firstDayOfWeek: Int? = null, locale: Locale? = null): Calendar {
+    return (if(locale != null) Calendar.getInstance(locale) else Calendar.getInstance()).apply {
         if (firstDayOfWeek != null) this@apply.firstDayOfWeek = firstDayOfWeek
-        if (minimalDaysInFirstWeek != null) this@apply.minimalDaysInFirstWeek = minimalDaysInFirstWeek
-
         timeInMillis = this@createCalendar
     }
 }
@@ -47,8 +40,22 @@ fun Long.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int
 /**
  * Create a Calendar
  */
-fun Date.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Calendar {
-    return time.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Long.createCalendar(locale: Locale? = null): Calendar {
+    return createCalendar(null, locale)
+}
+
+/**
+ * Create a Calendar
+ */
+fun Date.createCalendar(firstDayOfWeek: Int? = null, locale: Locale? = null): Calendar {
+    return time.createCalendar(firstDayOfWeek, locale)
+}
+
+/**
+ * Create a Calendar
+ */
+fun Date.createCalendar(locale: Locale? = null): Calendar {
+    return time.createCalendar(null, locale)
 }
 
 
@@ -60,6 +67,7 @@ fun Date.createCalendar(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int
  * Millisecond to Date
  */
 fun Long.toDate(): Date = Date(this)
+
 
 /**
  * Convert formatted date string to Date
@@ -78,7 +86,7 @@ fun String.toDate(pattern: String, locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy'
  */
 @Throws(ParseException::class)
 fun String.toDateY(locale: Locale? = null): Date {
@@ -86,7 +94,7 @@ fun String.toDateY(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy-MM'
  */
 @Throws(ParseException::class)
 fun String.toDateYM(locale: Locale? = null): Date {
@@ -94,7 +102,7 @@ fun String.toDateYM(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyyMM'
  */
 @Throws(ParseException::class)
 fun String.toDateYMCompact(locale: Locale? = null): Date {
@@ -102,7 +110,7 @@ fun String.toDateYMCompact(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd'
  */
 @Throws(ParseException::class)
 fun String.toDateYMD(locale: Locale? = null): Date {
@@ -110,7 +118,7 @@ fun String.toDateYMD(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyyMMdd'
  */
 @Throws(ParseException::class)
 fun String.toDateYMDCompact(locale: Locale? = null): Date {
@@ -118,7 +126,7 @@ fun String.toDateYMDCompact(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH'
  */
 @Throws(ParseException::class)
 fun String.toDateYMDH(locale: Locale? = null): Date {
@@ -126,7 +134,7 @@ fun String.toDateYMDH(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm'
  */
 @Throws(ParseException::class)
 fun String.toDateYMDHM(locale: Locale? = null): Date {
@@ -134,7 +142,7 @@ fun String.toDateYMDHM(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss'
  */
 @Throws(ParseException::class)
 fun String.toDateYMDHMS(locale: Locale? = null): Date {
@@ -142,7 +150,7 @@ fun String.toDateYMDHMS(locale: Locale? = null): Date {
 }
 
 /**
- * Convert formatted date string to Date
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss SSS'
  */
 @Throws(ParseException::class)
 fun String.toDateYMDHMSM(locale: Locale? = null): Date {
@@ -479,203 +487,203 @@ fun Calendar.getMillisecond(): Int = this.get(Calendar.MILLISECOND)
 /**
  * Get calendar field from millisecond
  */
-fun Date.getCalendarField(field: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).get(field)
+fun Date.getCalendarField(field: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).get(field)
 }
 
 /**
  * Get year from date
  */
-fun Date.getCalendarYear(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getYear()
+fun Date.getCalendarYear(locale: Locale? = null): Int {
+    return createCalendar(locale).getYear()
 }
 
 /**
  * Get month from date
  */
-fun Date.getCalendarMonth(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getMonth()
+fun Date.getCalendarMonth(locale: Locale? = null): Int {
+    return createCalendar(locale).getMonth()
 }
 
 /**
  * Get weekOfYear from date
  */
-fun Date.getCalendarWeekOfYear(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getWeekOfYear()
+fun Date.getCalendarWeekOfYear(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getWeekOfYear()
 }
 
 /**
  * Get weekOfMonth from date
  */
-fun Date.getCalendarWeekOfMonth(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getWeekOfMonth()
+fun Date.getCalendarWeekOfMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getWeekOfMonth()
 }
 
 /**
  * Get dayOfYear from date
  */
-fun Date.getCalendarDayOfYear(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getDayOfYear()
+fun Date.getCalendarDayOfYear(locale: Locale? = null): Int {
+    return createCalendar(locale).getDayOfYear()
 }
 
 /**
  * Get dayOfMonth from date
  */
-fun Date.getCalendarDayOfMonth(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getDayOfMonth()
+fun Date.getCalendarDayOfMonth(locale: Locale? = null): Int {
+    return createCalendar(locale).getDayOfMonth()
 }
 
 /**
  * Get dayOfWeek from date
  */
-fun Date.getCalendarDayOfWeek(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getDayOfWeek()
+fun Date.getCalendarDayOfWeek(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getDayOfWeek()
 }
 
 /**
  * Get dayOfWeekInMonth from date
  */
-fun Date.getCalendarDayOfWeekInMonth(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getDayOfWeekInMonth()
+fun Date.getCalendarDayOfWeekInMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getDayOfWeekInMonth()
 }
 
 /**
  * Get hourOfDay from date
  */
-fun Date.getCalendarHourOfDay(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getHourOfDay()
+fun Date.getCalendarHourOfDay(locale: Locale? = null): Int {
+    return createCalendar(locale).getHourOfDay()
 }
 
 /**
  * Get hour from date
  */
-fun Date.getCalendarHour(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getHour()
+fun Date.getCalendarHour(locale: Locale? = null): Int {
+    return createCalendar(locale).getHour()
 }
 
 /**
  * Get minute from date
  */
-fun Date.getCalendarMinute(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getMinute()
+fun Date.getCalendarMinute(locale: Locale? = null): Int {
+    return createCalendar(locale).getMinute()
 }
 
 /**
  * Get second from date
  */
-fun Date.getCalendarSecond(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getSecond()
+fun Date.getCalendarSecond(locale: Locale? = null): Int {
+    return createCalendar(locale).getSecond()
 }
 
 /**
  * Get millisecond from date
  */
-fun Date.getCalendarMillisecond(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getMillisecond()
+fun Date.getCalendarMillisecond(locale: Locale? = null): Int {
+    return createCalendar(locale).getMillisecond()
 }
 
 
 /**
  * Get calendar field from millisecond
  */
-fun Long.getCalendarField(field: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).get(field)
+fun Long.getCalendarField(field: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).get(field)
 }
 
 /**
  * Get year from millisecond
  */
-fun Long.getYear(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getYear()
+fun Long.getYear(locale: Locale? = null): Int {
+    return createCalendar(locale).getYear()
 }
 
 /**
  * Get month from millisecond
  */
-fun Long.getMonth(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getMonth()
+fun Long.getMonth(locale: Locale? = null): Int {
+    return createCalendar(locale).getMonth()
 }
 
 /**
  * Get weekOfYear from millisecond
  */
-fun Long.getWeekOfYear(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getWeekOfYear()
+fun Long.getWeekOfYear(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getWeekOfYear()
 }
 
 /**
  * Get weekOfMonth from millisecond
  */
-fun Long.getWeekOfMonth(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getWeekOfMonth()
+fun Long.getWeekOfMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getWeekOfMonth()
 }
 
 /**
  * Get dayOfYear from millisecond
  */
-fun Long.getDayOfYear(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getDayOfYear()
+fun Long.getDayOfYear(locale: Locale? = null): Int {
+    return createCalendar(locale).getDayOfYear()
 }
 
 /**
  * Get dayOfMonth from millisecond
  */
-fun Long.getDayOfMonth(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getDayOfMonth()
+fun Long.getDayOfMonth(locale: Locale? = null): Int {
+    return createCalendar(locale).getDayOfMonth()
 }
 
 /**
  * Get dayOfWeek from millisecond
  */
-fun Long.getDayOfWeek(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getDayOfWeek()
+fun Long.getDayOfWeek(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getDayOfWeek()
 }
 
 /**
  * Get dayOfWeekInMonth from millisecond
  */
-fun Long.getDayOfWeekInMonth(firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).getDayOfWeekInMonth()
+fun Long.getDayOfWeekInMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int {
+    return createCalendar(firstDayOfWeek, locale).getDayOfWeekInMonth()
 }
 
 /**
  * Get hourOfDay from millisecond
  */
-fun Long.getHourOfDay(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getHourOfDay()
+fun Long.getHourOfDay(locale: Locale? = null): Int {
+    return createCalendar(locale).getHourOfDay()
 }
 
 /**
  * Get hour from millisecond
  */
-fun Long.getHour(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getHour()
+fun Long.getHour(locale: Locale? = null): Int {
+    return createCalendar(locale).getHour()
 }
 
 /**
  * Get minute from millisecond
  */
-fun Long.getMinute(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getMinute()
+fun Long.getMinute(locale: Locale? = null): Int {
+    return createCalendar(locale).getMinute()
 }
 
 /**
  * Get second from millisecond
  */
-fun Long.getSecond(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getSecond()
+fun Long.getSecond(locale: Locale? = null): Int {
+    return createCalendar(locale).getSecond()
 }
 
 /**
  * Get millisecond from millisecond
  */
-fun Long.getMillisecond(timeZone: TimeZone? = null, locale: Locale? = null): Int {
-    return createCalendar(null, null, timeZone, locale).getMillisecond()
+fun Long.getMillisecond(locale: Locale? = null): Int {
+    return createCalendar(locale).getMillisecond()
 }
 
 
 /*
- * Date add
+ * add
  */
 
 
@@ -699,203 +707,198 @@ fun Calendar.addToMillisecond(field: Int, amount: Int): Long {
 /**
  * Increase the specified calendar field
  */
-fun Date.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).addToDate(field, amount)
+fun Date.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date {
+    return createCalendar(firstDayOfWeek, locale).addToDate(field, amount)
 }
 
 /**
  * Increase the YEAR field
  */
-fun Date.addYear(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.YEAR, amount, null, null, timeZone, locale)
+fun Date.addYear(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.YEAR, amount, locale = locale)
 }
 
 /**
  * Increase the MONTH field
  */
-fun Date.addMonth(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.MONTH, amount, null, null, timeZone, locale)
+fun Date.addMonth(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.MONTH, amount, locale = locale)
 }
 
 /**
  * Increase the WEEK_OF_YEAR field
  */
-fun Date.addWeekOfYear(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Date.addWeekOfYear(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the WEEK_OF_MONTH field
  */
-fun Date.addWeekOfMonth(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Date.addWeekOfMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the DAY_OF_YEAR field
  */
-fun Date.addDayOfYear(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.DAY_OF_YEAR, amount, null, null, timeZone, locale)
+fun Date.addDayOfYear(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.DAY_OF_YEAR, amount, locale = locale)
 }
 
 /**
  * Increase the DAY_OF_MONTH field
  */
-fun Date.addDayOfMonth(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.DAY_OF_MONTH, amount, null, null, timeZone, locale)
+fun Date.addDayOfMonth(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.DAY_OF_MONTH, amount, locale = locale)
 }
 
 /**
  * Increase the DAY_OF_WEEK_IN_MONTH field
  */
-fun Date.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Date.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the DAY_OF_WEEK field
  */
-fun Date.addDayOfWeek(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.DAY_OF_WEEK, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Date.addDayOfWeek(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.DAY_OF_WEEK, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the HOUR_OF_DAY field
  */
-fun Date.addHourOfDay(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.HOUR_OF_DAY, amount, null, null, timeZone, locale)
+fun Date.addHourOfDay(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.HOUR_OF_DAY, amount, locale = locale)
 }
 
 /**
  * Increase the HOUR field
  */
-fun Date.addHour(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.HOUR, amount, null, null, timeZone, locale)
+fun Date.addHour(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.HOUR, amount, locale = locale)
 }
 
 /**
  * Increase the MINUTE field
  */
-fun Date.addMinute(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.MINUTE, amount, null, null, timeZone, locale)
+fun Date.addMinute(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.MINUTE, amount, locale = locale)
 }
 
 /**
  * Increase the SECOND field
  */
-fun Date.addSecond(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.SECOND, amount, null, null, timeZone, locale)
+fun Date.addSecond(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.SECOND, amount, locale = locale)
 }
 
 /**
  * Increase the MILLISECOND field
  */
-fun Date.addMillisecond(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Date {
-    return addCalendarField(Calendar.MILLISECOND, amount, null, null, timeZone, locale)
+fun Date.addMillisecond(amount: Int, locale: Locale? = null): Date {
+    return addCalendarField(Calendar.MILLISECOND, amount, locale = locale)
 }
-
-
-/*
- * Long add
- */
 
 
 /**
  * Increase the specified calendar field
  */
-fun Long.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).addToMillisecond(field, amount)
+fun Long.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long {
+    return createCalendar(firstDayOfWeek, locale).addToMillisecond(field, amount)
 }
 
 /**
  * Increase the YEAR field
  */
-fun Long.addYear(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.YEAR, amount, null, null, timeZone, locale)
+fun Long.addYear(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.YEAR, amount, locale = locale)
 }
 
 /**
  * Increase the MONTH field
  */
-fun Long.addMonth(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.MONTH, amount, null, null, timeZone, locale)
+fun Long.addMonth(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.MONTH, amount, locale = locale)
 }
 
 /**
  * Increase the WEEK_OF_YEAR field
  */
-fun Long.addWeekOfYear(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Long.addWeekOfYear(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the WEEK_OF_MONTH field
  */
-fun Long.addWeekOfMonth(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Long.addWeekOfMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the DAY_OF_YEAR field
  */
-fun Long.addDayOfYear(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.DAY_OF_YEAR, amount, null, null, timeZone, locale)
+fun Long.addDayOfYear(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.DAY_OF_YEAR, amount, locale = locale)
 }
 
 /**
  * Increase the DAY_OF_MONTH field
  */
-fun Long.addDayOfMonth(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.DAY_OF_MONTH, amount, null, null, timeZone, locale)
+fun Long.addDayOfMonth(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.DAY_OF_MONTH, amount, locale = locale)
 }
 
 /**
  * Increase the DAY_OF_WEEK_IN_MONTH field
  */
-fun Long.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Long.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the DAY_OF_WEEK field
  */
-fun Long.addDayOfWeek(amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.DAY_OF_WEEK, amount, firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale)
+fun Long.addDayOfWeek(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.DAY_OF_WEEK, amount, firstDayOfWeek, locale)
 }
 
 /**
  * Increase the HOUR_OF_DAY field
  */
-fun Long.addHourOfDay(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.HOUR_OF_DAY, amount, null, null, timeZone, locale)
+fun Long.addHourOfDay(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.HOUR_OF_DAY, amount, locale = locale)
 }
 
 /**
  * Increase the HOUR field
  */
-fun Long.addHour(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.HOUR, amount, null, null, timeZone, locale)
+fun Long.addHour(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.HOUR, amount, locale = locale)
 }
 
 /**
  * Increase the MINUTE field
  */
-fun Long.addMinute(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.MINUTE, amount, null, null, timeZone, locale)
+fun Long.addMinute(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.MINUTE, amount, locale = locale)
 }
 
 /**
  * Increase the SECOND field
  */
-fun Long.addSecond(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.SECOND, amount, null, null, timeZone, locale)
+fun Long.addSecond(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.SECOND, amount, locale = locale)
 }
 
 /**
  * Increase the MILLISECOND field
  */
-fun Long.addMillisecond(amount: Int, timeZone: TimeZone? = null, locale: Locale? = null): Long {
-    return addCalendarField(Calendar.MILLISECOND, amount, null, null, timeZone, locale)
+fun Long.addMillisecond(amount: Int, locale: Locale? = null): Long {
+    return addCalendarField(Calendar.MILLISECOND, amount, locale = locale)
 }
 
 
@@ -930,8 +933,8 @@ fun Calendar.isSameMonthOfYear(target: Calendar): Boolean {
  * Returns true if the year, month, and week are the same
  */
 fun Calendar.isSameWeek(target: Calendar): Boolean {
-    if (this.get(Calendar.ERA) != target.get(Calendar.ERA)) return false
     return when {
+        this.get(Calendar.ERA) != target.get(Calendar.ERA) -> false
     // 年份一样可以直接用 WEEK_OF_YEAR 对比
         this.get(Calendar.YEAR) == target.get(Calendar.YEAR) -> this.get(Calendar.WEEK_OF_YEAR) == target.get(Calendar.WEEK_OF_YEAR)
     // day 只相差 7 天说明是年末那几天，也可以直接用 WEEK_OF_YEAR 对比
@@ -1066,284 +1069,284 @@ fun Calendar.isSameMillisecondOfSecond(target: Calendar): Boolean {
 
 
 /**
- * Return true if the two calendars are the same year
+ * Return true if the year is the same
  */
-fun Date.isSameYear(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameYear(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameYear(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameYear(target.createCalendar(locale))
 }
 
 /**
- * Return true if both calendars have the same year and month are the same
+ * Returns true if the year and month are the same
  */
-fun Date.isSameMonth(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMonth(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the months is the same
- */
-fun Date.isSameMonthOfYear(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMonthOfYear(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Returns true if the year, month, and week are the same
- */
-fun Date.isSameWeek(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-/**
- * Return true if the weekOfYear is the same
- */
-fun Date.isSameWeekOfYear(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-/**
- * Return true if the weekOfMonth is the same
- */
-fun Date.isSameWeekOfMonth(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-/**
- * Returns true if the year, month, week and day are the same
- */
-fun Date.isSameDay(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDay(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the dayOfYear is the same
- */
-fun Date.isSameDayOfYear(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfYear(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the dayOfMonth is the same
- */
-fun Date.isSameDayOfMonth(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfMonth(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the dayOfWeek is the same
- */
-fun Date.isSameDayOfWeek(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-/**
- * Return true if the dayOfWeekInMonth is the same
- */
-fun Date.isSameDayOfWeekInMonth(target: Date, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
-}
-
-/**
- * Returns true if the year, month, week, day and hour are the same
- */
-fun Date.isSameHour(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHour(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the 24H hour is the same
- */
-fun Date.isSameHourOf24H(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHourOf24H(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the 12H hour is the same
- */
-fun Date.isSameHourOf12H(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHourOf12H(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Returns true if the year, month, week, day, hour and minute are the same
- */
-fun Date.isSameMinute(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMinute(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the minuteOfHour is the same
- */
-fun Date.isSameMinuteOfHour(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMinuteOfHour(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Returns true if the year, month, week, day, hour, minute and second are the same
- */
-fun Date.isSameSecond(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameSecond(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the secondOfMinute is the same
- */
-fun Date.isSameSecondOfMinute(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameSecondOfMinute(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
- */
-fun Date.isSameMillisecond(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMillisecond(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if the millisecondOfSecond is the same
- */
-fun Date.isSameMillisecondOfSecond(target: Date, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMillisecondOfSecond(target.createCalendar(null, null, timeZone, locale))
-}
-
-
-/**
- * Return true if the two calendars are the same year
- */
-fun Long.isSameYear(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameYear(target.createCalendar(null, null, timeZone, locale))
-}
-
-/**
- * Return true if both calendars have the same year and month are the same
- */
-fun Long.isSameMonth(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMonth(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMonth(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMonth(target.createCalendar(locale))
 }
 
 /**
  * Return true if the months is the same
  */
-fun Long.isSameMonthOfYear(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMonthOfYear(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMonthOfYear(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMonthOfYear(target.createCalendar(locale))
 }
 
 /**
  * Returns true if the year, month, and week are the same
  */
-fun Long.isSameWeek(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameWeek(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameWeek(target.createCalendar(firstDayOfWeek, locale))
 }
 
 /**
  * Return true if the weekOfYear is the same
  */
-fun Long.isSameWeekOfYear(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameWeekOfYear(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameWeekOfYear(target.createCalendar(firstDayOfWeek, locale))
 }
 
 /**
  * Return true if the weekOfMonth is the same
  */
-fun Long.isSameWeekOfMonth(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameWeekOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameWeekOfMonth(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameWeekOfMonth(target.createCalendar(firstDayOfWeek, locale))
 }
 
 /**
  * Returns true if the year, month, week and day are the same
  */
-fun Long.isSameDay(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDay(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameDay(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameDay(target.createCalendar(locale))
 }
 
 /**
  * Return true if the dayOfYear is the same
  */
-fun Long.isSameDayOfYear(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfYear(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameDayOfYear(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameDayOfYear(target.createCalendar(locale))
 }
 
 /**
  * Return true if the dayOfMonth is the same
  */
-fun Long.isSameDayOfMonth(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameDayOfMonth(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameDayOfMonth(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameDayOfMonth(target.createCalendar(locale))
 }
 
 /**
  * Return true if the dayOfWeek is the same
  */
-fun Long.isSameDayOfWeek(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameDayOfWeek(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameDayOfWeek(target.createCalendar(firstDayOfWeek, locale))
 }
 
 /**
  * Return true if the dayOfWeekInMonth is the same
  */
-fun Long.isSameDayOfWeekInMonth(target: Long, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).isSameDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale))
+fun Date.isSameDayOfWeekInMonth(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, locale))
 }
 
 /**
  * Returns true if the year, month, week, day and hour are the same
  */
-fun Long.isSameHour(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHour(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameHour(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameHour(target.createCalendar(locale))
 }
 
 /**
  * Return true if the 24H hour is the same
  */
-fun Long.isSameHourOf24H(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHourOf24H(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameHourOf24H(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameHourOf24H(target.createCalendar(locale))
 }
 
 /**
  * Return true if the 12H hour is the same
  */
-fun Long.isSameHourOf12H(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameHourOf12H(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameHourOf12H(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameHourOf12H(target.createCalendar(locale))
 }
 
 /**
  * Returns true if the year, month, week, day, hour and minute are the same
  */
-fun Long.isSameMinute(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMinute(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMinute(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMinute(target.createCalendar(locale))
 }
 
 /**
  * Return true if the minuteOfHour is the same
  */
-fun Long.isSameMinuteOfHour(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMinuteOfHour(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMinuteOfHour(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMinuteOfHour(target.createCalendar(locale))
 }
 
 /**
  * Returns true if the year, month, week, day, hour, minute and second are the same
  */
-fun Long.isSameSecond(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameSecond(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameSecond(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameSecond(target.createCalendar(locale))
 }
 
 /**
  * Return true if the secondOfMinute is the same
  */
-fun Long.isSameSecondOfMinute(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameSecondOfMinute(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameSecondOfMinute(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameSecondOfMinute(target.createCalendar(locale))
 }
 
 /**
  * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
  */
-fun Long.isSameMillisecond(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMillisecond(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMillisecond(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMillisecond(target.createCalendar(locale))
 }
 
 /**
  * Return true if the millisecondOfSecond is the same
  */
-fun Long.isSameMillisecondOfSecond(target: Long, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(null, null, timeZone, locale).isSameMillisecondOfSecond(target.createCalendar(null, null, timeZone, locale))
+fun Date.isSameMillisecondOfSecond(target: Date, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMillisecondOfSecond(target.createCalendar(locale))
+}
+
+
+/**
+ * Return true if the year is the same
+ */
+fun Long.isSameYear(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameYear(target.createCalendar(locale))
+}
+
+/**
+ * Returns true if the year and month are the same
+ */
+fun Long.isSameMonth(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMonth(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the months is the same
+ */
+fun Long.isSameMonthOfYear(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMonthOfYear(target.createCalendar(locale))
+}
+
+/**
+ * Returns true if the year, month, and week are the same
+ */
+fun Long.isSameWeek(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameWeek(target.createCalendar(firstDayOfWeek, locale))
+}
+
+/**
+ * Return true if the weekOfYear is the same
+ */
+fun Long.isSameWeekOfYear(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameWeekOfYear(target.createCalendar(firstDayOfWeek, locale))
+}
+
+/**
+ * Return true if the weekOfMonth is the same
+ */
+fun Long.isSameWeekOfMonth(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameWeekOfMonth(target.createCalendar(firstDayOfWeek, locale))
+}
+
+/**
+ * Returns true if the year, month, week and day are the same
+ */
+fun Long.isSameDay(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameDay(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the dayOfYear is the same
+ */
+fun Long.isSameDayOfYear(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameDayOfYear(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the dayOfMonth is the same
+ */
+fun Long.isSameDayOfMonth(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameDayOfMonth(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the dayOfWeek is the same
+ */
+fun Long.isSameDayOfWeek(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameDayOfWeek(target.createCalendar(firstDayOfWeek, locale))
+}
+
+/**
+ * Return true if the dayOfWeekInMonth is the same
+ */
+fun Long.isSameDayOfWeekInMonth(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).isSameDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, locale))
+}
+
+/**
+ * Returns true if the year, month, week, day and hour are the same
+ */
+fun Long.isSameHour(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameHour(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the 24H hour is the same
+ */
+fun Long.isSameHourOf24H(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameHourOf24H(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the 12H hour is the same
+ */
+fun Long.isSameHourOf12H(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameHourOf12H(target.createCalendar(locale))
+}
+
+/**
+ * Returns true if the year, month, week, day, hour and minute are the same
+ */
+fun Long.isSameMinute(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMinute(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the minuteOfHour is the same
+ */
+fun Long.isSameMinuteOfHour(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMinuteOfHour(target.createCalendar(locale))
+}
+
+/**
+ * Returns true if the year, month, week, day, hour, minute and second are the same
+ */
+fun Long.isSameSecond(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameSecond(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the secondOfMinute is the same
+ */
+fun Long.isSameSecondOfMinute(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameSecondOfMinute(target.createCalendar(locale))
+}
+
+/**
+ * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
+ */
+fun Long.isSameMillisecond(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMillisecond(target.createCalendar(locale))
+}
+
+/**
+ * Return true if the millisecondOfSecond is the same
+ */
+fun Long.isSameMillisecondOfSecond(target: Long, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).isSameMillisecondOfSecond(target.createCalendar(locale))
 }
 
 
@@ -1364,7 +1367,6 @@ fun Calendar.differFiled(target: Calendar, field: Int, amount: Int): Boolean {
     this.timeInMillis = cacheTimeInMillis
     return if (finalAmount > 0) target.timeInMillis <= newTimeInMillis else target.timeInMillis >= newTimeInMillis
 }
-
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] year
@@ -1435,196 +1437,196 @@ fun Calendar.differMillisecond(target: Calendar, amount: Int): Boolean = differF
 /**
  * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
  */
-fun Date.differCalendarField(target: Date, field: Int, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differFiled(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), field, amount)
+fun Date.differCalendarField(target: Date, field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differFiled(target.createCalendar(firstDayOfWeek, locale), field, amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] year
  */
-fun Date.differYear(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differYear(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differYear(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] month
  */
-fun Date.differMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differMonth(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differMonth(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
  */
-fun Date.differWeekOfYear(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differWeekOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differWeekOfYear(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differWeekOfYear(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
  */
-fun Date.differWeekOfMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differWeekOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differWeekOfMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differWeekOfMonth(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
  */
-fun Date.differDayOfYear(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differDayOfYear(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differDayOfYear(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
  */
-fun Date.differDayOfMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differDayOfMonth(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differDayOfMonth(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
  */
-fun Date.differDayOfWeek(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differDayOfWeek(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differDayOfWeek(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
  */
-fun Date.differDayOfWeekInMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differDayOfWeekInMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
  */
-fun Date.differHourOfDay(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differHourOfDay(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differHourOfDay(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differHourOfDay(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] hour
  */
-fun Date.differHour(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differHour(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differHour(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differHour(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] minute
  */
-fun Date.differMinute(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differMinute(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differMinute(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differMinute(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] second
  */
-fun Date.differSecond(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differSecond(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differSecond(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differSecond(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] millisecond
  */
-fun Date.differMillisecond(target: Date, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differMillisecond(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Date.differMillisecond(target: Date, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differMillisecond(target.createCalendar(locale), amount)
 }
 
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] year
  */
-fun Long.differCalendarField(target: Long, field: Int, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differFiled(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), field, amount)
+fun Long.differCalendarField(target: Long, field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differFiled(target.createCalendar(firstDayOfWeek, locale), field, amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] year
  */
-fun Long.differYear(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differYear(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differYear(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] month
  */
-fun Long.differMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differMonth(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differMonth(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
  */
-fun Long.differWeekOfYear(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differWeekOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differWeekOfYear(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differWeekOfYear(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
  */
-fun Long.differWeekOfMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differWeekOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differWeekOfMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differWeekOfMonth(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
  */
-fun Long.differDayOfYear(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfYear(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differDayOfYear(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differDayOfYear(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
  */
-fun Long.differDayOfMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differDayOfMonth(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differDayOfMonth(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
  */
-fun Long.differDayOfWeek(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfWeek(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differDayOfWeek(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differDayOfWeek(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
  */
-fun Long.differDayOfWeekInMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differDayOfWeekInMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
+    return this.createCalendar(firstDayOfWeek, locale).differDayOfWeekInMonth(target.createCalendar(firstDayOfWeek, locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
  */
-fun Long.differHourOfDay(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differHourOfDay(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differHourOfDay(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differHourOfDay(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] hour
  */
-fun Long.differHour(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differHour(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differHour(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differHour(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] minute
  */
-fun Long.differMinute(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differMinute(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differMinute(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differMinute(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] second
  */
-fun Long.differSecond(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differSecond(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differSecond(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differSecond(target.createCalendar(locale), amount)
 }
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] millisecond
  */
-fun Long.differMillisecond(target: Long, amount: Int, firstDayOfWeek: Int? = null, minimalDaysInFirstWeek: Int? = null, timeZone: TimeZone? = null, locale: Locale? = null): Boolean {
-    return this.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale).differMillisecond(target.createCalendar(firstDayOfWeek, minimalDaysInFirstWeek, timeZone, locale), amount)
+fun Long.differMillisecond(target: Long, amount: Int, locale: Locale? = null): Boolean {
+    return this.createCalendar(locale).differMillisecond(target.createCalendar(locale), amount)
 }
