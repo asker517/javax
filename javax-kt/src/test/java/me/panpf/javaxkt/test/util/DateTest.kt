@@ -54,11 +54,12 @@ class DateTest {
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarDayOfMonth(), 29)
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarDayOfWeekInMonth(), 5)
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarDayOfWeek(), 2)
-        Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarHourDay(), 15)
+        Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarHourOfDay(), 15)
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarHour(), 3)
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarMinute(), 59)
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarSecond(), 34)
         Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarMillisecond(), 897)
+        Assert.assertEquals("2016-02-29 15:59:34 897".toDateYMDHMSM().getCalendarField(Calendar.MILLISECOND), 897)
     }
 
     @Test
@@ -71,11 +72,12 @@ class DateTest {
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getDayOfMonth(), 29)
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getDayOfWeekInMonth(), 5)
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getDayOfWeek(), 2)
-        Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getHourDay(), 15)
+        Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getHourOfDay(), 15)
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getHour(), 3)
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getMinute(), 59)
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getSecond(), 34)
         Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getMillisecond(), 897)
+        Assert.assertEquals("2016-02-29 15:59:34 897".toMillisecondYMDHMSM().getCalendarField(Calendar.MILLISECOND), 897)
     }
 
     @Test
@@ -508,5 +510,14 @@ class DateTest {
 
         Assert.assertFalse("2018-05-28 08:58:58 888".toMillisecondYMDHMSM().differMillisecond("2018-05-28 08:58:58 896".toMillisecondYMDHMSM(), 7))
         Assert.assertFalse("2018-05-28 08:58:58 888".toMillisecondYMDHMSM().differMillisecond("2018-05-28 08:58:58 850".toMillisecondYMDHMSM(), 7))
+    }
+
+    @Test
+    fun testDifferField() {
+        Assert.assertTrue("2018-05-28 08:58:58 888".toDateYMDHMSM().differCalendarField("2018-05-28 08:58:58 895".toDateYMDHMSM(), Calendar.MILLISECOND, 7))
+        Assert.assertTrue("2018-05-28 08:58:58 888".toDateYMDHMSM().differCalendarField("2018-05-28 08:58:58 881".toDateYMDHMSM(), Calendar.MILLISECOND, 7))
+
+        Assert.assertFalse("2018-05-28 08:58:58 888".toMillisecondYMDHMSM().differCalendarField("2018-05-28 08:58:58 896".toMillisecondYMDHMSM(), Calendar.MILLISECOND, 7))
+        Assert.assertFalse("2018-05-28 08:58:58 888".toMillisecondYMDHMSM().differCalendarField("2018-05-28 08:58:58 850".toMillisecondYMDHMSM(), Calendar.MILLISECOND, 7))
     }
 }
