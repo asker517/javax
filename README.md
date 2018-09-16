@@ -114,7 +114,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * requireNonNull, require, requireFileExist, requireIsDir, requireIsFile, requireNoNulls
     * checkInRange, checkNotInRange, areEqual
 * Range: [Rangex.java] ([Test][RangeTest.java]) | [Range.kt] ([Test][RangeTest.kt])
-    * rangeTo, untilTo, downTo, downUntilTo,
+    * rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Zip: [Zipx.java] ([Test][ZipTest.java]) | [Zip.kt] ([Test][ZipTest.kt])
