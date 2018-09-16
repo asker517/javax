@@ -19,6 +19,7 @@ package me.panpf.javaxkt.test.util
 import me.panpf.javaxkt.util.*
 import org.junit.Assert
 import org.junit.Test
+import java.util.*
 
 class RangeTest {
 
@@ -69,10 +70,18 @@ class RangeTest {
         Assert.assertEquals("2018".yearYDownTo("2015").joinToString { it.formatY() }, "2018, 2017, 2016, 2015")
         Assert.assertEquals("2018".yearYDownUntilTo("2014").joinToString { it.formatY() }, "2018, 2017, 2016, 2015")
 
+        Assert.assertEquals("2018".toDateY().yearRangeTo("2015".toDateY()).joinToString { it.formatY() }, "")
+        Assert.assertEquals("2018".toDateY().yearUntilTo("2015".toDateY()).joinToString { it.formatY() }, "")
+        Assert.assertEquals("2018".toDateY().yearDownTo("2021".toDateY()).joinToString { it.formatY() }, "")
+        Assert.assertEquals("2018".toDateY().yearDownUntilTo("2021".toDateY()).joinToString { it.formatY() }, "")
+
         Assert.assertEquals("2018".toMillisecondY().yearRangeTo("2015".toMillisecondY()).joinToString { it.formatY() }, "")
         Assert.assertEquals("2018".toMillisecondY().yearUntilTo("2015".toMillisecondY()).joinToString { it.formatY() }, "")
         Assert.assertEquals("2018".toMillisecondY().yearDownTo("2021".toMillisecondY()).joinToString { it.formatY() }, "")
         Assert.assertEquals("2018".toMillisecondY().yearDownUntilTo("2021".toMillisecondY()).joinToString { it.formatY() }, "")
+
+        Assert.assertEquals("2018".yearYRangeTo("2031", 5).joinToString { it.formatY() }, "2018, 2023, 2028")
+        Assert.assertEquals("2031".yearYRangeTo("2018", -5).joinToString { it.formatY() }, "2031, 2026, 2021")
     }
 
     @Test
@@ -81,6 +90,11 @@ class RangeTest {
         Assert.assertEquals("2018-08".monthYMUntilTo("2018-12").joinToString { it.formatYM() }, "2018-08, 2018-09, 2018-10, 2018-11")
         Assert.assertEquals("2018-08".monthYMDownTo("2018-05").joinToString { it.formatYM() }, "2018-08, 2018-07, 2018-06, 2018-05")
         Assert.assertEquals("2018-08".monthYMDownUntilTo("2018-04").joinToString { it.formatYM() }, "2018-08, 2018-07, 2018-06, 2018-05")
+
+        Assert.assertEquals("2018-08".toDateYM().monthRangeTo("2018-05".toDateYM()).joinToString { it.formatYM() }, "")
+        Assert.assertEquals("2018-08".toDateYM().monthUntilTo("2018-05".toDateYM()).joinToString { it.formatYM() }, "")
+        Assert.assertEquals("2018-08".toDateYM().monthDownTo("2018-11".toDateYM()).joinToString { it.formatYM() }, "")
+        Assert.assertEquals("2018-08".toDateYM().monthDownUntilTo("2018-11".toDateYM()).joinToString { it.formatYM() }, "")
 
         Assert.assertEquals("2018-08".toMillisecondYM().monthRangeTo("2018-05".toMillisecondYM()).joinToString { it.formatYM() }, "")
         Assert.assertEquals("2018-08".toMillisecondYM().monthUntilTo("2018-05".toMillisecondYM()).joinToString { it.formatYM() }, "")
@@ -95,6 +109,11 @@ class RangeTest {
         Assert.assertEquals("2018-08-06".dayYMDDownTo("2018-08-03").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-05, 2018-08-04, 2018-08-03")
         Assert.assertEquals("2018-08-06".dayYMDDownUntilTo("2018-08-02").joinToString { it.formatYMD() }, "2018-08-06, 2018-08-05, 2018-08-04, 2018-08-03")
 
+        Assert.assertEquals("2018-08-06".toDateYMD().dayRangeTo("2018-08-03".toDateYMD()).joinToString { it.formatYMD() }, "")
+        Assert.assertEquals("2018-08-06".toDateYMD().dayUntilTo("2018-08-02".toDateYMD()).joinToString { it.formatYMD() }, "")
+        Assert.assertEquals("2018-08-06".toDateYMD().dayDownTo("2018-08-09".toDateYMD()).joinToString { it.formatYMD() }, "")
+        Assert.assertEquals("2018-08-06".toDateYMD().dayDownUntilTo("2018-08-010".toDateYMD()).joinToString { it.formatYMD() }, "")
+
         Assert.assertEquals("2018-08-06".toMillisecondYMD().dayRangeTo("2018-08-03".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
         Assert.assertEquals("2018-08-06".toMillisecondYMD().dayUntilTo("2018-08-02".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
         Assert.assertEquals("2018-08-06".toMillisecondYMD().dayDownTo("2018-08-09".toMillisecondYMD()).joinToString { it.formatYMD() }, "")
@@ -107,6 +126,11 @@ class RangeTest {
         Assert.assertEquals("2018-08-06 18".hourYMDHUntilTo("2018-08-06 22").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 19, 2018-08-06 20, 2018-08-06 21")
         Assert.assertEquals("2018-08-06 18".hourYMDHDownTo("2018-08-06 15").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 17, 2018-08-06 16, 2018-08-06 15")
         Assert.assertEquals("2018-08-06 18".hourYMDHDownUntilTo("2018-08-06 14").joinToString { it.formatYMDH() }, "2018-08-06 18, 2018-08-06 17, 2018-08-06 16, 2018-08-06 15")
+
+        Assert.assertEquals("2018-08-06 18".toDateYMDH().hourRangeTo("2018-08-06 15".toDateYMDH()).joinToString { it.formatYMDH() }, "")
+        Assert.assertEquals("2018-08-06 18".toDateYMDH().hourUntilTo("2018-08-06 14".toDateYMDH()).joinToString { it.formatYMDH() }, "")
+        Assert.assertEquals("2018-08-06 18".toDateYMDH().hourDownTo("2018-08-06 21".toDateYMDH()).joinToString { it.formatYMDH() }, "")
+        Assert.assertEquals("2018-08-06 18".toDateYMDH().hourDownUntilTo("2018-08-06 22".toDateYMDH()).joinToString { it.formatYMDH() }, "")
 
         Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourRangeTo("2018-08-06 15".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
         Assert.assertEquals("2018-08-06 18".toMillisecondYMDH().hourUntilTo("2018-08-06 14".toMillisecondYMDH()).joinToString { it.formatYMDH() }, "")
@@ -121,6 +145,11 @@ class RangeTest {
         Assert.assertEquals("2018-08-06 18:22".minuteYMDHMDownTo("2018-08-06 18:19").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:21, 2018-08-06 18:20, 2018-08-06 18:19")
         Assert.assertEquals("2018-08-06 18:22".minuteYMDHMDownUntilTo("2018-08-06 18:18").joinToString { it.formatYMDHM() }, "2018-08-06 18:22, 2018-08-06 18:21, 2018-08-06 18:20, 2018-08-06 18:19")
 
+        Assert.assertEquals("2018-08-06 18:22".toDateYMDHM().minuteRangeTo("2018-08-06 18:19".toDateYMDHM()).joinToString { it.formatYMDHM() }, "")
+        Assert.assertEquals("2018-08-06 18:22".toDateYMDHM().minuteUntilTo("2018-08-06 18:18".toDateYMDHM()).joinToString { it.formatYMDHM() }, "")
+        Assert.assertEquals("2018-08-06 18:22".toDateYMDHM().minuteDownTo("2018-08-06 18:25".toDateYMDHM()).joinToString { it.formatYMDHM() }, "")
+        Assert.assertEquals("2018-08-06 18:22".toDateYMDHM().minuteDownUntilTo("2018-08-06 18:25".toDateYMDHM()).joinToString { it.formatYMDHM() }, "")
+
         Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteRangeTo("2018-08-06 18:19".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
         Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteUntilTo("2018-08-06 18:18".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
         Assert.assertEquals("2018-08-06 18:22".toMillisecondYMDHM().minuteDownTo("2018-08-06 18:25".toMillisecondYMDHM()).joinToString { it.formatYMDHM() }, "")
@@ -134,6 +163,11 @@ class RangeTest {
         Assert.assertEquals("2018-08-06 18:22:15".secondYMDHMSDownTo("2018-08-06 18:22:12").joinToString { it.formatYMDHMS() }, "2018-08-06 18:22:15, 2018-08-06 18:22:14, 2018-08-06 18:22:13, 2018-08-06 18:22:12")
         Assert.assertEquals("2018-08-06 18:22:15".secondYMDHMSDownUntilTo("2018-08-06 18:22:11").joinToString { it.formatYMDHMS() }, "2018-08-06 18:22:15, 2018-08-06 18:22:14, 2018-08-06 18:22:13, 2018-08-06 18:22:12")
 
+        Assert.assertEquals("2018-08-06 18:22:15".toDateYMDHMS().secondRangeTo("2018-08-06 18:22:12".toDateYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15".toDateYMDHMS().secondUntilTo("2018-08-06 18:22:11".toDateYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15".toDateYMDHMS().secondDownTo("2018-08-06 18:22:18".toDateYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15".toDateYMDHMS().secondDownUntilTo("2018-08-06 18:22:19".toDateYMDHMS()).joinToString { it.formatYMDHMS() }, "")
+
         Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondRangeTo("2018-08-06 18:22:12".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
         Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondUntilTo("2018-08-06 18:22:11".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
         Assert.assertEquals("2018-08-06 18:22:15".toMillisecondYMDHMS().secondDownTo("2018-08-06 18:22:18".toMillisecondYMDHMS()).joinToString { it.formatYMDHMS() }, "")
@@ -146,6 +180,11 @@ class RangeTest {
         Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMUntilTo("2018-08-06 18:22:15 670").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 667, 2018-08-06 18:22:15 668, 2018-08-06 18:22:15 669")
         Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMDownTo("2018-08-06 18:22:15 663").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 665, 2018-08-06 18:22:15 664, 2018-08-06 18:22:15 663")
         Assert.assertEquals("2018-08-06 18:22:15 666".millisecondYMDHMSMDownUntilTo("2018-08-06 18:22:15 662").joinToString { it.formatYMDHMSM() }, "2018-08-06 18:22:15 666, 2018-08-06 18:22:15 665, 2018-08-06 18:22:15 664, 2018-08-06 18:22:15 663")
+
+        Assert.assertEquals("2018-08-06 18:22:15 666".toDateYMDHMSM().millisecondRangeTo("2018-08-06 18:22:15 663".toDateYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15 666".toDateYMDHMSM().millisecondUntilTo("2018-08-06 18:22:15 662".toDateYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15 666".toDateYMDHMSM().millisecondDownTo("2018-08-06 18:22:15 669".toDateYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
+        Assert.assertEquals("2018-08-06 18:22:15 666".toDateYMDHMSM().millisecondDownUntilTo("2018-08-06 18:22:15 670".toDateYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
 
         Assert.assertEquals("2018-08-06 18:22:15 666".toMillisecondYMDHMSM().millisecondRangeTo("2018-08-06 18:22:15 663".toMillisecondYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
         Assert.assertEquals("2018-08-06 18:22:15 666".toMillisecondYMDHMSM().millisecondUntilTo("2018-08-06 18:22:15 662".toMillisecondYMDHMSM()).joinToString { it.formatYMDHMSM() }, "")
