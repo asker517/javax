@@ -19,181 +19,195 @@ package me.panpf.javaxkt.util
 import java.text.ParseException
 import java.util.*
 
-// todo 支持 step
-
-/**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
- */
-infix fun Byte.downUntilTo(to: Byte): IntProgression {
-    return IntProgression.fromClosedRange(this.toInt(), to.toInt() + 1, -1)
-}
-
-/**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
- */
-infix fun Byte.downUntilTo(to: Short): IntProgression {
-    return IntProgression.fromClosedRange(this.toInt(), to.toInt() + 1, -1)
-}
-
-/**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
- */
-infix fun Byte.downUntilTo(to: Int): IntProgression {
-    return IntProgression.fromClosedRange(this.toInt(), to + 1, -1)
-}
-
-/**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
- */
-infix fun Byte.downUntilTo(to: Long): LongProgression {
-    return LongProgression.fromClosedRange(this.toLong(), to + 1, -1L)
-}
+/* ******************************************* Byte Range *******************************************/
 
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a positive-order byte ranges
  */
-infix fun Short.downUntilTo(to: Byte): IntProgression {
-    return IntProgression.fromClosedRange(this.toInt(), to.toInt() + 1, -1)
-}
+fun Byte.rangeTo(endInclusive: Byte, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), endInclusive.toInt(), step)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a positive-order byte ranges that does not contain [end]
  */
-infix fun Short.downUntilTo(to: Short): IntProgression {
-    return IntProgression.fromClosedRange(this.toInt(), to.toInt() + 1, -1)
-}
+fun Byte.until(end: Byte, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() - 1, step)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed byte range
  */
-infix fun Short.downUntilTo(to: Int): IntProgression {
-    return IntProgression.fromClosedRange(this.toInt(), to + 1, -1)
-}
+fun Byte.downTo(endInclusive: Byte, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), endInclusive.toInt(), step)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed byte range that does not contain [end]
  */
-infix fun Short.downUntilTo(to: Long): LongProgression {
-    return LongProgression.fromClosedRange(this.toLong(), to + 1, -1L)
-}
-
+fun Byte.downUntilTo(end: Byte, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() + 1, step)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed byte range that does not contain [end]
  */
-infix fun Int.downUntilTo(to: Byte): IntProgression {
-    return IntProgression.fromClosedRange(this, to.toInt() + 1, -1)
-}
+infix fun Byte.downUntilTo(end: Byte): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() + 1, -1)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed byte range that does not contain [end]
  */
-infix fun Int.downUntilTo(to: Short): IntProgression {
-    return IntProgression.fromClosedRange(this, to.toInt() + 1, -1)
-}
+infix fun Byte.downUntilTo(end: Short): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() + 1, -1)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed byte range that does not contain [end]
  */
-infix fun Int.downUntilTo(to: Int): IntProgression {
-    return IntProgression.fromClosedRange(this, to + 1, -1)
-}
+infix fun Byte.downUntilTo(end: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), end + 1, -1)
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed byte range that does not contain [end]
  */
-infix fun Int.downUntilTo(to: Long): LongProgression {
-    return LongProgression.fromClosedRange(this.toLong(), to + 1, -1L)
-}
+infix fun Byte.downUntilTo(end: Long): LongProgression = LongProgression.fromClosedRange(this.toLong(), end + 1, -1L)
+
+
+/* ******************************************* Short Range *******************************************/
 
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a positive-order short ranges
  */
-infix fun Long.downUntilTo(to: Byte): LongProgression {
-    return LongProgression.fromClosedRange(this, to.toLong() + 1, -1L)
+fun Short.rangeTo(endInclusive: Short, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), endInclusive.toInt(), step)
+
+/**
+ * Create a positive-order short ranges that does not contain [end]
+ */
+fun Short.until(end: Short, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() - 1, step)
+
+/**
+ * Create a reversed short range
+ */
+fun Short.downTo(endInclusive: Short, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), endInclusive.toInt(), step)
+
+/**
+ * Create a reversed short range that does not contain [end]
+ */
+fun Short.downUntilTo(end: Short, step: Int): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() + 1, step)
+
+/**
+ * Create a reversed short range that does not contain [end]
+ */
+infix fun Short.downUntilTo(end: Byte): IntProgression = IntProgression.fromClosedRange(this.toInt(), end.toInt() + 1, -1)
+
+/**
+ * Create a reversed short range that does not contain [end]
+ */
+infix fun Short.downUntilTo(end: Short): IntProgression {
+    return IntProgression.fromClosedRange(this.toInt(), end.toInt() + 1, -1)
 }
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed short range that does not contain [end]
  */
-infix fun Long.downUntilTo(to: Short): LongProgression {
-    return LongProgression.fromClosedRange(this, to.toLong() + 1, -1L)
+infix fun Short.downUntilTo(end: Int): IntProgression {
+    return IntProgression.fromClosedRange(this.toInt(), end + 1, -1)
 }
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a reversed short range that does not contain [end]
  */
-infix fun Long.downUntilTo(to: Int): LongProgression {
-    return LongProgression.fromClosedRange(this, to.toLong() + 1, -1L)
+infix fun Short.downUntilTo(end: Long): LongProgression {
+    return LongProgression.fromClosedRange(this.toLong(), end + 1, -1L)
 }
 
-/**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
- */
-infix fun Long.downUntilTo(to: Long): LongProgression {
-    return LongProgression.fromClosedRange(this, to + 1, -1L)
-}
+
+/* ******************************************* Int Range *******************************************/
 
 
 /**
- * Returns a progression from this value down to the specified [to] value with the step -1.
- *
- * The [to] value should be less than or equal to `this` value.
- * If the [to] value is greater than `this` value the returned progression is empty.
+ * Create a positive-order short ranges
  */
-infix fun Char.downUntilTo(to: Char): CharProgression {
-    return CharProgression.fromClosedRange(this, to + 1, -1)
-}
+fun Int.rangeTo(endInclusive: Int, step: Int): IntProgression = IntProgression.fromClosedRange(this, endInclusive, step)
+
+/**
+ * Create a positive-order short ranges that does not contain [end]
+ */
+fun Int.until(end: Int, step: Int): IntProgression = IntProgression.fromClosedRange(this, end - 1, step)
+
+/**
+ * Create a reversed short range
+ */
+fun Int.downTo(endInclusive: Int, step: Int): IntProgression = IntProgression.fromClosedRange(this, endInclusive, step)
+
+/**
+ * Create a reversed int range that does not contain [end]
+ */
+fun Int.downUntilTo(end: Int, step: Int): IntProgression = IntProgression.fromClosedRange(this, end + 1, step)
+
+/**
+ * Create a reversed int range that does not contain [end]
+ */
+infix fun Int.downUntilTo(end: Byte): IntProgression = IntProgression.fromClosedRange(this, end.toInt() + 1, -1)
+
+/**
+ * Create a reversed int range that does not contain [end]
+ */
+infix fun Int.downUntilTo(end: Short): IntProgression = IntProgression.fromClosedRange(this, end.toInt() + 1, -1)
+
+/**
+ * Create a reversed int range that does not contain [end]
+ */
+infix fun Int.downUntilTo(end: Int): IntProgression = IntProgression.fromClosedRange(this, end + 1, -1)
+
+/**
+ * Create a reversed int range that does not contain [end]
+ */
+infix fun Int.downUntilTo(end: Long): LongProgression = LongProgression.fromClosedRange(this.toLong(), end + 1, -1L)
+
+
+/* ******************************************* Long Range *******************************************/
+
+
+/**
+ * Create a positive-order short ranges
+ */
+fun Long.rangeTo(endInclusive: Long, step: Long): LongProgression = LongProgression.fromClosedRange(this, endInclusive, step)
+
+/**
+ * Create a positive-order short ranges that does not contain [end]
+ */
+fun Long.until(end: Long, step: Long): LongProgression = LongProgression.fromClosedRange(this, end - 1, step)
+
+/**
+ * Create a reversed short range
+ */
+fun Long.downTo(endInclusive: Long, step: Long): LongProgression = LongProgression.fromClosedRange(this, endInclusive, step)
+
+/**
+ * Create a reversed int range that does not contain [end]
+ */
+fun Long.downUntilTo(end: Long, step: Long): LongProgression = LongProgression.fromClosedRange(this, end + 1, step)
+
+/**
+ * Create a reversed long range that does not contain [end]
+ */
+infix fun Long.downUntilTo(end: Byte): LongProgression = LongProgression.fromClosedRange(this, end.toLong() + 1, -1L)
+
+/**
+ * Create a reversed long range that does not contain [end]
+ */
+infix fun Long.downUntilTo(end: Short): LongProgression = LongProgression.fromClosedRange(this, end.toLong() + 1, -1L)
+
+/**
+ * Create a reversed long range that does not contain [end]
+ */
+infix fun Long.downUntilTo(end: Int): LongProgression = LongProgression.fromClosedRange(this, end.toLong() + 1, -1L)
+
+/**
+ * Create a reversed long range that does not contain [end]
+ */
+infix fun Long.downUntilTo(end: Long): LongProgression = LongProgression.fromClosedRange(this, end + 1, -1L)
+
+
+/* ******************************************* Char Range *******************************************/
+
+
+/**
+ * Create a reversed char range that does not contain [end]
+ */
+infix fun Char.downUntilTo(end: Char): CharProgression = CharProgression.fromClosedRange(this, end + 1, -1)
 
 
 /* ******************************************* Year range ******************************************* */

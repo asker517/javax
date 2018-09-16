@@ -19,7 +19,6 @@ package me.panpf.javaxkt.test.util
 import me.panpf.javaxkt.util.*
 import org.junit.Assert
 import org.junit.Test
-import java.util.*
 
 class RangeTest {
 
@@ -29,6 +28,12 @@ class RangeTest {
         Assert.assertEquals(1.toByte().downUntilTo(1.toShort()).count().toLong(), 0)
         Assert.assertEquals(0.toByte().downUntilTo(1).count().toLong(), 0)
         Assert.assertEquals(1.toByte().downUntilTo(0.toLong()).count().toLong(), 1)
+
+        Assert.assertEquals(1.toByte().rangeTo(10.toByte(), 4).count().toLong(), 3)
+        Assert.assertEquals(10.toByte().downTo(1.toByte(), (-4)).count().toLong(), 3)
+
+        Assert.assertEquals(1.toByte().until(11.toByte(), 4).count().toLong(), 3)
+        Assert.assertEquals(10.toByte().downUntilTo(0.toByte(), (-4)).count().toLong(), 3)
     }
 
     @Test
@@ -37,6 +42,12 @@ class RangeTest {
         Assert.assertEquals(1.toShort().downUntilTo(1.toShort()).count().toLong(), 0)
         Assert.assertEquals(0.toShort().downUntilTo(1).count().toLong(), 0)
         Assert.assertEquals(1.toShort().downUntilTo(0.toLong()).count().toLong(), 1)
+
+        Assert.assertEquals(1.toShort().rangeTo(10.toShort(), 4).count().toLong(), 3)
+        Assert.assertEquals(10.toShort().downTo(1.toShort(), (-4)).count().toLong(), 3)
+
+        Assert.assertEquals(1.toShort().until(11.toShort(), 4).count().toLong(), 3)
+        Assert.assertEquals(10.toShort().downUntilTo(0.toShort(), (-4)).count().toLong(), 3)
     }
 
     @Test
@@ -45,6 +56,12 @@ class RangeTest {
         Assert.assertEquals(1.downUntilTo(1.toShort()).count().toLong(), 0)
         Assert.assertEquals(0.downUntilTo(1).count().toLong(), 0)
         Assert.assertEquals(1.downUntilTo(0.toLong()).count().toLong(), 1)
+
+        Assert.assertEquals(1.rangeTo(10, 4).count().toLong(), 3)
+        Assert.assertEquals(10.downTo(1, (-4)).count().toLong(), 3)
+
+        Assert.assertEquals(1.until(11, 4).count().toLong(), 3)
+        Assert.assertEquals(10.downUntilTo(0, (-4)).count().toLong(), 3)
     }
 
     @Test
@@ -53,6 +70,12 @@ class RangeTest {
         Assert.assertEquals(1L.downUntilTo(1.toShort()).count().toLong(), 0)
         Assert.assertEquals(0L.downUntilTo(1).count().toLong(), 0)
         Assert.assertEquals(1L.downUntilTo(0.toLong()).count().toLong(), 1)
+
+        Assert.assertEquals(1L.rangeTo(10L, 4).count().toLong(), 3)
+        Assert.assertEquals(10L.downTo(1L, (-4)).count().toLong(), 3)
+
+        Assert.assertEquals(1L.until(11L, 4).count().toLong(), 3)
+        Assert.assertEquals(10L.downUntilTo(0L, (-4)).count().toLong(), 3)
     }
 
     @Test
