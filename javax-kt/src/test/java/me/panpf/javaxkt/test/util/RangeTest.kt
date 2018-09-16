@@ -23,35 +23,43 @@ import org.junit.Test
 class RangeTest {
 
     @Test
-    fun testRange() {
-        Assert.assertEquals((1..10).count().toLong(), 10)
-        Assert.assertEquals((1..1).count().toLong(), 1)
-        Assert.assertEquals((0..1).count().toLong(), 2)
-        Assert.assertEquals((1..0).count().toLong(), 0)
+    fun testByteRange() {
+        Assert.assertEquals(10.toByte().downUntilTo(1.toByte()).count().toLong(), 9)
+        Assert.assertEquals(1.toByte().downUntilTo(1.toShort()).count().toLong(), 0)
+        Assert.assertEquals(0.toByte().downUntilTo(1).count().toLong(), 0)
+        Assert.assertEquals(1.toByte().downUntilTo(0.toLong()).count().toLong(), 1)
     }
 
     @Test
-    fun testUnit() {
-        Assert.assertEquals((1 until 10).count().toLong(), 9)
-        Assert.assertEquals((1 until 1).count().toLong(), 0)
-        Assert.assertEquals((1 until 0).count().toLong(), 0)
-        Assert.assertEquals((0 until 1).count().toLong(), 1)
+    fun testShortRange() {
+        Assert.assertEquals(10.toShort().downUntilTo(1.toByte()).count().toLong(), 9)
+        Assert.assertEquals(1.toShort().downUntilTo(1.toShort()).count().toLong(), 0)
+        Assert.assertEquals(0.toShort().downUntilTo(1).count().toLong(), 0)
+        Assert.assertEquals(1.toShort().downUntilTo(0.toLong()).count().toLong(), 1)
     }
 
     @Test
-    fun testDownTo() {
-        Assert.assertEquals((10 downTo 1).count().toLong(), 10)
-        Assert.assertEquals((1 downTo 1).count().toLong(), 1)
-        Assert.assertEquals((0 downTo 1).count().toLong(), 0)
-        Assert.assertEquals((1 downTo 0).count().toLong(), 2)
+    fun testIntRange() {
+        Assert.assertEquals(10.downUntilTo(1.toByte()).count().toLong(), 9)
+        Assert.assertEquals(1.downUntilTo(1.toShort()).count().toLong(), 0)
+        Assert.assertEquals(0.downUntilTo(1).count().toLong(), 0)
+        Assert.assertEquals(1.downUntilTo(0.toLong()).count().toLong(), 1)
     }
 
     @Test
-    fun testDownUntilTo() {
-        Assert.assertEquals((10 downUntilTo 1).count().toLong(), 9)
-        Assert.assertEquals((1 downUntilTo 1).count().toLong(), 0)
-        Assert.assertEquals((0 downUntilTo 1).count().toLong(), 0)
-        Assert.assertEquals((1 downUntilTo 0).count().toLong(), 1)
+    fun testLongRange() {
+        Assert.assertEquals(10L.downUntilTo(1.toByte()).count().toLong(), 9)
+        Assert.assertEquals(1L.downUntilTo(1.toShort()).count().toLong(), 0)
+        Assert.assertEquals(0L.downUntilTo(1).count().toLong(), 0)
+        Assert.assertEquals(1L.downUntilTo(0.toLong()).count().toLong(), 1)
+    }
+
+    @Test
+    fun testCharRange() {
+        Assert.assertEquals(10.toChar().downUntilTo(1.toChar()).count().toLong(), 9)
+        Assert.assertEquals(1.toChar().downUntilTo(1.toChar()).count().toLong(), 0)
+        Assert.assertEquals(0.toChar().downUntilTo(1.toChar()).count().toLong(), 0)
+        Assert.assertEquals(1.toChar().downUntilTo(0.toChar()).count().toLong(), 1)
     }
 
     @Test
