@@ -73,7 +73,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * getMethodWithParent, getMethodsWithParent, callMethod,
     * getConstructorWithParent, getConstructorsWithParent, getClassHierarchy, isTypeArray, isTypeCollection
 * Number: [Numberx.java] ([Test][NumberTest.java]) | [Number.kt] ([Test][NumberTest.kt])
-    * scale, pad, coerce, rangeTo, untilTo, downTo, downUntilTo, to\*OrDefault, to\*OrZero
+    * scale, pad, coerce, to\*OrDefault, to\*OrZero
 * String: [Stringx.java] ([Test][StringTest.java]) | [String.kt] ([Test][StringTest.kt])
     * isBlank, isEmpty, isDigit, isChinese, isLetterOrDigit, startsWith, endsWith, equals, orEmpty, orDefault,
     * emptyToNull, blankToNull, remove, capitalize, decapitalize, limit, pad, regionMatches, find, indexOf,
@@ -114,6 +114,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * requireNonNull, require, requireFileExist, requireIsDir, requireIsFile, requireNoNulls
     * checkInRange, checkNotInRange, areEqual
 * Range: [Rangex.java] ([Test][RangeTest.java]) | [Range.kt] ([Test][RangeTest.kt])
+    * rangeTo, untilTo, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Zip: [Zipx.java] ([Test][ZipTest.java]) | [Zip.kt] ([Test][ZipTest.kt])

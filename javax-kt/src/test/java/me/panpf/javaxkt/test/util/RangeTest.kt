@@ -22,6 +22,37 @@ import org.junit.Test
 
 class RangeTest {
 
+    @Test
+    fun testRange() {
+        Assert.assertEquals((1..10).count().toLong(), 10)
+        Assert.assertEquals((1..1).count().toLong(), 1)
+        Assert.assertEquals((0..1).count().toLong(), 2)
+        Assert.assertEquals((1..0).count().toLong(), 0)
+    }
+
+    @Test
+    fun testUnit() {
+        Assert.assertEquals((1 until 10).count().toLong(), 9)
+        Assert.assertEquals((1 until 1).count().toLong(), 0)
+        Assert.assertEquals((1 until 0).count().toLong(), 0)
+        Assert.assertEquals((0 until 1).count().toLong(), 1)
+    }
+
+    @Test
+    fun testDownTo() {
+        Assert.assertEquals((10 downTo 1).count().toLong(), 10)
+        Assert.assertEquals((1 downTo 1).count().toLong(), 1)
+        Assert.assertEquals((0 downTo 1).count().toLong(), 0)
+        Assert.assertEquals((1 downTo 0).count().toLong(), 2)
+    }
+
+    @Test
+    fun testDownUntilTo() {
+        Assert.assertEquals((10 downUntilTo 1).count().toLong(), 9)
+        Assert.assertEquals((1 downUntilTo 1).count().toLong(), 0)
+        Assert.assertEquals((0 downUntilTo 1).count().toLong(), 0)
+        Assert.assertEquals((1 downUntilTo 0).count().toLong(), 1)
+    }
 
     @Test
     fun testYearIterator() {

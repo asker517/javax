@@ -14,40 +14,41 @@
  * limitations under the License.
  */
 
-package me.panpf.javax.lang;
+package me.panpf.javax.util;
 
-import me.panpf.javax.util.IntProgression;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class IntRange extends IntProgression {
-    private int first;
-    private int endInclusive;
-    private int step;
-
-    public IntRange(int first, int endInclusive, int step) {
-        super(first, endInclusive, step);
-        this.first = first;
-        this.endInclusive = endInclusive;
-        this.step = step;
-    }
+@SuppressWarnings("WeakerAccess")
+public class ByteArrayIterator implements Iterator<Byte> {
+    private int index = 0;
 
     @NotNull
+    private byte[] elements;
+
+    public ByteArrayIterator(@NotNull byte[] elements) {
+        this.elements = elements;
+    }
+
     @Override
-    public Iterator<Integer> iterator() {
-        return new IntProgressionIterator(first, endInclusive, step);
+    public Byte next() {
+        try {
+            return elements[index++];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            index -= 1;
+            throw new NoSuchElementException(e.getMessage());
+        }
     }
 
-    public boolean isEmpty(){
-        return first > getLast();
+    @Override
+    public boolean hasNext() {
+        return index < elements.length;
     }
 
-    public int getEndInclusive() {
-        return getLast();
-    }
-
-    public int getStart(){
-        return getFirst();
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("remove");
     }
 }

@@ -1,9 +1,7 @@
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.IntRange;
 import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 

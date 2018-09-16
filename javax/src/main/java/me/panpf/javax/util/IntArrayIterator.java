@@ -14,49 +14,42 @@
  * limitations under the License.
  */
 
-package me.panpf.javax.lang;
+package me.panpf.javax.util;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * An iterator over a progression of values of type `Int`.
- */
-public class IntProgressionIterator implements Iterator<Integer> {
-    private int step;
+@SuppressWarnings("WeakerAccess")
+public class IntArrayIterator implements Iterator<Integer> {
 
-    private int finalElement;
-    private int next;
-    private boolean hasNext;
+    private int index = 0;
 
-    public IntProgressionIterator(int start, int endInclusive, int step) {
-        this.step = step;
-        finalElement = endInclusive;
-        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
-        next = hasNext ? start : finalElement;
+    @NotNull
+    private int[] elements;
+
+    public IntArrayIterator(@NotNull int[] elements) {
+        this.elements = elements;
     }
 
     @Override
     public boolean hasNext() {
-        return hasNext;
+        return index < elements.length;
     }
 
     @Override
     public Integer next() {
-        int value = next;
-        if (value == finalElement) {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            hasNext = false;
-        } else {
-            next += step;
+        try {
+            return elements[index++];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            index -= 1;
+            throw new NoSuchElementException(e.getMessage());
         }
-        return value;
     }
 
     @Override
     public void remove() {
-
+        throw new UnsupportedOperationException("remove");
     }
 }

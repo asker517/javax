@@ -18,37 +18,17 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.Date;
 
 @SuppressWarnings("WeakerAccess")
-public class ArrayIterator<T> implements Iterator<T> {
-    private int index = 0;
+public final class DayRange extends DateRange {
+
+    public DayRange(@NotNull Date start, @NotNull Date endInclusive, int step) {
+        super(start, endInclusive, step);
+    }
 
     @NotNull
-    private T[] elements;
-
-    public ArrayIterator(@NotNull T[] elements) {
-        this.elements = elements;
-    }
-
-    @Override
-    public boolean hasNext() {
-        return index < elements.length;
-    }
-
-    @Override
-    public T next() {
-        try {
-            return elements[index++];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            index -= 1;
-            throw new NoSuchElementException(e.getMessage());
-        }
-    }
-
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException("remove");
+    public Date nextDate(@NotNull Date date) {
+        return Datex.addDayOfMonth(date, this.getStep());
     }
 }

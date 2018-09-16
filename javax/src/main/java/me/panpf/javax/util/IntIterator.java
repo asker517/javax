@@ -1,16 +1,63 @@
+/*
+ * Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package me.panpf.javax.util;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public abstract class IntIterator implements Iterator<Integer> {
+/**
+ * An iterator over a progression of values of type `Int`.
+ */
+@SuppressWarnings("WeakerAccess")
+public class IntIterator implements Iterator<Integer> {
+    private int step;
+
+    private int finalElement;
+    private int next;
+    private boolean hasNext;
+
+    public IntIterator(int start, int endInclusive, int step) {
+        this.step = step;
+        finalElement = endInclusive;
+        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        next = hasNext ? start : finalElement;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return hasNext;
+    }
 
     @Override
     public Integer next() {
-        return nextInt();
+        int value = next;
+        if (value == finalElement) {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            hasNext = false;
+        } else {
+            next += step;
+        }
+        return value;
     }
 
-    /**
-     * Returns the next value in the sequence without boxing.
-     */
-    abstract int nextInt();
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("remove");
+    }
 }

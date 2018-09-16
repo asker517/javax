@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
+@SuppressWarnings("WeakerAccess")
 public class IndexingIterator<T> implements Iterator<IndexedValue<T>> {
 
     @NotNull
@@ -26,6 +27,6 @@ public class IndexingIterator<T> implements Iterator<IndexedValue<T>> {
 
     @Override
     public void remove() {
-
+        throw new UnsupportedOperationException("remove");
     }
 }

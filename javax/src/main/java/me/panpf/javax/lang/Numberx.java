@@ -207,38 +207,6 @@ public class Numberx {
         return self > maximumValue ? maximumValue : self;
     }
 
-    public static IntRange rangeTo(int start, int end, int step) {
-        return new IntRange(start, end, step);
-    }
-
-    public static IntRange rangeTo(int start, int end) {
-        return rangeTo(start, end, 1);
-    }
-
-    public static IntRange untilTo(int start, int end, int step) {
-        return new IntRange(start, end - 1, step);
-    }
-
-    public static IntRange untilTo(int start, int end) {
-        return untilTo(start, end, 1);
-    }
-
-    public static IntRange downTo(int start, int end, int step) {
-        return new IntRange(start, end, step);
-    }
-
-    public static IntRange downTo(int start, int end) {
-        return downTo(start, end, -1);
-    }
-
-    public static IntRange downUntilTo(int start, int end, int step) {
-        return new IntRange(start, end + 1, step);
-    }
-
-    public static IntRange downUntilTo(int start, int end) {
-        return downUntilTo(start, end, -1);
-    }
-
     /**
      * Convert a String to an byte, returning a default value if the conversion fails.
      */
@@ -363,5 +331,26 @@ public class Numberx {
      */
     public static double toDoubleOrZero(@Nullable String str) {
         return toDoubleOrDefault(str, 0.0d);
+    }
+
+
+
+    public static int mod(int a, int b) {
+        int mod = a % b;
+        return mod >= 0 ? mod : mod + b;
+    }
+
+    public static long mod(long a, long b) {
+        long mod = a % b;
+        return mod >= 0L ? mod : mod + b;
+    }
+
+
+    public static int differenceModulo(int a, int b, int c) {
+        return mod(mod(a, c) - mod(b, c), c);
+    }
+
+    public static long differenceModulo(long a, long b, long c) {
+        return mod(mod(a, c) - mod(b, c), c);
     }
 }

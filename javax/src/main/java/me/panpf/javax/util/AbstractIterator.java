@@ -44,10 +44,9 @@ public abstract class AbstractIterator<T> implements Iterator<T> {
     @Override
     @NotNull
     public T next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
+        if (!hasNext()) throw new NoSuchElementException();
         state = State.NotReady;
+        if (nextValue == null) throw new NoSuchElementException();
         return nextValue;
     }
 
@@ -82,5 +81,12 @@ public abstract class AbstractIterator<T> implements Iterator<T> {
      */
     protected void done() {
         state = State.Done;
+    }
+
+    public enum State {
+        Ready,
+        NotReady,
+        Done,
+        Failed
     }
 }

@@ -19,6 +19,7 @@ package me.panpf.javax.io;
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Numberx;
 import me.panpf.javax.lang.Stringx;
+import me.panpf.javax.util.Rangex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -824,7 +825,7 @@ public class Filex {
 
         // Annihilate differing base components by adding required number of .. parts
         StringBuilder res = new StringBuilder();
-        for (int i : Numberx.downTo(baseCount - 1, sameCount)) {
+        for (int i : Rangex.downTo(baseCount - 1, sameCount)) {
             if ("..".equals(baseComponents.segments.get(i).getName())) {
                 return null;
             }

@@ -16,6 +16,8 @@
 
 package me.panpf.javax.lang;
 
+import me.panpf.javax.util.IntRange;
+import me.panpf.javax.util.Rangex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -685,7 +687,7 @@ public class Stringx {
             return false;
         }
 
-        for (int index : Numberx.untilTo(0, self.length())) {
+        for (int index : Rangex.untilTo(0, self.length())) {
             if (!Charx.equals(self.charAt(thisOffset + index), (other.charAt(otherOffset + index)), ignoreCase)) {
                 return false;
             }
@@ -702,8 +704,8 @@ public class Stringx {
             return index < 0 ? null : Pair.of(index, string);
         }
 
-        IntRange indices = !last ? Numberx.rangeTo(Numberx.coerceAtLeast(startIndex, 0), charSequence.length())
-                : Numberx.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0);
+        IntRange indices = !last ? Rangex.rangeTo(Numberx.coerceAtLeast(startIndex, 0), charSequence.length())
+                : Rangex.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0);
 
         if (charSequence instanceof String) {
             for (final int index : indices) {
@@ -782,13 +784,13 @@ public class Stringx {
         }
 
         if (self instanceof String && other instanceof String) { // smart cast
-            for (int index : Numberx.rangeTo(finalStartIndex, finalEndIndex, step)) {
+            for (int index : Rangex.rangeTo(finalStartIndex, finalEndIndex, step)) {
                 if (regionMatches((String) other, 0, (String) self, index, other.length(), ignoreCase)) {
                     return index;
                 }
             }
         } else {
-            for (int index : Numberx.rangeTo(finalStartIndex, finalEndIndex, step)) {
+            for (int index : Rangex.rangeTo(finalStartIndex, finalEndIndex, step)) {
                 if (regionMatchesImpl(other, 0, self, index, other.length(), ignoreCase))
                     return index;
             }
@@ -935,7 +937,7 @@ public class Stringx {
             return ((String) charSequence).lastIndexOf(charr, startIndex);
         }
 
-        for (int index : Numberx.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0)) {
+        for (int index : Rangex.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0)) {
             final char charAtIndex = charSequence.charAt(index);
             if (Arrayx.any(chars, new Predicate<Character>() {
                 @Override

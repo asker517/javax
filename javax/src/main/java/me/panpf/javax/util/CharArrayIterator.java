@@ -16,44 +16,35 @@
 
 package me.panpf.javax.util;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * An iterator over a progression of values of type `Long`.
- */
 @SuppressWarnings("WeakerAccess")
-public class LongIterator implements Iterator<Long> {
-    private long step;
+public class CharArrayIterator implements Iterator<Character> {
+    private int index = 0;
 
-    private long finalElement;
-    private long next;
-    private boolean hasNext;
+    @NotNull
+    private char[] elements;
 
-    public LongIterator(long start, long endInclusive, long step) {
-        this.step = step;
-        finalElement = endInclusive;
-        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
-        next = hasNext ? start : finalElement;
+    public CharArrayIterator(@NotNull char[] elements) {
+        this.elements = elements;
     }
 
     @Override
     public boolean hasNext() {
-        return hasNext;
+        return index < elements.length;
     }
 
     @Override
-    public Long next() {
-        long value = next;
-        if (value == finalElement) {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            hasNext = false;
-        } else {
-            next += step;
+    public Character next() {
+        try {
+            return elements[index++];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            index -= 1;
+            throw new NoSuchElementException(e.getMessage());
         }
-        return value;
     }
 
     @Override

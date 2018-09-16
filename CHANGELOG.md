@@ -4,6 +4,7 @@
 * Digest 中 File 相关方法抛出 IOException
 * 增加 Date
 * 增加 Range
+* Number 中的 rangeTo, untilTo, downTo, downUntilTo 移到 Range
 
 ## 0.6.2
 * 增加 Throwable

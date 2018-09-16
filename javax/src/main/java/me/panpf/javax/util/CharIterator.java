@@ -1,16 +1,63 @@
+/*
+ * Copyright (C) 2018 Peng fei Pan <panpfpanpf@outlook.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package me.panpf.javax.util;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public abstract class CharIterator implements Iterator<Character> {
+/**
+ * An iterator over a progression of values of type `Character`.
+ */
+@SuppressWarnings("WeakerAccess")
+public class CharIterator implements Iterator<Character> {
+    private char step;
+
+    private char finalElement;
+    private char next;
+    private boolean hasNext;
+
+    public CharIterator(char start, char endInclusive, char step) {
+        this.step = step;
+        finalElement = endInclusive;
+        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        next = hasNext ? start : finalElement;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return hasNext;
+    }
 
     @Override
     public Character next() {
-        return nextChar();
+        char value = next;
+        if (value == finalElement) {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            hasNext = false;
+        } else {
+            next += step;
+        }
+        return value;
     }
 
-    /**
-     * Returns the next value in the sequence without boxing.
-     */
-    abstract char nextChar();
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException("remove");
+    }
 }
