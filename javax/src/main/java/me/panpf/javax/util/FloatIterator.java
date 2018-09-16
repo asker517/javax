@@ -20,22 +20,22 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An iterator over a progression of values of type `Int`.
+ * An iterator over a progression of values of type `Float`.
  */
 @SuppressWarnings("WeakerAccess")
-public class IntIterator implements Iterator<Integer> {
-    private int step;
+public class FloatIterator implements Iterator<Float> {
+    private float step;
 
-    private int finalElement;
-    private int next;
+    private float finalElement;
+    private float next;
     private boolean hasNext;
 
-    public IntIterator(int start, int endInclusive, int step) {
+    public FloatIterator(float start, float endInclusive, float step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.step = step;
-        this.finalElement = Rangex.getProgressionLastElement(start, endInclusive, step);
-        this.hasNext = step > 0 ? start <= finalElement : start >= finalElement;
-        this.next = hasNext ? start : finalElement;
+        finalElement = endInclusive;
+        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        next = hasNext ? start : finalElement;
     }
 
     @Override
@@ -44,9 +44,9 @@ public class IntIterator implements Iterator<Integer> {
     }
 
     @Override
-    public Integer next() {
-        int value = next;
-        if (value == finalElement) {
+    public Float next() {
+        float value = next;
+        if (step > 0 ? value >= finalElement : value <= finalElement) {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }

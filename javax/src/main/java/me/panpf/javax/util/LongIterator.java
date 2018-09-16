@@ -31,9 +31,10 @@ public class LongIterator implements Iterator<Long> {
     private boolean hasNext;
 
     public LongIterator(long start, long endInclusive, long step) {
+        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.step = step;
-        finalElement = endInclusive;
-        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        finalElement = Rangex.getProgressionLastElement(start, endInclusive, step);
+        hasNext = step > 0 ? start <= finalElement : start >= finalElement;
         next = hasNext ? start : finalElement;
     }
 

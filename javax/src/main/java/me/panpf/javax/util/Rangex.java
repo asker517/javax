@@ -16,6 +16,7 @@
 
 package me.panpf.javax.util;
 
+import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.ParseException;
@@ -24,6 +25,26 @@ import java.util.Date;
 @SuppressWarnings("WeakerAccess")
 public class Rangex {
     private Rangex() {
+    }
+
+    public static int getProgressionLastElement(int start, int end, int step) {
+        if (step > 0) {
+            return end - Numberx.differenceModulo(end, start, step);
+        } else if (step < 0) {
+            return end + Numberx.differenceModulo(start, end, -step);
+        } else {
+            throw new IllegalArgumentException("Step is zero.");
+        }
+    }
+
+    public static long getProgressionLastElement(long start, long end, long step) {
+        if (step > 0) {
+            return end - Numberx.differenceModulo(end, start, step);
+        } else if (step < 0) {
+            return end + Numberx.differenceModulo(start, end, -step);
+        } else {
+            throw new IllegalArgumentException("Step is zero.");
+        }
     }
 
 
@@ -48,7 +69,7 @@ public class Rangex {
      * Create a positive-order byte range that does not contain [end]
      */
     public static IntRange untilTo(byte start, byte end, byte step) {
-        return new IntRange(start, end - 1, step);
+        return IntRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
@@ -76,7 +97,7 @@ public class Rangex {
      * Create a reversed byte range that does not contain [end]
      */
     public static IntRange downUntilTo(byte start, byte end, byte step) {
-        return new IntRange(start, end + 1, step);
+        return IntRange.fromClosedRange(start, end + 1, step);
     }
 
     /**
@@ -108,7 +129,7 @@ public class Rangex {
      * Create a positive-order short range that does not contain [end]
      */
     public static IntRange untilTo(short start, short end, short step) {
-        return new IntRange(start, end - 1, step);
+        return IntRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
@@ -136,7 +157,7 @@ public class Rangex {
      * Create a reversed short range that does not contain [end]
      */
     public static IntRange downUntilTo(short start, short end, short step) {
-        return new IntRange(start, end + 1, step);
+        return IntRange.fromClosedRange(start, end + 1, step);
     }
 
     /**
@@ -168,7 +189,7 @@ public class Rangex {
      * Create a positive-order int range that does not contain [end]
      */
     public static IntRange untilTo(int start, int end, int step) {
-        return new IntRange(start, end - 1, step);
+        return IntRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
@@ -196,7 +217,7 @@ public class Rangex {
      * Create a reversed int range that does not contain [end]
      */
     public static IntRange downUntilTo(int start, int end, int step) {
-        return new IntRange(start, end + 1, step);
+        return IntRange.fromClosedRange(start, end + 1, step);
     }
 
     /**
@@ -228,7 +249,7 @@ public class Rangex {
      * Create a positive-order long range that does not contain [end]
      */
     public static LongRange untilTo(long start, long end, long step) {
-        return new LongRange(start, end - 1, step);
+        return LongRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
@@ -242,7 +263,7 @@ public class Rangex {
      * Create a reversed long range
      */
     public static LongRange downTo(long start, long end, long step) {
-        return new LongRange(start, end, step);
+        return LongRange.fromClosedRange(start, end, step);
     }
 
     /**
@@ -256,7 +277,7 @@ public class Rangex {
      * Create a reversed long range that does not contain [end]
      */
     public static LongRange downUntilTo(long start, long end, long step) {
-        return new LongRange(start, end + 1, step);
+        return LongRange.fromClosedRange(start, end + 1, step);
     }
 
     /**
@@ -267,13 +288,133 @@ public class Rangex {
     }
 
 
+    /* ******************************************* Float Range *******************************************/
+
+
+    /**
+     * Create a positive-order float ranges
+     */
+    public static FloatRange rangeTo(float start, float end, float step) {
+        return FloatRange.fromClosedRange(start, end, step);
+    }
+
+    /**
+     * Create a positive-order float ranges
+     */
+    public static FloatRange rangeTo(float start, float end) {
+        return rangeTo(start, end, 1f);
+    }
+
+    /**
+     * Create a positive-order float range that does not contain [end]
+     */
+    public static FloatRange untilTo(float start, float end, float step) {
+        return FloatRange.fromClosedRange(start, end - 1, step);
+    }
+
+    /**
+     * Create a positive-order float range that does not contain [end]
+     */
+    public static FloatRange untilTo(float start, float end) {
+        return untilTo(start, end, 1f);
+    }
+
+    /**
+     * Create a reversed float range
+     */
+    public static FloatRange downTo(float start, float end, float step) {
+        return FloatRange.fromClosedRange(start, end, step);
+    }
+
+    /**
+     * Create a reversed float range
+     */
+    public static FloatRange downTo(float start, float end) {
+        return downTo(start, end, -1f);
+    }
+
+    /**
+     * Create a reversed float range that does not contain [end]
+     */
+    public static FloatRange downUntilTo(float start, float end, float step) {
+        return FloatRange.fromClosedRange(start, end + 1f, step);
+    }
+
+    /**
+     * Create a reversed float range that does not contain [end]
+     */
+    public static FloatRange downUntilTo(float start, float end) {
+        return downUntilTo(start, end, -1f);
+    }
+
+
+    /* ******************************************* Double Range *******************************************/
+
+
+    /**
+     * Create a positive-order double ranges
+     */
+    public static DoubleRange rangeTo(double start, double end, double step) {
+        return DoubleRange.fromClosedRange(start, end, step);
+    }
+
+    /**
+     * Create a positive-order double ranges
+     */
+    public static DoubleRange rangeTo(double start, double end) {
+        return rangeTo(start, end, 1.0);
+    }
+
+    /**
+     * Create a positive-order double range that does not contain [end]
+     */
+    public static DoubleRange untilTo(double start, double end, double step) {
+        return DoubleRange.fromClosedRange(start, end - 1.0, step);
+    }
+
+    /**
+     * Create a positive-order double range that does not contain [end]
+     */
+    public static DoubleRange untilTo(double start, double end) {
+        return untilTo(start, end, 1.0);
+    }
+
+    /**
+     * Create a reversed double range
+     */
+    public static DoubleRange downTo(double start, double end, double step) {
+        return DoubleRange.fromClosedRange(start, end, step);
+    }
+
+    /**
+     * Create a reversed double range
+     */
+    public static DoubleRange downTo(double start, double end) {
+        return downTo(start, end, -1.0);
+    }
+
+    /**
+     * Create a reversed double range that does not contain [end]
+     */
+    public static DoubleRange downUntilTo(double start, double end, double step) {
+        return DoubleRange.fromClosedRange(start, end + 1.0, step);
+    }
+
+    /**
+     * Create a reversed double range that does not contain [end]
+     */
+    public static DoubleRange downUntilTo(double start, double end) {
+        return downUntilTo(start, end, -1.0);
+    }
+
+
     /* ******************************************* Char Range *******************************************/
 
 
     /**
      * Create a positive-order char ranges
      */
-    public static CharRange rangeTo(char start, char end, char step) {
+    public static CharRange rangeTo(char start, char end, int step) {
         return CharRange.fromClosedRange(start, end, step);
     }
 
@@ -281,27 +422,27 @@ public class Rangex {
      * Create a positive-order char ranges
      */
     public static CharRange rangeTo(char start, char end) {
-        return rangeTo(start, end, (char) 1);
+        return rangeTo(start, end, 1);
     }
 
     /**
      * Create a positive-order char range that does not contain [end]
      */
-    public static CharRange untilTo(char start, char end, char step) {
-        return new CharRange(start, (char) (end - 1), step);
+    public static CharRange untilTo(char start, char end, int step) {
+        return CharRange.fromClosedRange(start, (char) Math.max(Math.min(end - 1, Character.MAX_VALUE), Character.MIN_VALUE), step);
     }
 
     /**
      * Create a positive-order char range that does not contain [end]
      */
     public static CharRange untilTo(char start, char end) {
-        return untilTo(start, end, (char) 1);
+        return untilTo(start, end, 1);
     }
 
     /**
      * Create a reversed char range
      */
-    public static CharRange downTo(char start, char end, char step) {
+    public static CharRange downTo(char start, char end, int step) {
         return new CharRange(start, end, step);
     }
 
@@ -309,21 +450,21 @@ public class Rangex {
      * Create a reversed char range
      */
     public static CharRange downTo(char start, char end) {
-        return downTo(start, end, (char) -1);
+        return downTo(start, end, -1);
     }
 
     /**
      * Create a reversed char range that does not contain [end]
      */
-    public static CharRange downUntilTo(char start, char end, char step) {
-        return new CharRange(start, (char) (end + 1), step);
+    public static CharRange downUntilTo(char start, char end, int step) {
+        return CharRange.fromClosedRange(start, (char) Math.max(Math.min(end + 1, Character.MAX_VALUE), Character.MIN_VALUE), step);
     }
 
     /**
      * Create a reversed char range that does not contain [end]
      */
     public static CharRange downUntilTo(char start, char end) {
-        return downUntilTo(start, end, (char) -1);
+        return downUntilTo(start, end, -1);
     }
 
 

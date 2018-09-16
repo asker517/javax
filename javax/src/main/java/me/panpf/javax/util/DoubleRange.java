@@ -22,26 +22,26 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Iterator;
 
 @SuppressWarnings("WeakerAccess")
-public class CharRange implements Iterable<Character>, ClosedRange<Character> {
+public class DoubleRange implements Iterable<Double>, ClosedRange<Double> {
 
-    private final char start;
-    private final char endInclusive;
-    private final int step;
+    private final double start;
+    private final double endInclusive;
+    private final double step;
 
-    public CharRange(char start, char endInclusive, int step) {
+    public DoubleRange(double start, double endInclusive, double step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.start = start;
-        this.endInclusive = (char) Rangex.getProgressionLastElement(start, endInclusive, step);
+        this.endInclusive = endInclusive;
         this.step = step;
     }
 
     @NotNull
-    public Iterator<Character> iterator() {
-        return new CharIterator(this.start, this.endInclusive, this.step);
+    public Iterator<Double> iterator() {
+        return new DoubleIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override
-    public boolean contains(@NotNull Character value) {
+    public boolean contains(@NotNull Double value) {
         return start <= value && value <= endInclusive;
     }
 
@@ -51,12 +51,12 @@ public class CharRange implements Iterable<Character>, ClosedRange<Character> {
 
     @Override
     public boolean equals(@Nullable Object other) {
-        return other instanceof CharRange && (this.isEmpty() && ((CharRange) other).isEmpty() || this.start == ((CharRange) other).start && this.endInclusive == ((CharRange) other).endInclusive && this.step == ((CharRange) other).step);
+        return other instanceof DoubleRange && (this.isEmpty() && ((DoubleRange) other).isEmpty() || this.start == ((DoubleRange) other).start && this.endInclusive == ((DoubleRange) other).endInclusive && this.step == ((DoubleRange) other).step);
     }
 
     @Override
     public int hashCode() {
-        return (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step);
+        return (int) (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step);
     }
 
     @NotNull
@@ -66,22 +66,22 @@ public class CharRange implements Iterable<Character>, ClosedRange<Character> {
 
     @NotNull
     @Override
-    public Character getStart() {
+    public Double getStart() {
         return this.start;
     }
 
     @NotNull
     @Override
-    public Character getEndInclusive() {
+    public Double getEndInclusive() {
         return this.endInclusive;
     }
 
-    public int getStep() {
+    public double getStep() {
         return this.step;
     }
 
     @NotNull
-    public static CharRange fromClosedRange(char rangeStart, char rangeEnd, int step) {
-        return new CharRange(rangeStart, rangeEnd, step);
+    public static DoubleRange fromClosedRange(double rangeStart, double rangeEnd, double step) {
+        return new DoubleRange(rangeStart, rangeEnd, step);
     }
 }

@@ -32,11 +32,11 @@ public final class DateIterator implements Iterator<Date> {
     private final int step;
 
     public DateIterator(@NotNull DateRange range, @NotNull Date first, @NotNull Date last, int step) {
-        super();
+        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.range = range;
         this.last = last;
         this.step = step;
-        this.hasNext = this.step > 0 ? first.compareTo(this.last) <= 0 : (this.step < 0 && first.compareTo(this.last) >= 0);
+        this.hasNext = this.step > 0 ? first.compareTo(this.last) <= 0 : first.compareTo(this.last) >= 0;
         this.next = this.hasNext ? first : this.last;
     }
 

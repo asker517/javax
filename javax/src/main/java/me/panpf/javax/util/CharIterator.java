@@ -24,16 +24,17 @@ import java.util.NoSuchElementException;
  */
 @SuppressWarnings("WeakerAccess")
 public class CharIterator implements Iterator<Character> {
-    private char step;
+    private int step;
 
     private char finalElement;
     private char next;
     private boolean hasNext;
 
-    public CharIterator(char start, char endInclusive, char step) {
+    public CharIterator(char start, char endInclusive, int step) {
+        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.step = step;
-        finalElement = endInclusive;
-        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        finalElement = (char) Rangex.getProgressionLastElement(start, endInclusive, step);
+        hasNext = step > 0 ? start <= finalElement : start >= finalElement;
         next = hasNext ? start : finalElement;
     }
 
@@ -51,7 +52,7 @@ public class CharIterator implements Iterator<Character> {
             }
             hasNext = false;
         } else {
-            next += step;
+            next = (char) Math.max(Math.min(next + step, Character.MAX_VALUE), Character.MIN_VALUE);
         }
         return value;
     }

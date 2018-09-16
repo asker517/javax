@@ -30,6 +30,58 @@ import java.util.Date;
 public final class RangeTest {
 
     @Test
+    public void testByteRange() {
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((byte) 1, (byte) 10)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((byte) 1, (byte) 1)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((byte) 0, (byte) 1)), 2);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((byte) 1, (byte) 0)), 0);
+
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((byte) 1, (byte) 10)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((byte) 1, (byte) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((byte) 1, (byte) 0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((byte) 0, (byte) 1)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((byte) 10, (byte) 1)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((byte) 1, (byte) 1)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((byte) 0, (byte) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((byte) 1, (byte) 0)), 2);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((byte) 10, (byte) 1)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((byte) 1, (byte) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((byte) 0, (byte) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((byte) 1, (byte) 0)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((byte) 1, (byte) 10, (byte) 4)), 3);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((byte) 10, (byte) 1, (byte) -4)), 3);
+    }
+
+    @Test
+    public void testShortRange() {
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((short) 1, (short) 10)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((short) 1, (short) 1)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((short) 0, (short) 1)), 2);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((short) 1, (short) 0)), 0);
+
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((short) 1, (short) 10)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((short) 1, (short) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((short) 1, (short) 0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((short) 0, (short) 1)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((short) 10, (short) 1)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((short) 1, (short) 1)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((short) 0, (short) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((short) 1, (short) 0)), 2);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((short) 10, (short) 1)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((short) 1, (short) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((short) 0, (short) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((short) 1, (byte) 0)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((short) 1, (short) 10, (short) 4)), 3);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((short) 10, (short) 1, (short) -4)), 3);
+    }
+
+    @Test
     public void testIntRange() {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 10)), 10);
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 1)), 1);
@@ -50,10 +102,13 @@ public final class RangeTest {
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1, 1)), 0);
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0, 1)), 0);
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1, 0)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 10, 4)), 3);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10, 1, -4)), 3);
     }
 
     @Test
-    public void testLongUnit() {
+    public void testLongRange() {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 10L)), 10);
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 1L)), 1);
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0L, 1L)), 2);
@@ -73,6 +128,87 @@ public final class RangeTest {
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1L, 1L)), 0);
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0L, 1L)), 0);
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1L, 0L)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 10L, 4)), 3);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10L, 1L, -4)), 3);
+    }
+
+    @Test
+    public void tesFloatRange() {
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1F, 10F)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1F, 1F)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0F, 1F)), 2);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1F, 0F)), 0);
+
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(1F, 10F)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(1F, 1F)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(1F, 0F)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(0F, 1F)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10F, 1F)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(1F, 1F)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(0F, 1F)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(1F, 0F)), 2);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10F, 1F)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1F, 1F)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0F, 1F)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1F, 0F)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1F, 10F, 1.3f)), 8);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10F, 1F, -1.3f)), 8);
+    }
+
+    @Test
+    public void tesDoubleRange() {
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 10.0)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 1.0)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0.0, 1.0)), 2);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 0.0)), 0);
+
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(1.0, 10.0)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(1.0, 1.0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(1.0, 0.0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo(0.0, 1.0)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10.0, 1.0)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(1.0, 1.0)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(0.0, 1.0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(1.0, 0.0)), 2);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.0, 1.0)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.0, 1.0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0.0, 1.0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.0, 0.0)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 10.0, 1.3)), 8);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10.0, 1.0, -1.3)), 8);
+    }
+
+    @Test
+    public void testCharRange() {
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((char) 1, (char) 10)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((char) 1, (char) 1)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((char) 0, (char) 1)), 2);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((char) 1, (char) 0)), 0);
+
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((char) 1, (char) 10)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((char) 1, (char) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((char) 1, (char) 0)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.untilTo((char) 0, (char) 1)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((char) 10, (char) 1)), 10);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((char) 1, (char) 1)), 1);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((char) 0, (char) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downTo((char) 1, (char) 0)), 2);
+
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((char) 10, (char) 1)), 9);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((char) 1, (char) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((char) 0, (char) 1)), 0);
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo((char) 1, (char) 0)), 1);
+
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((char) 1, (char) 10, 4)), 3);
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo((char) 10, (char) 1, -4)), 3);
     }
 
     @Test
@@ -96,6 +232,9 @@ public final class RangeTest {
         Assert.assertEquals(Collectionx.joinToString(Rangex.yearUntilTo(Datex.toMillisecondY("2018", null), Datex.toMillisecondY("2015", null)), transformer), "");
         Assert.assertEquals(Collectionx.joinToString(Rangex.yearDownTo(Datex.toMillisecondY("2018", null), Datex.toMillisecondY("2021", null)), transformer), "");
         Assert.assertEquals(Collectionx.joinToString(Rangex.yearDownUntilTo(Datex.toMillisecondY("2018", null), Datex.toMillisecondY("2021", null)), transformer), "");
+
+        Assert.assertEquals(Collectionx.joinToString(Rangex.yearYRangeTo("2018", "2031", 5), transformer), "2018, 2023, 2028");
+        Assert.assertEquals(Collectionx.joinToString(Rangex.yearYRangeTo("2031", "2018", -5), transformer), "2031, 2026, 2021");
     }
 
     @Test

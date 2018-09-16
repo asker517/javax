@@ -16,7 +16,6 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,29 +31,8 @@ public class IntRange implements Iterable<Integer>, ClosedRange<Integer> {
     public IntRange(int start, int endInclusive, int step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.start = start;
-        this.endInclusive = this.getProgressionLastElement(start, endInclusive, step);
+        this.endInclusive = Rangex.getProgressionLastElement(start, endInclusive, step);
         this.step = step;
-    }
-
-    @NotNull
-    @Override
-    public Integer getStart() {
-        return this.start;
-    }
-
-    @NotNull
-    @Override
-    public Integer getEndInclusive() {
-        return this.endInclusive;
-    }
-
-    @Override
-    public boolean contains(@NotNull Integer value) {
-        return start <= value && value <= endInclusive;
-    }
-
-    public int getStep() {
-        return this.step;
     }
 
     @NotNull
@@ -62,6 +40,12 @@ public class IntRange implements Iterable<Integer>, ClosedRange<Integer> {
         return new IntIterator(this.start, this.endInclusive, this.step);
     }
 
+    @Override
+    public boolean contains(@NotNull Integer value) {
+        return start <= value && value <= endInclusive;
+    }
+
+    @Override
     public boolean isEmpty() {
         return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
     }
@@ -81,14 +65,20 @@ public class IntRange implements Iterable<Integer>, ClosedRange<Integer> {
         return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
     }
 
-    public final int getProgressionLastElement(int start, int end, int step) {
-        if (step > 0) {
-            return end - Numberx.differenceModulo(end, start, step);
-        } else if (step < 0) {
-            return end + Numberx.differenceModulo(start, end, -step);
-        } else {
-            throw new IllegalArgumentException("Step is zero.");
-        }
+    @NotNull
+    @Override
+    public Integer getStart() {
+        return this.start;
+    }
+
+    @NotNull
+    @Override
+    public Integer getEndInclusive() {
+        return this.endInclusive;
+    }
+
+    public int getStep() {
+        return this.step;
     }
 
     @NotNull

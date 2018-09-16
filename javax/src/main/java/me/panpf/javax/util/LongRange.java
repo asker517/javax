@@ -16,7 +16,6 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,34 +31,18 @@ public class LongRange implements Iterable<Long>, ClosedRange<Long> {
     public LongRange(long start, long endInclusive, long step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.start = start;
-        this.endInclusive = this.getProgressionLastElement(start, endInclusive, step);
+        this.endInclusive = Rangex.getProgressionLastElement(start, endInclusive, step);
         this.step = step;
-    }
-
-    @NotNull
-    @Override
-    public Long getStart() {
-        return this.start;
-    }
-
-    @NotNull
-    @Override
-    public Long getEndInclusive() {
-        return this.endInclusive;
-    }
-
-    @Override
-    public boolean contains(@NotNull Long value) {
-        return start <= value && value <= endInclusive;
-    }
-
-    public long getStep() {
-        return this.step;
     }
 
     @NotNull
     public Iterator<Long> iterator() {
         return new LongIterator(this.start, this.endInclusive, this.step);
+    }
+
+    @Override
+    public boolean contains(@NotNull Long value) {
+        return start <= value && value <= endInclusive;
     }
 
     public boolean isEmpty() {
@@ -81,14 +64,20 @@ public class LongRange implements Iterable<Long>, ClosedRange<Long> {
         return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
     }
 
-    public final long getProgressionLastElement(long start, long end, long step) {
-        if (step > 0) {
-            return end - Numberx.differenceModulo(end, start, step);
-        } else if (step < 0) {
-            return end + Numberx.differenceModulo(start, end, -step);
-        } else {
-            throw new IllegalArgumentException("Step is zero.");
-        }
+    @NotNull
+    @Override
+    public Long getStart() {
+        return this.start;
+    }
+
+    @NotNull
+    @Override
+    public Long getEndInclusive() {
+        return this.endInclusive;
+    }
+
+    public long getStep() {
+        return this.step;
     }
 
     @NotNull
