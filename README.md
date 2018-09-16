@@ -154,7 +154,7 @@ Please view the [CHANGELOG.md] file
 [source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
 [target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
 [converage_java]: https://img.shields.io/badge/ConverageJava-24%25-orange.svg
-[converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-74%25-orange.svg
+[converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-83%25-orange.svg
 
 [CHANGELOG.md]: CHANGELOG.md
 
