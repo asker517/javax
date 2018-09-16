@@ -249,34 +249,34 @@ infix fun String.yearYRangeTo(endInclusive: String): YearRange = this.yearYRange
 /**
  * Create a positive-order year range that does not contain [end]
  */
-fun Date.yearUntilTo(end: Date, step: Int): YearRange = YearRange(this, end.addYear(-1), step)
+fun Date.yearUntil(end: Date, step: Int): YearRange = YearRange(this, end.addYear(-1), step)
 
 /**
  * Create a positive-order year range that does not contain [end]
  */
-infix fun Date.yearUntilTo(end: Date): YearRange = yearUntilTo(end, 1)
+infix fun Date.yearUntil(end: Date): YearRange = yearUntil(end, 1)
 
 /**
  * Create a positive-order year range that does not contain [end]
  */
-fun Long.yearUntilTo(end: Long, step: Int): YearRange = this.toDate().yearUntilTo(end.toDate(), step)
+fun Long.yearUntil(end: Long, step: Int): YearRange = this.toDate().yearUntil(end.toDate(), step)
 
 /**
  * Create a positive-order year range that does not contain [end]
  */
-infix fun Long.yearUntilTo(end: Long): YearRange = yearUntilTo(end, 1)
+infix fun Long.yearUntil(end: Long): YearRange = yearUntil(end, 1)
 
 /**
  * Create a positive-order year range that does not contain [end], parsing the formatted date string with 'yyyy'
  */
 @Throws(ParseException::class)
-fun String.yearYUntilTo(end: String, step: Int): YearRange = this.toDateY().yearUntilTo(end.toDateY(), step)
+fun String.yearYUntil(end: String, step: Int): YearRange = this.toDateY().yearUntil(end.toDateY(), step)
 
 /**
  * Create a positive-order year range that does not contain [end], parsing the formatted date string with 'yyyy'
  */
 @Throws(ParseException::class)
-infix fun String.yearYUntilTo(end: String): YearRange = yearYUntilTo(end, 1)
+infix fun String.yearYUntil(end: String): YearRange = yearYUntil(end, 1)
 
 
 /**
@@ -384,34 +384,34 @@ infix fun String.monthYMRangeTo(endInclusive: String): MonthRange = monthYMRange
 /**
  * Create a positive-order month range that does not contain [end]
  */
-fun Date.monthUntilTo(end: Date, step: Int): MonthRange = MonthRange(this, end.addMonth(-1), step)
+fun Date.monthUntil(end: Date, step: Int): MonthRange = MonthRange(this, end.addMonth(-1), step)
 
 /**
  * Create a positive-order month range that does not contain [end]
  */
-infix fun Date.monthUntilTo(end: Date): MonthRange = monthUntilTo(end, 1)
+infix fun Date.monthUntil(end: Date): MonthRange = monthUntil(end, 1)
 
 /**
  * Create a positive-order month range that does not contain [end]
  */
-fun Long.monthUntilTo(end: Long, step: Int): MonthRange = this.toDate().monthUntilTo(end.toDate(), step)
+fun Long.monthUntil(end: Long, step: Int): MonthRange = this.toDate().monthUntil(end.toDate(), step)
 
 /**
  * Create a positive-order month range that does not contain [end]
  */
-infix fun Long.monthUntilTo(end: Long): MonthRange = monthUntilTo(end, 1)
+infix fun Long.monthUntil(end: Long): MonthRange = monthUntil(end, 1)
 
 /**
  * Create a positive-order month range that does not contain [end], parsing the formatted date string with 'yyyy-MM'
  */
 @Throws(ParseException::class)
-fun String.monthYMUntilTo(end: String, step: Int): MonthRange = this.toDateYM().monthUntilTo(end.toDateYM(), step)
+fun String.monthYMUntil(end: String, step: Int): MonthRange = this.toDateYM().monthUntil(end.toDateYM(), step)
 
 /**
  * Create a positive-order month range that does not contain [end], parsing the formatted date string with 'yyyy-MM'
  */
 @Throws(ParseException::class)
-infix fun String.monthYMUntilTo(end: String): MonthRange = monthYMUntilTo(end, 1)
+infix fun String.monthYMUntil(end: String): MonthRange = monthYMUntil(end, 1)
 
 
 /**
@@ -519,34 +519,34 @@ infix fun String.dayYMDRangeTo(endInclusive: String): DayRange = dayYMDRangeTo(e
 /**
  * Create a positive-order day range that does not contain [end]
  */
-fun Date.dayUntilTo(end: Date, step: Int): DayRange = DayRange(this, end.addDayOfMonth(-1), step)
+fun Date.dayUntil(end: Date, step: Int): DayRange = DayRange(this, end.addDayOfMonth(-1), step)
 
 /**
  * Create a positive-order day range that does not contain [end]
  */
-infix fun Date.dayUntilTo(end: Date): DayRange = dayUntilTo(end, 1)
+infix fun Date.dayUntil(end: Date): DayRange = dayUntil(end, 1)
 
 /**
  * Create a positive-order day range that does not contain [end]
  */
-fun Long.dayUntilTo(end: Long, step: Int): DayRange = this.toDate().dayUntilTo(end.toDate(), step)
+fun Long.dayUntil(end: Long, step: Int): DayRange = this.toDate().dayUntil(end.toDate(), step)
 
 /**
  * Create a positive-order day range that does not contain [end]
  */
-infix fun Long.dayUntilTo(end: Long): DayRange = dayUntilTo(end, 1)
+infix fun Long.dayUntil(end: Long): DayRange = dayUntil(end, 1)
 
 /**
  * Create a positive-order day range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd'
  */
 @Throws(ParseException::class)
-fun String.dayYMDUntilTo(end: String, step: Int): DayRange = this.toDateYMD().dayUntilTo(end.toDateYMD(), step)
+fun String.dayYMDUntil(end: String, step: Int): DayRange = this.toDateYMD().dayUntil(end.toDateYMD(), step)
 
 /**
  * Create a positive-order day range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd'
  */
 @Throws(ParseException::class)
-infix fun String.dayYMDUntilTo(end: String): DayRange = dayYMDUntilTo(end, 1)
+infix fun String.dayYMDUntil(end: String): DayRange = dayYMDUntil(end, 1)
 
 
 /**
@@ -655,34 +655,34 @@ infix fun String.hourYMDHRangeTo(endInclusive: String): HourRange = hourYMDHRang
 /**
  * Create a positive-order hour range that does not contain [end]
  */
-fun Date.hourUntilTo(end: Date, step: Int): HourRange = HourRange(this, end.addHourOfDay(-1), step)
+fun Date.hourUntil(end: Date, step: Int): HourRange = HourRange(this, end.addHourOfDay(-1), step)
 
 /**
  * Create a positive-order hour range that does not contain [end]
  */
-infix fun Date.hourUntilTo(end: Date): HourRange = hourUntilTo(end, 1)
+infix fun Date.hourUntil(end: Date): HourRange = hourUntil(end, 1)
 
 /**
  * Create a positive-order hour range that does not contain [end]
  */
-fun Long.hourUntilTo(end: Long, step: Int): HourRange = this.toDate().hourUntilTo(end.toDate(), step)
+fun Long.hourUntil(end: Long, step: Int): HourRange = this.toDate().hourUntil(end.toDate(), step)
 
 /**
  * Create a positive-order hour range that does not contain [end]
  */
-infix fun Long.hourUntilTo(end: Long): HourRange = hourUntilTo(end, 1)
+infix fun Long.hourUntil(end: Long): HourRange = hourUntil(end, 1)
 
 /**
  * Create a positive-order hour range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH'
  */
 @Throws(ParseException::class)
-fun String.hourYMDHUntilTo(end: String, step: Int): HourRange = this.toDateYMDH().hourUntilTo(end.toDateYMDH(), step)
+fun String.hourYMDHUntil(end: String, step: Int): HourRange = this.toDateYMDH().hourUntil(end.toDateYMDH(), step)
 
 /**
  * Create a positive-order hour range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH'
  */
 @Throws(ParseException::class)
-infix fun String.hourYMDHUntilTo(end: String): HourRange = hourYMDHUntilTo(end, 1)
+infix fun String.hourYMDHUntil(end: String): HourRange = hourYMDHUntil(end, 1)
 
 
 /**
@@ -790,34 +790,34 @@ infix fun String.minuteYMDHMRangeTo(endInclusive: String): MinuteRange = minuteY
 /**
  * Create a positive-order minute range that does not contain [end]
  */
-fun Date.minuteUntilTo(end: Date, step: Int): MinuteRange = MinuteRange(this, end.addMinute(-1), step)
+fun Date.minuteUntil(end: Date, step: Int): MinuteRange = MinuteRange(this, end.addMinute(-1), step)
 
 /**
  * Create a positive-order minute range that does not contain [end]
  */
-infix fun Date.minuteUntilTo(end: Date): MinuteRange = minuteUntilTo(end, 1)
+infix fun Date.minuteUntil(end: Date): MinuteRange = minuteUntil(end, 1)
 
 /**
  * Create a positive-order minute range that does not contain [end]
  */
-fun Long.minuteUntilTo(end: Long, step: Int): MinuteRange = this.toDate().minuteUntilTo(end.toDate(), step)
+fun Long.minuteUntil(end: Long, step: Int): MinuteRange = this.toDate().minuteUntil(end.toDate(), step)
 
 /**
  * Create a positive-order minute range that does not contain [end]
  */
-infix fun Long.minuteUntilTo(end: Long): MinuteRange = minuteUntilTo(end, 1)
+infix fun Long.minuteUntil(end: Long): MinuteRange = minuteUntil(end, 1)
 
 /**
  * Create a positive-order minute range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm'
  */
 @Throws(ParseException::class)
-fun String.minuteYMDHMUntilTo(end: String, step: Int): MinuteRange = this.toDateYMDHM().minuteUntilTo(end.toDateYMDHM(), step)
+fun String.minuteYMDHMUntil(end: String, step: Int): MinuteRange = this.toDateYMDHM().minuteUntil(end.toDateYMDHM(), step)
 
 /**
  * Create a positive-order minute range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm'
  */
 @Throws(ParseException::class)
-infix fun String.minuteYMDHMUntilTo(end: String): MinuteRange = minuteYMDHMUntilTo(end, 1)
+infix fun String.minuteYMDHMUntil(end: String): MinuteRange = minuteYMDHMUntil(end, 1)
 
 
 /**
@@ -925,34 +925,34 @@ infix fun String.secondYMDHMSRangeTo(endInclusive: String): SecondRange = second
 /**
  * Create a positive-order second range that does not contain [end]
  */
-fun Date.secondUntilTo(end: Date, step: Int): SecondRange = SecondRange(this, end.addSecond(-1), step)
+fun Date.secondUntil(end: Date, step: Int): SecondRange = SecondRange(this, end.addSecond(-1), step)
 
 /**
  * Create a positive-order second range that does not contain [end]
  */
-infix fun Date.secondUntilTo(end: Date): SecondRange = secondUntilTo(end, 1)
+infix fun Date.secondUntil(end: Date): SecondRange = secondUntil(end, 1)
 
 /**
  * Create a positive-order second range that does not contain [end]
  */
-fun Long.secondUntilTo(end: Long, step: Int): SecondRange = this.toDate().secondUntilTo(end.toDate(), step)
+fun Long.secondUntil(end: Long, step: Int): SecondRange = this.toDate().secondUntil(end.toDate(), step)
 
 /**
  * Create a positive-order second range that does not contain [end]
  */
-infix fun Long.secondUntilTo(end: Long): SecondRange = secondUntilTo(end, 1)
+infix fun Long.secondUntil(end: Long): SecondRange = secondUntil(end, 1)
 
 /**
  * Create a positive-order second range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss'
  */
 @Throws(ParseException::class)
-fun String.secondYMDHMSUntilTo(end: String, step: Int): SecondRange = this.toDateYMDHMS().secondUntilTo(end.toDateYMDHMS(), step)
+fun String.secondYMDHMSUntil(end: String, step: Int): SecondRange = this.toDateYMDHMS().secondUntil(end.toDateYMDHMS(), step)
 
 /**
  * Create a positive-order second range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss'
  */
 @Throws(ParseException::class)
-infix fun String.secondYMDHMSUntilTo(end: String): SecondRange = secondYMDHMSUntilTo(end, 1)
+infix fun String.secondYMDHMSUntil(end: String): SecondRange = secondYMDHMSUntil(end, 1)
 
 
 /**
@@ -1061,34 +1061,34 @@ infix fun String.millisecondYMDHMSMRangeTo(endInclusive: String): MillisecondRan
 /**
  * Create a positive-order millisecond range that does not contain [end]
  */
-fun Date.millisecondUntilTo(end: Date, step: Int): MillisecondRange = MillisecondRange(this, end.addMillisecond(-1), step)
+fun Date.millisecondUntil(end: Date, step: Int): MillisecondRange = MillisecondRange(this, end.addMillisecond(-1), step)
 
 /**
  * Create a positive-order millisecond range that does not contain [end]
  */
-infix fun Date.millisecondUntilTo(end: Date): MillisecondRange = millisecondUntilTo(end, 1)
+infix fun Date.millisecondUntil(end: Date): MillisecondRange = millisecondUntil(end, 1)
 
 /**
  * Create a positive-order millisecond range that does not contain [end]
  */
-fun Long.millisecondUntilTo(end: Long, step: Int): MillisecondRange = this.toDate().millisecondUntilTo(end.toDate(), step)
+fun Long.millisecondUntil(end: Long, step: Int): MillisecondRange = this.toDate().millisecondUntil(end.toDate(), step)
 
 /**
  * Create a positive-order millisecond range that does not contain [end]
  */
-infix fun Long.millisecondUntilTo(end: Long): MillisecondRange = millisecondUntilTo(end, 1)
+infix fun Long.millisecondUntil(end: Long): MillisecondRange = millisecondUntil(end, 1)
 
 /**
  * Create a positive-order millisecond range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss SSS'
  */
 @Throws(ParseException::class)
-fun String.millisecondYMDHMSMUntilTo(end: String, step: Int): MillisecondRange = this.toDateYMDHMSM().millisecondUntilTo(end.toDateYMDHMSM(), step)
+fun String.millisecondYMDHMSMUntil(end: String, step: Int): MillisecondRange = this.toDateYMDHMSM().millisecondUntil(end.toDateYMDHMSM(), step)
 
 /**
  * Create a positive-order millisecond range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss SSS'
  */
 @Throws(ParseException::class)
-infix fun String.millisecondYMDHMSMUntilTo(end: String): MillisecondRange = millisecondYMDHMSMUntilTo(end, 1)
+infix fun String.millisecondYMDHMSMUntil(end: String): MillisecondRange = millisecondYMDHMSMUntil(end, 1)
 
 
 /**

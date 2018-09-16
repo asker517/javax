@@ -6957,7 +6957,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> IntRange indices(@NotNull T[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -6965,7 +6965,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull byte[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -6973,7 +6973,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull short[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -6981,7 +6981,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull int[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -6989,7 +6989,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull long[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -6997,7 +6997,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull float[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -7005,7 +7005,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull double[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -7013,7 +7013,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull boolean[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
     /**
@@ -7021,7 +7021,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@NotNull char[] elements) {
-        return Rangex.untilTo(0, elements.length);
+        return Rangex.until(0, elements.length);
     }
 
 
@@ -8359,7 +8359,7 @@ public class Arrayx {
     public static <T, R, V> List<V> zip(@NotNull T[] elements, @NotNull R[] other, @NotNull Transformer2<T, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8372,7 +8372,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull byte[] elements, @NotNull R[] other, @NotNull Transformer2<Byte, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8385,7 +8385,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull short[] elements, @NotNull R[] other, @NotNull Transformer2<Short, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8398,7 +8398,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull int[] elements, @NotNull R[] other, @NotNull Transformer2<Integer, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8411,7 +8411,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull long[] elements, @NotNull R[] other, @NotNull Transformer2<Long, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8424,7 +8424,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull float[] elements, @NotNull R[] other, @NotNull Transformer2<Float, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8437,7 +8437,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull double[] elements, @NotNull R[] other, @NotNull Transformer2<Double, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8450,7 +8450,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull boolean[] elements, @NotNull R[] other, @NotNull Transformer2<Boolean, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8463,7 +8463,7 @@ public class Arrayx {
     public static <R, V> List<V> zip(@NotNull char[] elements, @NotNull R[] other, @NotNull Transformer2<Character, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8849,7 +8849,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull byte[] elements, @NotNull byte[] other, @NotNull Transformer2<Byte, Byte, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8862,7 +8862,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull short[] elements, @NotNull short[] other, @NotNull Transformer2<Short, Short, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8875,7 +8875,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull int[] elements, @NotNull int[] other, @NotNull Transformer2<Integer, Integer, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8888,7 +8888,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull long[] elements, @NotNull long[] other, @NotNull Transformer2<Long, Long, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8901,7 +8901,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull float[] elements, @NotNull float[] other, @NotNull Transformer2<Float, Float, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8914,7 +8914,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull double[] elements, @NotNull double[] other, @NotNull Transformer2<Double, Double, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8927,7 +8927,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull boolean[] elements, @NotNull boolean[] other, @NotNull Transformer2<Boolean, Boolean, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -8940,7 +8940,7 @@ public class Arrayx {
     public static <V> List<V> zip(@NotNull char[] elements, @NotNull char[] other, @NotNull Transformer2<Character, Character, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
         List<V> list = new ArrayList<V>(size);
-        for (int i : Rangex.untilTo(0, size)) {
+        for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
         return list;
@@ -12885,7 +12885,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<T> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12901,7 +12901,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Byte> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12917,7 +12917,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Short> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12933,7 +12933,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Integer> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12949,7 +12949,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Long> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12965,7 +12965,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Float> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12981,7 +12981,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Double> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -12997,7 +12997,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Boolean> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }
@@ -13013,7 +13013,7 @@ public class Arrayx {
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
         List<Character> list = new ArrayList<>(n);
-        for (int index : Rangex.untilTo(size - n, elements.length))
+        for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
         return list;
     }

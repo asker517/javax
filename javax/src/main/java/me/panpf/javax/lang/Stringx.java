@@ -687,7 +687,7 @@ public class Stringx {
             return false;
         }
 
-        for (int index : Rangex.untilTo(0, self.length())) {
+        for (int index : Rangex.until(0, self.length())) {
             if (!Charx.equals(self.charAt(thisOffset + index), (other.charAt(otherOffset + index)), ignoreCase)) {
                 return false;
             }

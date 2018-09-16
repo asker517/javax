@@ -54,49 +54,49 @@ public class Rangex {
     /**
      * Create a positive-order byte ranges
      */
-    public static IntRange rangeTo(byte start, byte end, byte step) {
-        return IntRange.fromClosedRange(start, end, step);
+    public static IntRange rangeTo(byte start, byte endInclusive, int step) {
+        return IntRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order byte ranges
      */
-    public static IntRange rangeTo(byte start, byte end) {
-        return rangeTo(start, end, (byte) 1);
+    public static IntRange rangeTo(byte start, byte endInclusive) {
+        return rangeTo(start, endInclusive, 1);
     }
 
     /**
      * Create a positive-order byte range that does not contain [end]
      */
-    public static IntRange untilTo(byte start, byte end, byte step) {
+    public static IntRange until(byte start, byte end, int step) {
         return IntRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
      * Create a positive-order byte range that does not contain [end]
      */
-    public static IntRange untilTo(byte start, byte end) {
-        return untilTo(start, end, (byte) 1);
+    public static IntRange until(byte start, byte end) {
+        return until(start, end, 1);
     }
 
     /**
      * Create a reversed byte range
      */
-    public static IntRange downTo(byte start, byte end, byte step) {
-        return IntRange.fromClosedRange(start, end, step);
+    public static IntRange downTo(byte start, byte endInclusive, int step) {
+        return IntRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed byte range
      */
-    public static IntRange downTo(byte start, byte end) {
-        return downTo(start, end, (byte) -1);
+    public static IntRange downTo(byte start, byte endInclusive) {
+        return downTo(start, endInclusive, -1);
     }
 
     /**
      * Create a reversed byte range that does not contain [end]
      */
-    public static IntRange downUntilTo(byte start, byte end, byte step) {
+    public static IntRange downUntilTo(byte start, byte end, int step) {
         return IntRange.fromClosedRange(start, end + 1, step);
     }
 
@@ -104,7 +104,7 @@ public class Rangex {
      * Create a reversed byte range that does not contain [end]
      */
     public static IntRange downUntilTo(byte start, byte end) {
-        return downUntilTo(start, end, (byte) -1);
+        return downUntilTo(start, end, -1);
     }
 
 
@@ -114,49 +114,49 @@ public class Rangex {
     /**
      * Create a positive-order short ranges
      */
-    public static IntRange rangeTo(short start, short end, short step) {
-        return IntRange.fromClosedRange(start, end, step);
+    public static IntRange rangeTo(short start, short endInclusive, int step) {
+        return IntRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order short ranges
      */
-    public static IntRange rangeTo(short start, short end) {
-        return rangeTo(start, end, (short) 1);
+    public static IntRange rangeTo(short start, short endInclusive) {
+        return rangeTo(start, endInclusive, 1);
     }
 
     /**
      * Create a positive-order short range that does not contain [end]
      */
-    public static IntRange untilTo(short start, short end, short step) {
+    public static IntRange until(short start, short end, int step) {
         return IntRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
      * Create a positive-order short range that does not contain [end]
      */
-    public static IntRange untilTo(short start, short end) {
-        return untilTo(start, end, (short) 1);
+    public static IntRange until(short start, short end) {
+        return until(start, end, 1);
     }
 
     /**
      * Create a reversed short range
      */
-    public static IntRange downTo(short start, short end, short step) {
-        return IntRange.fromClosedRange(start, end, step);
+    public static IntRange downTo(short start, short endInclusive, int step) {
+        return IntRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed short range
      */
-    public static IntRange downTo(short start, short end) {
-        return downTo(start, end, (short) -1);
+    public static IntRange downTo(short start, short endInclusive) {
+        return downTo(start, endInclusive, -1);
     }
 
     /**
      * Create a reversed short range that does not contain [end]
      */
-    public static IntRange downUntilTo(short start, short end, short step) {
+    public static IntRange downUntilTo(short start, short end, int step) {
         return IntRange.fromClosedRange(start, end + 1, step);
     }
 
@@ -164,7 +164,7 @@ public class Rangex {
      * Create a reversed short range that does not contain [end]
      */
     public static IntRange downUntilTo(short start, short end) {
-        return downUntilTo(start, end, (short) -1);
+        return downUntilTo(start, end, -1);
     }
 
 
@@ -174,43 +174,43 @@ public class Rangex {
     /**
      * Create a positive-order int ranges
      */
-    public static IntRange rangeTo(int start, int end, int step) {
-        return IntRange.fromClosedRange(start, end, step);
+    public static IntRange rangeTo(int start, int endInclusive, int step) {
+        return IntRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order int ranges
      */
-    public static IntRange rangeTo(int start, int end) {
-        return rangeTo(start, end, 1);
+    public static IntRange rangeTo(int start, int endInclusive) {
+        return rangeTo(start, endInclusive, 1);
     }
 
     /**
      * Create a positive-order int range that does not contain [end]
      */
-    public static IntRange untilTo(int start, int end, int step) {
+    public static IntRange until(int start, int end, int step) {
         return IntRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
      * Create a positive-order int range that does not contain [end]
      */
-    public static IntRange untilTo(int start, int end) {
-        return untilTo(start, end, 1);
+    public static IntRange until(int start, int end) {
+        return until(start, end, 1);
     }
 
     /**
      * Create a reversed int range
      */
-    public static IntRange downTo(int start, int end, int step) {
-        return IntRange.fromClosedRange(start, end, step);
+    public static IntRange downTo(int start, int endInclusive, int step) {
+        return IntRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed int range
      */
-    public static IntRange downTo(int start, int end) {
-        return downTo(start, end, -1);
+    public static IntRange downTo(int start, int endInclusive) {
+        return downTo(start, endInclusive, -1);
     }
 
     /**
@@ -234,43 +234,43 @@ public class Rangex {
     /**
      * Create a positive-order long ranges
      */
-    public static LongRange rangeTo(long start, long end, long step) {
-        return LongRange.fromClosedRange(start, end, step);
+    public static LongRange rangeTo(long start, long endInclusive, long step) {
+        return LongRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order long ranges
      */
-    public static LongRange rangeTo(long start, long end) {
-        return rangeTo(start, end, 1);
+    public static LongRange rangeTo(long start, long endInclusive) {
+        return rangeTo(start, endInclusive, 1);
     }
 
     /**
      * Create a positive-order long range that does not contain [end]
      */
-    public static LongRange untilTo(long start, long end, long step) {
+    public static LongRange until(long start, long end, long step) {
         return LongRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
      * Create a positive-order long range that does not contain [end]
      */
-    public static LongRange untilTo(long start, long end) {
-        return untilTo(start, end, 1);
+    public static LongRange until(long start, long end) {
+        return until(start, end, 1);
     }
 
     /**
      * Create a reversed long range
      */
-    public static LongRange downTo(long start, long end, long step) {
-        return LongRange.fromClosedRange(start, end, step);
+    public static LongRange downTo(long start, long endInclusive, long step) {
+        return LongRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed long range
      */
-    public static LongRange downTo(long start, long end) {
-        return downTo(start, end, -1);
+    public static LongRange downTo(long start, long endInclusive) {
+        return downTo(start, endInclusive, -1);
     }
 
     /**
@@ -294,43 +294,43 @@ public class Rangex {
     /**
      * Create a positive-order float ranges
      */
-    public static FloatRange rangeTo(float start, float end, float step) {
-        return FloatRange.fromClosedRange(start, end, step);
+    public static FloatRange rangeTo(float start, float endInclusive, float step) {
+        return FloatRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order float ranges
      */
-    public static FloatRange rangeTo(float start, float end) {
-        return rangeTo(start, end, 1f);
+    public static FloatRange rangeTo(float start, float endInclusive) {
+        return rangeTo(start, endInclusive, 1f);
     }
 
     /**
      * Create a positive-order float range that does not contain [end]
      */
-    public static FloatRange untilTo(float start, float end, float step) {
+    public static FloatRange until(float start, float end, float step) {
         return FloatRange.fromClosedRange(start, end - 1, step);
     }
 
     /**
      * Create a positive-order float range that does not contain [end]
      */
-    public static FloatRange untilTo(float start, float end) {
-        return untilTo(start, end, 1f);
+    public static FloatRange until(float start, float end) {
+        return until(start, end, 1f);
     }
 
     /**
      * Create a reversed float range
      */
-    public static FloatRange downTo(float start, float end, float step) {
-        return FloatRange.fromClosedRange(start, end, step);
+    public static FloatRange downTo(float start, float endInclusive, float step) {
+        return FloatRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed float range
      */
-    public static FloatRange downTo(float start, float end) {
-        return downTo(start, end, -1f);
+    public static FloatRange downTo(float start, float endInclusive) {
+        return downTo(start, endInclusive, -1f);
     }
 
     /**
@@ -354,43 +354,43 @@ public class Rangex {
     /**
      * Create a positive-order double ranges
      */
-    public static DoubleRange rangeTo(double start, double end, double step) {
-        return DoubleRange.fromClosedRange(start, end, step);
+    public static DoubleRange rangeTo(double start, double endInclusive, double step) {
+        return DoubleRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order double ranges
      */
-    public static DoubleRange rangeTo(double start, double end) {
-        return rangeTo(start, end, 1.0);
+    public static DoubleRange rangeTo(double start, double endInclusive) {
+        return rangeTo(start, endInclusive, 1.0);
     }
 
     /**
      * Create a positive-order double range that does not contain [end]
      */
-    public static DoubleRange untilTo(double start, double end, double step) {
+    public static DoubleRange until(double start, double end, double step) {
         return DoubleRange.fromClosedRange(start, end - 1.0, step);
     }
 
     /**
      * Create a positive-order double range that does not contain [end]
      */
-    public static DoubleRange untilTo(double start, double end) {
-        return untilTo(start, end, 1.0);
+    public static DoubleRange until(double start, double end) {
+        return until(start, end, 1.0);
     }
 
     /**
      * Create a reversed double range
      */
-    public static DoubleRange downTo(double start, double end, double step) {
-        return DoubleRange.fromClosedRange(start, end, step);
+    public static DoubleRange downTo(double start, double endInclusive, double step) {
+        return DoubleRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed double range
      */
-    public static DoubleRange downTo(double start, double end) {
-        return downTo(start, end, -1.0);
+    public static DoubleRange downTo(double start, double endInclusive) {
+        return downTo(start, endInclusive, -1.0);
     }
 
     /**
@@ -414,43 +414,43 @@ public class Rangex {
     /**
      * Create a positive-order char ranges
      */
-    public static CharRange rangeTo(char start, char end, int step) {
-        return CharRange.fromClosedRange(start, end, step);
+    public static CharRange rangeTo(char start, char endInclusive, int step) {
+        return CharRange.fromClosedRange(start, endInclusive, step);
     }
 
     /**
      * Create a positive-order char ranges
      */
-    public static CharRange rangeTo(char start, char end) {
-        return rangeTo(start, end, 1);
+    public static CharRange rangeTo(char start, char endInclusive) {
+        return rangeTo(start, endInclusive, 1);
     }
 
     /**
      * Create a positive-order char range that does not contain [end]
      */
-    public static CharRange untilTo(char start, char end, int step) {
+    public static CharRange until(char start, char end, int step) {
         return CharRange.fromClosedRange(start, (char) Math.max(Math.min(end - 1, Character.MAX_VALUE), Character.MIN_VALUE), step);
     }
 
     /**
      * Create a positive-order char range that does not contain [end]
      */
-    public static CharRange untilTo(char start, char end) {
-        return untilTo(start, end, 1);
+    public static CharRange until(char start, char end) {
+        return until(start, end, 1);
     }
 
     /**
      * Create a reversed char range
      */
-    public static CharRange downTo(char start, char end, int step) {
-        return new CharRange(start, end, step);
+    public static CharRange downTo(char start, char endInclusive, int step) {
+        return new CharRange(start, endInclusive, step);
     }
 
     /**
      * Create a reversed char range
      */
-    public static CharRange downTo(char start, char end) {
-        return downTo(start, end, -1);
+    public static CharRange downTo(char start, char endInclusive) {
+        return downTo(start, endInclusive, -1);
     }
 
     /**
@@ -524,7 +524,7 @@ public class Rangex {
      * Create a positive-order year range that does not contain [end]
      */
     @NotNull
-    public static YearRange yearUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static YearRange yearUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new YearRange(date, Datex.addYear(end, -1), step);
     }
 
@@ -532,40 +532,40 @@ public class Rangex {
      * Create a positive-order year range that does not contain [end]
      */
     @NotNull
-    public static YearRange yearUntilTo(@NotNull Date date, @NotNull Date end) {
-        return yearUntilTo(date, end, 1);
+    public static YearRange yearUntil(@NotNull Date date, @NotNull Date end) {
+        return yearUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order year range that does not contain [end]
      */
     @NotNull
-    public static YearRange yearUntilTo(long millisecondValue, long end, int step) {
-        return yearUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static YearRange yearUntil(long millisecondValue, long end, int step) {
+        return yearUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order year range that does not contain [end]
      */
     @NotNull
-    public static YearRange yearUntilTo(long millisecondValue, long end) {
-        return yearUntilTo(millisecondValue, end, 1);
+    public static YearRange yearUntil(long millisecondValue, long end) {
+        return yearUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order year range that does not contain [end], parsing the formatted date string with 'yyyy'
      */
     @NotNull
-    public static YearRange yearYUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return yearUntilTo(Datex.toDateY(formattedDate), Datex.toDateY(end), step);
+    public static YearRange yearYUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return yearUntil(Datex.toDateY(formattedDate), Datex.toDateY(end), step);
     }
 
     /**
      * Create a positive-order year range that does not contain [end], parsing the formatted date string with 'yyyy'
      */
     @NotNull
-    public static YearRange yearYUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return yearYUntilTo(formattedDate, end, 1);
+    public static YearRange yearYUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return yearYUntil(formattedDate, end, 1);
     }
 
 
@@ -723,7 +723,7 @@ public class Rangex {
      * Create a positive-order month range that does not contain [end]
      */
     @NotNull
-    public static MonthRange monthUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static MonthRange monthUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new MonthRange(date, Datex.addMonth(end, -1), step);
     }
 
@@ -731,40 +731,40 @@ public class Rangex {
      * Create a positive-order month range that does not contain [end]
      */
     @NotNull
-    public static MonthRange monthUntilTo(@NotNull Date date, @NotNull Date end) {
-        return monthUntilTo(date, end, 1);
+    public static MonthRange monthUntil(@NotNull Date date, @NotNull Date end) {
+        return monthUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order month range that does not contain [end]
      */
     @NotNull
-    public static MonthRange monthUntilTo(long millisecondValue, long end, int step) {
-        return monthUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static MonthRange monthUntil(long millisecondValue, long end, int step) {
+        return monthUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order month range that does not contain [end]
      */
     @NotNull
-    public static MonthRange monthUntilTo(long millisecondValue, long end) {
-        return monthUntilTo(millisecondValue, end, 1);
+    public static MonthRange monthUntil(long millisecondValue, long end) {
+        return monthUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order month range that does not contain [end], parsing the formatted date string with 'yyyy-MM'
      */
     @NotNull
-    public static MonthRange monthYMUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return monthUntilTo(Datex.toDateYM(formattedDate), Datex.toDateYM(end), step);
+    public static MonthRange monthYMUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return monthUntil(Datex.toDateYM(formattedDate), Datex.toDateYM(end), step);
     }
 
     /**
      * Create a positive-order month range that does not contain [end], parsing the formatted date string with 'yyyy-MM'
      */
     @NotNull
-    public static MonthRange monthYMUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return monthYMUntilTo(formattedDate, end, 1);
+    public static MonthRange monthYMUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return monthYMUntil(formattedDate, end, 1);
     }
 
 
@@ -922,7 +922,7 @@ public class Rangex {
      * Create a positive-order day range that does not contain [end]
      */
     @NotNull
-    public static DayRange dayUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static DayRange dayUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new DayRange(date, Datex.addDayOfMonth(end, -1), step);
     }
 
@@ -930,40 +930,40 @@ public class Rangex {
      * Create a positive-order day range that does not contain [end]
      */
     @NotNull
-    public static DayRange dayUntilTo(@NotNull Date date, @NotNull Date end) {
-        return dayUntilTo(date, end, 1);
+    public static DayRange dayUntil(@NotNull Date date, @NotNull Date end) {
+        return dayUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order day range that does not contain [end]
      */
     @NotNull
-    public static DayRange dayUntilTo(long millisecondValue, long end, int step) {
-        return dayUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static DayRange dayUntil(long millisecondValue, long end, int step) {
+        return dayUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order day range that does not contain [end]
      */
     @NotNull
-    public static DayRange dayUntilTo(long millisecondValue, long end) {
-        return dayUntilTo(millisecondValue, end, 1);
+    public static DayRange dayUntil(long millisecondValue, long end) {
+        return dayUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order day range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd'
      */
     @NotNull
-    public static DayRange dayYMDUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return dayUntilTo(Datex.toDateYMD(formattedDate), Datex.toDateYMD(end), step);
+    public static DayRange dayYMDUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return dayUntil(Datex.toDateYMD(formattedDate), Datex.toDateYMD(end), step);
     }
 
     /**
      * Create a positive-order day range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd'
      */
     @NotNull
-    public static DayRange dayYMDUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return dayYMDUntilTo(formattedDate, end, 1);
+    public static DayRange dayYMDUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return dayYMDUntil(formattedDate, end, 1);
     }
 
 
@@ -1121,7 +1121,7 @@ public class Rangex {
      * Create a positive-order hour range that does not contain [end]
      */
     @NotNull
-    public static HourRange hourUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static HourRange hourUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new HourRange(date, Datex.addHourOfDay(end, -1), step);
     }
 
@@ -1129,40 +1129,40 @@ public class Rangex {
      * Create a positive-order hour range that does not contain [end]
      */
     @NotNull
-    public static HourRange hourUntilTo(@NotNull Date date, @NotNull Date end) {
-        return hourUntilTo(date, end, 1);
+    public static HourRange hourUntil(@NotNull Date date, @NotNull Date end) {
+        return hourUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order hour range that does not contain [end]
      */
     @NotNull
-    public static HourRange hourUntilTo(long millisecondValue, long end, int step) {
-        return hourUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static HourRange hourUntil(long millisecondValue, long end, int step) {
+        return hourUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order hour range that does not contain [end]
      */
     @NotNull
-    public static HourRange hourUntilTo(long millisecondValue, long end) {
-        return hourUntilTo(millisecondValue, end, 1);
+    public static HourRange hourUntil(long millisecondValue, long end) {
+        return hourUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order hour range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH'
      */
     @NotNull
-    public static HourRange hourYMDHUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return hourUntilTo(Datex.toDateYMDH(formattedDate), Datex.toDateYMDH(end), step);
+    public static HourRange hourYMDHUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return hourUntil(Datex.toDateYMDH(formattedDate), Datex.toDateYMDH(end), step);
     }
 
     /**
      * Create a positive-order hour range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH'
      */
     @NotNull
-    public static HourRange hourYMDHUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return hourYMDHUntilTo(formattedDate, end, 1);
+    public static HourRange hourYMDHUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return hourYMDHUntil(formattedDate, end, 1);
     }
 
 
@@ -1320,7 +1320,7 @@ public class Rangex {
      * Create a positive-order minute range that does not contain [end]
      */
     @NotNull
-    public static MinuteRange minuteUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static MinuteRange minuteUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new MinuteRange(date, Datex.addMinute(end, -1), step);
     }
 
@@ -1328,40 +1328,40 @@ public class Rangex {
      * Create a positive-order minute range that does not contain [end]
      */
     @NotNull
-    public static MinuteRange minuteUntilTo(@NotNull Date date, @NotNull Date end) {
-        return minuteUntilTo(date, end, 1);
+    public static MinuteRange minuteUntil(@NotNull Date date, @NotNull Date end) {
+        return minuteUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order minute range that does not contain [end]
      */
     @NotNull
-    public static MinuteRange minuteUntilTo(long millisecondValue, long end, int step) {
-        return minuteUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static MinuteRange minuteUntil(long millisecondValue, long end, int step) {
+        return minuteUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order minute range that does not contain [end]
      */
     @NotNull
-    public static MinuteRange minuteUntilTo(long millisecondValue, long end) {
-        return minuteUntilTo(millisecondValue, end, 1);
+    public static MinuteRange minuteUntil(long millisecondValue, long end) {
+        return minuteUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order minute range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm'
      */
     @NotNull
-    public static MinuteRange minuteYMDHMUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return minuteUntilTo(Datex.toDateYMDHM(formattedDate), Datex.toDateYMDHM(end), step);
+    public static MinuteRange minuteYMDHMUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return minuteUntil(Datex.toDateYMDHM(formattedDate), Datex.toDateYMDHM(end), step);
     }
 
     /**
      * Create a positive-order minute range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm'
      */
     @NotNull
-    public static MinuteRange minuteYMDHMUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return minuteYMDHMUntilTo(formattedDate, end, 1);
+    public static MinuteRange minuteYMDHMUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return minuteYMDHMUntil(formattedDate, end, 1);
     }
 
 
@@ -1519,7 +1519,7 @@ public class Rangex {
      * Create a positive-order second range that does not contain [end]
      */
     @NotNull
-    public static SecondRange secondUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static SecondRange secondUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new SecondRange(date, Datex.addSecond(end, -1), step);
     }
 
@@ -1527,40 +1527,40 @@ public class Rangex {
      * Create a positive-order second range that does not contain [end]
      */
     @NotNull
-    public static SecondRange secondUntilTo(@NotNull Date date, @NotNull Date end) {
-        return secondUntilTo(date, end, 1);
+    public static SecondRange secondUntil(@NotNull Date date, @NotNull Date end) {
+        return secondUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order second range that does not contain [end]
      */
     @NotNull
-    public static SecondRange secondUntilTo(long millisecondValue, long end, int step) {
-        return secondUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static SecondRange secondUntil(long millisecondValue, long end, int step) {
+        return secondUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order second range that does not contain [end]
      */
     @NotNull
-    public static SecondRange secondUntilTo(long millisecondValue, long end) {
-        return secondUntilTo(millisecondValue, end, 1);
+    public static SecondRange secondUntil(long millisecondValue, long end) {
+        return secondUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order second range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss'
      */
     @NotNull
-    public static SecondRange secondYMDHMSUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return secondUntilTo(Datex.toDateYMDHMS(formattedDate), Datex.toDateYMDHMS(end), step);
+    public static SecondRange secondYMDHMSUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return secondUntil(Datex.toDateYMDHMS(formattedDate), Datex.toDateYMDHMS(end), step);
     }
 
     /**
      * Create a positive-order second range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss'
      */
     @NotNull
-    public static SecondRange secondYMDHMSUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return secondYMDHMSUntilTo(formattedDate, end, 1);
+    public static SecondRange secondYMDHMSUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return secondYMDHMSUntil(formattedDate, end, 1);
     }
 
 
@@ -1718,7 +1718,7 @@ public class Rangex {
      * Create a positive-order millisecond range that does not contain [end]
      */
     @NotNull
-    public static MillisecondRange millisecondUntilTo(@NotNull Date date, @NotNull Date end, int step) {
+    public static MillisecondRange millisecondUntil(@NotNull Date date, @NotNull Date end, int step) {
         return new MillisecondRange(date, Datex.addMillisecond(end, -1), step);
     }
 
@@ -1726,40 +1726,40 @@ public class Rangex {
      * Create a positive-order millisecond range that does not contain [end]
      */
     @NotNull
-    public static MillisecondRange millisecondUntilTo(@NotNull Date date, @NotNull Date end) {
-        return millisecondUntilTo(date, end, 1);
+    public static MillisecondRange millisecondUntil(@NotNull Date date, @NotNull Date end) {
+        return millisecondUntil(date, end, 1);
     }
 
     /**
      * Create a positive-order millisecond range that does not contain [end]
      */
     @NotNull
-    public static MillisecondRange millisecondUntilTo(long millisecondValue, long end, int step) {
-        return millisecondUntilTo(Datex.toDate(millisecondValue), Datex.toDate(end), step);
+    public static MillisecondRange millisecondUntil(long millisecondValue, long end, int step) {
+        return millisecondUntil(Datex.toDate(millisecondValue), Datex.toDate(end), step);
     }
 
     /**
      * Create a positive-order millisecond range that does not contain [end]
      */
     @NotNull
-    public static MillisecondRange millisecondUntilTo(long millisecondValue, long end) {
-        return millisecondUntilTo(millisecondValue, end, 1);
+    public static MillisecondRange millisecondUntil(long millisecondValue, long end) {
+        return millisecondUntil(millisecondValue, end, 1);
     }
 
     /**
      * Create a positive-order millisecond range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss SSS'
      */
     @NotNull
-    public static MillisecondRange millisecondYMDHMSMUntilTo(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
-        return millisecondUntilTo(Datex.toDateYMDHMSM(formattedDate), Datex.toDateYMDHMSM(end), step);
+    public static MillisecondRange millisecondYMDHMSMUntil(@NotNull String formattedDate, @NotNull String end, int step) throws ParseException {
+        return millisecondUntil(Datex.toDateYMDHMSM(formattedDate), Datex.toDateYMDHMSM(end), step);
     }
 
     /**
      * Create a positive-order millisecond range that does not contain [end], parsing the formatted date string with 'yyyy-MM-dd HH:mm:ss SSS'
      */
     @NotNull
-    public static MillisecondRange millisecondYMDHMSMUntilTo(@NotNull String formattedDate, @NotNull String end) throws ParseException {
-        return millisecondYMDHMSMUntilTo(formattedDate, end, 1);
+    public static MillisecondRange millisecondYMDHMSMUntil(@NotNull String formattedDate, @NotNull String end) throws ParseException {
+        return millisecondYMDHMSMUntil(formattedDate, end, 1);
     }
 
 
