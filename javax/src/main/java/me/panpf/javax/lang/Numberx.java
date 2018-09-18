@@ -64,7 +64,13 @@ public class Numberx {
         return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
-    /* ******************************************* From Kotlin Standard library ********************************************************* */
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
 
     /**
      * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.

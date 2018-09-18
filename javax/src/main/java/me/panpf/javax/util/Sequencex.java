@@ -23,7 +23,13 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Sequencex {
 
-    /* ******************************************* From Kotlin Standard library ********************************************************* */
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
 
     /**
      * Returns a wrapper sequence that provides values of this sequence, but ensures it can be iterated only one time.

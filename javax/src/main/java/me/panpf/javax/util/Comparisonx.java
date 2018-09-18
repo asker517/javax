@@ -24,7 +24,13 @@ import java.util.Comparator;
 @SuppressWarnings("WeakerAccess")
 public class Comparisonx {
 
-    /* ******************************************* From Kotlin Standard library ********************************************************* */
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
 
     /**
      * Compares two nullable [Comparable] values. Null is considered less than any value.

@@ -28,7 +28,12 @@ public class Collectionx {
     public static final Map EMPTY_MAP = Collections.EMPTY_MAP;
     public static final Set EMPTY_SET = Collections.EMPTY_SET;
 
-    /* ******************************************* From Kotlin Standard library ********************************************************* */
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
 
 
     /**

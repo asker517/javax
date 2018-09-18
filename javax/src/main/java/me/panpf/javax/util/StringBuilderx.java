@@ -24,7 +24,13 @@ import java.io.IOException;
 @SuppressWarnings("WeakerAccess")
 public class StringBuilderx {
 
-    /* ******************************************* From Kotlin Standard library ********************************************************* */
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
 
     public static <T> void appendElement(@NotNull Appendable appendable, @NotNull T element, @Nullable Transformer<T, CharSequence> transform) {
         try {
