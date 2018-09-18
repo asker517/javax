@@ -16,6 +16,7 @@
 
 package me.panpf.javaxkt.util
 
+import org.jetbrains.annotations.NotNull
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -231,24 +232,29 @@ private const val ONE_SECOND_MILLISECONDS: Long = 1000
  *
  * @param ignoreMillisecond Ignore milliseconds
  */
-fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String {
+fun Long.formatTotalTime(ignoreMillisecond: Boolean = false, divider: String,
+                         daySuffix: String, hourSuffix: String, minuteSuffix: String,
+                         secondSuffix: String, millisecondSuffix: String): String {
     val finalTotalTimeMillis = if (this >= 0) this else 0
 
     return when {
         !ignoreMillisecond && finalTotalTimeMillis < ONE_SECOND_MILLISECONDS -> // millisecond
-            finalTotalTimeMillis.toString() + "ms"
+            finalTotalTimeMillis.toString() + millisecondSuffix
         finalTotalTimeMillis < ONE_MINUTE_MILLISECONDS -> {
             // second
             val second = finalTotalTimeMillis / ONE_SECOND_MILLISECONDS
             val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
-            second.toString() + "s" + if (millisecond > 0) millisecond.toString() + "ms" else ""
+            second.toString() + secondSuffix +
+                    (if (millisecond > 0) divider + millisecond.toString() + millisecondSuffix else "")
         }
         finalTotalTimeMillis < ONE_HOUR_MILLISECONDS -> {
             // minute
             val minute = finalTotalTimeMillis / ONE_MINUTE_MILLISECONDS
             val second = finalTotalTimeMillis % ONE_MINUTE_MILLISECONDS / ONE_SECOND_MILLISECONDS
             val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
-            minute.toString() + "m" + (if (second > 0) second.toString() + "s" else "") + if (millisecond > 0) millisecond.toString() + "ms" else ""
+            minute.toString() + minuteSuffix +
+                    (if (second > 0) divider + second.toString() + secondSuffix else "") +
+                    (if (millisecond > 0) divider + millisecond.toString() + millisecondSuffix else "")
         }
         finalTotalTimeMillis < ONE_DAY_MILLISECONDS -> {
             // hour
@@ -256,7 +262,10 @@ fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String {
             val minute = finalTotalTimeMillis % ONE_HOUR_MILLISECONDS / ONE_MINUTE_MILLISECONDS
             val second = finalTotalTimeMillis % ONE_MINUTE_MILLISECONDS / ONE_SECOND_MILLISECONDS
             val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
-            hour.toString() + "h" + (if (minute > 0) minute.toString() + "m" else "") + (if (second > 0) second.toString() + "s" else "") + if (millisecond > 0) millisecond.toString() + "ms" else ""
+            hour.toString() + hourSuffix +
+                    (if (minute > 0) divider + minute.toString() + minuteSuffix else "") +
+                    (if (second > 0) divider + second.toString() + secondSuffix else "") +
+                    (if (millisecond > 0) divider + millisecond.toString() + millisecondSuffix else "")
         }
         else -> {
             // day
@@ -265,7 +274,11 @@ fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String {
             val minute = finalTotalTimeMillis % ONE_HOUR_MILLISECONDS / ONE_MINUTE_MILLISECONDS
             val second = finalTotalTimeMillis % ONE_MINUTE_MILLISECONDS / ONE_SECOND_MILLISECONDS
             val millisecond = if (!ignoreMillisecond) finalTotalTimeMillis % ONE_SECOND_MILLISECONDS else 0
-            "${day}d${if (hour > 0) hour.toString() + "h" else ""}${if (minute > 0) minute.toString() + "m" else ""}${if (second > 0) second.toString() + "s" else ""}${if (millisecond > 0) millisecond.toString() + "ms" else ""}"
+            day.toString() + daySuffix +
+                    (if (hour > 0) divider + hour.toString() + hourSuffix else "") +
+                    (if (minute > 0) divider + minute.toString() + minuteSuffix else "") +
+                    (if (second > 0) divider + second.toString() + secondSuffix else "") +
+                    (if (millisecond > 0) divider + millisecond.toString() + millisecondSuffix else "")
         }
     }
 }
@@ -275,6 +288,69 @@ fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String {
  *
  * @param ignoreMillisecond Ignore milliseconds
  */
+fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String {
+    return this.formatTotalTime(ignoreMillisecond, " ", "d", "h", "m", "s", "ms")
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
 fun Int.formatTotalTime(ignoreMillisecond: Boolean = false): String {
     return this.toLong().formatTotalTime(ignoreMillisecond)
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Long.formatTotalTimeShort(ignoreMillisecond: Boolean = false): String {
+    return this.formatTotalTime(ignoreMillisecond, "", "d", "h", "m", "s", "ms")
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Int.formatTotalTimeShort(ignoreMillisecond: Boolean = false): String {
+    return this.toLong().formatTotalTimeShort(ignoreMillisecond)
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Long.formatTotalTimeZH(ignoreMillisecond: Boolean = false): String {
+    return this.formatTotalTime(ignoreMillisecond, " ", "天", "小时", "分", "秒", "毫秒")
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Int.formatTotalTimeZH(ignoreMillisecond: Boolean = false): String {
+    return this.toLong().formatTotalTimeZH(ignoreMillisecond)
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Long.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String {
+    return this.formatTotalTime(ignoreMillisecond, "", "天", "小时", "分", "秒", "毫秒")
+}
+
+/**
+ * Returns the total time of formatting that can be displayed
+ *
+ * @param ignoreMillisecond Ignore milliseconds
+ */
+fun Int.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String {
+    return this.toLong().formatTotalTimeZHShort(ignoreMillisecond)
 }

@@ -372,30 +372,33 @@ public class Formatx {
      * @param ignoreMillisecond Ignore milliseconds
      */
     @NotNull
-    public static String totalTime(long totalTimeMillis, boolean ignoreMillisecond) {
+    private static String totalTime(long totalTimeMillis, boolean ignoreMillisecond, @NotNull String divider,
+                                    @NotNull String daySuffix, @NotNull String hourSuffix, @NotNull String minuteSuffix,
+                                    @NotNull String secondSuffix, @NotNull String millisecondSuffix) {
         long finalTotalTimeMillis = totalTimeMillis >= 0 ? totalTimeMillis : 0;
 
         if (!ignoreMillisecond && finalTotalTimeMillis < ONE_SECOND_MILLISECONDS) {
             // millisecond
-            return finalTotalTimeMillis + "ms";
+            return finalTotalTimeMillis + millisecondSuffix;
         } else if (finalTotalTimeMillis < ONE_MINUTE_MILLISECONDS) {
             // second
             long second = finalTotalTimeMillis / ONE_SECOND_MILLISECONDS;
             long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return second + "s" + (millisecond > 0 ? millisecond + "ms" : "");
+            return second + secondSuffix + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
         } else if (finalTotalTimeMillis < ONE_HOUR_MILLISECONDS) {
             // minute
             long minute = finalTotalTimeMillis / (ONE_MINUTE_MILLISECONDS);
             long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
             long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return minute + "m" + (second > 0 ? second + "s" : "") + (millisecond > 0 ? millisecond + "ms" : "");
+            return minute + minuteSuffix + (second > 0 ? divider + second + secondSuffix : "") + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
         } else if (finalTotalTimeMillis < ONE_DAY_MILLISECONDS) {
             // hour
             long hour = finalTotalTimeMillis / (ONE_HOUR_MILLISECONDS);
             long minute = finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS);
             long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
             long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return hour + "h" + (minute > 0 ? minute + "m" : "") + (second > 0 ? second + "s" : "") + (millisecond > 0 ? millisecond + "ms" : "");
+            return hour + hourSuffix + (minute > 0 ? divider + minute + minuteSuffix : "") + (second > 0 ? divider + second + secondSuffix : "")
+                    + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
         } else {
             // day
             long day = finalTotalTimeMillis / ONE_DAY_MILLISECONDS;
@@ -403,8 +406,19 @@ public class Formatx {
             long minute = finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS);
             long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
             long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return day + "d" + (hour > 0 ? hour + "h" : "") + (minute > 0 ? minute + "m" : "") + (second > 0 ? second + "s" : "") + (millisecond > 0 ? millisecond + "ms" : "");
+            return day + daySuffix + (hour > 0 ? divider + hour + hourSuffix : "") + (minute > 0 ? divider + minute + minuteSuffix : "")
+                    + (second > 0 ? divider + second + secondSuffix : "") + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
         }
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    private static String totalTime(long totalTimeMillis, boolean ignoreMillisecond) {
+        return totalTime(totalTimeMillis, ignoreMillisecond, " ", "d", "h", "m", "s", "ms");
     }
 
     /**
@@ -433,33 +447,111 @@ public class Formatx {
         return totalTime((long) totalTime, false);
     }
 
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    private static String totalTimeZH(long totalTimeMillis, boolean ignoreMillisecond) {
+        return totalTime(totalTimeMillis, ignoreMillisecond, " ", "天", "小时", "分", "秒", "毫秒");
+    }
 
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    @NotNull
+    public static String totalTimeZH(long totalTimeMillis) {
+        return totalTimeZH(totalTimeMillis, false);
+    }
 
-//    public static String formatTotalTimeZH(Context context, long useTimeMilliseconds, boolean ignoreSeconds) {
-//        useTimeMilliseconds = useTimeMilliseconds >= 0 ? useTimeMilliseconds : 0;
-//
-//        long seconds = useTimeMilliseconds / 1000;
-//        long minutes = seconds / 60;
-//        long hour = minutes / 60;
-//        long minuteValue = minutes % 60;
-//        long secondValue = seconds % 60;
-//
-//        StringBuilder builder = new StringBuilder();
-//
-//        if (hour > 0) {
-//            builder.append(hour).append(context.getString(R.string.time_hour));
-//        }
-//        if (minuteValue > 0) {
-//            builder.append(minuteValue).append(context.getString(R.string.time_minute));
-//        }
-//        if (secondValue > 0 && (!ignoreSeconds || builder.length() <= 0)) {
-//            builder.append(secondValue).append(context.getString(R.string.time_second));
-//        }
-//
-//        if (builder.length() == 0) {
-//            builder.append(0).append(context.getString(R.string.time_second));
-//        }
-//
-//        return builder.toString();
-//    }
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    public static String totalTimeZH(int totalTime, boolean ignoreMillisecond) {
+        return totalTimeZH((long) totalTime, ignoreMillisecond);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    @NotNull
+    public static String totalTimeZH(int totalTime) {
+        return totalTimeZH((long) totalTime, false);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    private static String totalTimeShort(long totalTimeMillis, boolean ignoreMillisecond) {
+        return totalTime(totalTimeMillis, ignoreMillisecond, "", "d", "h", "m", "s", "ms");
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    @NotNull
+    public static String totalTimeShort(long totalTimeMillis) {
+        return totalTimeShort(totalTimeMillis, false);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    public static String totalTimeShort(int totalTime, boolean ignoreMillisecond) {
+        return totalTimeShort((long) totalTime, ignoreMillisecond);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    @NotNull
+    public static String totalTimeShort(int totalTime) {
+        return totalTimeShort((long) totalTime, false);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    private static String totalTimeZHShort(long totalTimeMillis, boolean ignoreMillisecond) {
+        return totalTime(totalTimeMillis, ignoreMillisecond, "", "天", "小时", "分", "秒", "毫秒");
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    @NotNull
+    public static String totalTimeZHShort(long totalTimeMillis) {
+        return totalTimeZHShort(totalTimeMillis, false);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param ignoreMillisecond Ignore milliseconds
+     */
+    @NotNull
+    public static String totalTimeZHShort(int totalTime, boolean ignoreMillisecond) {
+        return totalTimeZHShort((long) totalTime, ignoreMillisecond);
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     */
+    @NotNull
+    public static String totalTimeZHShort(int totalTime) {
+        return totalTimeZHShort((long) totalTime, false);
+    }
 }
