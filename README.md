@@ -68,6 +68,12 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,
 
 ### lang
+* Char: [Charx.java] ([Test][CharTest.java]) | [Char.kt] ([Test][CharTest.kt])
+    * isBlank, isNotBlank, isAllBlank, isAllNotBlank, isPartBlank, isBlankOr
+    * isChinese, isNotChinese, isAllChinese, isAllNotChinese, isPartChinese, isNotChineseOr
+    * isDigit, isNotDigit, isAllDigit, isAllNotDigit, isPartDigit, isNotDigitOr
+    * isLetter, isNotLetter, isAllLetter, isAllNotLetter, isPartLetter, isNotLetterOr
+    * isLetterOrDigit, isNotLetterOrDigit, isAllLetterOrDigit, isAllNotLetterOrDigit, isPartLetterOrDigit, isNotLetterOrDigitOr
 * Class: [Classx.java] ([Test][ClassTest.java]) | [Class.kt] ([Test][ClassTest.kt])
     * getFieldWithParent, getFieldsWithParent, getFieldValue, setFieldValue,
     * getMethodWithParent, getMethodsWithParent, callMethod,
@@ -182,6 +188,11 @@ Please view the [CHANGELOG.md] file
 [IOStreamTest.java]: javax/src/test/java/me/panpf/javax/test/io/IOStreamTest.java
 [IOStream.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/IOStream.kt
 [IOStreamTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/IOStreamTest.kt
+
+[Charx.java]: javax/src/main/java/me/panpf/javax/lang/Charx.java
+[CharTest.java]: javax/src/test/java/me/panpf/javax/test/lang/CharTest.java
+[Char.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Char.kt
+[CharTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/CharTest.kt
 
 [Classx.java]: javax/src/main/java/me/panpf/javax/lang/Classx.java
 [ClassTest.java]: javax/src/test/java/me/panpf/javax/test/lang/ClassTest.java
