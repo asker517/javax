@@ -16,19 +16,200 @@
 
 package me.panpf.javaxkt.test.lang
 
-import me.panpf.javaxkt.lang.andContains
-import me.panpf.javaxkt.lang.orContains
-import org.junit.Assert
+import me.panpf.javaxkt.lang.*
+import org.junit.Assert.*
 import org.junit.Test
+import java.util.*
 
 class StringTest {
 
+    private val BLANK = "     "
+    private val EMPTY = ""
+    private val YES = "yes"
+    private val DIGIT = "8"
+    private val LETTER = "a飞"
+    private val CHINESE = "飞"
+    private val LETTER_OR_DIGIT = "a飞8"
+    private val SYMBOL = "*%￥#@"
+
+    @Test
+    fun testSafe() {
+        assertTrue(YES.isSafe())
+        assertFalse(null.isSafe())
+        assertFalse(BLANK.isSafe())
+        assertFalse(EMPTY.isSafe())
+
+        assertTrue((null as CharSequence?).isNotSafe())
+        assertTrue(BLANK.isNotSafe())
+        assertTrue(EMPTY.isNotSafe())
+        assertFalse(YES.isNotSafe())
+
+        assertEquals(EMPTY.isNotSafeOr("default"), "default")
+        assertEquals(YES.isNotSafeOr("default"), YES)
+    }
+
+    @Test
+    fun testIsBlank() {
+        assertTrue(BLANK.isBlank())
+        assertTrue(EMPTY.isBlank())
+        assertFalse(YES.isBlank())
+//        assertFalse(null.isBlank())
+
+        assertTrue(YES.isNotBlank())
+//        assertTrue(null.isNotBlank())
+        assertFalse(BLANK.isNotBlank())
+        assertFalse(EMPTY.isNotBlank())
+
+        assertEquals(BLANK.isBlankOr("default"), "default")
+        assertEquals(YES.isBlankOr("default"), YES)
+
+
+        assertTrue(null.isNullOrBlank())
+        assertTrue(BLANK.isNullOrBlank())
+        assertTrue(EMPTY.isNullOrBlank())
+        assertFalse(YES.isNullOrBlank())
+
+        assertTrue(YES.isNotNullOrBlank())
+        assertFalse(null.isNotNullOrBlank())
+        assertFalse(BLANK.isNotNullOrBlank())
+        assertFalse(EMPTY.isNotNullOrBlank())
+
+        assertEquals(BLANK.isNullOrBlankOr("default"), "default")
+        assertEquals(null.isNullOrBlankOr("default"), "default")
+        assertEquals(YES.isNullOrBlankOr("default"), YES)
+    }
+
+    @Test
+    fun testIsEmpty() {
+        assertTrue(EMPTY.isEmpty())
+        assertFalse(BLANK.isEmpty())
+        assertFalse(YES.isEmpty())
+//        assertFalse(null.isEmpty())
+
+        assertTrue(BLANK.isNotEmpty())
+        assertTrue(YES.isNotEmpty())
+//        assertTrue(null.isNotEmpty())
+        assertFalse(EMPTY.isNotEmpty())
+
+        assertEquals(EMPTY.isEmptyOr("default"), "default")
+        assertEquals(YES.isEmptyOr("default"), YES)
+
+
+        assertTrue(null.isNullOrEmpty())
+        assertTrue(EMPTY.isNullOrEmpty())
+        assertFalse(YES.isNullOrEmpty())
+
+        assertTrue(YES.isNotNullOrEmpty())
+        assertFalse(null.isNotNullOrEmpty())
+        assertFalse(EMPTY.isNotNullOrEmpty())
+
+        assertEquals(EMPTY.isNullOrEmptyOr("default"), "default")
+        assertEquals(null.isNullOrEmptyOr("default"), "default")
+        assertEquals(YES.isNullOrEmptyOr("default"), YES)
+    }
+
+    @Test
+    fun testChinese() {
+        assertTrue(CHINESE.isChinese())
+        assertFalse(EMPTY.isChinese())
+        assertFalse(DIGIT.isChinese())
+        assertFalse(LETTER.isChinese())
+        assertFalse(BLANK.isChinese())
+        assertFalse(null.isChinese())
+
+        assertTrue(EMPTY.isNotChinese())
+        assertTrue(DIGIT.isNotChinese())
+        assertTrue(LETTER.isNotChinese())
+        assertTrue(BLANK.isNotChinese())
+        assertTrue(null.isNotChinese())
+        assertFalse(CHINESE.isNotChinese())
+
+        assertEquals(LETTER.isNotChineseOr("default"), "default")
+        assertEquals(null.isNotChineseOr("default"), "default")
+        assertEquals(CHINESE.isNotChineseOr("default"), CHINESE)
+    }
+
+    @Test
+    fun testDigit() {
+        assertTrue(DIGIT.isDigit())
+        assertFalse(EMPTY.isDigit())
+        assertFalse(CHINESE.isDigit())
+        assertFalse(LETTER.isDigit())
+        assertFalse(BLANK.isDigit())
+        assertFalse(null.isDigit())
+
+        assertTrue(EMPTY.isNotDigit())
+        assertTrue(CHINESE.isNotDigit())
+        assertTrue(LETTER.isNotDigit())
+        assertTrue(BLANK.isNotDigit())
+        assertTrue(null.isNotDigit())
+        assertFalse(DIGIT.isNotDigit())
+
+        assertEquals(LETTER.isNotDigitOr("3"), "3")
+        assertEquals(null.isNotDigitOr("3"), "3")
+        assertEquals(DIGIT.isNotDigitOr("3"), DIGIT)
+    }
+
+    @Test
+    fun testLetter() {
+        assertTrue(LETTER.isLetter())
+        assertFalse(EMPTY.isLetter())
+        assertFalse(DIGIT.isLetter())
+        assertFalse(BLANK.isLetter())
+        assertFalse(null.isLetter())
+
+        assertTrue(EMPTY.isNotLetter())
+        assertTrue(DIGIT.isNotLetter())
+        assertTrue(BLANK.isNotLetter())
+        assertTrue(null.isNotLetter())
+        assertFalse(LETTER.isNotLetter())
+
+        assertEquals(DIGIT.isNotLetterOr("default"), "default")
+        assertEquals(null.isNotLetterOr("default"), "default")
+        assertEquals(LETTER.isNotLetterOr("default"), LETTER)
+    }
+
+    @Test
+    fun testLetterOrDigit() {
+        assertTrue(LETTER_OR_DIGIT.isLetterOrDigit())
+        assertFalse(EMPTY.isLetterOrDigit())
+        assertFalse(BLANK.isLetterOrDigit())
+        assertFalse(SYMBOL.isLetterOrDigit())
+        assertFalse(null.isLetterOrDigit())
+
+        assertTrue(EMPTY.isNotLetterOrDigit())
+        assertTrue(BLANK.isNotLetterOrDigit())
+        assertTrue(null.isNotLetterOrDigit())
+        assertTrue(SYMBOL.isNotLetterOrDigit())
+        assertFalse(LETTER_OR_DIGIT.isNotLetterOrDigit())
+
+        assertEquals(EMPTY.isNotLetterOrDigitOr("default"), "default")
+        assertEquals(null.isNotLetterOrDigitOr("default"), "default")
+        assertEquals(LETTER_OR_DIGIT.isNotLetterOrDigitOr("default"), LETTER_OR_DIGIT)
+    }
+
     @Test
     fun testContains() {
-        Assert.assertTrue("今天天气晴".orContains(arrayOf("哈", "天")))
-        Assert.assertFalse("今天天气晴".orContains(arrayOf("哈")))
+        assertTrue(orContains("今天天气晴", arrayOf("哈", "天")))
+        assertFalse(orContains("今天天气晴", arrayOf("哈")))
+        assertTrue(orContains("今天天气晴", listOf("哈", "天")))
+        assertFalse(orContains("今天天气晴", listOf("哈")))
+        assertFalse(orContains("今天天气晴", null as Array<String>?))
+        assertFalse(orContains(null, null as Array<String>?))
+        assertFalse(orContains("今天天气晴", null as Collection<String>?))
+        assertFalse(orContains(null, null as Collection<String>?))
+        assertFalse(orContains("今天天气晴", arrayOf()))
+        assertFalse(orContains("今天天气晴", LinkedList()))
 
-        Assert.assertTrue("今天天气晴".andContains(arrayOf("晴", "天")))
-        Assert.assertFalse("今天天气晴".andContains(arrayOf("哈", "天")))
+        assertTrue(andContains("今天天气晴", arrayOf("晴", "天")))
+        assertFalse(andContains("今天天气晴", arrayOf("哈", "天")))
+        assertTrue(andContains("今天天气晴", listOf("晴", "天")))
+        assertFalse(andContains("今天天气晴", listOf("哈", "天")))
+        assertFalse(andContains("今天天气晴", null as Array<String>?))
+        assertFalse(andContains(null, null as Array<String>?))
+        assertFalse(andContains("今天天气晴", null as Collection<String>?))
+        assertFalse(andContains(null, null as Collection<String>?))
+        assertFalse(andContains("今天天气晴", arrayOf()))
+        assertFalse(andContains("今天天气晴", LinkedList()))
     }
 }

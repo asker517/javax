@@ -69,11 +69,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 
 ### lang
 * Char: [Charx.java] ([Test][CharTest.java]) | [Char.kt] ([Test][CharTest.kt])
-    * isBlank, isNotBlank, isAllBlank, isAllNotBlank, isPartBlank, isBlankOr
-    * isChinese, isNotChinese, isAllChinese, isAllNotChinese, isPartChinese, isNotChineseOr
-    * isDigit, isNotDigit, isAllDigit, isAllNotDigit, isPartDigit, isNotDigitOr
-    * isLetter, isNotLetter, isAllLetter, isAllNotLetter, isPartLetter, isNotLetterOr
-    * isLetterOrDigit, isNotLetterOrDigit, isAllLetterOrDigit, isAllNotLetterOrDigit, isPartLetterOrDigit, isNotLetterOrDigitOr
+    * isBlank, isNotBlank, isBlankOr, isChinese, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr
+    * isLetter, isNotLetter, isNotLetterOr, isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr
 * Class: [Classx.java] ([Test][ClassTest.java]) | [Class.kt] ([Test][ClassTest.kt])
     * getFieldWithParent, getFieldsWithParent, getFieldValue, setFieldValue,
     * getMethodWithParent, getMethodsWithParent, callMethod,
@@ -81,9 +78,13 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Number: [Numberx.java] ([Test][NumberTest.java]) | [Number.kt] ([Test][NumberTest.kt])
     * scale, pad, coerce, to\*OrDefault, to\*OrZero
 * String: [Stringx.java] ([Test][StringTest.java]) | [String.kt] ([Test][StringTest.kt])
-    * isBlank, isEmpty, isDigit, isChinese, isLetterOrDigit, startsWith, endsWith, equals, orEmpty, orDefault,
-    * emptyToNull, blankToNull, remove, capitalize, decapitalize, limit, pad, regionMatches, find, indexOf,
-    * substring, toByteArray, orContains, andContains
+    * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
+    * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr
+    * isEmpty, isNotEmpty, isEmptyOr, isNullOrEmpty, isNotNullOrEmpty, isNullOrEmptyOr,
+    * isDigit, isNotDigit, isNotDigitOr, isLetter, isNotLetter, isNotLetterOr,
+    * isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr, orContains, andContains,
+    * startsWith, endsWith, equals, orEmpty, orDefault, emptyToNull, blankToNull, remove,
+    * capitalize, decapitalize, limit, pad, regionMatches, find, indexOf, substring, toByteArray
 * Throwable: [Throwablex.java] ([Test][ThrowableTest.java]) | [Throwable.kt] ([Test][ThrowableTest.kt])
     * stackTraceToString
 

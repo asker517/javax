@@ -1,5 +1,9 @@
 ## 0.6.4 pre
-* Add Char related extension
+* Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,
+    isLetter, isNotLetter, isNotLetterOr, isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr method
+* String add isSafe, isNotSafe, isNotSafeOr, isNotBlank, isBlankOr, isNotNullOrBlank, isNullOrBlankOr,
+    isNotEmpty, isEmptyOr, isNotNullOrEmpty, isNullOrEmptyOr, isNotChineseOr, isDigit, isNotDigit,
+    isNotDigitOr, isLetter, isNotLetter, isNotLetterOr, isNotLetterOrDigit, isNotLetterOrDigitOr
 
 ## 0.6.3
 * 修复 Zip 中 compressionDirTo() 方法 使用 '/' 作为文件路径分隔符导致在 Windows 上没有正确的返回文件名的 bug
