@@ -30,11 +30,11 @@ public class CharTest {
         Assert.assertFalse(Charx.isBlank('a'));
         Assert.assertFalse(Charx.isBlank('天'));
 
-        Assert.assertTrue(Charx.isBlank(' ', ' '));
-        Assert.assertFalse(Charx.isBlank(' ', '*'));
-        Assert.assertFalse(Charx.isBlank(' ', '8'));
-        Assert.assertFalse(Charx.isBlank(' ', 'a'));
-        Assert.assertFalse(Charx.isBlank(' ', '天'));
+        Assert.assertTrue(Charx.isAllBlank(' ', ' '));
+        Assert.assertFalse(Charx.isAllBlank(' ', '*'));
+        Assert.assertFalse(Charx.isAllBlank(' ', '8'));
+        Assert.assertFalse(Charx.isAllBlank(' ', 'a'));
+        Assert.assertFalse(Charx.isAllBlank(' ', '天'));
     }
 
     @Test
@@ -45,25 +45,25 @@ public class CharTest {
         Assert.assertFalse(Charx.isChinese('a'));
         Assert.assertFalse(Charx.isChinese(' '));
 
-        Assert.assertTrue(Charx.isChinese('今', '天'));
-        Assert.assertFalse(Charx.isChinese('今', '*'));
-        Assert.assertFalse(Charx.isChinese('今', '8'));
-        Assert.assertFalse(Charx.isChinese('今', 'a'));
-        Assert.assertFalse(Charx.isChinese('今', ' '));
+        Assert.assertTrue(Charx.isAllChinese('今', '天'));
+        Assert.assertFalse(Charx.isAllChinese('今', '*'));
+        Assert.assertFalse(Charx.isAllChinese('今', '8'));
+        Assert.assertFalse(Charx.isAllChinese('今', 'a'));
+        Assert.assertFalse(Charx.isAllChinese('今', ' '));
     }
 
     @Test
     public void testIsDigit() {
-        Assert.assertTrue(Charx.isDigit('8'));
-        Assert.assertFalse(Charx.isDigit('*'));
-        Assert.assertFalse(Charx.isDigit('a'));
-        Assert.assertFalse(Charx.isDigit(' '));
-        Assert.assertFalse(Charx.isDigit('天'));
+        Assert.assertTrue(Charx.isAllDigit('8'));
+        Assert.assertFalse(Charx.isAllDigit('*'));
+        Assert.assertFalse(Charx.isAllDigit('a'));
+        Assert.assertFalse(Charx.isAllDigit(' '));
+        Assert.assertFalse(Charx.isAllDigit('天'));
 
-        Assert.assertTrue(Charx.isDigit('8', '8'));
-        Assert.assertFalse(Charx.isDigit('8', '*'));
-        Assert.assertFalse(Charx.isDigit('8', 'a'));
-        Assert.assertFalse(Charx.isDigit('8', ' '));
-        Assert.assertFalse(Charx.isDigit('8', '天'));
+        Assert.assertTrue(Charx.isAllDigit('8', '8'));
+        Assert.assertFalse(Charx.isAllDigit('8', '*'));
+        Assert.assertFalse(Charx.isAllDigit('8', 'a'));
+        Assert.assertFalse(Charx.isAllDigit('8', ' '));
+        Assert.assertFalse(Charx.isAllDigit('8', '天'));
     }
 }

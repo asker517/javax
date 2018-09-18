@@ -23,9 +23,23 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StringTest {
+
     private static final String BLANK = "     ";
     private static final String EMPTY = "";
     private static final String YES = "yes";
+
+    @Test
+    public void testSafe(){
+        assertTrue(Stringx.isSafe(YES));
+        assertFalse(Stringx.isSafe(null));
+        assertFalse(Stringx.isSafe(BLANK));
+        assertFalse(Stringx.isSafe(EMPTY));
+
+        assertTrue(Stringx.isNotSafe(null));
+        assertTrue(Stringx.isNotSafe(BLANK));
+        assertTrue(Stringx.isNotSafe(EMPTY));
+        assertFalse(Stringx.isNotSafe(YES));
+    }
 
     @Test
     public void testIsBlank() {

@@ -34,7 +34,378 @@ import static java.lang.Character.isUpperCase;
 @SuppressWarnings({"WeakerAccess"})
 public class Stringx {
 
+    /**
+     * Returns `true` if this string is is not `null` and not empty and contains some characters except of whitespace characters.
+     */
+    public static boolean isSafe(@Nullable CharSequence string) {
+        return isNotNullOrEmpty(string) && isNotBlank(string);
+    }
+
+    /**
+     * Returns `true` if this string is is `null` or empty or consists solely of whitespace characters.
+     */
+    public static boolean isNotSafe(@Nullable CharSequence string) {
+        return !isSafe(string);
+    }
+
+    /**
+     * Return `true` if all character sequences are not `null` and not empty and contains some characters except of whitespace characters.
+     */
+    public static boolean isAllSafe(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (!isSafe(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are not `null` and not empty and contains some characters except of whitespace characters.
+     */
+    public static boolean isAllSafe(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (!isSafe(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are is `null` or empty or consists solely of whitespace characters.
+     */
+    public static boolean isAllNotSafe(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (isSafe(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are is `null` or empty or consists solely of whitespace characters.
+     */
+    public static boolean isAllNotSafe(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (isSafe(string)) return false;
+        return true;
+    }
+
+
+    /**
+     * Return `true` if the character sequence is not `null` or whitespace characters.
+     */
+    public static boolean isNotNullOrBlank(@Nullable CharSequence string) {
+        return !isNullOrBlank(string);
+    }
+
+    /**
+     * Return `true` if all character sequences are whitespace characters
+     */
+    public static boolean isAllBlank(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (!isBlank(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are whitespace characters
+     */
+    public static boolean isAllBlank(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (!isBlank(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are not whitespace characters
+     */
+    public static boolean isAllNotBlank(@NotNull CharSequence... strings) {
+        return !isAllBlank(strings);
+    }
+
+    /**
+     * Return `true` if all character sequences are not whitespace characters
+     */
+    public static boolean isAllNotBlank(@NotNull Iterable<CharSequence> strings) {
+        return !isAllBlank(strings);
+    }
+
+    /**
+     * Return `true` if all character sequences is either `null` or whitespace characters.
+     */
+    public static boolean isAllNullOrBlank(@Nullable CharSequence... strings) {
+        if (strings == null) return true;
+        for (CharSequence string : strings) if (!isNullOrBlank(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences is either `null` or whitespace characters.
+     */
+    public static boolean isAllNullOrBlank(@Nullable Iterable<CharSequence> strings) {
+        if (strings == null) return true;
+        for (CharSequence string : strings) if (!isNullOrBlank(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences is not `null` or whitespace characters.
+     */
+    public static boolean isAllNotNullOrBlank(@Nullable CharSequence... strings) {
+        return !isAllNullOrBlank(strings);
+    }
+
+    /**
+     * Return `true` if all character sequences is not `null` or whitespace characters.
+     */
+    public static boolean isAllNotNullOrBlank(@Nullable Iterable<CharSequence> strings) {
+        return !isAllNullOrBlank(strings);
+    }
+
+
+    /**
+     * Return `true` if the character sequence is not `null` or empty
+     */
+    public static boolean isNotNullOrEmpty(@Nullable CharSequence string) {
+        return !isNullOrEmpty(string);
+    }
+
+    /**
+     * Return `true` if all character sequences are empty
+     */
+    public static boolean isAllEmpty(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (!isEmpty(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are empty
+     */
+    public static boolean isAllEmpty(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (!isEmpty(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences are not empty
+     */
+    public static boolean isAllNotEmpty(@NotNull CharSequence... strings) {
+        return !isAllEmpty(strings);
+    }
+
+    /**
+     * Return `true` if all character sequences are not empty
+     */
+    public static boolean isAllNotEmpty(@NotNull Iterable<CharSequence> strings) {
+        return !isAllEmpty(strings);
+    }
+
+    /**
+     * Return `true` if all character sequences is either `null` or empty.
+     */
+    public static boolean isAllNullOrEmpty(@Nullable CharSequence... strings) {
+        if (strings == null) return true;
+        for (CharSequence string : strings) if (!isNullOrEmpty(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences is either `null` or empty.
+     */
+    public static boolean isAllNullOrEmpty(@Nullable Iterable<CharSequence> strings) {
+        if (strings == null) return true;
+        for (CharSequence string : strings) if (!isNullOrEmpty(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if all character sequences is not `null` or empty.
+     */
+    public static boolean isAllNotNullOrEmpty(@Nullable CharSequence... strings) {
+        return !isAllNullOrEmpty(strings);
+    }
+
+    /**
+     * Return `true` if all character sequences is not `null` or empty.
+     */
+    public static boolean isAllNotNullOrEmpty(@Nullable Iterable<CharSequence> strings) {
+        return !isAllNullOrEmpty(strings);
+    }
+
+
+    /**
+     * Return `true` if the given sequence of characters is all digit
+     */
+    public static boolean isDigit(@NotNull CharSequence string) {
+        for (int index = 0, size = string.length(); index < size; index++) {
+            if (!Character.isDigit(string.charAt(index))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not digit
+     */
+    public static boolean isNotDigit(@NotNull CharSequence string) {
+        return !isDigit(string);
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all digit
+     */
+    public static boolean isAllDigit(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (!isDigit(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all digit
+     */
+    public static boolean isAllDigit(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (!isDigit(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not digit
+     */
+    public static boolean isAllNotDigit(@NotNull CharSequence... strings) {
+        return !isAllDigit(strings);
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not digit
+     */
+    public static boolean isAllNotDigit(@NotNull Iterable<CharSequence> strings) {
+        return !isAllDigit(strings);
+    }
+
+
+    /**
+     * Return `true` if the given sequence of characters is all chinese
+     */
+    public static boolean isChinese(@NotNull CharSequence string) {
+        for (int index = 0, size = string.length(); index < size; index++) {
+            if (!Charx.isChinese(string.charAt(index))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not chinese
+     */
+    public static boolean isNotChinese(@NotNull CharSequence string) {
+        return !isChinese(string);
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all chinese
+     */
+    public static boolean isAllChines(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (!isChinese(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all chinese
+     */
+    public static boolean isAllChines(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (!isChinese(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not chinese
+     */
+    public static boolean isAllNotChines(@NotNull CharSequence... strings) {
+        return !isAllChines(strings);
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not chinese
+     */
+    public static boolean isAllNotChines(@NotNull Iterable<CharSequence> strings) {
+        return !isAllChines(strings);
+    }
+
+
+    /**
+     * Return `true` if the given sequence of characters is all digit or letter
+     */
+    public static boolean isLetterOrDigit(@NotNull CharSequence string) {
+        for (int index = 0, size = string.length(); index < size; index++) {
+            if (!Character.isLetterOrDigit(string.charAt(index))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not digit or letter
+     */
+    public static boolean isNotLetterOrDigit(@NotNull CharSequence string) {
+        return !isLetterOrDigit(string);
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all digit or letter
+     */
+    public static boolean isAllLetterOrDigit(@NotNull CharSequence... strings) {
+        for (CharSequence string : strings) if (!isLetterOrDigit(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all digit or letter
+     */
+    public static boolean isAllLetterOrDigit(@NotNull Iterable<CharSequence> strings) {
+        for (CharSequence string : strings) if (!isLetterOrDigit(string)) return false;
+        return true;
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not digit or letter
+     */
+    public static boolean isAllNotLetterOrDigit(@NotNull CharSequence... strings) {
+        return !isAllLetterOrDigit(strings);
+    }
+
+    /**
+     * Return `true` if the given sequence of characters is all not digit or letter
+     */
+    public static boolean isAllNotLetterOrDigit(@NotNull Iterable<CharSequence> strings) {
+        return !isAllLetterOrDigit(strings);
+    }
+
+
+    /**
+     * Return true if the specified string contains one of the strings in [params]
+     */
+    public static boolean orContains(@NotNull String string, @NotNull String[] params) {
+        for (String param : params) if (string.contains(param)) return true;
+        return false;
+    }
+
+    /**
+     * Return true if the specified string contains one of the strings in [params]
+     */
+    public static boolean orContains(@NotNull String string, @NotNull Iterable<String> params) {
+        for (String param : params) if (string.contains(param)) return true;
+        return false;
+    }
+
+    /**
+     * Return true if the specified string contains all the strings in[params]
+     */
+    public static boolean andContains(@NotNull String string, @NotNull String[] params) {
+        for (String param : params) if (!string.contains(param)) return false;
+        return true;
+    }
+
+    /**
+     * Return true if the specified string contains all the strings in[params]
+     */
+    public static boolean andContains(@NotNull String string, @NotNull Iterable<String> params) {
+        for (String param : params) if (!string.contains(param)) return false;
+        return true;
+    }
+
+
     /* ******************************************* From Kotlin Standard library ********************************************************* */
+
 
     /**
      * Returns `true` if this string is empty or consists solely of whitespace characters.
@@ -62,67 +433,6 @@ public class Stringx {
         return string == null || isBlank(string);
     }
 
-    /**
-     * Return `true` if the character sequence is not `null` or whitespace characters.
-     */
-    public static boolean isNotNullOrBlank(@Nullable CharSequence string) {
-        return !isNullOrBlank(string);
-    }
-
-    /**
-     * Return `true` if all character sequences are whitespace characters
-     */
-    public static boolean isAllBlank(@NotNull CharSequence... strings) {
-        for (CharSequence string : strings) {
-            if (!isBlank(string)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if all character sequences are not whitespace characters
-     */
-    public static boolean isAllNotBlank(@NotNull CharSequence... strings) {
-        for (CharSequence string : strings) {
-            if (isBlank(string)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if all character sequences is either `null` or whitespace characters.
-     */
-    public static boolean isAllNullOrBlank(@Nullable CharSequence... strings) {
-        if (strings != null) {
-            for (CharSequence string : strings) {
-                if (!isNullOrBlank(string)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if all character sequences is not `null` or whitespace characters.
-     */
-    public static boolean isAllNotNullOrBlank(@Nullable CharSequence... strings) {
-        if (strings != null) {
-            for (CharSequence string : strings) {
-                if (isNullOrBlank(string)) {
-                    return false;
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     /**
      * Returns `true` if this char sequence is empty (contains no characters).
@@ -135,7 +445,7 @@ public class Stringx {
      * Returns `true` if this char sequence is not empty.
      */
     public static boolean isNotEmpty(@NotNull CharSequence string) {
-        return string.length() > 0;
+        return !isEmpty(string);
     }
 
     /**
@@ -143,104 +453,6 @@ public class Stringx {
      */
     public static boolean isNullOrEmpty(@Nullable CharSequence string) {
         return string == null || string.length() == 0;
-    }
-
-    /**
-     * Return `true` if the character sequence is not `null` or empty
-     */
-    public static boolean isNotNullOrEmpty(@Nullable CharSequence string) {
-        return !isNullOrEmpty(string);
-    }
-
-    /**
-     * Return `true` if all character sequences are empty
-     */
-    public static boolean isAllEmpty(@NotNull CharSequence... strings) {
-        for (CharSequence string : strings) {
-            if (!isEmpty(string)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if all character sequences are not empty
-     */
-    public static boolean isAllNotEmpty(@NotNull CharSequence... strings) {
-        for (CharSequence string : strings) {
-            if (isEmpty(string)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if all character sequences is either `null` or empty.
-     */
-    public static boolean isAllNullOrEmpty(@Nullable CharSequence... strings) {
-        if (strings != null) {
-            for (CharSequence string : strings) {
-                if (!isNullOrEmpty(string)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if all character sequences is not `null` or empty.
-     */
-    public static boolean isAllNotNullOrEmpty(@Nullable CharSequence... strings) {
-        if (strings != null) {
-            for (CharSequence string : strings) {
-                if (isNullOrEmpty(string)) {
-                    return false;
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    /**
-     * Return `true` if the given sequence of characters is all digit
-     */
-    public static boolean isDigit(@NotNull CharSequence string) {
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (!Character.isDigit(string.charAt(index))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if the given sequence of characters is all chinese
-     */
-    public static boolean isChinese(@NotNull CharSequence string) {
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (!Charx.isChinese(string.charAt(index))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Return `true` if the given sequence of characters is all digit or letter
-     */
-    public static boolean isLetterOrDigit(@NotNull CharSequence string) {
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (!Character.isLetterOrDigit(string.charAt(index))) {
-                return false;
-            }
-        }
-        return true;
     }
 
 
@@ -285,14 +497,14 @@ public class Stringx {
     /**
      * Returns `true` if this char sequence starts with the specified character.
      */
-    public static boolean startsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase){
+    public static boolean startsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase) {
         return charSequence.length() > 0 && Charx.equals(charSequence.charAt(0), charr, ignoreCase);
     }
 
     /**
      * Returns `true` if this char sequence starts with the specified character.
      */
-    public static boolean startsWith(@NotNull CharSequence charSequence, char charr){
+    public static boolean startsWith(@NotNull CharSequence charSequence, char charr) {
         return startsWith(charSequence, charr, false);
     }
 
@@ -338,14 +550,14 @@ public class Stringx {
     /**
      * Returns `true` if this char sequence ends with the specified character.
      */
-    public static boolean endsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase){
-        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(charSequence.length()-1), charr, ignoreCase);
+    public static boolean endsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase) {
+        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(charSequence.length() - 1), charr, ignoreCase);
     }
 
     /**
      * Returns `true` if this char sequence ends with the specified character.
      */
-    public static boolean endsWith(@NotNull CharSequence charSequence, char charr){
+    public static boolean endsWith(@NotNull CharSequence charSequence, char charr) {
         return endsWith(charSequence, charr, false);
     }
 
@@ -1086,31 +1298,5 @@ public class Stringx {
     @NotNull
     public static byte[] toByteArray(@NotNull String string) {
         return string.getBytes(Charx.UTF_8);
-    }
-
-    /**
-     * Return true if the specified string contains one of the strings in [params]
-     */
-    public static boolean orContains(@NotNull String string, @NotNull String[] params) {
-        for (String param : params) {
-            if (string.contains(param)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Return true if the specified string contains all the strings in[params]
-     */
-    public static boolean andContains(@NotNull String string, @NotNull String[] params) {
-        for (String param : params) {
-            if (!string.contains(param)) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
