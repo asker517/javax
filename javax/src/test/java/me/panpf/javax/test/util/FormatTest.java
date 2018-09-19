@@ -48,6 +48,7 @@ public class FormatTest {
 
     @Test
     public void testFileSize() {
+        Assert.assertEquals(Formatx.fileSize(-10L), "0 B");
         Assert.assertEquals(Formatx.fileSize(0L), "0 B");
         Assert.assertEquals(Formatx.fileSize(800), "800 B");
 
@@ -137,6 +138,7 @@ public class FormatTest {
     public void testTotalTime() {
         // millisecond
         Assert.assertEquals(Formatx.totalTime(0L), "0ms");
+        Assert.assertEquals(Formatx.totalTime(-10L), "0ms");
         Assert.assertEquals(Formatx.totalTime(590), "590ms");
         Assert.assertEquals(Formatx.totalTime(590, true), "0s");
 
@@ -292,6 +294,7 @@ public class FormatTest {
     @Test
     public void testCount() {
         Assert.assertEquals(Formatx.count(0), "0");
+        Assert.assertEquals(Formatx.count(-10), "0");
         Assert.assertEquals(Formatx.count(999), "999");
         Assert.assertEquals(Formatx.count(1000), "1k");
         Assert.assertEquals(Formatx.count(1099), "1k");

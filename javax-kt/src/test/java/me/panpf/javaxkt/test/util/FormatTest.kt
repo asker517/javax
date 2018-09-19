@@ -42,6 +42,7 @@ class FormatTest {
 
     @Test
     fun testFileSize() {
+        Assert.assertEquals((-10).formatFileSize(), "0 B")
         Assert.assertEquals(0.formatFileSize(2, false), "0 B")
         Assert.assertEquals(800.formatFileSize(), "800 B")
 
@@ -131,6 +132,7 @@ class FormatTest {
     fun testTotalTime() {
         // millisecond
         Assert.assertEquals(0L.formatTotalTime(), "0ms")
+        Assert.assertEquals((-10L).formatTotalTime(), "0ms")
         Assert.assertEquals(590.formatTotalTime(), "590ms")
         Assert.assertEquals(590.formatTotalTime(true), "0s")
 
@@ -286,6 +288,7 @@ class FormatTest {
     @Test
     fun testCount() {
         Assert.assertEquals(0.formatCount(), "0")
+        Assert.assertEquals((-10).formatCount(), "0")
         Assert.assertEquals(999.formatCount(), "999")
         Assert.assertEquals(1000.formatCount(), "1k")
         Assert.assertEquals(1099.formatCount(), "1k")

@@ -151,14 +151,15 @@ fun Long.formatPercentWith(other: Long, decimalPlacesLength: Int = 2, decimalPla
  * @return For example: 300 B, 150.25 KB, 500.46 MB, 300 GB
  */
 fun Long.formatFileSize(decimalPlacesLength: Int = 2, decimalPlacesFillZero: Boolean = false): String {
+    val finalFileSize = Math.max(this, 0)
     return when {
-        this < 1024 -> this.toString() + " B"
-        this < 1024L * 1024 -> (this.toDouble() / 1024).format(" KB", decimalPlacesLength, decimalPlacesFillZero)
-        this < 1024L * 1024 * 1024 -> (this.toDouble() / 1024 / 1024).format(" MB", decimalPlacesLength, decimalPlacesFillZero)
-        this < 1024L * 1024 * 1024 * 1024 -> (this.toDouble() / 1024 / 1024 / 1024).format(" GB", decimalPlacesLength, decimalPlacesFillZero)
-        this < 1024L * 1024 * 1024 * 1024 * 1024 -> (this.toDouble() / 1024 / 1024 / 1024 / 1024).format(" TB", decimalPlacesLength, decimalPlacesFillZero)
-        this < 1024L * 1024 * 1024 * 1024 * 1024 * 1024 -> (this.toDouble() / 1024 / 1024 / 1024 / 1024 / 1024).format(" PB", decimalPlacesLength, decimalPlacesFillZero)
-        else -> (this.toDouble() / 1024 / 1024 / 1024 / 1024 / 1024 / 1024).format(" EB", decimalPlacesLength, decimalPlacesFillZero)
+        finalFileSize < 1024 -> finalFileSize.toString() + " B"
+        finalFileSize < 1024L * 1024 -> (finalFileSize.toDouble() / 1024).format(" KB", decimalPlacesLength, decimalPlacesFillZero)
+        finalFileSize < 1024L * 1024 * 1024 -> (finalFileSize.toDouble() / 1024 / 1024).format(" MB", decimalPlacesLength, decimalPlacesFillZero)
+        finalFileSize < 1024L * 1024 * 1024 * 1024 -> (finalFileSize.toDouble() / 1024 / 1024 / 1024).format(" GB", decimalPlacesLength, decimalPlacesFillZero)
+        finalFileSize < 1024L * 1024 * 1024 * 1024 * 1024 -> (finalFileSize.toDouble() / 1024 / 1024 / 1024 / 1024).format(" TB", decimalPlacesLength, decimalPlacesFillZero)
+        finalFileSize < 1024L * 1024 * 1024 * 1024 * 1024 * 1024 -> (finalFileSize.toDouble() / 1024 / 1024 / 1024 / 1024 / 1024).format(" PB", decimalPlacesLength, decimalPlacesFillZero)
+        else -> (finalFileSize.toDouble() / 1024 / 1024 / 1024 / 1024 / 1024 / 1024).format(" EB", decimalPlacesLength, decimalPlacesFillZero)
     }
 }
 
@@ -375,10 +376,11 @@ fun Int.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String {
  * Formatted count, for example 1100=1.1k,15001=1.5w
  */
 fun Long.formatCount(): String {
+    val finalCount = Math.max(this, 0)
     return when {
-        this < 1000 -> this.toString()
-        this < 10000 -> (this.toFloat() / 1000).scale(1, RoundingMode.DOWN).format("k", 1)
-        else -> (this.toFloat() / 10000).scale(1, RoundingMode.DOWN).format("w", 1)
+        finalCount < 1000 -> finalCount.toString()
+        finalCount < 10000 -> (finalCount.toFloat() / 1000).scale(1, RoundingMode.DOWN).format("k", 1)
+        else -> (finalCount.toFloat() / 10000).scale(1, RoundingMode.DOWN).format("w", 1)
     }
 }
 

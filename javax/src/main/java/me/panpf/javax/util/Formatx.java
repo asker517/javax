@@ -297,20 +297,21 @@ public class Formatx {
      */
     @NotNull
     public static String fileSize(long fileSize, int decimalPlacesLength, boolean decimalPlacesFillZero) {
-        if (fileSize < 1024) {
-            return fileSize + " B";
-        } else if (fileSize < 1024L * 1024) {
-            return formatFloat(fileSize / 1024f, " KB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (fileSize < 1024L * 1024 * 1024) {
-            return formatFloat(fileSize / 1024f / 1024f, " MB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (fileSize < 1024L * 1024 * 1024 * 1024) {
-            return formatFloat(fileSize / 1024f / 1024f / 1024f, " GB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (fileSize < 1024L * 1024 * 1024 * 1024 * 1024) {
-            return formatFloat(fileSize / 1024f / 1024f / 1024f / 1024f, " TB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (fileSize < 1024L * 1024 * 1024 * 1024 * 1024 * 1024) {
-            return formatFloat(fileSize / 1024f / 1024f / 1024f / 1024f / 1024f, " PB", decimalPlacesLength, decimalPlacesFillZero);
+        long finalFileSize = Math.max(fileSize, 0);
+        if (finalFileSize < 1024) {
+            return finalFileSize + " B";
+        } else if (finalFileSize < 1024L * 1024) {
+            return formatFloat(finalFileSize / 1024f, " KB", decimalPlacesLength, decimalPlacesFillZero);
+        } else if (finalFileSize < 1024L * 1024 * 1024) {
+            return formatFloat(finalFileSize / 1024f / 1024f, " MB", decimalPlacesLength, decimalPlacesFillZero);
+        } else if (finalFileSize < 1024L * 1024 * 1024 * 1024) {
+            return formatFloat(finalFileSize / 1024f / 1024f / 1024f, " GB", decimalPlacesLength, decimalPlacesFillZero);
+        } else if (finalFileSize < 1024L * 1024 * 1024 * 1024 * 1024) {
+            return formatFloat(finalFileSize / 1024f / 1024f / 1024f / 1024f, " TB", decimalPlacesLength, decimalPlacesFillZero);
+        } else if (finalFileSize < 1024L * 1024 * 1024 * 1024 * 1024 * 1024) {
+            return formatFloat(finalFileSize / 1024f / 1024f / 1024f / 1024f / 1024f, " PB", decimalPlacesLength, decimalPlacesFillZero);
         } else {
-            return formatFloat(fileSize / 1024f / 1024f / 1024f / 1024f / 1024f / 1024f, " EB", decimalPlacesLength, decimalPlacesFillZero);
+            return formatFloat(finalFileSize / 1024f / 1024f / 1024f / 1024f / 1024f / 1024f, " EB", decimalPlacesLength, decimalPlacesFillZero);
         }
     }
 
@@ -386,9 +387,9 @@ public class Formatx {
      * @param ignoreMillisecond Ignore milliseconds
      */
     @NotNull
-    private static String totalTime(long totalTimeMillis, boolean ignoreMillisecond, @NotNull String divider,
-                                    @NotNull String daySuffix, @NotNull String hourSuffix, @NotNull String minuteSuffix,
-                                    @NotNull String secondSuffix, @NotNull String millisecondSuffix) {
+    public static String totalTime(long totalTimeMillis, boolean ignoreMillisecond, @NotNull String divider,
+                                   @NotNull String daySuffix, @NotNull String hourSuffix, @NotNull String minuteSuffix,
+                                   @NotNull String secondSuffix, @NotNull String millisecondSuffix) {
         long finalTotalTimeMillis = totalTimeMillis >= 0 ? totalTimeMillis : 0;
 
         if (!ignoreMillisecond && finalTotalTimeMillis < ONE_SECOND_MILLISECONDS) {
@@ -577,12 +578,13 @@ public class Formatx {
      */
     @NotNull
     public static String count(long count) {
-        if (count < (long) 1000) {
-            return String.valueOf(count);
-        } else if (count < (long) 10000) {
-            return formatFloat(Numberx.scale((float) count / (float) 1000, 1, RoundingMode.DOWN), "k", 1, false);
+        long finalCount = Math.max(count, 0);
+        if (finalCount < (long) 1000) {
+            return String.valueOf(finalCount);
+        } else if (finalCount < (long) 10000) {
+            return formatFloat(Numberx.scale((float) finalCount / (float) 1000, 1, RoundingMode.DOWN), "k", 1, false);
         } else {
-            return formatFloat(Numberx.scale((float) count / (float) 10000, 1, RoundingMode.DOWN), "w", 1, false);
+            return formatFloat(Numberx.scale((float) finalCount / (float) 10000, 1, RoundingMode.DOWN), "w", 1, false);
         }
     }
 
