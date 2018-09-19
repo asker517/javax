@@ -22,10 +22,13 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
- * Mathematical related tool method
+ * Formatting tool method for number, time, file length, quantity, etc.
  */
 @SuppressWarnings("WeakerAccess")
 public class Formatx {
+
+
+    /* ******************************************* Double and Float *******************************************/
 
     /**
      * Format a double number
@@ -63,6 +66,9 @@ public class Formatx {
     public static String formatFloat(float value, @NotNull String suffix, int decimalPlacesLength, boolean decimalPlacesFillZero) {
         return formatDouble((double) value, suffix, decimalPlacesLength, decimalPlacesFillZero);
     }
+
+
+    /* ******************************************* percent *******************************************/
 
 
     /**
@@ -277,6 +283,9 @@ public class Formatx {
     }
 
 
+    /* ******************************************* fileSize *******************************************/
+
+
     /**
      * Returns the formatted file length that can be displayed, up to EB
      *
@@ -360,6 +369,10 @@ public class Formatx {
     public static String shortFileSize(long fileSize) {
         return fileSize(fileSize, 0, false);
     }
+
+
+    /* ******************************************* totalTime *******************************************/
+
 
     private static final long ONE_DAY_MILLISECONDS = 1000 * 60 * 60 * 24;
     private static final long ONE_HOUR_MILLISECONDS = 1000 * 60 * 60;

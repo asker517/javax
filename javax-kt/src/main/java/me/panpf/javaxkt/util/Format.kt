@@ -16,13 +16,15 @@
 
 package me.panpf.javaxkt.util
 
-import org.jetbrains.annotations.NotNull
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
 /*
- * Mathematical related tool method
+ * Formatting tool method for number, time, file length, quantity, etc.
  */
+
+
+/* ******************************************* Double and Float *******************************************/
 
 
 /**
@@ -68,6 +70,9 @@ fun Float.format(suffix: String, decimalPlacesLength: Int = 2, decimalPlacesFill
 }
 
 
+/* ******************************************* percent *******************************************/
+
+
 /**
  * Calculate the percentage
  *
@@ -89,7 +94,6 @@ fun Double.formatPercent(decimalPlacesLength: Int = 2, decimalPlacesFillZero: Bo
 fun Double.formatPercentWith(other: Double, decimalPlacesLength: Int = 2, decimalPlacesFillZero: Boolean = false): String {
     return (this / other).formatPercent(decimalPlacesLength, decimalPlacesFillZero)
 }
-
 
 /**
  * Calculate the percentage
@@ -133,6 +137,10 @@ fun Int.formatPercentWith(other: Int, decimalPlacesLength: Int = 2, decimalPlace
 fun Long.formatPercentWith(other: Long, decimalPlacesLength: Int = 2, decimalPlacesFillZero: Boolean = false): String {
     return (this.toDouble() / other).formatPercent(decimalPlacesLength, decimalPlacesFillZero)
 }
+
+
+/* ******************************************* fileSize *******************************************/
+
 
 /**
  * Returns the formatted file length that can be displayed, up to EB
@@ -221,6 +229,10 @@ fun Long.formatShortFileSize(): String {
 fun Int.formatShortFileSize(): String {
     return this.toLong().formatFileSize(0, false)
 }
+
+
+/* ******************************************* totalTime *******************************************/
+
 
 private const val ONE_DAY_MILLISECONDS = (1000 * 60 * 60 * 24).toLong()
 private const val ONE_HOUR_MILLISECONDS = (1000 * 60 * 60).toLong()
