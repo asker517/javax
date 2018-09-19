@@ -26,17 +26,23 @@ public class FormatTest {
     public void testPercent() {
         Assert.assertEquals(Formatx.percent(0.46), "46%");
         Assert.assertEquals(Formatx.percent(3, 8), "37.5%");
+        Assert.assertEquals(Formatx.percent(3, 8, 2), "37.5%");
         Assert.assertEquals(Formatx.percent(3, 8, 2, true), "37.50%");
 
         Assert.assertEquals(Formatx.percent(0.46), "46%");
+        Assert.assertEquals(Formatx.percent(0.46768, 2), "46.77%");
         Assert.assertEquals(Formatx.percent(3d, 8d), "37.5%");
+        Assert.assertEquals(Formatx.percent(3d, 8d, 2), "37.5%");
         Assert.assertEquals(Formatx.percent(3d, 8d, 2, true), "37.50%");
 
         Assert.assertEquals(Formatx.percent(0.46f), "46%");
+        Assert.assertEquals(Formatx.percent(0.46768f, 2), "46.77%");
         Assert.assertEquals(Formatx.percent(3f, 8f), "37.5%");
+        Assert.assertEquals(Formatx.percent(3f, 8f, 2), "37.5%");
         Assert.assertEquals(Formatx.percent(3f, 8f, 2, true), "37.50%");
 
         Assert.assertEquals(Formatx.percent(3L, 8L), "37.5%");
+        Assert.assertEquals(Formatx.percent(3L, 8L, 2), "37.5%");
         Assert.assertEquals(Formatx.percent(3L, 8L, 2, true), "37.50%");
     }
 
@@ -281,5 +287,20 @@ public class FormatTest {
         Assert.assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467), "1天1小时467毫秒");
         Assert.assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 467), "1天467毫秒");
         Assert.assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 467, true), "1天");
+    }
+
+    @Test
+    public void testCount() {
+        Assert.assertEquals(Formatx.count(0), "0");
+        Assert.assertEquals(Formatx.count(999), "999");
+        Assert.assertEquals(Formatx.count(1000), "1k");
+        Assert.assertEquals(Formatx.count(1099), "1k");
+        Assert.assertEquals(Formatx.count(1100), "1.1k");
+        Assert.assertEquals(Formatx.count(1500), "1.5k");
+        Assert.assertEquals(Formatx.count(1999), "1.9k");
+        Assert.assertEquals(Formatx.count(10000), "1w");
+        Assert.assertEquals(Formatx.count(10999), "1w");
+        Assert.assertEquals(Formatx.count(15001), "1.5w");
+        Assert.assertEquals(Formatx.count(101000), "10.1w");
     }
 }

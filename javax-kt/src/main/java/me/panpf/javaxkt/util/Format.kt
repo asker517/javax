@@ -16,11 +16,12 @@
 
 package me.panpf.javaxkt.util
 
+import me.panpf.javaxkt.lang.scale
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
 /*
- * Formatting tool method for number, time, file length, quantity, etc.
+ * Formatting tool method for number, time, file length, count, etc.
  */
 
 
@@ -366,3 +367,22 @@ fun Long.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String {
 fun Int.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String {
     return this.toLong().formatTotalTimeZHShort(ignoreMillisecond)
 }
+
+
+/* ******************************************* count *******************************************/
+
+/**
+ * Formatted count, for example 1100=1.1k,15001=1.5w
+ */
+fun Long.formatCount(): String {
+    return when {
+        this < 1000 -> this.toString()
+        this < 10000 -> (this.toFloat() / 1000).scale(1, RoundingMode.DOWN).format("k", 1)
+        else -> (this.toFloat() / 10000).scale(1, RoundingMode.DOWN).format("w", 1)
+    }
+}
+
+/**
+ * Formatted count, for example 1100=1.1k,15001=1.5w
+ */
+fun Int.formatCount(): String = this.toLong().formatCount()

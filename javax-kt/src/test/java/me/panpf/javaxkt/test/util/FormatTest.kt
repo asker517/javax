@@ -282,4 +282,19 @@ class FormatTest {
         Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatTotalTimeZHShort(), "1天467毫秒")
         Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatTotalTimeZHShort(true), "1天")
     }
+
+    @Test
+    fun testCount() {
+        Assert.assertEquals(0.formatCount(), "0")
+        Assert.assertEquals(999.formatCount(), "999")
+        Assert.assertEquals(1000.formatCount(), "1k")
+        Assert.assertEquals(1099.formatCount(), "1k")
+        Assert.assertEquals(1100.formatCount(), "1.1k")
+        Assert.assertEquals(1500.formatCount(), "1.5k")
+        Assert.assertEquals(1999.formatCount(), "1.9k")
+        Assert.assertEquals(10000.formatCount(), "1w")
+        Assert.assertEquals(10999.formatCount(), "1w")
+        Assert.assertEquals(15001.formatCount(), "1.5w")
+        Assert.assertEquals(101000.formatCount(), "10.1w")
+    }
 }

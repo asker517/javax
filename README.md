@@ -115,7 +115,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf
 * Format: [Formatx.java] ([Test][FormatTest.java]) | [Format.kt] ([Test][FormatTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
-    * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort
+    * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
 * Map: [Mapx.java]
     * mapCapacity, getOrPut
 * Premise: [Premisex.java] ([Test][PremiseTest.java]) | [Premise.kt] ([Test][PremiseTest.kt])

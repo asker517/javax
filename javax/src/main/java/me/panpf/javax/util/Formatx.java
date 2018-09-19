@@ -16,13 +16,14 @@
 
 package me.panpf.javax.util;
 
+import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
- * Formatting tool method for number, time, file length, quantity, etc.
+ * Formatting tool method for number, time, file length, count, etc.
  */
 @SuppressWarnings("WeakerAccess")
 public class Formatx {
@@ -566,5 +567,30 @@ public class Formatx {
     @NotNull
     public static String totalTimeZHShort(int totalTime) {
         return totalTimeZHShort((long) totalTime, false);
+    }
+
+
+    /* ******************************************* count *******************************************/
+
+    /**
+     * Formatted count, for example 1100=1.1k,15001=1.5w
+     */
+    @NotNull
+    public static String count(long count) {
+        if (count < (long) 1000) {
+            return String.valueOf(count);
+        } else if (count < (long) 10000) {
+            return formatFloat(Numberx.scale((float) count / (float) 1000, 1, RoundingMode.DOWN), "k", 1, false);
+        } else {
+            return formatFloat(Numberx.scale((float) count / (float) 10000, 1, RoundingMode.DOWN), "w", 1, false);
+        }
+    }
+
+    /**
+     * Formatted count, for example 1100=1.1k,15001=1.5w
+     */
+    @NotNull
+    public static String count(int count) {
+        return count((long) count);
     }
 }
