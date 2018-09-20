@@ -291,35 +291,35 @@ fun CharSequence?.isNotLetterOrDigitOr(defaultValue: CharSequence): CharSequence
 /**
  * Return true if the specified string contains one of the strings in [params]
  */
-fun orContains(string: String?, params: Array<String>?): Boolean {
-    if (string == null || params == null || params.isEmpty()) return false
-    for (param in params) if (string.contains(param)) return true
+fun String?.orContains(params: Array<String>?): Boolean {
+    if (this == null || params == null || params.isEmpty()) return false
+    for (param in params) if (this.contains(param)) return true
     return false
 }
 
 /**
  * Return true if the specified string contains one of the strings in [params]
  */
-fun orContains(string: String?, params: Collection<String>?): Boolean {
-    if (string == null || params == null || params.isEmpty()) return false
-    for (param in params) if (string.contains(param)) return true
+fun String?.orContains(params: Collection<String>?): Boolean {
+    if (this == null || params == null || params.isEmpty()) return false
+    for (param in params) if (this.contains(param)) return true
     return false
 }
 
 /**
  * Return true if the specified string contains all the strings in[params]
  */
-fun andContains(string: String?, params: Array<String>?): Boolean {
-    if (string == null || params == null || params.isEmpty()) return false
-    for (param in params) if (!string.contains(param)) return false
+fun String?.andContains(params: Array<String>?): Boolean {
+    if (this == null || params == null || params.isEmpty()) return false
+    for (param in params) if (!this.contains(param)) return false
     return true
 }
 
 /**
  * Return true if the specified string contains all the strings in[params]
  */
-fun andContains(string: String?, params: Collection<String>?): Boolean {
-    if (string == null || params == null || params.isEmpty()) return false
-    for (param in params) if (!string.contains(param)) return false
+fun String?.andContains(params: Collection<String>?): Boolean {
+    if (this == null || params == null || params.isEmpty()) return false
+    for (param in params) if (!this.contains(param)) return false
     return true
 }
