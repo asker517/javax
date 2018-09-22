@@ -248,6 +248,7 @@ class PremiseTest {
 
         try {
             requireNotNull(null, "is null")
+            @Suppress("UNREACHABLE_CODE")
             Assert.fail()
         } catch (e: Exception) {
             // // e.printStackTrace();;
@@ -272,6 +273,7 @@ class PremiseTest {
 
         try {
             checkNotNull(null, "is null")
+            @Suppress("UNREACHABLE_CODE")
             Assert.fail()
         } catch (e: Exception) {
             // // e.printStackTrace();;
@@ -280,19 +282,19 @@ class PremiseTest {
 
     @Test
     fun testRequireSafe() {
-        requireSafe("fas") { "value" }
+        "fas".requireSafe { "value" }
 
         try {
-            requireSafe("") { "empty" }
+            "".requireSafe { "empty" }
             Assert.fail()
         } catch (e: Exception) {
             // e.printStackTrace();
         }
 
-        requireSafe("fas")
+        "fas".requireSafe()
 
         try {
-            requireSafe("")
+            "".requireSafe()
             Assert.fail()
         } catch (e: Exception) {
             // e.printStackTrace();
@@ -302,19 +304,19 @@ class PremiseTest {
 
     @Test
     fun testRequireNotSafe() {
-        requireNotSafe("") { "value" }
+        "".requireNotSafe { "value" }
 
         try {
-            requireNotSafe("fas") { "empty" }
+            "fas".requireNotSafe { "empty" }
             Assert.fail()
         } catch (e: Exception) {
             // // e.printStackTrace();
         }
 
-        requireNotSafe("")
+        "".requireNotSafe()
 
         try {
-            requireNotSafe("fas")
+            "fas".requireNotSafe()
             Assert.fail()
         } catch (e: Exception) {
             // e.printStackTrace();
