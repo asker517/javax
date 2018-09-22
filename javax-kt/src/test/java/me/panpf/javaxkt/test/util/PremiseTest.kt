@@ -238,7 +238,7 @@ class PremiseTest {
             require(false, "is false")
             Assert.fail()
         } catch (e: Exception) {
-            e.printStackTrace()
+            // // e.printStackTrace();;
         }
     }
 
@@ -250,7 +250,7 @@ class PremiseTest {
             requireNotNull(null, "is null")
             Assert.fail()
         } catch (e: Exception) {
-            e.printStackTrace()
+            // // e.printStackTrace();;
         }
     }
 
@@ -262,7 +262,7 @@ class PremiseTest {
             check(false, "is false")
             Assert.fail()
         } catch (e: Exception) {
-            e.printStackTrace()
+            // // e.printStackTrace();;
         }
     }
 
@@ -274,7 +274,51 @@ class PremiseTest {
             checkNotNull(null, "is null")
             Assert.fail()
         } catch (e: Exception) {
-            e.printStackTrace()
+            // // e.printStackTrace();;
         }
+    }
+
+    @Test
+    fun testRequireSafe() {
+        requireSafe("fas") { "value" }
+
+        try {
+            requireSafe("") { "empty" }
+            Assert.fail()
+        } catch (e: Exception) {
+            // e.printStackTrace();
+        }
+
+        requireSafe("fas")
+
+        try {
+            requireSafe("")
+            Assert.fail()
+        } catch (e: Exception) {
+            // e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    fun testRequireNotSafe() {
+        requireNotSafe("") { "value" }
+
+        try {
+            requireNotSafe("fas") { "empty" }
+            Assert.fail()
+        } catch (e: Exception) {
+            // // e.printStackTrace();
+        }
+
+        requireNotSafe("")
+
+        try {
+            requireNotSafe("fas")
+            Assert.fail()
+        } catch (e: Exception) {
+            // e.printStackTrace();
+        }
+
     }
 }

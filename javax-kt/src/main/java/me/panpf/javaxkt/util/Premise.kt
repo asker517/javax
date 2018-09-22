@@ -1,5 +1,6 @@
 package me.panpf.javaxkt.util
 
+import me.panpf.javaxkt.lang.isSafe
 import java.io.File
 import java.io.FileNotFoundException
 
@@ -172,4 +173,53 @@ fun Double.requireNotInRange(minValue: Double, maxValue: Double) {
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %s must be < %s || > %s", this, minValue, maxValue))
     }
+}
+
+
+/**
+ * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is not safe. Otherwise returns the value.
+ */
+fun <T : CharSequence> requireSafe(value: T?, lazyMessage: () -> Any): T? {
+    if (!value.isSafe()) throw IllegalArgumentException(lazyMessage().toString())
+    return value
+}
+
+/**
+ * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is not safe. Otherwise returns the value.
+ */
+fun <T : CharSequence> requireSafe(value: T?, errorMessage: String): T? {
+    if (!value.isSafe()) throw IllegalArgumentException(errorMessage)
+    return value
+}
+
+/**
+ * Throws an [IllegalArgumentException] if the [value] is not safe. Otherwise returns the value.
+ */
+fun <T : CharSequence> requireSafe(value: T?): T? {
+    requireSafe(value, "Failed requireSafe.")
+    return value
+}
+
+/**
+ * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is safe. Otherwise returns the value.
+ */
+fun <T : CharSequence> requireNotSafe(value: T?, lazyMessage: () -> Any): T? {
+    if (value.isSafe()) throw IllegalArgumentException(lazyMessage().toString())
+    return value
+}
+
+/**
+ * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is safe. Otherwise returns the value.
+ */
+fun <T : CharSequence> requireNotSafe(value: T?, errorMessage: String): T? {
+    if (value.isSafe()) throw IllegalArgumentException(errorMessage)
+    return value
+}
+
+/**
+ * Throws an [IllegalArgumentException] if the [value] is safe. Otherwise returns the value.
+ */
+fun <T : CharSequence> requireNotSafe(value: T?): T? {
+    requireNotSafe(value, "Failed requireNotSafe.")
+    return value
 }

@@ -16,13 +16,14 @@
 
 package me.panpf.javax.util;
 
+import me.panpf.javax.lang.Stringx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Premisex {
 
     private Premisex() {
@@ -192,6 +193,55 @@ public class Premisex {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %s must be < %s || > %s", value, minValue, maxValue));
         }
+    }
+
+
+    /**
+     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is not safe. Otherwise returns the value.
+     */
+    public static <T extends CharSequence> T requireSafe(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
+        if (!Stringx.isSafe(value)) throw new IllegalArgumentException(lazyMessage.get());
+        return value;
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is not safe. Otherwise returns the value.
+     */
+    public static <T extends CharSequence> T requireSafe(@Nullable T value, @NotNull String errorMessage) {
+        if (!Stringx.isSafe(value)) throw new IllegalArgumentException(errorMessage);
+        return value;
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] if the [value] is not safe. Otherwise returns the value.
+     */
+    public static <T extends CharSequence> T requireSafe(@Nullable T value) {
+        requireSafe(value, "Failed requireSafe.");
+        return value;
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is safe. Otherwise returns the value.
+     */
+    public static <T extends CharSequence> T requireNotSafe(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
+        if (Stringx.isSafe(value)) throw new IllegalArgumentException(lazyMessage.get());
+        return value;
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is safe. Otherwise returns the value.
+     */
+    public static <T extends CharSequence> T requireNotSafe(@Nullable T value, @NotNull String errorMessage) {
+        if (Stringx.isSafe(value)) throw new IllegalArgumentException(errorMessage);
+        return value;
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] if the [value] is safe. Otherwise returns the value.
+     */
+    public static <T extends CharSequence> T requireNotSafe(@Nullable T value) {
+        requireNotSafe(value, "Failed requireNotSafe.");
+        return value;
     }
 
 

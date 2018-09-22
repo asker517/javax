@@ -251,7 +251,7 @@ public class PremiseTest {
             Premisex.require(false);
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -264,7 +264,7 @@ public class PremiseTest {
             });
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -276,7 +276,7 @@ public class PremiseTest {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
@@ -288,7 +288,7 @@ public class PremiseTest {
             Premisex.requireNotNull(null);
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -301,7 +301,7 @@ public class PremiseTest {
             });
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -313,7 +313,7 @@ public class PremiseTest {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
@@ -325,7 +325,7 @@ public class PremiseTest {
             Premisex.check(false);
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -338,7 +338,7 @@ public class PremiseTest {
             });
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -350,7 +350,7 @@ public class PremiseTest {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
@@ -362,7 +362,7 @@ public class PremiseTest {
             Premisex.checkNotNull(null);
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -375,7 +375,7 @@ public class PremiseTest {
             });
             Assert.fail();
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         try {
@@ -387,7 +387,73 @@ public class PremiseTest {
                 }
             });
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testRequireSafe() {
+        Premisex.requireSafe("fas", new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "value";
+            }
+        });
+
+        try {
+            Premisex.requireSafe("", new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "empty";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        Premisex.requireSafe("fas");
+
+        try {
+            Premisex.requireSafe("");
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testRequireNotSafe() {
+        Premisex.requireNotSafe("", new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "value";
+            }
+        });
+
+        try {
+            Premisex.requireNotSafe("fas", new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "empty";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            // // e.printStackTrace();
+        }
+
+        Premisex.requireNotSafe("");
+
+        try {
+            Premisex.requireNotSafe("fas");
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
         }
     }
 }
