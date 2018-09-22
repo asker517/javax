@@ -3,6 +3,7 @@
 * :hammer: Premise's areEqual method moves to Comparison
 * :fire: Remove Premise's requireNoNulls method
 * :hammer: Premise's requireNonNull method rename to requireNotNull
+* :hammer: Premise's checkInRange and checkNotInRange method rename to requireInRange and requireNotInRange
 
 ## 0.6.4
 * Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,

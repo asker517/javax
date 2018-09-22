@@ -105,126 +105,126 @@ class PremiseTest {
     }
 
     @Test
-    fun testCheckInRange() {
-        2.toByte().checkInRange(0.toByte(), 5.toByte())
+    fun testRequireInRange() {
+        2.toByte().requireInRange(0.toByte(), 5.toByte())
         try {
-            (-1).toByte().checkInRange(0.toByte(), 5.toByte())
+            (-1).toByte().requireInRange(0.toByte(), 5.toByte())
             Assert.fail()
         } catch (ignored: Exception) {
         }
         try {
-            6.toByte().checkInRange(0.toByte(), 5.toByte())
-            Assert.fail()
-        } catch (ignored: Exception) {
-        }
-
-        2.toShort().checkInRange(0.toShort(), 5.toShort())
-        try {
-            (-1).toShort().checkInRange(0.toShort(), 5.toShort())
-            Assert.fail()
-        } catch (ignored: Exception) {
-        }
-        try {
-            6.toShort().checkInRange(0.toShort(), 5.toShort())
+            6.toByte().requireInRange(0.toByte(), 5.toByte())
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        2.checkInRange(0, 5)
+        2.toShort().requireInRange(0.toShort(), 5.toShort())
         try {
-            (-1).checkInRange(0, 5)
+            (-1).toShort().requireInRange(0.toShort(), 5.toShort())
             Assert.fail()
         } catch (ignored: Exception) {
         }
         try {
-            6.checkInRange(0, 5)
-            Assert.fail()
-        } catch (ignored: Exception) {
-        }
-
-        2L.checkInRange(0L, 5L)
-        try {
-            (-1L).checkInRange(0L, 5L)
-            Assert.fail()
-        } catch (ignored: Exception) {
-        }
-        try {
-            6L.checkInRange(0L, 5L)
+            6.toShort().requireInRange(0.toShort(), 5.toShort())
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        2f.checkInRange(0f, 5f)
+        2.requireInRange(0, 5)
         try {
-            (-1f).checkInRange(0f, 5f)
+            (-1).requireInRange(0, 5)
             Assert.fail()
         } catch (ignored: Exception) {
         }
         try {
-            6f.checkInRange(0f, 5f)
+            6.requireInRange(0, 5)
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        2.0.checkInRange(0.0, 5.0)
+        2L.requireInRange(0L, 5L)
         try {
-            (-1.0).checkInRange(0.0, 5.0)
+            (-1L).requireInRange(0L, 5L)
             Assert.fail()
         } catch (ignored: Exception) {
         }
         try {
-            6.0.checkInRange(0.0, 5.0)
+            6L.requireInRange(0L, 5L)
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        2f.requireInRange(0f, 5f)
+        try {
+            (-1f).requireInRange(0f, 5f)
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+        try {
+            6f.requireInRange(0f, 5f)
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        2.0.requireInRange(0.0, 5.0)
+        try {
+            (-1.0).requireInRange(0.0, 5.0)
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+        try {
+            6.0.requireInRange(0.0, 5.0)
             Assert.fail()
         } catch (ignored: Exception) {
         }
     }
 
     @Test
-    fun testCheckNotInRange() {
-        6.toByte().checkNotInRange(0.toByte(), 5.toByte())
-        (-1).toByte().checkNotInRange(0.toByte(), 5.toByte())
+    fun testRequireNotInRange() {
+        6.toByte().requireNotInRange(0.toByte(), 5.toByte())
+        (-1).toByte().requireNotInRange(0.toByte(), 5.toByte())
         try {
-            2.toByte().checkNotInRange(0.toByte(), 5.toByte())
+            2.toByte().requireNotInRange(0.toByte(), 5.toByte())
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        6.toShort().checkNotInRange(0.toShort(), 5.toShort())
-        (-1).toShort().checkNotInRange(0.toShort(), 5.toShort())
+        6.toShort().requireNotInRange(0.toShort(), 5.toShort())
+        (-1).toShort().requireNotInRange(0.toShort(), 5.toShort())
         try {
-            2.toShort().checkNotInRange(0.toShort(), 5.toShort())
+            2.toShort().requireNotInRange(0.toShort(), 5.toShort())
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        6.checkNotInRange(0, 5)
-        (-1).checkNotInRange(0, 5)
+        6.requireNotInRange(0, 5)
+        (-1).requireNotInRange(0, 5)
         try {
-            2.checkNotInRange(0, 5)
+            2.requireNotInRange(0, 5)
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        6L.checkNotInRange(0L, 5L)
-        (-1L).checkNotInRange(0L, 5L)
+        6L.requireNotInRange(0L, 5L)
+        (-1L).requireNotInRange(0L, 5L)
         try {
-            2L.checkNotInRange(0L, 5L)
+            2L.requireNotInRange(0L, 5L)
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        6f.checkNotInRange(0f, 5f)
-        (-1f).checkNotInRange(0f, 5f)
+        6f.requireNotInRange(0f, 5f)
+        (-1f).requireNotInRange(0f, 5f)
         try {
-            2f.checkNotInRange(0f, 5f)
+            2f.requireNotInRange(0f, 5f)
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        6.0.checkNotInRange(0.0, 5.0)
-        (-1.0).checkNotInRange(0.0, 5.0)
+        6.0.requireNotInRange(0.0, 5.0)
+        (-1.0).requireNotInRange(0.0, 5.0)
         try {
-            2.0.checkNotInRange(0.0, 5.0)
+            2.0.requireNotInRange(0.0, 5.0)
             Assert.fail()
         } catch (ignored: Exception) {
         }

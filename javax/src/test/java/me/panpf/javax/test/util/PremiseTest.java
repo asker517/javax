@@ -118,126 +118,126 @@ public class PremiseTest {
     }
 
     @Test
-    public void testCheckInRange() {
-        Premisex.checkInRange((byte) 2, (byte) 0, (byte) 5);
+    public void testRequireInRange() {
+        Premisex.requireInRange((byte) 2, (byte) 0, (byte) 5);
         try {
-            Premisex.checkInRange((byte) -1, (byte) 0, (byte) 5);
+            Premisex.requireInRange((byte) -1, (byte) 0, (byte) 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
         try {
-            Premisex.checkInRange((byte) 6, (byte) 0, (byte) 5);
-            Assert.fail();
-        } catch (Exception ignored) {
-        }
-
-        Premisex.checkInRange((short) 2, (short) 0, (short) 5);
-        try {
-            Premisex.checkInRange((short) -1, (short) 0, (short) 5);
-            Assert.fail();
-        } catch (Exception ignored) {
-        }
-        try {
-            Premisex.checkInRange((short) 6, (short) 0, (short) 5);
+            Premisex.requireInRange((byte) 6, (byte) 0, (byte) 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkInRange(2, 0, 5);
+        Premisex.requireInRange((short) 2, (short) 0, (short) 5);
         try {
-            Premisex.checkInRange(-1, 0, 5);
+            Premisex.requireInRange((short) -1, (short) 0, (short) 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
         try {
-            Premisex.checkInRange(6, 0, 5);
-            Assert.fail();
-        } catch (Exception ignored) {
-        }
-
-        Premisex.checkInRange(2L, 0L, 5L);
-        try {
-            Premisex.checkInRange(-1L, 0L, 5L);
-            Assert.fail();
-        } catch (Exception ignored) {
-        }
-        try {
-            Premisex.checkInRange(6L, 0L, 5L);
+            Premisex.requireInRange((short) 6, (short) 0, (short) 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkInRange(2f, 0f, 5f);
+        Premisex.requireInRange(2, 0, 5);
         try {
-            Premisex.checkInRange(-1f, 0f, 5f);
+            Premisex.requireInRange(-1, 0, 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
         try {
-            Premisex.checkInRange(6f, 0f, 5f);
+            Premisex.requireInRange(6, 0, 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkInRange(2d, 0d, 5d);
+        Premisex.requireInRange(2L, 0L, 5L);
         try {
-            Premisex.checkInRange(-1d, 0d, 5d);
+            Premisex.requireInRange(-1L, 0L, 5L);
             Assert.fail();
         } catch (Exception ignored) {
         }
         try {
-            Premisex.checkInRange(6d, 0d, 5d);
+            Premisex.requireInRange(6L, 0L, 5L);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireInRange(2f, 0f, 5f);
+        try {
+            Premisex.requireInRange(-1f, 0f, 5f);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+        try {
+            Premisex.requireInRange(6f, 0f, 5f);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireInRange(2d, 0d, 5d);
+        try {
+            Premisex.requireInRange(-1d, 0d, 5d);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+        try {
+            Premisex.requireInRange(6d, 0d, 5d);
             Assert.fail();
         } catch (Exception ignored) {
         }
     }
 
     @Test
-    public void testCheckNotInRange() {
-        Premisex.checkNotInRange((byte) 6, (byte) 0, (byte) 5);
-        Premisex.checkNotInRange((byte) -1, (byte) 0, (byte) 5);
+    public void testRequireNotInRange() {
+        Premisex.requireNotInRange((byte) 6, (byte) 0, (byte) 5);
+        Premisex.requireNotInRange((byte) -1, (byte) 0, (byte) 5);
         try {
-            Premisex.checkNotInRange((byte) 2, (byte) 0, (byte) 5);
+            Premisex.requireNotInRange((byte) 2, (byte) 0, (byte) 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkNotInRange((short) 6, (short) 0, (short) 5);
-        Premisex.checkNotInRange((short) -1, (short) 0, (short) 5);
+        Premisex.requireNotInRange((short) 6, (short) 0, (short) 5);
+        Premisex.requireNotInRange((short) -1, (short) 0, (short) 5);
         try {
-            Premisex.checkNotInRange((short) 2, (short) 0, (short) 5);
+            Premisex.requireNotInRange((short) 2, (short) 0, (short) 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkNotInRange(6, 0, 5);
-        Premisex.checkNotInRange(-1, 0, 5);
+        Premisex.requireNotInRange(6, 0, 5);
+        Premisex.requireNotInRange(-1, 0, 5);
         try {
-            Premisex.checkNotInRange(2, 0, 5);
+            Premisex.requireNotInRange(2, 0, 5);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkNotInRange(6L, 0L, 5L);
-        Premisex.checkNotInRange(-1L, 0L, 5L);
+        Premisex.requireNotInRange(6L, 0L, 5L);
+        Premisex.requireNotInRange(-1L, 0L, 5L);
         try {
-            Premisex.checkNotInRange(2L, 0L, 5L);
+            Premisex.requireNotInRange(2L, 0L, 5L);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkNotInRange(6f, 0f, 5f);
-        Premisex.checkNotInRange(-1f, 0f, 5f);
+        Premisex.requireNotInRange(6f, 0f, 5f);
+        Premisex.requireNotInRange(-1f, 0f, 5f);
         try {
-            Premisex.checkNotInRange(2f, 0f, 5f);
+            Premisex.requireNotInRange(2f, 0f, 5f);
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Premisex.checkNotInRange(6d, 0d, 5d);
-        Premisex.checkNotInRange(-1d, 0d, 5d);
+        Premisex.requireNotInRange(6d, 0d, 5d);
+        Premisex.requireNotInRange(-1d, 0d, 5d);
         try {
-            Premisex.checkNotInRange(2d, 0d, 5d);
+            Premisex.requireNotInRange(2d, 0d, 5d);
             Assert.fail();
         } catch (Exception ignored) {
         }

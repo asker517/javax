@@ -41,7 +41,7 @@ public class Premisex {
      */
     @NotNull
     public static <T> T requireNotNull(@Nullable T value, String errorMessage) {
-        if (value == null) throw new NullPointerException(errorMessage);
+        if (value == null) throw new IllegalArgumentException(errorMessage);
         return value;
     }
 
@@ -71,7 +71,7 @@ public class Premisex {
     /**
      * Returns true if [value] is within the range of [minValue] and [maxValue]
      */
-    public static void checkInRange(byte value, byte minValue, byte maxValue) {
+    public static void requireInRange(byte value, byte minValue, byte maxValue) {
         if (value < minValue || value > maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
@@ -80,7 +80,7 @@ public class Premisex {
     /**
      * Returns true if [value] is within the range of [minValue] and [maxValue]
      */
-    public static void checkInRange(short value, short minValue, short maxValue) {
+    public static void requireInRange(short value, short minValue, short maxValue) {
         if (value < minValue || value > maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
@@ -89,7 +89,7 @@ public class Premisex {
     /**
      * Returns true if [value] is within the range of [minValue] and [maxValue]
      */
-    public static void checkInRange(int value, int minValue, int maxValue) {
+    public static void requireInRange(int value, int minValue, int maxValue) {
         if (value < minValue || value > maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
@@ -98,7 +98,7 @@ public class Premisex {
     /**
      * Returns true if [value] is within the range of [minValue] and [maxValue]
      */
-    public static void checkInRange(long value, long minValue, long maxValue) {
+    public static void requireInRange(long value, long minValue, long maxValue) {
         if (value < minValue || value > maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
@@ -107,7 +107,7 @@ public class Premisex {
     /**
      * Returns true if [value] is within the range of [minValue] and [maxValue]
      */
-    public static void checkInRange(float value, float minValue, float maxValue) {
+    public static void requireInRange(float value, float minValue, float maxValue) {
         if (value < minValue || value > maxValue) {
             throw new IllegalArgumentException(String.format("value %s must be >= %s && <= %s", value, minValue, maxValue));
         }
@@ -116,7 +116,7 @@ public class Premisex {
     /**
      * Returns true if [value] is within the range of [minValue] and [maxValue]
      */
-    public static void checkInRange(double value, double minValue, double maxValue) {
+    public static void requireInRange(double value, double minValue, double maxValue) {
         if (value < minValue || value > maxValue) {
             throw new IllegalArgumentException(String.format("value %s must be >= %s && <= %s", value, minValue, maxValue));
         }
@@ -126,7 +126,7 @@ public class Premisex {
     /**
      * Return true if [value] is not in the range [minValue] and [maxValue]
      */
-    public static void checkNotInRange(byte value, byte minValue, byte maxValue) {
+    public static void requireNotInRange(byte value, byte minValue, byte maxValue) {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
@@ -135,7 +135,7 @@ public class Premisex {
     /**
      * Return true if [value] is not in the range [minValue] and [maxValue]
      */
-    public static void checkNotInRange(short value, short minValue, short maxValue) {
+    public static void requireNotInRange(short value, short minValue, short maxValue) {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
@@ -144,7 +144,7 @@ public class Premisex {
     /**
      * Return true if [value] is not in the range [minValue] and [maxValue]
      */
-    public static void checkNotInRange(int value, int minValue, int maxValue) {
+    public static void requireNotInRange(int value, int minValue, int maxValue) {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
@@ -153,7 +153,7 @@ public class Premisex {
     /**
      * Return true if [value] is not in the range [minValue] and [maxValue]
      */
-    public static void checkNotInRange(long value, long minValue, long maxValue) {
+    public static void requireNotInRange(long value, long minValue, long maxValue) {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
@@ -162,7 +162,7 @@ public class Premisex {
     /**
      * Return true if [value] is not in the range [minValue] and [maxValue]
      */
-    public static void checkNotInRange(float value, float minValue, float maxValue) {
+    public static void requireNotInRange(float value, float minValue, float maxValue) {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %s must be < %s || > %s", value, minValue, maxValue));
         }
@@ -171,7 +171,7 @@ public class Premisex {
     /**
      * Return true if [value] is not in the range [minValue] and [maxValue]
      */
-    public static void checkNotInRange(double value, double minValue, double maxValue) {
+    public static void requireNotInRange(double value, double minValue, double maxValue) {
         if (value >= minValue && value <= maxValue) {
             throw new IllegalArgumentException(String.format("value %s must be < %s || > %s", value, minValue, maxValue));
         }
@@ -206,7 +206,7 @@ public class Premisex {
     @SuppressWarnings("UnusedReturnValue")
     @NotNull
     public static <T> T requireNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
-        if (value == null) throw new NullPointerException(lazyMessage.get());
+        if (value == null) throw new IllegalArgumentException(lazyMessage.get());
         return value;
     }
 

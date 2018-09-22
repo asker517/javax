@@ -15,7 +15,7 @@ fun require(value: Boolean, errorMessage: String) {
  * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
  */
 fun <T> requireNotNull(value: T?, errorMessage: String): T {
-    if (value == null) throw NullPointerException(errorMessage)
+    if (value == null) throw IllegalArgumentException(errorMessage)
     return value
 }
 
@@ -46,7 +46,7 @@ fun File.requireIsFile() {
 /**
  * Returns true if self is within the range of [minValue] and [maxValue]
  */
-fun Byte.checkInRange(minValue: Byte, maxValue: Byte) {
+fun Byte.requireInRange(minValue: Byte, maxValue: Byte) {
     if (this < minValue || this > maxValue) {
         throw IllegalArgumentException(String.format("value %d must be >= %d && <= %d", this, minValue, maxValue))
     }
@@ -55,7 +55,7 @@ fun Byte.checkInRange(minValue: Byte, maxValue: Byte) {
 /**
  * Returns true if self is within the range of [minValue] and [maxValue]
  */
-fun Short.checkInRange(minValue: Short, maxValue: Short) {
+fun Short.requireInRange(minValue: Short, maxValue: Short) {
     if (this < minValue || this > maxValue) {
         throw IllegalArgumentException(String.format("value %d must be >= %d && <= %d", this, minValue, maxValue))
     }
@@ -64,7 +64,7 @@ fun Short.checkInRange(minValue: Short, maxValue: Short) {
 /**
  * Returns true if self is within the range of [minValue] and [maxValue]
  */
-fun Int.checkInRange(minValue: Int, maxValue: Int) {
+fun Int.requireInRange(minValue: Int, maxValue: Int) {
     if (this < minValue || this > maxValue) {
         throw IllegalArgumentException(String.format("value %d must be >= %d && <= %d", this, minValue, maxValue))
     }
@@ -73,7 +73,7 @@ fun Int.checkInRange(minValue: Int, maxValue: Int) {
 /**
  * Returns true if self is within the range of [minValue] and [maxValue]
  */
-fun Long.checkInRange(minValue: Long, maxValue: Long) {
+fun Long.requireInRange(minValue: Long, maxValue: Long) {
     if (this < minValue || this > maxValue) {
         throw IllegalArgumentException(String.format("value %d must be >= %d && <= %d", this, minValue, maxValue))
     }
@@ -82,7 +82,7 @@ fun Long.checkInRange(minValue: Long, maxValue: Long) {
 /**
  * Returns true if self is within the range of [minValue] and [maxValue]
  */
-fun Float.checkInRange(minValue: Float, maxValue: Float) {
+fun Float.requireInRange(minValue: Float, maxValue: Float) {
     if (this < minValue || this > maxValue) {
         throw IllegalArgumentException(String.format("value %s must be >= %s && <= %s", this, minValue, maxValue))
     }
@@ -91,7 +91,7 @@ fun Float.checkInRange(minValue: Float, maxValue: Float) {
 /**
  * Returns true if self is within the range of [minValue] and [maxValue]
  */
-fun Double.checkInRange(minValue: Double, maxValue: Double) {
+fun Double.requireInRange(minValue: Double, maxValue: Double) {
     if (this < minValue || this > maxValue) {
         throw IllegalArgumentException(String.format("value %s must be >= %s && <= %s", this, minValue, maxValue))
     }
@@ -101,7 +101,7 @@ fun Double.checkInRange(minValue: Double, maxValue: Double) {
 /**
  * Return true if self is not in the range [minValue] and [maxValue]
  */
-fun Byte.checkNotInRange(minValue: Byte, maxValue: Byte) {
+fun Byte.requireNotInRange(minValue: Byte, maxValue: Byte) {
     @Suppress("ConvertTwoComparisonsToRangeCheck")
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %d must be < %d || > %d", this, minValue, maxValue))
@@ -111,7 +111,7 @@ fun Byte.checkNotInRange(minValue: Byte, maxValue: Byte) {
 /**
  * Return true if self is not in the range [minValue] and [maxValue]
  */
-fun Short.checkNotInRange(minValue: Short, maxValue: Short) {
+fun Short.requireNotInRange(minValue: Short, maxValue: Short) {
     @Suppress("ConvertTwoComparisonsToRangeCheck")
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %d must be < %d || > %d", this, minValue, maxValue))
@@ -121,7 +121,7 @@ fun Short.checkNotInRange(minValue: Short, maxValue: Short) {
 /**
  * Return true if self is not in the range [minValue] and [maxValue]
  */
-fun Int.checkNotInRange(minValue: Int, maxValue: Int) {
+fun Int.requireNotInRange(minValue: Int, maxValue: Int) {
     @Suppress("ConvertTwoComparisonsToRangeCheck")
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %d must be < %d || > %d", this, minValue, maxValue))
@@ -131,7 +131,7 @@ fun Int.checkNotInRange(minValue: Int, maxValue: Int) {
 /**
  * Return true if self is not in the range [minValue] and [maxValue]
  */
-fun Long.checkNotInRange(minValue: Long, maxValue: Long) {
+fun Long.requireNotInRange(minValue: Long, maxValue: Long) {
     @Suppress("ConvertTwoComparisonsToRangeCheck")
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %d must be < %d || > %d", this, minValue, maxValue))
@@ -141,7 +141,7 @@ fun Long.checkNotInRange(minValue: Long, maxValue: Long) {
 /**
  * Return true if self is not in the range [minValue] and [maxValue]
  */
-fun Float.checkNotInRange(minValue: Float, maxValue: Float) {
+fun Float.requireNotInRange(minValue: Float, maxValue: Float) {
     @Suppress("ConvertTwoComparisonsToRangeCheck")
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %s must be < %s || > %s", this, minValue, maxValue))
@@ -151,7 +151,7 @@ fun Float.checkNotInRange(minValue: Float, maxValue: Float) {
 /**
  * Return true if self is not in the range [minValue] and [maxValue]
  */
-fun Double.checkNotInRange(minValue: Double, maxValue: Double) {
+fun Double.requireNotInRange(minValue: Double, maxValue: Double) {
     @Suppress("ConvertTwoComparisonsToRangeCheck")
     if (this >= minValue && this <= maxValue) {
         throw IllegalArgumentException(String.format("value %s must be < %s || > %s", this, minValue, maxValue))
