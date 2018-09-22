@@ -1271,7 +1271,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence limit(@NotNull CharSequence string, int length, @Nullable String suffix) {
-        Premisex.require(length >= 0, "Desired length $length is less than zero.");
+        Premisex.require(length >= 0, "Desired length " + length + " is less than zero.");
         if (string.length() <= length) return string;
 
         CharSequence limitString = string.subSequence(0, length);
@@ -1321,7 +1321,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence padStart(@NotNull CharSequence string, int length, char padChar) {
-        Premisex.require(length >= 0, "Desired length $length is less than zero.");
+        Premisex.require(length >= 0, "Desired length " + length + " is less than zero.");
         if (length <= string.length()) return string.subSequence(0, string.length());
 
         StringBuilder sb = new StringBuilder(length);
@@ -1382,7 +1382,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence padEnd(@NotNull CharSequence string, int length, char padChar) {
-        Premisex.require(length >= 0, "Desired length $length is less than zero.");
+        Premisex.require(length >= 0, "Desired length " + length + " is less than zero.");
         if (length <= string.length()) return string.subSequence(0, string.length());
 
         StringBuilder sb = new StringBuilder(length);

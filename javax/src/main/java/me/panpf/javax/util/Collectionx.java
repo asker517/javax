@@ -2181,7 +2181,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> take(@NotNull Iterable<T> iterable, int n) {
-        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
         if (n == 0) {
             //noinspection unchecked
             return EMPTY_LIST;
@@ -2208,7 +2208,7 @@ public class Collectionx {
      * Returns a list containing last [n] elements.
      */
     public static <T> List<T> takeLast(@NotNull List<T> list, int n) {
-        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
         if (n == 0) {
             //noinspection unchecked
             return EMPTY_LIST;
@@ -2453,7 +2453,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> drop(@NotNull Iterable<T> iterable, int n) {
-        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
         if (n == 0) return toList(iterable);
 
         ArrayList<T> list;
@@ -2501,7 +2501,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> dropLast(@NotNull List<T> list, int n) {
-        Premisex.require(n >= 0, "Requested element count $n is less than zero.");
+        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
         return take(list, Math.max(list.size() - n, 0));
     }
 

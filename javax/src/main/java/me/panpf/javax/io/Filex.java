@@ -538,7 +538,7 @@ public class Filex {
         FilePathComponents components = toComponents(self);
         FilePathComponents otherComponents = toComponents(other);
         if (otherComponents.isRooted) {
-            return Premisex.areEqual(self, other);
+            return Comparisonx.areEqual(self, other);
         } else {
             int shift = components.size - otherComponents.size;
             if (shift < 0) {
@@ -823,7 +823,7 @@ public class Filex {
 
         int sameCount = 0;
         int maxSameCount = Math.min(thisCount, baseCount);
-        while (sameCount < maxSameCount && Premisex.areEqual(thisComponents.segments.get(sameCount), baseComponents.segments.get(sameCount))) {
+        while (sameCount < maxSameCount && Comparisonx.areEqual(thisComponents.segments.get(sameCount), baseComponents.segments.get(sameCount))) {
             sameCount++;
         }
 

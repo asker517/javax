@@ -31,6 +31,34 @@ public class Comparisonx {
      * *****************************************************************************************************************
      */
 
+    public static boolean areEqual(@Nullable Object first, @Nullable Object second) {
+        return first == null ? second == null : first.equals(second);
+    }
+
+    public static boolean areEqual(@Nullable Double first, @Nullable Double second) {
+        return first == null ? second == null : second != null && first.doubleValue() == second.doubleValue();
+    }
+
+    public static boolean areEqual(@Nullable Double first, double second) {
+        return first != null && first.doubleValue() == second;
+    }
+
+    public static boolean areEqual(double first, Double second) {
+        return second != null && first == second.doubleValue();
+    }
+
+    public static boolean areEqual(@Nullable Float first, @Nullable Float second) {
+        return first == null ? second == null : second != null && first.floatValue() == second.floatValue();
+    }
+
+    public static boolean areEqual(@Nullable Float first, float second) {
+        return first != null && first.floatValue() == second;
+    }
+
+    public static boolean areEqual(float first, @Nullable Float second) {
+        return second != null && first == second.floatValue();
+    }
+
 
     /**
      * Compares two nullable [Comparable] values. Null is considered less than any value.

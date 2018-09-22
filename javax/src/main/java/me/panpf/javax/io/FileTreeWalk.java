@@ -28,9 +28,9 @@ import java.util.Stack;
 /**
  * This class is intended to implement different file traversal methods.
  * It allows to iterate through all files inside a given directory.
- *
+ * <p>
  * Use [File.walk], [File.walkTopDown] or [File.walkBottomUp] getExtension functions to instantiate a `FileTreeWalk` instance.
-
+ * <p>
  * If the file path given is just a file, walker iterates only it.
  * If the file path given does not exist, walker iterates nothing, i.e. it's equivalent to an empty sequence.
  */
@@ -61,13 +61,17 @@ public class FileTreeWalk implements Sequence<File> {
         this.direction = direction;
     }
 
-    /** Returns an iterator walking through files. */
+    /**
+     * Returns an iterator walking through files.
+     */
     @Override
-    public Iterator<File> iterator(){
+    public Iterator<File> iterator() {
         return new FileTreeWalkIterator();
     }
 
-    /** Abstract class that encapsulates file visiting in some order, beginning from a given [root] */
+    /**
+     * Abstract class that encapsulates file visiting in some order, beginning from a given [root]
+     */
     private abstract class WalkState {
         @NotNull
         protected File root;
@@ -76,12 +80,16 @@ public class FileTreeWalk implements Sequence<File> {
             this.root = root;
         }
 
-        /** Call of this function proceeds to a next file for visiting and returns it */
+        /**
+         * Call of this function proceeds to a next file for visiting and returns it
+         */
         @Nullable
-        public abstract  File step();
+        public abstract File step();
     }
 
-    /** Abstract class that encapsulates directory visiting in some order, beginning from a given [rootDir] */
+    /**
+     * Abstract class that encapsulates directory visiting in some order, beginning from a given [rootDir]
+     */
     private abstract class DirectoryState extends WalkState {
 
         public DirectoryState(@NotNull File rootDir) {
@@ -117,7 +125,7 @@ public class FileTreeWalk implements Sequence<File> {
 
 
         private DirectoryState directoryState(@NotNull File root) {
-            return direction == FileWalkDirection.TOP_DOWN ? new TopDownDirectoryState(root): new BottomUpDirectoryState(root);
+            return direction == FileWalkDirection.TOP_DOWN ? new TopDownDirectoryState(root) : new BottomUpDirectoryState(root);
         }
 
         @Nullable
@@ -293,7 +301,7 @@ public class FileTreeWalk implements Sequence<File> {
     /**
      * Sets a predicate [function], that is called on any entered directory before its files are visited
      * and before it is visited itself.
-     *
+     * <p>
      * If the [function] returns `false` the directory is not entered and neither it nor its files are visited.
      */
     @NotNull
@@ -311,7 +319,7 @@ public class FileTreeWalk implements Sequence<File> {
 
     /**
      * Set a callback [function], that is called on a directory when it's impossible to get its file list.
-     *
+     * <p>
      * [onEnter] and [onLeave] callback functions are called even in this case.
      */
     @NotNull
@@ -321,15 +329,15 @@ public class FileTreeWalk implements Sequence<File> {
 
     /**
      * Sets the maximum [depth] of a directory tree to traverse. By default there is no limit.
-     *
+     * <p>
      * The value must be positive and [Int.MAX_VALUE] is used to specify an unlimited depth.
-     *
+     * <p>
      * With a value of 1, walker visits only the origin directory and all its immediate children,
      * with a value of 2 also grandchildren, etc.
      */
     @NotNull
     public FileTreeWalk maxDepth(int newDepth) {
-        Premisex.require (newDepth > 0, "depth must be positive, but was $depth.");
+        Premisex.require(newDepth > 0, "depth must be positive, but was " + newDepth + ".");
         return new FileTreeWalk(start, direction, onEnter, onLeave, onFail, newDepth);
     }
 }

@@ -112,15 +112,14 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold,
     * reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
 * Comparison: [Comparisonx.java]
-    * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf
+    * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf, areEqual
 * Format: [Formatx.java] ([Test][FormatTest.java]) | [Format.kt] ([Test][FormatTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
 * Map: [Mapx.java]
     * mapCapacity, getOrPut
 * Premise: [Premisex.java] ([Test][PremiseTest.java]) | [Premise.kt] ([Test][PremiseTest.kt])
-    * requireNonNull, require, requireFileExist, requireIsDir, requireIsFile, requireNoNulls
-    * checkInRange, checkNotInRange, areEqual
+    * requireNotNull, require, requireFileExist, requireIsDir, requireIsFile, checkInRange, checkNotInRange
 * Range: [Rangex.java] ([Test][RangeTest.java]) | [Range.kt] ([Test][RangeTest.kt])
     * rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,

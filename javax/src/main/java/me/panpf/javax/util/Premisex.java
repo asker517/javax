@@ -21,92 +21,159 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 
 @SuppressWarnings("WeakerAccess")
 public class Premisex {
 
+    private Premisex() {
+    }
+
+
+    /**
+     * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is false.
+     */
+    public static void require(boolean value, @NotNull String errorMessage) {
+        if (!value) throw new IllegalArgumentException(errorMessage);
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
+     */
+    @NotNull
+    public static <T> T requireNotNull(@Nullable T value, String errorMessage) {
+        if (value == null) throw new NullPointerException(errorMessage);
+        return value;
+    }
+
+
+    /**
+     * Throws a [FileNotFoundException] exception if the given file does not exist
+     */
+    public static void requireFileExist(@NotNull File file) throws FileNotFoundException {
+        if (!file.exists()) throw new FileNotFoundException(file.getPath());
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] exception if the given file is not a directory
+     */
+    public static void requireIsDir(@NotNull File file) {
+        if (!file.isDirectory()) throw new IllegalArgumentException("Must be directory： " + file.getPath());
+    }
+
+    /**
+     * Throws an [IllegalArgumentException] exception if the given file is not a file
+     */
+    public static void requireIsFile(@NotNull File file) {
+        if (!file.isFile()) throw new IllegalArgumentException("Must be file： " + file.getPath());
+    }
+
+
+    /**
+     * Returns true if [value] is within the range of [minValue] and [maxValue]
+     */
     public static void checkInRange(byte value, byte minValue, byte maxValue) {
         if (value < minValue || value > maxValue) {
-            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Returns true if [value] is within the range of [minValue] and [maxValue]
+     */
     public static void checkInRange(short value, short minValue, short maxValue) {
         if (value < minValue || value > maxValue) {
-            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Returns true if [value] is within the range of [minValue] and [maxValue]
+     */
     public static void checkInRange(int value, int minValue, int maxValue) {
         if (value < minValue || value > maxValue) {
-            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Returns true if [value] is within the range of [minValue] and [maxValue]
+     */
     public static void checkInRange(long value, long minValue, long maxValue) {
         if (value < minValue || value > maxValue) {
-            String message = String.format("value %d must be >= %d && <= %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be >= %d && <= %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Returns true if [value] is within the range of [minValue] and [maxValue]
+     */
     public static void checkInRange(float value, float minValue, float maxValue) {
         if (value < minValue || value > maxValue) {
-            String message = String.format("value %s must be >= %s && <= %s", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %s must be >= %s && <= %s", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Returns true if [value] is within the range of [minValue] and [maxValue]
+     */
     public static void checkInRange(double value, double minValue, double maxValue) {
         if (value < minValue || value > maxValue) {
-            String message = String.format("value %s must be >= %s && <= %s", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %s must be >= %s && <= %s", value, minValue, maxValue));
         }
     }
 
+
+    /**
+     * Return true if [value] is not in the range [minValue] and [maxValue]
+     */
     public static void checkNotInRange(byte value, byte minValue, byte maxValue) {
         if (value >= minValue && value <= maxValue) {
-            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Return true if [value] is not in the range [minValue] and [maxValue]
+     */
     public static void checkNotInRange(short value, short minValue, short maxValue) {
         if (value >= minValue && value <= maxValue) {
-            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Return true if [value] is not in the range [minValue] and [maxValue]
+     */
     public static void checkNotInRange(int value, int minValue, int maxValue) {
         if (value >= minValue && value <= maxValue) {
-            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Return true if [value] is not in the range [minValue] and [maxValue]
+     */
     public static void checkNotInRange(long value, long minValue, long maxValue) {
         if (value >= minValue && value <= maxValue) {
-            String message = String.format("value %d must be < %d || > %d", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %d must be < %d || > %d", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Return true if [value] is not in the range [minValue] and [maxValue]
+     */
     public static void checkNotInRange(float value, float minValue, float maxValue) {
         if (value >= minValue && value <= maxValue) {
-            String message = String.format("value %s must be < %s || > %s", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %s must be < %s || > %s", value, minValue, maxValue));
         }
     }
 
+    /**
+     * Return true if [value] is not in the range [minValue] and [maxValue]
+     */
     public static void checkNotInRange(double value, double minValue, double maxValue) {
         if (value >= minValue && value <= maxValue) {
-            String message = String.format("value %s must be < %s || > %s", value, minValue, maxValue);
-            throw new IllegalArgumentException(message);
+            throw new IllegalArgumentException(String.format("value %s must be < %s || > %s", value, minValue, maxValue));
         }
     }
 
@@ -117,122 +184,38 @@ public class Premisex {
      * *****************************************************************************************************************
      */
 
+    /**
+     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is false.
+     */
+    public static void require(boolean value, @NotNull LazyValue<String> lazyMessage) {
+        if (!value) throw new IllegalArgumentException(lazyMessage.get());
+    }
 
     /**
-     * Checks that the specified object reference is not {@code null}. This
-     * method is designed primarily for doing parameter validation in methods
-     * and constructors, as demonstrated below:
-     * <blockquote><pre>
-     * public Foo(Bar bar) {
-     *     this.bar = Objects.requireNonNull(bar);
-     * }
-     * </pre></blockquote>
-     *
-     * @param obj the object reference to check for nullity
-     * @param <T> the type of the reference
-     * @return {@code obj} if not {@code null}
-     * @throws NullPointerException if {@code obj} is {@code null}
+     * Throws an [IllegalArgumentException] if the [value] is false.
+     */
+    public static void require(boolean value) {
+        require(value, "Failed requirement.");
+    }
+
+
+    /**
+     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
+     * returns the not null value.
      */
     @SuppressWarnings("UnusedReturnValue")
     @NotNull
-    public static <T> T requireNonNull(@Nullable T obj) {
-        if (obj == null)
-            throw new NullPointerException();
-        return obj;
+    public static <T> T requireNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
+        if (value == null) throw new NullPointerException(lazyMessage.get());
+        return value;
     }
 
     /**
-     * Checks that the specified object reference is not {@code null} and
-     * throws a customized {@link NullPointerException} if it is. This method
-     * is designed primarily for doing parameter validation in methods and
-     * constructors with multiple parameters, as demonstrated below:
-     * <blockquote><pre>
-     * public Foo(Bar bar, Baz baz) {
-     *     this.bar = Objects.requireNonNull(bar, "bar must not be null");
-     *     this.baz = Objects.requireNonNull(baz, "baz must not be null");
-     * }
-     * </pre></blockquote>
-     *
-     * @param obj     the object reference to check for nullity
-     * @param message detail message to be used in the event that a {@code
-     *                NullPointerException} is thrown
-     * @param <T>     the type of the reference
-     * @return {@code obj} if not {@code null}
-     * @throws NullPointerException if {@code obj} is {@code null}
+     * Throws an [IllegalArgumentException] if the [value] is null. Otherwise returns the not null value.
      */
     @NotNull
-    public static <T> T requireNonNull(@Nullable T obj, String message) {
-        if (obj == null)
-            throw new NullPointerException(message);
-        return obj;
-    }
-
-    public static void require(boolean result, @NotNull String message) {
-        if (!result) {
-            throw new IllegalArgumentException(message);
-        }
-    }
-
-    public static void require(boolean result) {
-        require(result, "Failed requirement.");
-    }
-
-    public static void requireFileExist(@NotNull File file) throws FileNotFoundException {
-        if (!file.exists()) {
-            throw new FileNotFoundException(file.getPath());
-        }
-    }
-
-    public static void requireIsDir(@NotNull File file) {
-        if (!file.isDirectory()) {
-            throw new IllegalArgumentException("Must be a directory： " + file.getPath());
-        }
-    }
-
-    public static void requireIsFile(@NotNull File file) {
-        if (!file.isFile()) {
-            throw new IllegalArgumentException("Must be a file： " + file.getPath());
-        }
-    }
-
-    /**
-     * Returns an original collection containing all the non-`null` elements, throwing an [IllegalArgumentException] if there are any `null` elements.
-     */
-    @NotNull
-    public static <T> T[] requireNoNulls(@NotNull T[] elements) {
-        for (T element : elements) {
-            if (element == null) {
-                throw new IllegalArgumentException("null element found in " + Arrays.toString(elements) + ".");
-            }
-        }
-        return elements;
-    }
-
-    public static boolean areEqual(@Nullable Object first, @Nullable Object second) {
-        return first == null ? second == null : first.equals(second);
-    }
-
-    public static boolean areEqual(@Nullable Double first, @Nullable Double second) {
-        return first == null ? second == null : second != null && first.doubleValue() == second.doubleValue();
-    }
-
-    public static boolean areEqual(@Nullable Double first, double second) {
-        return first != null && first.doubleValue() == second;
-    }
-
-    public static boolean areEqual(double first, Double second) {
-        return second != null && first == second.doubleValue();
-    }
-
-    public static boolean areEqual(@Nullable Float first, @Nullable Float second) {
-        return first == null ? second == null : second != null && first.floatValue() == second.floatValue();
-    }
-
-    public static boolean areEqual(@Nullable Float first, float second) {
-        return first != null && first.floatValue() == second;
-    }
-
-    public static boolean areEqual(float first, @Nullable Float second) {
-        return second != null && first == second.floatValue();
+    @SuppressWarnings("UnusedReturnValue")
+    public static <T> T requireNotNull(@Nullable T value) {
+        return requireNotNull(value, "Required value was null.");
     }
 }

@@ -553,7 +553,7 @@ public class Base64x {
          *          RFC 2045.
          */
         public static Encoder getMimeEncoder(int lineLength, byte[] lineSeparator) {
-            Premisex.requireNonNull(lineSeparator);
+            Premisex.requireNotNull(lineSeparator);
             int[] base64 = Decoder.fromBase64;
             for (byte b : lineSeparator) {
                 if (base64[b & 0xff] != -1)
@@ -789,7 +789,7 @@ public class Base64x {
              *          specified Base64 encoded format
              */
             public OutputStream wrap(OutputStream os) {
-                Premisex.requireNonNull(os);
+                Premisex.requireNotNull(os);
                 return new EncOutputStream(os, isURL ? toBase64URL : toBase64,
                         newline, linemax, doPadding);
             }
@@ -1067,7 +1067,7 @@ public class Base64x {
              *          byte stream
              */
             public InputStream wrap(InputStream is) {
-                Premisex.requireNonNull(is);
+                Premisex.requireNotNull(is);
                 return new DecInputStream(is, isURL ? fromBase64URL : fromBase64, isMIME);
             }
 
