@@ -119,7 +119,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Map: [Mapx.java]
     * mapCapacity, getOrPut
 * Premise: [Premisex.java] ([Test][PremiseTest.java]) | [Premise.kt] ([Test][PremiseTest.kt])
-    * requireNotNull, require, requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange
+    * require, requireNotNull, check, checkNotNull
+    * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange
 * Range: [Rangex.java] ([Test][RangeTest.java]) | [Range.kt] ([Test][RangeTest.kt])
     * rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,

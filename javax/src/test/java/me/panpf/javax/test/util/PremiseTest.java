@@ -316,4 +316,78 @@ public class PremiseTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testCheck() {
+        Premisex.check(true);
+
+        try {
+            Premisex.check(false);
+            Assert.fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Premisex.check(false, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is false";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Premisex.check(true, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is true";
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCheckNotNull() {
+        Premisex.checkNotNull("");
+
+        try {
+            Premisex.checkNotNull(null);
+            Assert.fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Premisex.checkNotNull(null, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is null";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Premisex.checkNotNull("", new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is not null";
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

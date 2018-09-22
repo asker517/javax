@@ -21,6 +21,22 @@ fun <T> requireNotNull(value: T?, errorMessage: String): T {
 
 
 /**
+ * Throws an [IllegalStateException] with [errorMessage] if the [value] is false.
+ */
+fun check(value: Boolean, errorMessage: String) {
+    if (!value) throw IllegalStateException(errorMessage)
+}
+
+/**
+ * Throws an [IllegalStateException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
+ */
+fun <T> checkNotNull(value: T?, errorMessage: String): T {
+    if (value == null) throw IllegalStateException(errorMessage)
+    return value
+}
+
+
+/**
  * Throws a [FileNotFoundException] exception if the given file does not exist
  */
 @Throws(FileNotFoundException::class)

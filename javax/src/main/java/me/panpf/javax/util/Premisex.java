@@ -47,6 +47,23 @@ public class Premisex {
 
 
     /**
+     * Throws an [IllegalStateException] with [errorMessage] if the [value] is false.
+     */
+    public static void check(boolean value, @NotNull String errorMessage) {
+        if (!value) throw new IllegalStateException(errorMessage);
+    }
+
+    /**
+     * Throws an [IllegalStateException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
+     */
+    @NotNull
+    public static <T> T checkNotNull(@Nullable T value, String errorMessage) {
+        if (value == null) throw new IllegalStateException(errorMessage);
+        return value;
+    }
+
+
+    /**
      * Throws a [FileNotFoundException] exception if the given file does not exist
      */
     public static void requireFileExist(@NotNull File file) throws FileNotFoundException {
@@ -217,5 +234,41 @@ public class Premisex {
     @SuppressWarnings("UnusedReturnValue")
     public static <T> T requireNotNull(@Nullable T value) {
         return requireNotNull(value, "Required value was null.");
+    }
+
+
+    /**
+     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is false.
+     */
+    public static void check(boolean value, @NotNull LazyValue<String> lazyMessage) {
+        if (!value) throw new IllegalStateException(lazyMessage.get());
+    }
+
+    /**
+     * Throws an [IllegalStateException] if the [value] is false.
+     */
+    public static void check(boolean value) {
+        check(value, "Failed requirement.");
+    }
+
+
+    /**
+     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
+     * returns the not null value.
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    @NotNull
+    public static <T> T checkNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
+        if (value == null) throw new IllegalStateException(lazyMessage.get());
+        return value;
+    }
+
+    /**
+     * Throws an [IllegalStateException] if the [value] is null. Otherwise returns the not null value.
+     */
+    @NotNull
+    @SuppressWarnings("UnusedReturnValue")
+    public static <T> T checkNotNull(@Nullable T value) {
+        return checkNotNull(value, "Required value was null.");
     }
 }

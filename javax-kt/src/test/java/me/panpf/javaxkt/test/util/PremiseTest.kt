@@ -253,4 +253,28 @@ class PremiseTest {
             e.printStackTrace()
         }
     }
+
+    @Test
+    fun testCheck() {
+        check(true, "is true")
+
+        try {
+            check(false, "is false")
+            Assert.fail()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
+    fun testCheckNotNull() {
+        checkNotNull("", "is not null")
+
+        try {
+            checkNotNull(null, "is null")
+            Assert.fail()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

@@ -4,6 +4,7 @@
 * :fire: Remove Premise's requireNoNulls method
 * :hammer: Premise's requireNonNull method rename to requireNotNull
 * :hammer: Premise's checkInRange and checkNotInRange method rename to requireInRange and requireNotInRange
+* :sparkles: Premise add check and checkNotNull method
 
 ## 0.6.4
 * Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,
