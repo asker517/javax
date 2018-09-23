@@ -110,7 +110,7 @@ class DesTest {
     @Throws(InvalidKeySpecException::class, InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
     fun testCbcISO10126Padding() {
         val key = PASSWORD.createDesKeyByPassword()
-        val decryptResult = SOURCE.toByteArray().desEncrypt(DES_CBC_ISO10126, key).desDecryptToString(DES_CBC_ISO10126, key)
+        val decryptResult = SOURCE.desEncrypt(DES_CBC_ISO10126, key).desDecryptToString(DES_CBC_ISO10126, key)
         Assert.assertEquals("testCbcISO10126Padding", SOURCE, decryptResult)
     }
 

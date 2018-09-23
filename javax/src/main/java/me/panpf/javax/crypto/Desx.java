@@ -19,10 +19,12 @@ public class Desx {
     public static final String DES = "DES";
     public static final String DES_ECB_NO = "DES/ECB/NoPadding";
     public static final String DES_ECB_PKCS5 = "DES/ECB/PKCS5Padding";
+    @SuppressWarnings("unused")
     public static final String DES_ECB_PKCS7 = "DES/ECB/PKCS7Padding";   // Java 不支持 Android 支持
     public static final String DES_ECB_ISO10126 = "DES/ECB/ISO10126Padding";
     public static final String DES_CBC_NO = "DES/CBC/NoPadding";
     public static final String DES_CBC_PKCS5 = "DES/CBC/PKCS5Padding";
+    @SuppressWarnings("unused")
     public static final String DES_CBC_PKCS7 = "DES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
     public static final String DES_CBC_ISO10126 = "DES/CBC/ISO10126Padding";
 
@@ -123,40 +125,6 @@ public class Desx {
     }
 
     /**
-     * Decrypt ciphertext encrypted using the DES algorithm
-     *
-     * @param cipherText Ciphertext to be decrypted
-     * @param algorithm  DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                   {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
-     * @param key        Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static byte[] decrypt(@NotNull String cipherText, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return decrypt(cipherText.getBytes(), algorithm, key);
-    }
-
-    /**
-     * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
-     *
-     * @param base64CipherData Ciphertext to be decrypted
-     * @param algorithm        DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                         {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
-     * @param key              Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static byte[] decryptFromBase64(@NotNull byte[] base64CipherData, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.decodeToBytes(base64CipherData), algorithm, key);
-    }
-
-    /**
      * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param base64CipherText Ciphertext to be decrypted
@@ -173,7 +141,6 @@ public class Desx {
         return decrypt(Base64x.decodeToBytes(base64CipherText.getBytes()), algorithm, key);
     }
 
-
     /**
      * Decrypt ciphertext encrypted using the DES algorithm
      *
@@ -189,40 +156,6 @@ public class Desx {
     public static String decryptToString(@NotNull byte[] cipherData, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
         return new String(decrypt(cipherData, algorithm, key));
-    }
-
-    /**
-     * Decrypt ciphertext encrypted using the DES algorithm
-     *
-     * @param cipherText Ciphertext to be decrypted
-     * @param algorithm  DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                   {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
-     * @param key        Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static String decryptToString(@NotNull String cipherText, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return new String(decrypt(cipherText, algorithm, key));
-    }
-
-    /**
-     * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
-     *
-     * @param base64CipherData Ciphertext to be decrypted
-     * @param algorithm        DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                         {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
-     * @param key              Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static String decryptToStringFromBase64(@NotNull byte[] base64CipherData, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return new String(decryptFromBase64(base64CipherData, algorithm, key));
     }
 
     /**

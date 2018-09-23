@@ -15,10 +15,12 @@ import javax.crypto.spec.IvParameterSpec
 const val DES = "DES"
 const val DES_ECB_NO = "DES/ECB/NoPadding"
 const val DES_ECB_PKCS5 = "DES/ECB/PKCS5Padding"
+@Suppress("unused")
 const val DES_ECB_PKCS7 = "DES/ECB/PKCS7Padding"   // Java 不支持 Android 支持
 const val DES_ECB_ISO10126 = "DES/ECB/ISO10126Padding"
 const val DES_CBC_NO = "DES/CBC/NoPadding"
 const val DES_CBC_PKCS5 = "DES/CBC/PKCS5Padding"
+@Suppress("unused")
 const val DES_CBC_PKCS7 = "DES/CBC/PKCS7Padding"   // Java 不支持 Android 支持
 const val DES_CBC_ISO10126 = "DES/CBC/ISO10126Padding"
 
@@ -111,36 +113,6 @@ fun ByteArray.desDecrypt(algorithm: String, key: Key): ByteArray {
 }
 
 /**
- * Decrypt ciphertext encrypted using the DES algorithm
- *
- * @param algorithm  DES encryption algorithm, The following values ​​are available: [.DES],[.DES_ECB_NO],[.DES_ECB_PKCS5],[.DES_ECB_PKCS7],
- * [.DES_CBC_ISO10126],[.DES_CBC_NO],[.DES_CBC_PKCS5],[.DES_CBC_PKCS7],[.DES_CBC_ISO10126]
- * @param key        Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun String.desDecrypt(algorithm: String, key: Key): ByteArray {
-    return this.toByteArray().desDecrypt(algorithm, key)
-}
-
-/**
- * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
- *
- * @param algorithm        DES encryption algorithm, The following values ​​are available: [.DES],[.DES_ECB_NO],[.DES_ECB_PKCS5],[.DES_ECB_PKCS7],
- * [.DES_CBC_ISO10126],[.DES_CBC_NO],[.DES_CBC_PKCS5],[.DES_CBC_PKCS7],[.DES_CBC_ISO10126]
- * @param key              Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun ByteArray.desDecryptFromBase64(algorithm: String, key: Key): ByteArray {
-    return this.base64DecodeToBytes().desDecrypt(algorithm, key)
-}
-
-/**
  * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
  *
  * @param algorithm        DES encryption algorithm, The following values ​​are available: [.DES],[.DES_ECB_NO],[.DES_ECB_PKCS5],[.DES_ECB_PKCS7],
@@ -155,7 +127,6 @@ fun String.desDecryptFromBase64(algorithm: String, key: Key): ByteArray {
     return this.toByteArray().base64DecodeToBytes().desDecrypt(algorithm, key)
 }
 
-
 /**
  * Decrypt ciphertext encrypted using the DES algorithm
  *
@@ -169,36 +140,6 @@ fun String.desDecryptFromBase64(algorithm: String, key: Key): ByteArray {
 @Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
 fun ByteArray.desDecryptToString(algorithm: String, key: Key): String {
     return String(this.desDecrypt(algorithm, key))
-}
-
-/**
- * Decrypt ciphertext encrypted using the DES algorithm
- *
- * @param algorithm  DES encryption algorithm, The following values ​​are available: [.DES],[.DES_ECB_NO],[.DES_ECB_PKCS5],[.DES_ECB_PKCS7],
- * [.DES_CBC_ISO10126],[.DES_CBC_NO],[.DES_CBC_PKCS5],[.DES_CBC_PKCS7],[.DES_CBC_ISO10126]
- * @param key        Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun String.desDecryptToString(algorithm: String, key: Key): String {
-    return String(this.desDecrypt(algorithm, key))
-}
-
-/**
- * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
- *
- * @param algorithm        DES encryption algorithm, The following values ​​are available: [.DES],[.DES_ECB_NO],[.DES_ECB_PKCS5],[.DES_ECB_PKCS7],
- * [.DES_CBC_ISO10126],[.DES_CBC_NO],[.DES_CBC_PKCS5],[.DES_CBC_PKCS7],[.DES_CBC_ISO10126]
- * @param key              Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun ByteArray.desDecryptToStringFromBase64(algorithm: String, key: Key): String {
-    return String(this.desDecryptFromBase64(algorithm, key))
 }
 
 /**

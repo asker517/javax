@@ -107,7 +107,7 @@ public class DesTest {
     @Test
     public void testCbcISO10126Padding() throws InvalidKeySpecException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Key key = Desx.createKeyByPassword(PASSWORD);
-        byte[] encryptResult = Desx.encrypt(SOURCE.getBytes(), Desx.DES_CBC_ISO10126, key);
+        byte[] encryptResult = Desx.encrypt(SOURCE, Desx.DES_CBC_ISO10126, key);
         String decryptResult = Desx.decryptToString(encryptResult, Desx.DES_CBC_ISO10126, key);
         Assert.assertEquals("testCbcISO10126Padding", SOURCE, decryptResult);
     }
