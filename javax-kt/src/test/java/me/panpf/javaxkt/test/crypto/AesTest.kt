@@ -137,4 +137,20 @@ class AesTest {
 
         Assert.assertEquals("testCreateKeyBySeed", key1, key2)
     }
+
+    @Test
+    @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
+    fun testFromKey() {
+        val key = createAesKey(128)
+
+        val encodeText = SOURCE.aesEncryptToBase64(AES_CBC_PKCS5, key)
+
+        val keyBytes = key.toBytes()
+        val fromBytesKey = keyBytes.toAesKeyFromBytes()
+        Assert.assertEquals(encodeText.aesDecryptToStringFromBase64(AES_CBC_PKCS5, fromBytesKey), SOURCE)
+
+        val base64Key = key.toBase64()
+        val fromBase64Key = base64Key.toAesKeyFromBase64()
+        Assert.assertEquals(encodeText.aesDecryptToStringFromBase64(AES_CBC_PKCS5, fromBase64Key), SOURCE)
+    }
 }

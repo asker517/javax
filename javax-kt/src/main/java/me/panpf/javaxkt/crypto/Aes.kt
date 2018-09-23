@@ -52,6 +52,21 @@ fun String.createAesKeyByPassword(keySizeInBytes: Int): Key {
 
 
 /**
+ * Parse key from byte array
+ */
+fun ByteArray.toAesKeyFromBytes(): Key {
+    return SecretKeySpec(this, AES)
+}
+
+/**
+ * Parse key from Base64 string
+ */
+fun String.toAesKeyFromBase64(): Key {
+    return SecretKeySpec(this.base64DecodeToBytes(), AES)
+}
+
+
+/**
  * Encrypt raw data using the AES algorithm
  *
  * @param algorithm AES encryption algorithm, The following values ​​are available: [.AES],[.AES_ECB_NO],[.AES_ECB_PKCS5],[.AES_ECB_PKCS7],

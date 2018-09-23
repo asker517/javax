@@ -289,9 +289,7 @@ public class Aesx {
         Cipher cipher;
         try {
             cipher = Cipher.getInstance(algorithm);
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalArgumentException(e);
-        } catch (NoSuchPaddingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new IllegalArgumentException(e);
         }
 

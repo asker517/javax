@@ -135,4 +135,19 @@ public class AesTest {
 
         Assert.assertEquals("testCreateKeyBySeed", key1, key2);
     }
+
+    @Test
+    public void testFromKey() throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
+        Key key = Aesx.createKey(128);
+
+        String encodeText = Aesx.encryptToBase64(SOURCE, Aesx.AES_CBC_PKCS5, key);
+
+        byte[] keyBytes = Keyx.toBytes(key);
+        Key fromBytesKey = Aesx.keyFromBytes(keyBytes);
+        Assert.assertEquals(Aesx.decryptToStringFromBase64(encodeText, Aesx.AES_CBC_PKCS5, fromBytesKey), SOURCE);
+
+        String base64Key = Keyx.toBase64(key);
+        Key fromBase64Key = Aesx.keyFromBase64(base64Key);
+        Assert.assertEquals(Aesx.decryptToStringFromBase64(encodeText, Aesx.AES_CBC_PKCS5, fromBase64Key), SOURCE);
+    }
 }
