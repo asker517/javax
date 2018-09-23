@@ -19,13 +19,18 @@ public class Aesx {
     public static final String AES = "AES";
     public static final String AES_ECB_NO = "AES/ECB/NoPadding";
     public static final String AES_ECB_PKCS5 = "AES/ECB/PKCS5Padding";
+    @SuppressWarnings("unused")
     public static final String AES_ECB_PKCS7 = "AES/ECB/PKCS7Padding";   // Java 不支持 Android 支持
     public static final String AES_ECB_ISO10126 = "AES/ECB/ISO10126Padding";
     public static final String AES_CBC_NO = "AES/CBC/NoPadding";
     public static final String AES_CBC_PKCS5 = "AES/CBC/PKCS5Padding";
+    @SuppressWarnings("unused")
     public static final String AES_CBC_PKCS7 = "AES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
     public static final String AES_CBC_ISO10126 = "AES/CBC/ISO10126Padding";
 
+    private Aesx() {
+
+    }
 
     /**
      * Create a secret key
@@ -56,7 +61,6 @@ public class Aesx {
         byte[] key = InsecureSHA1PRNGKeyDerivator.deriveInsecureKey(passwordBytes, keySizeInBytes);
         return new SecretKeySpec(key, AES);
     }
-
 
     /**
      * Parse key from byte array
@@ -91,7 +95,6 @@ public class Aesx {
             BadPaddingException, IllegalBlockSizeException {
         return createCipher(Cipher.ENCRYPT_MODE, algorithm, key).doFinal(rawData);
     }
-
 
     /**
      * Encrypt raw text using the AES algorithm
@@ -164,40 +167,6 @@ public class Aesx {
     }
 
     /**
-     * Decrypt ciphertext encrypted using the AES algorithm
-     *
-     * @param cipherText Ciphertext to be decrypted
-     * @param algorithm  AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                   {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
-     * @param key        Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static byte[] decrypt(@NotNull String cipherText, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return decrypt(cipherText.getBytes(), algorithm, key);
-    }
-
-    /**
-     * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
-     *
-     * @param base64CipherData Ciphertext to be decrypted
-     * @param algorithm        AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                         {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
-     * @param key              Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static byte[] decryptFromBase64(@NotNull byte[] base64CipherData, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.decodeToBytes(base64CipherData), algorithm, key);
-    }
-
-    /**
      * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param base64CipherText Ciphertext to be decrypted
@@ -214,7 +183,6 @@ public class Aesx {
         return decrypt(Base64x.decodeToBytes(base64CipherText.getBytes()), algorithm, key);
     }
 
-
     /**
      * Decrypt ciphertext encrypted using the AES algorithm
      *
@@ -230,40 +198,6 @@ public class Aesx {
     public static String decryptToString(@NotNull byte[] cipherData, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
         return new String(decrypt(cipherData, algorithm, key));
-    }
-
-    /**
-     * Decrypt ciphertext encrypted using the AES algorithm
-     *
-     * @param cipherText Ciphertext to be decrypted
-     * @param algorithm  AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                   {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
-     * @param key        Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static String decryptToString(@NotNull String cipherText, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return new String(decrypt(cipherText, algorithm, key));
-    }
-
-    /**
-     * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
-     *
-     * @param base64CipherData Ciphertext to be decrypted
-     * @param algorithm        AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                         {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
-     * @param key              Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static String decryptToStringFromBase64(@NotNull byte[] base64CipherData, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
-            BadPaddingException, IllegalBlockSizeException {
-        return new String(decryptFromBase64(base64CipherData, algorithm, key));
     }
 
     /**

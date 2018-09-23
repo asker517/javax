@@ -15,10 +15,12 @@ import javax.crypto.spec.IvParameterSpec
 const val AES = "AES"
 const val AES_ECB_NO = "AES/ECB/NoPadding"
 const val AES_ECB_PKCS5 = "AES/ECB/PKCS5Padding"
+@Suppress("unused")
 const val AES_ECB_PKCS7 = "AES/ECB/PKCS7Padding"   // Java 不支持 Android 支持
 const val AES_ECB_ISO10126 = "AES/ECB/ISO10126Padding"
 const val AES_CBC_NO = "AES/CBC/NoPadding"
 const val AES_CBC_PKCS5 = "AES/CBC/PKCS5Padding"
+@Suppress("unused")
 const val AES_CBC_PKCS7 = "AES/CBC/PKCS7Padding"   // Java 不支持 Android 支持
 const val AES_CBC_ISO10126 = "AES/CBC/ISO10126Padding"
 
@@ -50,7 +52,6 @@ fun String.createAesKeyByPassword(keySizeInBytes: Int): Key {
     return SecretKeySpec(key, AES)
 }
 
-
 /**
  * Parse key from byte array
  */
@@ -80,7 +81,6 @@ fun String.toAesKeyFromBase64(): Key {
 fun ByteArray.aesEncrypt(algorithm: String, key: Key): ByteArray {
     return createCipher(Cipher.ENCRYPT_MODE, algorithm, key).doFinal(this)
 }
-
 
 /**
  * Encrypt raw text using the AES algorithm
@@ -145,36 +145,6 @@ fun ByteArray.aesDecrypt(algorithm: String, key: Key): ByteArray {
 }
 
 /**
- * Decrypt ciphertext encrypted using the AES algorithm
- *
- * @param algorithm  AES encryption algorithm, The following values ​​are available: [.AES],[.AES_ECB_NO],[.AES_ECB_PKCS5],[.AES_ECB_PKCS7],
- * [.AES_CBC_ISO10126],[.AES_CBC_NO],[.AES_CBC_PKCS5],[.AES_CBC_PKCS7],[.AES_CBC_ISO10126]
- * @param key        Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun String.aesDecrypt(algorithm: String, key: Key): ByteArray {
-    return this.toByteArray().aesDecrypt(algorithm, key)
-}
-
-/**
- * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
- *
- * @param algorithm        AES encryption algorithm, The following values ​​are available: [.AES],[.AES_ECB_NO],[.AES_ECB_PKCS5],[.AES_ECB_PKCS7],
- * [.AES_CBC_ISO10126],[.AES_CBC_NO],[.AES_CBC_PKCS5],[.AES_CBC_PKCS7],[.AES_CBC_ISO10126]
- * @param key              Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun ByteArray.aesDecryptFromBase64(algorithm: String, key: Key): ByteArray {
-    return this.base64DecodeToBytes().aesDecrypt(algorithm, key)
-}
-
-/**
  * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
  *
  * @param algorithm        AES encryption algorithm, The following values ​​are available: [.AES],[.AES_ECB_NO],[.AES_ECB_PKCS5],[.AES_ECB_PKCS7],
@@ -189,7 +159,6 @@ fun String.aesDecryptFromBase64(algorithm: String, key: Key): ByteArray {
     return this.toByteArray().base64DecodeToBytes().aesDecrypt(algorithm, key)
 }
 
-
 /**
  * Decrypt ciphertext encrypted using the AES algorithm
  *
@@ -203,36 +172,6 @@ fun String.aesDecryptFromBase64(algorithm: String, key: Key): ByteArray {
 @Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
 fun ByteArray.aesDecryptToString(algorithm: String, key: Key): String {
     return String(this.aesDecrypt(algorithm, key))
-}
-
-/**
- * Decrypt ciphertext encrypted using the AES algorithm
- *
- * @param algorithm  AES encryption algorithm, The following values ​​are available: [.AES],[.AES_ECB_NO],[.AES_ECB_PKCS5],[.AES_ECB_PKCS7],
- * [.AES_CBC_ISO10126],[.AES_CBC_NO],[.AES_CBC_PKCS5],[.AES_CBC_PKCS7],[.AES_CBC_ISO10126]
- * @param key        Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun String.aesDecryptToString(algorithm: String, key: Key): String {
-    return String(this.aesDecrypt(algorithm, key))
-}
-
-/**
- * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
- *
- * @param algorithm        AES encryption algorithm, The following values ​​are available: [.AES],[.AES_ECB_NO],[.AES_ECB_PKCS5],[.AES_ECB_PKCS7],
- * [.AES_CBC_ISO10126],[.AES_CBC_NO],[.AES_CBC_PKCS5],[.AES_CBC_PKCS7],[.AES_CBC_ISO10126]
- * @param key              Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun ByteArray.aesDecryptToStringFromBase64(algorithm: String, key: Key): String {
-    return String(this.aesDecryptFromBase64(algorithm, key))
 }
 
 /**

@@ -106,7 +106,7 @@ class AesTest {
     @Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
     fun testCbcISO10126Padding() {
         val key = createAesKey(128)
-        val decryptResult = SOURCE.toByteArray().aesEncrypt(AES_CBC_ISO10126, key).aesDecryptToString(AES_CBC_ISO10126, key)
+        val decryptResult = SOURCE.aesEncrypt(AES_CBC_ISO10126, key).aesDecryptToString(AES_CBC_ISO10126, key)
         Assert.assertEquals("testCbcISO10126Padding", SOURCE, decryptResult)
     }
 

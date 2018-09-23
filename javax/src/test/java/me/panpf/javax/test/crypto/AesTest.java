@@ -105,7 +105,7 @@ public class AesTest {
     @Test
     public void testCbcISO10126Padding() throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Key key = Aesx.createKey(128);
-        byte[] encryptResult = Aesx.encrypt(SOURCE.getBytes(), Aesx.AES_CBC_ISO10126, key);
+        byte[] encryptResult = Aesx.encrypt(SOURCE, Aesx.AES_CBC_ISO10126, key);
         String decryptResult = Aesx.decryptToString(encryptResult, Aesx.AES_CBC_ISO10126, key);
         Assert.assertEquals("testCbcISO10126Padding", SOURCE, decryptResult);
     }
