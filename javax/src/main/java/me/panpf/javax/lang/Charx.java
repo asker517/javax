@@ -16,11 +16,7 @@
 
 package me.panpf.javax.lang;
 
-
-import org.jetbrains.annotations.NotNull;
-
 import java.nio.charset.Charset;
-import java.util.Collection;
 
 /**
  * Character tool class
@@ -47,76 +43,6 @@ public class Charx {
     public static boolean isNotBlank(char c) {
         return !isBlank(c);
     }
-
-//    /**
-//     * Return `true` if the given array of characters is all blank
-//     */
-//    public static boolean isAllBlank(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isNotBlank(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all blank
-//     */
-//    public static boolean isAllBlank(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isNotBlank(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not blank
-//     */
-//    public static boolean isAllNotBlank(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isBlank(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not blank
-//     */
-//    public static boolean isAllNotBlank(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isBlank(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is blank
-//     */
-//    public static boolean isPartBlank(@NotNull char[] chars) {
-//        boolean containsBlank = false;
-//        boolean containsNotBlank = false;
-//        for (char aChar : chars) {
-//            if (isBlank(aChar)) {
-//                containsBlank = true;
-//            } else {
-//                containsNotBlank = true;
-//            }
-//            if (containsBlank && containsNotBlank) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is blank
-//     */
-//    public static boolean isPartBlank(@NotNull Collection<Character> chars) {
-//        boolean containsBlank = false;
-//        boolean containsNotBlank = false;
-//        for (char aChar : chars) {
-//            if (isBlank(aChar)) {
-//                containsBlank = true;
-//            } else {
-//                containsNotBlank = true;
-//            }
-//            if (containsBlank && containsNotBlank) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     /**
      * If the given character is not blank, it return is itself, otherwise it returns the default value.
@@ -149,76 +75,6 @@ public class Charx {
         return !isChinese(cha);
     }
 
-//    /**
-//     * Return `true` if the given array of characters is all chinese
-//     */
-//    public static boolean isAllChinese(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isNotChinese(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all chinese
-//     */
-//    public static boolean isAllChinese(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isNotChinese(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all chinese
-//     */
-//    public static boolean isAllNotChinese(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isChinese(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all chinese
-//     */
-//    public static boolean isAllNotChinese(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isChinese(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is chinese
-//     */
-//    public static boolean isPartChinese(@NotNull char[] chars) {
-//        boolean containsChinese = false;
-//        boolean containsNotChinese = false;
-//        for (char aChar : chars) {
-//            if (isChinese(aChar)) {
-//                containsChinese = true;
-//            } else {
-//                containsNotChinese = true;
-//            }
-//            if (containsChinese && containsNotChinese) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is chinese
-//     */
-//    public static boolean isPartChinese(@NotNull Collection<Character> chars) {
-//        boolean containsChinese = false;
-//        boolean containsNotChinese = false;
-//        for (char aChar : chars) {
-//            if (isChinese(aChar)) {
-//                containsChinese = true;
-//            } else {
-//                containsNotChinese = true;
-//            }
-//            if (containsChinese && containsNotChinese) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     /**
      * If the given character is chinese, it return is itself, otherwise it returns the default value.
      */
@@ -243,76 +99,6 @@ public class Charx {
     public static boolean isNotDigit(char cha) {
         return !isDigit(cha);
     }
-
-//    /**
-//     * Return `true` if the given array of characters is all digit
-//     */
-//    public static boolean isAllDigit(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isNotDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all digit
-//     */
-//    public static boolean isAllDigit(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isNotDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not digit
-//     */
-//    public static boolean isAllNotDigit(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not digit
-//     */
-//    public static boolean isAllNotDigit(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is digit
-//     */
-//    public static boolean isPartDigit(@NotNull char[] chars) {
-//        boolean containsDigit = false;
-//        boolean containsNotDigit = false;
-//        for (char aChar : chars) {
-//            if (isDigit(aChar)) {
-//                containsDigit = true;
-//            } else {
-//                containsNotDigit = true;
-//            }
-//            if (containsDigit && containsNotDigit) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is digit
-//     */
-//    public static boolean isPartDigit(@NotNull Collection<Character> chars) {
-//        boolean containsDigit = false;
-//        boolean containsNotDigit = false;
-//        for (char aChar : chars) {
-//            if (isDigit(aChar)) {
-//                containsDigit = true;
-//            } else {
-//                containsNotDigit = true;
-//            }
-//            if (containsDigit && containsNotDigit) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     /**
      * If the given character is digit, it return is itself, otherwise it returns the default value.
@@ -339,76 +125,6 @@ public class Charx {
         return !isLetter(cha);
     }
 
-//    /**
-//     * Return `true` if the given array of characters is all letter
-//     */
-//    public static boolean isAllLetter(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isNotLetter(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all letter
-//     */
-//    public static boolean isAllLetter(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isNotLetter(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not letter
-//     */
-//    public static boolean isAllNotLetter(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isLetter(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not letter
-//     */
-//    public static boolean isAllNotLetter(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isLetter(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is letter
-//     */
-//    public static boolean isPartLetter(@NotNull char[] chars) {
-//        boolean containsLetter = false;
-//        boolean containsNotLetter = false;
-//        for (char aChar : chars) {
-//            if (isLetter(aChar)) {
-//                containsLetter = true;
-//            } else {
-//                containsNotLetter = true;
-//            }
-//            if (containsLetter && containsNotLetter) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is letter
-//     */
-//    public static boolean isPartLetter(@NotNull Collection<Character> chars) {
-//        boolean containsLetter = false;
-//        boolean containsNotLetter = false;
-//        for (char aChar : chars) {
-//            if (isLetter(aChar)) {
-//                containsLetter = true;
-//            } else {
-//                containsNotLetter = true;
-//            }
-//            if (containsLetter && containsNotLetter) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     /**
      * If the given character is letter, it return is itself, otherwise it returns the default value.
      */
@@ -433,76 +149,6 @@ public class Charx {
     public static boolean isNotLetterOrDigit(char cha) {
         return !isLetterOrDigit(cha);
     }
-
-//    /**
-//     * Return `true` if the given array of characters is all letter or digit
-//     */
-//    public static boolean isAllLetterOrDigit(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isNotLetterOrDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all letter or digit
-//     */
-//    public static boolean isAllLetterOrDigit(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isNotLetterOrDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not letter or digit
-//     */
-//    public static boolean isAllNotLetterOrDigit(@NotNull char[] chars) {
-//        for (char aChar : chars) if (isLetterOrDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if the given array of characters is all not letter or digit
-//     */
-//    public static boolean isAllNotLetterOrDigit(@NotNull Collection<Character> chars) {
-//        for (char aChar : chars) if (isLetterOrDigit(aChar)) return false;
-//        return true;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is letter or digit
-//     */
-//    public static boolean isPartLetterOrDigit(@NotNull char[] chars) {
-//        boolean containsLetterOrDigit = false;
-//        boolean containsNotLetterOrDigit = false;
-//        for (char aChar : chars) {
-//            if (isLetterOrDigit(aChar)) {
-//                containsLetterOrDigit = true;
-//            } else {
-//                containsNotLetterOrDigit = true;
-//            }
-//            if (containsLetterOrDigit && containsNotLetterOrDigit) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Return `true` if only a portion of the given characters is letter or digit
-//     */
-//    public static boolean isPartLetterOrDigit(@NotNull Collection<Character> chars) {
-//        boolean containsLetterOrDigit = false;
-//        boolean containsNotLetterOrDigit = false;
-//        for (char aChar : chars) {
-//            if (isLetterOrDigit(aChar)) {
-//                containsLetterOrDigit = true;
-//            } else {
-//                containsNotLetterOrDigit = true;
-//            }
-//            if (containsLetterOrDigit && containsNotLetterOrDigit) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     /**
      * If the given character is letter or digit, it return is itself, otherwise it returns the default value.

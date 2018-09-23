@@ -116,8 +116,8 @@ public class Filex {
 
         boolean result = true;
 
-        Stack<File> fileStack = new Stack<File>();
-        Stack<File> dirStack = new Stack<File>();
+        Stack<File> fileStack = new Stack<>();
+        Stack<File> dirStack = new Stack<>();
 
         Collections.addAll(fileStack, childFiles);
 
@@ -168,7 +168,7 @@ public class Filex {
 
         long length = 0;
 
-        Queue<File> fileQueue = new LinkedList<File>();
+        Queue<File> fileQueue = new LinkedList<>();
         fileQueue.add(file);
 
         File childFile;
@@ -581,7 +581,7 @@ public class Filex {
 
     @NotNull
     private static List<File> normalize(@NotNull List<File> files) {
-        List<File> list = new ArrayList<File>(files.size());
+        List<File> list = new ArrayList<>(files.size());
         for (File file : files) {
             String name = file.getName();
             //noinspection StatementWithEmptyBody
@@ -934,10 +934,6 @@ public class Filex {
 
     /**
      * Represents the path to a file as a collection of directories.
-     *
-     * @property root the [File] object representing root of the path (for example, `/` or `C:` or empty for relative paths).
-     * @property segments the list of [File] objects representing every directory in the path to the file,
-     * up to an including the file itself.
      */
     public static class FilePathComponents {
 
@@ -1147,7 +1143,7 @@ public class Filex {
      */
     @NotNull
     public static List<String> readLines(@NotNull File file, @NotNull Charset charset) throws IOException {
-        final ArrayList<String> result = new ArrayList<String>();
+        final ArrayList<String> result = new ArrayList<>();
         forEachLine(file, charset, new Action<String>() {
             @Override
             public void action(@NotNull String s) {

@@ -340,7 +340,6 @@ public class Numberx {
     }
 
 
-
     public static int mod(int a, int b) {
         int mod = a % b;
         return mod >= 0 ? mod : mod + b;

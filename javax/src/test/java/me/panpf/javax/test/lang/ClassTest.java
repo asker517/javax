@@ -19,7 +19,6 @@ package me.panpf.javax.test.lang;
 import me.panpf.javax.lang.Classx;
 import me.panpf.javax.util.Arrayx;
 import me.panpf.javax.util.Predicate;
-import me.panpf.javax.util.Transformer;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.Test;
@@ -74,7 +73,7 @@ public class ClassTest {
 
     public static class TestType {
         String[] strings = new String[]{};
-        List<String> stringList = new ArrayList<String>();
+        List<String> stringList = new ArrayList<>();
     }
 
     @Test

@@ -64,7 +64,7 @@ public class Classx {
      */
     @NotNull
     public static Field[] getFieldsWithParent(@NotNull Class<?> clazz, int upwards) {
-        List<Field> fieldList = new LinkedList<Field>();
+        List<Field> fieldList = new LinkedList<>();
 
         Class currentClazz = clazz;
         int upwardsNumber = 0;
@@ -168,7 +168,7 @@ public class Classx {
      */
     @NotNull
     public static Method[] getMethodsWithParent(@NotNull Class<?> clazz, int upwards) {
-        List<Method> methodList = new LinkedList<Method>();
+        List<Method> methodList = new LinkedList<>();
 
         Class currentClazz = clazz;
         int upwardsNumber = 0;
@@ -204,9 +204,7 @@ public class Classx {
         method.setAccessible(true);
         try {
             return method.invoke(object, params);
-        } catch (IllegalAccessException e) {
-            throw new IllegalStateException(e);
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             throw new IllegalStateException(e);
         }
     }
@@ -263,7 +261,7 @@ public class Classx {
      */
     @NotNull
     public static Constructor[] getConstructorsWithParent(@NotNull Class<?> clazz, int upwards) {
-        List<Constructor> constructorList = new LinkedList<Constructor>();
+        List<Constructor> constructorList = new LinkedList<>();
 
         Class currentClazz = clazz;
         int upwardsNumber = 0;
@@ -299,7 +297,7 @@ public class Classx {
      */
     @NotNull
     public static Class<?>[] getClassHierarchy(@NotNull Class<?> clazz, boolean ignoreSelf) {
-        List<Class<?>> classList = new LinkedList<Class<?>>();
+        List<Class<?>> classList = new LinkedList<>();
         Class<?> currentClazz;
         if (!ignoreSelf) {
             currentClazz = clazz;
