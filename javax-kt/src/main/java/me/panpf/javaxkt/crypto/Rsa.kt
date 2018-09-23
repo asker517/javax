@@ -108,7 +108,6 @@ fun String.rsaSign(priKey: PrivateKey): ByteArray {
     return this.toByteArray().rsaSign(priKey)
 }
 
-
 /**
  * Generate a RSA digital signature of the information with a private key and return a Base64 string
  *
@@ -159,19 +158,6 @@ fun ByteArray.rsaVerify(data: ByteArray, pubKey: PublicKey): Boolean {
 /**
  * Verify the RSA signature with the public key
  *
- * @param data   Original data
- * @param pubKey Public key
- * @throws InvalidKeyException Invalid public key
- * @throws SignatureException  Signature exception
- */
-@Throws(InvalidKeyException::class, SignatureException::class)
-fun String.rsaVerify(data: ByteArray, pubKey: PublicKey): Boolean {
-    return this.toByteArray().rsaVerify(data, pubKey)
-}
-
-/**
- * Verify the RSA signature with the public key
- *
  * @param text      Original text
  * @param pubKey    Public key
  * @throws InvalidKeyException Invalid public key
@@ -185,33 +171,6 @@ fun ByteArray.rsaVerify(text: String, pubKey: PublicKey): Boolean {
 /**
  * Verify the RSA signature with the public key
  *
- * @param text   Original text
- * @param pubKey Public key
- * @throws InvalidKeyException Invalid public key
- * @throws SignatureException  Signature exception
- */
-@Throws(InvalidKeyException::class, SignatureException::class)
-fun String.rsaVerify(text: String, pubKey: PublicKey): Boolean {
-    return this.toByteArray().rsaVerify(text.toByteArray(), pubKey)
-}
-
-
-/**
- * Verify the RSA signature with the public key
- *
- * @param data            Original data
- * @param pubKey          Public key
- * @throws InvalidKeyException Invalid public key
- * @throws SignatureException  Signature exception
- */
-@Throws(InvalidKeyException::class, SignatureException::class)
-fun ByteArray.rsaVerifyFromBase64(data: ByteArray, pubKey: PublicKey): Boolean {
-    return this.base64DecodeToBytes().rsaVerify(data, pubKey)
-}
-
-/**
- * Verify the RSA signature with the public key
- *
  * @param data       Original data
  * @param pubKey     Public key
  * @throws InvalidKeyException Invalid public key
@@ -220,19 +179,6 @@ fun ByteArray.rsaVerifyFromBase64(data: ByteArray, pubKey: PublicKey): Boolean {
 @Throws(InvalidKeyException::class, SignatureException::class)
 fun String.rsaVerifyFromBase64(data: ByteArray, pubKey: PublicKey): Boolean {
     return this.toByteArray().base64DecodeToBytes().rsaVerify(data, pubKey)
-}
-
-/**
- * Verify the RSA signature with the public key
- *
- * @param text            Original text
- * @param pubKey          Public key
- * @throws InvalidKeyException Invalid public key
- * @throws SignatureException  Signature exception
- */
-@Throws(InvalidKeyException::class, SignatureException::class)
-fun ByteArray.rsaVerifyFromBase64(text: String, pubKey: PublicKey): Boolean {
-    return this.base64DecodeToBytes().rsaVerify(text.toByteArray(), pubKey)
 }
 
 /**
@@ -323,34 +269,6 @@ fun ByteArray.decrypt(algorithm: String, key: Key): ByteArray {
 }
 
 /**
- * Decrypt ciphertext encrypted using the RSA algorithm
- *
- * @param algorithm  RSA encryption algorithm, The following values ​​are available: [.RSA],[.RSA_ECB_PKCS1],[.RSA_ECB_OAEP]
- * @param key        Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun String.decrypt(algorithm: String, key: Key): ByteArray {
-    return this.toByteArray().decrypt(algorithm, key)
-}
-
-/**
- * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
- *
- * @param algorithm        RSA encryption algorithm, The following values ​​are available: [.RSA],[.RSA_ECB_PKCS1],[.RSA_ECB_OAEP]
- * @param key              Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun ByteArray.decryptFromBase64(algorithm: String, key: Key): ByteArray {
-    return this.base64DecodeToBytes().decrypt(algorithm, key)
-}
-
-/**
  * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
  *
  * @param algorithm      RSA encryption algorithm, The following values ​​are available: [.RSA],[.RSA_ECB_PKCS1],[.RSA_ECB_OAEP]
@@ -363,7 +281,6 @@ fun ByteArray.decryptFromBase64(algorithm: String, key: Key): ByteArray {
 fun String.decryptFromBase64(algorithm: String, key: Key): ByteArray {
     return this.toByteArray().base64DecodeToBytes().decrypt(algorithm, key)
 }
-
 
 /**
  * Decrypt ciphertext encrypted using the RSA algorithm
@@ -380,34 +297,6 @@ fun ByteArray.decryptToString(algorithm: String, key: Key): String {
 }
 
 /**
- * Decrypt ciphertext encrypted using the RSA algorithm
- *
- * @param algorithm  RSA encryption algorithm, The following values ​​are available: [.RSA],[.RSA_ECB_PKCS1],[.RSA_ECB_OAEP]
- * @param key        Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun String.decryptToString(algorithm: String, key: Key): String {
-    return String(this.decrypt(algorithm, key))
-}
-
-/**
- * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
- *
- * @param algorithm        RSA encryption algorithm, The following values ​​are available: [.RSA],[.RSA_ECB_PKCS1],[.RSA_ECB_OAEP]
- * @param key              Secret key
- * @throws InvalidKeyException       Invalid key
- * @throws BadPaddingException       Padding error
- * @throws IllegalBlockSizeException Block size error
- */
-@Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
-fun ByteArray.decryptToStringFromBase64(algorithm: String, key: Key): String {
-    return String(this.decryptFromBase64(algorithm, key))
-}
-
-/**
  * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
  *
  * @param algorithm      RSA encryption algorithm, The following values ​​are available: [.RSA],[.RSA_ECB_PKCS1],[.RSA_ECB_OAEP]
@@ -420,6 +309,7 @@ fun ByteArray.decryptToStringFromBase64(algorithm: String, key: Key): String {
 fun String.decryptToStringFromBase64(algorithm: String, key: Key): String {
     return String(this.decryptFromBase64(algorithm, key))
 }
+
 
 @Throws(InvalidKeyException::class)
 private fun createCipher(opMode: Int, algorithm: String, key: Key): Cipher {

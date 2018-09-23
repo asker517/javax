@@ -16,11 +16,13 @@
 
 package me.panpf.javax.test.crypto;
 
+import me.panpf.javax.crypto.Keyx;
 import me.panpf.javax.crypto.Rsax;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.security.*;
+import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -48,7 +50,7 @@ public class RsaTest {
     @Test
     public void testPriPubBytes() throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
         KeyPair keyPair = Rsax.createKey(1024);
-        byte[] encryptResult = Rsax.encrypt(SOURCE.getBytes(), Rsax.RSA, keyPair.getPrivate());
+        byte[] encryptResult = Rsax.encrypt(SOURCE, Rsax.RSA, keyPair.getPrivate());
         String decryptResult = Rsax.decryptToString(encryptResult, Rsax.RSA, keyPair.getPublic());
         Assert.assertEquals("testPriPubBytes", SOURCE, decryptResult);
     }
@@ -70,7 +72,7 @@ public class RsaTest {
     @Test
     public void testPriPubWithBase64() throws BadPaddingException, InvalidKeyException, IllegalBlockSizeException {
         KeyPair keyPair = Rsax.createKey(1024);
-        String encryptResult = Rsax.encryptToBase64(SOURCE, Rsax.RSA, keyPair.getPrivate());
+        String encryptResult = Rsax.encryptToBase64(SOURCE.getBytes(), Rsax.RSA, keyPair.getPrivate());
         String decryptResult = Rsax.decryptToStringFromBase64(encryptResult, Rsax.RSA, keyPair.getPublic());
         Assert.assertEquals("testPriPubWithBase64", SOURCE, decryptResult);
     }
@@ -124,5 +126,16 @@ public class RsaTest {
         byte[] encryptResult = Rsax.encrypt(SOURCE_OAEP.getBytes(), Rsax.RSA_ECB_OAEP, keyPair.getPublic());
         String decryptResult = Rsax.decryptToString(encryptResult, Rsax.RSA_ECB_OAEP, keyPair.getPrivate());
         Assert.assertEquals("testEcbOAEPPadding", SOURCE_OAEP, decryptResult);
+    }
+
+    @Test
+    public void testKeyToBase64() throws InvalidKeySpecException, SignatureException, InvalidKeyException {
+        KeyPair keyPair = Rsax.createKey(1024);
+
+        PublicKey pubKey = Rsax.pubKeyFromBase64(Keyx.toBase64(keyPair.getPublic()));
+        PrivateKey priKey = Rsax.priKeyFromBase64(Keyx.toBase64(keyPair.getPrivate()));
+
+        String base64Sign = Rsax.signToBase64(SOURCE.getBytes(), priKey);
+        Assert.assertTrue(Rsax.verifyFromBase64(base64Sign, SOURCE.getBytes(), pubKey));
     }
 }

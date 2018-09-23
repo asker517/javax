@@ -28,6 +28,9 @@ public class Desx {
     public static final String DES_CBC_PKCS7 = "DES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
     public static final String DES_CBC_ISO10126 = "DES/CBC/ISO10126Padding";
 
+    private Desx() {
+    }
+
     /**
      * Generate a secret key based on the password. The fixed password always generates a fixed key.
      *

@@ -7,8 +7,14 @@
 * :sparkles: Premise add check and checkNotNull method
 * :sparkles: Premise add requireSafe and requireNotSafe method
 * :sparkles: Aes.kt add toAesKeyFromBytes and toAesKeyFromBase64 method
-* :fire: Aes remove decrypt(String, String, Key), decryptFromBase64(byte\[\], String, Key), decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String, Key) method
-* :fire: Des remove decrypt(String, String, Key), decryptFromBase64(byte\[\], String, Key), decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String, Key) method
+* :fire: Aes remove decrypt(String, String, Key), decryptFromBase64(byte\[\], String, Key),
+decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String, Key) method
+* :fire: Des remove decrypt(String, String, Key), decryptFromBase64(byte\[\], String, Key),
+decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String, Key) method
+* :fire: RSA remove verify(String, byte[], PublicKey), verify(String, String, PublicKey),
+    verifyFromBase64(byte[], byte[], PublicKey), verifyFromBase64(byte[], String, PublicKey),
+    decrypt(String, String, Key), decryptFromBase64(byte[], String, Key),
+    decryptToString(String, String, Key), decryptToStringFromBase64(byte[], String, Key) method
 
 ## 0.6.4
 * Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,

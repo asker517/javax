@@ -24,6 +24,7 @@ import javax.crypto.BadPaddingException
 import javax.crypto.IllegalBlockSizeException
 import java.security.InvalidKeyException
 import java.security.SignatureException
+import java.security.spec.InvalidKeySpecException
 
 class RsaTest {
 
@@ -52,7 +53,7 @@ class RsaTest {
     @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
     fun testPriPubBytes() {
         val keyPair = createRsaKey(1024)
-        val decryptResult = SOURCE.toByteArray().encrypt(RSA, keyPair.private).decryptToString(RSA, keyPair.public)
+        val decryptResult = SOURCE.encrypt(RSA, keyPair.private).decryptToString(RSA, keyPair.public)
         Assert.assertEquals("testPriPubBytes", SOURCE, decryptResult)
     }
 
@@ -74,7 +75,7 @@ class RsaTest {
     @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
     fun testPriPubWithBase64() {
         val keyPair = createRsaKey(1024)
-        val decryptResult = SOURCE.encryptToBase64(RSA, keyPair.private).decryptToStringFromBase64(RSA, keyPair.public)
+        val decryptResult = SOURCE.toByteArray().encryptToBase64(RSA, keyPair.private).decryptToStringFromBase64(RSA, keyPair.public)
         Assert.assertEquals("testPriPubWithBase64", SOURCE, decryptResult)
     }
 
@@ -132,5 +133,17 @@ class RsaTest {
         val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE_OAEP.toByteArray().encrypt(RSA_ECB_OAEP, keyPair.public).decryptToString(RSA_ECB_OAEP, keyPair.private)
         Assert.assertEquals("testEcbOAEPPadding", SOURCE_OAEP, decryptResult)
+    }
+
+    @Test
+    @Throws(InvalidKeySpecException::class, SignatureException::class, InvalidKeyException::class)
+    fun testKeyToBase64() {
+        val keyPair = createRsaKey(1024)
+
+        val pubKey = keyPair.public.toBase64().toRsaPubKeyFromBase64()
+        val priKey = keyPair.private.toBase64().toRsaPriKeyFromBase64()
+
+        val base64Sign = SOURCE.toByteArray().rsaSignToBase64(priKey)
+        Assert.assertTrue(base64Sign.rsaVerifyFromBase64(SOURCE.toByteArray(), pubKey))
     }
 }

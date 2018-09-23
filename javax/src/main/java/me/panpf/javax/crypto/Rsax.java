@@ -16,10 +16,14 @@ import java.security.spec.X509EncodedKeySpec;
 
 @SuppressWarnings("WeakerAccess")
 public class Rsax {
+
     public static final String RSA = "RSA";
     public static final String RSA_ECB_PKCS1 = "RSA/ECB/PKCS1Padding";
     public static final String RSA_ECB_OAEP = "RSA/ECB/OAEPPadding";
     public static final String RSA_ALGORITHM = "MD5withRSA";
+
+    private Rsax() {
+    }
 
     /**
      * Create a pair of RSA keys
@@ -44,8 +48,8 @@ public class Rsax {
      * @throws InvalidKeySpecException Invalid public key
      */
     @NotNull
-    public static PublicKey pubKeyFromBase64(@NotNull String publicKeyText) throws InvalidKeySpecException {
-        byte[] buffer = Base64x.decodeToBytes(publicKeyText.getBytes());
+    public static PublicKey pubKeyFromBase64(@NotNull String base64PublicKeyText) throws InvalidKeySpecException {
+        byte[] buffer = Base64x.decodeToBytes(base64PublicKeyText.getBytes());
         KeyFactory keyFactory;
         try {
             keyFactory = KeyFactory.getInstance(RSA);
@@ -62,8 +66,8 @@ public class Rsax {
      * @throws InvalidKeySpecException Private key is invalid
      */
     @NotNull
-    public static PrivateKey priKeyFromBase64(@NotNull String privateKeyText) throws InvalidKeySpecException {
-        byte[] buffer = Base64x.decodeToBytes(privateKeyText.getBytes());
+    public static PrivateKey priKeyFromBase64(@NotNull String base64PrivateKeyText) throws InvalidKeySpecException {
+        byte[] buffer = Base64x.decodeToBytes(base64PrivateKeyText.getBytes());
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
         KeyFactory keyFactory;
         try {
@@ -111,7 +115,6 @@ public class Rsax {
             throws InvalidKeyException, SignatureException {
         return sign(text.getBytes(), priKey);
     }
-
 
     /**
      * Generate a RSA digital signature of the information with a private key and return a Base64 string
@@ -167,20 +170,6 @@ public class Rsax {
     /**
      * Verify the RSA signature with the public key
      *
-     * @param sign   signature
-     * @param data   Original data
-     * @param pubKey Public key
-     * @throws InvalidKeyException Invalid public key
-     * @throws SignatureException  Signature exception
-     */
-    public static boolean verify(@NotNull String sign, @NotNull byte[] data, @NotNull PublicKey pubKey)
-            throws InvalidKeyException, SignatureException {
-        return verify(sign.getBytes(), data, pubKey);
-    }
-
-    /**
-     * Verify the RSA signature with the public key
-     *
      * @param signBytes signature
      * @param text      Original text
      * @param pubKey    Public key
@@ -195,35 +184,6 @@ public class Rsax {
     /**
      * Verify the RSA signature with the public key
      *
-     * @param sign   signature
-     * @param text   Original text
-     * @param pubKey Public key
-     * @throws InvalidKeyException Invalid public key
-     * @throws SignatureException  Signature exception
-     */
-    public static boolean verify(@NotNull String sign, @NotNull String text, @NotNull PublicKey pubKey)
-            throws InvalidKeyException, SignatureException {
-        return verify(sign.getBytes(), text.getBytes(), pubKey);
-    }
-
-
-    /**
-     * Verify the RSA signature with the public key
-     *
-     * @param base64SignBytes Base64 encoded signature data
-     * @param data            Original data
-     * @param pubKey          Public key
-     * @throws InvalidKeyException Invalid public key
-     * @throws SignatureException  Signature exception
-     */
-    public static boolean verifyFromBase64(@NotNull byte[] base64SignBytes, @NotNull byte[] data, @NotNull PublicKey pubKey)
-            throws InvalidKeyException, SignatureException {
-        return verify(Base64x.decodeToBytes(base64SignBytes), data, pubKey);
-    }
-
-    /**
-     * Verify the RSA signature with the public key
-     *
      * @param base64Sign Base64 encoded signature
      * @param data       Original data
      * @param pubKey     Public key
@@ -233,20 +193,6 @@ public class Rsax {
     public static boolean verifyFromBase64(@NotNull String base64Sign, @NotNull byte[] data, @NotNull PublicKey pubKey)
             throws InvalidKeyException, SignatureException {
         return verify(Base64x.decodeToBytes(base64Sign.getBytes()), data, pubKey);
-    }
-
-    /**
-     * Verify the RSA signature with the public key
-     *
-     * @param base64SignBytes Base64 encoded signature data
-     * @param text            Original text
-     * @param pubKey          Public key
-     * @throws InvalidKeyException Invalid public key
-     * @throws SignatureException  Signature exception
-     */
-    public static boolean verifyFromBase64(@NotNull byte[] base64SignBytes, @NotNull String text, @NotNull PublicKey pubKey)
-            throws InvalidKeyException, SignatureException {
-        return verify(Base64x.decodeToBytes(base64SignBytes), text.getBytes(), pubKey);
     }
 
     /**
@@ -348,38 +294,6 @@ public class Rsax {
     }
 
     /**
-     * Decrypt ciphertext encrypted using the RSA algorithm
-     *
-     * @param cipherText Ciphertext to be decrypted
-     * @param algorithm  RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
-     * @param key        Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static byte[] decrypt(@NotNull String cipherText, @NotNull String algorithm, @NotNull Key key)
-            throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(cipherText.getBytes(), algorithm, key);
-    }
-
-    /**
-     * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
-     *
-     * @param base64CipherData Ciphertext to be decrypted
-     * @param algorithm        RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
-     * @param key              Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static byte[] decryptFromBase64(@NotNull byte[] base64CipherData, @NotNull String algorithm, @NotNull Key key)
-            throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.decodeToBytes(base64CipherData), algorithm, key);
-    }
-
-    /**
      * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param baseCipherText Ciphertext to be decrypted
@@ -394,7 +308,6 @@ public class Rsax {
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         return decrypt(Base64x.decodeToBytes(baseCipherText.getBytes()), algorithm, key);
     }
-
 
     /**
      * Decrypt ciphertext encrypted using the RSA algorithm
@@ -413,38 +326,6 @@ public class Rsax {
     }
 
     /**
-     * Decrypt ciphertext encrypted using the RSA algorithm
-     *
-     * @param cipherText Ciphertext to be decrypted
-     * @param algorithm  RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
-     * @param key        Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static String decryptToString(@NotNull String cipherText, @NotNull String algorithm, @NotNull Key key)
-            throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return new String(decrypt(cipherText, algorithm, key));
-    }
-
-    /**
-     * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
-     *
-     * @param base64CipherData Ciphertext to be decrypted
-     * @param algorithm        RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
-     * @param key              Secret key
-     * @throws InvalidKeyException       Invalid key
-     * @throws BadPaddingException       Padding error
-     * @throws IllegalBlockSizeException Block size error
-     */
-    @NotNull
-    public static String decryptToStringFromBase64(@NotNull byte[] base64CipherData, @NotNull String algorithm, @NotNull Key key)
-            throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return new String(decryptFromBase64(base64CipherData, algorithm, key));
-    }
-
-    /**
      * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param baseCipherText Ciphertext to be decrypted
@@ -460,13 +341,12 @@ public class Rsax {
         return new String(decryptFromBase64(baseCipherText, algorithm, key));
     }
 
+
     private static Cipher createCipher(int opMode, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException {
         Cipher cipher;
         try {
             cipher = Cipher.getInstance(algorithm);
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalArgumentException(e);
-        } catch (NoSuchPaddingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new IllegalArgumentException(e);
         }
 
