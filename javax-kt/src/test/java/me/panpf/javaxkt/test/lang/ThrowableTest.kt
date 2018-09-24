@@ -1,4 +1,4 @@
-package me.panpf.javaxkt.test.io
+package me.panpf.javaxkt.test.lang
 
 import me.panpf.javaxkt.lang.stackTraceToString
 import org.junit.Assert

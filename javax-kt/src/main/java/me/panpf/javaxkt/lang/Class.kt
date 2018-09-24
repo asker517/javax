@@ -35,7 +35,6 @@ fun Class<*>.getFieldWithParent(fieldName: String): Field {
         try {
             field = currentClazz.getDeclaredField(fieldName)
         } catch (e: NoSuchFieldException) {
-            e.printStackTrace()
         }
 
         if (field == null) {
@@ -43,11 +42,7 @@ fun Class<*>.getFieldWithParent(fieldName: String): Field {
         }
     }
 
-    return if (field == null) {
-        throw NoSuchFieldException("Not found field by name '" + fieldName + "' in class '" + this.name + "'")
-    } else {
-        field
-    }
+    return field ?: throw NoSuchFieldException("No such field by name '$fieldName' in class '${this.name}' and its parent class")
 }
 
 /**
@@ -141,7 +136,6 @@ fun Class<*>.getMethodWithParent(methodName: String, vararg params: Class<*>): M
         try {
             method = currentClazz.getDeclaredMethod(methodName, *params)
         } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
         }
 
         if (method == null) {
@@ -149,11 +143,7 @@ fun Class<*>.getMethodWithParent(methodName: String, vararg params: Class<*>): M
         }
     }
 
-    return if (method == null) {
-        throw NoSuchMethodException("Not found method by name '" + methodName + "' and params '" + Arrays.toString(params) + "' in class '" + this.name + "'")
-    } else {
-        method
-    }
+    return method ?: throw NoSuchMethodException("No such method by name '$methodName' and params '${Arrays.toString(params)}' in class '${this.name}' and its parent class")
 }
 
 
@@ -229,7 +219,6 @@ fun Class<*>.getConstructorWithParent(vararg params: Class<*>): Constructor<*> {
 
             constructor = currentClazz.getDeclaredConstructor(*params)
         } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
         }
 
         if (constructor == null) {
@@ -237,11 +226,7 @@ fun Class<*>.getConstructorWithParent(vararg params: Class<*>): Constructor<*> {
         }
     }
 
-    return if (constructor == null) {
-        throw NoSuchMethodException("Not found constructor by params '" + Arrays.toString(params) + "' in class '" + this.name + "'")
-    } else {
-        constructor
-    }
+    return constructor ?: throw NoSuchMethodException("No such constructor by params '${Arrays.toString(params)}' in class '${this.name}' and its parent class")
 }
 
 

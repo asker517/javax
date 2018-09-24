@@ -17,14 +17,10 @@
 package me.panpf.javaxkt.test.io
 
 import me.panpf.javaxkt.io.*
-import me.panpf.javaxkt.util.requireExist
-import me.panpf.javaxkt.util.requireIsDir
-import me.panpf.javaxkt.util.requireIsFile
 import org.junit.Assert
 import org.junit.Test
 import java.io.File
 import java.io.FileFilter
-import java.io.FileNotFoundException
 import java.io.FilenameFilter
 
 class FileTest {

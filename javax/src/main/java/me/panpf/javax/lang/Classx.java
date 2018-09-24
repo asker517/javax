@@ -41,8 +41,7 @@ public class Classx {
         while (field == null && currentClazz != null) {
             try {
                 field = currentClazz.getDeclaredField(fieldName);
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+            } catch (NoSuchFieldException ignored) {
             }
 
             if (field == null) {
@@ -51,7 +50,7 @@ public class Classx {
         }
 
         if (field == null) {
-            throw new NoSuchFieldException("Not found field by name '" + fieldName + "' in class '" + clazz.getName() + "'");
+            throw new NoSuchFieldException(String.format("No such field by name '%s' in class '%s' and its parent class", fieldName, clazz.getName()));
         } else {
             return field;
         }
@@ -145,8 +144,7 @@ public class Classx {
             try {
                 //noinspection unchecked
                 method = currentClazz.getDeclaredMethod(methodName, params);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+            } catch (NoSuchMethodException ignored) {
             }
 
             if (method == null) {
@@ -155,7 +153,7 @@ public class Classx {
         }
 
         if (method == null) {
-            throw new NoSuchMethodException("Not found method by name '" + methodName + "' and params '" + Arrays.toString(params) + "' in class '" + clazz.getName() + "'");
+            throw new NoSuchMethodException(String.format("No such method by name '%s' and params '%s' in class '%s' and its parent class", methodName, Arrays.toString(params), clazz.getName()));
         } else {
             return method;
         }
@@ -238,8 +236,7 @@ public class Classx {
             try {
                 //noinspection unchecked
                 constructor = currentClazz.getDeclaredConstructor(params);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+            } catch (NoSuchMethodException ignored) {
             }
 
             if (constructor == null) {
@@ -248,7 +245,7 @@ public class Classx {
         }
 
         if (constructor == null) {
-            throw new NoSuchMethodException("Not found constructor by params '" + Arrays.toString(params) + "' in class '" + clazz.getName() + "'");
+            throw new NoSuchMethodException(String.format("No such constructor by params '%s' in class '%s' and its parent class", Arrays.toString(params), clazz.getName()));
         } else {
             return constructor;
         }
