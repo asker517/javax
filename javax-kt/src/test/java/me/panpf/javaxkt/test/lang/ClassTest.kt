@@ -65,6 +65,13 @@ class ClassTest {
 
     @Test
     fun testField() {
+        Assert.assertNotNull(TestField3().getFieldValue("testFiled31"))
+        try {
+            TestField3().getFieldValue("unknown")
+            Assert.fail()
+        } catch (e: Exception) {
+        }
+
         val testClass = TestField1()
 
         try {
@@ -90,6 +97,13 @@ class ClassTest {
 
     @Test
     fun testMethod() {
+        Assert.assertNotNull(TestMethod().callMethod("toString"))
+        try {
+            TestMethod().callMethod("unknown")
+            Assert.fail()
+        } catch (e: Exception) {
+        }
+
         val testMethod = TestMethod()
 
         try {

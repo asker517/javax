@@ -77,7 +77,14 @@ public class ClassTest {
     }
 
     @Test
-    public void testField() {
+    public void testField() throws NoSuchFieldException {
+        Assert.assertNotNull(Classx.getFieldValue(new TestField3(), "testFiled31"));
+        try {
+            Classx.getFieldValue(new TestField3(), "unknown");
+            Assert.fail();
+        } catch (NoSuchFieldException ignored) {
+        }
+
         TestField1 testClass = new TestField1();
 
         try {
@@ -112,7 +119,14 @@ public class ClassTest {
     }
 
     @Test
-    public void testMethod() {
+    public void testMethod() throws NoSuchMethodException {
+        Assert.assertNotNull(Classx.callMethod(new TestMethod(), "toString"));
+        try {
+            Classx.callMethod(new TestMethod(), "unknown");
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
         TestMethod testMethod = new TestMethod();
 
         try {
