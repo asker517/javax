@@ -763,9 +763,15 @@ public class Filex {
      * @throws IllegalArgumentException if this and base paths have different roots.
      */
     @NotNull
-    public static String toRelativeString(@NotNull File self, @NotNull File base) {
+    public static String toRelativeString(@NotNull final File self, @NotNull final File base) {
         String relative = toRelativeStringOrNull(self, base);
-        Premisex.require(relative != null, "this and base files have different roots: " + self.getPath() + " and " + base.getPath() + ".");
+        Premisex.require(relative != null, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("this and base files have different roots: %s and %s.", self.getPath(), base.getPath());
+            }
+        });
         return relative;
     }
 

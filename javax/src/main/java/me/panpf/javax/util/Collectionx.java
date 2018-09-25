@@ -1496,7 +1496,13 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<List<T>> chunked(@NotNull Iterable<T> iterable, int size) {
-        Premisex.require(size > 0, "size is 0");
+        Premisex.require(size > 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "size is 0";
+            }
+        });
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
@@ -1530,16 +1536,22 @@ public class Collectionx {
      */
     @NotNull
     public static <T, R> List<R> chunked(@NotNull Iterable<T> iterable, int size, @NotNull Transformer<List<T>, R> transform) {
-        Premisex.require(size > 0, "size is 0");
+        Premisex.require(size > 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "size is 0";
+            }
+        });
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
-        List<R> resultList = new ArrayList<R>(resultSize);
+        List<R> resultList = new ArrayList<>(resultSize);
         List<T> chunkedList = null;
         int index = 0;
         for (T element : iterable) {
             if (chunkedList == null) {
-                chunkedList = new ArrayList<T>(Math.min(size, listSize - index));
+                chunkedList = new ArrayList<>(Math.min(size, listSize - index));
             }
             chunkedList.add(element);
             if (chunkedList.size() >= size) {
@@ -1557,7 +1569,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> minus(@NotNull Iterable<T> iterable, @NotNull final T element) {
-        ArrayList<T> result = new ArrayList<T>(collectionSizeOrDefault(iterable, 10));
+        ArrayList<T> result = new ArrayList<>(collectionSizeOrDefault(iterable, 10));
         final boolean[] removed = new boolean[]{false};
         return filterTo(iterable, result, new Predicate<T>() {
             @Override
@@ -2180,8 +2192,14 @@ public class Collectionx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static <T> List<T> take(@NotNull Iterable<T> iterable, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> take(@NotNull Iterable<T> iterable, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Requested element count " + n + " is less than zero.";
+            }
+        });
         if (n == 0) {
             //noinspection unchecked
             return EMPTY_LIST;
@@ -2195,7 +2213,7 @@ public class Collectionx {
             }
         }
         int count = 0;
-        ArrayList<T> list = new ArrayList<T>(n);
+        ArrayList<T> list = new ArrayList<>(n);
         for (T item : iterable) {
             if (count++ == n)
                 break;
@@ -2207,8 +2225,14 @@ public class Collectionx {
     /**
      * Returns a list containing last [n] elements.
      */
-    public static <T> List<T> takeLast(@NotNull List<T> list, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> takeLast(@NotNull List<T> list, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) {
             //noinspection unchecked
             return EMPTY_LIST;
@@ -2220,7 +2244,7 @@ public class Collectionx {
         if (n == 1) {
             return listOf(last(list));
         }
-        ArrayList<T> resultList = new ArrayList<T>(n);
+        ArrayList<T> resultList = new ArrayList<>(n);
         if (list instanceof RandomAccess) {
             for (int index = size - n; index < size; index++) {
                 resultList.add(list.get(index));
@@ -2452,8 +2476,14 @@ public class Collectionx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static <T> List<T> drop(@NotNull Iterable<T> iterable, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> drop(@NotNull Iterable<T> iterable, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return toList(iterable);
 
         ArrayList<T> list;
@@ -2500,8 +2530,14 @@ public class Collectionx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static <T> List<T> dropLast(@NotNull List<T> list, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> dropLast(@NotNull List<T> list, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(list, Math.max(list.size() - n, 0));
     }
 

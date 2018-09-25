@@ -30,40 +30,130 @@ public class Premisex {
     }
 
 
-    /* ******************************************* boolean, null *******************************************/
-
+    /* ******************************************* Expression *******************************************/
 
     /**
-     * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is false.
+     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is false.
      */
-    public static void require(boolean value, @NotNull String errorMessage) {
-        if (!value) throw new IllegalArgumentException(errorMessage);
+    public static void require(boolean value, @NotNull LazyValue<String> lazyMessage) {
+        if (!value) throw new IllegalArgumentException(lazyMessage.get());
     }
 
     /**
-     * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
+     * Throws an [IllegalArgumentException] if the [value] is false.
+     */
+    public static void require(boolean value) {
+        require(value, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Failed requirement.";
+            }
+        });
+    }
+
+
+    /**
+     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is false.
+     */
+    public static void check(boolean value, @NotNull LazyValue<String> lazyMessage) {
+        if (!value) throw new IllegalStateException(lazyMessage.get());
+    }
+
+    /**
+     * Throws an [IllegalStateException] if the [value] is false.
+     */
+    public static void check(boolean value) {
+        check(value, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Failed requirement.";
+            }
+        });
+    }
+
+
+    /* ******************************************* null *******************************************/
+
+
+    /**
+     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
+     * returns the not null value.
      */
     @NotNull
-    public static <T> T requireNotNull(@Nullable T value, String errorMessage) {
-        if (value == null) throw new IllegalArgumentException(errorMessage);
-        return value;
-    }
-
-
-    /**
-     * Throws an [IllegalStateException] with [errorMessage] if the [value] is false.
-     */
-    public static void check(boolean value, @NotNull String errorMessage) {
-        if (!value) throw new IllegalStateException(errorMessage);
+    public static <T> T requireNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
+        if (value != null) {
+            return value;
+        } else {
+            throw new IllegalArgumentException(lazyMessage.get());
+        }
     }
 
     /**
-     * Throws an [IllegalStateException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
+     * Throws an [IllegalArgumentException] if the [value] is null. Otherwise returns the not null value.
      */
     @NotNull
-    public static <T> T checkNotNull(@Nullable T value, String errorMessage) {
-        if (value == null) throw new IllegalStateException(errorMessage);
-        return value;
+    public static <T> T requireNotNull(@Nullable T value) {
+        return requireNotNull(value, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Required value was null.";
+            }
+        });
+    }
+
+    /**
+     * If the [value] is not null, it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    @NotNull
+    public static <T> T requireNotNull(@Nullable T value, @NotNull String paramName) {
+        if (value != null) {
+            return value;
+        } else {
+            throw new IllegalArgumentException(String.format("The parameter '%s'cannot be null", paramName));
+        }
+    }
+
+
+    /**
+     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
+     * returns the not null value.
+     */
+    @NotNull
+    public static <T> T checkNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
+        if (value != null) {
+            return value;
+        } else {
+            throw new IllegalStateException(lazyMessage.get());
+        }
+    }
+
+    /**
+     * Throws an [IllegalStateException] if the [value] is null. Otherwise returns the not null value.
+     */
+    @NotNull
+    public static <T> T checkNotNull(@Nullable T value) {
+        return checkNotNull(value, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Required value was null.";
+            }
+        });
+    }
+
+    /**
+     * If the [value] is not null, it returns itself, otherwise it throws an IllegalStateException
+     */
+    @NotNull
+    public static <T> T checkNotNull(@Nullable T value, @NotNull String paramName) {
+        if (value != null) {
+            return value;
+        } else {
+            throw new IllegalStateException(String.format("The parameter '%s'cannot be null", paramName));
+        }
     }
 
 
@@ -495,84 +585,5 @@ public class Premisex {
      */
     public static double requireNotZero(double value) {
         return requireNotZero(value, "unknown");
-    }
-
-
-
-    /*
-     * *****************************************************************************************************************
-     * From kotlin standard library
-     * *****************************************************************************************************************
-     */
-
-    /**
-     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is false.
-     */
-    public static void require(boolean value, @NotNull LazyValue<String> lazyMessage) {
-        if (!value) throw new IllegalArgumentException(lazyMessage.get());
-    }
-
-    /**
-     * Throws an [IllegalArgumentException] if the [value] is false.
-     */
-    public static void require(boolean value) {
-        require(value, "Failed requirement.");
-    }
-
-
-    /**
-     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
-     * returns the not null value.
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    @NotNull
-    public static <T> T requireNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
-        if (value == null) throw new IllegalArgumentException(lazyMessage.get());
-        return value;
-    }
-
-    /**
-     * Throws an [IllegalArgumentException] if the [value] is null. Otherwise returns the not null value.
-     */
-    @NotNull
-    @SuppressWarnings("UnusedReturnValue")
-    public static <T> T requireNotNull(@Nullable T value) {
-        return requireNotNull(value, "Required value was null.");
-    }
-
-
-    /**
-     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is false.
-     */
-    public static void check(boolean value, @NotNull LazyValue<String> lazyMessage) {
-        if (!value) throw new IllegalStateException(lazyMessage.get());
-    }
-
-    /**
-     * Throws an [IllegalStateException] if the [value] is false.
-     */
-    public static void check(boolean value) {
-        check(value, "Failed requirement.");
-    }
-
-
-    /**
-     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
-     * returns the not null value.
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    @NotNull
-    public static <T> T checkNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
-        if (value == null) throw new IllegalStateException(lazyMessage.get());
-        return value;
-    }
-
-    /**
-     * Throws an [IllegalStateException] if the [value] is null. Otherwise returns the not null value.
-     */
-    @NotNull
-    @SuppressWarnings("UnusedReturnValue")
-    public static <T> T checkNotNull(@Nullable T value) {
-        return checkNotNull(value, "Required value was null.");
     }
 }

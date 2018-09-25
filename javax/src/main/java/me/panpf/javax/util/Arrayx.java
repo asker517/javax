@@ -12264,8 +12264,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static <T> List<T> drop(@NotNull T[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> drop(@NotNull T[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12273,8 +12279,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Byte> drop(@NotNull byte[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Byte> drop(@NotNull byte[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12282,8 +12294,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Short> drop(@NotNull short[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Short> drop(@NotNull short[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12291,8 +12309,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Integer> drop(@NotNull int[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Integer> drop(@NotNull int[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12300,8 +12324,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Long> drop(@NotNull long[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Long> drop(@NotNull long[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12309,8 +12339,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Float> drop(@NotNull float[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Float> drop(@NotNull float[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12318,8 +12354,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Double> drop(@NotNull double[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Double> drop(@NotNull double[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12327,8 +12369,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Boolean> drop(@NotNull boolean[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Boolean> drop(@NotNull boolean[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12336,8 +12384,14 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Character> drop(@NotNull char[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Character> drop(@NotNull char[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12345,8 +12399,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static <T> List<T> dropLast(@NotNull T[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> dropLast(@NotNull T[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12354,8 +12414,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Byte> dropLast(@NotNull byte[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Byte> dropLast(@NotNull byte[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12363,8 +12429,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Short> dropLast(@NotNull short[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Short> dropLast(@NotNull short[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12372,8 +12444,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Integer> dropLast(@NotNull int[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Integer> dropLast(@NotNull int[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12381,8 +12459,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Long> dropLast(@NotNull long[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Long> dropLast(@NotNull long[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12390,8 +12474,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Float> dropLast(@NotNull float[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Float> dropLast(@NotNull float[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12399,8 +12489,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Double> dropLast(@NotNull double[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Double> dropLast(@NotNull double[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12408,8 +12504,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Boolean> dropLast(@NotNull boolean[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Boolean> dropLast(@NotNull boolean[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12417,8 +12519,14 @@ public class Arrayx {
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Character> dropLast(@NotNull char[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Character> dropLast(@NotNull char[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
     }
 
@@ -12711,8 +12819,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static <T> List<T> take(@NotNull T[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> take(@NotNull T[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12730,8 +12844,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Byte> take(@NotNull byte[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Byte> take(@NotNull byte[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12749,8 +12869,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Short> take(@NotNull short[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Short> take(@NotNull short[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12768,8 +12894,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Integer> take(@NotNull int[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Integer> take(@NotNull int[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12787,8 +12919,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Long> take(@NotNull long[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Long> take(@NotNull long[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12806,8 +12944,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Float> take(@NotNull float[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Float> take(@NotNull float[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12825,8 +12969,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Double> take(@NotNull double[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Double> take(@NotNull double[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12844,8 +12994,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Boolean> take(@NotNull boolean[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Boolean> take(@NotNull boolean[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12863,8 +13019,14 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Character> take(@NotNull char[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Character> take(@NotNull char[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
@@ -12882,8 +13044,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static <T> List<T> takeLast(@NotNull T[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static <T> List<T> takeLast(@NotNull T[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12898,8 +13066,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Byte> takeLast(@NotNull byte[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Byte> takeLast(@NotNull byte[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12914,8 +13088,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Short> takeLast(@NotNull short[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Short> takeLast(@NotNull short[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12930,8 +13110,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Integer> takeLast(@NotNull int[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Integer> takeLast(@NotNull int[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12946,8 +13132,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Long> takeLast(@NotNull long[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Long> takeLast(@NotNull long[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12962,8 +13154,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Float> takeLast(@NotNull float[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Float> takeLast(@NotNull float[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12978,8 +13176,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Double> takeLast(@NotNull double[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Double> takeLast(@NotNull double[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -12994,8 +13198,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Boolean> takeLast(@NotNull boolean[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Boolean> takeLast(@NotNull boolean[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
@@ -13010,8 +13220,14 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Character> takeLast(@NotNull char[] elements, int n) {
-        Premisex.require(n >= 0, "Requested element count " + n + " is less than zero.");
+    public static List<Character> takeLast(@NotNull char[] elements, final int n) {
+        Premisex.require(n >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Requested element count %d is less than zero.", n);
+            }
+        });
         if (n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);

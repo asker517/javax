@@ -231,36 +231,12 @@ class PremiseTest {
     }
 
     @Test
-    fun testRequire() {
-        require(true, "is true")
-
-        try {
-            require(false, "is false")
-            Assert.fail()
-        } catch (e: Exception) {
-            // // e.printStackTrace();;
-        }
-    }
-
-    @Test
     fun testRequireNotNull() {
         requireNotNull("", "is not null")
 
         try {
             requireNotNull(null, "is null")
             @Suppress("UNREACHABLE_CODE")
-            Assert.fail()
-        } catch (e: Exception) {
-            // // e.printStackTrace();;
-        }
-    }
-
-    @Test
-    fun testCheck() {
-        check(true, "is true")
-
-        try {
-            check(false, "is false")
             Assert.fail()
         } catch (e: Exception) {
             // // e.printStackTrace();;

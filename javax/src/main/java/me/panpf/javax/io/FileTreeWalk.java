@@ -336,8 +336,14 @@ public class FileTreeWalk implements Sequence<File> {
      * with a value of 2 also grandchildren, etc.
      */
     @NotNull
-    public FileTreeWalk maxDepth(int newDepth) {
-        Premisex.require(newDepth > 0, "depth must be positive, but was " + newDepth + ".");
+    public FileTreeWalk maxDepth(final int newDepth) {
+        Premisex.require(newDepth > 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("depth must be positive, but was %d.", newDepth);
+            }
+        });
         return new FileTreeWalk(start, direction, onEnter, onLeave, onFail, newDepth);
     }
 }

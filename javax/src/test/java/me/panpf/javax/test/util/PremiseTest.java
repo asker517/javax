@@ -282,7 +282,7 @@ public class PremiseTest {
 
     @Test
     public void testRequireNotNull() {
-        Premisex.requireNotNull("");
+        Premisex.requireNotNull("", "param");
 
         try {
             Premisex.requireNotNull(null);
@@ -356,7 +356,7 @@ public class PremiseTest {
 
     @Test
     public void testCheckNotNull() {
-        Premisex.checkNotNull("");
+        Premisex.checkNotNull("", "param");
 
         try {
             Premisex.checkNotNull(null);

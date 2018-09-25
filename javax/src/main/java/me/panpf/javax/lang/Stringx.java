@@ -586,8 +586,14 @@ public class Stringx {
      * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
      */
     @NotNull
-    public static CharSequence limit(@NotNull CharSequence string, int length, @Nullable String suffix) {
-        Premisex.require(length >= 0, "Desired length " + length + " is less than zero.");
+    public static CharSequence limit(@NotNull CharSequence string, final int length, @Nullable String suffix) {
+        Premisex.require(length >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Desired length %d is less than zero.", length);
+            }
+        });
         if (string.length() <= length) return string;
 
         CharSequence limitString = string.subSequence(0, length);
@@ -636,8 +642,14 @@ public class Stringx {
      * as are necessary to reach that length.
      */
     @NotNull
-    public static CharSequence padStart(@NotNull CharSequence string, int length, char padChar) {
-        Premisex.require(length >= 0, "Desired length " + length + " is less than zero.");
+    public static CharSequence padStart(@NotNull CharSequence string, final int length, char padChar) {
+        Premisex.require(length >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Desired length %d is less than zero.", length);
+            }
+        });
         if (length <= string.length()) return string.subSequence(0, string.length());
 
         StringBuilder sb = new StringBuilder(length);
@@ -697,8 +709,14 @@ public class Stringx {
      * as are necessary to reach that length.
      */
     @NotNull
-    public static CharSequence padEnd(@NotNull CharSequence string, int length, char padChar) {
-        Premisex.require(length >= 0, "Desired length " + length + " is less than zero.");
+    public static CharSequence padEnd(@NotNull CharSequence string, final int length, char padChar) {
+        Premisex.require(length >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Desired length %d is less than zero.", length);
+            }
+        });
         if (length <= string.length()) return string.subSequence(0, string.length());
 
         StringBuilder sb = new StringBuilder(length);

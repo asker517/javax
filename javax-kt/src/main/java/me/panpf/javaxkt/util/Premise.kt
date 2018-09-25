@@ -6,38 +6,22 @@ import java.io.File
 import java.io.FileNotFoundException
 
 
-/* ******************************************* boolean, null *******************************************/
+/* ******************************************* null *******************************************/
 
 
 /**
- * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is false.
+ * If the [value] is not null, it returns itself, otherwise it throws an IllegalArgumentException
  */
-fun require(value: Boolean, errorMessage: String) {
-    if (!value) throw IllegalArgumentException(errorMessage)
-}
-
-/**
- * Throws an [IllegalArgumentException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
- */
-fun <T> requireNotNull(value: T?, errorMessage: String): T {
-    if (value == null) throw IllegalArgumentException(errorMessage)
-    return value
+fun <T> requireNotNull(value: T?, paramName: String): T {
+    return value ?: throw IllegalArgumentException(String.format("The parameter '%s'cannot be null", paramName))
 }
 
 
 /**
- * Throws an [IllegalStateException] with [errorMessage] if the [value] is false.
+ * If the [value] is not null, it returns itself, otherwise it throws an IllegalArgumentException
  */
-fun check(value: Boolean, errorMessage: String) {
-    if (!value) throw IllegalStateException(errorMessage)
-}
-
-/**
- * Throws an [IllegalStateException] with [errorMessage] if the [value] is null. Otherwise returns the not null value.
- */
-fun <T> checkNotNull(value: T?, errorMessage: String): T {
-    if (value == null) throw IllegalStateException(errorMessage)
-    return value
+fun <T> checkNotNull(value: T?, paramName: String): T {
+    return value ?: throw IllegalStateException(String.format("The parameter '%s'cannot be null", paramName))
 }
 
 
