@@ -17,6 +17,7 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
     decryptToString(String, String, Key), decryptToStringFromBase64(byte[], String, Key) method
 * :sparkles: Premise add requireNotZero method
 * :hammer: Refacing Premise requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireSafe, requireNotSafe method signature
+* :arrow_up: Updating to Kotlin 1.2.61
 
 ## 0.6.4
 * Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,

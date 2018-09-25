@@ -35,7 +35,7 @@ compile "me.panpf:javax-kt:$lastVersion"
 ```
 
 Dependencies：
-* org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.50
+* org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.61
 
 Please replace `$lastVersion` with the latest version: [![Download][version_kotlin_icon]][version_kotlin_link]
 
@@ -161,8 +161,8 @@ Please view the [CHANGELOG.md] file
 [version_kotlin_link]: https://bintray.com/panpf/maven/javax-kt/_latestVersion
 [source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
 [target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
-[converage_java]: https://img.shields.io/badge/ConverageJava-24%25-orange.svg
-[converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-83%25-orange.svg
+[converage_java]: https://img.shields.io/badge/ConverageJava-25%25-orange.svg
+[converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-88%25-orange.svg
 
 [CHANGELOG.md]: CHANGELOG.md
 
