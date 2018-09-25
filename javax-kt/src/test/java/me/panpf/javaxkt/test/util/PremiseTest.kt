@@ -16,7 +16,7 @@ class PremiseTest {
         testFile.delete()
 
         Assert.assertFalse(try {
-            testFile.requireExist()
+            testFile.requireFileExist()
             true
         } catch (e: FileNotFoundException) {
             false
@@ -25,7 +25,7 @@ class PremiseTest {
         testFile.createNewFileCheck()
 
         Assert.assertTrue(try {
-            testFile.requireExist()
+            testFile.requireFileExist()
             true
         } catch (e: FileNotFoundException) {
             false
@@ -282,10 +282,10 @@ class PremiseTest {
 
     @Test
     fun testRequireSafe() {
-        "fas".requireSafe { "value" }
+        "fas".requireSafe()
 
         try {
-            "".requireSafe { "empty" }
+            "".requireSafe()
             Assert.fail()
         } catch (e: Exception) {
             // e.printStackTrace();
@@ -304,10 +304,10 @@ class PremiseTest {
 
     @Test
     fun testRequireNotSafe() {
-        "".requireNotSafe { "value" }
+        "".requireNotSafe()
 
         try {
-            "fas".requireNotSafe { "empty" }
+            "fas".requireNotSafe()
             Assert.fail()
         } catch (e: Exception) {
             // // e.printStackTrace();
@@ -321,6 +321,50 @@ class PremiseTest {
         } catch (e: Exception) {
             // e.printStackTrace();
         }
+    }
 
+    @Test
+    fun testRequireNotZero() {
+        1.toByte().requireNotZero()
+        try {
+            0.toByte().requireNotZero()
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        1.toShort().requireNotZero()
+        try {
+            0.toShort().requireNotZero()
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        1.requireNotZero()
+        try {
+            0.requireNotZero()
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        1L.requireNotZero()
+        try {
+            0L.requireNotZero()
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        1f.requireNotZero()
+        try {
+            0f.requireNotZero()
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
+
+        1.0.requireNotZero()
+        try {
+            0.0.requireNotZero()
+            Assert.fail()
+        } catch (ignored: Exception) {
+        }
     }
 }

@@ -393,67 +393,68 @@ public class PremiseTest {
 
     @Test
     public void testRequireSafe() {
-        Premisex.requireSafe("fas", new LazyValue<String>() {
-            @NotNull
-            @Override
-            public String get() {
-                return "value";
-            }
-        });
-
-        try {
-            Premisex.requireSafe("", new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "empty";
-                }
-            });
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
         Premisex.requireSafe("fas");
 
         try {
             Premisex.requireSafe("");
             Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
+        } catch (Exception ignored) {
         }
     }
 
     @Test
     public void testRequireNotSafe() {
-        Premisex.requireNotSafe("", new LazyValue<String>() {
-            @NotNull
-            @Override
-            public String get() {
-                return "value";
-            }
-        });
-
-        try {
-            Premisex.requireNotSafe("fas", new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "empty";
-                }
-            });
-            Assert.fail();
-        } catch (Exception e) {
-            // // e.printStackTrace();
-        }
-
         Premisex.requireNotSafe("");
 
         try {
             Premisex.requireNotSafe("fas");
             Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
+        } catch (Exception ignored) {
+        }
+    }
+
+    @Test
+    public void testRequireNotZero() {
+        Premisex.requireNotZero((byte)1);
+        try {
+            Premisex.requireNotZero((byte)0);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireNotZero((short)1);
+        try {
+            Premisex.requireNotZero((short)0);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireNotZero(1);
+        try {
+            Premisex.requireNotZero(0);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireNotZero(1L);
+        try {
+            Premisex.requireNotZero(0L);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireNotZero(1f);
+        try {
+            Premisex.requireNotZero(0f);
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
+        Premisex.requireNotZero(1.0);
+        try {
+            Premisex.requireNotZero(0.0);
+            Assert.fail();
+        } catch (Exception ignored) {
         }
     }
 }

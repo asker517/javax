@@ -15,6 +15,8 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
     verifyFromBase64(byte[], byte[], PublicKey), verifyFromBase64(byte[], String, PublicKey),
     decrypt(String, String, Key), decryptFromBase64(byte[], String, Key),
     decryptToString(String, String, Key), decryptToStringFromBase64(byte[], String, Key) method
+* :sparkles: Premise add requireNotZero method
+* :hammer: Refacing Premise requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireSafe, requireNotSafe method signature
 
 ## 0.6.4
 * Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,

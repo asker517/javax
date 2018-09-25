@@ -81,7 +81,7 @@ fun Array<File>?.zipCompressionTo(destinationFile: File, zipEntryNameTransform: 
  */
 @Throws(IOException::class)
 fun File.zipCompressionDirTo(destinationFile: File): File {
-    this.requireExist()
+    this.requireFileExist()
     require(this.isDirectory) { this.path + " not directory" }
     return this.listFiles().zipCompressionTo(destinationFile) {
         it.path.replace(this.path + File.separator, "")
@@ -109,7 +109,7 @@ fun File.zipCompressionDir(): File {
  */
 @Throws(IOException::class)
 fun File.zipDecompressionTo(destinationDir: File): File {
-    this.requireExist()
+    this.requireFileExist()
     require(!destinationDir.exists() || destinationDir.isDirectory) { destinationDir.path + " not directory" }
 
     ZipFile(this).use { zipFile ->
