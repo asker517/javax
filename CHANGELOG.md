@@ -1,3 +1,6 @@
+## 0.6.6 pre
+* :sparkles: Zip add getDecompressionDstDir method
+
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
 * :hammer: Premise's areEqual method moves to Comparison

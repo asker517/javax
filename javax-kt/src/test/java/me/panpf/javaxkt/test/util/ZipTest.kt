@@ -18,8 +18,9 @@ package me.panpf.javaxkt.test.util
 
 import me.panpf.javaxkt.io.createNewFileOrThrow
 import me.panpf.javaxkt.security.getMD5Digest
+import me.panpf.javaxkt.util.getZipDecompressionDstDir
 import me.panpf.javaxkt.util.zipCompressionDir
-import me.panpf.javaxkt.util.zipDecompressionTo
+import me.panpf.javaxkt.util.zipDecompression
 import org.junit.Assert
 import org.junit.Test
 
@@ -41,7 +42,6 @@ class ZipTest {
         val file52 = File("/tmp/testCompression/dir5/file52")
 
         dir.deleteRecursively()
-
         file1.createNewFileOrThrow().writeText("testFile1")
         file2.createNewFileOrThrow().writeText("testFile2")
         file3.createNewFileOrThrow().writeText("testFile3")
@@ -51,11 +51,9 @@ class ZipTest {
         file52.createNewFileOrThrow().writeText("testFile52")
 
         val dstFile = dir.zipCompressionDir()
-        val decompressionSourceFile = dstFile
-        val decompressionDstDir = File(dstFile.parentFile, dstFile.name + ".out")
-        decompressionDstDir.deleteRecursively()
 
-        decompressionSourceFile.zipDecompressionTo(decompressionDstDir)
+        dstFile.getZipDecompressionDstDir().deleteRecursively()
+        val decompressionDstDir = dstFile.zipDecompression()
 
         Assert.assertEquals(file1.getMD5Digest(), File(decompressionDstDir, "file1").getMD5Digest())
         Assert.assertEquals(file2.getMD5Digest(), File(decompressionDstDir, "file2").getMD5Digest())

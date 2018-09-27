@@ -126,7 +126,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Zip: [Zipx.java] ([Test][ZipTest.java]) | [Zip.kt] ([Test][ZipTest.kt])
-    * compressionFilesTo, compressionDirTo, compressionDir, decompressionTo, decompression
+    * compressionFilesTo, compressionDirTo, compressionDir, decompressionTo, decompression, getDecompressionDstDir
 
 ## Change Log
 

@@ -123,7 +123,7 @@ fun File.zipDecompressionTo(destinationDir: File): File {
                 file.createNewFileOrThrow()
 
                 try {
-                    FileOutputStream(file, false).use{ outputStream ->
+                    FileOutputStream(file, false).use { outputStream ->
                         zipFile.getInputStream(zipEntry).use { inputStream ->
                             inputStream.copyTo(outputStream)
                         }
@@ -147,5 +147,12 @@ fun File.zipDecompressionTo(destinationDir: File): File {
  */
 @Throws(IOException::class)
 fun File.zipDecompression(): File {
-    return this.zipDecompressionTo(File(this.parentFile, this.nameWithoutExtension))
+    return this.zipDecompressionTo(this.getZipDecompressionDstDir())
+}
+
+/**
+ * Get the default decompression directory for the specified ZIP file
+ */
+fun File.getZipDecompressionDstDir(): File {
+    return File(this.parentFile, this.nameWithoutExtension)
 }

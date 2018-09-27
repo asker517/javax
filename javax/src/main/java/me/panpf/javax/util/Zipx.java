@@ -48,7 +48,7 @@ public class Zipx {
         try {
             zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(destinationFile, false)));
 
-            Stack<File> files = new Stack<File>();
+            Stack<File> files = new Stack<>();
             if (sourceFiles != null) {
                 Collectionx.addAll(files, sourceFiles);
             }
@@ -183,6 +183,13 @@ public class Zipx {
      */
     @NotNull
     public static File decompression(@NotNull File zipSourceFile) throws IOException {
-        return decompressionTo(zipSourceFile, new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile)));
+        return decompressionTo(zipSourceFile, getDecompressionDstDir(zipSourceFile));
+    }
+
+    /**
+     * Get the default decompression directory for the specified ZIP file
+     */
+    public static File getDecompressionDstDir(@NotNull File zipSourceFile) {
+        return new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile));
     }
 }

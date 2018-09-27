@@ -39,7 +39,6 @@ public class ZipTest {
         File file52 = new File("/tmp/testCompression/dir5/file52");
 
         Filex.deleteRecursively(dir);
-
         Filex.writeText(Filex.createNewFileOrThrow(file1), "testFile1");
         Filex.writeText(Filex.createNewFileOrThrow(file2), "testFile2");
         Filex.writeText(Filex.createNewFileOrThrow(file3), "testFile3");
@@ -49,11 +48,9 @@ public class ZipTest {
         Filex.writeText(Filex.createNewFileOrThrow(file52), "testFile52");
 
         File dstFile = Zipx.compressionDir(dir);
-        File decompressionSourceFile = dstFile;
-        File decompressionDstDir = new File(dstFile.getParentFile(), dstFile.getName()+".out");
-        Filex.deleteRecursively(decompressionDstDir);
 
-        Zipx.decompressionTo(decompressionSourceFile, decompressionDstDir);
+        Filex.deleteRecursively(Zipx.getDecompressionDstDir(dstFile));
+        File decompressionDstDir = Zipx.decompression(dstFile);
 
         Assert.assertEquals(Digestx.getMD5(file1), Digestx.getMD5(new File(decompressionDstDir, "file1")));
         Assert.assertEquals(Digestx.getMD5(file2), Digestx.getMD5(new File(decompressionDstDir, "file2")));
