@@ -58,16 +58,7 @@ fun Double.format(suffix: String, decimalPlacesLength: Int = 2, decimalPlacesFil
  * @param decimalPlacesFillZero Use 0 instead when the number of decimal places is insufficient
  */
 fun Float.format(suffix: String, decimalPlacesLength: Int = 2, decimalPlacesFillZero: Boolean = false): String {
-    val buffString = StringBuilder()
-    buffString.append("#")
-    if (decimalPlacesLength > 0) {
-        buffString.append(".")
-        for (w in 0 until decimalPlacesLength) {
-            buffString.append(if (decimalPlacesFillZero) "0" else "#")
-        }
-    }
-    buffString.append(suffix)
-    return DecimalFormat(buffString.toString()).format(this.toDouble())
+    return this.toDouble().format(suffix, decimalPlacesLength, decimalPlacesFillZero)
 }
 
 
