@@ -21,12 +21,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Collection tool method
+ */
 @SuppressWarnings({"WeakerAccess"})
 public class Collectionx {
 
     public static final List EMPTY_LIST = Collections.EMPTY_LIST;
     public static final Map EMPTY_MAP = Collections.EMPTY_MAP;
     public static final Set EMPTY_SET = Collections.EMPTY_SET;
+
+    private Collectionx() {
+    }
 
 
     /*

@@ -21,8 +21,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 
+/**
+ * StringBuilder tool method
+ */
 @SuppressWarnings("WeakerAccess")
 public class StringBuilderx {
+
+    private StringBuilderx() {
+    }
 
 
     /*

@@ -30,6 +30,9 @@ import java.util.*;
 @SuppressWarnings({"WeakerAccess"})
 public class Classx {
 
+    private Classx() {
+    }
+
     /**
      * Get the field with the specified name from the specified class
      */
@@ -198,7 +201,7 @@ public class Classx {
      * Method of executing of the specified object
      */
     @Nullable
-    public static Object callMethod(@NotNull Object object, @NotNull Method method, @Nullable Object... params)  {
+    public static Object callMethod(@NotNull Object object, @NotNull Method method, @Nullable Object... params) {
         method.setAccessible(true);
         try {
             return method.invoke(object, params);

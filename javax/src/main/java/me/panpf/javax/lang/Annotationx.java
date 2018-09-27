@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.annotation.Annotation;
 
 /**
- * Annotation tool class
+ * Annotation tool method
  */
 @SuppressWarnings("WeakerAccess")
 public class Annotationx {

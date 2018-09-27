@@ -19,6 +19,12 @@ package me.panpf.javaxkt.util
 import java.text.ParseException
 import java.util.*
 
+
+/*
+ * Range related extension methods or properties
+ */
+
+
 /* ******************************************* Byte Range *******************************************/
 
 

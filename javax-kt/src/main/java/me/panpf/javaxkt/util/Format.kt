@@ -20,8 +20,9 @@ import me.panpf.javaxkt.lang.scale
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
+
 /*
- * Formatting tool method for number, time, file length, count, etc.
+ * Formatting related extension methods or properties for number, time, file length, count, etc.
  */
 
 

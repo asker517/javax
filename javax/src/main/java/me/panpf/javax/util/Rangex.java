@@ -22,8 +22,12 @@ import org.jetbrains.annotations.NotNull;
 import java.text.ParseException;
 import java.util.Date;
 
+/**
+ * Range tool method
+ */
 @SuppressWarnings("WeakerAccess")
 public class Rangex {
+
     private Rangex() {
     }
 

@@ -9,8 +9,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Date tool method
+ */
 @SuppressWarnings({"WeakerAccess"})
 public class Datex {
+
+    private Datex() {
+    }
 
     /**
      * Create a Calendar

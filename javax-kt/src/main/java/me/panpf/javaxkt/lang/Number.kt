@@ -19,8 +19,9 @@ package me.panpf.javaxkt.lang
 import java.math.BigDecimal
 import java.math.RoundingMode
 
+
 /*
- * Number tool
+ * Number related extension methods or properties
  */
 
 

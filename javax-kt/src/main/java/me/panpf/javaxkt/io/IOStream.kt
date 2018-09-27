@@ -21,6 +21,11 @@ import java.io.IOException
 import java.io.OutputStream
 
 
+/*
+ * I/O related extension methods or properties
+ */
+
+
 /**
  * Close
  */

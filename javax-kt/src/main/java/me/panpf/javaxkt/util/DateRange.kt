@@ -95,10 +95,12 @@ class MinuteRange(start: Date, endInclusive: Date, step: Int) : DateRange(start,
 
     override fun nextDate(date: Date): Date = date.addMinute(step)
 }
+
 class SecondRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
 
     override fun nextDate(date: Date): Date = date.addSecond(step)
 }
+
 class MillisecondRange(start: Date, endInclusive: Date, step: Int) : DateRange(start, endInclusive, step) {
     override fun nextDate(date: Date): Date = date.addMillisecond(step)
 }

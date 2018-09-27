@@ -21,11 +21,11 @@ import java.util.Iterator;
 /**
  * A sequence that returns values through its iterator. The values are evaluated lazily, and the sequence
  * is potentially infinite.
- *
+ * <p>
  * Sequences can be iterated multiple times, however some sequence implementations might constrain themselves
  * to be iterated only once. That is mentioned specifically in their documentation (e.g. [generateSequence] overload).
  * The latter sequences throw an exception on an attempt to iterate them the second time.
- *
+ * <p>
  * Sequence operations, like [Sequence.map], [Sequence.filter] etc, generally preserve that property of a sequence, and
  * again it's documented for an operation if it doesn't.
  *
@@ -34,7 +34,7 @@ import java.util.Iterator;
 public interface Sequence<T> extends Iterable<T> {
     /**
      * Returns an [Iterator] that returns the values from the sequence.
-     *
+     * <p>
      * Throws an exception if the sequence is constrained to be iterated once and `iterator` is invoked the second time.
      */
     public Iterator<T> iterator();

@@ -23,10 +23,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * Integer tool class
+ * Number tool method
  */
 @SuppressWarnings("WeakerAccess")
 public class Numberx {
+
+    private Numberx() {
+    }
 
     /**
      * Scale numbers in the specified mode

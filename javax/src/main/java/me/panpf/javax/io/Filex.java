@@ -19,13 +19,11 @@ package me.panpf.javax.io;
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Numberx;
 import me.panpf.javax.lang.Stringx;
-import me.panpf.javax.util.Rangex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
-import java.io.File;
 import java.nio.charset.Charset;
 import java.util.*;
 
@@ -34,6 +32,9 @@ import java.util.*;
  */
 @SuppressWarnings("WeakerAccess")
 public class Filex {
+
+    private Filex() {
+    }
 
     /**
      * Create a directory and throw an exception if it cannot be created

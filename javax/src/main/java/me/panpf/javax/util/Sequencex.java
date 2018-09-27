@@ -21,7 +21,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Sequence tool method
+ */
 public class Sequencex {
+
+    private Sequencex() {
+    }
 
 
     /*
@@ -63,7 +69,7 @@ public class Sequencex {
 
     /**
      * Performs the given [action] on each element.
-     *
+     * <p>
      * The operation is _terminal_.
      */
     public static <T> void forEach(@NotNull Sequence<T> sequence, @NotNull Action<T> action) {

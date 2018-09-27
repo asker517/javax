@@ -20,10 +20,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
+/**
+ * Map tool method
+ */
 @SuppressWarnings("WeakerAccess")
 public class Mapx {
 
     public static final int INT_MAX_POWER_OF_TWO = Integer.MAX_VALUE / 2 + 1;
+
+    private Mapx() {
+    }
 
 
     /*

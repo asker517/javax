@@ -18,7 +18,10 @@ package me.panpf.javax.io;
 
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Stringx;
-import me.panpf.javax.util.*;
+import me.panpf.javax.util.Action;
+import me.panpf.javax.util.Sequence;
+import me.panpf.javax.util.Sequencex;
+import me.panpf.javax.util.Transformer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -31,7 +34,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * I / O tools
+ * I/O tools
  */
 @SuppressWarnings("WeakerAccess")
 public class IOStreamx {
@@ -50,6 +53,9 @@ public class IOStreamx {
      * Returns the minimum block size for forEachBlock().
      */
     public static final int MINIMUM_BLOCK_SIZE = 512;
+
+    private IOStreamx() {
+    }
 
     /**
      * Close

@@ -16,8 +16,12 @@
 
 package me.panpf.javaxkt.io
 
-import java.io.*
+import java.io.File
+import java.io.FileFilter
+import java.io.FilenameFilter
+import java.io.IOException
 import java.util.*
+
 
 /*
  * File related extension methods or properties
@@ -73,7 +77,7 @@ fun File.createNewFileOrThrow(): File {
  */
 fun File.createNewFileCheck(): Boolean {
     if (exists()) return true
-    if(!parentFile.mkdirsCheck()) return false
+    if (!parentFile.mkdirsCheck()) return false
 
     try {
         createNewFile()

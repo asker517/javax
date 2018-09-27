@@ -23,11 +23,11 @@ import java.io.InputStream
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
-import kotlin.io.DEFAULT_BUFFER_SIZE
 
-/**
- * Message digest tool method
+/*
+ * Message digest related extension methods or properties
  */
+
 
 private val HEX = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f')
 

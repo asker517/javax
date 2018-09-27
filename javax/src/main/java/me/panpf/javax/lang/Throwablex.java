@@ -26,6 +26,9 @@ import java.io.PrintStream;
  */
 public class Throwablex {
 
+    private Throwablex() {
+    }
+
     @NotNull
     public static String stackTraceToString(@NotNull Throwable throwable) {
         ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();

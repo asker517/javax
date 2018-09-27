@@ -16,22 +16,28 @@
 
 package me.panpf.javax.util;
 
-import java.io.*;
-import java.util.*;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
-
 import me.panpf.javax.io.Filex;
 import me.panpf.javax.io.IOStreamx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.io.*;
+import java.util.Collections;
+import java.util.EmptyStackException;
+import java.util.Enumeration;
+import java.util.Stack;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 /**
  * ZIP tool method
  */
 @SuppressWarnings("WeakerAccess")
 public class Zipx {
+
+    private Zipx() {
+    }
 
     /**
      * Compress the specified file

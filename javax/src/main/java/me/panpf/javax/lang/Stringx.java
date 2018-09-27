@@ -16,8 +16,6 @@
 
 package me.panpf.javax.lang;
 
-import me.panpf.javax.util.IntRange;
-import me.panpf.javax.util.Rangex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -29,10 +27,13 @@ import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
 
 /**
- * String tool class
+ * String tool method
  */
 @SuppressWarnings({"WeakerAccess"})
 public class Stringx {
+
+    private Stringx() {
+    }
 
 
     /* ******************************************* isSafe *******************************************/

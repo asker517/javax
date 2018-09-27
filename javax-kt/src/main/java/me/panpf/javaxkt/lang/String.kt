@@ -16,8 +16,9 @@
 
 package me.panpf.javaxkt.lang
 
+
 /*
- * String tool
+ * String related extension methods or properties
  */
 
 

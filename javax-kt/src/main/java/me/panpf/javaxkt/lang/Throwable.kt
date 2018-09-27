@@ -19,8 +19,9 @@ package me.panpf.javaxkt.lang
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
+
 /*
- * Throwable tool
+ * Throwable related extension methods or properties
  */
 
 

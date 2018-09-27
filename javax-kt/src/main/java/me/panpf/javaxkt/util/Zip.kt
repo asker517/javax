@@ -24,6 +24,12 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipOutputStream
 
+
+/*
+ * Zip related extension methods or properties
+ */
+
+
 /**
  * Compress the specified file
  *

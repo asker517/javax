@@ -28,6 +28,8 @@ import java.text.DecimalFormat;
 @SuppressWarnings("WeakerAccess")
 public class Formatx {
 
+    private Formatx() {
+    }
 
     /* ******************************************* Double and Float *******************************************/
 

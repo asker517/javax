@@ -34,6 +34,9 @@ public class Digestx {
 
     private static final char[] HEX = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
+    private Digestx() {
+    }
+
     /**
      * Get the message digest of the input stream using the specified [algorithm]
      */

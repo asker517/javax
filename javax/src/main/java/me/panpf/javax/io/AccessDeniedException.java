@@ -24,7 +24,7 @@ import java.io.File;
 /**
  * An exception class which is used when we have not enough access for some operation.
  */
-public class AccessDeniedException extends FileSystemException{
+public class AccessDeniedException extends FileSystemException {
 
     public AccessDeniedException(@NotNull File file, @Nullable File other, @Nullable String reason) {
         super(file, other, reason);

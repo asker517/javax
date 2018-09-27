@@ -19,9 +19,11 @@ package me.panpf.javaxkt.lang
 import java.lang.reflect.*
 import java.util.*
 
+
 /*
- * Class tool
+ * Class related extension methods or properties
  */
+
 
 /**
  * Get the field with the specified name from the specified class
@@ -42,7 +44,8 @@ fun Class<*>.getFieldWithParent(fieldName: String): Field {
         }
     }
 
-    return field ?: throw NoSuchFieldException("No such field by name '$fieldName' in class '${this.name}' and its parent class")
+    return field
+            ?: throw NoSuchFieldException("No such field by name '$fieldName' in class '${this.name}' and its parent class")
 }
 
 /**
@@ -143,7 +146,8 @@ fun Class<*>.getMethodWithParent(methodName: String, vararg params: Class<*>): M
         }
     }
 
-    return method ?: throw NoSuchMethodException("No such method by name '$methodName' and params '${Arrays.toString(params)}' in class '${this.name}' and its parent class")
+    return method
+            ?: throw NoSuchMethodException("No such method by name '$methodName' and params '${Arrays.toString(params)}' in class '${this.name}' and its parent class")
 }
 
 
@@ -226,7 +230,8 @@ fun Class<*>.getConstructorWithParent(vararg params: Class<*>): Constructor<*> {
         }
     }
 
-    return constructor ?: throw NoSuchMethodException("No such constructor by params '${Arrays.toString(params)}' in class '${this.name}' and its parent class")
+    return constructor
+            ?: throw NoSuchMethodException("No such constructor by params '${Arrays.toString(params)}' in class '${this.name}' and its parent class")
 }
 
 

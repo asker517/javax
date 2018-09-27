@@ -24,8 +24,9 @@ import java.nio.ByteBuffer
 import java.nio.charset.Charset
 import java.util.*
 
+
 /*
- * Base64 tool method
+ * Base64 related extension methods or properties
  */
 
 

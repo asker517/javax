@@ -19,12 +19,15 @@ package me.panpf.javax.lang;
 import java.nio.charset.Charset;
 
 /**
- * Character tool class
+ * Character tool method
  */
 @SuppressWarnings({"WeakerAccess"})
 public class Charx {
 
     public static final Charset UTF_8 = Charset.forName("UTF-8");
+
+    private Charx() {
+    }
 
 
     /* ******************************************* isBlank *******************************************/

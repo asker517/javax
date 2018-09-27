@@ -1,6 +1,11 @@
 package me.panpf.javaxkt.lang
 
 
+/*
+ * Char related extension methods or properties
+ */
+
+
 /* ******************************************* isBlank *******************************************/
 
 

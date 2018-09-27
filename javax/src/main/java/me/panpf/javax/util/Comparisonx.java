@@ -21,8 +21,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Comparator;
 
+/**
+ * Comparison tool method
+ */
 @SuppressWarnings("WeakerAccess")
 public class Comparisonx {
+
+    private Comparisonx() {
+    }
 
 
     /*

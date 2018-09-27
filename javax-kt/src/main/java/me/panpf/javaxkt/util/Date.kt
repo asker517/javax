@@ -19,19 +19,18 @@ package me.panpf.javaxkt.util
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Calendar
 import kotlin.math.absoluteValue
 
 
 /*
- * Date related extension
+ * Date related extension methods or properties
  */
 
 /**
  * Create a Calendar
  */
 fun Long.createCalendar(firstDayOfWeek: Int? = null, locale: Locale? = null): Calendar {
-    return (if(locale != null) Calendar.getInstance(locale) else Calendar.getInstance()).apply {
+    return (if (locale != null) Calendar.getInstance(locale) else Calendar.getInstance()).apply {
         if (firstDayOfWeek != null) this@apply.firstDayOfWeek = firstDayOfWeek
         timeInMillis = this@createCalendar
     }

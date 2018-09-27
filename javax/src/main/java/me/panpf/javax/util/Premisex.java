@@ -23,6 +23,9 @@ import org.jetbrains.annotations.Nullable;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Premise tool method
+ */
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Premisex {
 

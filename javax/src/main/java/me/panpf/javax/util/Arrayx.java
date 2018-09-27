@@ -24,10 +24,13 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Array tool class
+ * Array tool method
  */
 @SuppressWarnings("WeakerAccess")
 public class Arrayx {
+
+    private Arrayx() {
+    }
 
     /*
      * *****************************************************************************************************************
