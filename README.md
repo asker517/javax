@@ -271,6 +271,11 @@ Please view the [CHANGELOG.md] file
 [Range.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Range.kt
 [RangeTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/RangeTest.kt
 
+[Stopwatchx.java]: javax/src/main/java/me/panpf/javax/util/Stopwatch.java
+[StopwatchTest.java]: javax/src/test/java/me/panpf/javax/test/util/StopwatchTest.java
+[Stopwatch.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Stopwatch.kt
+[StopwatchTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/StopwatchTest.kt
+
 [Zipx.java]: javax/src/main/java/me/panpf/javax/util/Zipx.java
 [ZipTest.java]: javax/src/test/java/me/panpf/javax/test/util/ZipTest.java
 [Zip.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Zip.kt

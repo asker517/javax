@@ -1,6 +1,7 @@
 ## 0.6.6 pre
 * :sparkles: Zip add getDecompressionDstDir method
 * :bug: Kotlin version setting of the Format format method roundingMode is RoundingMode.HALF_UP
+* :sparkles: Add Stopwatch
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
