@@ -35,17 +35,17 @@ import java.security.spec.InvalidKeySpecException;
 @SuppressWarnings("WeakerAccess")
 public class Desx {
 
-    public static final String DES = "DES";
-    public static final String DES_ECB_NO = "DES/ECB/NoPadding";
-    public static final String DES_ECB_PKCS5 = "DES/ECB/PKCS5Padding";
-    @SuppressWarnings("unused")
-    public static final String DES_ECB_PKCS7 = "DES/ECB/PKCS7Padding";   // Java 不支持 Android 支持
-    public static final String DES_ECB_ISO10126 = "DES/ECB/ISO10126Padding";
-    public static final String DES_CBC_NO = "DES/CBC/NoPadding";
-    public static final String DES_CBC_PKCS5 = "DES/CBC/PKCS5Padding";
-    @SuppressWarnings("unused")
-    public static final String DES_CBC_PKCS7 = "DES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
-    public static final String DES_CBC_ISO10126 = "DES/CBC/ISO10126Padding";
+    private static final String ALGORITHM = "DES";
+
+    public static final String DEFAULT = "DES";
+    public static final String ECB_NO = "DES/ECB/NoPadding";
+    public static final String ECB_PKCS5 = "DES/ECB/PKCS5Padding";
+    public static final String ECB_PKCS7 = "DES/ECB/PKCS7Padding";   // Java 不支持 Android 支持
+    public static final String ECB_ISO10126 = "DES/ECB/ISO10126Padding";
+    public static final String CBC_NO = "DES/CBC/NoPadding";
+    public static final String CBC_PKCS5 = "DES/CBC/PKCS5Padding";
+    public static final String CBC_PKCS7 = "DES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
+    public static final String CBC_ISO10126 = "DES/CBC/ISO10126Padding";
 
     private Desx() {
     }
@@ -61,7 +61,7 @@ public class Desx {
         DESKeySpec keySpec = new DESKeySpec(password.getBytes());
         SecretKeyFactory keyFactory;
         try {
-            keyFactory = SecretKeyFactory.getInstance(DES);
+            keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -72,8 +72,8 @@ public class Desx {
      * Encrypt raw data using the DES algorithm
      *
      * @param rawData   Raw data to be encrypted
-     * @param algorithm DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                  {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
+     * @param algorithm DES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                  {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -132,8 +132,8 @@ public class Desx {
      * Decrypt ciphertext encrypted using the DES algorithm
      *
      * @param cipherData Ciphertext to be decrypted
-     * @param algorithm  DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                   {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
+     * @param algorithm  DES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                   {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key        Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -150,8 +150,8 @@ public class Desx {
      * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param base64CipherText Ciphertext to be decrypted
-     * @param algorithm        DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                         {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
+     * @param algorithm        DES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                         {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key              Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -167,8 +167,8 @@ public class Desx {
      * Decrypt ciphertext encrypted using the DES algorithm
      *
      * @param cipherData Ciphertext to be decrypted
-     * @param algorithm  DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                   {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
+     * @param algorithm  DES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                   {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key        Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -184,8 +184,8 @@ public class Desx {
      * Decryption uses the DES algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param base64CipherText Ciphertext to be decrypted
-     * @param algorithm        DES encryption algorithm, The following values ​​are available: {@link #DES},{@link #DES_ECB_NO},{@link #DES_ECB_PKCS5},{@link #DES_ECB_PKCS7},
-     *                         {@link #DES_CBC_ISO10126},{@link #DES_CBC_NO},{@link #DES_CBC_PKCS5},{@link #DES_CBC_PKCS7},{@link #DES_CBC_ISO10126}
+     * @param algorithm        DES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                         {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key              Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error

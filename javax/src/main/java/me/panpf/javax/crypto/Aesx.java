@@ -35,17 +35,17 @@ import java.security.spec.AlgorithmParameterSpec;
 @SuppressWarnings("WeakerAccess")
 public class Aesx {
 
-    public static final String AES = "AES";
-    public static final String AES_ECB_NO = "AES/ECB/NoPadding";
-    public static final String AES_ECB_PKCS5 = "AES/ECB/PKCS5Padding";
-    @SuppressWarnings("unused")
-    public static final String AES_ECB_PKCS7 = "AES/ECB/PKCS7Padding";   // Java 不支持 Android 支持
-    public static final String AES_ECB_ISO10126 = "AES/ECB/ISO10126Padding";
-    public static final String AES_CBC_NO = "AES/CBC/NoPadding";
-    public static final String AES_CBC_PKCS5 = "AES/CBC/PKCS5Padding";
-    @SuppressWarnings("unused")
-    public static final String AES_CBC_PKCS7 = "AES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
-    public static final String AES_CBC_ISO10126 = "AES/CBC/ISO10126Padding";
+    private static final String ALGORITHM = "AES";
+
+    public static final String DEFAULT = "AES";
+    public static final String ECB_NO = "AES/ECB/NoPadding";
+    public static final String ECB_PKCS5 = "AES/ECB/PKCS5Padding";
+    public static final String ECB_PKCS7 = "AES/ECB/PKCS7Padding";   // Java 不支持 Android 支持
+    public static final String ECB_ISO10126 = "AES/ECB/ISO10126Padding";
+    public static final String CBC_NO = "AES/CBC/NoPadding";
+    public static final String CBC_PKCS5 = "AES/CBC/PKCS5Padding";
+    public static final String CBC_PKCS7 = "AES/CBC/PKCS7Padding";   // Java 不支持 Android 支持
+    public static final String CBC_ISO10126 = "AES/CBC/ISO10126Padding";
 
     private Aesx() {
     }
@@ -59,7 +59,7 @@ public class Aesx {
     public static Key createKey(int keySize) {
         KeyGenerator generator;
         try {
-            generator = KeyGenerator.getInstance(AES);
+            generator = KeyGenerator.getInstance(ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -77,7 +77,7 @@ public class Aesx {
     public static Key createKeyByPassword(String password, int keySizeInBytes) {
         byte[] passwordBytes = password.getBytes(Charset.forName("UTF-8"));
         byte[] key = InsecureSHA1PRNGKeyDerivator.deriveInsecureKey(passwordBytes, keySizeInBytes);
-        return new SecretKeySpec(key, AES);
+        return new SecretKeySpec(key, ALGORITHM);
     }
 
     /**
@@ -85,7 +85,7 @@ public class Aesx {
      */
     @NotNull
     public static Key keyFromBytes(@NotNull byte[] keyBytes) {
-        return new SecretKeySpec(keyBytes, AES);
+        return new SecretKeySpec(keyBytes, ALGORITHM);
     }
 
     /**
@@ -93,7 +93,7 @@ public class Aesx {
      */
     @NotNull
     public static Key keyFromBase64(@NotNull String passwordBase64) {
-        return new SecretKeySpec(Base64x.decodeToBytes(passwordBase64), AES);
+        return new SecretKeySpec(Base64x.decodeToBytes(passwordBase64), ALGORITHM);
     }
 
 
@@ -101,8 +101,8 @@ public class Aesx {
      * Encrypt raw data using the AES algorithm
      *
      * @param rawData   Raw data to be encrypted
-     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                  {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                  {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -118,8 +118,8 @@ public class Aesx {
      * Encrypt raw text using the AES algorithm
      *
      * @param rawText   Raw text to be encrypted
-     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                  {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                  {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -135,8 +135,8 @@ public class Aesx {
      * Encrypt the raw data using the AES algorithm and convert the encrypted result to Base64 encoding
      *
      * @param rawData   Raw data to be encrypted
-     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                  {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                  {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -152,8 +152,8 @@ public class Aesx {
      * Encrypt the raw text using the AES algorithm and convert the encrypted result to Base64 encoding
      *
      * @param rawText   Raw text to be encrypted
-     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                  {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                  {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -170,8 +170,8 @@ public class Aesx {
      * Decrypt ciphertext encrypted using the AES algorithm
      *
      * @param cipherData Ciphertext to be decrypted
-     * @param algorithm  AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                   {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm  AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                   {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key        Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -188,8 +188,8 @@ public class Aesx {
      * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param base64CipherText Ciphertext to be decrypted
-     * @param algorithm        AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                         {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm        AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                         {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key              Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -205,8 +205,8 @@ public class Aesx {
      * Decrypt ciphertext encrypted using the AES algorithm
      *
      * @param cipherData Ciphertext to be decrypted
-     * @param algorithm  AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                   {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm  AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                   {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key        Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -222,8 +222,8 @@ public class Aesx {
      * Decryption uses the AES algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param base64CipherText Ciphertext to be decrypted
-     * @param algorithm        AES encryption algorithm, The following values ​​are available: {@link #AES},{@link #AES_ECB_NO},{@link #AES_ECB_PKCS5},{@link #AES_ECB_PKCS7},
-     *                         {@link #AES_CBC_ISO10126},{@link #AES_CBC_NO},{@link #AES_CBC_PKCS5},{@link #AES_CBC_PKCS7},{@link #AES_CBC_ISO10126}
+     * @param algorithm        AES encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_NO},{@link #ECB_PKCS5},{@link #ECB_PKCS7},
+     *                         {@link #CBC_ISO10126},{@link #CBC_NO},{@link #CBC_PKCS5},{@link #CBC_PKCS7},{@link #CBC_ISO10126}
      * @param key              Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error

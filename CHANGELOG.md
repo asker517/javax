@@ -2,6 +2,20 @@
 * :sparkles: Zip add getDecompressionDstDir method
 * :bug: Kotlin version setting of the Format format method roundingMode is RoundingMode.HALF_UP
 * :sparkles: Add Stopwatch
+* :hammer: Rsa.kt 的 encrypt 和 decrypt 系列方法的名字都加上了 rsa
+* :hammer: Zip 里的 compression* 方法改为 compress*，decompression* 方法改为 decompress
+* :sparkles: Zip add getCompressDstDir method
+* :hammer: Collectionx 和 Arrayx 的 count 方法支持可 null 的参数
+* :sparkles: Numberx add in and notIn method
+* :sparkles: Add Annotationx
+* :hammer: 现在 javax-kt 里所有方法都是对 javax 的扩展，因此删除了一些重复的类或常量，现在请直接使用 javax 中相应的类或常量
+    * Aes.kt AES, AES_ECB_NO, AES_ECB_PKCS5, AES_ECB_PKCS7, AES_ECB_ISO10126, AES_CBC_NO, AES_CBC_PKCS5,
+    AES_CBC_PKCS7, AES_CBC_ISO10126, createAesKey
+    * Des.kt DES, DES_ECB_NO, DES_ECB_PKCS5, DES_ECB_PKCS7, DES_ECB_ISO10126, DES_CBC_NO, DES_CBC_PKCS5,
+    DES_CBC_PKCS7, DES_CBC_ISO10126
+    * Rsa.kt RSA, RSA_ECB_PKCS1, RSA_ECB_OAEP, RSA_SIGNATURE, createRsaKey
+    * DateRange, YearRange, MonthRange, DayRange, HourRange, MinuteRange, SecondRange, MillisecondRange
+    * InsecureSHA1PRNGKeyDerivator, UnableCreateDirException, UnableCreateFileException
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method

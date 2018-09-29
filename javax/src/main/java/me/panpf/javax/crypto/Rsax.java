@@ -36,10 +36,12 @@ import java.security.spec.X509EncodedKeySpec;
 @SuppressWarnings("WeakerAccess")
 public class Rsax {
 
-    public static final String RSA = "RSA";
-    public static final String RSA_ECB_PKCS1 = "RSA/ECB/PKCS1Padding";
-    public static final String RSA_ECB_OAEP = "RSA/ECB/OAEPPadding";
-    public static final String RSA_ALGORITHM = "MD5withRSA";
+    private static final String ALGORITHM = "RSA";
+    private static final String ALGORITHM_SIGN = "MD5withRSA";
+
+    public static final String DEFAULT = "RSA";
+    public static final String ECB_PKCS1 = "RSA/ECB/PKCS1Padding";
+    public static final String ECB_OAEP = "RSA/ECB/OAEPPadding";
 
     private Rsax() {
     }
@@ -53,7 +55,7 @@ public class Rsax {
     public static KeyPair createKey(int keySize) {
         KeyPairGenerator keyPairGen;
         try {
-            keyPairGen = KeyPairGenerator.getInstance(RSA);
+            keyPairGen = KeyPairGenerator.getInstance(ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -71,7 +73,7 @@ public class Rsax {
         byte[] buffer = Base64x.decodeToBytes(base64PublicKeyText.getBytes());
         KeyFactory keyFactory;
         try {
-            keyFactory = KeyFactory.getInstance(RSA);
+            keyFactory = KeyFactory.getInstance(ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -90,7 +92,7 @@ public class Rsax {
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
         KeyFactory keyFactory;
         try {
-            keyFactory = KeyFactory.getInstance(RSA);
+            keyFactory = KeyFactory.getInstance(ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -111,7 +113,7 @@ public class Rsax {
             throws InvalidKeyException, SignatureException {
         Signature signature;
         try {
-            signature = Signature.getInstance(RSA_ALGORITHM);
+            signature = Signature.getInstance(ALGORITHM_SIGN);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -177,7 +179,7 @@ public class Rsax {
             throws InvalidKeyException, SignatureException {
         Signature signature;
         try {
-            signature = Signature.getInstance(RSA_ALGORITHM);
+            signature = Signature.getInstance(ALGORITHM_SIGN);
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
@@ -233,7 +235,7 @@ public class Rsax {
      * Encrypt raw data using the RSA algorithm
      *
      * @param rawData   Raw data to be encrypted
-     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -250,7 +252,7 @@ public class Rsax {
      * Encrypt raw text using the RSA algorithm
      *
      * @param rawText   Raw text to be encrypted
-     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -266,7 +268,7 @@ public class Rsax {
      * Encrypt the raw data using the RSA algorithm and convert the encrypted result to Base64 encoding
      *
      * @param rawData   Raw data to be encrypted
-     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -282,7 +284,7 @@ public class Rsax {
      * Encrypt the raw text using the RSA algorithm and convert the encrypted result to Base64 encoding
      *
      * @param rawText   Raw text to be encrypted
-     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key       Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -299,7 +301,7 @@ public class Rsax {
      * Decrypt ciphertext encrypted using the RSA algorithm
      *
      * @param cipherData Ciphertext to be decrypted
-     * @param algorithm  RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm  RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key        Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -316,7 +318,7 @@ public class Rsax {
      * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param baseCipherText Ciphertext to be decrypted
-     * @param algorithm      RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm      RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key            Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -332,7 +334,7 @@ public class Rsax {
      * Decrypt ciphertext encrypted using the RSA algorithm
      *
      * @param cipherData Ciphertext to be decrypted
-     * @param algorithm  RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm  RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key        Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error
@@ -348,7 +350,7 @@ public class Rsax {
      * Decryption uses the RSA algorithm to encrypt and then use Base64 encoded ciphertext
      *
      * @param baseCipherText Ciphertext to be decrypted
-     * @param algorithm      RSA encryption algorithm, The following values ​​are available: {@link #RSA},{@link #RSA_ECB_PKCS1},{@link #RSA_ECB_OAEP}
+     * @param algorithm      RSA encryption algorithm, The following values ​​are available: {@link #DEFAULT},{@link #ECB_PKCS1},{@link #ECB_OAEP}
      * @param key            Secret key
      * @throws InvalidKeyException       Invalid key
      * @throws BadPaddingException       Padding error

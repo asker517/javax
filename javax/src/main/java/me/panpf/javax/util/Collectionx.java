@@ -514,7 +514,8 @@ public class Collectionx {
     /**
      * Returns the number of elements in this collection.
      */
-    public static <T> int count(@NotNull Iterable<T> iterable) {
+    public static <T> int count(@Nullable Iterable<T> iterable) {
+        if (iterable == null) return 0;
         if (iterable instanceof Collection) {
             return ((Collection) iterable).size();
         }
@@ -528,7 +529,8 @@ public class Collectionx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static <T> int count(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
+    public static <T> int count(@Nullable Iterable<T> iterable, @NotNull Predicate<T> predicate) {
+        if (iterable == null) return 0;
         if (iterable instanceof Collection && ((Collection) iterable).isEmpty()) {
             return 0;
         }
@@ -544,7 +546,8 @@ public class Collectionx {
     /**
      * Returns the number of elements in this collection.
      */
-    public static <T> int count(@NotNull Collection<T> collection) {
+    public static <T> int count(@Nullable Collection<T> collection) {
+        if (collection == null) return 0;
         return collection.size();
     }
 

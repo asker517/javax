@@ -33,6 +33,10 @@ public class Classx {
     private Classx() {
     }
 
+
+    /* ******************************************* Field *******************************************/
+
+
     /**
      * Get the field with the specified name from the specified class
      */
@@ -57,6 +61,14 @@ public class Classx {
         } else {
             return field;
         }
+    }
+
+    /**
+     * Get the field with the specified name from the specified class
+     */
+    @NotNull
+    public static Field getFieldWithParent(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
+        return getFieldWithParent(object.getClass(), fieldName);
     }
 
     /**
@@ -87,11 +99,29 @@ public class Classx {
     }
 
     /**
+     * Get all the fields of a given class and its parent class
+     *
+     * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
+     */
+    @NotNull
+    public static Field[] getFieldsWithParent(@NotNull Object object, int upwards) {
+        return getFieldsWithParent(object.getClass(), upwards);
+    }
+
+    /**
      * Get all the fields of a given class and all its parent classes
      */
     @NotNull
     public static Field[] getFieldsWithParent(@NotNull Class<?> clazz) {
         return getFieldsWithParent(clazz, -1);
+    }
+
+    /**
+     * Get all the fields of a given class and all its parent classes
+     */
+    @NotNull
+    public static Field[] getFieldsWithParent(@NotNull Object object) {
+        return getFieldsWithParent(object.getClass(), -1);
     }
 
     /**
@@ -135,6 +165,9 @@ public class Classx {
     }
 
 
+    /* ******************************************* Method *******************************************/
+
+
     /**
      * Get the method with the specified name from the specified class
      */
@@ -160,6 +193,14 @@ public class Classx {
         } else {
             return method;
         }
+    }
+
+    /**
+     * Get the method with the specified name from the specified class
+     */
+    @NotNull
+    public static Method getMethodWithParent(@NotNull Object object, @NotNull String methodName, @Nullable Class<?>... params) throws NoSuchMethodException {
+        return getMethodWithParent(object.getClass(), methodName, params);
     }
 
     /**
@@ -190,11 +231,29 @@ public class Classx {
     }
 
     /**
+     * Get all the methods of a given class and its parent classes
+     *
+     * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
+     */
+    @NotNull
+    public static Method[] getMethodsWithParent(@NotNull Object object, int upwards) {
+        return getMethodsWithParent(object.getClass(), upwards);
+    }
+
+    /**
      * Get all the methods of a given class and all its parent classes
      */
     @NotNull
     public static Method[] getMethodsWithParent(@NotNull Class<?> clazz) {
         return getMethodsWithParent(clazz, -1);
+    }
+
+    /**
+     * Get all the methods of a given class and all its parent classes
+     */
+    @NotNull
+    public static Method[] getMethodsWithParent(@NotNull Object object) {
+        return getMethodsWithParent(object.getClass(), -1);
     }
 
     /**
@@ -227,6 +286,9 @@ public class Classx {
     }
 
 
+    /* ******************************************* Constructor *******************************************/
+
+
     /**
      * Get the constructor from the specified class
      */
@@ -252,6 +314,14 @@ public class Classx {
         } else {
             return constructor;
         }
+    }
+
+    /**
+     * Get the constructor from the specified class
+     */
+    @NotNull
+    public static Constructor<?> getConstructorWithParent(@NotNull Object object, @Nullable Class<?>... params) throws NoSuchMethodException {
+        return getConstructorWithParent(object.getClass(), params);
     }
 
     /**
@@ -283,11 +353,32 @@ public class Classx {
 
     /**
      * Get all the constructors of a given class and its parent classes
+     *
+     * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
+     */
+    @NotNull
+    public static Constructor[] getConstructorsWithParent(@NotNull Object object, int upwards) {
+        return getConstructorsWithParent(object.getClass(), upwards);
+    }
+
+    /**
+     * Get all the constructors of a given class and its parent classes
      */
     @NotNull
     public static Constructor[] getConstructorsWithParent(@NotNull Class<?> clazz) {
         return getConstructorsWithParent(clazz, -1);
     }
+
+    /**
+     * Get all the constructors of a given class and its parent classes
+     */
+    @NotNull
+    public static Constructor[] getConstructorsWithParent(@NotNull Object object) {
+        return getConstructorsWithParent(object.getClass(), -1);
+    }
+
+
+    /* ******************************************* Class Hierarchy *******************************************/
 
 
     /**
@@ -314,11 +405,32 @@ public class Classx {
 
     /**
      * Get all the inheritance lists of the specified class
+     *
+     * @param ignoreSelf Ignore myself in the return list
+     */
+    @NotNull
+    public static Class<?>[] getClassHierarchy(@NotNull Object object, boolean ignoreSelf) {
+        return getClassHierarchy(object.getClass(), ignoreSelf);
+    }
+
+    /**
+     * Get all the inheritance lists of the specified class
      */
     @NotNull
     public static Class<?>[] getClassHierarchy(@NotNull Class<?> clazz) {
         return getClassHierarchy(clazz, false);
     }
+
+    /**
+     * Get all the inheritance lists of the specified class
+     */
+    @NotNull
+    public static Class<?>[] getClassHierarchy(@NotNull Object object) {
+        return getClassHierarchy(object.getClass(), false);
+    }
+
+
+    /* ******************************************* Type *******************************************/
 
 
     /**

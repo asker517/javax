@@ -40,7 +40,7 @@ public class Zipx {
     }
 
     /**
-     * Compress the specified file
+     * Compress the specified files
      *
      * @param sourceFiles           The file to be compressed
      * @param destinationFile       Output file
@@ -48,8 +48,8 @@ public class Zipx {
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressionFilesTo(@Nullable File[] sourceFiles, @NotNull File destinationFile,
-                                          @NotNull Transformer<File, String> zipEntryNameTransform) throws IOException {
+    public static File compressFilesTo(@Nullable File[] sourceFiles, @NotNull File destinationFile,
+                                       @NotNull Transformer<File, String> zipEntryNameTransform) throws IOException {
         ZipOutputStream zipOutputStream = null;
         try {
             zipOutputStream = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(destinationFile, false)));
@@ -101,6 +101,23 @@ public class Zipx {
     }
 
     /**
+     * Compress the specified file
+     *
+     * @param sourceFile The file to be compressed
+     * @return Output file
+     * @throws IOException IO exceptions
+     */
+    public static File compressFile(@NotNull File sourceFile) throws IOException {
+        return compressFilesTo(new File[]{sourceFile}, getCompressDstFile(sourceFile), new Transformer<File, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull File file) {
+                return file.getName();
+            }
+        });
+    }
+
+    /**
      * Compress all files in the specified directory to
      *
      * @param sourceDirectory The directory to be compressed
@@ -108,10 +125,10 @@ public class Zipx {
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressionDirTo(@NotNull final File sourceDirectory, @NotNull File destinationFile) throws IOException {
+    public static File compressDirTo(@NotNull final File sourceDirectory, @NotNull File destinationFile) throws IOException {
         Premisex.requireFileExist(sourceDirectory, "sourceDirectory");
         Premisex.requireIsDir(sourceDirectory, "sourceDirectory");
-        return compressionFilesTo(sourceDirectory.listFiles(), destinationFile, new Transformer<File, String>() {
+        return compressFilesTo(sourceDirectory.listFiles(), destinationFile, new Transformer<File, String>() {
             @NotNull
             @Override
             public String transform(@NotNull File file) {
@@ -127,13 +144,20 @@ public class Zipx {
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressionDir(@NotNull File sourceDirectory) throws IOException {
-        return compressionDirTo(sourceDirectory, new File(sourceDirectory.getPath() + ".zip"));
+    public static File compressDir(@NotNull File sourceDirectory) throws IOException {
+        return compressDirTo(sourceDirectory, getCompressDstFile(sourceDirectory));
+    }
+
+    /**
+     * Get the default compression dst file for the specified source file
+     */
+    public static File getCompressDstFile(@NotNull File sourceFile) {
+        return new File(sourceFile.getPath() + ".zip");
     }
 
 
     /**
-     * Unzip the ZIP file to the specified folder
+     * Decompress the ZIP file to the specified folder
      *
      * @param zipSourceFile  ZIP file
      * @param destinationDir Out dir
@@ -141,7 +165,7 @@ public class Zipx {
      * @throws IOException IO exceptions. include ZipException, UnableCreateDirException, UnableCreateFileException
      */
     @NotNull
-    public static File decompressionTo(@NotNull File zipSourceFile, @NotNull final File destinationDir) throws IOException {
+    public static File decompressTo(@NotNull File zipSourceFile, @NotNull final File destinationDir) throws IOException {
         Premisex.requireFileExist(zipSourceFile, "zipSourceFile");
         Premisex.require(!destinationDir.exists() || destinationDir.isDirectory(), new LazyValue<String>() {
             @NotNull
@@ -181,21 +205,21 @@ public class Zipx {
     }
 
     /**
-     * Unzip the ZIP file to its directory, and the output folder name is the name of the ZIP file (without the suffix)
+     * Decompress the ZIP file to its directory, and the output folder name is the name of the ZIP file (without the suffix)
      *
      * @param zipSourceFile ZIP file
      * @return Out dir
      * @throws IOException IO exceptions. include ZipException, UnableCreateDirException, UnableCreateFileException
      */
     @NotNull
-    public static File decompression(@NotNull File zipSourceFile) throws IOException {
-        return decompressionTo(zipSourceFile, getDecompressionDstDir(zipSourceFile));
+    public static File decompress(@NotNull File zipSourceFile) throws IOException {
+        return decompressTo(zipSourceFile, getDecompressDstDir(zipSourceFile));
     }
 
     /**
      * Get the default decompression directory for the specified ZIP file
      */
-    public static File getDecompressionDstDir(@NotNull File zipSourceFile) {
+    public static File getDecompressDstDir(@NotNull File zipSourceFile) {
         return new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile));
     }
 }

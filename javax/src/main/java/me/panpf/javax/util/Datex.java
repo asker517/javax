@@ -3246,15 +3246,29 @@ public class Datex {
     /**
      * Return true if the difference from the [target] does not exceed the [amount] year
      */
+    public static boolean differCalendarField(long millisecondValue, long target, int field, int amount, @Nullable Integer firstDayOfWee, @Nullable Locale locale) {
+        return differFiled(createCalendar(millisecondValue, firstDayOfWee, locale), createCalendar(target, firstDayOfWee, locale), field, amount);
+    }
+
+    /**
+     * Return true if the difference from the [target] does not exceed the [amount] year
+     */
+    public static boolean differCalendarField(long millisecondValue, long target, int field, int amount, @Nullable Integer firstDayOfWee) {
+        return differCalendarField(millisecondValue, target, field, amount, firstDayOfWee, null);
+    }
+
+    /**
+     * Return true if the difference from the [target] does not exceed the [amount] year
+     */
     public static boolean differCalendarField(long millisecondValue, long target, int field, int amount, @Nullable Locale locale) {
-        return differFiled(createCalendar(millisecondValue, locale), createCalendar(target, locale), field, amount);
+        return differCalendarField(millisecondValue, target, field, amount, null, locale);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] year
      */
     public static boolean differCalendarField(long millisecondValue, long target, int field, int amount) {
-        return differCalendarField(millisecondValue, target, field, amount, null);
+        return differCalendarField(millisecondValue, target, field, amount, null, null);
     }
 
     /**

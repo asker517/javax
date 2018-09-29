@@ -14,7 +14,7 @@ public final class Stopwatch {
     /**
      * Starting time
      */
-    private final long startTime;
+    public final long startTime;
 
     /**
      * End Time
@@ -31,7 +31,7 @@ public final class Stopwatch {
      * Count lap history
      */
     @Nullable
-    private final ArrayList<CountLap> historyList;
+    public final ArrayList<CountLap> historyList;
 
     /**
      * Create StopwatchTimer
@@ -60,7 +60,7 @@ public final class Stopwatch {
         } else {
             long currentTime = System.currentTimeMillis();
             Stopwatch.CountLap lastLap = this.lastCountLap;
-            long distanceFromLastTime = lastLap != null ? currentTime - lastLap.getTime() : currentTime - this.startTime;
+            long distanceFromLastTime = lastLap != null ? currentTime - lastLap.time : currentTime - this.startTime;
             long distanceFromStartTime = currentTime - this.startTime;
             Stopwatch.CountLap newCountLap = new Stopwatch.CountLap(currentTime, distanceFromLastTime, distanceFromStartTime);
 
@@ -72,13 +72,6 @@ public final class Stopwatch {
             this.lastCountLap = newCountLap;
             return newCountLap;
         }
-    }
-
-    /**
-     * Get starting Time
-     */
-    public final long getStartTime() {
-        return this.startTime;
     }
 
     /**
@@ -94,14 +87,6 @@ public final class Stopwatch {
     @Nullable
     public final Stopwatch.CountLap getLastCountLap() {
         return this.lastCountLap;
-    }
-
-    /**
-     * Get CountLap history
-     */
-    @Nullable
-    public final ArrayList<CountLap> getHistoryList() {
-        return this.historyList;
     }
 
     /**
@@ -127,43 +112,22 @@ public final class Stopwatch {
         /**
          * Counting time
          */
-        private final long time;
+        public final long time;
 
         /**
          * Distance from last time
          */
-        private final long distanceLastTime;
+        public final long distanceLastTime;
 
         /**
          * Distance to start time
          */
-        private final long distanceStartTime;
+        public final long distanceStartTime;
 
         public CountLap(long time, long distanceLastTime, long distanceStartTime) {
             this.time = time;
             this.distanceLastTime = distanceLastTime;
             this.distanceStartTime = distanceStartTime;
-        }
-
-        /**
-         * Get counting time
-         */
-        public final long getTime() {
-            return this.time;
-        }
-
-        /**
-         * Get distance from last time
-         */
-        public final long getDistanceLastTime() {
-            return this.distanceLastTime;
-        }
-
-        /**
-         * Get distance to start time
-         */
-        public final long getDistanceStartTime() {
-            return this.distanceStartTime;
         }
     }
 }

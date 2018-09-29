@@ -16,6 +16,7 @@
 
 package me.panpf.javax.util;
 
+import me.panpf.javax.lang.Numberx;
 import me.panpf.javax.lang.Stringx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -81,8 +82,7 @@ public class Premisex {
 
 
     /**
-     * Throws an [IllegalArgumentException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
-     * returns the not null value.
+     * If the [value] is not null, it returns itself, otherwise it throws an IllegalArgumentException with the result of calling [lazyMessage]
      */
     @NotNull
     public static <T> T requireNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
@@ -94,7 +94,7 @@ public class Premisex {
     }
 
     /**
-     * Throws an [IllegalArgumentException] if the [value] is null. Otherwise returns the not null value.
+     * If the [value] is not null, it returns itself, otherwise it throws an IllegalArgumentException
      */
     @NotNull
     public static <T> T requireNotNull(@Nullable T value) {
@@ -121,8 +121,7 @@ public class Premisex {
 
 
     /**
-     * Throws an [IllegalStateException] with the result of calling [lazyMessage] if the [value] is null. Otherwise
-     * returns the not null value.
+     * If the [value] is not null, it returns itself, otherwise it throws an IllegalStateException with the result of calling [lazyMessage]
      */
     @NotNull
     public static <T> T checkNotNull(@Nullable T value, @NotNull LazyValue<String> lazyMessage) {
@@ -134,7 +133,7 @@ public class Premisex {
     }
 
     /**
-     * Throws an [IllegalStateException] if the [value] is null. Otherwise returns the not null value.
+     * If the [value] is not null, it returns itself, otherwise it throws an IllegalStateException
      */
     @NotNull
     public static <T> T checkNotNull(@Nullable T value) {
@@ -225,7 +224,7 @@ public class Premisex {
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static byte requireInRange(byte value, byte minValue, byte maxValue, @NotNull String paramName) {
-        if (value >= minValue && value <= maxValue) {
+        if (Numberx.in(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The byte parameter '%s' value is %d, must be >= %d && <= %d", paramName, value, minValue, maxValue));
@@ -243,7 +242,7 @@ public class Premisex {
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static short requireInRange(short value, short minValue, short maxValue, @NotNull String paramName) {
-        if (value >= minValue && value <= maxValue) {
+        if (Numberx.in(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The short parameter '%s' value is %d, must be >= %d && <= %d", paramName, value, minValue, maxValue));
@@ -261,7 +260,7 @@ public class Premisex {
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static int requireInRange(int value, int minValue, int maxValue, @NotNull String paramName) {
-        if (value >= minValue && value <= maxValue) {
+        if (Numberx.in(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The int parameter '%s' value is %d, must be >= %d && <= %d", paramName, value, minValue, maxValue));
@@ -279,7 +278,7 @@ public class Premisex {
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static long requireInRange(long value, long minValue, long maxValue, @NotNull String paramName) {
-        if (value >= minValue && value <= maxValue) {
+        if (Numberx.in(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The long parameter '%s' value is %d, must be >= %d && <= %d", paramName, value, minValue, maxValue));
@@ -297,7 +296,7 @@ public class Premisex {
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static float requireInRange(float value, float minValue, float maxValue, @NotNull String paramName) {
-        if (value >= minValue && value <= maxValue) {
+        if (Numberx.in(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The float parameter '%s' value is %s, must be >= %s && <= %s", paramName, value, minValue, maxValue));
@@ -315,7 +314,7 @@ public class Premisex {
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static double requireInRange(double value, double minValue, double maxValue, @NotNull String paramName) {
-        if (value >= minValue && value <= maxValue) {
+        if (Numberx.in(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The double parameter '%s' value is %s, must be >= %s && <= %s", paramName, value, minValue, maxValue));
@@ -334,7 +333,7 @@ public class Premisex {
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static byte requireNotInRange(byte value, byte minValue, byte maxValue, @NotNull String paramName) {
-        if (value < minValue || value > maxValue) {
+        if (Numberx.notIn(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The byte parameter '%s' value is %d, must be < %d || > %d", paramName, value, minValue, maxValue));
@@ -352,7 +351,7 @@ public class Premisex {
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static short requireNotInRange(short value, short minValue, short maxValue, @NotNull String paramName) {
-        if (value < minValue || value > maxValue) {
+        if (Numberx.notIn(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The short parameter '%s' value is %d, must be < %d || > %d", paramName, value, minValue, maxValue));
@@ -370,7 +369,7 @@ public class Premisex {
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static int requireNotInRange(int value, int minValue, int maxValue, @NotNull String paramName) {
-        if (value < minValue || value > maxValue) {
+        if (Numberx.notIn(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The int parameter '%s' value is %d, must be < %d || > %d", paramName, value, minValue, maxValue));
@@ -388,7 +387,7 @@ public class Premisex {
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static long requireNotInRange(long value, long minValue, long maxValue, @NotNull String paramName) {
-        if (value < minValue || value > maxValue) {
+        if (Numberx.notIn(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The long parameter '%s' value is %d, must be < %d || > %d", paramName, value, minValue, maxValue));
@@ -406,7 +405,7 @@ public class Premisex {
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static float requireNotInRange(float value, float minValue, float maxValue, @NotNull String paramName) {
-        if (value < minValue || value > maxValue) {
+        if (Numberx.notIn(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The float parameter '%s' value is %s, must be < %s || > %s", paramName, value, minValue, maxValue));
@@ -424,7 +423,7 @@ public class Premisex {
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
      */
     public static double requireNotInRange(double value, double minValue, double maxValue, @NotNull String paramName) {
-        if (value < minValue || value > maxValue) {
+        if (Numberx.notIn(value, minValue, maxValue)) {
             return value;
         } else {
             throw new IllegalArgumentException(String.format("The double parameter '%s' value is %s, must be < %s || > %s", paramName, value, minValue, maxValue));

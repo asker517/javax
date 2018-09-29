@@ -17,6 +17,7 @@ repositories {
 dependencies {
     testCompile "junit:junit:$JUNIT_VERSION"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
+    compile project(":javax")
 }
 
 Properties properties = new Properties()

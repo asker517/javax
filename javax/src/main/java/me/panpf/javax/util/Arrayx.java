@@ -4147,70 +4147,71 @@ public class Arrayx {
     /**
      * Returns the number of elements in this array.
      */
-    public static <T> int count(@NotNull T[] elements) {
-        return elements.length;
+    public static <T> int count(@Nullable T[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull byte[] elements) {
-        return elements.length;
+    public static int count(@Nullable byte[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull short[] elements) {
-        return elements.length;
+    public static int count(@Nullable short[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull int[] elements) {
-        return elements.length;
+    public static int count(@Nullable int[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull long[] elements) {
-        return elements.length;
+    public static int count(@Nullable long[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull float[] elements) {
-        return elements.length;
+    public static int count(@Nullable float[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull double[] elements) {
-        return elements.length;
+    public static int count(@Nullable double[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull boolean[] elements) {
-        return elements.length;
+    public static int count(@Nullable boolean[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements in this array.
      */
-    public static int count(@NotNull char[] elements) {
-        return elements.length;
+    public static int count(@Nullable char[] elements) {
+        return elements != null ? elements.length : 0;
     }
 
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static <T> int count(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+    public static <T> int count(@Nullable T[] elements, @NotNull Predicate<T> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (T element : elements) {
             if (predicate.accept(element)) {
@@ -4223,7 +4224,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+    public static int count(@Nullable byte[] elements, @NotNull Predicate<Byte> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (byte element : elements) {
             if (predicate.accept(element)) {
@@ -4236,7 +4238,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+    public static int count(@Nullable short[] elements, @NotNull Predicate<Short> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (short element : elements) {
             if (predicate.accept(element)) {
@@ -4249,7 +4252,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+    public static int count(@Nullable int[] elements, @NotNull Predicate<Integer> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (int element : elements) {
             if (predicate.accept(element)) {
@@ -4262,7 +4266,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+    public static int count(@Nullable long[] elements, @NotNull Predicate<Long> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (long element : elements) {
             if (predicate.accept(element)) {
@@ -4275,7 +4280,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+    public static int count(@Nullable float[] elements, @NotNull Predicate<Float> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (float element : elements) {
             if (predicate.accept(element)) {
@@ -4288,7 +4294,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+    public static int count(@Nullable double[] elements, @NotNull Predicate<Double> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (double element : elements) {
             if (predicate.accept(element)) {
@@ -4301,7 +4308,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+    public static int count(@Nullable boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (boolean element : elements) {
             if (predicate.accept(element)) {
@@ -4314,7 +4322,8 @@ public class Arrayx {
     /**
      * Returns the number of elements matching the given [predicate].
      */
-    public static int count(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+    public static int count(@Nullable char[] elements, @NotNull Predicate<Character> predicate) {
+        if (elements == null) return 0;
         int count = 0;
         for (char element : elements) {
             if (predicate.accept(element)) {
