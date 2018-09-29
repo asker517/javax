@@ -31,6 +31,10 @@ public class Numberx {
     private Numberx() {
     }
 
+
+    /* ******************************************* scale *******************************************/
+
+
     /**
      * Scale numbers in the specified mode
      *
@@ -65,6 +69,98 @@ public class Numberx {
      */
     public static double scale(double number, int newScale) {
         return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+
+    /* ******************************************* in *******************************************/
+
+
+    /**
+     * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean in(byte value, byte minValue, byte maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
+
+    /**
+     * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean in(short value, short minValue, short maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
+
+    /**
+     * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean in(int value, int minValue, int maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
+
+    /**
+     * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean in(long value, long minValue, long maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
+
+    /**
+     * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean in(float value, float minValue, float maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
+
+    /**
+     * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean in(double value, double minValue, double maxValue) {
+        return value >= minValue && value <= maxValue;
+    }
+
+
+    /* ******************************************* notIn *******************************************/
+
+
+    /**
+     * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean notIn(byte value, byte minValue, byte maxValue) {
+        return value < minValue || value > maxValue;
+    }
+
+    /**
+     * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean notIn(short value, short minValue, short maxValue) {
+        return value < minValue || value > maxValue;
+    }
+
+    /**
+     * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean notIn(int value, int minValue, int maxValue) {
+        return value < minValue || value > maxValue;
+    }
+
+    /**
+     * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean notIn(long value, long minValue, long maxValue) {
+        return value < minValue || value > maxValue;
+    }
+
+    /**
+     * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean notIn(float value, float minValue, float maxValue) {
+        return value < minValue || value > maxValue;
+    }
+
+    /**
+     * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
+     */
+    public static boolean notIn(double value, double minValue, double maxValue) {
+        return value < minValue || value > maxValue;
     }
 
 
