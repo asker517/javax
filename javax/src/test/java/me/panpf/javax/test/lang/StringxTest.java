@@ -296,4 +296,27 @@ public class StringxTest {
         assertEquals(Stringx.padEnd("今天天气晴", 10), "今天天气晴     ");
         assertEquals(Stringx.padEnd("今天天气晴", 10, '.'), "今天天气晴.....");
     }
+
+    @Test
+    public void testOrAndTo() {
+        assertEquals(Stringx.orEmpty("今"), "今");
+        assertEquals(Stringx.orEmpty(null), "");
+        assertEquals(Stringx.orEmpty((CharSequence) "今"), "今");
+        assertEquals(Stringx.orEmpty((CharSequence) null), "");
+
+        assertEquals(Stringx.orDefault("今", "天"), "今");
+        assertEquals(Stringx.orDefault(null, "天"), "天");
+        assertEquals(Stringx.orDefault((CharSequence) "今", "天"), "今");
+        assertEquals(Stringx.orDefault((CharSequence) null, "天"), "天");
+
+        assertNotNull(Stringx.emptyToNull("今"));
+        assertNull(Stringx.emptyToNull(""));
+        assertNotNull(Stringx.emptyToNull((CharSequence) "今"));
+        assertNull(Stringx.emptyToNull((CharSequence) ""));
+
+        assertNotNull(Stringx.blankToNull("今"));
+        assertNull(Stringx.blankToNull(" "));
+        assertNotNull(Stringx.blankToNull((CharSequence) "今"));
+        assertNull(Stringx.blankToNull((CharSequence) " "));
+    }
 }

@@ -213,3 +213,48 @@ inline fun String?.andContains(params: Array<String>?): Boolean = Stringx.andCon
  * Return true if the specified string contains all the strings in[params]
  */
 inline fun String?.andContains(params: Collection<String>?): Boolean = Stringx.andContains(this, params)
+
+
+/* ******************************************* or and to *******************************************/
+
+
+/**
+ * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
+ */
+inline fun CharSequence?.orEmpty(): CharSequence = Stringx.orEmpty(this)
+
+/**
+ * Returns the given character sequence if it is not null, otherwise return given defaultValue
+ */
+inline fun CharSequence?.orDefault(defaultValue: CharSequence): CharSequence = Stringx.orDefault(this, defaultValue)
+
+/**
+ * If the given char sequence is empty, it return `null` otherwise it return itself
+ */
+inline fun CharSequence?.emptyToNull(): CharSequence? = Stringx.emptyToNull(this)
+
+/**
+ * If the given char sequence is blank, it return `null` otherwise it return itself
+ */
+inline fun CharSequence?.blankToNull(): CharSequence? = Stringx.blankToNull(this)
+
+
+/**
+ * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
+ */
+inline fun String?.orEmpty(): String = Stringx.orEmpty(this)
+
+/**
+ * Returns the given character sequence if it is not null, otherwise return given defaultValue
+ */
+inline fun String?.orDefault(defaultValue: String): String = Stringx.orDefault(this, defaultValue)
+
+/**
+ * If the given char sequence is empty, it return `null` otherwise it return itself
+ */
+inline fun String?.emptyToNull(): String? = Stringx.emptyToNull(this)
+
+/**
+ * If the given char sequence is blank, it return `null` otherwise it return itself
+ */
+inline fun String?.blankToNull(): String? = Stringx.blankToNull(this)

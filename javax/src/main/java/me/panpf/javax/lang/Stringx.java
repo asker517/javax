@@ -325,6 +325,75 @@ public class Stringx {
     }
 
 
+    /* ******************************************* or and to *******************************************/
+
+
+    /**
+     * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
+     */
+    @NotNull
+    public static CharSequence orEmpty(@Nullable CharSequence string) {
+        return string != null ? string : "";
+    }
+
+    /**
+     * Returns the given character sequence if it is not null, otherwise return given defaultValue
+     */
+    @NotNull
+    public static CharSequence orDefault(@Nullable CharSequence string, @NotNull CharSequence defaultValue) {
+        return string != null ? string : defaultValue;
+    }
+
+    /**
+     * If the given char sequence is empty, it return `null` otherwise it return itself
+     */
+    @Nullable
+    public static CharSequence emptyToNull(@Nullable CharSequence string) {
+        return isEmpty(string) ? null : string;
+    }
+
+    /**
+     * If the given char sequence is blank, it return `null` otherwise it return itself
+     */
+    @Nullable
+    public static CharSequence blankToNull(@Nullable CharSequence string) {
+        return isBlank(string) ? null : string;
+    }
+
+
+    /**
+     * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
+     */
+    @NotNull
+    public static String orEmpty(@Nullable String string) {
+        return string != null ? string : "";
+    }
+
+    /**
+     * Returns the given character sequence if it is not null, otherwise return given defaultValue
+     */
+    @NotNull
+    public static String orDefault(@Nullable String string, @NotNull String defaultValue) {
+        return string != null ? string : defaultValue;
+    }
+
+    /**
+     * If the given string is empty, it return `null` otherwise it return itself
+     */
+    @Nullable
+    public static String emptyToNull(@Nullable String string) {
+        return isEmpty(string) ? null : string;
+    }
+
+    /**
+     * If the given string is blank, it return `null` otherwise it return itself
+     */
+    @Nullable
+    public static String blankToNull(@Nullable String string) {
+        return isBlank(string) ? null : string;
+    }
+
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
@@ -458,39 +527,6 @@ public class Stringx {
      */
     public static boolean equals(@Nullable String self, @Nullable String other) {
         return equals(self, other, false);
-    }
-
-
-    /**
-     * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
-     */
-    @NotNull
-    public static String orEmpty(@Nullable String string) {
-        return string != null ? string : "";
-    }
-
-    /**
-     * Returns the given character sequence if it is not null, otherwise return given defaultValue
-     */
-    @NotNull
-    public static String orDefault(@Nullable String string, @NotNull String defaultValue) {
-        return string != null ? string : defaultValue;
-    }
-
-    /**
-     * If the given string is empty, it return `null` otherwise it return itself
-     */
-    @Nullable
-    public static String emptyToNull(@NotNull String string) {
-        return isEmpty(string) ? null : string;
-    }
-
-    /**
-     * If the given string is blank, it return `null` otherwise it return itself
-     */
-    @Nullable
-    public static String blankToNull(@NotNull String string) {
-        return isBlank(string) ? null : string;
     }
 
 

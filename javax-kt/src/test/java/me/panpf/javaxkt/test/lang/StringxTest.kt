@@ -212,4 +212,27 @@ class StringxTest {
         assertFalse("今天天气晴".andContains(arrayOf()))
         assertFalse("今天天气晴".andContains(LinkedList()))
     }
+
+    @Test
+    fun testOrAndTo() {
+        assertEquals("今".orEmpty(), "今")
+        assertEquals(null.orEmpty(), "")
+        assertEquals(("今" as CharSequence).orEmpty(), "今")
+        assertEquals((null as CharSequence?).orEmpty(), "")
+
+        assertEquals("今".orDefault("天"), "今")
+        assertEquals(null.orDefault("天"), "天")
+        assertEquals(("今" as CharSequence).orDefault("天"), "今")
+        assertEquals((null as CharSequence?).orDefault("天"), "天")
+
+        assertNotNull("今".emptyToNull())
+        assertNull("".emptyToNull())
+        assertNotNull(("今" as CharSequence).emptyToNull())
+        assertNull(("" as CharSequence).emptyToNull())
+
+        assertNotNull("今".blankToNull())
+        assertNull(" ".blankToNull())
+        assertNotNull(("今" as CharSequence).blankToNull())
+        assertNull((" " as CharSequence).blankToNull())
+    }
 }

@@ -17,6 +17,7 @@
     * DateRange, YearRange, MonthRange, DayRange, HourRange, MinuteRange, SecondRange, MillisecondRange
     * InsecureSHA1PRNGKeyDerivator, UnableCreateDirException, UnableCreateFileException
 * :sparkles: Digestx support bytes
+* :sparkles: Stringx orEmpty, orDefault, emptyToNull, blankToNull support CharSequence
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
