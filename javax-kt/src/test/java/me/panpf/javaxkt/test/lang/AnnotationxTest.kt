@@ -19,10 +19,6 @@ package me.panpf.javaxkt.test.lang
 import me.panpf.javax.lang.Annotationx
 import org.junit.Assert
 import org.junit.Test
-import java.lang.annotation.ElementType
-import java.lang.annotation.Retention
-import java.lang.annotation.RetentionPolicy
-import java.lang.annotation.Target
 
 class AnnotationxTest {
 
@@ -33,13 +29,13 @@ class AnnotationxTest {
         VALUE2
     }
 
-    @Target(ElementType.ANNOTATION_TYPE)
-    @Retention(RetentionPolicy.RUNTIME)
+    @Target(AnnotationTarget.PROPERTY)
+    @Retention(AnnotationRetention.RUNTIME)
     annotation class TestAnnotation(val value: String)
 
     @Test
     fun testFromEnum() {
-        Assert.assertEquals(Annotationx.getAnnotationFromEnum(TesetEnum.VALUE1, TestAnnotation::class.java)!!.value, "1")
+        Assert.assertEquals(Annotationx.getAnnotationFromEnum(TesetEnum.VALUE1, TestAnnotation::class.java)?.value, "1")
         Assert.assertNull(Annotationx.getAnnotationFromEnum(TesetEnum.VALUE2, TestAnnotation::class.java))
     }
 }
