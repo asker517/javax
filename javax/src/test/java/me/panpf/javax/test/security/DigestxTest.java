@@ -17,6 +17,7 @@
 package me.panpf.javax.test.security;
 
 import me.panpf.javax.io.Filex;
+import me.panpf.javax.io.IOStreamx;
 import me.panpf.javax.security.Digestx;
 import org.junit.Assert;
 import org.junit.Test;
@@ -43,6 +44,26 @@ public class DigestxTest {
     private static final String FILE_SHA1 = "68319460dbca64a77a77df753de69dfed4d8bb6d";
     private static final String FILE_SHA256 = "4136d86d8de430af1d61ccf6c9aeced1b17d08652cac549a54e485c91e2cdeb0";
     private static final String FILE_SHA512 = "68d108a115ba610f682f2a77cddda354e5cbf211ad18537f74148f71f01b6f4dc5fd72d4d17b86f2b32be3945bcc8a9fbf9b244df21cdeeecb19d86ea3f1b6ea";
+
+    @Test
+    public void testInputStreamDigest() throws IOException {
+        Assert.assertEquals(Digestx.getDigest(IOStreamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
+        Assert.assertEquals(Digestx.getMD5(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
+        Assert.assertEquals(Digestx.getMD5_16(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
+        Assert.assertEquals(Digestx.getSHA1(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
+        Assert.assertEquals(Digestx.getSHA256(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
+        Assert.assertEquals(Digestx.getSHA512(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
+    }
+
+    @Test
+    public void testBytesDigest() {
+        Assert.assertEquals(Digestx.getDigest(TEST_TEXT.getBytes(), "MD2"), TEXT_MD2);
+        Assert.assertEquals(Digestx.getMD5(TEST_TEXT.getBytes()), TEXT_MD5);
+        Assert.assertEquals(Digestx.getMD5_16(TEST_TEXT.getBytes()), TEXT_MD5_16);
+        Assert.assertEquals(Digestx.getSHA1(TEST_TEXT.getBytes()), TEXT_SHA1);
+        Assert.assertEquals(Digestx.getSHA256(TEST_TEXT.getBytes()), TEXT_SHA256);
+        Assert.assertEquals(Digestx.getSHA512(TEST_TEXT.getBytes()), TEXT_SHA512);
+    }
 
     @Test
     public void testTextDigest() {

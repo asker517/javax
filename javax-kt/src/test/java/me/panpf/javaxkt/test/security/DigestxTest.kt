@@ -46,6 +46,26 @@ class DigestxTest {
     }
 
     @Test
+    fun testInputStreamDigest() {
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getDigest("MD2"), TEXT_MD2)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5Digest(), TEXT_MD5)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5_16Digest(), TEXT_MD5_16)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA1Digest(), TEXT_SHA1)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA256Digest(), TEXT_SHA256)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA512Digest(), TEXT_SHA512)
+    }
+
+    @Test
+    fun testBytesDigest() {
+        Assert.assertEquals(TEST_TEXT.toByteArray().getDigest("MD2"), TEXT_MD2)
+        Assert.assertEquals(TEST_TEXT.toByteArray().getMD5Digest(), TEXT_MD5)
+        Assert.assertEquals(TEST_TEXT.toByteArray().getMD5_16Digest(), TEXT_MD5_16)
+        Assert.assertEquals(TEST_TEXT.toByteArray().getSHA1Digest(), TEXT_SHA1)
+        Assert.assertEquals(TEST_TEXT.toByteArray().getSHA256Digest(), TEXT_SHA256)
+        Assert.assertEquals(TEST_TEXT.toByteArray().getSHA512Digest(), TEXT_SHA512)
+    }
+
+    @Test
     fun testTextDigest() {
         Assert.assertEquals(TEST_TEXT.getDigest("MD2"), TEXT_MD2)
         Assert.assertEquals(TEST_TEXT.getMD5Digest(), TEXT_MD5)

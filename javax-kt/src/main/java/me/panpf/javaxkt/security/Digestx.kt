@@ -29,6 +29,9 @@ import java.io.InputStream
  */
 
 
+/* ******************************************* InputStream *******************************************/
+
+
 /**
  * Get the message digest of the input stream using the specified [algorithm]
  */
@@ -61,6 +64,43 @@ inline fun InputStream.getSHA256Digest(): String = Digestx.getSHA256(this)
 inline fun InputStream.getSHA512Digest(): String = Digestx.getSHA512(this)
 
 
+/* ******************************************* ByteArray *******************************************/
+
+
+/**
+ * Get the message digest of the bytes using the specified [algorithm]
+ */
+inline fun ByteArray.getDigest(algorithm: String): String = Digestx.getDigest(this, algorithm)
+
+/**
+ * Get the message digest of the bytes using the MD5 algorithm
+ */
+inline fun ByteArray.getMD5Digest(): String = Digestx.getMD5(this)
+
+/**
+ * Get the message digest of the bytes using the MD5 algorithm, only the middle 16 bits are reserved
+ */
+inline fun ByteArray.getMD5_16Digest(): String = Digestx.getMD5_16(this)
+
+/**
+ * Get the message digest of the bytes using the SHA1 algorithm
+ */
+inline fun ByteArray.getSHA1Digest(): String = Digestx.getSHA1(this)
+
+/**
+ * Get the message digest of the bytes using the SHA-256 algorithm
+ */
+inline fun ByteArray.getSHA256Digest(): String = Digestx.getSHA256(this)
+
+/**
+ * Get the message digest of the bytes using the SHA-512 algorithm
+ */
+inline fun ByteArray.getSHA512Digest(): String = Digestx.getSHA512(this)
+
+
+/* ******************************************* String *******************************************/
+
+
 /**
  * Get the message digest of the text using the specified [algorithm]
  */
@@ -90,6 +130,9 @@ inline fun String.getSHA256Digest(): String = Digestx.getSHA256(this)
  * Get the message digest of the text using the SHA-512 algorithm
  */
 inline fun String.getSHA512Digest(): String = Digestx.getSHA512(this)
+
+
+/* ******************************************* File *******************************************/
 
 
 /**

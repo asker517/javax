@@ -37,6 +37,9 @@ public class Digestx {
     private Digestx() {
     }
 
+
+    /* ******************************************* InputStream *******************************************/
+
     /**
      * Get the message digest of the input stream using the specified [algorithm]
      */
@@ -107,6 +110,104 @@ public class Digestx {
     public static String getSHA512(@NotNull InputStream inputStream) throws IOException {
         return getDigest(inputStream, "SHA-512");
     }
+
+
+    /* ******************************************* bytes *******************************************/
+
+
+    /**
+     * Get the message digest of the bytes using the specified [algorithm]
+     */
+    @NotNull
+    public static String getDigest(@NotNull byte[] data, @NotNull String algorithm) {
+        InputStream inputStream = IOStreamx.inputStream(data);
+        try {
+            return getDigest(inputStream, algorithm);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the bytes using the MD5 algorithm
+     */
+    @NotNull
+    public static String getMD5(@NotNull byte[] data) {
+        InputStream inputStream = IOStreamx.inputStream(data);
+        try {
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the bytes using the MD5 algorithm, only the middle 16 bits are reserved
+     */
+    @NotNull
+    public static String getMD5_16(@NotNull byte[] data) {
+        InputStream inputStream = IOStreamx.inputStream(data);
+        try {
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the bytes using the SHA1 algorithm
+     */
+    @NotNull
+    public static String getSHA1(@NotNull byte[] data) {
+        InputStream inputStream = IOStreamx.inputStream(data);
+        try {
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the bytes using the SHA-256 algorithm
+     */
+    @NotNull
+    public static String getSHA256(@NotNull byte[] data) {
+        InputStream inputStream = IOStreamx.inputStream(data);
+        try {
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the bytes using the SHA-512 algorithm
+     */
+    @NotNull
+    public static String getSHA512(@NotNull byte[] data) {
+        InputStream inputStream = IOStreamx.inputStream(data);
+        try {
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+
+    /* ******************************************* String *******************************************/
+
 
     /**
      * Get the message digest of the text using the specified [algorithm]
@@ -197,6 +298,10 @@ public class Digestx {
             IOStreamx.safeClose(inputStream);
         }
     }
+
+
+    /* ******************************************* File *******************************************/
+
 
     /**
      * Get the message digest of the file using the specified [algorithm]

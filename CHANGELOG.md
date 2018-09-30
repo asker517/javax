@@ -16,6 +16,7 @@
     * Rsa.kt RSA, RSA_ECB_PKCS1, RSA_ECB_OAEP, RSA_SIGNATURE, createRsaKey
     * DateRange, YearRange, MonthRange, DayRange, HourRange, MinuteRange, SecondRange, MillisecondRange
     * InsecureSHA1PRNGKeyDerivator, UnableCreateDirException, UnableCreateFileException
+* :sparkles: Digestx support bytes
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
