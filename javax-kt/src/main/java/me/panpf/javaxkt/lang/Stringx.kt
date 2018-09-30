@@ -126,7 +126,7 @@ inline fun CharSequence?.isChinese(): Boolean = Stringx.isChinese(this)
 /**
  * Return `true` if the given sequence of characters is all not chinese
  */
-inline fun CharSequence?.isNotChinese(): Boolean = Stringx.isChinese(this)
+inline fun CharSequence?.isNotChinese(): Boolean = Stringx.isNotChinese(this)
 
 /**
  * If the given character sequence is chinese, it return is itself, otherwise it returns the default value.
