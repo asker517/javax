@@ -18,6 +18,7 @@ package me.panpf.javax.util;
 
 import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -509,6 +510,7 @@ public class Formatx {
 
     /* ******************************************* count *******************************************/
 
+
     /**
      * Formatted count, for example 1100=1.1k,15001=1.5w
      */
@@ -530,5 +532,100 @@ public class Formatx {
     @NotNull
     public static String count(int count) {
         return count((long) count);
+    }
+
+
+    /* ******************************************* hidden *******************************************/
+
+
+    /**
+     * Replaces the character of the specified length at the beginning of the string with the specified character
+     */
+    @NotNull
+    public static String hiddenStartChars(@Nullable final String input, final int hiddenLength, final char targetChar) {
+        if (input == null) return "";
+
+        final int inputLength = input.length();
+        StringBuilder builder = new StringBuilder();
+
+        for (int index = 0, size = Math.min(hiddenLength, inputLength); index < size; index++) {
+            builder.append(targetChar);
+        }
+
+        if (inputLength > hiddenLength) {
+            builder.append(input, hiddenLength, inputLength);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Replace the character of the specified length at the beginning of the string with the '*' character
+     */
+    @NotNull
+    public static String hiddenStartChars(@Nullable final String input, final int hiddenLength) {
+        return hiddenStartChars(input, hiddenLength, '*');
+    }
+
+    /**
+     * Replaces the specified length of characters in the middle of the string with the specified character
+     */
+    @NotNull
+    public static String hiddenMiddleChars(@Nullable final String input, final int hiddenLength, final char targetChar) {
+        if (input == null) return "";
+
+        final int inputLength = input.length();
+        StringBuilder builder = new StringBuilder();
+
+        if (inputLength > hiddenLength) {
+            builder.append(input, 0, (inputLength - hiddenLength) / 2);
+        }
+
+        for (int index = 0, size = Math.min(hiddenLength, inputLength); index < size; index++) {
+            builder.append(targetChar);
+        }
+
+        if (inputLength > hiddenLength) {
+            builder.append(input, hiddenLength + ((inputLength - hiddenLength) / 2), inputLength);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Replace the character of the specified length in the middle of the string with the '*' character
+     */
+    @NotNull
+    public static String hiddenMiddleChars(@Nullable final String input, final int hiddenLength) {
+        return hiddenMiddleChars(input, hiddenLength, '*');
+    }
+
+    /**
+     * Replaces the specified length of characters at the end of the string with the specified character
+     */
+    @NotNull
+    public static String hiddenEndChars(@Nullable final String input, final int hiddenLength, final char targetChar) {
+        if (input == null) return "";
+
+        final int inputLength = input.length();
+        StringBuilder builder = new StringBuilder();
+
+        if (inputLength > hiddenLength) {
+            builder.append(input, 0, inputLength - hiddenLength);
+        }
+
+        for (int index = 0, size = Math.min(hiddenLength, inputLength); index < size; index++) {
+            builder.append(targetChar);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Replace the character of the specified length at the end of the string with the '*' character
+     */
+    @NotNull
+    public static String hiddenEndChars(@Nullable final String input, final int hiddenLength) {
+        return hiddenEndChars(input, hiddenLength, '*');
     }
 }

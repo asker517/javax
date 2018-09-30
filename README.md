@@ -116,6 +116,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Format: [Formatx.java] ([Test][FormatxTest.java]) | [Formatx.kt] ([Test][FormatxTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
+    * hiddenStartChars, hiddenMiddleChars, hiddenEndChars
 * Map: [Mapx.java]
     * mapCapacity, getOrPut
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])

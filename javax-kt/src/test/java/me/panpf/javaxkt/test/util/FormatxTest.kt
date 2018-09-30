@@ -297,4 +297,55 @@ class FormatxTest {
         Assert.assertEquals(15001.formatCount(), "1.5w")
         Assert.assertEquals(101000.formatCount(), "10.1w")
     }
+
+    @Test
+    fun testStartChars() {
+        Assert.assertEquals("12345".hiddenStartChars(4), "****5")
+        Assert.assertEquals("123456".hiddenStartChars(4), "****56")
+        Assert.assertEquals("1234".hiddenStartChars(4), "****")
+        Assert.assertEquals("123".hiddenStartChars(4), "***")
+        Assert.assertEquals("13509853689".hiddenStartChars(4), "****9853689")
+        Assert.assertEquals(null.hiddenStartChars(4), "")
+
+        Assert.assertEquals("12345".hiddenStartChars(4, '$'), "$$$$5")
+        Assert.assertEquals("123456".hiddenStartChars(4, '$'), "$$$$56")
+        Assert.assertEquals("1234".hiddenStartChars(4, '$'), "$$$$")
+        Assert.assertEquals("123".hiddenStartChars(4, '$'), "$$$")
+        Assert.assertEquals("13509853689".hiddenStartChars(4, '$'), "$$$$9853689")
+        Assert.assertEquals(null.hiddenStartChars(4, '$'), "")
+    }
+
+    @Test
+    fun testHiddenChars() {
+        Assert.assertEquals("12345".hiddenMiddleChars(4), "****5")
+        Assert.assertEquals("123456".hiddenMiddleChars(4), "1****6")
+        Assert.assertEquals("1234".hiddenMiddleChars(4), "****")
+        Assert.assertEquals("123".hiddenMiddleChars(4), "***")
+        Assert.assertEquals("13509853689".hiddenMiddleChars(4), "135****3689")
+        Assert.assertEquals(null.hiddenMiddleChars(4), "")
+
+        Assert.assertEquals("12345".hiddenMiddleChars(4, '$'), "$$$$5")
+        Assert.assertEquals("123456".hiddenMiddleChars(4, '$'), "1$$$$6")
+        Assert.assertEquals("1234".hiddenMiddleChars(4, '$'), "$$$$")
+        Assert.assertEquals("123".hiddenMiddleChars(4, '$'), "$$$")
+        Assert.assertEquals("13509853689".hiddenMiddleChars(4, '$'), "135$$$$3689")
+        Assert.assertEquals(null.hiddenMiddleChars(4, '$'), "")
+    }
+
+    @Test
+    fun testEndChars() {
+        Assert.assertEquals("12345".hiddenEndChars(4), "1****")
+        Assert.assertEquals("123456".hiddenEndChars(4), "12****")
+        Assert.assertEquals("1234".hiddenEndChars(4), "****")
+        Assert.assertEquals("123".hiddenEndChars(4), "***")
+        Assert.assertEquals("13509853689".hiddenEndChars(4), "1350985****")
+        Assert.assertEquals(null.hiddenEndChars(4), "")
+
+        Assert.assertEquals("12345".hiddenEndChars(4, '$'), "1$$$$")
+        Assert.assertEquals("123456".hiddenEndChars(4, '$'), "12$$$$")
+        Assert.assertEquals("1234".hiddenEndChars(4, '$'), "$$$$")
+        Assert.assertEquals("123".hiddenEndChars(4, '$'), "$$$")
+        Assert.assertEquals("13509853689".hiddenEndChars(4, '$'), "1350985$$$$")
+        Assert.assertEquals(null.hiddenEndChars(4, '$'), "")
+    }
 }

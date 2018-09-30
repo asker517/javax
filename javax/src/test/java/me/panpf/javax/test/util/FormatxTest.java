@@ -301,4 +301,55 @@ public class FormatxTest {
         Assert.assertEquals(Formatx.count(15001), "1.5w");
         Assert.assertEquals(Formatx.count(101000), "10.1w");
     }
+
+    @Test
+    public void testStartChars() {
+        Assert.assertEquals(Formatx.hiddenStartChars("12345", 4), "****5");
+        Assert.assertEquals(Formatx.hiddenStartChars("123456", 4), "****56");
+        Assert.assertEquals(Formatx.hiddenStartChars("1234", 4), "****");
+        Assert.assertEquals(Formatx.hiddenStartChars("123", 4), "***");
+        Assert.assertEquals(Formatx.hiddenStartChars("13509853689", 4), "****9853689");
+        Assert.assertEquals(Formatx.hiddenStartChars(null, 4), "");
+
+        Assert.assertEquals(Formatx.hiddenStartChars("12345", 4, '$'), "$$$$5");
+        Assert.assertEquals(Formatx.hiddenStartChars("123456", 4, '$'), "$$$$56");
+        Assert.assertEquals(Formatx.hiddenStartChars("1234", 4, '$'), "$$$$");
+        Assert.assertEquals(Formatx.hiddenStartChars("123", 4, '$'), "$$$");
+        Assert.assertEquals(Formatx.hiddenStartChars("13509853689", 4, '$'), "$$$$9853689");
+        Assert.assertEquals(Formatx.hiddenStartChars(null, 4, '$'), "");
+    }
+
+    @Test
+    public void testHiddenChars() {
+        Assert.assertEquals(Formatx.hiddenMiddleChars("12345", 4), "****5");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("123456", 4), "1****6");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("1234", 4), "****");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("123", 4), "***");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("13509853689", 4), "135****3689");
+        Assert.assertEquals(Formatx.hiddenMiddleChars(null, 4), "");
+
+        Assert.assertEquals(Formatx.hiddenMiddleChars("12345", 4, '$'), "$$$$5");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("123456", 4, '$'), "1$$$$6");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("1234", 4, '$'), "$$$$");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("123", 4, '$'), "$$$");
+        Assert.assertEquals(Formatx.hiddenMiddleChars("13509853689", 4, '$'), "135$$$$3689");
+        Assert.assertEquals(Formatx.hiddenMiddleChars(null, 4, '$'), "");
+    }
+
+    @Test
+    public void testEndChars() {
+        Assert.assertEquals(Formatx.hiddenEndChars("12345", 4), "1****");
+        Assert.assertEquals(Formatx.hiddenEndChars("123456", 4), "12****");
+        Assert.assertEquals(Formatx.hiddenEndChars("1234", 4), "****");
+        Assert.assertEquals(Formatx.hiddenEndChars("123", 4), "***");
+        Assert.assertEquals(Formatx.hiddenEndChars("13509853689", 4), "1350985****");
+        Assert.assertEquals(Formatx.hiddenEndChars(null, 4), "");
+
+        Assert.assertEquals(Formatx.hiddenEndChars("12345", 4, '$'), "1$$$$");
+        Assert.assertEquals(Formatx.hiddenEndChars("123456", 4, '$'), "12$$$$");
+        Assert.assertEquals(Formatx.hiddenEndChars("1234", 4, '$'), "$$$$");
+        Assert.assertEquals(Formatx.hiddenEndChars("123", 4, '$'), "$$$");
+        Assert.assertEquals(Formatx.hiddenEndChars("13509853689", 4, '$'), "1350985$$$$");
+        Assert.assertEquals(Formatx.hiddenEndChars(null, 4, '$'), "");
+    }
 }

@@ -18,6 +18,7 @@
     * InsecureSHA1PRNGKeyDerivator, UnableCreateDirException, UnableCreateFileException
 * :sparkles: Digestx support bytes
 * :sparkles: Stringx orEmpty, orDefault, emptyToNull, blankToNull support CharSequence
+* :sparkles: Formatx add hiddenStartChars, hiddenMiddleChars, hiddenEndChars method
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method

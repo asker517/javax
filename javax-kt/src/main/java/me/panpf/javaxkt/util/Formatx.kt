@@ -165,7 +165,7 @@ inline fun Int.formatShortFileSize(): String = Formatx.shortFileSize(this.toLong
  * @param ignoreMillisecond Ignore milliseconds
  */
 inline fun Long.formatTotalTime(ignoreMillisecond: Boolean = false, divider: String, daySuffix: String, hourSuffix: String,
-                         minuteSuffix: String, secondSuffix: String, millisecondSuffix: String): String {
+                                minuteSuffix: String, secondSuffix: String, millisecondSuffix: String): String {
     return Formatx.totalTime(this, ignoreMillisecond, divider, daySuffix, hourSuffix, minuteSuffix, secondSuffix, millisecondSuffix)
 }
 
@@ -228,6 +228,7 @@ inline fun Int.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): Strin
 
 /* ******************************************* count *******************************************/
 
+
 /**
  * Formatted count, for example 1100=1.1k,15001=1.5w
  */
@@ -237,3 +238,37 @@ inline fun Long.formatCount(): String = Formatx.count(this)
  * Formatted count, for example 1100=1.1k,15001=1.5w
  */
 inline fun Int.formatCount(): String = Formatx.count(this)
+
+
+/* ******************************************* hidden *******************************************/
+
+
+/**
+ * Replaces the character of the specified length at the beginning of the string with the specified character
+ */
+fun String?.hiddenStartChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenStartChars(this, hiddenLength, targetChar)
+
+/**
+ * Replace the character of the specified length at the beginning of the string with the '*' character
+ */
+fun String?.hiddenStartChars(hiddenLength: Int): String = Formatx.hiddenStartChars(this, hiddenLength)
+
+/**
+ * Replaces the specified length of characters in the middle of the string with the specified character
+ */
+fun String?.hiddenMiddleChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenMiddleChars(this, hiddenLength, targetChar)
+
+/**
+ * Replace the character of the specified length in the middle of the string with the '*' character
+ */
+fun String?.hiddenMiddleChars(hiddenLength: Int): String = Formatx.hiddenMiddleChars(this, hiddenLength)
+
+/**
+ * Replaces the specified length of characters at the end of the string with the specified character
+ */
+fun String?.hiddenEndChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenEndChars(this, hiddenLength, targetChar)
+
+/**
+ * Replace the character of the specified length at the end of the string with the '*' character
+ */
+fun String?.hiddenEndChars(hiddenLength: Int): String = Formatx.hiddenEndChars(this, hiddenLength)
