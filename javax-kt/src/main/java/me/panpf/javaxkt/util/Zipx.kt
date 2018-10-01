@@ -18,6 +18,7 @@
 
 package me.panpf.javaxkt.util
 
+import me.panpf.javax.util.Transformer
 import me.panpf.javax.util.Zipx
 import java.io.File
 import java.io.IOException
@@ -27,6 +28,17 @@ import java.io.IOException
  * Zip related extension methods or properties
  */
 
+
+/**
+ * Compress the specified file
+ *
+ * @param destinationFile       Output file
+ * @param zipEntryNameTransform Get the name of the file compressed into the zip package
+ * @return Output file
+ * @throws IOException IO exceptions
+ */
+@Throws(IOException::class)
+inline fun Array<File>?.zipCompressFilesTo(destinationFile: File, zipEntryNameTransform: Transformer<File, String>): File = Zipx.compressFilesTo(this, destinationFile, zipEntryNameTransform)
 
 /**
  * Compress the specified file

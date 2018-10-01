@@ -9,16 +9,15 @@
 * :sparkles: Numberx add in and notIn method
 * :sparkles: Add Annotationx
 * :hammer: 现在 javax-kt 里所有方法都是对 javax 的扩展，因此删除了一些重复的类或常量，现在请直接使用 javax 中相应的类或常量
-    * Aes.kt AES, AES_ECB_NO, AES_ECB_PKCS5, AES_ECB_PKCS7, AES_ECB_ISO10126, AES_CBC_NO, AES_CBC_PKCS5,
-    AES_CBC_PKCS7, AES_CBC_ISO10126, createAesKey
-    * Des.kt DES, DES_ECB_NO, DES_ECB_PKCS5, DES_ECB_PKCS7, DES_ECB_ISO10126, DES_CBC_NO, DES_CBC_PKCS5,
-    DES_CBC_PKCS7, DES_CBC_ISO10126
-    * Rsa.kt RSA, RSA_ECB_PKCS1, RSA_ECB_OAEP, RSA_SIGNATURE, createRsaKey
-    * DateRange, YearRange, MonthRange, DayRange, HourRange, MinuteRange, SecondRange, MillisecondRange
-    * InsecureSHA1PRNGKeyDerivator, UnableCreateDirException, UnableCreateFileException
+    * Aes.kt AES, AES_ECB_NO, AES_ECB_PKCS5, AES_ECB_PKCS7, AES_ECB_ISO10126, AES_CBC_NO, AES_CBC_PKCS5, AES_CBC_PKCS7, AES_CBC_ISO10126
+    * Des.kt DES, DES_ECB_NO, DES_ECB_PKCS5, DES_ECB_PKCS7, DES_ECB_ISO10126, DES_CBC_NO, DES_CBC_PKCS5, DES_CBC_PKCS7, DES_CBC_ISO10126
+    * Rsa.kt RSA, RSA_ECB_PKCS1, RSA_ECB_OAEP, RSA_SIGNATURE
+    * DateRange.kt, YearRange.kt, MonthRange.kt, DayRange.kt, HourRange.kt, MinuteRange.kt, SecondRange.kt, MillisecondRange.kt
+    * InsecureSHA1PRNGKeyDerivator.kt, UnableCreateDirException.kt, UnableCreateFileException.kt
 * :sparkles: Digestx support bytes
 * :sparkles: Stringx orEmpty, orDefault, emptyToNull, blankToNull support CharSequence
 * :sparkles: Formatx add hiddenStartChars, hiddenMiddleChars, hiddenEndChars method
+* :sparkles: Zipx.kt zipCompressFilesTo method add Overload method
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
