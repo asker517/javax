@@ -2,6 +2,7 @@
 
 package me.panpf.javaxkt.util
 
+import me.panpf.javax.util.LazyValue
 import me.panpf.javax.util.Premisex
 import java.io.File
 import java.io.FileNotFoundException
@@ -18,6 +19,11 @@ import java.io.FileNotFoundException
 /**
  * If the self is not null, it returns itself, otherwise it throws an IllegalArgumentException with the result of calling [lazyMessage]
  */
+inline fun <T> T?.requireNotNull(lazyMessage: LazyValue<String>): T = Premisex.requireNotNull(this, lazyMessage)
+
+/**
+ * If the self is not null, it returns itself, otherwise it throws an IllegalArgumentException with the result of calling [lazyMessage]
+ */
 inline fun <T> T?.requireNotNull(crossinline lazyMessage: () -> String): T = Premisex.requireNotNull(this) { lazyMessage() }
 
 /**
@@ -30,6 +36,11 @@ inline fun <T> T?.requireNotNull(): T = Premisex.requireNotNull(this)
  */
 inline fun <T> T?.requireNotNull(paramName: String): T = Premisex.requireNotNull(this, paramName)
 
+
+/**
+ * If the self is not null, it returns itself, otherwise it throws an IllegalStateException with the result of calling [lazyMessage]
+ */
+inline fun <T> T?.checkNotNull(lazyMessage: LazyValue<String>): T = Premisex.requireNotNull(this, lazyMessage)
 
 /**
  * If the self is not null, it returns itself, otherwise it throws an IllegalStateException with the result of calling [lazyMessage]
