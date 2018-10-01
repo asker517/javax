@@ -31,6 +31,13 @@ import javax.crypto.IllegalBlockSizeException
 
 
 /**
+ * Create a secret key
+ *
+ * @param keySize The length of the generated key, optional 16, 32, 64, 128
+ */
+inline fun createAesKey(keySize: Int): Key = Aesx.createKey(keySize)
+
+/**
  * Generate a secret key based on the password. The password can be of any length. The fixed password always generates a fixed key.
  *
  * @param keySizeInBytes The length of the generated key, optional 16, 32, 64, 128

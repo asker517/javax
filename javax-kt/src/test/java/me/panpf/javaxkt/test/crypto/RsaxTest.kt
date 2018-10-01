@@ -41,7 +41,7 @@ class RsaxTest {
     @Test
     @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
     fun testPubPriBytes() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE.toByteArray().rsaEncrypt(Rsax.DEFAULT, keyPair.public).rsaDecryptToString(Rsax.DEFAULT, keyPair.private)
         Assert.assertEquals("testPubPriBytes", SOURCE, decryptResult)
     }
@@ -52,7 +52,7 @@ class RsaxTest {
     @Test
     @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
     fun testPriPubBytes() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE.rsaEncrypt(Rsax.DEFAULT, keyPair.private).rsaDecryptToString(Rsax.DEFAULT, keyPair.public)
         Assert.assertEquals("testPriPubBytes", SOURCE, decryptResult)
     }
@@ -63,7 +63,7 @@ class RsaxTest {
     @Test
     @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
     fun testPubPriWithBase64() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE.rsaEncryptToBase64(Rsax.DEFAULT, keyPair.public).rsaDecryptToStringFromBase64(Rsax.DEFAULT, keyPair.private)
         Assert.assertEquals("testPubPriWithBase64", SOURCE, decryptResult)
     }
@@ -74,7 +74,7 @@ class RsaxTest {
     @Test
     @Throws(BadPaddingException::class, InvalidKeyException::class, IllegalBlockSizeException::class)
     fun testPriPubWithBase64() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE.toByteArray().rsaEncryptToBase64(Rsax.DEFAULT, keyPair.private).rsaDecryptToStringFromBase64(Rsax.DEFAULT, keyPair.public)
         Assert.assertEquals("testPriPubWithBase64", SOURCE, decryptResult)
     }
@@ -86,7 +86,7 @@ class RsaxTest {
     @Test
     @Throws(InvalidKeyException::class, SignatureException::class)
     fun testSignBytes() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val bytesSign = SOURCE.rsaSign(keyPair.private)
         Assert.assertTrue("testSignBytes", bytesSign.rsaVerify(SOURCE, keyPair.public))
     }
@@ -97,7 +97,7 @@ class RsaxTest {
     @Test
     @Throws(InvalidKeyException::class, SignatureException::class)
     fun testSignWithBase64() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val base64Sign = SOURCE.rsaSignToBase64(keyPair.private)
         Assert.assertTrue("testSignWithBase64", base64Sign.rsaVerifyFromBase64(SOURCE, keyPair.public))
     }
@@ -108,10 +108,10 @@ class RsaxTest {
     @Test
     @Throws(InvalidKeyException::class, IllegalBlockSizeException::class, BadPaddingException::class)
     fun testErrorKey() {
-        val encryptBytes = SOURCE.toByteArray().rsaEncrypt(Rsax.DEFAULT, Rsax.createKey(1024).public)
+        val encryptBytes = SOURCE.toByteArray().rsaEncrypt(Rsax.DEFAULT, createRsaKey(1024).public)
         var bytesPriKeyDecryptResult: String? = null
         try {
-            bytesPriKeyDecryptResult = encryptBytes.rsaDecryptToString(Rsax.DEFAULT, Rsax.createKey(1024).private)
+            bytesPriKeyDecryptResult = encryptBytes.rsaDecryptToString(Rsax.DEFAULT, createRsaKey(1024).private)
         } catch (e: Exception) {
             //            e.printStackTrace();
         }
@@ -122,7 +122,7 @@ class RsaxTest {
     @Test
     @Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
     fun testEcbPKCS1Padding() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE.toByteArray().rsaEncrypt(Rsax.ECB_PKCS1, keyPair.public).rsaDecryptToString(Rsax.ECB_PKCS1, keyPair.private)
         Assert.assertEquals("testEcbPKCS1Padding", SOURCE, decryptResult)
     }
@@ -130,7 +130,7 @@ class RsaxTest {
     @Test
     @Throws(InvalidKeyException::class, BadPaddingException::class, IllegalBlockSizeException::class)
     fun testEcbOAEPPadding() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
         val decryptResult = SOURCE_OAEP.toByteArray().rsaEncrypt(Rsax.ECB_OAEP, keyPair.public).rsaDecryptToString(Rsax.ECB_OAEP, keyPair.private)
         Assert.assertEquals("testEcbOAEPPadding", SOURCE_OAEP, decryptResult)
     }
@@ -138,7 +138,7 @@ class RsaxTest {
     @Test
     @Throws(InvalidKeySpecException::class, SignatureException::class, InvalidKeyException::class)
     fun testKeyToBase64() {
-        val keyPair = Rsax.createKey(1024)
+        val keyPair = createRsaKey(1024)
 
         val pubKey = keyPair.public.toBase64().toRsaPubKeyFromBase64()
         val priKey = keyPair.private.toBase64().toRsaPriKeyFromBase64()

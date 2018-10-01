@@ -30,6 +30,13 @@ import javax.crypto.IllegalBlockSizeException
  */
 
 /**
+ * Create a pair of RSA keys
+ *
+ * @param keySize Key length, usually a multiple of 1024
+ */
+fun createRsaKey(keySize: Int): KeyPair = Rsax.createKey(keySize)
+
+/**
  * Parse the Base 64 string into a RSA public key
  *
  * @throws InvalidKeySpecException Invalid public key
