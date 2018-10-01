@@ -18,17 +18,28 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Map tool method
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Mapx {
 
     public static final int INT_MAX_POWER_OF_TWO = Integer.MAX_VALUE / 2 + 1;
 
     private Mapx() {
+    }
+
+    /**
+     * Create a MapBuilder
+     */
+    @NotNull
+    public static <K, V> MapBuilder<K, V> builder(K k, V v) {
+        return new MapBuilder<>(k, v);
     }
 
 
@@ -73,5 +84,51 @@ public class Mapx {
     public static <K, V> Map<K, V> put(Map<K, V> map, Pair<K, V> pair) {
         map.put(pair.first, pair.second);
         return map;
+    }
+
+    /**
+     * Traversing Map
+     */
+    public static <K, V> void forEach(@NotNull Map<K, V> map, @NotNull Action2<K, V> action) {
+        for (K k : map.keySet()) {
+            V v = map.get(k);
+            action.action(k, v);
+        }
+    }
+
+    /**
+     * Traversing Map
+     */
+    public static <K, V> void forEachIndexed(@NotNull Map<K, V> map, @NotNull IndexedAction2<K, V> action) {
+        int index = 0;
+        for (K k : map.keySet()) {
+            V v = map.get(k);
+            action.action(index++, k, v);
+        }
+    }
+
+    public static <K, V, R, D extends Collection<R>> D mapTo(@NotNull Map<K, V> map, D destination, @NotNull Transformer2<K, V, R> transformer) {
+        for (K k : map.keySet()) {
+            V v = map.get(k);
+            destination.add(transformer.transform(k, v));
+        }
+        return destination;
+    }
+
+    public static <K, V, R> List<R> map(@NotNull Map<K, V> map, @NotNull Transformer2<K, V, R> transformer) {
+        return mapTo(map, new ArrayList<R>(), transformer);
+    }
+
+    public static <K, V, R, D extends Collection<R>> D mapIndexedTo(@NotNull Map<K, V> map, D destination, @NotNull IndexedTransformer2<K, V, R> transformer) {
+        int index = 0;
+        for (K k : map.keySet()) {
+            V v = map.get(k);
+            destination.add(transformer.transform(index++, k, v));
+        }
+        return destination;
+    }
+
+    public static <K, V, R> List<R> mapIndexed(@NotNull Map<K, V> map, @NotNull IndexedTransformer2<K, V, R> transformer) {
+        return mapIndexedTo(map, new ArrayList<R>(), transformer);
     }
 }

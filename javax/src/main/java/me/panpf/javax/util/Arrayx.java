@@ -8264,8 +8264,8 @@ public class Arrayx {
         return zip(elements, other, new Transformer2<Byte, R, Pair<Byte, R>>() {
             @NotNull
             @Override
-            public Pair<Byte, R> transform(@NotNull Byte t, @NotNull R r) {
-                return Pair.of(t, r);
+            public Pair<Byte, R> transform(@NotNull Byte aByte, @NotNull R r) {
+                return Pair.of(aByte, r);
             }
         });
     }

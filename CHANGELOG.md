@@ -19,6 +19,7 @@
 * :sparkles: Formatx add hiddenStartChars, hiddenMiddleChars, hiddenEndChars method
 * :sparkles: Zipx.kt zipCompressFilesTo method add Overload method
 * :sparkles: Premisex.kt requireNotNull and checkNotNull method add Overload method
+* :sparkles: Mapx add builder, forEach, forEachIndexed, map, mapIndexed method
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method

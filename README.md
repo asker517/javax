@@ -8,8 +8,7 @@
 ![converage_kotlin][converage_kotlin]
 [![License][license_icon]][license_link]
 
-Extensions to the Java standard library, some tool methods, and tool methods related to File, IO,
-primitive types, String, Array, and Collection extracted from the Kotlin standard library (not available in the Kotlin version)
+Extensions to the Java standard library, some tool methods related to File, IO, primitive types, String, Array, and Collection
 
 ## Getting Started
 
@@ -118,7 +117,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
     * hiddenStartChars, hiddenMiddleChars, hiddenEndChars
 * Map: [Mapx.java]
-    * mapCapacity, getOrPut
+    * mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])
     * require, requireNotNull, check, checkNotNull, requireSafe, requireNotSafe
     * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireNotZero

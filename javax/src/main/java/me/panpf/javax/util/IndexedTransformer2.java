@@ -18,7 +18,7 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
-public interface Transformer2<T1, T2, V> {
+public interface IndexedTransformer2<T1, T2, V> {
     @NotNull
-    V transform(@NotNull T1 t1, @NotNull T2 t2);
+    V transform(int index, @NotNull T1 t1, @NotNull T2 t2);
 }
