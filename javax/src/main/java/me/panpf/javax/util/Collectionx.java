@@ -42,6 +42,9 @@ public class Collectionx {
      */
 
 
+    /* ******************************************* empty ******************************************* */
+
+
     /**
      * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
      */
@@ -74,6 +77,10 @@ public class Collectionx {
         return list != null ? list : (List<T>) emptyList();
     }
 
+
+    /* ******************************************* listOf ******************************************* */
+
+
     /**
      * Returns an immutable list containing only the specified object [element].
      * The returned list is serializable.
@@ -105,6 +112,10 @@ public class Collectionx {
     public static int collectionSizeOrDefault(@NotNull Iterable iterable, int defaultValue) {
         return iterable instanceof Collection ? ((Collection) iterable).size() : defaultValue;
     }
+
+
+    /* ******************************************* filter ******************************************* */
+
 
     /**
      * Appends all elements matching the given [predicate] to the given [destination].
@@ -264,12 +275,15 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* map ******************************************* */
+
+
     /**
      * Applies the given [transform] function to each element of the original collection
      * and appends the results to the given [destination].
      */
     @NotNull
-    public static <T, R, D extends Collection<R>> D mapTo(@NotNull Iterable<T> iterable, @NotNull D destination,
+    public static <T, R, D extends Collection<R>> D mapTo(@Nullable Iterable<T> iterable, @NotNull D destination,
                                                           @NotNull Transformer<T, R> transform) {
         for (T t : iterable) {
             destination.add(transform.transform(t));
@@ -398,6 +412,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* join ******************************************* */
+
+
     /**
      * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
      * <p>
@@ -511,6 +528,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* count ******************************************* */
+
+
     /**
      * Returns the number of elements in this collection.
      */
@@ -550,6 +570,9 @@ public class Collectionx {
         if (collection == null) return 0;
         return collection.size();
     }
+
+
+    /* ******************************************* average ******************************************* */
 
 
     /**
@@ -629,6 +652,9 @@ public class Collectionx {
         }
         return count == 0 ? Double.NaN : sum / count;
     }
+
+
+    /* ******************************************* sum ******************************************* */
 
 
     /**
@@ -720,6 +746,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* first ******************************************* */
+
+
     /**
      * Returns first element.
      *
@@ -801,6 +830,9 @@ public class Collectionx {
         }
         return null;
     }
+
+
+    /* ******************************************* last ******************************************* */
 
 
     /**
@@ -960,6 +992,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* find ******************************************* */
+
+
     /**
      * Returns the first element matching the given [predicate], or `null` if no such element was found.
      */
@@ -985,6 +1020,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* get ******************************************* */
+
+
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this list.
      */
@@ -1000,6 +1038,9 @@ public class Collectionx {
     public static <T> T getOrNull(@NotNull List<T> list, int index) {
         return index >= 0 && index <= list.size() - 1 ? list.get(index) : null;
     }
+
+
+    /* ******************************************* max ******************************************* */
 
 
     /**
@@ -1091,6 +1132,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* min ******************************************* */
+
+
     /**
      * Returns the smallest element or `null` if there are no elements.
      * <p>
@@ -1179,6 +1223,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* add ******************************************* */
+
+
     /**
      * Adds all elements of the given [elements] collection to this [Collection].
      */
@@ -1209,6 +1256,9 @@ public class Collectionx {
             }
         return result;
     }
+
+
+    /* ******************************************* remove ******************************************* */
 
 
     /**
@@ -1250,6 +1300,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* partition ******************************************* */
+
+
     /**
      * Splits the original collection into pair of lists,
      * where *first* list contains elements for which [predicate] yielded `true`,
@@ -1257,8 +1310,8 @@ public class Collectionx {
      */
     @NotNull
     public static <T> Pair<List<T>, List<T>> partition(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
-        List<T> first = new ArrayList<T>();
-        List<T> second = new ArrayList<T>();
+        List<T> first = new ArrayList<>();
+        List<T> second = new ArrayList<>();
         for (T element : iterable) {
             if (predicate.accept(element)) {
                 first.add(element);
@@ -1268,6 +1321,9 @@ public class Collectionx {
         }
         return Pair.of(first, second);
     }
+
+
+    /* ******************************************* to ******************************************* */
 
 
     /**
@@ -1321,7 +1377,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> SortedSet<T> toSortedSet(@NotNull Iterable<T> iterable, @NotNull Comparator<T> comparator) {
-        return toCollection(iterable, new TreeSet<T>(comparator));
+        return toCollection(iterable, new TreeSet<>(comparator));
     }
 
     /**
@@ -1380,6 +1436,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* union ******************************************* */
+
+
     /**
      * Returns a set containing all distinct elements from both collections.
      * <p>
@@ -1393,6 +1452,9 @@ public class Collectionx {
         addAll(set, other);
         return set;
     }
+
+
+    /* ******************************************* all ******************************************* */
 
     /**
      * Returns `true` if all elements match the given [predicate].
@@ -1408,6 +1470,9 @@ public class Collectionx {
         }
         return true;
     }
+
+
+    /* ******************************************* any ******************************************* */
 
     /**
      * Returns `true` if collection has at least one element.
@@ -1436,6 +1501,9 @@ public class Collectionx {
         }
     }
 
+
+    /* ******************************************* none ******************************************* */
+
     /**
      * Returns `true` if the collection has no elements.
      */
@@ -1463,6 +1531,9 @@ public class Collectionx {
         }
     }
 
+
+    /* ******************************************* contains ******************************************* */
+
     /**
      * Returns `true` if [element] is found in the collection.
      */
@@ -1473,6 +1544,9 @@ public class Collectionx {
             return indexOf(iterable, element) >= 0;
         }
     }
+
+
+    /* ******************************************* forEach ******************************************* */
 
 
     /**
@@ -1496,6 +1570,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* chunked ******************************************* */
+
+
     /**
      * Splits this collection into a list of lists each not exceeding the given [size].
      * <p>
@@ -1515,12 +1592,12 @@ public class Collectionx {
 
         int listSize = count(iterable);
         int resultSize = (listSize / size) + (listSize % size == 0 ? 0 : 1);
-        List<List<T>> resultList = new ArrayList<List<T>>(resultSize);
+        List<List<T>> resultList = new ArrayList<>(resultSize);
         List<T> chunkedList = null;
         int index = 0;
         for (T element : iterable) {
             if (chunkedList == null) {
-                chunkedList = new ArrayList<T>(Math.min(size, listSize - index));
+                chunkedList = new ArrayList<>(Math.min(size, listSize - index));
             }
             chunkedList.add(element);
             if (chunkedList.size() >= size) {
@@ -1571,6 +1648,9 @@ public class Collectionx {
         }
         return resultList;
     }
+
+
+    /* ******************************************* minus ******************************************* */
 
 
     /**
@@ -1632,12 +1712,15 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* plus ******************************************* */
+
+
     /**
      * Returns a list containing all elements of the original collection and then the given [element].
      */
     @NotNull
     public static <T> List<T> plus(@NotNull Collection<T> collection, @NotNull T element) {
-        ArrayList<T> result = new ArrayList<T>(collection.size() + 1);
+        ArrayList<T> result = new ArrayList<>(collection.size() + 1);
         result.addAll(collection);
         result.add(element);
         return result;
@@ -1651,7 +1734,7 @@ public class Collectionx {
         if (iterable instanceof Collection) {
             return plus(((Collection<T>) iterable), element);
         } else {
-            ArrayList<T> result = new ArrayList<T>();
+            ArrayList<T> result = new ArrayList<>();
             addAll(result, iterable);
             result.add(element);
             return result;
@@ -1663,7 +1746,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> plus(@NotNull Collection<T> collection, @NotNull T[] elements) {
-        ArrayList<T> result = new ArrayList<T>(collection.size() + elements.length);
+        ArrayList<T> result = new ArrayList<>(collection.size() + elements.length);
         result.addAll(collection);
         addAll(result, elements);
         return result;
@@ -1677,7 +1760,7 @@ public class Collectionx {
         if (iterable instanceof Collection) {
             return plus(((Collection<T>) iterable), elements);
         } else {
-            ArrayList<T> result = new ArrayList<T>();
+            ArrayList<T> result = new ArrayList<>();
             addAll(result, iterable);
             addAll(result, elements);
             return result;
@@ -1690,12 +1773,12 @@ public class Collectionx {
     @NotNull
     public static <T> List<T> plus(@NotNull Collection<T> collection, @NotNull Iterable<T> elements) {
         if (elements instanceof Collection) {
-            ArrayList<T> result = new ArrayList<T>(collection.size() + ((Collection) elements).size());
+            ArrayList<T> result = new ArrayList<>(collection.size() + ((Collection) elements).size());
             addAll(result, collection);
             addAll(result, elements);
             return result;
         } else {
-            ArrayList<T> result = new ArrayList<T>(collection);
+            ArrayList<T> result = new ArrayList<>(collection);
             addAll(result, elements);
             return result;
         }
@@ -1709,7 +1792,7 @@ public class Collectionx {
         if (iterable instanceof Collection) {
             return plus((Collection<T>) iterable, elements);
         } else {
-            ArrayList<T> result = new ArrayList<T>();
+            ArrayList<T> result = new ArrayList<>();
             addAll(result, iterable);
             addAll(result, elements);
             return result;
@@ -1733,6 +1816,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* group ******************************************* */
+
+
     /**
      * Groups elements of the original collection by the key returned by the given [keySelector] function
      * applied to each element and puts to the [destination] map each group key associated with a list of corresponding elements.
@@ -1745,7 +1831,7 @@ public class Collectionx {
             @NotNull
             @Override
             public List<T> get() {
-                return new ArrayList<T>();
+                return new ArrayList<>();
             }
         };
         for (T element : iterable) {
@@ -1769,7 +1855,7 @@ public class Collectionx {
             @NotNull
             @Override
             public List<V> get() {
-                return new ArrayList<V>();
+                return new ArrayList<>();
             }
         };
         for (T element : iterable) {
@@ -1821,6 +1907,9 @@ public class Collectionx {
             }
         };
     }
+
+
+    /* ******************************************* sort ******************************************* */
 
 
     /**
@@ -1935,6 +2024,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* reverse ******************************************* */
+
+
     /**
      * Reverses elements in the list in-place.
      */
@@ -1955,6 +2047,9 @@ public class Collectionx {
             return list;
         }
     }
+
+
+    /* ******************************************* index ******************************************* */
 
 
     /**
@@ -2039,6 +2134,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* fold ******************************************* */
+
+
     /**
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
@@ -2102,6 +2200,9 @@ public class Collectionx {
         }
         return accumulator;
     }
+
+
+    /* ******************************************* reduce ******************************************* */
 
 
     /**
@@ -2179,6 +2280,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* slice ******************************************* */
+
+
     /**
      * Returns a list containing elements at specified [indices].
      */
@@ -2189,13 +2293,16 @@ public class Collectionx {
             //noinspection unchecked
             return EMPTY_LIST;
         } else {
-            ArrayList<T> resultList = new ArrayList<T>(size);
+            ArrayList<T> resultList = new ArrayList<>(size);
             for (int index : indices) {
                 resultList.add(list.get(index));
             }
             return resultList;
         }
     }
+
+
+    /* ******************************************* take ******************************************* */
 
     /**
      * Returns a list containing first [n] elements.
@@ -2283,7 +2390,7 @@ public class Collectionx {
                 iterator.next();
                 int expectedSize = list.size() - iterator.nextIndex();
                 if (expectedSize == 0) return emptyList();
-                ArrayList<T> resultList = new ArrayList<T>(expectedSize);
+                ArrayList<T> resultList = new ArrayList<>(expectedSize);
                 while (iterator.hasNext()) {
                     resultList.add(iterator.next());
                 }
@@ -2298,7 +2405,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> takeWhile(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
-        ArrayList<T> list = new ArrayList<T>();
+        ArrayList<T> list = new ArrayList<>();
         for (T item : iterable) {
             if (!predicate.accept(item))
                 break;
@@ -2306,6 +2413,9 @@ public class Collectionx {
         }
         return list;
     }
+
+
+    /* ******************************************* distince ******************************************* */
 
 
     /**
@@ -2326,8 +2436,8 @@ public class Collectionx {
      */
     @NotNull
     public static <T, K> List<T> distinctBy(@NotNull Iterable<T> iterable, @NotNull Transformer<T, K> selector) {
-        HashSet<K> set = new HashSet<K>();
-        ArrayList<T> list = new ArrayList<T>();
+        HashSet<K> set = new HashSet<>();
+        ArrayList<T> list = new ArrayList<>();
         for (T e : iterable) {
             K key = selector.transform(e);
             if (set.add(key)) {
@@ -2336,6 +2446,9 @@ public class Collectionx {
         }
         return list;
     }
+
+
+    /* ******************************************* intersect ******************************************* */
 
 
     /**
@@ -2349,6 +2462,9 @@ public class Collectionx {
         retainAll(set, other);
         return set;
     }
+
+
+    /* ******************************************* retain ******************************************* */
 
 
     private static boolean retainNothing(@NotNull Collection collection) {
@@ -2399,6 +2515,9 @@ public class Collectionx {
     public static <T> boolean retainAll(@NotNull List<T> list, @NotNull Predicate<T> predicate) {
         return filterInPlace(list, predicate, false);
     }
+
+
+    /* ******************************************* associate ******************************************* */
 
 
     /**
@@ -2481,6 +2600,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* drop ******************************************* */
+
+
     /**
      * Returns a list containing all elements except first [n] elements.
      */
@@ -2506,7 +2628,7 @@ public class Collectionx {
                 return listOf(last(collection));
             }
 
-            list = new ArrayList<T>(resultSize);
+            list = new ArrayList<>(resultSize);
             if (iterable instanceof List) {
                 List<T> list1 = (List<T>) iterable;
                 if (iterable instanceof RandomAccess) {
@@ -2523,7 +2645,7 @@ public class Collectionx {
                 return list;
             }
         } else {
-            list = new ArrayList<T>();
+            list = new ArrayList<>();
         }
 
         int count = 0;
@@ -2572,7 +2694,7 @@ public class Collectionx {
     @NotNull
     public static <T> List<T> dropWhile(@NotNull Iterable<T> iterable, @NotNull Predicate<T> predicate) {
         boolean yielding = false;
-        ArrayList<T> list = new ArrayList<T>();
+        ArrayList<T> list = new ArrayList<>();
         for (T item : iterable)
             if (yielding) {
                 list.add(item);
@@ -2582,6 +2704,9 @@ public class Collectionx {
             }
         return list;
     }
+
+
+    /* ******************************************* single ******************************************* */
 
 
     /**
@@ -2693,6 +2818,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* element ******************************************* */
+
+
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this collection.
      */
@@ -2781,6 +2909,9 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* fill ******************************************* */
+
+
     /**
      * Fills the list with the provided [value].
      * Each element in the list gets replaced with the [value].
@@ -2788,6 +2919,9 @@ public class Collectionx {
     public static <T> void fill(@NotNull List<T> list, @NotNull T value) {
         Collections.fill(list, value);
     }
+
+
+    /* ******************************************* shuffle ******************************************* */
 
 
     /**
