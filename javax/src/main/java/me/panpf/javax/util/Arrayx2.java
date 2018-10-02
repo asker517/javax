@@ -18,12 +18,14 @@ package me.panpf.javax.util;
 
 import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 /**
  * Array tool method
  */
+@SuppressWarnings("WeakerAccess")
 public class Arrayx2 {
 
     private Arrayx2() {
@@ -46,63 +48,63 @@ public class Arrayx2 {
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static <T> int contentHashCode(@NotNull T[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull byte[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull short[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull int[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull long[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull float[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull double[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull boolean[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
     public static int contentHashCode(@NotNull char[] elements) {
-        return java.util.Arrays.hashCode(elements);
+        return Arrays.hashCode(elements);
     }
 
 
@@ -117,7 +119,7 @@ public class Arrayx2 {
      * If any of arrays contains itself on any nesting level the behavior is undefined.
      */
     public static <T> boolean contentDeepEquals(@NotNull T[] elements, T[] other) {
-        return java.util.Arrays.deepEquals(elements, other);
+        return Arrays.deepEquals(elements, other);
     }
 
     /**
@@ -127,7 +129,7 @@ public class Arrayx2 {
      * If any of arrays contains itself on any nesting level the behavior is undefined.
      */
     public static <T> int contentDeepHashCode(@NotNull T[] elements) {
-        return java.util.Arrays.deepHashCode(elements);
+        return Arrays.deepHashCode(elements);
     }
 
 
@@ -142,7 +144,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <T> String contentDeepToString(@NotNull T[] elements) {
-        return java.util.Arrays.deepToString(elements);
+        return Arrays.deepToString(elements);
     }
 
 
@@ -150,14 +152,14 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     public static <T> String contentToString(@NotNull T[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     public static String contentToString(@NotNull byte[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -165,7 +167,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull short[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -173,7 +175,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull int[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -181,7 +183,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull long[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -189,7 +191,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull float[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -197,7 +199,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull double[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -205,7 +207,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull boolean[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
     /**
@@ -213,7 +215,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static String contentToString(@NotNull char[] elements) {
-        return java.util.Arrays.toString(elements);
+        return Arrays.toString(elements);
     }
 
 
@@ -225,7 +227,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static <T> boolean contentEquals(@NotNull T[] elements, @NotNull T[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -233,7 +235,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull byte[] elements, @NotNull byte[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -241,7 +243,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull short[] elements, @NotNull short[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -249,7 +251,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull int[] elements, @NotNull int[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -257,7 +259,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull long[] elements, @NotNull long[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -265,7 +267,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull float[] elements, @NotNull float[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -273,7 +275,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull double[] elements, @NotNull double[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -281,7 +283,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull boolean[] elements, @NotNull boolean[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
     /**
@@ -289,7 +291,7 @@ public class Arrayx2 {
      * i.e. contain the same number of the same elements in the same order.
      */
     public static boolean contentEquals(@NotNull char[] elements, @NotNull char[] other) {
-        return java.util.Arrays.equals(elements, other);
+        return Arrays.equals(elements, other);
     }
 
 
@@ -310,7 +312,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted according to the specified [comparator].
      */
     public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element, comparator);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element, comparator);
     }
 
     /**
@@ -325,7 +327,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted according to the specified [comparator].
      */
     public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, @NotNull Comparator<T> comparator) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element, comparator);
+        return Arrays.binarySearch(elements, 0, elements.length, element, comparator);
     }
 
     /**
@@ -340,7 +342,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -355,7 +357,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static <T> int binarySearch(@NotNull T[] elements, @NotNull T element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -370,7 +372,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull byte[] elements, byte element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -385,7 +387,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull byte[] elements, byte element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -400,7 +402,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull short[] elements, short element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -415,7 +417,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull short[] elements, short element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -430,7 +432,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull int[] elements, int element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -445,7 +447,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull int[] elements, int element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -460,7 +462,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull long[] elements, long element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -475,7 +477,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull long[] elements, long element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -490,7 +492,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull float[] elements, float element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -505,7 +507,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull float[] elements, float element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -520,7 +522,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull double[] elements, double element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -535,7 +537,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull double[] elements, double element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
     /**
@@ -550,7 +552,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull char[] elements, char element, int fromIndex, int toIndex) {
-        return java.util.Arrays.binarySearch(elements, fromIndex, toIndex, element);
+        return Arrays.binarySearch(elements, fromIndex, toIndex, element);
     }
 
     /**
@@ -565,7 +567,7 @@ public class Arrayx2 {
      * so that the array (or the specified subrange of array) still remains sorted.
      */
     public static int binarySearch(@NotNull char[] elements, char element) {
-        return java.util.Arrays.binarySearch(elements, 0, elements.length, element);
+        return Arrays.binarySearch(elements, 0, elements.length, element);
     }
 
 
@@ -575,216 +577,219 @@ public class Arrayx2 {
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static <T> T[] copyOf(@NotNull T[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static <T> T[] copyOf(@Nullable T[] elements) {
+        //noinspection unchecked
+        return elements != null ? Arrays.copyOf(elements, elements.length) : (T[]) new Object[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static byte[] copyOf(@NotNull byte[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static byte[] copyOf(@Nullable byte[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new byte[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static short[] copyOf(@NotNull short[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static short[] copyOf(@Nullable short[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new short[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static int[] copyOf(@NotNull int[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static int[] copyOf(@Nullable int[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new int[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static long[] copyOf(@NotNull long[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static long[] copyOf(@Nullable long[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new long[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static float[] copyOf(@NotNull float[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static float[] copyOf(@Nullable float[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new float[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static double[] copyOf(@NotNull double[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static double[] copyOf(@Nullable double[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new double[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static boolean[] copyOf(@NotNull boolean[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static boolean[] copyOf(@Nullable boolean[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new boolean[0];
     }
 
     /**
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static char[] copyOf(@NotNull char[] elements) {
-        return java.util.Arrays.copyOf(elements, elements.length);
+    public static char[] copyOf(@Nullable char[] elements) {
+        return elements != null ? Arrays.copyOf(elements, elements.length) : new char[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static byte[] copyOf(@NotNull byte[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static byte[] copyOf(@Nullable byte[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new byte[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static short[] copyOf(@NotNull short[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static short[] copyOf(@Nullable short[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new short[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static int[] copyOf(@NotNull int[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static int[] copyOf(@Nullable int[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new int[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static long[] copyOf(@NotNull long[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static long[] copyOf(@Nullable long[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new long[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static float[] copyOf(@NotNull float[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static float[] copyOf(@Nullable float[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new float[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static double[] copyOf(@NotNull double[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static double[] copyOf(@Nullable double[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new double[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static boolean[] copyOf(@NotNull boolean[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static boolean[] copyOf(@Nullable boolean[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new boolean[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static char[] copyOf(@NotNull char[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static char[] copyOf(@Nullable char[] elements, int newSize) {
+        return elements != null ? Arrays.copyOf(elements, newSize) : new char[0];
     }
 
     /**
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static <T> T[] copyOf(@NotNull T[] elements, int newSize) {
-        return java.util.Arrays.copyOf(elements, newSize);
+    public static <T> T[] copyOf(@Nullable T[] elements, int newSize) {
+        //noinspection unchecked
+        return elements != null ? Arrays.copyOf(elements, newSize) : (T[]) new Object[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static <T> T[] copyOfRange(@NotNull T[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static <T> T[] copyOfRange(@Nullable T[] elements, int fromIndex, int toIndex) {
+        //noinspection unchecked
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : (T[]) new Object[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static byte[] copyOfRange(@NotNull byte[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static byte[] copyOfRange(@Nullable byte[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new byte[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static short[] copyOfRange(@NotNull short[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static short[] copyOfRange(@Nullable short[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new short[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static int[] copyOfRange(@NotNull int[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static int[] copyOfRange(@Nullable int[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new int[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static long[] copyOfRange(@NotNull long[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static long[] copyOfRange(@Nullable long[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new long[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static float[] copyOfRange(@NotNull float[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static float[] copyOfRange(@Nullable float[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new float[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static double[] copyOfRange(@NotNull double[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static double[] copyOfRange(@Nullable double[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new double[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static boolean[] copyOfRange(@NotNull boolean[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static boolean[] copyOfRange(@Nullable boolean[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new boolean[0];
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static char[] copyOfRange(@NotNull char[] elements, int fromIndex, int toIndex) {
-        return java.util.Arrays.copyOfRange(elements, fromIndex, toIndex);
+    public static char[] copyOfRange(@Nullable char[] elements, int fromIndex, int toIndex) {
+        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : new char[0];
     }
 
 

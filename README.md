@@ -96,7 +96,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * arrayOf, isEmpty, isNotEmpty, toTypedArray, toCollection, toList, toSet, toHashSet, asList, map, reverse, sort,
     * single, any, iterator, asIterable, groupBy, groupingBy, count, max, min, join, sum, plus, indices, indexOf,
     * contains, forEach, filter, zip, partition, all, first, last, find, get, elementAt, flatMap, average, none,
-    * reduce, fold, intersect, subtract, drop, take, distinct, withIndex
+    * reduce, fold, intersect, subtract, drop, take, distinct, withIndex, orEmpty
 * Array2: [Arrayx2.java]
     * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
     * contentEquals, binarySearch, copyOf, slice, associate

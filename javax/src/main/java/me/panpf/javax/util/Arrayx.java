@@ -247,12 +247,98 @@ public class Arrayx {
     }
 
 
+    /* ******************************************* orEmpty ******************************************* */
+
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> T[] orEmpty(@Nullable T[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : (T[]) new Object[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> byte[] orEmpty(@Nullable byte[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new byte[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> short[] orEmpty(@Nullable short[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new short[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> int[] orEmpty(@Nullable int[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new int[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> long[] orEmpty(@Nullable long[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new long[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> float[] orEmpty(@Nullable float[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new float[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> double[] orEmpty(@Nullable double[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new double[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> boolean[] orEmpty(@Nullable boolean[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new boolean[0];
+    }
+
+    /**
+     * Return itself if it is not null, otherwise return a newly created empty array
+     */
+    @NotNull
+    public static <T> char[] orEmpty(@Nullable char[] elements) {
+        //noinspection unchecked
+        return elements != null ? elements : new char[0];
+    }
+
+
     /* ******************************************* toTypedArray ******************************************* */
 
 
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Byte[] toTypedArray(@Nullable byte[] elements) {
         Byte[] result = new Byte[count(elements)];
         if (elements != null) {
@@ -267,6 +353,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Short[] toTypedArray(@Nullable short[] elements) {
         Short[] result = new Short[count(elements)];
         if (elements != null) {
@@ -281,6 +368,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Integer[] toTypedArray(@Nullable int[] elements) {
         Integer[] result = new Integer[count(elements)];
         if (elements != null) {
@@ -295,6 +383,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Long[] toTypedArray(@Nullable long[] elements) {
         Long[] result = new Long[count(elements)];
         if (elements != null) {
@@ -309,6 +398,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Float[] toTypedArray(@Nullable float[] elements) {
         Float[] result = new Float[count(elements)];
         if (elements != null) {
@@ -323,6 +413,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Double[] toTypedArray(@Nullable double[] elements) {
         Double[] result = new Double[count(elements)];
         if (elements != null) {
@@ -337,6 +428,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Boolean[] toTypedArray(@Nullable boolean[] elements) {
         Boolean[] result = new Boolean[count(elements)];
         if (elements != null) {
@@ -351,6 +443,7 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
+    @NotNull
     public static Character[] toTypedArray(@Nullable char[] elements) {
         Character[] result = new Character[count(elements)];
         if (elements != null) {
@@ -868,8 +961,6 @@ public class Arrayx {
         };
     }
 
-    // TODO: 2018/10/2 尽量改成 @Nullable
-
 
     /* ******************************************* map ******************************************* */
 
@@ -878,72 +969,81 @@ public class Arrayx {
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <T, R> List<R> map(@NotNull T[] elements, @NotNull Transformer<T, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <T, R> List<R> map(@Nullable T[] elements, @NotNull Transformer<T, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(byte[] elements, @NotNull Transformer<Byte, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable byte[] elements, @NotNull Transformer<Byte, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(short[] elements, @NotNull Transformer<Short, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable short[] elements, @NotNull Transformer<Short, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(int[] elements, @NotNull Transformer<Integer, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable int[] elements, @NotNull Transformer<Integer, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(long[] elements, @NotNull Transformer<Long, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable long[] elements, @NotNull Transformer<Long, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(float[] elements, @NotNull Transformer<Float, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable float[] elements, @NotNull Transformer<Float, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(double[] elements, @NotNull Transformer<Double, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable double[] elements, @NotNull Transformer<Double, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(boolean[] elements, @NotNull Transformer<Boolean, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable boolean[] elements, @NotNull Transformer<Boolean, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <R> List<R> map(char[] elements, @NotNull Transformer<Character, R> transform) {
-        return mapTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> map(@Nullable char[] elements, @NotNull Transformer<Character, R> transform) {
+        return mapTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
 
@@ -951,10 +1051,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <T, R, C extends Collection<R>> C mapTo(@NotNull T[] elements, C destination, Transformer<T, R> transform) {
-        for (T item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <T, R, C extends Collection<R>> C mapTo(@Nullable T[] elements, @NotNull C destination, @NotNull Transformer<T, R> transform) {
+        if (elements != null) for (T item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -962,10 +1061,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(byte[] elements, C destination, @NotNull Transformer<Byte, R> transform) {
-        for (byte item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable byte[] elements, @NotNull C destination, @NotNull Transformer<Byte, R> transform) {
+        if (elements != null) for (byte item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -973,10 +1071,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(short[] elements, C destination, @NotNull Transformer<Short, R> transform) {
-        for (short item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable short[] elements, @NotNull C destination, @NotNull Transformer<Short, R> transform) {
+        if (elements != null) for (short item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -984,10 +1081,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(int[] elements, C destination, @NotNull Transformer<Integer, R> transform) {
-        for (int item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable int[] elements, @NotNull C destination, @NotNull Transformer<Integer, R> transform) {
+        if (elements != null) for (int item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -995,10 +1091,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(long[] elements, C destination, @NotNull Transformer<Long, R> transform) {
-        for (long item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable long[] elements, @NotNull C destination, @NotNull Transformer<Long, R> transform) {
+        if (elements != null) for (long item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -1006,10 +1101,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(float[] elements, C destination, @NotNull Transformer<Float, R> transform) {
-        for (float item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable float[] elements, @NotNull C destination, @NotNull Transformer<Float, R> transform) {
+        if (elements != null) for (float item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -1017,10 +1111,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(double[] elements, C destination, @NotNull Transformer<Double, R> transform) {
-        for (double item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable double[] elements, @NotNull C destination, @NotNull Transformer<Double, R> transform) {
+        if (elements != null) for (double item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -1028,10 +1121,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(boolean[] elements, C destination, @NotNull Transformer<Boolean, R> transform) {
-        for (boolean item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable boolean[] elements, @NotNull C destination, @NotNull Transformer<Boolean, R> transform) {
+        if (elements != null) for (boolean item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -1039,10 +1131,9 @@ public class Arrayx {
      * Applies the given [transform] function to each element of the original array
      * and appends the results to the given [destination].
      */
-    public static <R, C extends Collection<R>> C mapTo(char[] elements, C destination, @NotNull Transformer<Character, R> transform) {
-        for (char item : elements) {
-            destination.add(transform.transform(item));
-        }
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable char[] elements, @NotNull C destination, @NotNull Transformer<Character, R> transform) {
+        if (elements != null) for (char item : elements) destination.add(transform.transform(item));
         return destination;
     }
 
@@ -1054,8 +1145,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <T, R> List<R> mapIndexed(@NotNull T[] elements, IndexedTransformer<T, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <T, R> List<R> mapIndexed(@Nullable T[] elements, @NotNull IndexedTransformer<T, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1065,8 +1157,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(byte[] elements, IndexedTransformer<Byte, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable byte[] elements, @NotNull IndexedTransformer<Byte, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1076,8 +1169,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(short[] elements, IndexedTransformer<Short, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable short[] elements, @NotNull IndexedTransformer<Short, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1087,8 +1181,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(int[] elements, IndexedTransformer<Integer, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable int[] elements, @NotNull IndexedTransformer<Integer, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1098,8 +1193,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(long[] elements, IndexedTransformer<Long, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable long[] elements, @NotNull IndexedTransformer<Long, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1109,8 +1205,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(float[] elements, IndexedTransformer<Float, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable float[] elements, @NotNull IndexedTransformer<Float, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1120,8 +1217,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(double[] elements, IndexedTransformer<Double, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable double[] elements, @NotNull IndexedTransformer<Double, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1131,8 +1229,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(boolean[] elements, IndexedTransformer<Boolean, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable boolean[] elements, @NotNull IndexedTransformer<Boolean, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
     /**
@@ -1142,8 +1241,9 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R> List<R> mapIndexed(char[] elements, IndexedTransformer<Character, R> transform) {
-        return mapIndexedTo(elements, new ArrayList<R>(elements.length), transform);
+    @NotNull
+    public static <R> List<R> mapIndexed(@Nullable char[] elements, @NotNull IndexedTransformer<Character, R> transform) {
+        return mapIndexedTo(elements, new ArrayList<R>(count(elements)), transform);
     }
 
 
@@ -1154,10 +1254,11 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <T, R, C extends Collection<R>> C mapIndexedTo(@NotNull T[] elements, C destination, IndexedTransformer<T, R> transform) {
-        int index = 0;
-        for (T item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <T, R, C extends Collection<R>> C mapIndexedTo(@Nullable T[] elements, @NotNull C destination, @NotNull IndexedTransformer<T, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (T item : elements) destination.add(transform.transform(index++, item));
         }
         return destination;
     }
@@ -1169,10 +1270,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(byte[] elements, C destination, IndexedTransformer<Byte, R> transform) {
-        int index = 0;
-        for (byte item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable byte[] elements, @NotNull C destination, @NotNull IndexedTransformer<Byte, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (byte item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1184,10 +1288,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(short[] elements, C destination, IndexedTransformer<Short, R> transform) {
-        int index = 0;
-        for (short item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable short[] elements, @NotNull C destination, @NotNull IndexedTransformer<Short, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (short item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1199,10 +1306,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(int[] elements, C destination, IndexedTransformer<Integer, R> transform) {
-        int index = 0;
-        for (int item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable int[] elements, @NotNull C destination, @NotNull IndexedTransformer<Integer, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (int item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1214,10 +1324,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(long[] elements, C destination, IndexedTransformer<Long, R> transform) {
-        int index = 0;
-        for (long item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable long[] elements, @NotNull C destination, @NotNull IndexedTransformer<Long, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (long item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1229,10 +1342,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(float[] elements, C destination, IndexedTransformer<Float, R> transform) {
-        int index = 0;
-        for (float item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable float[] elements, @NotNull C destination, @NotNull IndexedTransformer<Float, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (float item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1244,10 +1360,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(double[] elements, C destination, IndexedTransformer<Double, R> transform) {
-        int index = 0;
-        for (double item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable double[] elements, @NotNull C destination, @NotNull IndexedTransformer<Double, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (double item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1259,10 +1378,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(boolean[] elements, C destination, IndexedTransformer<Boolean, R> transform) {
-        int index = 0;
-        for (boolean item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable boolean[] elements, @NotNull C destination, @NotNull IndexedTransformer<Boolean, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (boolean item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1274,10 +1396,13 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <R, C extends Collection<R>> C mapIndexedTo(char[] elements, C destination, IndexedTransformer<Character, R> transform) {
-        int index = 0;
-        for (char item : elements) {
-            destination.add(transform.transform(index++, item));
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable char[] elements, @NotNull C destination, @NotNull IndexedTransformer<Character, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (char item : elements) {
+                destination.add(transform.transform(index++, item));
+            }
         }
         return destination;
     }
@@ -1287,7 +1412,8 @@ public class Arrayx {
      * Returns a list containing only the non-null results of applying the given [transform] function
      * to each element in the original array.
      */
-    public static <T, R> List<R> mapNotNull(@NotNull T[] elements, NullableTransformer<T, R> transform) {
+    @NotNull
+    public static <T, R> List<R> mapNotNull(@Nullable T[] elements, @NotNull NullableTransformer<T, R> transform) {
         return mapNotNullTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -1295,11 +1421,14 @@ public class Arrayx {
      * Applies the given [transform] function to each element in the original array
      * and appends only the non-null results to the given [destination].
      */
-    public static <T, R, C extends Collection<R>> C mapNotNullTo(@NotNull T[] elements, C destination, NullableTransformer<T, R> transform) {
-        for (T item : elements) {
-            R r = transform.transform(item);
-            if (r != null) {
-                destination.add(r);
+    @NotNull
+    public static <T, R, C extends Collection<R>> C mapNotNullTo(@Nullable T[] elements, @NotNull C destination, @NotNull NullableTransformer<T, R> transform) {
+        if (elements != null) {
+            for (T item : elements) {
+                R r = transform.transform(item);
+                if (r != null) {
+                    destination.add(r);
+                }
             }
         }
         return destination;
@@ -1312,7 +1441,8 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <T, R> List<R> mapIndexedNotNull(@NotNull T[] elements, NullableIndexedTransformer<T, R> transform) {
+    @NotNull
+    public static <T, R> List<R> mapIndexedNotNull(@Nullable T[] elements, @NotNull NullableIndexedTransformer<T, R> transform) {
         return mapIndexedNotNullTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -1323,12 +1453,15 @@ public class Arrayx {
      * @param transform function that takes the index of an element and the element itself
      *                  and returns the result of the transform applied to the element.
      */
-    public static <T, R, C extends Collection<R>> C mapIndexedNotNullTo(@NotNull T[] elements, C destination, NullableIndexedTransformer<T, R> transform) {
-        int index = 0;
-        for (T item : elements) {
-            R r = transform.transform(index++, item);
-            if (r != null) {
-                destination.add(r);
+    @NotNull
+    public static <T, R, C extends Collection<R>> C mapIndexedNotNullTo(@Nullable T[] elements, @NotNull C destination, @NotNull NullableIndexedTransformer<T, R> transform) {
+        if (elements != null) {
+            int index = 0;
+            for (T item : elements) {
+                R r = transform.transform(index++, item);
+                if (r != null) {
+                    destination.add(r);
+                }
             }
         }
         return destination;
@@ -1341,7 +1474,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static <T> void reverse(@NotNull T[] elements) {
+    public static <T> void reverse(@Nullable T[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1356,7 +1490,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull byte[] elements) {
+    public static void reverse(@Nullable byte[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1371,7 +1506,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull short[] elements) {
+    public static void reverse(@Nullable short[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1386,7 +1522,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull int[] elements) {
+    public static void reverse(@Nullable int[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1401,7 +1538,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull long[] elements) {
+    public static void reverse(@Nullable long[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1416,7 +1554,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull float[] elements) {
+    public static void reverse(@Nullable float[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1431,7 +1570,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull double[] elements) {
+    public static void reverse(@Nullable double[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1446,7 +1586,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull boolean[] elements) {
+    public static void reverse(@Nullable boolean[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1461,7 +1602,8 @@ public class Arrayx {
     /**
      * Reverses elements in the array in-place.
      */
-    public static void reverse(@NotNull char[] elements) {
+    public static void reverse(@Nullable char[] elements) {
+        if (elements == null || elements.length == 0) return;
         int midPoint = (elements.length / 2) - 1;
         if (midPoint < 0) return;
         int reverseIndex = elements.length - 1;
@@ -1477,7 +1619,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static <T> List<T> reversed(@NotNull T[] elements) {
+    public static <T> List<T> reversed(@Nullable T[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<T> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1488,7 +1630,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Byte> reversed(@NotNull byte[] elements) {
+    public static List<Byte> reversed(@Nullable byte[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Byte> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1499,7 +1641,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Short> reversed(@NotNull short[] elements) {
+    public static List<Short> reversed(@Nullable short[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Short> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1510,7 +1652,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Integer> reversed(@NotNull int[] elements) {
+    public static List<Integer> reversed(@Nullable int[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Integer> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1521,7 +1663,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Long> reversed(@NotNull long[] elements) {
+    public static List<Long> reversed(@Nullable long[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Long> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1532,7 +1674,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Float> reversed(@NotNull float[] elements) {
+    public static List<Float> reversed(@Nullable float[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Float> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1543,7 +1685,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Double> reversed(@NotNull double[] elements) {
+    public static List<Double> reversed(@Nullable double[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Double> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1554,7 +1696,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Boolean> reversed(@NotNull boolean[] elements) {
+    public static List<Boolean> reversed(@Nullable boolean[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Boolean> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1565,7 +1707,7 @@ public class Arrayx {
      * Returns a list with elements in reversed order.
      */
     @NotNull
-    public static List<Character> reversed(@NotNull char[] elements) {
+    public static List<Character> reversed(@Nullable char[] elements) {
         if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Character> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
@@ -1576,7 +1718,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static <T> T[] reversedArray(@NotNull T[] elements) {
+    public static <T> T[] reversedArray(@Nullable T[] elements) {
+        //noinspection unchecked
         return (T[]) reversed(elements).toArray();
     }
 
@@ -1584,8 +1727,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static byte[] reversedArray(@NotNull byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static byte[] reversedArray(@Nullable byte[] elements) {
+        if (Arrayx.isEmpty(elements)) return new byte[0];
         byte[] result = new byte[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1598,8 +1741,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static short[] reversedArray(@NotNull short[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static short[] reversedArray(@Nullable short[] elements) {
+        if (Arrayx.isEmpty(elements)) return new short[0];
         short[] result = new short[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1612,8 +1755,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static int[] reversedArray(@NotNull int[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static int[] reversedArray(@Nullable int[] elements) {
+        if (Arrayx.isEmpty(elements)) return new int[0];
         int[] result = new int[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1626,8 +1769,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static long[] reversedArray(@NotNull long[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static long[] reversedArray(@Nullable long[] elements) {
+        if (Arrayx.isEmpty(elements)) return new long[0];
         long[] result = new long[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1640,8 +1783,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static float[] reversedArray(@NotNull float[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static float[] reversedArray(@Nullable float[] elements) {
+        if (Arrayx.isEmpty(elements)) return new float[0];
         float[] result = new float[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1654,8 +1797,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static double[] reversedArray(@NotNull double[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static double[] reversedArray(@Nullable double[] elements) {
+        if (Arrayx.isEmpty(elements)) return new double[0];
         double[] result = new double[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1668,8 +1811,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static boolean[] reversedArray(@NotNull boolean[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static boolean[] reversedArray(@Nullable boolean[] elements) {
+        if (Arrayx.isEmpty(elements)) return new boolean[0];
         boolean[] result = new boolean[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1682,8 +1825,8 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static char[] reversedArray(@NotNull char[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static char[] reversedArray(@Nullable char[] elements) {
+        if (Arrayx.isEmpty(elements)) return new char[0];
         char[] result = new char[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1699,7 +1842,7 @@ public class Arrayx {
     /**
      * Sorts the array in-place according to the natural order of its elements.
      */
-    public static <T extends Comparable<T>> void sort(@NotNull T[] elements) {
+    public static <T extends Comparable<T>> void sort(@Nullable T[] elements) {
         sortWith(elements, new Comparisonx.NaturalOrderComparator<T>());
     }
 
@@ -1708,128 +1851,128 @@ public class Arrayx {
      *
      * @throws ClassCastException if any element of the array is not [Comparable].
      */
-    public static <T> void sort(@NotNull T[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static <T> void sort(@Nullable T[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull int[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable int[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull long[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable long[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull byte[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable byte[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull short[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable short[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull double[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable double[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull float[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable float[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts the array in-place.
      */
-    public static void sort(@NotNull char[] elements) {
-        if (elements.length > 1) java.util.Arrays.sort(elements);
+    public static void sort(@Nullable char[] elements) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static <T> void sort(@NotNull T[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static <T> void sort(@Nullable T[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull byte[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable byte[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull short[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable short[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull int[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable int[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull long[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable long[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull float[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable float[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull double[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable double[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
     /**
      * Sorts a range in the array in-place.
      */
-    public static void sort(@NotNull char[] elements, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex);
+    public static void sort(@Nullable char[] elements, int fromIndex, int toIndex) {
+        if (elements != null) Arrays.sort(elements, fromIndex, toIndex);
     }
 
 
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static <T extends Comparable<T>> void sortDescending(@NotNull T[] elements) {
+    public static <T extends Comparable<T>> void sortDescending(@Nullable T[] elements) {
         sortWith(elements, new Comparisonx.ReverseOrderComparator());
     }
 
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull byte[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable byte[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1838,8 +1981,8 @@ public class Arrayx {
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull short[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable short[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1848,8 +1991,8 @@ public class Arrayx {
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull int[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable int[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1858,8 +2001,8 @@ public class Arrayx {
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull long[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable long[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1868,8 +2011,8 @@ public class Arrayx {
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull float[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable float[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1878,8 +2021,8 @@ public class Arrayx {
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull double[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable double[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1888,8 +2031,8 @@ public class Arrayx {
     /**
      * Sorts elements in the array in-place descending according to their natural sort order.
      */
-    public static void sortDescending(@NotNull char[] elements) {
-        if (elements.length > 1) {
+    public static void sortDescending(@Nullable char[] elements) {
+        if (elements != null && elements.length > 1) {
             sort(elements);
             reverse(elements);
         }
@@ -1899,31 +2042,31 @@ public class Arrayx {
     /**
      * Sorts the array in-place according to the order specified by the given [comparator].
      */
-    public static <T> void sortWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
-        if (elements.length > 1) java.util.Arrays.sort(elements, comparator);
+    public static <T> void sortWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements, comparator);
     }
 
     /**
      * Sorts a range in the array in-place with the given [comparator].
      */
-    public static <T> void sortWith(@NotNull T[] elements, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
-        java.util.Arrays.sort(elements, fromIndex, toIndex, comparator);
+    public static <T> void sortWith(@Nullable T[] elements, @NotNull Comparator<T> comparator, int fromIndex, int toIndex) {
+        if (elements != null && elements.length > 1) Arrays.sort(elements, fromIndex, toIndex, comparator);
     }
 
 
     /**
      * Sorts elements in the array in-place according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <T, R extends Comparable<R>> void sortBy(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
-        if (elements.length > 1) sortWith(elements, Comparisonx.compareBy(selector));
+    public static <T, R extends Comparable<R>> void sortBy(@Nullable T[] elements, @NotNull NullableTransformer<T, R> selector) {
+        if (elements != null && elements.length > 1) sortWith(elements, Comparisonx.compareBy(selector));
     }
 
 
     /**
      * Sorts elements in the array in-place descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <T, R extends Comparable<R>> void sortByDescending(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
-        if (elements.length > 1) sortWith(elements, Comparisonx.compareByDescending(selector));
+    public static <T, R extends Comparable<R>> void sortByDescending(@Nullable T[] elements, @NotNull NullableTransformer<T, R> selector) {
+        if (elements != null && elements.length > 1) sortWith(elements, Comparisonx.compareByDescending(selector));
     }
 
 
@@ -1931,7 +2074,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static <T extends Comparable<T>> List<T> sorted(@NotNull T[] elements) {
+    public static <T extends Comparable<T>> List<T> sorted(@Nullable T[] elements) {
         return asList(sortedArray(elements));
     }
 
@@ -1939,7 +2082,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Byte> sorted(@NotNull byte[] elements) {
+    public static List<Byte> sorted(@Nullable byte[] elements) {
         Byte[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -1949,7 +2092,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Short> sorted(@NotNull short[] elements) {
+    public static List<Short> sorted(@Nullable short[] elements) {
         Short[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -1959,7 +2102,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Integer> sorted(@NotNull int[] elements) {
+    public static List<Integer> sorted(@Nullable int[] elements) {
         Integer[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -1969,7 +2112,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Long> sorted(@NotNull long[] elements) {
+    public static List<Long> sorted(@Nullable long[] elements) {
         Long[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -1979,7 +2122,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Float> sorted(@NotNull float[] elements) {
+    public static List<Float> sorted(@Nullable float[] elements) {
         Float[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -1989,7 +2132,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Double> sorted(@NotNull double[] elements) {
+    public static List<Double> sorted(@Nullable double[] elements) {
         Double[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -1999,7 +2142,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to their natural sort order.
      */
     @NotNull
-    public static List<Character> sorted(@NotNull char[] elements) {
+    public static List<Character> sorted(@Nullable char[] elements) {
         Character[] result = toTypedArray(elements);
         sort(result);
         return asList(result);
@@ -2010,7 +2153,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static <T extends Comparable<T>> List<T> sortedDescending(@NotNull T[] elements) {
+    public static <T extends Comparable<T>> List<T> sortedDescending(@Nullable T[] elements) {
         return Arrayx.sortedWith(elements, new Comparisonx.ReverseOrderComparator<T>());
     }
 
@@ -2018,7 +2161,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Byte> sortedDescending(@NotNull byte[] elements) {
+    public static List<Byte> sortedDescending(@Nullable byte[] elements) {
         byte[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2028,7 +2171,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Short> sortedDescending(@NotNull short[] elements) {
+    public static List<Short> sortedDescending(@Nullable short[] elements) {
         short[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2038,7 +2181,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Integer> sortedDescending(@NotNull int[] elements) {
+    public static List<Integer> sortedDescending(@Nullable int[] elements) {
         int[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2048,7 +2191,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Long> sortedDescending(@NotNull long[] elements) {
+    public static List<Long> sortedDescending(@Nullable long[] elements) {
         long[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2058,7 +2201,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Float> sortedDescending(@NotNull float[] elements) {
+    public static List<Float> sortedDescending(@Nullable float[] elements) {
         float[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2068,7 +2211,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Double> sortedDescending(@NotNull double[] elements) {
+    public static List<Double> sortedDescending(@Nullable double[] elements) {
         double[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2078,7 +2221,7 @@ public class Arrayx {
      * Returns a list of all elements sorted descending according to their natural sort order.
      */
     @NotNull
-    public static List<Character> sortedDescending(@NotNull char[] elements) {
+    public static List<Character> sortedDescending(@Nullable char[] elements) {
         char[] result = Arrayx2.copyOf(elements);
         Arrayx.sort(result);
         return Arrayx.reversed(result);
@@ -2089,7 +2232,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static <T> List<T> sortedWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
+    public static <T> List<T> sortedWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
         return Arrayx.asList(Arrayx.sortedArrayWith(elements, comparator));
     }
 
@@ -2097,7 +2240,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Byte> sortedWith(@NotNull byte[] elements, @NotNull Comparator<Byte> comparator) {
+    public static List<Byte> sortedWith(@Nullable byte[] elements, @NotNull Comparator<Byte> comparator) {
         Byte[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2107,7 +2250,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Short> sortedWith(@NotNull short[] elements, @NotNull Comparator<Short> comparator) {
+    public static List<Short> sortedWith(@Nullable short[] elements, @NotNull Comparator<Short> comparator) {
         Short[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2117,7 +2260,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Integer> sortedWith(@NotNull int[] elements, @NotNull Comparator<Integer> comparator) {
+    public static List<Integer> sortedWith(@Nullable int[] elements, @NotNull Comparator<Integer> comparator) {
         Integer[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2127,7 +2270,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Long> sortedWith(@NotNull long[] elements, @NotNull Comparator<Long> comparator) {
+    public static List<Long> sortedWith(@Nullable long[] elements, @NotNull Comparator<Long> comparator) {
         Long[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2137,7 +2280,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Float> sortedWith(@NotNull float[] elements, @NotNull Comparator<Float> comparator) {
+    public static List<Float> sortedWith(@Nullable float[] elements, @NotNull Comparator<Float> comparator) {
         Float[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2147,7 +2290,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Double> sortedWith(@NotNull double[] elements, @NotNull Comparator<Double> comparator) {
+    public static List<Double> sortedWith(@Nullable double[] elements, @NotNull Comparator<Double> comparator) {
         Double[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2157,7 +2300,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Boolean> sortedWith(@NotNull boolean[] elements, @NotNull Comparator<Boolean> comparator) {
+    public static List<Boolean> sortedWith(@Nullable boolean[] elements, @NotNull Comparator<Boolean> comparator) {
         Boolean[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2167,7 +2310,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to the specified [comparator].
      */
     @NotNull
-    public static List<Character> sortedWith(@NotNull char[] elements, @NotNull Comparator<Character> comparator) {
+    public static List<Character> sortedWith(@Nullable char[] elements, @NotNull Comparator<Character> comparator) {
         Character[] result = Arrayx.toTypedArray(elements);
         Arrayx.sortWith(result, comparator);
         return Arrayx.asList(result);
@@ -2178,7 +2321,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <T, R extends Comparable<R>> List<T> sortedBy(@NotNull T[] elements, @NotNull NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> List<T> sortedBy(@Nullable T[] elements, @NotNull NullableTransformer<T, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2186,7 +2329,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Byte> sortedBy(@NotNull byte[] elements, @NotNull NullableTransformer<Byte, R> selector) {
+    public static <R extends Comparable<R>> List<Byte> sortedBy(@Nullable byte[] elements, @NotNull NullableTransformer<Byte, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2194,7 +2337,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Short> sortedBy(@NotNull short[] elements, @NotNull NullableTransformer<Short, R> selector) {
+    public static <R extends Comparable<R>> List<Short> sortedBy(@Nullable short[] elements, @NotNull NullableTransformer<Short, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2202,7 +2345,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Integer> sortedBy(@NotNull int[] elements, @NotNull NullableTransformer<Integer, R> selector) {
+    public static <R extends Comparable<R>> List<Integer> sortedBy(@Nullable int[] elements, @NotNull NullableTransformer<Integer, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2210,7 +2353,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Long> sortedBy(@NotNull long[] elements, @NotNull NullableTransformer<Long, R> selector) {
+    public static <R extends Comparable<R>> List<Long> sortedBy(@Nullable long[] elements, @NotNull NullableTransformer<Long, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2218,7 +2361,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Float> sortedBy(@NotNull float[] elements, @NotNull NullableTransformer<Float, R> selector) {
+    public static <R extends Comparable<R>> List<Float> sortedBy(@Nullable float[] elements, @NotNull NullableTransformer<Float, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2226,7 +2369,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Double> sortedBy(@NotNull double[] elements, @NotNull NullableTransformer<Double, R> selector) {
+    public static <R extends Comparable<R>> List<Double> sortedBy(@Nullable double[] elements, @NotNull NullableTransformer<Double, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2234,7 +2377,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Boolean> sortedBy(@NotNull boolean[] elements, @NotNull NullableTransformer<Boolean, R> selector) {
+    public static <R extends Comparable<R>> List<Boolean> sortedBy(@Nullable boolean[] elements, @NotNull NullableTransformer<Boolean, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2242,7 +2385,7 @@ public class Arrayx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <R extends Comparable<R>> List<Character> sortedBy(@NotNull char[] elements, @NotNull NullableTransformer<Character, R> selector) {
+    public static <R extends Comparable<R>> List<Character> sortedBy(@Nullable char[] elements, @NotNull NullableTransformer<Character, R> selector) {
         return sortedWith(elements, Comparisonx.compareBy(selector));
     }
 
@@ -2250,63 +2393,63 @@ public class Arrayx {
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <T, R extends Comparable<R>> List<T> sortedByDescending(@NotNull T[] elements, NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> List<T> sortedByDescending(@Nullable T[] elements, @NotNull NullableTransformer<T, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Byte> sortedByDescending(@NotNull byte[] elements, NullableTransformer<Byte, R> selector) {
+    public static <R extends Comparable<R>> List<Byte> sortedByDescending(@Nullable byte[] elements, @NotNull NullableTransformer<Byte, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Short> sortedByDescending(@NotNull short[] elements, NullableTransformer<Short, R> selector) {
+    public static <R extends Comparable<R>> List<Short> sortedByDescending(@Nullable short[] elements, @NotNull NullableTransformer<Short, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Integer> sortedByDescending(@NotNull int[] elements, NullableTransformer<Integer, R> selector) {
+    public static <R extends Comparable<R>> List<Integer> sortedByDescending(@Nullable int[] elements, @NotNull NullableTransformer<Integer, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Long> sortedByDescending(@NotNull long[] elements, NullableTransformer<Long, R> selector) {
+    public static <R extends Comparable<R>> List<Long> sortedByDescending(@Nullable long[] elements, @NotNull NullableTransformer<Long, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Float> sortedByDescending(@NotNull float[] elements, NullableTransformer<Float, R> selector) {
+    public static <R extends Comparable<R>> List<Float> sortedByDescending(@Nullable float[] elements, @NotNull NullableTransformer<Float, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Double> sortedByDescending(@NotNull double[] elements, NullableTransformer<Double, R> selector) {
+    public static <R extends Comparable<R>> List<Double> sortedByDescending(@Nullable double[] elements, @NotNull NullableTransformer<Double, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Boolean> sortedByDescending(@NotNull boolean[] elements, NullableTransformer<Boolean, R> selector) {
+    public static <R extends Comparable<R>> List<Boolean> sortedByDescending(@Nullable boolean[] elements, @NotNull NullableTransformer<Boolean, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
     /**
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <R extends Comparable<R>> List<Character> sortedByDescending(@NotNull char[] elements, NullableTransformer<Character, R> selector) {
+    public static <R extends Comparable<R>> List<Character> sortedByDescending(@Nullable char[] elements, @NotNull NullableTransformer<Character, R> selector) {
         return sortedWith(elements, Comparisonx.compareByDescending(selector));
     }
 
@@ -2315,8 +2458,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static <T extends Comparable<T>> T[] sortedArray(@NotNull T[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static <T extends Comparable<T>> T[] sortedArray(@Nullable T[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         T[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2326,8 +2469,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static byte[] sortedArray(@NotNull byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static byte[] sortedArray(@Nullable byte[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         byte[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2337,8 +2480,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static short[] sortedArray(@NotNull short[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static short[] sortedArray(@Nullable short[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         short[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2348,8 +2491,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static int[] sortedArray(@NotNull int[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static int[] sortedArray(@Nullable int[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         int[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2359,8 +2502,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static long[] sortedArray(@NotNull long[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static long[] sortedArray(@Nullable long[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         long[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2370,8 +2513,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static float[] sortedArray(@NotNull float[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static float[] sortedArray(@Nullable float[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         float[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2381,8 +2524,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static double[] sortedArray(@NotNull double[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static double[] sortedArray(@Nullable double[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         double[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2392,8 +2535,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static char[] sortedArray(@NotNull char[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static char[] sortedArray(@Nullable char[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         char[] result = Arrayx2.copyOf(elements);
         sort(result);
         return result;
@@ -2404,8 +2547,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static <T extends Comparable<T>> T[] sortedArrayDescending(@NotNull T[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static <T extends Comparable<T>> T[] sortedArrayDescending(@Nullable T[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         T[] result = Arrayx2.copyOf(elements);
         Arrayx.sortWith(elements, new Comparisonx.ReverseOrderComparator<T>());
         return result;
@@ -2415,8 +2558,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static byte[] sortedArrayDescending(@NotNull byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static byte[] sortedArrayDescending(@Nullable byte[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         byte[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2426,8 +2569,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static short[] sortedArrayDescending(@NotNull short[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static short[] sortedArrayDescending(@Nullable short[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         short[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2437,8 +2580,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static int[] sortedArrayDescending(@NotNull int[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static int[] sortedArrayDescending(@Nullable int[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         int[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2448,8 +2591,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static long[] sortedArrayDescending(@NotNull long[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static long[] sortedArrayDescending(@Nullable long[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         long[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2459,8 +2602,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static float[] sortedArrayDescending(@NotNull float[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static float[] sortedArrayDescending(@Nullable float[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         float[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2470,8 +2613,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static double[] sortedArrayDescending(@NotNull double[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static double[] sortedArrayDescending(@Nullable double[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         double[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2481,8 +2624,8 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static char[] sortedArrayDescending(@NotNull char[] elements) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static char[] sortedArrayDescending(@Nullable char[] elements) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         char[] result = Arrayx2.copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2492,8 +2635,8 @@ public class Arrayx {
     /**
      * Returns an array with all elements of this array sorted according the specified [comparator].
      */
-    public static <T> T[] sortedArrayWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
-        if (Arrayx.isEmpty(elements)) return elements;
+    public static <T> T[] sortedArrayWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
+        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
         T[] result = Arrayx2.copyOf(elements);
         Arrayx.sortWith(elements, comparator);
         return result;
@@ -2502,6 +2645,8 @@ public class Arrayx {
 
     /* ******************************************* single ******************************************* */
 
+
+    // TODO: 2018/10/2 尽量改成 @Nullable
 
     /**
      * Returns the single element, or throws an exception if the array is empty or has more than one element.
@@ -8002,17 +8147,17 @@ public class Arrayx {
      * Returns a list containing all elements that are instances of specified class.
      */
     @NotNull
-    public static <R> List<R> filterIsInstance(@NotNull Object[] elements, @NotNull Class<R> klass) {
-        return filterIsInstanceTo(elements, new ArrayList<R>(), klass);
+    public static <R> List<R> filterIsInstance(@NotNull Object[] elements, @NotNull Class<R> clazz) {
+        return filterIsInstanceTo(elements, new ArrayList<R>(), clazz);
     }
 
     /**
      * Appends all elements that are instances of specified class to the given [destination].
      */
     @NotNull
-    public static <C extends Collection<R>, R> C filterIsInstanceTo(@NotNull Object[] elements, @NotNull C destination, @NotNull Class<R> klass) {
+    public static <C extends Collection<R>, R> C filterIsInstanceTo(@NotNull Object[] elements, @NotNull C destination, @NotNull Class<R> clazz) {
         for (Object element : elements) {
-            if (klass.isInstance(element)) {
+            if (clazz.isInstance(element)) {
                 //noinspection unchecked
                 destination.add((R) element);
             }
