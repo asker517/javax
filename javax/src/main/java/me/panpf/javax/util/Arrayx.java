@@ -26,10 +26,8 @@ import java.util.*;
 /**
  * Array tool method
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Arrayx {
-
-    // TODO: 2018/10/2 尽量改成 @Nullable
 
     private Arrayx() {
     }
@@ -125,64 +123,64 @@ public class Arrayx {
     /**
      * Returns `true` if the array is empty.
      */
-    public static <T> boolean isEmpty(@NotNull T[] elements) {
-        return elements.length == 0;
+    public static <T> boolean isEmpty(@Nullable T[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull char[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable char[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull byte[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable byte[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull short[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable short[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull int[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable int[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull long[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable long[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull float[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable float[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull double[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable double[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
-    public static boolean isEmpty(@NotNull boolean[] elements) {
-        return elements.length == 0;
+    public static boolean isEmpty(@Nullable boolean[] elements) {
+        return elements == null || elements.length == 0;
     }
 
     /**
@@ -195,57 +193,57 @@ public class Arrayx {
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(char[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable char[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(byte[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable byte[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(short[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable short[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(int[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable int[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(long[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable long[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(float[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable float[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(double[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable double[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**
      * Returns `true` if the array is not empty.
      */
-    public static boolean isNotEmpty(boolean[] elements) {
-        return elements.length > 0;
+    public static boolean isNotEmpty(@Nullable boolean[] elements) {
+        return elements != null && elements.length > 0;
     }
 
 
@@ -255,11 +253,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Byte[] toTypedArray(@NotNull byte[] elements) {
-        Byte[] result = new Byte[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Byte[] toTypedArray(@Nullable byte[] elements) {
+        Byte[] result = new Byte[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -267,11 +267,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Short[] toTypedArray(@NotNull short[] elements) {
-        Short[] result = new Short[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Short[] toTypedArray(@Nullable short[] elements) {
+        Short[] result = new Short[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -279,11 +281,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Integer[] toTypedArray(@NotNull int[] elements) {
-        Integer[] result = new Integer[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Integer[] toTypedArray(@Nullable int[] elements) {
+        Integer[] result = new Integer[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -291,11 +295,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Long[] toTypedArray(@NotNull long[] elements) {
-        Long[] result = new Long[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Long[] toTypedArray(@Nullable long[] elements) {
+        Long[] result = new Long[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -303,11 +309,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Float[] toTypedArray(@NotNull float[] elements) {
-        Float[] result = new Float[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Float[] toTypedArray(@Nullable float[] elements) {
+        Float[] result = new Float[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -315,11 +323,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Double[] toTypedArray(@NotNull double[] elements) {
-        Double[] result = new Double[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Double[] toTypedArray(@Nullable double[] elements) {
+        Double[] result = new Double[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -327,11 +337,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Boolean[] toTypedArray(@NotNull boolean[] elements) {
-        Boolean[] result = new Boolean[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Boolean[] toTypedArray(@Nullable boolean[] elements) {
+        Boolean[] result = new Boolean[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -339,11 +351,13 @@ public class Arrayx {
     /**
      * Returns a *typed* object array containing all of the elements of this primitive array.
      */
-    public static Character[] toTypedArray(@NotNull char[] elements) {
-        Character[] result = new Character[elements.length];
-        int index = 0;
-        while (index++ < elements.length) {
-            result[index] = elements[index];
+    public static Character[] toTypedArray(@Nullable char[] elements) {
+        Character[] result = new Character[count(elements)];
+        if (elements != null) {
+            int index = 0;
+            while (index++ < elements.length) {
+                result[index] = elements[index];
+            }
         }
         return result;
     }
@@ -356,8 +370,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <T, C extends Collection<T>> C toCollection(@NotNull T[] elements, @NotNull C destination) {
-        Collections.addAll(destination, elements);
+    public static <T, C extends Collection<T>> C toCollection(@Nullable T[] elements, @NotNull C destination) {
+        if (elements != null) Collections.addAll(destination, elements);
         return destination;
     }
 
@@ -365,8 +379,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Byte>> C toCollection(@NotNull byte[] elements, @NotNull C destination) {
-        for (byte element : elements) destination.add(element);
+    public static <C extends Collection<Byte>> C toCollection(@Nullable byte[] elements, @NotNull C destination) {
+        if (elements != null) for (byte element : elements) destination.add(element);
         return destination;
     }
 
@@ -374,8 +388,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Short>> C toCollection(@NotNull short[] elements, @NotNull C destination) {
-        for (short element : elements) destination.add(element);
+    public static <C extends Collection<Short>> C toCollection(@Nullable short[] elements, @NotNull C destination) {
+        if (elements != null) for (short element : elements) destination.add(element);
         return destination;
     }
 
@@ -383,8 +397,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Integer>> C toCollection(@NotNull int[] elements, @NotNull C destination) {
-        for (int element : elements) destination.add(element);
+    public static <C extends Collection<Integer>> C toCollection(@Nullable int[] elements, @NotNull C destination) {
+        if (elements != null) for (int element : elements) destination.add(element);
         return destination;
     }
 
@@ -392,8 +406,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Long>> C toCollection(@NotNull long[] elements, @NotNull C destination) {
-        for (long element : elements) destination.add(element);
+    public static <C extends Collection<Long>> C toCollection(@Nullable long[] elements, @NotNull C destination) {
+        if (elements != null) for (long element : elements) destination.add(element);
         return destination;
     }
 
@@ -401,8 +415,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Float>> C toCollection(@NotNull float[] elements, @NotNull C destination) {
-        for (float element : elements) destination.add(element);
+    public static <C extends Collection<Float>> C toCollection(@Nullable float[] elements, @NotNull C destination) {
+        if (elements != null) for (float element : elements) destination.add(element);
         return destination;
     }
 
@@ -410,8 +424,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Double>> C toCollection(@NotNull double[] elements, @NotNull C destination) {
-        for (double element : elements) destination.add(element);
+    public static <C extends Collection<Double>> C toCollection(@Nullable double[] elements, @NotNull C destination) {
+        if (elements != null) for (double element : elements) destination.add(element);
         return destination;
     }
 
@@ -419,8 +433,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Boolean>> C toCollection(@NotNull boolean[] elements, @NotNull C destination) {
-        for (boolean element : elements) destination.add(element);
+    public static <C extends Collection<Boolean>> C toCollection(@Nullable boolean[] elements, @NotNull C destination) {
+        if (elements != null) for (boolean element : elements) destination.add(element);
         return destination;
     }
 
@@ -428,8 +442,8 @@ public class Arrayx {
      * Appends all elements to the given [destination] collection.
      */
     @NotNull
-    public static <C extends Collection<Character>> C toCollection(@NotNull char[] elements, @NotNull C destination) {
-        for (char element : elements) destination.add(element);
+    public static <C extends Collection<Character>> C toCollection(@Nullable char[] elements, @NotNull C destination) {
+        if (elements != null) for (char element : elements) destination.add(element);
         return destination;
     }
 
@@ -441,104 +455,72 @@ public class Arrayx {
      * Returns a [List] all elements.
      */
     @NotNull
-    public static <T> List<T> toList(@NotNull T[] elements) {
-        return toCollection(elements, new ArrayList<T>(elements.length));
+    public static <T> List<T> toList(@Nullable T[] elements) {
+        return toCollection(elements, new ArrayList<T>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Byte> toList(@NotNull byte[] elements) {
-        ArrayList<Byte> list = new ArrayList<>(elements.length);
-        for (byte element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Byte> toList(@Nullable byte[] elements) {
+        return toCollection(elements, new ArrayList<Byte>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Character> toList(@NotNull char[] elements) {
-        ArrayList<Character> list = new ArrayList<>(elements.length);
-        for (char element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Character> toList(@Nullable char[] elements) {
+        return toCollection(elements, new ArrayList<Character>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Short> toList(@NotNull short[] elements) {
-        ArrayList<Short> list = new ArrayList<>(elements.length);
-        for (short element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Short> toList(@Nullable short[] elements) {
+        return toCollection(elements, new ArrayList<Short>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Integer> toList(@NotNull int[] elements) {
-        ArrayList<Integer> list = new ArrayList<>(elements.length);
-        for (int element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Integer> toList(@Nullable int[] elements) {
+        return toCollection(elements, new ArrayList<Integer>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Long> toList(@NotNull long[] elements) {
-        ArrayList<Long> list = new ArrayList<>(elements.length);
-        for (long element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Long> toList(@Nullable long[] elements) {
+        return toCollection(elements, new ArrayList<Long>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Float> toList(@NotNull float[] elements) {
-        ArrayList<Float> list = new ArrayList<>(elements.length);
-        for (float element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Float> toList(@Nullable float[] elements) {
+        return toCollection(elements, new ArrayList<Float>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Double> toList(@NotNull double[] elements) {
-        ArrayList<Double> list = new ArrayList<>(elements.length);
-        for (double element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Double> toList(@Nullable double[] elements) {
+        return toCollection(elements, new ArrayList<Double>(count(elements)));
     }
 
     /**
      * Returns a [List] all elements.
      */
     @NotNull
-    public static List<Boolean> toList(@NotNull boolean[] elements) {
-        ArrayList<Boolean> list = new ArrayList<>(elements.length);
-        for (boolean element : elements) {
-            list.add(element);
-        }
-        return list;
+    public static List<Boolean> toList(@Nullable boolean[] elements) {
+        return toCollection(elements, new ArrayList<Boolean>(count(elements)));
     }
 
 
@@ -551,10 +533,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static <T> Set<T> toSet(@NotNull T[] elements) {
-        Set<T> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        Collections.addAll(set, elements);
-        return set;
+    public static <T> Set<T> toSet(@Nullable T[] elements) {
+        return toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -563,10 +543,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Byte> toSet(@NotNull byte[] elements) {
-        Set<Byte> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (byte item : elements) set.add(item);
-        return set;
+    public static Set<Byte> toSet(@Nullable byte[] elements) {
+        return toCollection(elements, new LinkedHashSet<Byte>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -575,10 +553,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Short> toSet(@NotNull short[] elements) {
-        Set<Short> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (short item : elements) set.add(item);
-        return set;
+    public static Set<Short> toSet(@Nullable short[] elements) {
+        return toCollection(elements, new LinkedHashSet<Short>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -587,10 +563,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Integer> toSet(@NotNull int[] elements) {
-        Set<Integer> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (int item : elements) set.add(item);
-        return set;
+    public static Set<Integer> toSet(@Nullable int[] elements) {
+        return toCollection(elements, new LinkedHashSet<Integer>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -599,10 +573,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Long> toSet(@NotNull long[] elements) {
-        Set<Long> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (long item : elements) set.add(item);
-        return set;
+    public static Set<Long> toSet(@Nullable long[] elements) {
+        return toCollection(elements, new LinkedHashSet<Long>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -611,10 +583,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Float> toSet(@NotNull float[] elements) {
-        Set<Float> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (float item : elements) set.add(item);
-        return set;
+    public static Set<Float> toSet(@Nullable float[] elements) {
+        return toCollection(elements, new LinkedHashSet<Float>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -623,10 +593,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Double> toSet(@NotNull double[] elements) {
-        Set<Double> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (double item : elements) set.add(item);
-        return set;
+    public static Set<Double> toSet(@Nullable double[] elements) {
+        return toCollection(elements, new LinkedHashSet<Double>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -635,10 +603,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Boolean> toSet(@NotNull boolean[] elements) {
-        Set<Boolean> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (boolean item : elements) set.add(item);
-        return set;
+    public static Set<Boolean> toSet(@Nullable boolean[] elements) {
+        return toCollection(elements, new LinkedHashSet<Boolean>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
@@ -647,10 +613,8 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Character> toSet(@NotNull char[] elements) {
-        Set<Character> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
-        for (char item : elements) set.add(item);
-        return set;
+    public static Set<Character> toSet(@Nullable char[] elements) {
+        return toCollection(elements, new LinkedHashSet<Character>(Mapx.mapCapacity(count(elements))));
     }
 
 
@@ -661,72 +625,72 @@ public class Arrayx {
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static <T> HashSet<T> toHashSet(@NotNull T[] elements) {
-        return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements.length)));
+    public static <T> HashSet<T> toHashSet(@Nullable T[] elements) {
+        return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Byte> toHashSet(@NotNull byte[] elements) {
-        return toCollection(elements, new HashSet<Byte>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Byte> toHashSet(@Nullable byte[] elements) {
+        return toCollection(elements, new HashSet<Byte>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Short> toHashSet(@NotNull short[] elements) {
-        return toCollection(elements, new HashSet<Short>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Short> toHashSet(@Nullable short[] elements) {
+        return toCollection(elements, new HashSet<Short>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Integer> toHashSet(@NotNull int[] elements) {
-        return toCollection(elements, new HashSet<Integer>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Integer> toHashSet(@Nullable int[] elements) {
+        return toCollection(elements, new HashSet<Integer>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Long> toHashSet(@NotNull long[] elements) {
-        return toCollection(elements, new HashSet<Long>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Long> toHashSet(@Nullable long[] elements) {
+        return toCollection(elements, new HashSet<Long>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Float> toHashSet(@NotNull float[] elements) {
-        return toCollection(elements, new HashSet<Float>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Float> toHashSet(@Nullable float[] elements) {
+        return toCollection(elements, new HashSet<Float>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Double> toHashSet(@NotNull double[] elements) {
-        return toCollection(elements, new HashSet<Double>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Double> toHashSet(@Nullable double[] elements) {
+        return toCollection(elements, new HashSet<Double>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Boolean> toHashSet(@NotNull boolean[] elements) {
-        return toCollection(elements, new HashSet<Boolean>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Boolean> toHashSet(@Nullable boolean[] elements) {
+        return toCollection(elements, new HashSet<Boolean>(Mapx.mapCapacity(count(elements))));
     }
 
     /**
      * Returns a [HashSet] of all elements.
      */
     @NotNull
-    public static HashSet<Character> toHashSet(@NotNull char[] elements) {
-        return toCollection(elements, new HashSet<Character>(Mapx.mapCapacity(elements.length)));
+    public static HashSet<Character> toHashSet(@Nullable char[] elements) {
+        return toCollection(elements, new HashSet<Character>(Mapx.mapCapacity(count(elements))));
     }
 
 
@@ -737,25 +701,36 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static <T> List<T> asList(@NotNull T[] array) {
-        return Arrays.asList(array);
+    public static <T> List<T> asList(@Nullable final T[] elements) {
+        return new AbstractList<T>() {
+
+            @Override
+            public int size() {
+                return count(elements);
+            }
+
+            @Override
+            public T get(int index) {
+                return Premisex.requireNotNull(elements)[index];
+            }
+        };
     }
 
     /**
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Byte> asList(@NotNull final byte[] elements) {
+    public static List<Byte> asList(@Nullable final byte[] elements) {
         return new AbstractList<Byte>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Byte get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -764,17 +739,17 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Short> asList(@NotNull final short[] elements) {
+    public static List<Short> asList(@Nullable final short[] elements) {
         return new AbstractList<Short>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Short get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -783,17 +758,17 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Integer> asList(@NotNull final int[] elements) {
+    public static List<Integer> asList(@Nullable final int[] elements) {
         return new AbstractList<Integer>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Integer get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -802,17 +777,17 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Long> asList(@NotNull final long[] elements) {
+    public static List<Long> asList(@Nullable final long[] elements) {
         return new AbstractList<Long>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Long get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -821,17 +796,17 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Float> asList(@NotNull final float[] elements) {
+    public static List<Float> asList(@Nullable final float[] elements) {
         return new AbstractList<Float>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Float get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -840,17 +815,17 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Double> asList(@NotNull final double[] elements) {
+    public static List<Double> asList(@Nullable final double[] elements) {
         return new AbstractList<Double>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Double get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -859,17 +834,17 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Boolean> asList(@NotNull final boolean[] elements) {
+    public static List<Boolean> asList(@Nullable final boolean[] elements) {
         return new AbstractList<Boolean>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Boolean get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
@@ -878,20 +853,22 @@ public class Arrayx {
      * Returns a [List] that wraps the original array.
      */
     @NotNull
-    public static List<Character> asList(@NotNull final char[] elements) {
+    public static List<Character> asList(@Nullable final char[] elements) {
         return new AbstractList<Character>() {
 
             @Override
             public int size() {
-                return elements.length;
+                return count(elements);
             }
 
             @Override
             public Character get(int index) {
-                return elements[index];
+                return Premisex.requireNotNull(elements)[index];
             }
         };
     }
+
+    // TODO: 2018/10/2 尽量改成 @Nullable
 
 
     /* ******************************************* map ******************************************* */
@@ -7005,18 +6982,10 @@ public class Arrayx {
     /**
      * Returns first index of [element], or -1 if the array does not contain element.
      */
-    public static <T> int indexOf(@NotNull T[] elements, @NotNull T element) {
-        if (element == null) {
-            for (int index : indices(elements)) {
-                if (elements[index] == null) {
-                    return index;
-                }
-            }
-        } else {
-            for (int index : indices(elements)) {
-                if (element == elements[index]) {
-                    return index;
-                }
+    public static <T> int indexOf(@NotNull T[] elements, @Nullable T element) {
+        for (int index : indices(elements)) {
+            if (element == elements[index]) {
+                return index;
             }
         }
         return -1;
@@ -7328,6 +7297,122 @@ public class Arrayx {
     public static int indexOfLast(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
         for (int index : Collectionx.reversed(indices(elements))) {
             if (predicate.accept(elements[index])) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static <T> int lastIndexOf(@NotNull T[] elements, @Nullable T element) {
+        if (element == null) {
+            for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+                if (elements[index] == null) {
+                    return index;
+                }
+            }
+        } else {
+            for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+                if (element.equals(elements[index])) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull byte[] elements, byte element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull short[] elements, short element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull int[] elements, int element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull long[] elements, long element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull float[] elements, float element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull double[] elements, double element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull boolean[] elements, boolean element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the array does not contain element.
+     */
+    public static int lastIndexOf(@NotNull char[] elements, char element) {
+        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
+            if (element == elements[index]) {
                 return index;
             }
         }
@@ -9644,122 +9729,6 @@ public class Arrayx {
             if (predicate.accept(element)) return element;
         }
         throw new NoSuchElementException("Array contains no element matching the predicate.");
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static <T> int lastIndexOf(@NotNull T[] elements, @NotNull T element) {
-        if (element == null) {
-            for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-                if (elements[index] == null) {
-                    return index;
-                }
-            }
-        } else {
-            for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-                if (element.equals(elements[index])) {
-                    return index;
-                }
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull byte[] elements, byte element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull short[] elements, short element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull int[] elements, int element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull long[] elements, long element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull float[] elements, float element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull double[] elements, double element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull boolean[] elements, boolean element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the array does not contain element.
-     */
-    public static int lastIndexOf(@NotNull char[] elements, char element) {
-        for (int index : Collectionx.reversed(Arrayx.indices(elements))) {
-            if (element == elements[index]) {
-                return index;
-            }
-        }
-        return -1;
     }
 
     /**

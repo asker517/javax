@@ -655,12 +655,14 @@ public class Collectionx {
     /**
      * Returns an average value of elements in the collection.
      */
-    public static double averageOfLong(@NotNull Iterable<Long> iterable) {
+    public static double averageOfLong(@Nullable Iterable<Long> iterable) {
         double sum = 0.0;
         int count = 0;
-        for (long element : iterable) {
-            sum += element;
-            count += 1;
+        if (iterable != null) {
+            for (long element : iterable) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -1275,16 +1277,17 @@ public class Collectionx {
      * Adds all elements of the given [elements] collection to this [Collection].
      */
     @SuppressWarnings("UnusedReturnValue")
-    public static <T> boolean addAll(@NotNull Collection<T> collection, @Nullable Iterable<T> elements) {
-        if (elements == null) return false;
+    public static <T> boolean addAll(@Nullable Collection<T> collection, @Nullable Iterable<T> elements) {
+        if (collection == null || elements == null) return false;
         if (elements instanceof Collection) {
             return collection.addAll((Collection<? extends T>) elements);
         } else {
             boolean result = false;
-            for (T item : elements)
+            for (T item : elements) {
                 if (collection.add(item)) {
                     result = true;
                 }
+            }
             return result;
         }
     }
@@ -1294,13 +1297,14 @@ public class Collectionx {
      * Adds all elements of the given [elements] collection to this [Collection].
      */
     @SuppressWarnings("UnusedReturnValue")
-    public static <T> boolean addAll(@NotNull Collection<T> collection, @Nullable T[] elements) {
-        if (elements == null) return false;
+    public static <T> boolean addAll(@Nullable Collection<T> collection, @Nullable T[] elements) {
+        if (collection == null || elements == null) return false;
         boolean result = false;
-        for (T item : elements)
+        for (T item : elements){
             if (collection.add(item)) {
                 result = true;
             }
+        }
         return result;
     }
 
