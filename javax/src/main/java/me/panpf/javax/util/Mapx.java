@@ -18,10 +18,7 @@ package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Map tool method
@@ -29,6 +26,7 @@ import java.util.Map;
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class Mapx {
 
+    public static final Map EMPTY_MAP = Collections.EMPTY_MAP;
     public static final int INT_MAX_POWER_OF_TWO = Integer.MAX_VALUE / 2 + 1;
 
     private Mapx() {

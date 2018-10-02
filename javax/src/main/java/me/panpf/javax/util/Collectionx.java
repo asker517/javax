@@ -26,9 +26,9 @@ import java.util.*;
  */
 @SuppressWarnings({"WeakerAccess"})
 public class Collectionx {
+    // TODO: 2018/10/2 尽量改成 @Nullable
 
     public static final List EMPTY_LIST = Collections.EMPTY_LIST;
-    public static final Map EMPTY_MAP = Collections.EMPTY_MAP;
     public static final Set EMPTY_SET = Collections.EMPTY_SET;
 
     private Collectionx() {

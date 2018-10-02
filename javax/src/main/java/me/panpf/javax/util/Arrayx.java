@@ -29,6 +29,8 @@ import java.util.*;
 @SuppressWarnings("WeakerAccess")
 public class Arrayx {
 
+    // TODO: 2018/10/2 尽量改成 @Nullable
+
     private Arrayx() {
     }
 
