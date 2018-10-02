@@ -187,8 +187,8 @@ public class Arrayx {
     /**
      * Returns `true` if the array is not empty.
      */
-    public static <T> boolean isNotEmpty(T[] elements) {
-        return elements.length > 0;
+    public static <T> boolean isNotEmpty(@Nullable T[] elements) {
+        return elements != null && elements.length > 0;
     }
 
     /**

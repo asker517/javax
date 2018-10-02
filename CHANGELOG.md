@@ -21,6 +21,7 @@
 * :sparkles: Premisex.kt requireNotNull and checkNotNull method add Overload method
 * :sparkles: Mapx add builder, forEach, forEachIndexed, map, mapIndexed method
 * :fire: EMPTY_MAP from Collectionx move to Mapx
+* :hammer: The primary parameters of all Collectionx methods are now Nullable
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
