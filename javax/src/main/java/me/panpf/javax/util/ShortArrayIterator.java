@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -26,20 +26,21 @@ public class ShortArrayIterator implements Iterator<Short> {
 
     private int index = 0;
 
-    @NotNull
+    @Nullable
     private short[] elements;
 
-    public ShortArrayIterator(@NotNull short[] elements) {
+    public ShortArrayIterator(@Nullable short[] elements) {
         this.elements = elements;
     }
 
     @Override
     public boolean hasNext() {
-        return index < elements.length;
+        return elements != null && index < elements.length;
     }
 
     @Override
     public Short next() {
+        if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];
         } catch (ArrayIndexOutOfBoundsException e) {

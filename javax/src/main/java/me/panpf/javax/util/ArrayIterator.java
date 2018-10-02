@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -25,20 +25,21 @@ import java.util.NoSuchElementException;
 public class ArrayIterator<T> implements Iterator<T> {
     private int index = 0;
 
-    @NotNull
+    @Nullable
     private T[] elements;
 
-    public ArrayIterator(@NotNull T[] elements) {
+    public ArrayIterator(@Nullable T[] elements) {
         this.elements = elements;
     }
 
     @Override
     public boolean hasNext() {
-        return index < elements.length;
+        return elements != null && index < elements.length;
     }
 
     @Override
     public T next() {
+        if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];
         } catch (ArrayIndexOutOfBoundsException e) {

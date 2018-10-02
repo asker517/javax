@@ -34,6 +34,187 @@ public class Collectionx {
     }
 
 
+    public static <T> T[] toArray(@Nullable Collection<T> collection) {
+        //noinspection unchecked
+        return isNotEmpty(collection) ? (T[]) collection.toArray() : (T[]) new Object[0];
+    }
+
+    public static byte[] toByteArray(@Nullable Collection<Byte> collection) {
+        byte[] result = new byte[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Byte by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static short[] toShortArray(@Nullable Collection<Short> collection) {
+        short[] result = new short[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Short by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static int[] toIntArray(@Nullable Collection<Integer> collection) {
+        int[] result = new int[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Integer by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static long[] toLongArray(@Nullable Collection<Long> collection) {
+        long[] result = new long[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Long by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static float[] toFloatArray(@Nullable Collection<Float> collection) {
+        float[] result = new float[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Float by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static double[] toDoubleArray(@Nullable Collection<Double> collection) {
+        double[] result = new double[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Double by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static boolean[] toBooleanArray(@Nullable Collection<Boolean> collection) {
+        boolean[] result = new boolean[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Boolean by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+    public static char[] toCharArray(@Nullable Collection<Character> collection) {
+        char[] result = new char[count(collection)];
+        if (collection != null) {
+            int index = 0;
+            for (Character by : collection) {
+                result[index++] = by;
+            }
+        }
+        return result;
+    }
+
+
+    public static <T> T[] toArray(@Nullable Iterable<T> collection) {
+        List<T> list = toList(collection);
+        //noinspection unchecked
+        return isNotEmpty(list) ? (T[]) list.toArray() : (T[]) new Object[0];
+    }
+
+    public static byte[] toByteArray(@Nullable Iterable<Byte> collection) {
+        List<Byte> list = toList(collection);
+        byte[] result = new byte[count(list)];
+        int index = 0;
+        for (Byte by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static short[] toShortArray(@Nullable Iterable<Short> collection) {
+        List<Short> list = toList(collection);
+        short[] result = new short[count(list)];
+        int index = 0;
+        for (Short by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static int[] toIntArray(@Nullable Iterable<Integer> collection) {
+        List<Integer> list = toList(collection);
+        int[] result = new int[count(list)];
+        int index = 0;
+        for (Integer by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static long[] toLongArray(@Nullable Iterable<Long> collection) {
+        List<Long> list = toList(collection);
+        long[] result = new long[count(list)];
+        int index = 0;
+        for (Long by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static float[] toFloatArray(@Nullable Iterable<Float> collection) {
+        List<Float> list = toList(collection);
+        float[] result = new float[count(list)];
+        int index = 0;
+        for (Float by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static double[] toDoubleArray(@Nullable Iterable<Double> collection) {
+        List<Double> list = toList(collection);
+        double[] result = new double[count(list)];
+        int index = 0;
+        for (Double by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static boolean[] toBooleanArray(@Nullable Iterable<Boolean> collection) {
+        List<Boolean> list = toList(collection);
+        boolean[] result = new boolean[count(list)];
+        int index = 0;
+        for (Boolean by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+    public static char[] toCharArray(@Nullable Iterable<Character> collection) {
+        List<Character> list = toList(collection);
+        char[] result = new char[count(list)];
+        int index = 0;
+        for (Character by : list) {
+            result[index++] = by;
+        }
+        return result;
+    }
+
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
@@ -1300,7 +1481,7 @@ public class Collectionx {
     public static <T> boolean addAll(@Nullable Collection<T> collection, @Nullable T[] elements) {
         if (collection == null || elements == null) return false;
         boolean result = false;
-        for (T item : elements){
+        for (T item : elements) {
             if (collection.add(item)) {
                 result = true;
             }
@@ -1949,11 +2130,11 @@ public class Collectionx {
      * using the specified [keySelector] function to extract a key from each element.
      */
     @NotNull
-    public static <T, K> Grouping<T, K> groupingBy(@NotNull final Iterable<T> iterable, @NotNull final Transformer<T, K> keySelector) {
+    public static <T, K> Grouping<T, K> groupingBy(@Nullable final Iterable<T> iterable, @NotNull final Transformer<T, K> keySelector) {
         return new Grouping<T, K>() {
             @Override
             public Iterator<T> sourceIterator() {
-                return iterable.iterator();
+                return iterable != null ? iterable.iterator() : new ArrayList<T>(0).iterator();
             }
 
             @Override

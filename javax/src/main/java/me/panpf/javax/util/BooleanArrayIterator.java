@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -26,26 +26,27 @@ public class BooleanArrayIterator implements Iterator<Boolean> {
 
     private int index = 0;
 
-    @NotNull
+    @Nullable
     private boolean[] elements;
 
-    public BooleanArrayIterator(@NotNull boolean[] elements) {
+    public BooleanArrayIterator(@Nullable boolean[] elements) {
         this.elements = elements;
     }
 
     @Override
+    public boolean hasNext() {
+        return elements != null && index < elements.length;
+    }
+
+    @Override
     public Boolean next() {
+        if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];
         } catch (ArrayIndexOutOfBoundsException e) {
             index -= 1;
             throw new NoSuchElementException(e.getMessage());
         }
-    }
-
-    @Override
-    public boolean hasNext() {
-        return index < elements.length;
     }
 
     @Override

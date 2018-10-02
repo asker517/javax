@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -26,20 +26,21 @@ public class DoubleArrayIterator implements Iterator<Double> {
 
     private int index = 0;
 
-    @NotNull
+    @Nullable
     private double[] elements;
 
-    public DoubleArrayIterator(@NotNull double[] elements) {
+    public DoubleArrayIterator(@Nullable double[] elements) {
         this.elements = elements;
     }
 
     @Override
     public boolean hasNext() {
-        return index < elements.length;
+        return elements != null && index < elements.length;
     }
 
     @Override
     public Double next() {
+        if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];
         } catch (ArrayIndexOutOfBoundsException e) {

@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -26,20 +26,21 @@ public class LongArrayIterator implements Iterator<Long> {
 
     private int index = 0;
 
-    @NotNull
+    @Nullable
     private long[] elements;
 
-    public LongArrayIterator(@NotNull long[] elements) {
+    public LongArrayIterator(@Nullable long[] elements) {
         this.elements = elements;
     }
 
     @Override
     public boolean hasNext() {
-        return index < elements.length;
+        return elements != null && index < elements.length;
     }
 
     @Override
     public Long next() {
+        if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];
         } catch (ArrayIndexOutOfBoundsException e) {

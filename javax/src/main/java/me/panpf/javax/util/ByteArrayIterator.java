@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -25,26 +25,27 @@ import java.util.NoSuchElementException;
 public class ByteArrayIterator implements Iterator<Byte> {
     private int index = 0;
 
-    @NotNull
+    @Nullable
     private byte[] elements;
 
-    public ByteArrayIterator(@NotNull byte[] elements) {
+    public ByteArrayIterator(@Nullable byte[] elements) {
         this.elements = elements;
     }
 
     @Override
+    public boolean hasNext() {
+        return elements != null && index < elements.length;
+    }
+
+    @Override
     public Byte next() {
+        if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];
         } catch (ArrayIndexOutOfBoundsException e) {
             index -= 1;
             throw new NoSuchElementException(e.getMessage());
         }
-    }
-
-    @Override
-    public boolean hasNext() {
-        return index < elements.length;
     }
 
     @Override
