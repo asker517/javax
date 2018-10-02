@@ -49,6 +49,7 @@ public class Arrayx {
      * Returns an array containing the specified elements.
      */
     @NotNull
+    @SafeVarargs
     public static <T> T[] arrayOf(T... elements) {
         return elements;
     }
@@ -551,7 +552,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> Set<T> toSet(@NotNull T[] elements) {
-        Set<T> set = new LinkedHashSet<T>(Mapx.mapCapacity(elements.length));
+        Set<T> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         Collections.addAll(set, elements);
         return set;
     }
@@ -563,7 +564,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Byte> toSet(@NotNull byte[] elements) {
-        Set<Byte> set = new LinkedHashSet<Byte>(Mapx.mapCapacity(elements.length));
+        Set<Byte> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (byte item : elements) set.add(item);
         return set;
     }
@@ -575,7 +576,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Short> toSet(@NotNull short[] elements) {
-        Set<Short> set = new LinkedHashSet<Short>(Mapx.mapCapacity(elements.length));
+        Set<Short> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (short item : elements) set.add(item);
         return set;
     }
@@ -587,7 +588,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Integer> toSet(@NotNull int[] elements) {
-        Set<Integer> set = new LinkedHashSet<Integer>(Mapx.mapCapacity(elements.length));
+        Set<Integer> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (int item : elements) set.add(item);
         return set;
     }
@@ -599,7 +600,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Long> toSet(@NotNull long[] elements) {
-        Set<Long> set = new LinkedHashSet<Long>(Mapx.mapCapacity(elements.length));
+        Set<Long> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (long item : elements) set.add(item);
         return set;
     }
@@ -611,7 +612,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Float> toSet(@NotNull float[] elements) {
-        Set<Float> set = new LinkedHashSet<Float>(Mapx.mapCapacity(elements.length));
+        Set<Float> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (float item : elements) set.add(item);
         return set;
     }
@@ -623,7 +624,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Double> toSet(@NotNull double[] elements) {
-        Set<Double> set = new LinkedHashSet<Double>(Mapx.mapCapacity(elements.length));
+        Set<Double> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (double item : elements) set.add(item);
         return set;
     }
@@ -635,7 +636,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Boolean> toSet(@NotNull boolean[] elements) {
-        Set<Boolean> set = new LinkedHashSet<Boolean>(Mapx.mapCapacity(elements.length));
+        Set<Boolean> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (boolean item : elements) set.add(item);
         return set;
     }
@@ -647,7 +648,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Character> toSet(@NotNull char[] elements) {
-        Set<Character> set = new LinkedHashSet<Character>(Mapx.mapCapacity(elements.length));
+        Set<Character> set = new LinkedHashSet<>(Mapx.mapCapacity(elements.length));
         for (char item : elements) set.add(item);
         return set;
     }
@@ -8321,7 +8322,7 @@ public class Arrayx {
     @NotNull
     public static <T, R, V> List<V> zip(@NotNull T[] elements, @NotNull R[] other, @NotNull Transformer2<T, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8334,7 +8335,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull byte[] elements, @NotNull R[] other, @NotNull Transformer2<Byte, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8347,7 +8348,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull short[] elements, @NotNull R[] other, @NotNull Transformer2<Short, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8360,7 +8361,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull int[] elements, @NotNull R[] other, @NotNull Transformer2<Integer, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8373,7 +8374,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull long[] elements, @NotNull R[] other, @NotNull Transformer2<Long, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8386,7 +8387,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull float[] elements, @NotNull R[] other, @NotNull Transformer2<Float, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8399,7 +8400,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull double[] elements, @NotNull R[] other, @NotNull Transformer2<Double, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8412,7 +8413,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull boolean[] elements, @NotNull R[] other, @NotNull Transformer2<Boolean, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8425,7 +8426,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull char[] elements, @NotNull R[] other, @NotNull Transformer2<Character, R, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8564,7 +8565,7 @@ public class Arrayx {
     @NotNull
     public static <T, R, V> List<V> zip(@NotNull T[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<T, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8579,7 +8580,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull byte[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Byte, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8594,7 +8595,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull short[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Short, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8609,7 +8610,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull int[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Integer, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8624,7 +8625,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull long[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Long, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8639,7 +8640,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull float[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Float, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8654,7 +8655,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull double[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Double, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8669,7 +8670,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull boolean[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Boolean, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8684,7 +8685,7 @@ public class Arrayx {
     @NotNull
     public static <R, V> List<V> zip(@NotNull char[] elements, @NotNull Iterable<R> other, @NotNull Transformer2<Character, R, V> transform) {
         int arraySize = elements.length;
-        List<V> list = new ArrayList<V>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
+        List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
         for (R element : other) {
             if (i >= arraySize) break;
@@ -8811,7 +8812,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull byte[] elements, @NotNull byte[] other, @NotNull Transformer2<Byte, Byte, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8824,7 +8825,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull short[] elements, @NotNull short[] other, @NotNull Transformer2<Short, Short, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8837,7 +8838,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull int[] elements, @NotNull int[] other, @NotNull Transformer2<Integer, Integer, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8850,7 +8851,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull long[] elements, @NotNull long[] other, @NotNull Transformer2<Long, Long, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8863,7 +8864,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull float[] elements, @NotNull float[] other, @NotNull Transformer2<Float, Float, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8876,7 +8877,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull double[] elements, @NotNull double[] other, @NotNull Transformer2<Double, Double, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8889,7 +8890,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull boolean[] elements, @NotNull boolean[] other, @NotNull Transformer2<Boolean, Boolean, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -8902,7 +8903,7 @@ public class Arrayx {
     @NotNull
     public static <V> List<V> zip(@NotNull char[] elements, @NotNull char[] other, @NotNull Transformer2<Character, Character, V> transform) {
         int size = Comparisonx.minOf(elements.length, other.length);
-        List<V> list = new ArrayList<V>(size);
+        List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
             list.add(transform.transform(elements[i], other[i]));
         }
@@ -12584,7 +12585,7 @@ public class Arrayx {
     @NotNull
     public static <T> List<T> dropWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
         boolean yielding = false;
-        List<T> list = new ArrayList<T>();
+        List<T> list = new ArrayList<>();
         for (T item : elements) {
             if (yielding) {
                 list.add(item);

@@ -929,34 +929,6 @@ public class Collectionx {
     }
 
     /**
-     * Returns last index of [element], or -1 if the collection does not contain element.
-     */
-    public static <T> int lastIndexOf(@Nullable Iterable<T> iterable, T element) {
-        if (iterable instanceof List) {
-            return ((List) iterable).lastIndexOf(element);
-        } else {
-            int lastIndex = -1;
-            int index = 0;
-            if (iterable != null) {
-                for (T item : iterable) {
-                    if (element.equals(item)) {
-                        lastIndex = index;
-                    }
-                    index++;
-                }
-            }
-            return lastIndex;
-        }
-    }
-
-    /**
-     * Returns last index of [element], or -1 if the list does not contain element.
-     */
-    public static <T> int lastIndexOf(@Nullable List<T> list, T element) {
-        return list != null ? list.lastIndexOf(element) : -1;
-    }
-
-    /**
      * Returns the last element.
      *
      * @throws NoSuchElementException if the collection is empty.
@@ -2136,14 +2108,14 @@ public class Collectionx {
     /**
      * Returns first index of [element], or -1 if the collection does not contain element.
      */
-    public static <T> int indexOf(@Nullable Iterable<T> iterable, @NotNull T element) {
+    public static <T> int indexOf(@Nullable Iterable<T> iterable, @Nullable T element) {
         if (iterable instanceof List) {
             return ((List) iterable).indexOf(element);
         } else {
             if (iterable != null) {
                 int index = 0;
                 for (T item : iterable) {
-                    if (element == item) {
+                    if (element != null ? element.equals(item) : null == item) {
                         return index;
                     }
                     index++;
@@ -2156,7 +2128,7 @@ public class Collectionx {
     /**
      * Returns first index of [element], or -1 if the list does not contain element.
      */
-    public static <T> int indexOf(@Nullable List<T> list, T element) {
+    public static <T> int indexOf(@Nullable List<T> list, @Nullable T element) {
         return list != null ? list.indexOf(element) : -1;
     }
 
@@ -2222,6 +2194,34 @@ public class Collectionx {
             }
         }
         return -1;
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the collection does not contain element.
+     */
+    public static <T> int lastIndexOf(@Nullable Iterable<T> iterable, @Nullable T element) {
+        if (iterable instanceof List) {
+            return ((List) iterable).lastIndexOf(element);
+        } else {
+            int lastIndex = -1;
+            if (iterable != null) {
+                int index = 0;
+                for (T item : iterable) {
+                    if (element != null ? element.equals(item) : null == item) {
+                        lastIndex = index;
+                    }
+                    index++;
+                }
+            }
+            return lastIndex;
+        }
+    }
+
+    /**
+     * Returns last index of [element], or -1 if the list does not contain element.
+     */
+    public static <T> int lastIndexOf(@Nullable List<T> list, @Nullable T element) {
+        return list != null ? list.lastIndexOf(element) : -1;
     }
 
 
