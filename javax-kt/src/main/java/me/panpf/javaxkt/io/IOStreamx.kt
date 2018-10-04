@@ -18,8 +18,9 @@
 
 package me.panpf.javaxkt.io
 
+import me.panpf.javax.io.CopyListener
 import me.panpf.javax.io.IOStreamx
-import java.io.Closeable
+import java.io.*
 
 
 /*
@@ -31,3 +32,26 @@ import java.io.Closeable
  * Close
  */
 inline fun Closeable?.safeClose() = IOStreamx.safeClose(this)
+
+
+/**
+ * Copies this stream to the given output stream, returning the number of bytes copied
+ *
+ * **Note** It is the caller's responsibility to close both of these resources.
+ */
+@Throws(IOException::class)
+fun InputStream.copyTo(out: OutputStream, bufferSize: Int = IOStreamx.DEFAULT_BUFFER_SIZE, listener: CopyListener? = null): Long =
+        IOStreamx.copyTo(this, out, bufferSize, listener)
+
+
+/**
+ * Copies this reader to the given [out] writer, returning the number of characters copied.
+ * **Note** it is the caller's responsibility to close both of these resources.
+ *
+ * @param out        writer to write to.
+ * @param bufferSize size of character buffer to use in process.
+ * @return number of characters copied.
+ */
+@Throws(IOException::class)
+fun Reader.copyTo(out: Writer, bufferSize: Int = IOStreamx.DEFAULT_BUFFER_SIZE, listener: CopyListener? = null): Long =
+        IOStreamx.copyTo(this, out, bufferSize, listener)

@@ -36,7 +36,7 @@ import java.util.NoSuchElementException;
 /**
  * I/O tools
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class IOStreamx {
 
     /**
@@ -326,13 +326,14 @@ public class IOStreamx {
      * <p>
      * **Note** It is the caller's responsibility to close both of these resources.
      */
-    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, int bufferSize) throws IOException {
+    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, int bufferSize, @Nullable CopyListener listener) throws IOException {
         long bytesCopied = 0;
         byte[] buffer = new byte[bufferSize];
         int bytes = inputStream.read(buffer);
         while (bytes >= 0) {
             out.write(buffer, 0, bytes);
             bytesCopied += bytes;
+            if (listener != null) listener.onUpdateProgress(bytesCopied);
             bytes = inputStream.read(buffer);
         }
         return bytesCopied;
@@ -343,9 +344,49 @@ public class IOStreamx {
      * <p>
      * **Note** It is the caller's responsibility to close both of these resources.
      */
+    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, int bufferSize) throws IOException {
+        return copyTo(inputStream, out, bufferSize, null);
+    }
+
+    /**
+     * Copies this stream to the given output stream, returning the number of bytes copied
+     * <p>
+     * **Note** It is the caller's responsibility to close both of these resources.
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, @Nullable CopyListener listener) throws IOException {
+        return copyTo(inputStream, out, DEFAULT_BUFFER_SIZE, listener);
+    }
+
+    /**
+     * Copies this stream to the given output stream, returning the number of bytes copied
+     * <p>
+     * **Note** It is the caller's responsibility to close both of these resources.
+     */
     @SuppressWarnings("UnusedReturnValue")
     public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out) throws IOException {
-        return copyTo(inputStream, out, DEFAULT_BUFFER_SIZE);
+        return copyTo(inputStream, out, DEFAULT_BUFFER_SIZE, null);
+    }
+
+    /**
+     * Copies this reader to the given [out] writer, returning the number of characters copied.
+     * **Note** it is the caller's responsibility to close both of these resources.
+     *
+     * @param out        writer to write to.
+     * @param bufferSize size of character buffer to use in process.
+     * @return number of characters copied.
+     */
+    public static long copyTo(@NotNull Reader reader, @NotNull Writer out, int bufferSize, @Nullable CopyListener listener) throws IOException {
+        long charsCopied = 0;
+        char[] buffer = new char[bufferSize];
+        int chars = reader.read(buffer);
+        while (chars >= 0) {
+            out.write(buffer, 0, chars);
+            charsCopied += chars;
+            if (listener != null) listener.onUpdateProgress(charsCopied);
+            chars = reader.read(buffer);
+        }
+        return charsCopied;
     }
 
     /**
@@ -357,15 +398,19 @@ public class IOStreamx {
      * @return number of characters copied.
      */
     public static long copyTo(@NotNull Reader reader, @NotNull Writer out, int bufferSize) throws IOException {
-        long charsCopied = 0;
-        char[] buffer = new char[bufferSize];
-        int chars = reader.read(buffer);
-        while (chars >= 0) {
-            out.write(buffer, 0, chars);
-            charsCopied += chars;
-            chars = reader.read(buffer);
-        }
-        return charsCopied;
+        return copyTo(reader, out, bufferSize, null);
+    }
+
+    /**
+     * Copies this reader to the given [out] writer, returning the number of characters copied.
+     * **Note** it is the caller's responsibility to close both of these resources.
+     *
+     * @param out writer to write to.
+     * @return number of characters copied.
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public static long copyTo(@NotNull Reader reader, @NotNull Writer out, @Nullable CopyListener listener) throws IOException {
+        return copyTo(reader, out, DEFAULT_BUFFER_SIZE, listener);
     }
 
     /**
@@ -377,7 +422,7 @@ public class IOStreamx {
      */
     @SuppressWarnings("UnusedReturnValue")
     public static long copyTo(@NotNull Reader reader, @NotNull Writer out) throws IOException {
-        return copyTo(reader, out, DEFAULT_BUFFER_SIZE);
+        return copyTo(reader, out, DEFAULT_BUFFER_SIZE, null);
     }
 
 
