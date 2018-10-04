@@ -25,13 +25,11 @@ import java.util.*;
 /**
  * Array tool method
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess"})
 public class Arrayx2 {
 
     private Arrayx2() {
     }
-
-    // TODO: 2018/10/2 尽量改成 @Nullable
 
 
     /*
@@ -47,63 +45,63 @@ public class Arrayx2 {
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static <T> int contentHashCode(@NotNull T[] elements) {
+    public static <T> int contentHashCode(@Nullable T[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull byte[] elements) {
+    public static int contentHashCode(@Nullable byte[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull short[] elements) {
+    public static int contentHashCode(@Nullable short[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull int[] elements) {
+    public static int contentHashCode(@Nullable int[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull long[] elements) {
+    public static int contentHashCode(@Nullable long[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull float[] elements) {
+    public static int contentHashCode(@Nullable float[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull double[] elements) {
+    public static int contentHashCode(@Nullable double[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull boolean[] elements) {
+    public static int contentHashCode(@Nullable boolean[] elements) {
         return Arrays.hashCode(elements);
     }
 
     /**
      * Returns a hash code based on the contents of this array as if it is [List].
      */
-    public static int contentHashCode(@NotNull char[] elements) {
+    public static int contentHashCode(@Nullable char[] elements) {
         return Arrays.hashCode(elements);
     }
 
@@ -118,7 +116,7 @@ public class Arrayx2 {
      * If two corresponding elements are nested arrays, they are also compared deeply.
      * If any of arrays contains itself on any nesting level the behavior is undefined.
      */
-    public static <T> boolean contentDeepEquals(@NotNull T[] elements, T[] other) {
+    public static <T> boolean contentDeepEquals(@Nullable T[] elements, T[] other) {
         return Arrays.deepEquals(elements, other);
     }
 
@@ -128,7 +126,7 @@ public class Arrayx2 {
      * <p>
      * If any of arrays contains itself on any nesting level the behavior is undefined.
      */
-    public static <T> int contentDeepHashCode(@NotNull T[] elements) {
+    public static <T> int contentDeepHashCode(@Nullable T[] elements) {
         return Arrays.deepHashCode(elements);
     }
 
@@ -143,7 +141,7 @@ public class Arrayx2 {
      * is rendered as `"[...]"` to prevent recursion.
      */
     @NotNull
-    public static <T> String contentDeepToString(@NotNull T[] elements) {
+    public static <T> String contentDeepToString(@Nullable T[] elements) {
         return Arrays.deepToString(elements);
     }
 
@@ -151,22 +149,14 @@ public class Arrayx2 {
     /**
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
-    public static <T> String contentToString(@NotNull T[] elements) {
+    public static <T> String contentToString(@Nullable T[] elements) {
         return Arrays.toString(elements);
     }
 
     /**
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
-    public static String contentToString(@NotNull byte[] elements) {
-        return Arrays.toString(elements);
-    }
-
-    /**
-     * Returns a string representation of the contents of the specified array as if it is [List].
-     */
-    @NotNull
-    public static String contentToString(@NotNull short[] elements) {
+    public static String contentToString(@Nullable byte[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -174,7 +164,7 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     @NotNull
-    public static String contentToString(@NotNull int[] elements) {
+    public static String contentToString(@Nullable short[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -182,7 +172,7 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     @NotNull
-    public static String contentToString(@NotNull long[] elements) {
+    public static String contentToString(@Nullable int[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -190,7 +180,7 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     @NotNull
-    public static String contentToString(@NotNull float[] elements) {
+    public static String contentToString(@Nullable long[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -198,7 +188,7 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     @NotNull
-    public static String contentToString(@NotNull double[] elements) {
+    public static String contentToString(@Nullable float[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -206,7 +196,7 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     @NotNull
-    public static String contentToString(@NotNull boolean[] elements) {
+    public static String contentToString(@Nullable double[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -214,7 +204,15 @@ public class Arrayx2 {
      * Returns a string representation of the contents of the specified array as if it is [List].
      */
     @NotNull
-    public static String contentToString(@NotNull char[] elements) {
+    public static String contentToString(@Nullable boolean[] elements) {
+        return Arrays.toString(elements);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array as if it is [List].
+     */
+    @NotNull
+    public static String contentToString(@Nullable char[] elements) {
         return Arrays.toString(elements);
     }
 
@@ -226,7 +224,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static <T> boolean contentEquals(@NotNull T[] elements, @NotNull T[] other) {
+    public static <T> boolean contentEquals(@Nullable T[] elements, @Nullable T[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -234,7 +232,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull byte[] elements, @NotNull byte[] other) {
+    public static boolean contentEquals(@Nullable byte[] elements, @Nullable byte[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -242,7 +240,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull short[] elements, @NotNull short[] other) {
+    public static boolean contentEquals(@Nullable short[] elements, @Nullable short[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -250,7 +248,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull int[] elements, @NotNull int[] other) {
+    public static boolean contentEquals(@Nullable int[] elements, @Nullable int[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -258,7 +256,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull long[] elements, @NotNull long[] other) {
+    public static boolean contentEquals(@Nullable long[] elements, @Nullable long[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -266,7 +264,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull float[] elements, @NotNull float[] other) {
+    public static boolean contentEquals(@Nullable float[] elements, @Nullable float[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -274,7 +272,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull double[] elements, @NotNull double[] other) {
+    public static boolean contentEquals(@Nullable double[] elements, @Nullable double[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -282,7 +280,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull boolean[] elements, @NotNull boolean[] other) {
+    public static boolean contentEquals(@Nullable boolean[] elements, @Nullable boolean[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -290,7 +288,7 @@ public class Arrayx2 {
      * Returns `true` if the two specified arrays are *structurally* equal to one another,
      * i.e. contain the same number of the same elements in the same order.
      */
-    public static boolean contentEquals(@NotNull char[] elements, @NotNull char[] other) {
+    public static boolean contentEquals(@Nullable char[] elements, @Nullable char[] other) {
         return Arrays.equals(elements, other);
     }
 
@@ -800,7 +798,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static <T> List<T> slice(@NotNull T[] elements, @NotNull IntRange indices) {
+    public static <T> List<T> slice(@Nullable T[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -809,7 +807,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Byte> slice(@NotNull byte[] elements, @NotNull IntRange indices) {
+    public static List<Byte> slice(@Nullable byte[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -818,7 +816,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Short> slice(@NotNull short[] elements, @NotNull IntRange indices) {
+    public static List<Short> slice(@Nullable short[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -827,7 +825,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Integer> slice(@NotNull int[] elements, @NotNull IntRange indices) {
+    public static List<Integer> slice(@Nullable int[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -836,7 +834,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Long> slice(@NotNull long[] elements, @NotNull IntRange indices) {
+    public static List<Long> slice(@Nullable long[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -845,7 +843,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Float> slice(@NotNull float[] elements, @NotNull IntRange indices) {
+    public static List<Float> slice(@Nullable float[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -854,7 +852,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Double> slice(@NotNull double[] elements, @NotNull IntRange indices) {
+    public static List<Double> slice(@Nullable double[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -863,7 +861,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Boolean> slice(@NotNull boolean[] elements, @NotNull IntRange indices) {
+    public static List<Boolean> slice(@Nullable boolean[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -872,7 +870,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static List<Character> slice(@NotNull char[] elements, @NotNull IntRange indices) {
+    public static List<Character> slice(@Nullable char[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Collectionx.emptyList();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
@@ -881,12 +879,14 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static <T> List<T> slice(@NotNull T[] elements, @NotNull Iterable<Integer> indices) {
+    public static <T> List<T> slice(@Nullable T[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
         if (size == 0) return Collectionx.emptyList();
         List<T> list = new ArrayList<>(size);
         for (int index : indices) {
-            list.add(elements[index]);
+            if (elements != null) {
+                list.add(elements[index]);
+            }
         }
         return list;
     }
@@ -895,9 +895,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Byte> slice(@NotNull byte[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Byte> slice(@Nullable byte[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Byte> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -909,9 +909,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Short> slice(@NotNull short[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Short> slice(@Nullable short[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Short> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -923,9 +923,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Integer> slice(@NotNull int[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Integer> slice(@Nullable int[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Integer> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -937,9 +937,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Long> slice(@NotNull long[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Long> slice(@Nullable long[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Long> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -951,9 +951,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Float> slice(@NotNull float[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Float> slice(@Nullable float[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Float> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -965,9 +965,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Double> slice(@NotNull double[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Double> slice(@Nullable double[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Double> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -979,9 +979,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Boolean> slice(@NotNull boolean[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Boolean> slice(@Nullable boolean[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Boolean> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -993,9 +993,9 @@ public class Arrayx2 {
      * Returns a list containing elements at specified [indices].
      */
     @NotNull
-    public static List<Character> slice(@NotNull char[] elements, @NotNull Iterable<Integer> indices) {
+    public static List<Character> slice(@Nullable char[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.emptyList();
+        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.emptyList();
         List<Character> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -1007,11 +1007,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static <T> T[] sliceArray(@NotNull T[] elements, @NotNull Collection<Integer> indices) {
+    public static <T> T[] sliceArray(@Nullable T[] elements, @NotNull Collection<Integer> indices) {
         ArrayList<T> result = new ArrayList<>(indices.size());
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result.add(targetIndex++, elements[sourceIndex]);
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result.add(targetIndex++, elements[sourceIndex]);
+            }
         }
         //noinspection unchecked
         return (T[]) result.toArray();
@@ -1021,11 +1023,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static byte[] sliceArray(@NotNull byte[] elements, @NotNull Collection<Integer> indices) {
+    public static byte[] sliceArray(@Nullable byte[] elements, @NotNull Collection<Integer> indices) {
         byte[] result = new byte[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1034,11 +1038,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static short[] sliceArray(@NotNull short[] elements, @NotNull Collection<Integer> indices) {
+    public static short[] sliceArray(@Nullable short[] elements, @NotNull Collection<Integer> indices) {
         short[] result = new short[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1047,11 +1053,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static int[] sliceArray(@NotNull int[] elements, @NotNull Collection<Integer> indices) {
+    public static int[] sliceArray(@Nullable int[] elements, @NotNull Collection<Integer> indices) {
         int[] result = new int[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1060,11 +1068,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static long[] sliceArray(@NotNull long[] elements, @NotNull Collection<Integer> indices) {
+    public static long[] sliceArray(@Nullable long[] elements, @NotNull Collection<Integer> indices) {
         long[] result = new long[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1073,11 +1083,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static float[] sliceArray(@NotNull float[] elements, @NotNull Collection<Integer> indices) {
+    public static float[] sliceArray(@Nullable float[] elements, @NotNull Collection<Integer> indices) {
         float[] result = new float[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1086,11 +1098,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static double[] sliceArray(@NotNull double[] elements, @NotNull Collection<Integer> indices) {
+    public static double[] sliceArray(@Nullable double[] elements, @NotNull Collection<Integer> indices) {
         double[] result = new double[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1099,11 +1113,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static boolean[] sliceArray(@NotNull boolean[] elements, @NotNull Collection<Integer> indices) {
+    public static boolean[] sliceArray(@Nullable boolean[] elements, @NotNull Collection<Integer> indices) {
         boolean[] result = new boolean[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1112,11 +1128,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static char[] sliceArray(@NotNull char[] elements, @NotNull Collection<Integer> indices) {
+    public static char[] sliceArray(@Nullable char[] elements, @NotNull Collection<Integer> indices) {
         char[] result = new char[indices.size()];
-        int targetIndex = 0;
-        for (int sourceIndex : indices) {
-            result[targetIndex++] = elements[sourceIndex];
+        if (elements != null) {
+            int targetIndex = 0;
+            for (int sourceIndex : indices) {
+                result[targetIndex++] = elements[sourceIndex];
+            }
         }
         return result;
     }
@@ -1125,7 +1143,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static <T> T[] sliceArray(@NotNull T[] elements, @NotNull IntRange indices) {
+    public static <T> T[] sliceArray(@Nullable T[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Arrayx2.copyOfRange(elements, 0, 0);
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1134,7 +1152,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static byte[] sliceArray(@NotNull byte[] elements, @NotNull IntRange indices) {
+    public static byte[] sliceArray(@Nullable byte[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new byte[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1143,7 +1161,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static short[] sliceArray(@NotNull short[] elements, @NotNull IntRange indices) {
+    public static short[] sliceArray(@Nullable short[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new short[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1152,7 +1170,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static int[] sliceArray(@NotNull int[] elements, @NotNull IntRange indices) {
+    public static int[] sliceArray(@Nullable int[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new int[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1161,7 +1179,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static long[] sliceArray(@NotNull long[] elements, @NotNull IntRange indices) {
+    public static long[] sliceArray(@Nullable long[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new long[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1170,7 +1188,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static float[] sliceArray(@NotNull float[] elements, @NotNull IntRange indices) {
+    public static float[] sliceArray(@Nullable float[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new float[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1179,7 +1197,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static double[] sliceArray(@NotNull double[] elements, @NotNull IntRange indices) {
+    public static double[] sliceArray(@Nullable double[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new double[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1188,7 +1206,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static boolean[] sliceArray(@NotNull boolean[] elements, @NotNull IntRange indices) {
+    public static boolean[] sliceArray(@Nullable boolean[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new boolean[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1197,7 +1215,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static char[] sliceArray(@NotNull char[] elements, @NotNull IntRange indices) {
+    public static char[] sliceArray(@Nullable char[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return new char[0];
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }
@@ -1215,8 +1233,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <T, K, V> Map<K, V> associate(@NotNull T[] elements, @NotNull Transformer<T, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <T, K, V> Map<K, V> associate(@Nullable T[] elements, @NotNull Transformer<T, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1229,8 +1247,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull byte[] elements, @NotNull Transformer<Byte, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable byte[] elements, @NotNull Transformer<Byte, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1243,8 +1261,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull short[] elements, @NotNull Transformer<Short, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable short[] elements, @NotNull Transformer<Short, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1257,8 +1275,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull int[] elements, @NotNull Transformer<Integer, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable int[] elements, @NotNull Transformer<Integer, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1271,8 +1289,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull long[] elements, @NotNull Transformer<Long, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable long[] elements, @NotNull Transformer<Long, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1285,8 +1303,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull float[] elements, @NotNull Transformer<Float, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable float[] elements, @NotNull Transformer<Float, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1299,8 +1317,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull double[] elements, @NotNull Transformer<Double, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable double[] elements, @NotNull Transformer<Double, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1313,8 +1331,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull boolean[] elements, @NotNull Transformer<Boolean, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable boolean[] elements, @NotNull Transformer<Boolean, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1327,8 +1345,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associate(@NotNull char[] elements, @NotNull Transformer<Character, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associate(@Nullable char[] elements, @NotNull Transformer<Character, Pair<K, V>> transform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1341,8 +1359,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <T, K> Map<K, T> associateBy(@NotNull T[] elements, @NotNull Transformer<T, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <T, K> Map<K, T> associateBy(@Nullable T[] elements, @NotNull Transformer<T, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, T>(capacity), keySelector);
     }
 
@@ -1355,8 +1373,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Byte> associateBy(@NotNull byte[] elements, @NotNull Transformer<Byte, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Byte> associateBy(@Nullable byte[] elements, @NotNull Transformer<Byte, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Byte>(capacity), keySelector);
     }
 
@@ -1369,8 +1387,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Short> associateBy(@NotNull short[] elements, @NotNull Transformer<Short, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Short> associateBy(@Nullable short[] elements, @NotNull Transformer<Short, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Short>(capacity), keySelector);
     }
 
@@ -1383,8 +1401,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Integer> associateBy(@NotNull int[] elements, @NotNull Transformer<Integer, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Integer> associateBy(@Nullable int[] elements, @NotNull Transformer<Integer, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Integer>(capacity), keySelector);
     }
 
@@ -1397,8 +1415,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Long> associateBy(@NotNull long[] elements, @NotNull Transformer<Long, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Long> associateBy(@Nullable long[] elements, @NotNull Transformer<Long, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Long>(capacity), keySelector);
     }
 
@@ -1411,8 +1429,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Float> associateBy(@NotNull float[] elements, @NotNull Transformer<Float, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Float> associateBy(@Nullable float[] elements, @NotNull Transformer<Float, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Float>(capacity), keySelector);
     }
 
@@ -1425,8 +1443,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Double> associateBy(@NotNull double[] elements, @NotNull Transformer<Double, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Double> associateBy(@Nullable double[] elements, @NotNull Transformer<Double, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Double>(capacity), keySelector);
     }
 
@@ -1439,8 +1457,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Boolean> associateBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Boolean> associateBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Boolean>(capacity), keySelector);
     }
 
@@ -1453,8 +1471,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K> Map<K, Character> associateBy(@NotNull char[] elements, @NotNull Transformer<Character, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K> Map<K, Character> associateBy(@Nullable char[] elements, @NotNull Transformer<Character, K> keySelector) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Character>(capacity), keySelector);
     }
 
@@ -1466,8 +1484,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <T, K, V> Map<K, V> associateBy(@NotNull T[] elements, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <T, K, V> Map<K, V> associateBy(@Nullable T[] elements, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1479,8 +1497,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull byte[] elements, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable byte[] elements, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1492,8 +1510,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull short[] elements, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable short[] elements, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1505,8 +1523,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull int[] elements, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable int[] elements, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1518,8 +1536,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull long[] elements, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable long[] elements, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1531,8 +1549,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull float[] elements, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable float[] elements, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1544,8 +1562,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull double[] elements, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable double[] elements, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1557,8 +1575,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1570,8 +1588,8 @@ public class Arrayx2 {
      * The returned map preserves the entry iteration order of the original array.
      */
     @NotNull
-    public static <K, V> Map<K, V> associateBy(@NotNull char[] elements, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(elements.length), 16);
+    public static <K, V> Map<K, V> associateBy(@Nullable char[] elements, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
+        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1583,8 +1601,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <T, K, M extends Map<K, T>> M associateByTo(@NotNull T[] elements, @NotNull M destination, @NotNull Transformer<T, K> keySelector) {
-        for (T element : elements) destination.put(keySelector.transform(element), element);
+    public static <T, K, M extends Map<K, T>> M associateByTo(@Nullable T[] elements, @NotNull M destination, @NotNull Transformer<T, K> keySelector) {
+        if (elements != null) for (T element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1596,8 +1614,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Byte>> M associateByTo(@NotNull byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, K> keySelector) {
-        for (byte element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Byte>> M associateByTo(@Nullable byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, K> keySelector) {
+        if (elements != null) for (byte element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1609,8 +1627,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Short>> M associateByTo(@NotNull short[] elements, @NotNull M destination, @NotNull Transformer<Short, K> keySelector) {
-        for (short element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Short>> M associateByTo(@Nullable short[] elements, @NotNull M destination, @NotNull Transformer<Short, K> keySelector) {
+        if (elements != null) for (short element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1622,8 +1640,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Integer>> M associateByTo(@NotNull int[] elements, @NotNull M destination, @NotNull Transformer<Integer, K> keySelector) {
-        for (int element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Integer>> M associateByTo(@Nullable int[] elements, @NotNull M destination, @NotNull Transformer<Integer, K> keySelector) {
+        if (elements != null) for (int element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1635,8 +1653,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Long>> M associateByTo(@NotNull long[] elements, @NotNull M destination, @NotNull Transformer<Long, K> keySelector) {
-        for (long element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Long>> M associateByTo(@Nullable long[] elements, @NotNull M destination, @NotNull Transformer<Long, K> keySelector) {
+        if (elements != null) for (long element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1648,8 +1666,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Float>> M associateByTo(@NotNull float[] elements, @NotNull M destination, @NotNull Transformer<Float, K> keySelector) {
-        for (float element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Float>> M associateByTo(@Nullable float[] elements, @NotNull M destination, @NotNull Transformer<Float, K> keySelector) {
+        if (elements != null) for (float element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1661,8 +1679,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Double>> M associateByTo(@NotNull double[] elements, @NotNull M destination, @NotNull Transformer<Double, K> keySelector) {
-        for (double element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Double>> M associateByTo(@Nullable double[] elements, @NotNull M destination, @NotNull Transformer<Double, K> keySelector) {
+        if (elements != null) for (double element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1674,8 +1692,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Boolean>> M associateByTo(@NotNull boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, K> keySelector) {
-        for (boolean element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Boolean>> M associateByTo(@Nullable boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, K> keySelector) {
+        if (elements != null) for (boolean element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1687,8 +1705,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, M extends Map<K, Character>> M associateByTo(@NotNull char[] elements, @NotNull M destination, @NotNull Transformer<Character, K> keySelector) {
-        for (char element : elements) destination.put(keySelector.transform(element), element);
+    public static <K, M extends Map<K, Character>> M associateByTo(@Nullable char[] elements, @NotNull M destination, @NotNull Transformer<Character, K> keySelector) {
+        if (elements != null) for (char element : elements) destination.put(keySelector.transform(element), element);
         return destination;
     }
 
@@ -1700,21 +1718,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <T, K, V, M extends Map<K, V>> M associateByTo(@NotNull T[] elements, @NotNull M destination, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
-        for (T element : elements) destination.put(keySelector.transform(element), valueTransform.transform(element));
-        return destination;
-    }
-
-    /**
-     * Populates and returns the [destination] mutable map with key-value pairs,
-     * where key is provided by the [keySelector] function and
-     * and value is provided by the [valueTransform] function applied to elements of the given array.
-     * <p>
-     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
-     */
-    @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
-        for (byte element : elements)
+    public static <T, K, V, M extends Map<K, V>> M associateByTo(@Nullable T[] elements, @NotNull M destination, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
+        if (elements != null) for (T element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1727,8 +1732,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull short[] elements, @NotNull M destination, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
-        for (short element : elements)
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
+        if (elements != null) for (byte element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1741,21 +1746,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull int[] elements, @NotNull M destination, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
-        for (int element : elements) destination.put(keySelector.transform(element), valueTransform.transform(element));
-        return destination;
-    }
-
-    /**
-     * Populates and returns the [destination] mutable map with key-value pairs,
-     * where key is provided by the [keySelector] function and
-     * and value is provided by the [valueTransform] function applied to elements of the given array.
-     * <p>
-     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
-     */
-    @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull long[] elements, @NotNull M destination, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
-        for (long element : elements)
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable short[] elements, @NotNull M destination, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
+        if (elements != null) for (short element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1768,8 +1760,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull float[] elements, @NotNull M destination, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
-        for (float element : elements)
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable int[] elements, @NotNull M destination, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
+        if (elements != null) for (int element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1782,8 +1774,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull double[] elements, @NotNull M destination, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
-        for (double element : elements)
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable long[] elements, @NotNull M destination, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
+        if (elements != null) for (long element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1796,8 +1788,8 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
-        for (boolean element : elements)
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable float[] elements, @NotNull M destination, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
+        if (elements != null) for (float element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1810,8 +1802,36 @@ public class Arrayx2 {
      * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateByTo(@NotNull char[] elements, @NotNull M destination, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
-        for (char element : elements)
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable double[] elements, @NotNull M destination, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
+        if (elements != null) for (double element : elements)
+            destination.put(keySelector.transform(element), valueTransform.transform(element));
+        return destination;
+    }
+
+    /**
+     * Populates and returns the [destination] mutable map with key-value pairs,
+     * where key is provided by the [keySelector] function and
+     * and value is provided by the [valueTransform] function applied to elements of the given array.
+     * <p>
+     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
+        if (elements != null) for (boolean element : elements)
+            destination.put(keySelector.transform(element), valueTransform.transform(element));
+        return destination;
+    }
+
+    /**
+     * Populates and returns the [destination] mutable map with key-value pairs,
+     * where key is provided by the [keySelector] function and
+     * and value is provided by the [valueTransform] function applied to elements of the given array.
+     * <p>
+     * If any two elements would have the same key returned by [keySelector] the last one gets added to the map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, V>> M associateByTo(@Nullable char[] elements, @NotNull M destination, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
+        if (elements != null) for (char element : elements)
             destination.put(keySelector.transform(element), valueTransform.transform(element));
         return destination;
     }
@@ -1823,8 +1843,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <T, K, V, M extends Map<K, V>> M associateTo(@NotNull T[] elements, @NotNull M destination, @NotNull Transformer<T, Pair<K, V>> transform) {
-        for (T element : elements) Mapx.put(destination, transform.transform(element));
+    public static <T, K, V, M extends Map<K, V>> M associateTo(@Nullable T[] elements, @NotNull M destination, @NotNull Transformer<T, Pair<K, V>> transform) {
+        if (elements != null) for (T element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1835,8 +1855,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, Pair<K, V>> transform) {
-        for (byte element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable byte[] elements, @NotNull M destination, @NotNull Transformer<Byte, Pair<K, V>> transform) {
+        if (elements != null) for (byte element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1847,8 +1867,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull short[] elements, @NotNull M destination, @NotNull Transformer<Short, Pair<K, V>> transform) {
-        for (short element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable short[] elements, @NotNull M destination, @NotNull Transformer<Short, Pair<K, V>> transform) {
+        if (elements != null) for (short element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1859,8 +1879,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull int[] elements, @NotNull M destination, @NotNull Transformer<Integer, Pair<K, V>> transform) {
-        for (int element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable int[] elements, @NotNull M destination, @NotNull Transformer<Integer, Pair<K, V>> transform) {
+        if (elements != null) for (int element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1871,8 +1891,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull long[] elements, @NotNull M destination, @NotNull Transformer<Long, Pair<K, V>> transform) {
-        for (long element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable long[] elements, @NotNull M destination, @NotNull Transformer<Long, Pair<K, V>> transform) {
+        if (elements != null) for (long element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1883,8 +1903,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull float[] elements, @NotNull M destination, @NotNull Transformer<Float, Pair<K, V>> transform) {
-        for (float element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable float[] elements, @NotNull M destination, @NotNull Transformer<Float, Pair<K, V>> transform) {
+        if (elements != null) for (float element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1895,8 +1915,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull double[] elements, @NotNull M destination, @NotNull Transformer<Double, Pair<K, V>> transform) {
-        for (double element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable double[] elements, @NotNull M destination, @NotNull Transformer<Double, Pair<K, V>> transform) {
+        if (elements != null) for (double element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1907,8 +1927,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, Pair<K, V>> transform) {
-        for (boolean element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable boolean[] elements, @NotNull M destination, @NotNull Transformer<Boolean, Pair<K, V>> transform) {
+        if (elements != null) for (boolean element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 
@@ -1919,8 +1939,8 @@ public class Arrayx2 {
      * If any of two pairs would have the same key the last one gets added to the map.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@NotNull char[] elements, @NotNull M destination, @NotNull Transformer<Character, Pair<K, V>> transform) {
-        for (char element : elements) Mapx.put(destination, transform.transform(element));
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable char[] elements, @NotNull M destination, @NotNull Transformer<Character, Pair<K, V>> transform) {
+        if (elements != null) for (char element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
 

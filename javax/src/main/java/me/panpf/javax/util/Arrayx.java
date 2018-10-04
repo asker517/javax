@@ -28,7 +28,7 @@ import static me.panpf.javax.util.Arrayx2.copyOf;
 /**
  * Array tool method
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess"})
 public class Arrayx {
 
     private Arrayx() {
@@ -10697,64 +10697,64 @@ public class Arrayx {
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
     @NotNull
-    public static <T> T elementAt(@Nullable T[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static <T> T elementAt(@NotNull T[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static byte elementAt(@Nullable byte[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static byte elementAt(@NotNull byte[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static short elementAt(@Nullable short[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static short elementAt(@NotNull short[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static int elementAt(@Nullable int[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static int elementAt(@NotNull int[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static long elementAt(@Nullable long[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static long elementAt(@NotNull long[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static float elementAt(@Nullable float[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static float elementAt(@NotNull float[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static double elementAt(@Nullable double[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static double elementAt(@NotNull double[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static boolean elementAt(@Nullable boolean[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static boolean elementAt(@NotNull boolean[] elements, int index) {
+        return elements[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static char elementAt(@Nullable char[] elements, int index) {
-        return Premisex.requireNotNull(elements, "elements")[index];
+    public static char elementAt(@NotNull char[] elements, int index) {
+        return elements[index];
     }
 
     /**
