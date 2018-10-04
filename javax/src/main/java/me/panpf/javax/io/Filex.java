@@ -183,12 +183,38 @@ public class Filex {
                 length += childFile.length();
             } else {
                 File[] childChildFiles = childFile.listFiles();
-                if (childChildFiles != null && Arrayx.isNotEmpty(childChildFiles)) {
+                if (Arrayx.isNotEmpty(childChildFiles)) {
                     Collections.addAll(fileQueue, childChildFiles);
                 }
             }
         }
         return length;
+    }
+
+    /**
+     * Get the length of the files or dirs, if it is a directory, it will superimpose the length of all subfiles
+     */
+    public static long lengthRecursively(@Nullable File[] files) {
+        return (long) Arrayx.sumByDouble(files, new Transformer<File, Double>() {
+            @NotNull
+            @Override
+            public Double transform(@NotNull File file) {
+                return (double) lengthRecursively(file);
+            }
+        });
+    }
+
+    /**
+     * Get the length of the files or dirs, if it is a directory, it will superimpose the length of all subfiles
+     */
+    public static long lengthRecursively(@Nullable Iterable<File> files) {
+        return (long) Collectionx.sumByDouble(files, new Transformer<File, Double>() {
+            @NotNull
+            @Override
+            public Double transform(@NotNull File file) {
+                return (double) lengthRecursively(file);
+            }
+        });
     }
 
     /**

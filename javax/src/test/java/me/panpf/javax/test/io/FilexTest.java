@@ -19,11 +19,15 @@ package me.panpf.javax.test.io;
 import me.panpf.javax.io.Filex;
 import me.panpf.javax.io.UnableCreateDirException;
 import me.panpf.javax.io.UnableCreateFileException;
-import me.panpf.javax.util.Premisex;
+import me.panpf.javax.util.Arrayx;
+import me.panpf.javax.util.Collectionx;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
+import java.io.IOException;
 
 public class FilexTest {
 
@@ -113,6 +117,8 @@ public class FilexTest {
         Assert.assertEquals(childFile2.length(), 3);
 
         Assert.assertEquals(Filex.lengthRecursively(dir), 6);
+        Assert.assertEquals(Filex.lengthRecursively(Arrayx.arrayOf(dir)), 6);
+        Assert.assertEquals(Filex.lengthRecursively(Collectionx.listOf(dir)), 6);
 
         Filex.deleteRecursively(dir);
         Assert.assertFalse(dir.exists());

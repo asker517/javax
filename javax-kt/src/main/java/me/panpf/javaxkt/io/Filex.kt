@@ -71,6 +71,16 @@ inline fun File.cleanDir(): Boolean = Filex.cleanDir(this)
 inline fun File.lengthRecursively(): Long = Filex.lengthRecursively(this)
 
 /**
+ * Get the length of the files or dirs, if it is a directory, it will superimpose the length of all subfiles
+ */
+inline fun Array<File>.lengthRecursively(): Long = Filex.lengthRecursively(this)
+
+/**
+ * Get the length of the files or dirs, if it is a directory, it will superimpose the length of all subfiles
+ */
+inline fun Iterable<File>.lengthRecursively(): Long = Filex.lengthRecursively(this)
+
+/**
  * Return the path to the file under this directory and all its subdirectories
  */
 inline fun File.listRecursively(): Array<String>? = Filex.listRecursively(this)

@@ -113,6 +113,8 @@ class FilexTest {
         Assert.assertEquals(childFile2.length(), 3)
 
         Assert.assertEquals(dir.lengthRecursively(), 6)
+        Assert.assertEquals(arrayOf(dir).lengthRecursively(), 6)
+        Assert.assertEquals(arrayListOf(dir).lengthRecursively(), 6)
 
         dir.deleteRecursively()
         Assert.assertFalse(dir.exists())

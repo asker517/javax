@@ -24,6 +24,7 @@
 * :hammer: The primary parameters of all Collectionx methods are now Nullable
 * :sparkles: Arrayx add orEmpty method
 * :hammer: The primary parameters of all Arrayx methods are now Nullable
+* :sparkles: Filex add lengthRecursively(File\[\]) and lengthRecursively(Iterable<File>) method
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
