@@ -34,11 +34,13 @@ public class Collectionx {
     }
 
 
-    public static <T> T[] toArray(@Nullable Collection<T> collection) {
+    @NotNull
+    public static <T> T[] toTypeArray(@Nullable Collection<T> collection) {
         //noinspection unchecked
         return isNotEmpty(collection) ? (T[]) collection.toArray() : (T[]) new Object[0];
     }
 
+    @NotNull
     public static byte[] toByteArray(@Nullable Collection<Byte> collection) {
         byte[] result = new byte[count(collection)];
         if (collection != null) {
@@ -50,6 +52,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static short[] toShortArray(@Nullable Collection<Short> collection) {
         short[] result = new short[count(collection)];
         if (collection != null) {
@@ -61,6 +64,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static int[] toIntArray(@Nullable Collection<Integer> collection) {
         int[] result = new int[count(collection)];
         if (collection != null) {
@@ -72,6 +76,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static long[] toLongArray(@Nullable Collection<Long> collection) {
         long[] result = new long[count(collection)];
         if (collection != null) {
@@ -83,6 +88,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static float[] toFloatArray(@Nullable Collection<Float> collection) {
         float[] result = new float[count(collection)];
         if (collection != null) {
@@ -94,6 +100,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static double[] toDoubleArray(@Nullable Collection<Double> collection) {
         double[] result = new double[count(collection)];
         if (collection != null) {
@@ -105,6 +112,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static boolean[] toBooleanArray(@Nullable Collection<Boolean> collection) {
         boolean[] result = new boolean[count(collection)];
         if (collection != null) {
@@ -116,6 +124,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static char[] toCharArray(@Nullable Collection<Character> collection) {
         char[] result = new char[count(collection)];
         if (collection != null) {
@@ -128,12 +137,14 @@ public class Collectionx {
     }
 
 
-    public static <T> T[] toArray(@Nullable Iterable<T> collection) {
+    @NotNull
+    public static <T> T[] toTypeArray(@Nullable Iterable<T> collection) {
         List<T> list = toList(collection);
         //noinspection unchecked
         return isNotEmpty(list) ? (T[]) list.toArray() : (T[]) new Object[0];
     }
 
+    @NotNull
     public static byte[] toByteArray(@Nullable Iterable<Byte> collection) {
         List<Byte> list = toList(collection);
         byte[] result = new byte[count(list)];
@@ -144,6 +155,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static short[] toShortArray(@Nullable Iterable<Short> collection) {
         List<Short> list = toList(collection);
         short[] result = new short[count(list)];
@@ -154,6 +166,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static int[] toIntArray(@Nullable Iterable<Integer> collection) {
         List<Integer> list = toList(collection);
         int[] result = new int[count(list)];
@@ -164,6 +177,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static long[] toLongArray(@Nullable Iterable<Long> collection) {
         List<Long> list = toList(collection);
         long[] result = new long[count(list)];
@@ -174,6 +188,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static float[] toFloatArray(@Nullable Iterable<Float> collection) {
         List<Float> list = toList(collection);
         float[] result = new float[count(list)];
@@ -184,6 +199,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static double[] toDoubleArray(@Nullable Iterable<Double> collection) {
         List<Double> list = toList(collection);
         double[] result = new double[count(list)];
@@ -194,6 +210,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static boolean[] toBooleanArray(@Nullable Iterable<Boolean> collection) {
         List<Boolean> list = toList(collection);
         boolean[] result = new boolean[count(list)];
@@ -204,6 +221,7 @@ public class Collectionx {
         return result;
     }
 
+    @NotNull
     public static char[] toCharArray(@Nullable Iterable<Character> collection) {
         List<Character> list = toList(collection);
         char[] result = new char[count(list)];

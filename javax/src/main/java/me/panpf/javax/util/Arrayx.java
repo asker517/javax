@@ -6992,10 +6992,7 @@ public class Arrayx {
             //noinspection unchecked
             return selfElements != null ? copyOf(selfElements) : (T[]) new Object[0];
         }
-        if (selfElements == null) {
-            //noinspection unchecked
-            return (T[]) elements.toArray();
-        }
+        if (selfElements == null) return Collectionx.toTypeArray(elements);
         int index = selfElements.length;
         T[] result = copyOf(selfElements, index + elements.size());
         for (T element : elements) {
@@ -10695,142 +10692,140 @@ public class Arrayx {
 
     /* ******************************************* elementAt ******************************************* */
 
-    // TODO: 2018/10/2 尽量改成 @Nullable
-
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
     @NotNull
-    public static <T> T elementAt(@NotNull T[] elements, int index) {
-        return elements[index];
+    public static <T> T elementAt(@Nullable T[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static byte elementAt(@NotNull byte[] elements, int index) {
-        return elements[index];
+    public static byte elementAt(@Nullable byte[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static short elementAt(@NotNull short[] elements, int index) {
-        return elements[index];
+    public static short elementAt(@Nullable short[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static int elementAt(@NotNull int[] elements, int index) {
-        return elements[index];
+    public static int elementAt(@Nullable int[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static long elementAt(@NotNull long[] elements, int index) {
-        return elements[index];
+    public static long elementAt(@Nullable long[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static float elementAt(@NotNull float[] elements, int index) {
-        return elements[index];
+    public static float elementAt(@Nullable float[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static double elementAt(@NotNull double[] elements, int index) {
-        return elements[index];
+    public static double elementAt(@Nullable double[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static boolean elementAt(@NotNull boolean[] elements, int index) {
-        return elements[index];
+    public static boolean elementAt(@Nullable boolean[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this array.
      */
-    public static char elementAt(@NotNull char[] elements, int index) {
-        return elements[index];
+    public static char elementAt(@Nullable char[] elements, int index) {
+        return Premisex.requireNotNull(elements, "elements")[index];
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
     @NotNull
-    public static <T> T elementAtOrElse(@NotNull T[] elements, int index, @NotNull IndexedDefaultValue<T> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static <T> T elementAtOrElse(@Nullable T[] elements, int index, @NotNull IndexedDefaultValue<T> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static byte elementAtOrElse(@NotNull byte[] elements, int index, @NotNull IndexedDefaultValue<Byte> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static byte elementAtOrElse(@Nullable byte[] elements, int index, @NotNull IndexedDefaultValue<Byte> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static short elementAtOrElse(@NotNull short[] elements, int index, @NotNull IndexedDefaultValue<Short> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static short elementAtOrElse(@Nullable short[] elements, int index, @NotNull IndexedDefaultValue<Short> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static int elementAtOrElse(@NotNull int[] elements, int index, @NotNull IndexedDefaultValue<Integer> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static int elementAtOrElse(@Nullable int[] elements, int index, @NotNull IndexedDefaultValue<Integer> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static long elementAtOrElse(@NotNull long[] elements, int index, @NotNull IndexedDefaultValue<Long> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static long elementAtOrElse(@Nullable long[] elements, int index, @NotNull IndexedDefaultValue<Long> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static float elementAtOrElse(@NotNull float[] elements, int index, @NotNull IndexedDefaultValue<Float> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static float elementAtOrElse(@Nullable float[] elements, int index, @NotNull IndexedDefaultValue<Float> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static double elementAtOrElse(@NotNull double[] elements, int index, @NotNull IndexedDefaultValue<Double> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static double elementAtOrElse(@Nullable double[] elements, int index, @NotNull IndexedDefaultValue<Double> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static boolean elementAtOrElse(@NotNull boolean[] elements, int index, @NotNull IndexedDefaultValue<Boolean> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static boolean elementAtOrElse(@Nullable boolean[] elements, int index, @NotNull IndexedDefaultValue<Boolean> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this array.
      */
-    public static char elementAtOrElse(@NotNull char[] elements, int index, @NotNull IndexedDefaultValue<Character> defaultValue) {
-        return index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
+    public static char elementAtOrElse(@Nullable char[] elements, int index, @NotNull IndexedDefaultValue<Character> defaultValue) {
+        return elements != null && index >= 0 && index < elements.length ? elements[index] : defaultValue.get(index);
     }
 
     /**
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static <T> T elementAtOrNull(@NotNull T[] elements, int index) {
+    public static <T> T elementAtOrNull(@Nullable T[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10838,7 +10833,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Byte elementAtOrNull(@NotNull byte[] elements, int index) {
+    public static Byte elementAtOrNull(@Nullable byte[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10846,7 +10841,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Short elementAtOrNull(@NotNull short[] elements, int index) {
+    public static Short elementAtOrNull(@Nullable short[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10854,7 +10849,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Integer elementAtOrNull(@NotNull int[] elements, int index) {
+    public static Integer elementAtOrNull(@Nullable int[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10862,7 +10857,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Long elementAtOrNull(@NotNull long[] elements, int index) {
+    public static Long elementAtOrNull(@Nullable long[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10870,7 +10865,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Float elementAtOrNull(@NotNull float[] elements, int index) {
+    public static Float elementAtOrNull(@Nullable float[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10878,7 +10873,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Double elementAtOrNull(@NotNull double[] elements, int index) {
+    public static Double elementAtOrNull(@Nullable double[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10886,7 +10881,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Boolean elementAtOrNull(@NotNull boolean[] elements, int index) {
+    public static Boolean elementAtOrNull(@Nullable boolean[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10894,7 +10889,7 @@ public class Arrayx {
      * Returns an element at the given [index] or `null` if the [index] is out of bounds of this array.
      */
     @Nullable
-    public static Character elementAtOrNull(@NotNull char[] elements, int index) {
+    public static Character elementAtOrNull(@Nullable char[] elements, int index) {
         return Arrayx.getOrNull(elements, index);
     }
 
@@ -10906,7 +10901,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <T, R> List<R> flatMap(@NotNull T[] elements, @NotNull Transformer<T, Iterable<R>> transform) {
+    public static <T, R> List<R> flatMap(@Nullable T[] elements, @NotNull Transformer<T, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10914,7 +10909,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull byte[] elements, @NotNull Transformer<Byte, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable byte[] elements, @NotNull Transformer<Byte, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10922,7 +10917,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull short[] elements, @NotNull Transformer<Short, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable short[] elements, @NotNull Transformer<Short, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10930,7 +10925,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull int[] elements, @NotNull Transformer<Integer, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable int[] elements, @NotNull Transformer<Integer, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10938,7 +10933,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull long[] elements, @NotNull Transformer<Long, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable long[] elements, @NotNull Transformer<Long, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10946,7 +10941,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull float[] elements, @NotNull Transformer<Float, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable float[] elements, @NotNull Transformer<Float, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10954,7 +10949,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull double[] elements, @NotNull Transformer<Double, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable double[] elements, @NotNull Transformer<Double, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10962,7 +10957,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull boolean[] elements, @NotNull Transformer<Boolean, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable boolean[] elements, @NotNull Transformer<Boolean, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10970,7 +10965,7 @@ public class Arrayx {
      * Returns a single list of all elements yielded from results of [transform] function being invoked on each element of original array.
      */
     @NotNull
-    public static <R> List<R> flatMap(@NotNull char[] elements, @NotNull Transformer<Character, Iterable<R>> transform) {
+    public static <R> List<R> flatMap(@Nullable char[] elements, @NotNull Transformer<Character, Iterable<R>> transform) {
         return flatMapTo(elements, new ArrayList<R>(), transform);
     }
 
@@ -10978,10 +10973,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <T, R, C extends Collection<R>> C flatMapTo(@NotNull T[] elements, @NotNull C destination, @NotNull Transformer<T, Iterable<R>> transform) {
-        for (T element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <T, R, C extends Collection<R>> C flatMapTo(@Nullable T[] elements, @NotNull C destination, @NotNull Transformer<T, Iterable<R>> transform) {
+        if (elements != null) {
+            for (T element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -10990,10 +10987,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull byte[] elements, @NotNull C destination, @NotNull Transformer<Byte, Iterable<R>> transform) {
-        for (byte element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable byte[] elements, @NotNull C destination, @NotNull Transformer<Byte, Iterable<R>> transform) {
+        if (elements != null) {
+            for (byte element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11002,10 +11001,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull short[] elements, @NotNull C destination, @NotNull Transformer<Short, Iterable<R>> transform) {
-        for (short element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable short[] elements, @NotNull C destination, @NotNull Transformer<Short, Iterable<R>> transform) {
+        if (elements != null) {
+            for (short element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11014,10 +11015,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull int[] elements, @NotNull C destination, @NotNull Transformer<Integer, Iterable<R>> transform) {
-        for (int element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable int[] elements, @NotNull C destination, @NotNull Transformer<Integer, Iterable<R>> transform) {
+        if (elements != null) {
+            for (int element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11026,10 +11029,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull long[] elements, @NotNull C destination, @NotNull Transformer<Long, Iterable<R>> transform) {
-        for (long element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable long[] elements, @NotNull C destination, @NotNull Transformer<Long, Iterable<R>> transform) {
+        if (elements != null) {
+            for (long element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11038,10 +11043,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull float[] elements, @NotNull C destination, @NotNull Transformer<Float, Iterable<R>> transform) {
-        for (float element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable float[] elements, @NotNull C destination, @NotNull Transformer<Float, Iterable<R>> transform) {
+        if (elements != null) {
+            for (float element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11050,10 +11057,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull double[] elements, @NotNull C destination, @NotNull Transformer<Double, Iterable<R>> transform) {
-        for (double element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable double[] elements, @NotNull C destination, @NotNull Transformer<Double, Iterable<R>> transform) {
+        if (elements != null) {
+            for (double element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11062,10 +11071,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull boolean[] elements, @NotNull C destination, @NotNull Transformer<Boolean, Iterable<R>> transform) {
-        for (boolean element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable boolean[] elements, @NotNull C destination, @NotNull Transformer<Boolean, Iterable<R>> transform) {
+        if (elements != null) {
+            for (boolean element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11074,10 +11085,12 @@ public class Arrayx {
      * Appends all elements yielded from results of [transform] function being invoked on each element of original array, to the given [destination].
      */
     @NotNull
-    public static <R, C extends Collection<R>> C flatMapTo(@NotNull char[] elements, @NotNull C destination, @NotNull Transformer<Character, Iterable<R>> transform) {
-        for (char element : elements) {
-            Iterable<R> list = transform.transform(element);
-            Collectionx.addAll(destination, list);
+    public static <R, C extends Collection<R>> C flatMapTo(@Nullable char[] elements, @NotNull C destination, @NotNull Transformer<Character, Iterable<R>> transform) {
+        if (elements != null) {
+            for (char element : elements) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
     }
@@ -11089,12 +11102,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double averageOfByte(@NotNull Byte[] elements) {
+    public static double averageOfByte(@Nullable Byte[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (Byte element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (Byte element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11102,12 +11117,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double averageOfShort(@NotNull Short[] elements) {
+    public static double averageOfShort(@Nullable Short[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (Short element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (Short element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11115,12 +11132,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double averageOfInt(@NotNull Integer[] elements) {
+    public static double averageOfInt(@Nullable Integer[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (Integer element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (Integer element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11128,12 +11147,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double averageOfLong(@NotNull Long[] elements) {
+    public static double averageOfLong(@Nullable Long[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (Long element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (Long element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11141,12 +11162,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double averageOfFloat(@NotNull Float[] elements) {
+    public static double averageOfFloat(@Nullable Float[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (Float element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (Float element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11154,12 +11177,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double averageOfDouble(@NotNull Double[] elements) {
+    public static double averageOfDouble(@Nullable Double[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (Double element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (Double element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11167,12 +11192,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double average(@NotNull byte[] elements) {
+    public static double average(@Nullable byte[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (byte element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (byte element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11180,12 +11207,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double average(@NotNull short[] elements) {
+    public static double average(@Nullable short[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (short element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (short element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11193,12 +11222,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double average(@NotNull int[] elements) {
+    public static double average(@Nullable int[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (int element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (int element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11206,12 +11237,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double average(@NotNull long[] elements) {
+    public static double average(@Nullable long[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (long element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (long element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11219,12 +11252,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double average(@NotNull float[] elements) {
+    public static double average(@Nullable float[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (float element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (float element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11232,12 +11267,14 @@ public class Arrayx {
     /**
      * Returns an average value of elements in the array.
      */
-    public static double average(@NotNull double[] elements) {
+    public static double average(@Nullable double[] elements) {
         double sum = 0.0d;
         int count = 0;
-        for (double element : elements) {
-            sum += element;
-            count += 1;
+        if (elements != null) {
+            for (double element : elements) {
+                sum += element;
+                count += 1;
+            }
         }
         return count == 0 ? Double.NaN : sum / count;
     }
@@ -11249,135 +11286,135 @@ public class Arrayx {
     /**
      * Returns `true` if the array has no elements.
      */
-    public static <T> boolean none(@NotNull T[] elements) {
+    public static <T> boolean none(@Nullable T[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull byte[] elements) {
+    public static boolean none(@Nullable byte[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull short[] elements) {
+    public static boolean none(@Nullable short[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull int[] elements) {
+    public static boolean none(@Nullable int[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull long[] elements) {
+    public static boolean none(@Nullable long[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull float[] elements) {
+    public static boolean none(@Nullable float[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull double[] elements) {
+    public static boolean none(@Nullable double[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull boolean[] elements) {
+    public static boolean none(@Nullable boolean[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
-    public static boolean none(@NotNull char[] elements) {
+    public static boolean none(@Nullable char[] elements) {
         return Arrayx.isEmpty(elements);
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static <T> boolean none(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
-        for (T element : elements) if (predicate.accept(element)) return false;
+    public static <T> boolean none(@Nullable T[] elements, @NotNull Predicate<T> predicate) {
+        if (elements != null) for (T element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
-        for (byte element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable byte[] elements, @NotNull Predicate<Byte> predicate) {
+        if (elements != null) for (byte element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
-        for (short element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable short[] elements, @NotNull Predicate<Short> predicate) {
+        if (elements != null) for (short element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
-        for (int element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable int[] elements, @NotNull Predicate<Integer> predicate) {
+        if (elements != null) for (int element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
-        for (long element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable long[] elements, @NotNull Predicate<Long> predicate) {
+        if (elements != null) for (long element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
-        for (float element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable float[] elements, @NotNull Predicate<Float> predicate) {
+        if (elements != null) for (float element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
-        for (double element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable double[] elements, @NotNull Predicate<Double> predicate) {
+        if (elements != null) for (double element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
-        for (boolean element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        if (elements != null) for (boolean element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
     /**
      * Returns `true` if no elements match the given [predicate].
      */
-    public static boolean none(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
-        for (char element : elements) if (predicate.accept(element)) return false;
+    public static boolean none(@Nullable char[] elements, @NotNull Predicate<Character> predicate) {
+        if (elements != null) for (char element : elements) if (predicate.accept(element)) return false;
         return true;
     }
 
@@ -11389,7 +11426,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <S, T extends S> S reduce(@NotNull T[] elements, @NotNull Operation<T, S> operation) {
+    public static <S, T extends S> S reduce(@Nullable T[] elements, @NotNull Operation<T, S> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11401,7 +11438,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static byte reduce(@NotNull byte[] elements, @NotNull Operation<Byte, Byte> operation) {
+    public static byte reduce(@Nullable byte[] elements, @NotNull Operation<Byte, Byte> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11413,7 +11450,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static short reduce(@NotNull short[] elements, @NotNull Operation<Short, Short> operation) {
+    public static short reduce(@Nullable short[] elements, @NotNull Operation<Short, Short> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11425,7 +11462,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static int reduce(@NotNull int[] elements, @NotNull Operation<Integer, Integer> operation) {
+    public static int reduce(@Nullable int[] elements, @NotNull Operation<Integer, Integer> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11437,7 +11474,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static long reduce(@NotNull long[] elements, @NotNull Operation<Long, Long> operation) {
+    public static long reduce(@Nullable long[] elements, @NotNull Operation<Long, Long> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11449,7 +11486,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static float reduce(@NotNull float[] elements, @NotNull Operation<Float, Float> operation) {
+    public static float reduce(@Nullable float[] elements, @NotNull Operation<Float, Float> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11461,7 +11498,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static double reduce(@NotNull double[] elements, @NotNull Operation<Double, Double> operation) {
+    public static double reduce(@Nullable double[] elements, @NotNull Operation<Double, Double> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11473,7 +11510,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static boolean reduce(@NotNull boolean[] elements, @NotNull Operation<Boolean, Boolean> operation) {
+    public static boolean reduce(@Nullable boolean[] elements, @NotNull Operation<Boolean, Boolean> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11485,7 +11522,7 @@ public class Arrayx {
     /**
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
-    public static char reduce(@NotNull char[] elements, @NotNull Operation<Character, Character> operation) {
+    public static char reduce(@Nullable char[] elements, @NotNull Operation<Character, Character> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11502,7 +11539,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     @NotNull
-    public static <S, T extends S> S reduceIndexed(@NotNull T[] elements, @NotNull IndexedOperation<T, S> operation) {
+    public static <S, T extends S> S reduceIndexed(@Nullable T[] elements, @NotNull IndexedOperation<T, S> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11518,7 +11555,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static byte reduceIndexed(@NotNull byte[] elements, @NotNull IndexedOperation<Byte, Byte> operation) {
+    public static byte reduceIndexed(@Nullable byte[] elements, @NotNull IndexedOperation<Byte, Byte> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11534,7 +11571,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static short reduceIndexed(@NotNull short[] elements, @NotNull IndexedOperation<Short, Short> operation) {
+    public static short reduceIndexed(@Nullable short[] elements, @NotNull IndexedOperation<Short, Short> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11550,7 +11587,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static int reduceIndexed(@NotNull int[] elements, @NotNull IndexedOperation<Integer, Integer> operation) {
+    public static int reduceIndexed(@Nullable int[] elements, @NotNull IndexedOperation<Integer, Integer> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11566,7 +11603,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static long reduceIndexed(@NotNull long[] elements, @NotNull IndexedOperation<Long, Long> operation) {
+    public static long reduceIndexed(@Nullable long[] elements, @NotNull IndexedOperation<Long, Long> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11582,7 +11619,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static float reduceIndexed(@NotNull float[] elements, @NotNull IndexedOperation<Float, Float> operation) {
+    public static float reduceIndexed(@Nullable float[] elements, @NotNull IndexedOperation<Float, Float> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11598,7 +11635,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static double reduceIndexed(@NotNull double[] elements, @NotNull IndexedOperation<Double, Double> operation) {
+    public static double reduceIndexed(@Nullable double[] elements, @NotNull IndexedOperation<Double, Double> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11614,7 +11651,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static boolean reduceIndexed(@NotNull boolean[] elements, @NotNull IndexedOperation<Boolean, Boolean> operation) {
+    public static boolean reduceIndexed(@Nullable boolean[] elements, @NotNull IndexedOperation<Boolean, Boolean> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11630,7 +11667,7 @@ public class Arrayx {
      * @param operation function that takes the index of an element, current accumulator value
      *                  and the element itself and calculates the next accumulator value.
      */
-    public static char reduceIndexed(@NotNull char[] elements, @NotNull IndexedOperation<Character, Character> operation) {
+    public static char reduceIndexed(@Nullable char[] elements, @NotNull IndexedOperation<Character, Character> operation) {
         if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
@@ -11643,8 +11680,9 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <S, T extends S> S reduceRight(@NotNull T[] elements, @NotNull RightOperation<T, S> operation) {
-        int index = elements.length - 1;
+    public static <S, T extends S> S reduceRight(@Nullable T[] elements, @NotNull RightOperation<T, S> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[index--];
         while (index >= 0) {
@@ -11656,8 +11694,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static byte reduceRight(@NotNull byte[] elements, @NotNull RightOperation<Byte, Byte> operation) {
-        int index = elements.length - 1;
+    public static byte reduceRight(@Nullable byte[] elements, @NotNull RightOperation<Byte, Byte> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[index--];
         while (index >= 0) {
@@ -11669,8 +11708,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static short reduceRight(@NotNull short[] elements, @NotNull RightOperation<Short, Short> operation) {
-        int index = elements.length - 1;
+    public static short reduceRight(@Nullable short[] elements, @NotNull RightOperation<Short, Short> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[index--];
         while (index >= 0) {
@@ -11682,8 +11722,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static int reduceRight(@NotNull int[] elements, @NotNull RightOperation<Integer, Integer> operation) {
-        int index = elements.length - 1;
+    public static int reduceRight(@Nullable int[] elements, @NotNull RightOperation<Integer, Integer> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[index--];
         while (index >= 0) {
@@ -11695,8 +11736,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static long reduceRight(@NotNull long[] elements, @NotNull RightOperation<Long, Long> operation) {
-        int index = elements.length - 1;
+    public static long reduceRight(@Nullable long[] elements, @NotNull RightOperation<Long, Long> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[index--];
         while (index >= 0) {
@@ -11708,8 +11750,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static float reduceRight(@NotNull float[] elements, @NotNull RightOperation<Float, Float> operation) {
-        int index = elements.length - 1;
+    public static float reduceRight(@Nullable float[] elements, @NotNull RightOperation<Float, Float> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[index--];
         while (index >= 0) {
@@ -11721,8 +11764,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static double reduceRight(@NotNull double[] elements, @NotNull RightOperation<Double, Double> operation) {
-        int index = elements.length - 1;
+    public static double reduceRight(@Nullable double[] elements, @NotNull RightOperation<Double, Double> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[index--];
         while (index >= 0) {
@@ -11734,8 +11778,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static boolean reduceRight(@NotNull boolean[] elements, @NotNull RightOperation<Boolean, Boolean> operation) {
-        int index = elements.length - 1;
+    public static boolean reduceRight(@Nullable boolean[] elements, @NotNull RightOperation<Boolean, Boolean> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[index--];
         while (index >= 0) {
@@ -11747,8 +11792,9 @@ public class Arrayx {
     /**
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
-    public static char reduceRight(@NotNull char[] elements, @NotNull RightOperation<Character, Character> operation) {
-        int index = elements.length - 1;
+    public static char reduceRight(@Nullable char[] elements, @NotNull RightOperation<Character, Character> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[index--];
         while (index >= 0) {
@@ -11765,8 +11811,9 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <S, T extends S> S reduceRightIndexed(@NotNull T[] elements, @NotNull IndexedRightOperation<T, S> operation) {
-        int index = elements.length - 1;
+    public static <S, T extends S> S reduceRightIndexed(@Nullable T[] elements, @NotNull IndexedRightOperation<T, S> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[index--];
         while (index >= 0) {
@@ -11783,8 +11830,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static byte reduceRightIndexed(@NotNull byte[] elements, @NotNull IndexedRightOperation<Byte, Byte> operation) {
-        int index = elements.length - 1;
+    public static byte reduceRightIndexed(@Nullable byte[] elements, @NotNull IndexedRightOperation<Byte, Byte> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[index--];
         while (index >= 0) {
@@ -11801,8 +11849,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static short reduceRightIndexed(@NotNull short[] elements, @NotNull IndexedRightOperation<Short, Short> operation) {
-        int index = elements.length - 1;
+    public static short reduceRightIndexed(@Nullable short[] elements, @NotNull IndexedRightOperation<Short, Short> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[index--];
         while (index >= 0) {
@@ -11819,8 +11868,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static int reduceRightIndexed(@NotNull int[] elements, @NotNull IndexedRightOperation<Integer, Integer> operation) {
-        int index = elements.length - 1;
+    public static int reduceRightIndexed(@Nullable int[] elements, @NotNull IndexedRightOperation<Integer, Integer> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[index--];
         while (index >= 0) {
@@ -11837,8 +11887,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static long reduceRightIndexed(@NotNull long[] elements, @NotNull IndexedRightOperation<Long, Long> operation) {
-        int index = elements.length - 1;
+    public static long reduceRightIndexed(@Nullable long[] elements, @NotNull IndexedRightOperation<Long, Long> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[index--];
         while (index >= 0) {
@@ -11855,8 +11906,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static float reduceRightIndexed(@NotNull float[] elements, @NotNull IndexedRightOperation<Float, Float> operation) {
-        int index = elements.length - 1;
+    public static float reduceRightIndexed(@Nullable float[] elements, @NotNull IndexedRightOperation<Float, Float> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[index--];
         while (index >= 0) {
@@ -11873,8 +11925,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static double reduceRightIndexed(@NotNull double[] elements, @NotNull IndexedRightOperation<Double, Double> operation) {
-        int index = elements.length - 1;
+    public static double reduceRightIndexed(@Nullable double[] elements, @NotNull IndexedRightOperation<Double, Double> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[index--];
         while (index >= 0) {
@@ -11891,8 +11944,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static boolean reduceRightIndexed(@NotNull boolean[] elements, @NotNull IndexedRightOperation<Boolean, Boolean> operation) {
-        int index = elements.length - 1;
+    public static boolean reduceRightIndexed(@Nullable boolean[] elements, @NotNull IndexedRightOperation<Boolean, Boolean> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[index--];
         while (index >= 0) {
@@ -11909,8 +11963,9 @@ public class Arrayx {
      * @param operation function that takes the index of an element, the element itself
      *                  and current accumulator value, and calculates the next accumulator value.
      */
-    public static char reduceRightIndexed(@NotNull char[] elements, @NotNull IndexedRightOperation<Character, Character> operation) {
-        int index = elements.length - 1;
+    public static char reduceRightIndexed(@Nullable char[] elements, @NotNull IndexedRightOperation<Character, Character> operation) {
+        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[index--];
         while (index >= 0) {
@@ -11928,9 +11983,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <T, R> R fold(@NotNull T[] elements, @NotNull R initial, @NotNull Operation<T, R> operation) {
+    public static <T, R> R fold(@Nullable T[] elements, @NotNull R initial, @NotNull Operation<T, R> operation) {
         R accumulator = initial;
-        for (T element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (T element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11938,9 +11993,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull byte[] elements, @NotNull R initial, @NotNull Operation<Byte, R> operation) {
+    public static <R> R fold(@Nullable byte[] elements, @NotNull R initial, @NotNull Operation<Byte, R> operation) {
         R accumulator = initial;
-        for (byte element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (byte element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11948,9 +12003,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull short[] elements, @NotNull R initial, @NotNull Operation<Short, R> operation) {
+    public static <R> R fold(@Nullable short[] elements, @NotNull R initial, @NotNull Operation<Short, R> operation) {
         R accumulator = initial;
-        for (short element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (short element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11958,9 +12013,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull int[] elements, @NotNull R initial, @NotNull Operation<Integer, R> operation) {
+    public static <R> R fold(@Nullable int[] elements, @NotNull R initial, @NotNull Operation<Integer, R> operation) {
         R accumulator = initial;
-        for (int element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (int element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11968,9 +12023,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull long[] elements, @NotNull R initial, @NotNull Operation<Long, R> operation) {
+    public static <R> R fold(@Nullable long[] elements, @NotNull R initial, @NotNull Operation<Long, R> operation) {
         R accumulator = initial;
-        for (long element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (long element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11978,9 +12033,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull float[] elements, @NotNull R initial, @NotNull Operation<Float, R> operation) {
+    public static <R> R fold(@Nullable float[] elements, @NotNull R initial, @NotNull Operation<Float, R> operation) {
         R accumulator = initial;
-        for (float element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (float element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11988,9 +12043,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull double[] elements, @NotNull R initial, @NotNull Operation<Double, R> operation) {
+    public static <R> R fold(@Nullable double[] elements, @NotNull R initial, @NotNull Operation<Double, R> operation) {
         R accumulator = initial;
-        for (double element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (double element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -11998,9 +12053,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull boolean[] elements, @NotNull R initial, @NotNull Operation<Boolean, R> operation) {
+    public static <R> R fold(@Nullable boolean[] elements, @NotNull R initial, @NotNull Operation<Boolean, R> operation) {
         R accumulator = initial;
-        for (boolean element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (boolean element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -12008,9 +12063,9 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
      */
     @NotNull
-    public static <R> R fold(@NotNull char[] elements, @NotNull R initial, @NotNull Operation<Character, R> operation) {
+    public static <R> R fold(@Nullable char[] elements, @NotNull R initial, @NotNull Operation<Character, R> operation) {
         R accumulator = initial;
-        for (char element : elements) accumulator = operation.operation(accumulator, element);
+        if (elements != null) for (char element : elements) accumulator = operation.operation(accumulator, element);
         return accumulator;
     }
 
@@ -12022,10 +12077,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <T, R> R foldIndexed(@NotNull T[] elements, @NotNull R initial, @NotNull IndexedOperation<T, R> operation) {
+    public static <T, R> R foldIndexed(@Nullable T[] elements, @NotNull R initial, @NotNull IndexedOperation<T, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (T element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (T element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12037,10 +12093,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull byte[] elements, @NotNull R initial, @NotNull IndexedOperation<Byte, R> operation) {
+    public static <R> R foldIndexed(@Nullable byte[] elements, @NotNull R initial, @NotNull IndexedOperation<Byte, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (byte element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (byte element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12052,10 +12109,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull short[] elements, @NotNull R initial, @NotNull IndexedOperation<Short, R> operation) {
+    public static <R> R foldIndexed(@Nullable short[] elements, @NotNull R initial, @NotNull IndexedOperation<Short, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (short element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (short element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12067,10 +12125,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull int[] elements, @NotNull R initial, @NotNull IndexedOperation<Integer, R> operation) {
+    public static <R> R foldIndexed(@Nullable int[] elements, @NotNull R initial, @NotNull IndexedOperation<Integer, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (int element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (int element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12082,10 +12141,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull long[] elements, @NotNull R initial, @NotNull IndexedOperation<Long, R> operation) {
+    public static <R> R foldIndexed(@Nullable long[] elements, @NotNull R initial, @NotNull IndexedOperation<Long, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (long element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (long element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12097,10 +12157,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull float[] elements, @NotNull R initial, @NotNull IndexedOperation<Float, R> operation) {
+    public static <R> R foldIndexed(@Nullable float[] elements, @NotNull R initial, @NotNull IndexedOperation<Float, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (float element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (float element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12112,10 +12173,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull double[] elements, @NotNull R initial, @NotNull IndexedOperation<Double, R> operation) {
+    public static <R> R foldIndexed(@Nullable double[] elements, @NotNull R initial, @NotNull IndexedOperation<Double, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (double element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (double element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12127,10 +12189,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull boolean[] elements, @NotNull R initial, @NotNull IndexedOperation<Boolean, R> operation) {
+    public static <R> R foldIndexed(@Nullable boolean[] elements, @NotNull R initial, @NotNull IndexedOperation<Boolean, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (boolean element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (boolean element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12142,10 +12205,11 @@ public class Arrayx {
      *                  and the element itself, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldIndexed(@NotNull char[] elements, @NotNull R initial, @NotNull IndexedOperation<Character, R> operation) {
+    public static <R> R foldIndexed(@Nullable char[] elements, @NotNull R initial, @NotNull IndexedOperation<Character, R> operation) {
         int index = 0;
         R accumulator = initial;
-        for (char element : elements) accumulator = operation.operation(index++, accumulator, element);
+        if (elements != null)
+            for (char element : elements) accumulator = operation.operation(index++, accumulator, element);
         return accumulator;
     }
 
@@ -12153,11 +12217,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <T, R> R foldRight(@NotNull T[] elements, @NotNull R initial, @NotNull RightOperation<T, R> operation) {
-        int index = elements.length - 1;
+    public static <T, R> R foldRight(@Nullable T[] elements, @NotNull R initial, @NotNull RightOperation<T, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12166,11 +12232,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull byte[] elements, @NotNull R initial, @NotNull RightOperation<Byte, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable byte[] elements, @NotNull R initial, @NotNull RightOperation<Byte, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12179,11 +12247,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull short[] elements, @NotNull R initial, @NotNull RightOperation<Short, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable short[] elements, @NotNull R initial, @NotNull RightOperation<Short, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12192,11 +12262,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull int[] elements, @NotNull R initial, @NotNull RightOperation<Integer, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable int[] elements, @NotNull R initial, @NotNull RightOperation<Integer, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12205,11 +12277,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull long[] elements, @NotNull R initial, @NotNull RightOperation<Long, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable long[] elements, @NotNull R initial, @NotNull RightOperation<Long, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12218,11 +12292,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull float[] elements, @NotNull R initial, @NotNull RightOperation<Float, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable float[] elements, @NotNull R initial, @NotNull RightOperation<Float, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12231,11 +12307,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull double[] elements, @NotNull R initial, @NotNull RightOperation<Double, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable double[] elements, @NotNull R initial, @NotNull RightOperation<Double, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12244,11 +12322,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull boolean[] elements, @NotNull R initial, @NotNull RightOperation<Boolean, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable boolean[] elements, @NotNull R initial, @NotNull RightOperation<Boolean, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12257,11 +12337,13 @@ public class Arrayx {
      * Accumulates value starting with [initial] value and applying [operation] from right to left to each element and current accumulator value.
      */
     @NotNull
-    public static <R> R foldRight(@NotNull char[] elements, @NotNull R initial, @NotNull RightOperation<Character, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRight(@Nullable char[] elements, @NotNull R initial, @NotNull RightOperation<Character, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(elements[index--], accumulator);
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(elements[index--], accumulator);
+            }
         }
         return accumulator;
     }
@@ -12274,12 +12356,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <T, R> R foldRightIndexed(@NotNull T[] elements, @NotNull R initial, @NotNull IndexedRightOperation<T, R> operation) {
-        int index = elements.length - 1;
+    public static <T, R> R foldRightIndexed(@Nullable T[] elements, @NotNull R initial, @NotNull IndexedRightOperation<T, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12292,12 +12376,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull byte[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Byte, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable byte[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Byte, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12310,12 +12396,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull short[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Short, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable short[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Short, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12328,12 +12416,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull int[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Integer, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable int[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Integer, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12346,12 +12436,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull long[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Long, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable long[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Long, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12364,12 +12456,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull float[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Float, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable float[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Float, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12382,12 +12476,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull double[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Double, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable double[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Double, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12400,12 +12496,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull boolean[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Boolean, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable boolean[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Boolean, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12418,12 +12516,14 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     @NotNull
-    public static <R> R foldRightIndexed(@NotNull char[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Character, R> operation) {
-        int index = elements.length - 1;
+    public static <R> R foldRightIndexed(@Nullable char[] elements, @NotNull R initial, @NotNull IndexedRightOperation<Character, R> operation) {
         R accumulator = initial;
-        while (index >= 0) {
-            accumulator = operation.operation(index, elements[index], accumulator);
-            --index;
+        if (elements != null) {
+            int index = elements.length - 1;
+            while (index >= 0) {
+                accumulator = operation.operation(index, elements[index], accumulator);
+                --index;
+            }
         }
         return accumulator;
     }
@@ -12438,7 +12538,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static <T> Set<T> intersect(@NotNull T[] elements, @NotNull Iterable<T> other) {
+    public static <T> Set<T> intersect(@Nullable T[] elements, @NotNull Iterable<T> other) {
         Set<T> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12450,7 +12550,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Byte> intersect(@NotNull byte[] elements, @NotNull Iterable<Byte> other) {
+    public static Set<Byte> intersect(@Nullable byte[] elements, @NotNull Iterable<Byte> other) {
         Set<Byte> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12462,7 +12562,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Short> intersect(@NotNull short[] elements, @NotNull Iterable<Short> other) {
+    public static Set<Short> intersect(@Nullable short[] elements, @NotNull Iterable<Short> other) {
         Set<Short> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12474,7 +12574,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Integer> intersect(@NotNull int[] elements, @NotNull Iterable<Integer> other) {
+    public static Set<Integer> intersect(@Nullable int[] elements, @NotNull Iterable<Integer> other) {
         Set<Integer> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12486,7 +12586,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Long> intersect(@NotNull long[] elements, @NotNull Iterable<Long> other) {
+    public static Set<Long> intersect(@Nullable long[] elements, @NotNull Iterable<Long> other) {
         Set<Long> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12498,7 +12598,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Float> intersect(@NotNull float[] elements, @NotNull Iterable<Float> other) {
+    public static Set<Float> intersect(@Nullable float[] elements, @NotNull Iterable<Float> other) {
         Set<Float> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12510,7 +12610,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Double> intersect(@NotNull double[] elements, @NotNull Iterable<Double> other) {
+    public static Set<Double> intersect(@Nullable double[] elements, @NotNull Iterable<Double> other) {
         Set<Double> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12522,7 +12622,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Boolean> intersect(@NotNull boolean[] elements, @NotNull Iterable<Boolean> other) {
+    public static Set<Boolean> intersect(@Nullable boolean[] elements, @NotNull Iterable<Boolean> other) {
         Set<Boolean> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12534,7 +12634,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Character> intersect(@NotNull char[] elements, @NotNull Iterable<Character> other) {
+    public static Set<Character> intersect(@Nullable char[] elements, @NotNull Iterable<Character> other) {
         Set<Character> set = Arrayx.toSet(elements);
         Collectionx.retainAll(set, other);
         return set;
@@ -12550,7 +12650,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static <T> Set<T> subtract(@NotNull T[] elements, @NotNull Iterable<T> other) {
+    public static <T> Set<T> subtract(@Nullable T[] elements, @NotNull Iterable<T> other) {
         Set<T> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12562,7 +12662,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Byte> subtract(@NotNull byte[] elements, @NotNull Iterable<Byte> other) {
+    public static Set<Byte> subtract(@Nullable byte[] elements, @NotNull Iterable<Byte> other) {
         Set<Byte> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12574,7 +12674,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Short> subtract(@NotNull short[] elements, @NotNull Iterable<Short> other) {
+    public static Set<Short> subtract(@Nullable short[] elements, @NotNull Iterable<Short> other) {
         Set<Short> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12586,7 +12686,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Integer> subtract(@NotNull int[] elements, @NotNull Iterable<Integer> other) {
+    public static Set<Integer> subtract(@Nullable int[] elements, @NotNull Iterable<Integer> other) {
         Set<Integer> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12598,7 +12698,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Long> subtract(@NotNull long[] elements, @NotNull Iterable<Long> other) {
+    public static Set<Long> subtract(@Nullable long[] elements, @NotNull Iterable<Long> other) {
         Set<Long> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12610,7 +12710,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Float> subtract(@NotNull float[] elements, @NotNull Iterable<Float> other) {
+    public static Set<Float> subtract(@Nullable float[] elements, @NotNull Iterable<Float> other) {
         Set<Float> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12622,7 +12722,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Double> subtract(@NotNull double[] elements, @NotNull Iterable<Double> other) {
+    public static Set<Double> subtract(@Nullable double[] elements, @NotNull Iterable<Double> other) {
         Set<Double> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12634,7 +12734,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Boolean> subtract(@NotNull boolean[] elements, @NotNull Iterable<Boolean> other) {
+    public static Set<Boolean> subtract(@Nullable boolean[] elements, @NotNull Iterable<Boolean> other) {
         Set<Boolean> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12646,7 +12746,7 @@ public class Arrayx {
      * The returned set preserves the element iteration order of the original array.
      */
     @NotNull
-    public static Set<Character> subtract(@NotNull char[] elements, @NotNull Iterable<Character> other) {
+    public static Set<Character> subtract(@Nullable char[] elements, @NotNull Iterable<Character> other) {
         Set<Character> set = Arrayx.toSet(elements);
         Collectionx.removeAll(set, other);
         return set;
@@ -12660,7 +12760,7 @@ public class Arrayx {
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static <T> List<T> drop(@NotNull T[] elements, final int n) {
+    public static <T> List<T> drop(@Nullable T[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12668,14 +12768,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Byte> drop(@NotNull byte[] elements, final int n) {
+    public static List<Byte> drop(@Nullable byte[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12683,14 +12783,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Short> drop(@NotNull short[] elements, final int n) {
+    public static List<Short> drop(@Nullable short[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12698,14 +12798,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Integer> drop(@NotNull int[] elements, final int n) {
+    public static List<Integer> drop(@Nullable int[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12713,14 +12813,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Long> drop(@NotNull long[] elements, final int n) {
+    public static List<Long> drop(@Nullable long[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12728,14 +12828,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Float> drop(@NotNull float[] elements, final int n) {
+    public static List<Float> drop(@Nullable float[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12743,14 +12843,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Double> drop(@NotNull double[] elements, final int n) {
+    public static List<Double> drop(@Nullable double[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12758,14 +12858,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Boolean> drop(@NotNull boolean[] elements, final int n) {
+    public static List<Boolean> drop(@Nullable boolean[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12773,14 +12873,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except first [n] elements.
      */
     @NotNull
-    public static List<Character> drop(@NotNull char[] elements, final int n) {
+    public static List<Character> drop(@Nullable char[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12788,14 +12888,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static <T> List<T> dropLast(@NotNull T[] elements, final int n) {
+    public static <T> List<T> dropLast(@Nullable T[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12803,14 +12903,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Byte> dropLast(@NotNull byte[] elements, final int n) {
+    public static List<Byte> dropLast(@Nullable byte[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12818,14 +12918,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Short> dropLast(@NotNull short[] elements, final int n) {
+    public static List<Short> dropLast(@Nullable short[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12833,14 +12933,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Integer> dropLast(@NotNull int[] elements, final int n) {
+    public static List<Integer> dropLast(@Nullable int[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12848,14 +12948,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Long> dropLast(@NotNull long[] elements, final int n) {
+    public static List<Long> dropLast(@Nullable long[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12863,14 +12963,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Float> dropLast(@NotNull float[] elements, final int n) {
+    public static List<Float> dropLast(@Nullable float[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12878,14 +12978,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Double> dropLast(@NotNull double[] elements, final int n) {
+    public static List<Double> dropLast(@Nullable double[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12893,14 +12993,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Boolean> dropLast(@NotNull boolean[] elements, final int n) {
+    public static List<Boolean> dropLast(@Nullable boolean[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12908,14 +13008,14 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last [n] elements.
      */
     @NotNull
-    public static List<Character> dropLast(@NotNull char[] elements, final int n) {
+    public static List<Character> dropLast(@Nullable char[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -12923,17 +13023,19 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((elements.length - n), 0));
+        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static <T> List<T> dropLastWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static <T> List<T> dropLastWhile(@Nullable T[] elements, @NotNull Predicate<T> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -12943,10 +13045,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Byte> dropLastWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Byte> dropLastWhile(@Nullable byte[] elements, @NotNull Predicate<Byte> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -12956,10 +13060,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Short> dropLastWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Short> dropLastWhile(@Nullable short[] elements, @NotNull Predicate<Short> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -12969,10 +13075,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Integer> dropLastWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Integer> dropLastWhile(@Nullable int[] elements, @NotNull Predicate<Integer> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -12982,10 +13090,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Long> dropLastWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Long> dropLastWhile(@Nullable long[] elements, @NotNull Predicate<Long> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -12995,10 +13105,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Float> dropLastWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Float> dropLastWhile(@Nullable float[] elements, @NotNull Predicate<Float> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -13008,10 +13120,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Double> dropLastWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Double> dropLastWhile(@Nullable double[] elements, @NotNull Predicate<Double> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -13021,10 +13135,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Boolean> dropLastWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Boolean> dropLastWhile(@Nullable boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -13034,10 +13150,12 @@ public class Arrayx {
      * Returns a list containing all elements except last elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Character> dropLastWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return take(elements, index + 1);
+    public static List<Character> dropLastWhile(@Nullable char[] elements, @NotNull Predicate<Character> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(count(elements) - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return take(elements, index + 1);
+                }
             }
         }
         return Collectionx.emptyList();
@@ -13047,15 +13165,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static <T> List<T> dropWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
-        boolean yielding = false;
+    public static <T> List<T> dropWhile(@Nullable T[] elements, @NotNull Predicate<T> predicate) {
         List<T> list = new ArrayList<>();
-        for (T item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (T item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13065,15 +13185,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Byte> dropWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
-        boolean yielding = false;
+    public static List<Byte> dropWhile(@Nullable byte[] elements, @NotNull Predicate<Byte> predicate) {
         List<Byte> list = new ArrayList<>();
-        for (byte item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (byte item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13083,15 +13205,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Short> dropWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
-        boolean yielding = false;
+    public static List<Short> dropWhile(@Nullable short[] elements, @NotNull Predicate<Short> predicate) {
         List<Short> list = new ArrayList<>();
-        for (short item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (short item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13101,15 +13225,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Integer> dropWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
-        boolean yielding = false;
+    public static List<Integer> dropWhile(@Nullable int[] elements, @NotNull Predicate<Integer> predicate) {
         List<Integer> list = new ArrayList<>();
-        for (int item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (int item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13119,15 +13245,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Long> dropWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
-        boolean yielding = false;
+    public static List<Long> dropWhile(@Nullable long[] elements, @NotNull Predicate<Long> predicate) {
         List<Long> list = new ArrayList<>();
-        for (long item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (long item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13137,15 +13265,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Float> dropWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
-        boolean yielding = false;
+    public static List<Float> dropWhile(@Nullable float[] elements, @NotNull Predicate<Float> predicate) {
         List<Float> list = new ArrayList<>();
-        for (float item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (float item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13155,15 +13285,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Double> dropWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
-        boolean yielding = false;
+    public static List<Double> dropWhile(@Nullable double[] elements, @NotNull Predicate<Double> predicate) {
         List<Double> list = new ArrayList<>();
-        for (double item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (double item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13173,15 +13305,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Boolean> dropWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
-        boolean yielding = false;
+    public static List<Boolean> dropWhile(@Nullable boolean[] elements, @NotNull Predicate<Boolean> predicate) {
         List<Boolean> list = new ArrayList<>();
-        for (boolean item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (boolean item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13191,15 +13325,17 @@ public class Arrayx {
      * Returns a list containing all elements except first elements that satisfy the given [predicate].
      */
     @NotNull
-    public static List<Character> dropWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
-        boolean yielding = false;
+    public static List<Character> dropWhile(@Nullable char[] elements, @NotNull Predicate<Character> predicate) {
         List<Character> list = new ArrayList<>();
-        for (char item : elements) {
-            if (yielding) {
-                list.add(item);
-            } else if (!predicate.accept(item)) {
-                list.add(item);
-                yielding = true;
+        if (elements != null) {
+            boolean yielding = false;
+            for (char item : elements) {
+                if (yielding) {
+                    list.add(item);
+                } else if (!predicate.accept(item)) {
+                    list.add(item);
+                    yielding = true;
+                }
             }
         }
         return list;
@@ -13213,7 +13349,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static <T> List<T> take(@NotNull T[] elements, final int n) {
+    public static <T> List<T> take(@Nullable T[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13221,7 +13357,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13238,7 +13374,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Byte> take(@NotNull byte[] elements, final int n) {
+    public static List<Byte> take(@Nullable byte[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13246,7 +13382,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13263,7 +13399,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Short> take(@NotNull short[] elements, final int n) {
+    public static List<Short> take(@Nullable short[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13271,7 +13407,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13288,7 +13424,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Integer> take(@NotNull int[] elements, final int n) {
+    public static List<Integer> take(@Nullable int[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13296,7 +13432,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13313,7 +13449,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Long> take(@NotNull long[] elements, final int n) {
+    public static List<Long> take(@Nullable long[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13321,7 +13457,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13338,7 +13474,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Float> take(@NotNull float[] elements, final int n) {
+    public static List<Float> take(@Nullable float[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13346,7 +13482,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13363,7 +13499,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Double> take(@NotNull double[] elements, final int n) {
+    public static List<Double> take(@Nullable double[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13371,7 +13507,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13388,7 +13524,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Boolean> take(@NotNull boolean[] elements, final int n) {
+    public static List<Boolean> take(@Nullable boolean[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13396,7 +13532,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13413,7 +13549,7 @@ public class Arrayx {
      * Returns a list containing first [n] elements.
      */
     @NotNull
-    public static List<Character> take(@NotNull char[] elements, final int n) {
+    public static List<Character> take(@Nullable char[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13421,7 +13557,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13438,7 +13574,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static <T> List<T> takeLast(@NotNull T[] elements, final int n) {
+    public static <T> List<T> takeLast(@Nullable T[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13446,7 +13582,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13460,7 +13596,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Byte> takeLast(@NotNull byte[] elements, final int n) {
+    public static List<Byte> takeLast(@Nullable byte[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13468,7 +13604,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13482,7 +13618,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Short> takeLast(@NotNull short[] elements, final int n) {
+    public static List<Short> takeLast(@Nullable short[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13490,7 +13626,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13504,7 +13640,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Integer> takeLast(@NotNull int[] elements, final int n) {
+    public static List<Integer> takeLast(@Nullable int[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13512,7 +13648,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13526,7 +13662,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Long> takeLast(@NotNull long[] elements, final int n) {
+    public static List<Long> takeLast(@Nullable long[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13534,7 +13670,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13548,7 +13684,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Float> takeLast(@NotNull float[] elements, final int n) {
+    public static List<Float> takeLast(@Nullable float[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13556,7 +13692,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13570,7 +13706,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Double> takeLast(@NotNull double[] elements, final int n) {
+    public static List<Double> takeLast(@Nullable double[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13578,7 +13714,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13592,7 +13728,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Boolean> takeLast(@NotNull boolean[] elements, final int n) {
+    public static List<Boolean> takeLast(@Nullable boolean[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13600,7 +13736,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13614,7 +13750,7 @@ public class Arrayx {
      * Returns a list containing last [n] elements.
      */
     @NotNull
-    public static List<Character> takeLast(@NotNull char[] elements, final int n) {
+    public static List<Character> takeLast(@Nullable char[] elements, final int n) {
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -13622,7 +13758,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.emptyList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13636,10 +13772,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static <T> List<T> takeLastWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static <T> List<T> takeLastWhile(@Nullable T[] elements, @NotNull Predicate<T> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13649,10 +13787,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Byte> takeLastWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Byte> takeLastWhile(@Nullable byte[] elements, @NotNull Predicate<Byte> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13662,10 +13802,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Short> takeLastWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Short> takeLastWhile(@Nullable short[] elements, @NotNull Predicate<Short> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13675,10 +13817,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Integer> takeLastWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Integer> takeLastWhile(@Nullable int[] elements, @NotNull Predicate<Integer> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13688,10 +13832,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Long> takeLastWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Long> takeLastWhile(@Nullable long[] elements, @NotNull Predicate<Long> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13701,10 +13847,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Float> takeLastWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Float> takeLastWhile(@Nullable float[] elements, @NotNull Predicate<Float> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13714,10 +13862,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Double> takeLastWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Double> takeLastWhile(@Nullable double[] elements, @NotNull Predicate<Double> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13727,10 +13877,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Boolean> takeLastWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Boolean> takeLastWhile(@Nullable boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13740,10 +13892,12 @@ public class Arrayx {
      * Returns a list containing last elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Character> takeLastWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
-        for (int index : Rangex.downTo(elements.length - 1, 0)) {
-            if (!predicate.accept(elements[index])) {
-                return drop(elements, index + 1);
+    public static List<Character> takeLastWhile(@Nullable char[] elements, @NotNull Predicate<Character> predicate) {
+        if (elements != null) {
+            for (int index : Rangex.downTo(elements.length - 1, 0)) {
+                if (!predicate.accept(elements[index])) {
+                    return drop(elements, index + 1);
+                }
             }
         }
         return Arrayx.toList(elements);
@@ -13753,12 +13907,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static <T> List<T> takeWhile(@NotNull T[] elements, @NotNull Predicate<T> predicate) {
+    public static <T> List<T> takeWhile(@Nullable T[] elements, @NotNull Predicate<T> predicate) {
         List<T> list = new ArrayList<>();
-        for (T item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (T item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13767,12 +13923,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Byte> takeWhile(@NotNull byte[] elements, @NotNull Predicate<Byte> predicate) {
+    public static List<Byte> takeWhile(@Nullable byte[] elements, @NotNull Predicate<Byte> predicate) {
         List<Byte> list = new ArrayList<>();
-        for (byte item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (byte item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13781,12 +13939,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Short> takeWhile(@NotNull short[] elements, @NotNull Predicate<Short> predicate) {
+    public static List<Short> takeWhile(@Nullable short[] elements, @NotNull Predicate<Short> predicate) {
         List<Short> list = new ArrayList<>();
-        for (short item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (short item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13795,12 +13955,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Integer> takeWhile(@NotNull int[] elements, @NotNull Predicate<Integer> predicate) {
+    public static List<Integer> takeWhile(@Nullable int[] elements, @NotNull Predicate<Integer> predicate) {
         List<Integer> list = new ArrayList<>();
-        for (int item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (int item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13809,12 +13971,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Long> takeWhile(@NotNull long[] elements, @NotNull Predicate<Long> predicate) {
+    public static List<Long> takeWhile(@Nullable long[] elements, @NotNull Predicate<Long> predicate) {
         List<Long> list = new ArrayList<>();
-        for (long item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (long item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13823,12 +13987,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Float> takeWhile(@NotNull float[] elements, @NotNull Predicate<Float> predicate) {
+    public static List<Float> takeWhile(@Nullable float[] elements, @NotNull Predicate<Float> predicate) {
         List<Float> list = new ArrayList<>();
-        for (float item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (float item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13837,12 +14003,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Double> takeWhile(@NotNull double[] elements, @NotNull Predicate<Double> predicate) {
+    public static List<Double> takeWhile(@Nullable double[] elements, @NotNull Predicate<Double> predicate) {
         List<Double> list = new ArrayList<>();
-        for (double item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (double item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13851,12 +14019,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Boolean> takeWhile(@NotNull boolean[] elements, @NotNull Predicate<Boolean> predicate) {
+    public static List<Boolean> takeWhile(@Nullable boolean[] elements, @NotNull Predicate<Boolean> predicate) {
         List<Boolean> list = new ArrayList<>();
-        for (boolean item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (boolean item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13865,12 +14035,14 @@ public class Arrayx {
      * Returns a list containing first elements satisfying the given [predicate].
      */
     @NotNull
-    public static List<Character> takeWhile(@NotNull char[] elements, @NotNull Predicate<Character> predicate) {
+    public static List<Character> takeWhile(@Nullable char[] elements, @NotNull Predicate<Character> predicate) {
         List<Character> list = new ArrayList<>();
-        for (char item : elements) {
-            if (!predicate.accept(item))
-                break;
-            list.add(item);
+        if (elements != null) {
+            for (char item : elements) {
+                if (!predicate.accept(item))
+                    break;
+                list.add(item);
+            }
         }
         return list;
     }
@@ -13885,7 +14057,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <T> List<T> distinct(@NotNull T[] elements) {
+    public static <T> List<T> distinct(@Nullable T[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13895,7 +14067,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Byte> distinct(@NotNull byte[] elements) {
+    public static List<Byte> distinct(@Nullable byte[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13905,7 +14077,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Short> distinct(@NotNull short[] elements) {
+    public static List<Short> distinct(@Nullable short[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13915,7 +14087,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Integer> distinct(@NotNull int[] elements) {
+    public static List<Integer> distinct(@Nullable int[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13925,7 +14097,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Long> distinct(@NotNull long[] elements) {
+    public static List<Long> distinct(@Nullable long[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13935,7 +14107,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Float> distinct(@NotNull float[] elements) {
+    public static List<Float> distinct(@Nullable float[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13945,7 +14117,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Double> distinct(@NotNull double[] elements) {
+    public static List<Double> distinct(@Nullable double[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13955,7 +14127,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Boolean> distinct(@NotNull boolean[] elements) {
+    public static List<Boolean> distinct(@Nullable boolean[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13965,7 +14137,7 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static List<Character> distinct(@NotNull char[] elements) {
+    public static List<Character> distinct(@Nullable char[] elements) {
         return Collectionx.toList(Arrayx.toSet(elements));
     }
 
@@ -13976,12 +14148,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <T, K> List<T> distinctBy(@NotNull T[] elements, @NotNull Transformer<T, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <T, K> List<T> distinctBy(@Nullable T[] elements, @NotNull Transformer<T, K> selector) {
         List<T> list = new ArrayList<>();
-        for (T e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (T e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -13993,12 +14167,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Byte> distinctBy(@NotNull byte[] elements, @NotNull Transformer<Byte, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Byte> distinctBy(@Nullable byte[] elements, @NotNull Transformer<Byte, K> selector) {
         List<Byte> list = new ArrayList<>();
-        for (byte e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (byte e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14010,12 +14186,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Short> distinctBy(@NotNull short[] elements, @NotNull Transformer<Short, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Short> distinctBy(@Nullable short[] elements, @NotNull Transformer<Short, K> selector) {
         List<Short> list = new ArrayList<>();
-        for (short e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (short e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14027,12 +14205,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Integer> distinctBy(@NotNull int[] elements, @NotNull Transformer<Integer, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Integer> distinctBy(@Nullable int[] elements, @NotNull Transformer<Integer, K> selector) {
         List<Integer> list = new ArrayList<>();
-        for (int e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (int e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14044,12 +14224,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Long> distinctBy(@NotNull long[] elements, @NotNull Transformer<Long, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Long> distinctBy(@Nullable long[] elements, @NotNull Transformer<Long, K> selector) {
         List<Long> list = new ArrayList<>();
-        for (long e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (long e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14061,12 +14243,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Float> distinctBy(@NotNull float[] elements, @NotNull Transformer<Float, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Float> distinctBy(@Nullable float[] elements, @NotNull Transformer<Float, K> selector) {
         List<Float> list = new ArrayList<>();
-        for (float e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (float e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14078,12 +14262,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Double> distinctBy(@NotNull double[] elements, @NotNull Transformer<Double, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Double> distinctBy(@Nullable double[] elements, @NotNull Transformer<Double, K> selector) {
         List<Double> list = new ArrayList<>();
-        for (double e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (double e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14095,12 +14281,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Boolean> distinctBy(@NotNull boolean[] elements, @NotNull Transformer<Boolean, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Boolean> distinctBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, K> selector) {
         List<Boolean> list = new ArrayList<>();
-        for (boolean e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (boolean e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14112,12 +14300,14 @@ public class Arrayx {
      * The elements in the resulting list are in the same order as they were in the source array.
      */
     @NotNull
-    public static <K> List<Character> distinctBy(@NotNull char[] elements, @NotNull Transformer<Character, K> selector) {
-        HashSet<K> set = new HashSet<>();
+    public static <K> List<Character> distinctBy(@Nullable char[] elements, @NotNull Transformer<Character, K> selector) {
         List<Character> list = new ArrayList<>();
-        for (char e : elements) {
-            K key = selector.transform(e);
-            if (set.add(key)) list.add(e);
+        if (elements != null) {
+            HashSet<K> set = new HashSet<>();
+            for (char e : elements) {
+                K key = selector.transform(e);
+                if (set.add(key)) list.add(e);
+            }
         }
         return list;
     }
@@ -14129,7 +14319,7 @@ public class Arrayx {
     /**
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
-    public static <T> Iterable<IndexedValue<T>> withIndex(@NotNull final T[] elements) {
+    public static <T> Iterable<IndexedValue<T>> withIndex(@Nullable final T[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<T>>() {
             @NotNull
             @Override
@@ -14143,7 +14333,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Byte>> withIndex(@NotNull final byte[] elements) {
+    public static Iterable<IndexedValue<Byte>> withIndex(@Nullable final byte[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Byte>>() {
             @NotNull
             @Override
@@ -14157,7 +14347,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Short>> withIndex(@NotNull final short[] elements) {
+    public static Iterable<IndexedValue<Short>> withIndex(@Nullable final short[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Short>>() {
             @NotNull
             @Override
@@ -14171,7 +14361,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Integer>> withIndex(@NotNull final int[] elements) {
+    public static Iterable<IndexedValue<Integer>> withIndex(@Nullable final int[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Integer>>() {
             @NotNull
             @Override
@@ -14185,7 +14375,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Long>> withIndex(@NotNull final long[] elements) {
+    public static Iterable<IndexedValue<Long>> withIndex(@Nullable final long[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Long>>() {
             @NotNull
             @Override
@@ -14199,7 +14389,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Float>> withIndex(@NotNull final float[] elements) {
+    public static Iterable<IndexedValue<Float>> withIndex(@Nullable final float[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Float>>() {
             @NotNull
             @Override
@@ -14213,7 +14403,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Double>> withIndex(@NotNull final double[] elements) {
+    public static Iterable<IndexedValue<Double>> withIndex(@Nullable final double[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Double>>() {
             @NotNull
             @Override
@@ -14227,7 +14417,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Boolean>> withIndex(@NotNull final boolean[] elements) {
+    public static Iterable<IndexedValue<Boolean>> withIndex(@Nullable final boolean[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Boolean>>() {
             @NotNull
             @Override
@@ -14241,7 +14431,7 @@ public class Arrayx {
      * Returns a lazy [Iterable] of [IndexedValue] for each element of the original array.
      */
     @NotNull
-    public static Iterable<IndexedValue<Character>> withIndex(@NotNull final char[] elements) {
+    public static Iterable<IndexedValue<Character>> withIndex(@Nullable final char[] elements) {
         return new IndexingIterable<>(new DefaultValue<Iterator<Character>>() {
             @NotNull
             @Override
