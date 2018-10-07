@@ -27,6 +27,7 @@
 * :sparkles: Filex add lengthRecursively(File\[\]) and lengthRecursively(Iterable<File>) method
 * :sparkles: IOStreamx copyTo method add CopyListener argument
 * :sparkles: Collectionx and Arrayx joinToArrayString method added kotlin extension
+* :sparkles: Zipx compress and decompress method supported progress listener
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
