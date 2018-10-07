@@ -1,33 +1,41 @@
-## 0.6.6 pre
-* :sparkles: Zip add getDecompressionDstDir method
-* :bug: Kotlin version setting of the Format format method roundingMode is RoundingMode.HALF_UP
-* :sparkles: Add Stopwatch
-* :hammer: Rsa.kt 的 encrypt 和 decrypt 系列方法的名字都加上了 rsa
-* :hammer: Zip 里的 compression* 方法改为 compress*，decompression* 方法改为 decompress
-* :sparkles: Zip add getCompressDstDir method
-* :hammer: Collectionx 和 Arrayx 的 count 方法支持可 null 的参数
-* :sparkles: Numberx add in and notIn method
-* :sparkles: Add Annotationx
-* :hammer: 现在 javax-kt 里所有方法都是对 javax 的扩展，因此删除了一些重复的类或常量，现在请直接使用 javax 中相应的类或常量
+## 0.6.6
+
+Removed Or Renamed
+* :fire: EMPTY_MAP from Collectionx move to Mapx
+* :fire: Remove the following classes or constants in javax-kt, now use the corresponding class or constant in javax directly
     * Aes.kt AES, AES_ECB_NO, AES_ECB_PKCS5, AES_ECB_PKCS7, AES_ECB_ISO10126, AES_CBC_NO, AES_CBC_PKCS5, AES_CBC_PKCS7, AES_CBC_ISO10126
     * Des.kt DES, DES_ECB_NO, DES_ECB_PKCS5, DES_ECB_PKCS7, DES_ECB_ISO10126, DES_CBC_NO, DES_CBC_PKCS5, DES_CBC_PKCS7, DES_CBC_ISO10126
     * Rsa.kt RSA, RSA_ECB_PKCS1, RSA_ECB_OAEP, RSA_SIGNATURE
     * DateRange.kt, YearRange.kt, MonthRange.kt, DayRange.kt, HourRange.kt, MinuteRange.kt, SecondRange.kt, MillisecondRange.kt
     * InsecureSHA1PRNGKeyDerivator.kt, UnableCreateDirException.kt, UnableCreateFileException.kt
+* :fire: Zip's compression\* method is renamed to compress\*, and the decompression\* method is renamed to decompress
+* :fire: The names of the encrypt and decrypt methods of Rsa.kt are added to rsa
+
+Bug
+* :bug: Kotlin version setting of the Format format method roundingMode is RoundingMode.HALF_UP
+
+New
+* :sparkles: Add Stopwatch
+* :sparkles: Add Annotationx
+* :sparkles: Numberx add in and notIn method
 * :sparkles: Digestx support bytes
 * :sparkles: Stringx orEmpty, orDefault, emptyToNull, blankToNull support CharSequence
 * :sparkles: Formatx add hiddenStartChars, hiddenMiddleChars, hiddenEndChars method
-* :sparkles: Zipx.kt zipCompressFilesTo method add Overload method
 * :sparkles: Premisex.kt requireNotNull and checkNotNull method add Overload method
 * :sparkles: Mapx add builder, forEach, forEachIndexed, map, mapIndexed method
-* :fire: EMPTY_MAP from Collectionx move to Mapx
-* :hammer: The primary parameters of all Collectionx methods are now Nullable
 * :sparkles: Arrayx add orEmpty method
-* :hammer: The primary parameters of all Arrayx methods are now Nullable
 * :sparkles: Filex add lengthRecursively(File\[\]) and lengthRecursively(Iterable<File>) method
 * :sparkles: IOStreamx copyTo method add CopyListener argument
 * :sparkles: Collectionx and Arrayx joinToArrayString method added kotlin extension
+* :sparkles: Zip add getDecompressionDstDir, getCompressDstDir method
+* :sparkles: Zipx.kt zipCompressFilesTo method add Overload method
 * :sparkles: Zipx compress and decompress method supported progress listener
+
+Hammer
+* :hammer: Now all methods in javax-kt are extensions to javax
+* :hammer: The primary parameters of all Collectionx methods are now Nullable
+* :hammer: The primary parameters of all Arrayx methods are now Nullable
+
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
