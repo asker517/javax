@@ -92,7 +92,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * getDigest, getMD5, getMD5_16, getSHA1, getSHA256, getSHA512
 
 ### util
-* Array: [Arrayx.java]
+* Array: [Arrayx.java] | [Arrayx.kt]
     * arrayOf, isEmpty, isNotEmpty, toTypedArray, toCollection, toList, toSet, toHashSet, asList, map, reverse, sort,
     * single, any, iterator, asIterable, groupBy, groupingBy, count, max, min, join, sum, plus, indices, indexOf,
     * contains, forEach, filter, zip, partition, all, first, last, find, get, elementAt, flatMap, average, none,
@@ -105,7 +105,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * isSameYear, isSameMonth, isSame\*, differYear, differMonth, differ\*
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
     * encode, urlEncode, mimeEncode, decode, urlDecode, mimeDecode,
-* Collection: [Collectionx.java]
+* Collection: [Collectionx.java] | [Collectionx.kt]
     * isEmpty, isNotEmpty, orEmpty, listOf, emptyList, collectionSizeOrDefault, filter, map, flatMap, join, count,
     * average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList, toSet, toHashSet,
     * convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold,

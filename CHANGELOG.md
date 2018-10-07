@@ -26,6 +26,7 @@
 * :hammer: The primary parameters of all Arrayx methods are now Nullable
 * :sparkles: Filex add lengthRecursively(File\[\]) and lengthRecursively(Iterable<File>) method
 * :sparkles: IOStreamx copyTo method add CopyListener argument
+* :sparkles: Collectionx and Arrayx joinToArrayString method added kotlin extension
 
 ## 0.6.5
 * :hammer: String orContains and andContains change to extension method
