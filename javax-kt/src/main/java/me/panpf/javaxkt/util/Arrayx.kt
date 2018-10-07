@@ -33,7 +33,7 @@ import me.panpf.javax.util.Transformer
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun <T> Array<T>?.joinToArrayString(transform: Transformer<T, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun <T> Array<T>?.joinToArrayString(transform: Transformer<T, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -42,7 +42,7 @@ fun <T> Array<T>?.joinToArrayString(transform: Transformer<T, CharSequence>?): S
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun <T> Array<T>?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun <T> Array<T>?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -51,7 +51,7 @@ fun <T> Array<T>?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun ByteArray?.joinToArrayString(transform: Transformer<Byte, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun ByteArray?.joinToArrayString(transform: Transformer<Byte, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -60,7 +60,7 @@ fun ByteArray?.joinToArrayString(transform: Transformer<Byte, CharSequence>?): S
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun ByteArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun ByteArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -69,7 +69,7 @@ fun ByteArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun ShortArray?.joinToArrayString(transform: Transformer<Short, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun ShortArray?.joinToArrayString(transform: Transformer<Short, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -78,7 +78,7 @@ fun ShortArray?.joinToArrayString(transform: Transformer<Short, CharSequence>?):
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun ShortArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun ShortArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -87,7 +87,7 @@ fun ShortArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun IntArray?.joinToArrayString(transform: Transformer<Int, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun IntArray?.joinToArrayString(transform: Transformer<Int, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -96,7 +96,7 @@ fun IntArray?.joinToArrayString(transform: Transformer<Int, CharSequence>?): Str
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun IntArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun IntArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -105,7 +105,7 @@ fun IntArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun LongArray?.joinToArrayString(transform: Transformer<Long, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun LongArray?.joinToArrayString(transform: Transformer<Long, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -114,7 +114,7 @@ fun LongArray?.joinToArrayString(transform: Transformer<Long, CharSequence>?): S
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun LongArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun LongArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -123,7 +123,7 @@ fun LongArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun FloatArray?.joinToArrayString(transform: Transformer<Float, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun FloatArray?.joinToArrayString(transform: Transformer<Float, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -132,7 +132,7 @@ fun FloatArray?.joinToArrayString(transform: Transformer<Float, CharSequence>?):
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun FloatArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun FloatArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -141,7 +141,7 @@ fun FloatArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun DoubleArray?.joinToArrayString(transform: Transformer<Double, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun DoubleArray?.joinToArrayString(transform: Transformer<Double, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -150,7 +150,7 @@ fun DoubleArray?.joinToArrayString(transform: Transformer<Double, CharSequence>?
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun DoubleArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun DoubleArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -159,7 +159,7 @@ fun DoubleArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun BooleanArray?.joinToArrayString(transform: Transformer<Boolean, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun BooleanArray?.joinToArrayString(transform: Transformer<Boolean, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -168,7 +168,7 @@ fun BooleanArray?.joinToArrayString(transform: Transformer<Boolean, CharSequence
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun BooleanArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun BooleanArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -177,7 +177,7 @@ fun BooleanArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun CharArray?.joinToArrayString(transform: Transformer<Char, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
+inline fun CharArray?.joinToArrayString(transform: Transformer<Char, CharSequence>?): String = Arrayx.joinToArrayString(this, transform)
 
 /**
  * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
@@ -186,4 +186,4 @@ fun CharArray?.joinToArrayString(transform: Transformer<Char, CharSequence>?): S
  * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
  * elements will be appended, followed by the [truncated] string (which defaults to "...").
  */
-fun CharArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
+inline fun CharArray?.joinToArrayString(): String = Arrayx.joinToArrayString(this)
