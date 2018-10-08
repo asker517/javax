@@ -44,6 +44,11 @@ inline fun CharSequence?.isNotSafe(): Boolean = Stringx.isNotSafe(this)
  */
 inline fun CharSequence?.isNotSafeOr(defaultValue: CharSequence): CharSequence? = Stringx.isNotSafeOr(this, defaultValue)
 
+/**
+ * If the given character sequence is safe, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNotSafeOr(defaultValue: String): String? = Stringx.isNotSafeOr(this, defaultValue)
+
 
 /* ******************************************* isBlank *******************************************/
 
@@ -63,6 +68,11 @@ inline fun CharSequence?.isNotSafeOr(defaultValue: CharSequence): CharSequence? 
  */
 inline fun CharSequence?.isBlankOr(defaultValue: CharSequence): CharSequence? = Stringx.isBlankOr(this, defaultValue)
 
+/**
+ * If the given character sequence is not blank, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isBlankOr(defaultValue: String): String? = Stringx.isBlankOr(this, defaultValue)
+
 
 ///**
 // * Returns `true` if this nullable char sequence is either `null` or empty or consists solely of whitespace characters.
@@ -78,6 +88,11 @@ inline fun CharSequence?.isNotNullOrBlank(): Boolean = Stringx.isNotNullOrBlank(
  * If the given character sequence is not null or blank, it return is itself, otherwise it returns the default value.
  */
 inline fun CharSequence?.isNullOrBlankOr(defaultValue: CharSequence): CharSequence = Stringx.isNullOrBlankOr(this, defaultValue)
+
+/**
+ * If the given character sequence is not null or blank, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNullOrBlankOr(defaultValue: String): String = Stringx.isNullOrBlankOr(this, defaultValue)
 
 
 /* ******************************************* isEmpty *******************************************/
@@ -98,6 +113,11 @@ inline fun CharSequence?.isNullOrBlankOr(defaultValue: CharSequence): CharSequen
  */
 inline fun CharSequence?.isEmptyOr(defaultValue: CharSequence): CharSequence? = Stringx.isEmptyOr(this, defaultValue)
 
+/**
+ * If the given character sequence is not empty, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isEmptyOr(defaultValue: String): String? = Stringx.isEmptyOr(this, defaultValue)
+
 
 ///**
 // * Returns `true` if this nullable char sequence is either `null` or empty.
@@ -113,6 +133,11 @@ inline fun CharSequence?.isNotNullOrEmpty(): Boolean = Stringx.isNotNullOrEmpty(
  * If the given character sequence is not null or empty, it return is itself, otherwise it returns the default value.
  */
 inline fun CharSequence?.isNullOrEmptyOr(defaultValue: CharSequence): CharSequence = Stringx.isNullOrEmptyOr(this, defaultValue)
+
+/**
+ * If the given character sequence is not null or empty, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNullOrEmptyOr(defaultValue: String): String = Stringx.isNullOrEmptyOr(this, defaultValue)
 
 
 /* ******************************************* isChinese *******************************************/
@@ -133,6 +158,11 @@ inline fun CharSequence?.isNotChinese(): Boolean = Stringx.isNotChinese(this)
  */
 inline fun CharSequence?.isNotChineseOr(defaultValue: CharSequence): CharSequence = Stringx.isNotChineseOr(this, defaultValue)
 
+/**
+ * If the given character sequence is chinese, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNotChineseOr(defaultValue: String): String = Stringx.isNotChineseOr(this, defaultValue)
+
 
 /* ******************************************* isDigit *******************************************/
 
@@ -151,6 +181,11 @@ inline fun CharSequence?.isNotDigit(): Boolean = Stringx.isNotDigit(this)
  * If the given character sequence is digit, it return is itself, otherwise it returns the default value.
  */
 inline fun CharSequence?.isNotDigitOr(defaultValue: CharSequence): CharSequence = Stringx.isNotDigitOr(this, defaultValue)
+
+/**
+ * If the given character sequence is digit, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNotDigitOr(defaultValue: String): String = Stringx.isNotDigitOr(this, defaultValue)
 
 
 /* ******************************************* isLetter *******************************************/
@@ -171,6 +206,11 @@ inline fun CharSequence?.isNotLetter(): Boolean = Stringx.isNotLetter(this)
  */
 inline fun CharSequence?.isNotLetterOr(defaultValue: CharSequence): CharSequence = Stringx.isNotLetterOr(this, defaultValue)
 
+/**
+ * If the given character sequence is letter, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNotLetterOr(defaultValue: String): String = Stringx.isNotLetterOr(this, defaultValue)
+
 
 /* ******************************************* isLetterOrDigit *******************************************/
 
@@ -189,6 +229,11 @@ inline fun CharSequence?.isNotLetterOrDigit(): Boolean = Stringx.isNotLetterOrDi
  * If the given character sequence is digit or letter, it return is itself, otherwise it returns the default value.
  */
 inline fun CharSequence?.isNotLetterOrDigitOr(defaultValue: CharSequence): CharSequence = Stringx.isNotLetterOrDigitOr(this, defaultValue)
+
+/**
+ * If the given character sequence is digit or letter, it return is itself, otherwise it returns the default value.
+ */
+inline fun String?.isNotLetterOrDigitOr(defaultValue: String): String = Stringx.isNotLetterOrDigitOr(this, defaultValue)
 
 
 /* ******************************************* orContains and andContains *******************************************/
@@ -224,22 +269,6 @@ inline fun String?.andContains(params: Collection<String>?): Boolean = Stringx.a
 inline fun CharSequence?.orEmpty(): CharSequence = Stringx.orEmpty(this)
 
 /**
- * Returns the given character sequence if it is not null, otherwise return given defaultValue
- */
-inline fun CharSequence?.orDefault(defaultValue: CharSequence): CharSequence = Stringx.orDefault(this, defaultValue)
-
-/**
- * If the given char sequence is empty, it return `null` otherwise it return itself
- */
-inline fun CharSequence?.emptyToNull(): CharSequence? = Stringx.emptyToNull(this)
-
-/**
- * If the given char sequence is blank, it return `null` otherwise it return itself
- */
-inline fun CharSequence?.blankToNull(): CharSequence? = Stringx.blankToNull(this)
-
-
-/**
  * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
  */
 inline fun String?.orEmpty(): String = Stringx.orEmpty(this)
@@ -247,12 +276,28 @@ inline fun String?.orEmpty(): String = Stringx.orEmpty(this)
 /**
  * Returns the given character sequence if it is not null, otherwise return given defaultValue
  */
+inline fun CharSequence?.orDefault(defaultValue: CharSequence): CharSequence = Stringx.orDefault(this, defaultValue)
+
+/**
+ * Returns the given character sequence if it is not null, otherwise return given defaultValue
+ */
 inline fun String?.orDefault(defaultValue: String): String = Stringx.orDefault(this, defaultValue)
+
+
+/**
+ * If the given char sequence is empty, it return `null` otherwise it return itself
+ */
+inline fun CharSequence?.emptyToNull(): CharSequence? = Stringx.emptyToNull(this)
 
 /**
  * If the given char sequence is empty, it return `null` otherwise it return itself
  */
 inline fun String?.emptyToNull(): String? = Stringx.emptyToNull(this)
+
+/**
+ * If the given char sequence is blank, it return `null` otherwise it return itself
+ */
+inline fun CharSequence?.blankToNull(): CharSequence? = Stringx.blankToNull(this)
 
 /**
  * If the given char sequence is blank, it return `null` otherwise it return itself

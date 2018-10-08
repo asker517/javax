@@ -1,3 +1,6 @@
+## 0.6.7
+:hammer: The method in Stringx whose name ends with `or` adds a String overload method.
+
 ## 0.6.6
 
 Removed Or Renamed

@@ -42,15 +42,15 @@ public class Stringx {
     /**
      * Returns `true` if this string is is not `null` and not empty and contains some characters except of whitespace characters.
      */
-    public static boolean isSafe(@Nullable CharSequence string) {
-        return isNotNullOrEmpty(string) && isNotBlank(string);
+    public static boolean isSafe(@Nullable CharSequence sequence) {
+        return isNotNullOrEmpty(sequence) && isNotBlank(sequence);
     }
 
     /**
      * Returns `true` if this string is is `null` or empty or consists solely of whitespace characters.
      */
-    public static boolean isNotSafe(@Nullable CharSequence string) {
-        return !isSafe(string);
+    public static boolean isNotSafe(@Nullable CharSequence sequence) {
+        return !isSafe(sequence);
     }
 
     /**
@@ -60,6 +60,13 @@ public class Stringx {
         return isSafe(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is safe, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNotSafeOr(@Nullable String string, @NotNull String defaultValue) {
+        return string != null && isSafe(string) ? string : defaultValue;
+    }
+
 
     /* ******************************************* isBlank *******************************************/
 
@@ -67,10 +74,10 @@ public class Stringx {
     /**
      * Returns `true` if this string is empty or consists solely of whitespace characters.
      */
-    public static boolean isBlank(@Nullable CharSequence string) {
-        if (string == null) return false;
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (Charx.isNotBlank(string.charAt(index))) {
+    public static boolean isBlank(@Nullable CharSequence sequence) {
+        if (sequence == null) return false;
+        for (int index = 0, size = sequence.length(); index < size; index++) {
+            if (Charx.isNotBlank(sequence.charAt(index))) {
                 return false;
             }
         }
@@ -80,8 +87,8 @@ public class Stringx {
     /**
      * Returns `true` if this char sequence is not empty and contains some characters except of whitespace characters.
      */
-    public static boolean isNotBlank(@Nullable CharSequence string) {
-        return !isBlank(string);
+    public static boolean isNotBlank(@Nullable CharSequence sequence) {
+        return !isBlank(sequence);
     }
 
     /**
@@ -91,19 +98,26 @@ public class Stringx {
         return isNotBlank(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is not blank, it return is itself, otherwise it returns the default value.
+     */
+    public static String isBlankOr(@Nullable String string, @NotNull String defaultValue) {
+        return string != null && isNotBlank(string) ? string : defaultValue;
+    }
+
 
     /**
      * Returns `true` if this nullable char sequence is either `null` or empty or consists solely of whitespace characters.
      */
-    public static boolean isNullOrBlank(@Nullable CharSequence string) {
-        return string == null || isBlank(string);
+    public static boolean isNullOrBlank(@Nullable CharSequence sequence) {
+        return sequence == null || isBlank(sequence);
     }
 
     /**
      * Return `true` if the character sequence is not `null` or whitespace characters.
      */
-    public static boolean isNotNullOrBlank(@Nullable CharSequence string) {
-        return !isNullOrBlank(string);
+    public static boolean isNotNullOrBlank(@Nullable CharSequence sequence) {
+        return !isNullOrBlank(sequence);
     }
 
     /**
@@ -113,6 +127,13 @@ public class Stringx {
         return isNotNullOrBlank(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is not null or blank, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNullOrBlankOr(@Nullable String string, @NotNull String defaultValue) {
+        return isNotNullOrBlank(string) ? string : defaultValue;
+    }
+
 
     /* ******************************************* isEmpty *******************************************/
 
@@ -120,15 +141,15 @@ public class Stringx {
     /**
      * Returns `true` if this char sequence is empty (contains no characters).
      */
-    public static boolean isEmpty(@Nullable CharSequence string) {
-        return string != null && string.length() == 0;
+    public static boolean isEmpty(@Nullable CharSequence sequence) {
+        return sequence != null && sequence.length() == 0;
     }
 
     /**
      * Returns `true` if this char sequence is not empty.
      */
-    public static boolean isNotEmpty(@Nullable CharSequence string) {
-        return !isEmpty(string);
+    public static boolean isNotEmpty(@Nullable CharSequence sequence) {
+        return !isEmpty(sequence);
     }
 
     /**
@@ -138,19 +159,26 @@ public class Stringx {
         return isNotEmpty(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is not empty, it return is itself, otherwise it returns the default value.
+     */
+    public static String isEmptyOr(@Nullable String string, @NotNull String defaultValue) {
+        return string != null && isNotEmpty(string) ? string : defaultValue;
+    }
+
 
     /**
      * Returns `true` if this nullable char sequence is either `null` or empty.
      */
-    public static boolean isNullOrEmpty(@Nullable CharSequence string) {
-        return string == null || string.length() == 0;
+    public static boolean isNullOrEmpty(@Nullable CharSequence sequence) {
+        return sequence == null || sequence.length() == 0;
     }
 
     /**
      * Return `true` if the character sequence is not `null` or empty
      */
-    public static boolean isNotNullOrEmpty(@Nullable CharSequence string) {
-        return !isNullOrEmpty(string);
+    public static boolean isNotNullOrEmpty(@Nullable CharSequence sequence) {
+        return !isNullOrEmpty(sequence);
     }
 
     /**
@@ -160,6 +188,13 @@ public class Stringx {
         return isNotNullOrEmpty(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is not null or empty, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNullOrEmptyOr(@Nullable String string, @NotNull String defaultValue) {
+        return isNotNullOrEmpty(string) ? string : defaultValue;
+    }
+
 
     /* ******************************************* isChinese *******************************************/
 
@@ -167,10 +202,10 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all chinese
      */
-    public static boolean isChinese(@Nullable CharSequence string) {
-        if (string == null || isNotSafe(string)) return false;
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (Charx.isNotChinese(string.charAt(index))) {
+    public static boolean isChinese(@Nullable CharSequence sequence) {
+        if (sequence == null || isNotSafe(sequence)) return false;
+        for (int index = 0, size = sequence.length(); index < size; index++) {
+            if (Charx.isNotChinese(sequence.charAt(index))) {
                 return false;
             }
         }
@@ -180,8 +215,8 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all not chinese
      */
-    public static boolean isNotChinese(@Nullable CharSequence string) {
-        return !isChinese(string);
+    public static boolean isNotChinese(@Nullable CharSequence sequence) {
+        return !isChinese(sequence);
     }
 
     /**
@@ -191,6 +226,13 @@ public class Stringx {
         return isChinese(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is chinese, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNotChineseOr(@Nullable String string, @NotNull String defaultValue) {
+        return isChinese(string) ? string : defaultValue;
+    }
+
 
     /* ******************************************* isDigit *******************************************/
 
@@ -198,10 +240,10 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all digit
      */
-    public static boolean isDigit(@Nullable CharSequence string) {
-        if (string == null || isNotSafe(string)) return false;
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (Charx.isNotDigit(string.charAt(index))) {
+    public static boolean isDigit(@Nullable CharSequence sequence) {
+        if (sequence == null || isNotSafe(sequence)) return false;
+        for (int index = 0, size = sequence.length(); index < size; index++) {
+            if (Charx.isNotDigit(sequence.charAt(index))) {
                 return false;
             }
         }
@@ -211,8 +253,8 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all not digit
      */
-    public static boolean isNotDigit(@Nullable CharSequence string) {
-        return !isDigit(string);
+    public static boolean isNotDigit(@Nullable CharSequence sequence) {
+        return !isDigit(sequence);
     }
 
     /**
@@ -222,6 +264,13 @@ public class Stringx {
         return isDigit(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is digit, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNotDigitOr(@Nullable String string, @NotNull String defaultValue) {
+        return isDigit(string) ? string : defaultValue;
+    }
+
 
     /* ******************************************* isLetter *******************************************/
 
@@ -229,10 +278,10 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all letter
      */
-    public static boolean isLetter(@Nullable CharSequence string) {
-        if (string == null || isNotSafe(string)) return false;
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (Charx.isNotLetter(string.charAt(index))) {
+    public static boolean isLetter(@Nullable CharSequence sequence) {
+        if (sequence == null || isNotSafe(sequence)) return false;
+        for (int index = 0, size = sequence.length(); index < size; index++) {
+            if (Charx.isNotLetter(sequence.charAt(index))) {
                 return false;
             }
         }
@@ -242,8 +291,8 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all not letter
      */
-    public static boolean isNotLetter(@Nullable CharSequence string) {
-        return !isLetter(string);
+    public static boolean isNotLetter(@Nullable CharSequence sequence) {
+        return !isLetter(sequence);
     }
 
     /**
@@ -253,6 +302,13 @@ public class Stringx {
         return isLetter(sequence) ? sequence : defaultValue;
     }
 
+    /**
+     * If the given character sequence is letter, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNotLetterOr(@Nullable String string, @NotNull String defaultValue) {
+        return isLetter(string) ? string : defaultValue;
+    }
+
 
     /* ******************************************* isLetterOrDigit *******************************************/
 
@@ -260,10 +316,10 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all digit or letter
      */
-    public static boolean isLetterOrDigit(@Nullable CharSequence string) {
-        if (string == null || isNotSafe(string)) return false;
-        for (int index = 0, size = string.length(); index < size; index++) {
-            if (Charx.isNotLetterOrDigit(string.charAt(index))) {
+    public static boolean isLetterOrDigit(@Nullable CharSequence sequence) {
+        if (sequence == null || isNotSafe(sequence)) return false;
+        for (int index = 0, size = sequence.length(); index < size; index++) {
+            if (Charx.isNotLetterOrDigit(sequence.charAt(index))) {
                 return false;
             }
         }
@@ -273,8 +329,8 @@ public class Stringx {
     /**
      * Return `true` if the given sequence of characters is all not digit or letter
      */
-    public static boolean isNotLetterOrDigit(@Nullable CharSequence string) {
-        return !isLetterOrDigit(string);
+    public static boolean isNotLetterOrDigit(@Nullable CharSequence sequence) {
+        return !isLetterOrDigit(sequence);
     }
 
     /**
@@ -282,6 +338,13 @@ public class Stringx {
      */
     public static CharSequence isNotLetterOrDigitOr(@Nullable CharSequence sequence, @NotNull CharSequence defaultValue) {
         return isLetterOrDigit(sequence) ? sequence : defaultValue;
+    }
+
+    /**
+     * If the given character sequence is digit or letter, it return is itself, otherwise it returns the default value.
+     */
+    public static String isNotLetterOrDigitOr(@Nullable String string, @NotNull String defaultValue) {
+        return isLetterOrDigit(string) ? string : defaultValue;
     }
 
 
@@ -332,34 +395,9 @@ public class Stringx {
      * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
      */
     @NotNull
-    public static CharSequence orEmpty(@Nullable CharSequence string) {
-        return string != null ? string : "";
+    public static CharSequence orEmpty(@Nullable CharSequence sequence) {
+        return sequence != null ? sequence : "";
     }
-
-    /**
-     * Returns the given character sequence if it is not null, otherwise return given defaultValue
-     */
-    @NotNull
-    public static CharSequence orDefault(@Nullable CharSequence string, @NotNull CharSequence defaultValue) {
-        return string != null ? string : defaultValue;
-    }
-
-    /**
-     * If the given char sequence is empty, it return `null` otherwise it return itself
-     */
-    @Nullable
-    public static CharSequence emptyToNull(@Nullable CharSequence string) {
-        return isEmpty(string) ? null : string;
-    }
-
-    /**
-     * If the given char sequence is blank, it return `null` otherwise it return itself
-     */
-    @Nullable
-    public static CharSequence blankToNull(@Nullable CharSequence string) {
-        return isBlank(string) ? null : string;
-    }
-
 
     /**
      * Returns the given character sequence if it is not null, otherwise return an empty sequence of characters
@@ -373,8 +411,24 @@ public class Stringx {
      * Returns the given character sequence if it is not null, otherwise return given defaultValue
      */
     @NotNull
+    public static CharSequence orDefault(@Nullable CharSequence sequence, @NotNull CharSequence defaultValue) {
+        return sequence != null ? sequence : defaultValue;
+    }
+
+    /**
+     * Returns the given character sequence if it is not null, otherwise return given defaultValue
+     */
+    @NotNull
     public static String orDefault(@Nullable String string, @NotNull String defaultValue) {
         return string != null ? string : defaultValue;
+    }
+
+    /**
+     * If the given char sequence is empty, it return `null` otherwise it return itself
+     */
+    @Nullable
+    public static CharSequence emptyToNull(@Nullable CharSequence sequence) {
+        return isEmpty(sequence) ? null : sequence;
     }
 
     /**
@@ -383,6 +437,14 @@ public class Stringx {
     @Nullable
     public static String emptyToNull(@Nullable String string) {
         return isEmpty(string) ? null : string;
+    }
+
+    /**
+     * If the given char sequence is blank, it return `null` otherwise it return itself
+     */
+    @Nullable
+    public static CharSequence blankToNull(@Nullable CharSequence sequence) {
+        return isBlank(sequence) ? null : sequence;
     }
 
     /**
@@ -406,9 +468,9 @@ public class Stringx {
      *
      * @param ignoreCase If true, ignore case
      */
-    public static boolean startsWith(@NotNull CharSequence string, @NotNull String prefix, boolean ignoreCase) {
-        if (string.length() < prefix.length()) return false;
-        String subPrefix = string.subSequence(0, prefix.length()).toString();
+    public static boolean startsWith(@NotNull CharSequence sequence, @NotNull String prefix, boolean ignoreCase) {
+        if (sequence.length() < prefix.length()) return false;
+        String subPrefix = sequence.subSequence(0, prefix.length()).toString();
         if (ignoreCase) {
             return subPrefix.equalsIgnoreCase(prefix);
         } else {
@@ -419,8 +481,8 @@ public class Stringx {
     /**
      * Return `tru`e if the specified character sequence begins with the specified prefix
      */
-    public static boolean startsWith(@NotNull CharSequence string, @NotNull String prefix) {
-        return startsWith(string, prefix, false);
+    public static boolean startsWith(@NotNull CharSequence sequence, @NotNull String prefix) {
+        return startsWith(sequence, prefix, false);
     }
 
     /**
@@ -459,9 +521,9 @@ public class Stringx {
      *
      * @param ignoreCase If true, ignore case
      */
-    public static boolean endsWith(@NotNull CharSequence string, @NotNull String suffix, boolean ignoreCase) {
-        if (string.length() < suffix.length()) return false;
-        String subSuffix = string.subSequence(string.length() - suffix.length(), string.length()).toString();
+    public static boolean endsWith(@NotNull CharSequence sequence, @NotNull String suffix, boolean ignoreCase) {
+        if (sequence.length() < suffix.length()) return false;
+        String subSuffix = sequence.subSequence(sequence.length() - suffix.length(), sequence.length()).toString();
         if (ignoreCase) {
             return subSuffix.equalsIgnoreCase(suffix);
         } else {
@@ -472,8 +534,8 @@ public class Stringx {
     /**
      * Return `tru`e if the specified character sequence end with the specified suffix
      */
-    public static boolean endsWith(@NotNull CharSequence string, @NotNull String suffix) {
-        return startsWith(string, suffix, false);
+    public static boolean endsWith(@NotNull CharSequence sequence, @NotNull String suffix) {
+        return startsWith(sequence, suffix, false);
     }
 
     /**
@@ -623,7 +685,7 @@ public class Stringx {
      * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
      */
     @NotNull
-    public static CharSequence limit(@NotNull CharSequence string, final int length, @Nullable String suffix) {
+    public static CharSequence limit(@NotNull CharSequence sequence, final int length, @Nullable String suffix) {
         Premisex.require(length >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -631,9 +693,9 @@ public class Stringx {
                 return String.format("Desired length %d is less than zero.", length);
             }
         });
-        if (string.length() <= length) return string;
+        if (sequence.length() <= length) return sequence;
 
-        CharSequence limitString = string.subSequence(0, length);
+        CharSequence limitString = sequence.subSequence(0, length);
         if (suffix != null) {
             return limitString + suffix;
         } else {
@@ -646,8 +708,8 @@ public class Stringx {
      * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
      */
     @NotNull
-    public static CharSequence limit(@NotNull CharSequence string, int length) {
-        return limit(string, length, null);
+    public static CharSequence limit(@NotNull CharSequence sequence, int length) {
+        return limit(sequence, length, null);
     }
 
     /**
@@ -679,7 +741,7 @@ public class Stringx {
      * as are necessary to reach that length.
      */
     @NotNull
-    public static CharSequence padStart(@NotNull CharSequence string, final int length, char padChar) {
+    public static CharSequence padStart(@NotNull CharSequence sequence, final int length, char padChar) {
         Premisex.require(length >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -687,13 +749,13 @@ public class Stringx {
                 return String.format("Desired length %d is less than zero.", length);
             }
         });
-        if (length <= string.length()) return string.subSequence(0, string.length());
+        if (length <= sequence.length()) return sequence.subSequence(0, sequence.length());
 
         StringBuilder sb = new StringBuilder(length);
-        for (int i = 0, size = length - string.length(); i < size; i++) {
+        for (int i = 0, size = length - sequence.length(); i < size; i++) {
             sb.append(padChar);
         }
-        sb.append(string);
+        sb.append(sequence);
         return sb;
     }
 
@@ -706,8 +768,8 @@ public class Stringx {
      * as are necessary to reach that length.
      */
     @NotNull
-    public static CharSequence padStart(@NotNull CharSequence string, int length) {
-        return padStart(string, length, ' ');
+    public static CharSequence padStart(@NotNull CharSequence sequence, int length) {
+        return padStart(sequence, length, ' ');
     }
 
     /**
@@ -746,7 +808,7 @@ public class Stringx {
      * as are necessary to reach that length.
      */
     @NotNull
-    public static CharSequence padEnd(@NotNull CharSequence string, final int length, char padChar) {
+    public static CharSequence padEnd(@NotNull CharSequence sequence, final int length, char padChar) {
         Premisex.require(length >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -754,11 +816,11 @@ public class Stringx {
                 return String.format("Desired length %d is less than zero.", length);
             }
         });
-        if (length <= string.length()) return string.subSequence(0, string.length());
+        if (length <= sequence.length()) return sequence.subSequence(0, sequence.length());
 
         StringBuilder sb = new StringBuilder(length);
-        sb.append(string);
-        for (int i = 0, size = length - string.length(); i < size; i++) {
+        sb.append(sequence);
+        for (int i = 0, size = length - sequence.length(); i < size; i++) {
             sb.append(padChar);
         }
         return sb;
@@ -773,8 +835,8 @@ public class Stringx {
      * as are necessary to reach that length.
      */
     @NotNull
-    public static CharSequence padEnd(@NotNull CharSequence string, int length) {
-        return padEnd(string, length, ' ');
+    public static CharSequence padEnd(@NotNull CharSequence sequence, int length) {
+        return padEnd(sequence, length, ' ');
     }
 
     /**
