@@ -1,5 +1,7 @@
 ## 0.6.7
-:hammer: The method in Stringx whose name ends with `or` adds a String overload method.
+
+* :hammer: The method in Stringx whose name ends with `or` adds a String overload method.
+* :sparkles: Stringx add reversed method
 
 ## 0.6.6
 

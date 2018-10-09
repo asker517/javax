@@ -84,6 +84,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr, orContains, andContains,
     * startsWith, endsWith, equals, orEmpty, orDefault, emptyToNull, blankToNull, remove,
     * capitalize, decapitalize, limit, pad, regionMatches, find, indexOf, substring, toByteArray
+    * reversed
 * Throwable: [Throwablex.java] ([Test][ThrowablexTest.java]) | [Throwablex.kt] ([Test][ThrowablexTest.kt])
     * stackTraceToString
 

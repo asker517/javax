@@ -1291,4 +1291,21 @@ public class Stringx {
     public static byte[] toByteArray(@NotNull String string) {
         return string.getBytes(Charx.UTF_8);
     }
+
+
+    /**
+     * Returns a char sequence with characters in reversed order.
+     */
+    public static CharSequence reversed(@Nullable CharSequence sequence) {
+        return sequence != null ? new StringBuilder(sequence).reverse() : "";
+    }
+
+    /**
+     * Returns a string with characters in reversed order.
+     */
+    public static String reversed(@Nullable String string) {
+        return string != null ? new StringBuilder(string).reverse().toString() : "";
+    }
+
+    // TODO: 2018/10/9 翻译 _Strings.kt 和 _StringJVM.kt
 }
