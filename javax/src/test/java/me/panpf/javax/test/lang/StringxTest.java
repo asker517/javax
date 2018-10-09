@@ -18,6 +18,7 @@ package me.panpf.javax.test.lang;
 
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.util.Collectionx;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -28,6 +29,10 @@ import static org.junit.Assert.*;
 public class StringxTest {
 
     private static final String BLANK = "     ";
+    private static final String SPACE = " ";
+    private static final String ENTRY = "\r";
+    private static final String TAB = "\t";
+    private static final String WRAP = "\n";
     private static final String EMPTY = "";
     private static final String YES = "yes";
     private static final String DIGIT = "8";
@@ -56,13 +61,31 @@ public class StringxTest {
     public void testIsBlank() {
         assertTrue(Stringx.isBlank(BLANK));
         assertTrue(Stringx.isBlank(EMPTY));
+        assertTrue(Stringx.isBlank(SPACE));
+        assertTrue(Stringx.isBlank(ENTRY));
+        assertTrue(Stringx.isBlank(TAB));
+        assertTrue(Stringx.isBlank(WRAP));
         assertFalse(Stringx.isBlank(YES));
+        assertFalse(Stringx.isBlank(DIGIT));
+        assertFalse(Stringx.isBlank(LETTER));
+        assertFalse(Stringx.isBlank(CHINESE));
+        assertFalse(Stringx.isBlank(LETTER_OR_DIGIT));
+        assertFalse(Stringx.isBlank(SYMBOL));
         assertFalse(Stringx.isBlank(null));
 
         assertTrue(Stringx.isNotBlank(YES));
+        assertTrue(Stringx.isNotBlank(DIGIT));
+        assertTrue(Stringx.isNotBlank(LETTER));
+        assertTrue(Stringx.isNotBlank(CHINESE));
+        assertTrue(Stringx.isNotBlank(LETTER_OR_DIGIT));
+        assertTrue(Stringx.isNotBlank(SYMBOL));
         assertTrue(Stringx.isNotBlank(null));
         assertFalse(Stringx.isNotBlank(BLANK));
         assertFalse(Stringx.isNotBlank(EMPTY));
+        assertFalse(Stringx.isNotBlank(SPACE));
+        assertFalse(Stringx.isNotBlank(ENTRY));
+        assertFalse(Stringx.isNotBlank(TAB));
+        assertFalse(Stringx.isNotBlank(WRAP));
 
         assertEquals(Stringx.isBlankOr(BLANK, "default"), "default");
         assertEquals(Stringx.isBlankOr(YES, "default"), YES);
@@ -318,5 +341,12 @@ public class StringxTest {
         assertNull(Stringx.blankToNull(" "));
         assertNotNull(Stringx.blankToNull((CharSequence) "今"));
         assertNull(Stringx.blankToNull((CharSequence) " "));
+    }
+
+    @Test
+    public void testFilterBlank() {
+        String source = " 费劲啊是否将as\n\n\t523\t\tcxbv\r\r而乏味 贵公司   ";
+        Assert.assertEquals(Stringx.filterBlank(source), "费劲啊是否将as523cxbv而乏味贵公司");
+        Assert.assertEquals(Stringx.filterBlank(new StringBuilder(source)).toString(), "费劲啊是否将as523cxbv而乏味贵公司");
     }
 }

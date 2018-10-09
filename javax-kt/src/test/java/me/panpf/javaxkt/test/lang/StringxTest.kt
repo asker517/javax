@@ -17,6 +17,7 @@
 package me.panpf.javaxkt.test.lang
 
 import me.panpf.javaxkt.lang.*
+import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
@@ -24,6 +25,10 @@ import java.util.*
 class StringxTest {
 
     private val BLANK = "     "
+    private val SPACE = " "
+    private val ENTRY = "\r"
+    private val TAB = "\t"
+    private val WRAP = "\n"
     private val EMPTY = ""
     private val YES = "yes"
     private val DIGIT = "8"
@@ -52,13 +57,31 @@ class StringxTest {
     fun testIsBlank() {
         assertTrue(BLANK.isBlank())
         assertTrue(EMPTY.isBlank())
+        assertTrue(SPACE.isBlank())
+        assertTrue(ENTRY.isBlank())
+        assertTrue(TAB.isBlank())
+        assertTrue(WRAP.isBlank())
         assertFalse(YES.isBlank())
+        assertFalse(DIGIT.isBlank())
+        assertFalse(LETTER.isBlank())
+        assertFalse(CHINESE.isBlank())
+        assertFalse(LETTER_OR_DIGIT.isBlank())
+        assertFalse(SYMBOL.isBlank())
 //        assertFalse(null.isBlank())
 
         assertTrue(YES.isNotBlank())
+        assertTrue(DIGIT.isNotBlank())
+        assertTrue(LETTER.isNotBlank())
+        assertTrue(CHINESE.isNotBlank())
+        assertTrue(LETTER_OR_DIGIT.isNotBlank())
+        assertTrue(SYMBOL.isNotBlank())
 //        assertTrue(null.isNotBlank())
         assertFalse(BLANK.isNotBlank())
         assertFalse(EMPTY.isNotBlank())
+        assertFalse(SPACE.isNotBlank())
+        assertFalse(ENTRY.isNotBlank())
+        assertFalse(TAB.isNotBlank())
+        assertFalse(WRAP.isNotBlank())
 
         assertEquals(BLANK.isBlankOr("default"), "default")
         assertEquals(YES.isBlankOr("default"), YES)
@@ -234,5 +257,12 @@ class StringxTest {
         assertNull(" ".blankToNull())
         assertNotNull(("今" as CharSequence).blankToNull())
         assertNull((" " as CharSequence).blankToNull())
+    }
+
+    @Test
+    fun testFilterBlank() {
+        val source = " 费劲啊是否将as\n\n\t523\t\tcxbv\r\r而乏味 贵公司   "
+        Assert.assertEquals(source.filterBlank(), "费劲啊是否将as523cxbv而乏味贵公司")
+        Assert.assertEquals(StringBuilder(source).filterBlank().toString(), "费劲啊是否将as523cxbv而乏味贵公司")
     }
 }

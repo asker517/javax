@@ -8189,7 +8189,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<T>() {
             @Override
             public void action(int index, @NotNull T element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8208,7 +8208,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Byte>() {
             @Override
             public void action(int index, @NotNull Byte element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8227,7 +8227,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Short>() {
             @Override
             public void action(int index, @NotNull Short element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8246,7 +8246,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Integer>() {
             @Override
             public void action(int index, @NotNull Integer element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8265,7 +8265,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Long>() {
             @Override
             public void action(int index, @NotNull Long element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8284,7 +8284,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Float>() {
             @Override
             public void action(int index, @NotNull Float element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8303,7 +8303,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Double>() {
             @Override
             public void action(int index, @NotNull Double element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8322,7 +8322,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Boolean>() {
             @Override
             public void action(int index, @NotNull Boolean element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }
@@ -8341,7 +8341,7 @@ public class Arrayx {
         forEachIndexed(elements, new IndexedAction<Character>() {
             @Override
             public void action(int index, @NotNull Character element) {
-                if (predicate.predicate(index, element)) {
+                if (predicate.accept(index, element)) {
                     destination.add(element);
                 }
             }

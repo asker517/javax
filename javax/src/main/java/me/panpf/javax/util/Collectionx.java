@@ -386,7 +386,7 @@ public class Collectionx {
         int index = 0;
         if (iterable != null) {
             for (T element : iterable) {
-                if (predicate.predicate(index++, element)) {
+                if (predicate.accept(index++, element)) {
                     destination.add(element);
                 }
             }

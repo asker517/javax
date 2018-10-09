@@ -303,3 +303,17 @@ inline fun CharSequence?.blankToNull(): CharSequence? = Stringx.blankToNull(this
  * If the given char sequence is blank, it return `null` otherwise it return itself
  */
 inline fun String?.blankToNull(): String? = Stringx.blankToNull(this)
+
+
+/* ******************************************* filterBlank *******************************************/
+
+
+/**
+ * Filter out whitespace characters in a sequence of characters
+ */
+fun CharSequence?.filterBlank(): CharSequence = Stringx.filterBlank(this)
+
+/**
+ * Filter out whitespace characters in a sequence of characters
+ */
+fun String?.filterBlank(): String = Stringx.filterBlank(this)

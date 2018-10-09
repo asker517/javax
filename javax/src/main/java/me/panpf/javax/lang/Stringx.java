@@ -20,6 +20,7 @@ import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collection;
 
@@ -454,6 +455,33 @@ public class Stringx {
     public static String blankToNull(@Nullable String string) {
         return isBlank(string) ? null : string;
     }
+
+
+    /* ******************************************* filterBlank *******************************************/
+
+
+    /**
+     * Filter out whitespace characters in a sequence of characters
+     */
+    @NotNull
+    public static CharSequence filterBlank(@Nullable CharSequence sequence) {
+        return filter(sequence, new Predicate<Character>() {
+            @Override
+            public boolean accept(@NotNull Character character) {
+                return Charx.isNotBlank(character);
+            }
+        });
+    }
+
+    /**
+     * Filter out whitespace characters in a sequence of characters
+     */
+    @NotNull
+    public static String filterBlank(@Nullable String string) {
+        return filterBlank((CharSequence) string).toString();
+    }
+
+
 
 
     /*
@@ -1296,15 +1324,135 @@ public class Stringx {
     /**
      * Returns a char sequence with characters in reversed order.
      */
+    @NotNull
     public static CharSequence reversed(@Nullable CharSequence sequence) {
-        return sequence != null ? new StringBuilder(sequence).reverse() : "";
+        return sequence != null ? new StringBuilder(sequence).reverse() : new StringBuilder(0);
     }
 
     /**
      * Returns a string with characters in reversed order.
      */
+    @NotNull
     public static String reversed(@Nullable String string) {
         return string != null ? new StringBuilder(string).reverse().toString() : "";
+    }
+
+
+    /**
+     * Returns a char sequence containing only those characters from the original char sequence that match the given [predicate].
+     */
+    @NotNull
+    public static CharSequence filter(@Nullable CharSequence sequence, @NotNull Predicate<Character> predicate) {
+        return filterTo(sequence, new StringBuilder(), predicate);
+    }
+
+    /**
+     * Returns a string containing only those characters from the original string that match the given [predicate].
+     */
+    @NotNull
+    public static String filter(@Nullable String string, @NotNull Predicate<Character> predicate) {
+        return filterTo(string, new StringBuilder(), predicate).toString();
+    }
+
+    /**
+     * Returns a char sequence containing only those characters from the original char sequence that match the given [predicate].
+     *
+     * @param predicate function that takes the index of a character and the character itself
+     *                  and returns the result of predicate evaluation on the character.
+     */
+    @NotNull
+    public static CharSequence filterIndexed(@Nullable CharSequence sequence, @NotNull IndexedPredicate<Character> predicate) {
+        return filterIndexedTo(sequence, new StringBuilder(), predicate);
+    }
+
+    /**
+     * Returns a string containing only those characters from the original string that match the given [predicate].
+     *
+     * @param predicate function that takes the index of a character and the character itself
+     *                  and returns the result of predicate evaluation on the character.
+     */
+    @NotNull
+    public static String filterIndexed(@Nullable String string, @NotNull IndexedPredicate<Character> predicate) {
+        return filterIndexedTo(string, new StringBuilder(), predicate).toString();
+    }
+
+    /**
+     * Appends all characters matching the given [predicate] to the given [destination].
+     *
+     * @param predicate function that takes the index of a character and the character itself
+     *                  and returns the result of predicate evaluation on the character.
+     */
+    @NotNull
+    public static <C extends Appendable> C filterIndexedTo(@Nullable CharSequence sequence, @NotNull C destination, @NotNull IndexedPredicate<Character> predicate) {
+        if (sequence != null) {
+            for (int index : Rangex.until(0, sequence.length())) {
+                char element = sequence.charAt(index);
+                if (predicate.accept(index, element)) {
+                    try {
+                        destination.append(element);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return destination;
+    }
+
+    /**
+     * Returns a char sequence containing only those characters from the original char sequence that do not match the given [predicate].
+     */
+    @NotNull
+    public static CharSequence filterNot(@Nullable CharSequence sequence, @NotNull Predicate<Character> predicate) {
+        return filterNotTo(sequence, new StringBuilder(), predicate);
+    }
+
+    /**
+     * Returns a string containing only those characters from the original string that do not match the given [predicate].
+     */
+    @NotNull
+    public static String filterNot(@Nullable String string, @NotNull Predicate<Character> predicate) {
+        return filterNotTo(string, new StringBuilder(), predicate).toString();
+    }
+
+    /**
+     * Appends all characters not matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Appendable> C filterNotTo(@Nullable CharSequence sequence, @NotNull C destination, @NotNull Predicate<Character> predicate) {
+        if (sequence != null) {
+            for (int index : Rangex.until(0, sequence.length())) {
+                char element = sequence.charAt(index);
+                if (!predicate.accept(element)) {
+                    try {
+                        destination.append(element);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return destination;
+    }
+
+    /**
+     * Appends all characters matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Appendable> C filterTo(@Nullable CharSequence sequence, @NotNull C destination, @NotNull Predicate<Character> predicate) {
+        if (sequence != null) {
+            for (int index : Rangex.until(0, sequence.length())) {
+                char element = sequence.charAt(index);
+                if (predicate.accept(element)) {
+                    try {
+                        destination.append(element);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return destination;
     }
 
     // TODO: 2018/10/9 翻译 _Strings.kt 和 _StringJVM.kt
