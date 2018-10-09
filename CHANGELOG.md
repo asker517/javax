@@ -2,6 +2,8 @@
 
 * :hammer: The method in Stringx whose name ends with `or` adds a String overload method.
 * :sparkles: Stringx add reversed, filter, filterBlank method
+* :fire: Base64x encodeToBytes method renamed to encode, decodeToBytes method renamed to decode
+* :fire: Base64x removes encodeTo, encodeToBuffer, decodeTo, decodeToBuffer and all methods whose method names begin with 'url' or 'mime'
 
 ## 0.6.6
 

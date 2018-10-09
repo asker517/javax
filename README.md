@@ -105,7 +105,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * createCalendar, toDate, toMillisecond, format, getYear, getMonth, get\*, addYear, addMonth, add\*,
     * isSameYear, isSameMonth, isSame\*, differYear, differMonth, differ\*
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
-    * encode, urlEncode, mimeEncode, decode, urlDecode, mimeDecode,
+    * encode, encodeToString, decode, decodeToString
 * Collection: [Collectionx.java] | [Collectionx.kt]
     * isEmpty, isNotEmpty, orEmpty, listOf, emptyList, collectionSizeOrDefault, filter, map, flatMap, join, count,
     * average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList, toSet, toHashSet,

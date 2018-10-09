@@ -19,7 +19,6 @@
 package me.panpf.javaxkt.util
 
 import me.panpf.javax.util.Base64x
-import java.nio.ByteBuffer
 
 
 /*
@@ -27,197 +26,320 @@ import java.nio.ByteBuffer
  */
 
 
+/**
+ * Base64-encode the given data and return a newly allocated
+ * byte[] with the result.
+ *
+ * @receiver the data to encode
+ * @param offset the position within the input array at which to
+ * start
+ * @param len    the number of bytes of input to encode
+ * @param flags  controls certain features of the encoded output.
+ * Passing `DEFAULT` results in output that
+ * adheres to RFC 2045.
+ */
+inline fun ByteArray.base64Encode(offset: Int, len: Int, flags: Int): ByteArray = Base64x.encode(this, offset, len, flags)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * byte[] with the result.
+ *
+ * @receiver the data to encode
+ * @param offset the position within the input array at which to
+ * start
+ * @param len    the number of bytes of input to encode
+ */
+inline fun ByteArray.base64Encode(offset: Int, len: Int): ByteArray = Base64x.encode(this, offset, len)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * byte[] with the result.
+ *
+ * @receiver the data to encode
+ * @param flags controls certain features of the encoded output.
+ * Passing `DEFAULT` results in output that
+ * adheres to RFC 2045.
+ */
+inline fun ByteArray.base64Encode(flags: Int): ByteArray = Base64x.encode(this, flags)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * byte[] with the result.
+ *
+ * @receiver the data to encode
+ */
+inline fun ByteArray.base64Encode(): ByteArray = Base64x.encode(this)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * byte[] with the result.
+ *
+ * @receiver the data to encode
+ * @param flags controls certain features of the encoded output.
+ * Passing `DEFAULT` results in output that
+ * adheres to RFC 2045.
+ */
+inline fun String.base64Encode(flags: Int): ByteArray = Base64x.encode(this, flags)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * byte[] with the result.
+ *
+ * @receiver the data to encode
+ */
+inline fun String.base64Encode(): ByteArray = Base64x.encode(this)
+
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * String with the result.
+ *
+ * @receiver the data to encode
+ * @param offset the position within the input array at which to
+ * start
+ * @param len    the number of bytes of input to encode
+ * @param flags  controls certain features of the encoded output.
+ * Passing `DEFAULT` results in output that
+ * adheres to RFC 2045.
+ */
+inline fun ByteArray.base64EncodeToString(offset: Int, len: Int, flags: Int): String = Base64x.encodeToString(this, offset, len, flags)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * String with the result.
+ *
+ * @receiver the data to encode
+ * @param offset the position within the input array at which to
+ * start
+ * @param len    the number of bytes of input to encode
+ */
+inline fun ByteArray.base64EncodeToString(offset: Int, len: Int): String = Base64x.encodeToString(this, offset, len)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * String with the result.
+ *
+ * @receiver the data to encode
+ * @param flags controls certain features of the encoded output.
+ * Passing `DEFAULT` results in output that
+ * adheres to RFC 2045.
+ */
+inline fun ByteArray.base64EncodeToString(flags: Int): String = Base64x.encodeToString(this, flags)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * String with the result.
+ *
+ * @receiver the data to encode
+ */
 inline fun ByteArray.base64EncodeToString(): String = Base64x.encodeToString(this)
 
+/**
+ * Base64-encode the given data and return a newly allocated
+ * String with the result.
+ *
+ * @receiver the data to encode
+ * @param flags controls certain features of the encoded output.
+ * Passing `DEFAULT` results in output that
+ * adheres to RFC 2045.
+ */
+inline fun String.base64EncodeToString(flags: Int): String = Base64x.encodeToString(this, flags)
+
+/**
+ * Base64-encode the given data and return a newly allocated
+ * String with the result.
+ *
+ * @receiver the data to encode
+ */
 inline fun String.base64EncodeToString(): String = Base64x.encodeToString(this)
 
-inline fun ByteBuffer.base64EncodeToString(): String = Base64x.encodeToString(this)
-
-
-inline fun ByteArray.base64EncodeToBytes(): ByteArray = Base64x.encodeToBytes(this)
-
-inline fun String.base64EncodeToBytes(): ByteArray = Base64x.encodeToBytes(this)
-
-inline fun ByteBuffer.base64EncodeToBytes(): ByteArray = Base64x.encodeToBytes(this)
-
-
-inline fun ByteArray.base64EncodeTo(dst: ByteArray): Int = Base64x.encodeTo(this, dst)
-
-inline fun String.base64EncodeTo(dst: ByteArray): Int = Base64x.encodeTo(this, dst)
-
-inline fun ByteBuffer.base64EncodeTo(dst: ByteArray): Int = Base64x.encodeTo(this, dst)
-
-
-inline fun ByteArray.base64EncodeToBuffer(): ByteBuffer = Base64x.encodeToBuffer(this)
-
-inline fun String.base64EncodeToBuffer(): ByteBuffer = Base64x.encodeToBuffer(this)
-
-inline fun ByteBuffer.base64EncodeToBuffer(): ByteBuffer = Base64x.encodeToBuffer(this)
-
-
-inline fun ByteArray.base64UrlEncodeToString(): String = Base64x.urlEncodeToString(this)
-
-inline fun String.base64UrlEncodeToString(): String = Base64x.urlEncodeToString(this)
-
-inline fun ByteBuffer.base64UrlEncodeToString(): String = Base64x.urlEncodeToString(this)
-
-
-inline fun ByteArray.base64UrlEncodeToBytes(): ByteArray = Base64x.urlEncodeToBytes(this)
-
-inline fun String.base64UrlEncodeToBytes(): ByteArray = Base64x.urlEncodeToBytes(this)
-
-inline fun ByteBuffer.base64UrlEncodeToBytes(): ByteArray = Base64x.urlEncodeToBytes(this)
-
-
-inline fun ByteArray.base64UrlEncodeTo(dst: ByteArray): Int = Base64x.urlEncodeTo(this, dst)
-
-inline fun String.base64UrlEncodeTo(dst: ByteArray): Int = Base64x.urlEncodeTo(this, dst)
-
-inline fun ByteBuffer.base64UrlEncodeTo(dst: ByteArray): Int = Base64x.urlEncodeTo(this, dst)
-
-
-inline fun ByteArray.base64UrlEncodeToBuffer(): ByteBuffer = Base64x.urlEncodeToBuffer(this)
-
-inline fun String.base64UrlEncodeToBuffer(): ByteBuffer = Base64x.urlEncodeToBuffer(this)
-
-inline fun ByteBuffer.base64UrlEncodeToBuffer(): ByteBuffer = Base64x.urlEncodeToBuffer(this)
-
-
-inline fun ByteArray.base64MimeEncodeToString(): String = Base64x.mimeEncodeToString(this)
-
-inline fun String.base64MimeEncodeToString(): String = Base64x.mimeEncodeToString(this)
-
-inline fun ByteBuffer.base64MimeEncodeToString(): String = Base64x.mimeEncodeToString(this)
-
-
-inline fun ByteArray.base64MimeEncodeToBytes(): ByteArray = Base64x.mimeEncodeToBytes(this)
-
-inline fun String.base64MimeEncodeToBytes(): ByteArray = Base64x.mimeEncodeToBytes(this)
-
-inline fun ByteBuffer.base64MimeEncodeToBytes(): ByteArray = Base64x.mimeEncodeToBytes(this)
-
-
-inline fun ByteArray.base64MimeEncodeTo(dst: ByteArray): Int = Base64x.mimeEncodeTo(this, dst)
-
-inline fun String.base64MimeEncodeTo(dst: ByteArray): Int = Base64x.mimeEncodeTo(this, dst)
-
-inline fun ByteBuffer.base64MimeEncodeTo(dst: ByteArray): Int = Base64x.mimeEncodeTo(this, dst)
-
-
-inline fun ByteArray.base64MimeEncodeToBuffer(): ByteBuffer = Base64x.mimeEncodeToBuffer(this)
-
-inline fun String.base64MimeEncodeToBuffer(): ByteBuffer = Base64x.mimeEncodeToBuffer(this)
-
-inline fun ByteBuffer.base64MimeEncodeToBuffer(): ByteBuffer = Base64x.mimeEncodeToBuffer(this)
-
-
-inline fun ByteArray.base64MimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String = Base64x.mimeEncodeToString(lineLength, lineSeparator, this)
-
-inline fun String.base64MimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String = Base64x.mimeEncodeToString(lineLength, lineSeparator, this)
-
-inline fun ByteBuffer.base64MimeEncodeToString(lineLength: Int, lineSeparator: ByteArray): String = Base64x.mimeEncodeToString(lineLength, lineSeparator, this)
-
-
-inline fun ByteArray.base64MimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray = Base64x.mimeEncodeToBytes(lineLength, lineSeparator, this)
-
-inline fun String.base64MimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray = Base64x.mimeEncodeToBytes(lineLength, lineSeparator, this)
-
-inline fun ByteBuffer.base64MimeEncodeToBytes(lineLength: Int, lineSeparator: ByteArray): ByteArray = Base64x.mimeEncodeToBytes(lineLength, lineSeparator, this)
-
-
-inline fun ByteArray.base64MimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int = Base64x.mimeEncodeTo(lineLength, lineSeparator, this, dst)
-
-inline fun String.base64MimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int = Base64x.mimeEncodeTo(lineLength, lineSeparator, this, dst)
-
-inline fun ByteBuffer.base64MimeEncodeTo(lineLength: Int, lineSeparator: ByteArray, dst: ByteArray): Int = Base64x.mimeEncodeTo(lineLength, lineSeparator, this, dst)
-
-
-inline fun ByteArray.base64MimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer = Base64x.mimeEncodeToBuffer(lineLength, lineSeparator, this)
-
-inline fun String.base64MimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer = Base64x.mimeEncodeToBuffer(lineLength, lineSeparator, this)
-
-inline fun ByteBuffer.base64MimeEncodeToBuffer(lineLength: Int, lineSeparator: ByteArray): ByteBuffer = Base64x.mimeEncodeToBuffer(lineLength, lineSeparator, this)
-
-
-inline fun ByteArray.base64DecodeToBytes(): ByteArray = Base64x.decodeToBytes(this)
-
-inline fun String.base64DecodeToBytes(): ByteArray = Base64x.decodeToBytes(this)
-
-inline fun ByteBuffer.base64DecodeToBytes(): ByteArray = Base64x.decodeToBytes(this)
-
-
+//  --------------------------------------------------------
+//  decoding
+//  --------------------------------------------------------
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the data to decode
+ * @param offset the position within the input array at which to start
+ * @param len    the number of bytes of input to decode
+ * @param flags  controls certain features of the decoded output.
+ * Pass `DEFAULT` to decode standard Base64.
+ * @throws IllegalArgumentException if the input contains
+ * incorrect padding
+ */
+inline fun ByteArray.base64Decode(offset: Int, len: Int, flags: Int): ByteArray = Base64x.decode(this, offset, len, flags)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the data to decode
+ * @param offset the position within the input array at which to start
+ * @param len    the number of bytes of input to decode
+ * @throws IllegalArgumentException if the input contains incorrect padding
+ */
+inline fun ByteArray.base64Decode(offset: Int, len: Int): ByteArray = Base64x.decode(this, offset, len)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input array to decode
+ * @param flags controls certain features of the decoded output.
+ * Pass `DEFAULT` to decode standard Base64.
+ * @throws IllegalArgumentException if the input contains incorrect padding
+ */
+inline fun ByteArray.base64Decode(flags: Int): ByteArray = Base64x.decode(this, flags)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input array to decode
+ * @throws IllegalArgumentException if the input contains incorrect padding
+ */
+inline fun ByteArray.base64Decode(): ByteArray = Base64x.decode(this)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input String to decode, which is converted to
+ * bytes using the default charset
+ * @param flags controls certain features of the decoded output.
+ * Pass `DEFAULT` to decode standard Base64.
+ * @throws IllegalArgumentException if the input contains
+ * incorrect padding
+ */
+inline fun String.base64Decode(flags: Int): ByteArray = Base64x.decode(this, flags)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input String to decode, which is converted to
+ * bytes using the default charset
+ * @throws IllegalArgumentException if the input contains
+ * incorrect padding
+ */
+inline fun String.base64Decode(): ByteArray = Base64x.decode(this)
+
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the data to decode
+ * @param offset the position within the input array at which to start
+ * @param len    the number of bytes of input to decode
+ * @param flags  controls certain features of the decoded output.
+ * Pass `DEFAULT` to decode standard Base64.
+ * @throws IllegalArgumentException if the input contains
+ * incorrect padding
+ */
+inline fun ByteArray.base64DecodeToString(offset: Int, len: Int, flags: Int): String = Base64x.decodeToString(this, offset, len, flags)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the data to decode
+ * @param offset the position within the input array at which to start
+ * @param len    the number of bytes of input to decode
+ * @throws IllegalArgumentException if the input contains incorrect padding
+ */
+inline fun ByteArray.base64DecodeToString(offset: Int, len: Int): String = Base64x.decodeToString(this, offset, len)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input array to decode
+ * @param flags controls certain features of the decoded output.
+ * Pass `DEFAULT` to decode standard Base64.
+ * @throws IllegalArgumentException if the input contains incorrect padding
+ */
+inline fun ByteArray.base64DecodeToString(flags: Int): String = Base64x.decodeToString(this, flags)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input array to decode
+ * @throws IllegalArgumentException if the input contains incorrect padding
+ */
 inline fun ByteArray.base64DecodeToString(): String = Base64x.decodeToString(this)
 
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input String to decode, which is converted to
+ * bytes using the default charset
+ * @param flags controls certain features of the decoded output.
+ * Pass `DEFAULT` to decode standard Base64.
+ * @throws IllegalArgumentException if the input contains
+ * incorrect padding
+ */
+inline fun String.base64DecodeToString(flags: Int): String = Base64x.decodeToString(this, flags)
+
+/**
+ * Decode the Base64-encoded data in input and return the data in
+ * a new byte array.
+ *
+ *
+ * The padding '=' characters at the end are considered optional, but
+ * if any are present, there must be the correct number of them.
+ *
+ * @receiver the input String to decode, which is converted to
+ * bytes using the default charset
+ * @throws IllegalArgumentException if the input contains
+ * incorrect padding
+ */
 inline fun String.base64DecodeToString(): String = Base64x.decodeToString(this)
-
-inline fun ByteBuffer.base64DecodeToString(): String = Base64x.decodeToString(this)
-
-
-inline fun ByteArray.base64DecodeTo(dst: ByteArray): Int = Base64x.decodeTo(this, dst)
-
-inline fun String.base64DecodeTo(dst: ByteArray): Int = Base64x.decodeTo(this, dst)
-
-inline fun ByteBuffer.base64DecodeTo(dst: ByteArray): Int = Base64x.decodeTo(this, dst)
-
-
-inline fun ByteArray.base64DecodeToBuffer(): ByteBuffer = Base64x.decodeToBuffer(this)
-
-inline fun String.base64DecodeToBuffer(): ByteBuffer = Base64x.decodeToBuffer(this)
-
-inline fun ByteBuffer.base64DecodeToBuffer(): ByteBuffer = Base64x.decodeToBuffer(this)
-
-
-inline fun ByteArray.base64UrlDecodeToBytes(): ByteArray = Base64x.urlDecodeToBytes(this)
-
-inline fun String.base64UrlDecodeToBytes(): ByteArray = Base64x.urlDecodeToBytes(this)
-
-inline fun ByteBuffer.base64UrlDecodeToBytes(): ByteArray = Base64x.urlDecodeToBytes(this)
-
-
-inline fun ByteArray.base64UrlDecodeToString(): String = Base64x.urlDecodeToString(this)
-
-inline fun String.base64UrlDecodeToString(): String = Base64x.urlDecodeToString(this)
-
-inline fun ByteBuffer.base64UrlDecodeToString(): String = Base64x.urlDecodeToString(this)
-
-
-inline fun ByteArray.base64UrlDecodeTo(dst: ByteArray): Int = Base64x.urlDecodeTo(this, dst)
-
-inline fun String.base64UrlDecodeTo(dst: ByteArray): Int = Base64x.urlDecodeTo(this, dst)
-
-inline fun ByteBuffer.base64UrlDecodeTo(dst: ByteArray): Int = Base64x.urlDecodeTo(this, dst)
-
-
-inline fun ByteArray.base64UrlDecodeToBuffer(): ByteBuffer = Base64x.urlDecodeToBuffer(this)
-
-inline fun String.base64UrlDecodeToBuffer(): ByteBuffer = Base64x.urlDecodeToBuffer(this)
-
-inline fun ByteBuffer.base64UrlDecodeToBuffer(): ByteBuffer = Base64x.urlDecodeToBuffer(this)
-
-
-inline fun ByteArray.base64MimeDecodeToBytes(): ByteArray = Base64x.mimeDecodeToBytes(this)
-
-inline fun String.base64MimeDecodeToBytes(): ByteArray = Base64x.mimeDecodeToBytes(this)
-
-inline fun ByteBuffer.base64MimeDecodeToBytes(): ByteArray = Base64x.mimeDecodeToBytes(this)
-
-
-inline fun ByteArray.base64MimeDecodeToString(): String = Base64x.mimeDecodeToString(this)
-
-inline fun String.base64MimeDecodeToString(): String = Base64x.mimeDecodeToString(this)
-
-inline fun ByteBuffer.base64MimeDecodeToString(): String = Base64x.mimeDecodeToString(this)
-
-
-inline fun ByteArray.base64MimeDecodeTo(dst: ByteArray): Int = Base64x.mimeDecodeTo(this, dst)
-
-inline fun String.base64MimeDecodeTo(dst: ByteArray): Int = Base64x.mimeDecodeTo(this, dst)
-
-inline fun ByteBuffer.base64MimeDecodeTo(dst: ByteArray): Int = Base64x.mimeDecodeTo(this, dst)
-
-
-inline fun ByteArray.base64MimeDecodeToBuffer(): ByteBuffer = Base64x.mimeDecodeToBuffer(this)
-
-inline fun String.base64MimeDecodeToBuffer(): ByteBuffer = Base64x.mimeDecodeToBuffer(this)
-
-inline fun ByteBuffer.base64MimeDecodeToBuffer(): ByteBuffer = Base64x.mimeDecodeToBuffer(this)

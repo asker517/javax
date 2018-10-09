@@ -160,7 +160,7 @@ public class Desx {
     @NotNull
     public static byte[] decryptFromBase64(@NotNull String base64CipherText, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.decodeToBytes(base64CipherText.getBytes()), algorithm, key);
+        return decrypt(Base64x.decode(base64CipherText.getBytes()), algorithm, key);
     }
 
     /**
@@ -203,9 +203,7 @@ public class Desx {
         Cipher cipher;
         try {
             cipher = Cipher.getInstance(algorithm);
-        } catch (NoSuchAlgorithmException e) {
-            throw new IllegalArgumentException(e);
-        } catch (NoSuchPaddingException e) {
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
             throw new IllegalArgumentException(e);
         }
 

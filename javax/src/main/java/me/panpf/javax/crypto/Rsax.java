@@ -70,7 +70,7 @@ public class Rsax {
      */
     @NotNull
     public static PublicKey pubKeyFromBase64(@NotNull String base64PublicKeyText) throws InvalidKeySpecException {
-        byte[] buffer = Base64x.decodeToBytes(base64PublicKeyText.getBytes());
+        byte[] buffer = Base64x.decode(base64PublicKeyText.getBytes());
         KeyFactory keyFactory;
         try {
             keyFactory = KeyFactory.getInstance(ALGORITHM);
@@ -88,7 +88,7 @@ public class Rsax {
      */
     @NotNull
     public static PrivateKey priKeyFromBase64(@NotNull String base64PrivateKeyText) throws InvalidKeySpecException {
-        byte[] buffer = Base64x.decodeToBytes(base64PrivateKeyText.getBytes());
+        byte[] buffer = Base64x.decode(base64PrivateKeyText.getBytes());
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
         KeyFactory keyFactory;
         try {
@@ -213,7 +213,7 @@ public class Rsax {
      */
     public static boolean verifyFromBase64(@NotNull String base64Sign, @NotNull byte[] data, @NotNull PublicKey pubKey)
             throws InvalidKeyException, SignatureException {
-        return verify(Base64x.decodeToBytes(base64Sign.getBytes()), data, pubKey);
+        return verify(Base64x.decode(base64Sign.getBytes()), data, pubKey);
     }
 
     /**
@@ -227,7 +227,7 @@ public class Rsax {
      */
     public static boolean verifyFromBase64(@NotNull String base64Sign, @NotNull String text, @NotNull PublicKey pubKey)
             throws InvalidKeyException, SignatureException {
-        return verify(Base64x.decodeToBytes(base64Sign), text.getBytes(), pubKey);
+        return verify(Base64x.decode(base64Sign), text.getBytes(), pubKey);
     }
 
 
@@ -327,7 +327,7 @@ public class Rsax {
     @NotNull
     public static byte[] decryptFromBase64(@NotNull String baseCipherText, @NotNull String algorithm, @NotNull Key key)
             throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.decodeToBytes(baseCipherText.getBytes()), algorithm, key);
+        return decrypt(Base64x.decode(baseCipherText.getBytes()), algorithm, key);
     }
 
     /**

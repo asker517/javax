@@ -93,7 +93,7 @@ public class Aesx {
      */
     @NotNull
     public static Key keyFromBase64(@NotNull String passwordBase64) {
-        return new SecretKeySpec(Base64x.decodeToBytes(passwordBase64), ALGORITHM);
+        return new SecretKeySpec(Base64x.decode(passwordBase64), ALGORITHM);
     }
 
 
@@ -198,7 +198,7 @@ public class Aesx {
     @NotNull
     public static byte[] decryptFromBase64(@NotNull String base64CipherText, @NotNull String algorithm, @NotNull Key key) throws InvalidKeyException,
             BadPaddingException, IllegalBlockSizeException {
-        return decrypt(Base64x.decodeToBytes(base64CipherText.getBytes()), algorithm, key);
+        return decrypt(Base64x.decode(base64CipherText.getBytes()), algorithm, key);
     }
 
     /**

@@ -16,14 +16,11 @@
 
 package me.panpf.javax.test.util;
 
-import me.panpf.javax.util.Arrayx;
 import me.panpf.javax.util.Base64x;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 
 public class Base64xTest {
 
@@ -31,158 +28,59 @@ public class Base64xTest {
     private static final byte[] SOURCE_BYTES = SOURCE.getBytes(Charset.forName("UTF-8"));
 
     @Test
-    public void testToBytes() {
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decodeToBytes(Base64x.encodeToBytes(SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decodeToBytes(Base64x.encodeToBytes(SOURCE_BYTES)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decodeToBytes(Base64x.encodeToBytes(ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decodeToBytes(Base64x.encodeToString(SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decodeToBytes(Base64x.encodeToBuffer(ByteBuffer.wrap(SOURCE_BYTES))));
+    public void testBytes() {
+        byte[] encrypt = Base64x.encode(SOURCE_BYTES, 0, SOURCE_BYTES.length, Base64x.DEFAULT);
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(encrypt, 0, encrypt.length, Base64x.DEFAULT));
 
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.urlDecodeToBytes(Base64x.urlEncodeToBytes(SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.urlDecodeToBytes(Base64x.urlEncodeToBytes(SOURCE_BYTES)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.urlDecodeToBytes(Base64x.urlEncodeToBytes(ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.urlDecodeToBytes(Base64x.urlEncodeToString(SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.urlDecodeToBytes(Base64x.urlEncodeToBuffer(SOURCE)));
+        encrypt = Base64x.encode(SOURCE_BYTES, 0, SOURCE_BYTES.length);
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(encrypt, 0, encrypt.length));
 
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBytes(SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBytes(SOURCE_BYTES)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBytes(ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToString(SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBuffer(SOURCE)));
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(Base64x.encode(SOURCE_BYTES, Base64x.DEFAULT), Base64x.DEFAULT));
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(Base64x.encode(SOURCE_BYTES)));
 
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBytes(10, ",".getBytes(), SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBytes(10, ",".getBytes(), SOURCE_BYTES)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBytes(10, ",".getBytes(), ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToString(10, ",".getBytes(), SOURCE)));
-        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.mimeDecodeToBytes(Base64x.mimeEncodeToBuffer(10, ",".getBytes(), SOURCE)));
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(Base64x.encodeToString(SOURCE_BYTES, 0, SOURCE_BYTES.length, Base64x.DEFAULT), Base64x.DEFAULT));
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(Base64x.encodeToString(SOURCE_BYTES, 0, SOURCE_BYTES.length)));
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(Base64x.encodeToString(SOURCE_BYTES, Base64x.DEFAULT), Base64x.DEFAULT));
+        Assert.assertArrayEquals(SOURCE_BYTES, Base64x.decode(Base64x.encodeToString(SOURCE_BYTES)));
     }
 
     @Test
-    public void testToString() {
+    public void testString() {
+        byte[] encrypt = Base64x.encode(SOURCE, Base64x.DEFAULT);
+        Assert.assertEquals(SOURCE, Base64x.decodeToString(encrypt, 0, encrypt.length, Base64x.DEFAULT));
+
+        encrypt = Base64x.encode(SOURCE);
+        Assert.assertEquals(SOURCE, Base64x.decodeToString(encrypt, 0, encrypt.length));
+
+        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encode(SOURCE, Base64x.DEFAULT), Base64x.DEFAULT));
+        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encode(SOURCE)));
+
+        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encodeToString(SOURCE, Base64x.DEFAULT), Base64x.DEFAULT));
         Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encodeToString(SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encodeToString(SOURCE_BYTES)));
-        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encodeToString(ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encodeToBytes(SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.decodeToString(Base64x.encodeToBuffer(SOURCE)));
-
-        Assert.assertEquals(SOURCE, Base64x.urlDecodeToString(Base64x.urlEncodeToString(SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.urlDecodeToString(Base64x.urlEncodeToString(SOURCE_BYTES)));
-        Assert.assertEquals(SOURCE, Base64x.urlDecodeToString(Base64x.urlEncodeToString(ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertEquals(SOURCE, Base64x.urlDecodeToString(Base64x.urlEncodeToBytes(SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.urlDecodeToString(Base64x.urlEncodeToBuffer(SOURCE)));
-
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToString(SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToString(SOURCE_BYTES)));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToString(ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToBytes(SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToBuffer(SOURCE)));
-
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToString(10, ",".getBytes(), SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToString(10, ",".getBytes(), SOURCE_BYTES)));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToString(10, ",".getBytes(), ByteBuffer.wrap(SOURCE_BYTES))));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToBytes(10, ",".getBytes(), SOURCE)));
-        Assert.assertEquals(SOURCE, Base64x.mimeDecodeToString(Base64x.mimeEncodeToBuffer(10, ",".getBytes(), SOURCE)));
     }
 
     @Test
-    public void testToBuffer() {
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.decodeToBuffer(Base64x.encodeToBuffer(SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.decodeToBuffer(Base64x.encodeToBuffer(SOURCE_BYTES)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.decodeToBuffer(Base64x.encodeToBuffer(ByteBuffer.wrap(SOURCE_BYTES))).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.decodeToBuffer(Base64x.encodeToBytes(SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.decodeToBuffer(Base64x.encodeToString(SOURCE)).array());
-
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.urlDecodeToBuffer(Base64x.urlEncodeToBuffer(SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.urlDecodeToBuffer(Base64x.urlEncodeToBuffer(SOURCE_BYTES)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.urlDecodeToBuffer(Base64x.urlEncodeToBuffer(ByteBuffer.wrap(SOURCE_BYTES))).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.urlDecodeToBuffer(Base64x.urlEncodeToBytes(SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.urlDecodeToBuffer(Base64x.urlEncodeToString(SOURCE)).array());
-
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBuffer(SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBuffer(SOURCE_BYTES)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBuffer(ByteBuffer.wrap(SOURCE_BYTES))).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBytes(SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToString(SOURCE)).array());
-
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBuffer(10, ",".getBytes(), SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBuffer(10, ",".getBytes(), SOURCE_BYTES)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBuffer(10, ",".getBytes(), ByteBuffer.wrap(SOURCE_BYTES))).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToBytes(10, ",".getBytes(), SOURCE)).array());
-        Assert.assertArrayEquals(ByteBuffer.wrap(SOURCE_BYTES).array(), Base64x.mimeDecodeToBuffer(Base64x.mimeEncodeToString(10, ",".getBytes(), SOURCE)).array());
-    }
-
-    @Test
-    public void testTo() {
-        byte[] encodeResult = new byte[SOURCE.length() * 8];
-        byte[] decodeResult = new byte[SOURCE.length() * 8];
-        int encodeLength;
-        int decodeLength;
-
-        // encodeTo
-        encodeLength = Base64x.encodeTo(SOURCE, encodeResult);
-        decodeLength = Base64x.decodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.encodeTo(SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.decodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.encodeTo(ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.decodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        decodeLength = Base64x.decodeTo(Base64x.encodeToString(SOURCE), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-
-        // urlEncodeTo
-        encodeLength = Base64x.urlEncodeTo(SOURCE, encodeResult);
-        decodeLength = Base64x.urlDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.urlEncodeTo(SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.urlDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.urlEncodeTo(ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.urlDecodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        decodeLength = Base64x.urlDecodeTo(Base64x.urlEncodeToString(SOURCE), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-
-        // mimeEncodeTo
-        encodeLength = Base64x.mimeEncodeTo(SOURCE, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.mimeEncodeTo(SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.mimeEncodeTo(ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        decodeLength = Base64x.mimeDecodeTo(Base64x.mimeEncodeToString(SOURCE), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-
-        // mimeEncodeTo int lineLength, @NotNull byte[] lineSeparator
-        encodeLength = Base64x.mimeEncodeTo(10, ",".getBytes(), SOURCE, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.mimeEncodeTo(10, ",".getBytes(), SOURCE_BYTES, encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(Arrays.copyOf(encodeResult, encodeLength), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        encodeLength = Base64x.mimeEncodeTo(10, ",".getBytes(), ByteBuffer.wrap(SOURCE_BYTES), encodeResult);
-        decodeLength = Base64x.mimeDecodeTo(ByteBuffer.wrap(Arrays.copyOf(encodeResult, encodeLength)), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
-
-        decodeLength = Base64x.mimeDecodeTo(Base64x.mimeEncodeToString(SOURCE), decodeResult);
-        Assert.assertEquals(SOURCE, new String(decodeResult, 0, decodeLength));
+    public void testBlankChar() {
+        String source = "电影《我不是药神》热映，口碑爆表，是一部近年来少有佳作。之所以引起了广泛的共鸣，是因为影片中情与法的冲突让人震撼：\n" +
+                "\n" +
+                "1.特效药的研发成本很高，如果不允许卖高价，并对专利进行保护，就无法积累资金、保障持续的新药研制，这样的话就会导致疾病无药可治。\n" +
+                "\n" +
+                "2.特效药的价格很高，买不起的病人就意味着等死，就是无钱可治。\n" +
+                "\n" +
+                "如何才能让患者摆脱要么病死，要么穷死的困境，值得我们每个人深思。\n" +
+                "\n" +
+                "作者：知守观保\n" +
+                "链接：https://www.jianshu.com/p/f5170bdd7fc7\n" +
+                "來源：简书\n" +
+                "简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。";
+        String encrypted = "55S15b2x44CK5oiR5LiN5piv6I2v56We44CL54Ot5pig\n" +
+                "77yM5Y+j56KR54iG6KGo77yM5piv5LiA6YOo6L+R5bm05p2l5bCR5pyJ5" +
+                " L2z5L2c44CC5LmL5omA5Lul5byV6LW35LqG5bm/5rOb55qE5YWx6bij77yM" +
+                "   5piv5Zug5Li65b2x54mH5Lit5oOF5LiO5rOV55qE5Yay56qB6K6p5Lq66ZyH5pK" +
+                "   877yaCgoxLueJueaViOiNr+eahOeglOWPkeaIkOacrOW+iOmrmO+8jOWmguaenOS4je" +
+                "           WFgeiuuOWNlumrmOS7t++8jOW5tuWvueS4k+WIqei/m+ihjOS/neaKpO+8jOWwseaXoOaz\n\n\n" +
+                "leenr+e0r+i1hOmHkeOAgeS/nemanOaMgee7reeahOaWsOiNr+eglOWItu+8jOi/meagt+eahOivneWwseS8muWvvOiHtOeWvueXheaXoOiNr+WPr+ayu+OAggoKMi7nibnmlYjoja/nmoTku7fmoLzlvojpq5jvvIzkubDkuI3otbfnmoTnl4XkurrlsLHmhI/lkbPnnYDnrYnmrbvvvIzlsLHmmK/ml6DpkrHlj6/msrvjgIIKCuWmguS9leaJjeiDveiuqeaCo+iAheaRhuiEseimgeS5iOeXheatu++8jOimgeS5iOept+atu+eahOWbsOWig++8jOWAvOW+l+aIkeS7rOavj+S4quS6uua3seaAneOAggoK5L2c6ICF77ya55+l5a6I6KeC5L+dCumTvuaOpe+8mmh0dHBzOi8vd3d3LmppYW5zaHUuY29tL3AvZjUxNzBiZGQ3ZmM3CuS+hua6kO+8mueugOS5pgrnroDkuabokZfkvZzmnYPlvZLkvZzogIXmiYDmnInvvIzku7vkvZXlvaLlvI/nmoTovazovb3pg73or7fogZTns7vkvZzogIXojrflvpfmjojmnYPlubbms6jmmI7lh7rlpITjgII=";
+        Assert.assertEquals(source, Base64x.decodeToString(encrypted));
+        Assert.assertEquals(source, Base64x.decodeToString(encrypted.getBytes()));
     }
 }
