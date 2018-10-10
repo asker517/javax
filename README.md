@@ -77,7 +77,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Math: [Mathx.java] ([Test][MathxTest.java]) | [Mathx.kt] ([Test][MathxTest.kt])
     * divide, divideToInt, divideToLong, scale, proportion, percent
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
-    * to\*OrDefault, to\*OrZero, orZero
+    * to\*OrDefault, to\*OrZero, orZero(Kt)
 * String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
     * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr

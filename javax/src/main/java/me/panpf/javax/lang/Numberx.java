@@ -160,25 +160,4 @@ public class Numberx {
     public static double toDoubleOrZero(@Nullable String str) {
         return toDoubleOrDefault(str, 0.0d);
     }
-
-
-    // TODO: 2018/10/10 挪到 Mathx 中 并完善
-    public static int mod(int a, int b) {
-        int mod = a % b;
-        return mod >= 0 ? mod : mod + b;
-    }
-
-    public static long mod(long a, long b) {
-        long mod = a % b;
-        return mod >= 0L ? mod : mod + b;
-    }
-
-
-    public static int differenceModulo(int a, int b, int c) {
-        return mod(mod(a, c) - mod(b, c), c);
-    }
-
-    public static long differenceModulo(long a, long b, long c) {
-        return mod(mod(a, c) - mod(b, c), c);
-    }
 }

@@ -16,7 +16,6 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.ParseException;
@@ -31,11 +30,31 @@ public class Rangex {
     private Rangex() {
     }
 
+
+    private static int mod(int a, int b) {
+        int mod = a % b;
+        return mod >= 0 ? mod : mod + b;
+    }
+
+    private static long mod(long a, long b) {
+        long mod = a % b;
+        return mod >= 0L ? mod : mod + b;
+    }
+
+
+    private static int differenceModulo(int a, int b, int c) {
+        return mod(mod(a, c) - mod(b, c), c);
+    }
+
+    private static long differenceModulo(long a, long b, long c) {
+        return mod(mod(a, c) - mod(b, c), c);
+    }
+
     public static int getProgressionLastElement(int start, int end, int step) {
         if (step > 0) {
-            return end - Numberx.differenceModulo(end, start, step);
+            return end - differenceModulo(end, start, step);
         } else if (step < 0) {
-            return end + Numberx.differenceModulo(start, end, -step);
+            return end + differenceModulo(start, end, -step);
         } else {
             throw new IllegalArgumentException("Step is zero.");
         }
@@ -43,9 +62,9 @@ public class Rangex {
 
     public static long getProgressionLastElement(long start, long end, long step) {
         if (step > 0) {
-            return end - Numberx.differenceModulo(end, start, step);
+            return end - differenceModulo(end, start, step);
         } else if (step < 0) {
-            return end + Numberx.differenceModulo(start, end, -step);
+            return end + differenceModulo(start, end, -step);
         } else {
             throw new IllegalArgumentException("Step is zero.");
         }
