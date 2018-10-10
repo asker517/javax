@@ -1234,7 +1234,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <T, K, V> Map<K, V> associate(@Nullable T[] elements, @NotNull Transformer<T, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1248,7 +1248,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable byte[] elements, @NotNull Transformer<Byte, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1262,7 +1262,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable short[] elements, @NotNull Transformer<Short, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1276,7 +1276,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable int[] elements, @NotNull Transformer<Integer, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1290,7 +1290,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable long[] elements, @NotNull Transformer<Long, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1304,7 +1304,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable float[] elements, @NotNull Transformer<Float, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1318,7 +1318,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable double[] elements, @NotNull Transformer<Double, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1332,7 +1332,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable boolean[] elements, @NotNull Transformer<Boolean, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1346,7 +1346,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable char[] elements, @NotNull Transformer<Character, Pair<K, V>> transform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateTo(elements, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -1360,7 +1360,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <T, K> Map<K, T> associateBy(@Nullable T[] elements, @NotNull Transformer<T, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, T>(capacity), keySelector);
     }
 
@@ -1374,7 +1374,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Byte> associateBy(@Nullable byte[] elements, @NotNull Transformer<Byte, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Byte>(capacity), keySelector);
     }
 
@@ -1388,7 +1388,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Short> associateBy(@Nullable short[] elements, @NotNull Transformer<Short, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Short>(capacity), keySelector);
     }
 
@@ -1402,7 +1402,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Integer> associateBy(@Nullable int[] elements, @NotNull Transformer<Integer, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Integer>(capacity), keySelector);
     }
 
@@ -1416,7 +1416,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Long> associateBy(@Nullable long[] elements, @NotNull Transformer<Long, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Long>(capacity), keySelector);
     }
 
@@ -1430,7 +1430,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Float> associateBy(@Nullable float[] elements, @NotNull Transformer<Float, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Float>(capacity), keySelector);
     }
 
@@ -1444,7 +1444,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Double> associateBy(@Nullable double[] elements, @NotNull Transformer<Double, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Double>(capacity), keySelector);
     }
 
@@ -1458,7 +1458,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Boolean> associateBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Boolean>(capacity), keySelector);
     }
 
@@ -1472,7 +1472,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K> Map<K, Character> associateBy(@Nullable char[] elements, @NotNull Transformer<Character, K> keySelector) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, Character>(capacity), keySelector);
     }
 
@@ -1485,7 +1485,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <T, K, V> Map<K, V> associateBy(@Nullable T[] elements, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1498,7 +1498,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable byte[] elements, @NotNull Transformer<Byte, K> keySelector, @NotNull Transformer<Byte, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1511,7 +1511,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable short[] elements, @NotNull Transformer<Short, K> keySelector, @NotNull Transformer<Short, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1524,7 +1524,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable int[] elements, @NotNull Transformer<Integer, K> keySelector, @NotNull Transformer<Integer, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1537,7 +1537,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable long[] elements, @NotNull Transformer<Long, K> keySelector, @NotNull Transformer<Long, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1550,7 +1550,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable float[] elements, @NotNull Transformer<Float, K> keySelector, @NotNull Transformer<Float, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1563,7 +1563,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable double[] elements, @NotNull Transformer<Double, K> keySelector, @NotNull Transformer<Double, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1576,7 +1576,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, K> keySelector, @NotNull Transformer<Boolean, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -1589,7 +1589,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable char[] elements, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
-        int capacity = Numberx.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(Arrayx.count(elements)), 16);
         return associateByTo(elements, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 

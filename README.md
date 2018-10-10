@@ -77,7 +77,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Math: [Mathx.java] ([Test][MathxTest.java]) | [Mathx.kt] ([Test][MathxTest.kt])
     * divide, divideToInt, divideToLong, scale, proportion, percent
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
-    * pad, coerce, to\*OrDefault, to\*OrZero, orZero
+    * pad, to\*OrDefault, to\*OrZero, orZero
 * String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
     * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr
@@ -125,7 +125,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * require, requireNotNull, check, checkNotNull, requireSafe, requireNotSafe
     * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireNotZero
 * Range: [Rangex.java] ([Test][RangexTest.java]) | [Rangex.kt] ([Test][RangexTest.kt])
-    * in, notIn, rangeTo, until, downTo, downUntilTo,
+    * in, notIn, coerceAtLeast, coerceAtMost, rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Zip: [Zipx.java] ([Test][ZipxTest.java]) | [Zipx.kt] ([Test][ZipxTest.kt])

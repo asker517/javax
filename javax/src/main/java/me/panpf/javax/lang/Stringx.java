@@ -936,8 +936,8 @@ public class Stringx {
             return index < 0 ? null : Pair.of(index, string);
         }
 
-        IntRange indices = !last ? Rangex.rangeTo(Numberx.coerceAtLeast(startIndex, 0), charSequence.length())
-                : Rangex.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0);
+        IntRange indices = !last ? Rangex.rangeTo(Rangex.coerceAtLeast(startIndex, 0), charSequence.length())
+                : Rangex.downTo(Rangex.coerceAtMost(startIndex, charSequence.length() - 1), 0);
 
         if (charSequence instanceof String) {
             for (final int index : indices) {
@@ -1006,12 +1006,12 @@ public class Stringx {
         int step;
 
         if (!last) {
-            finalStartIndex = Numberx.coerceAtLeast(startIndex, 0);
-            finalEndIndex = Numberx.coerceAtMost(endIndex, self.length());
+            finalStartIndex = Rangex.coerceAtLeast(startIndex, 0);
+            finalEndIndex = Rangex.coerceAtMost(endIndex, self.length());
             step = 1;
         } else {
-            finalStartIndex = Numberx.coerceAtMost(startIndex, self.length() - 1);
-            finalEndIndex = Numberx.coerceAtLeast(endIndex, 0);
+            finalStartIndex = Rangex.coerceAtMost(startIndex, self.length() - 1);
+            finalEndIndex = Rangex.coerceAtLeast(endIndex, 0);
             step = -1;
         }
 
@@ -1091,7 +1091,7 @@ public class Stringx {
             char charr = Arrayx.single(chars);
             return ((String) charSequence).indexOf(charr, startIndex);
         } else {
-            for (int index = Numberx.coerceAtLeast(startIndex, 0), size = charSequence.length(); index < size; index++) {
+            for (int index = Rangex.coerceAtLeast(startIndex, 0), size = charSequence.length(); index < size; index++) {
                 final char charAtIndex = charSequence.charAt(index);
                 if (Arrayx.any(chars, new Predicate<Character>() {
                     @Override
@@ -1169,7 +1169,7 @@ public class Stringx {
             return ((String) charSequence).lastIndexOf(charr, startIndex);
         }
 
-        for (int index : Rangex.downTo(Numberx.coerceAtMost(startIndex, charSequence.length() - 1), 0)) {
+        for (int index : Rangex.downTo(Rangex.coerceAtMost(startIndex, charSequence.length() - 1), 0)) {
             final char charAtIndex = charSequence.charAt(index);
             if (Arrayx.any(chars, new Predicate<Character>() {
                 @Override

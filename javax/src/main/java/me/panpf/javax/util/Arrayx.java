@@ -12768,7 +12768,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12783,7 +12783,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12798,7 +12798,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12813,7 +12813,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12828,7 +12828,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12843,7 +12843,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12858,7 +12858,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12873,7 +12873,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12888,7 +12888,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return takeLast(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return takeLast(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12903,7 +12903,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12918,7 +12918,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12933,7 +12933,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12948,7 +12948,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12963,7 +12963,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12978,7 +12978,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -12993,7 +12993,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -13008,7 +13008,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
@@ -13023,7 +13023,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        return take(elements, Numberx.coerceAtLeast((count(elements) - n), 0));
+        return take(elements, Rangex.coerceAtLeast((count(elements) - n), 0));
     }
 
     /**
