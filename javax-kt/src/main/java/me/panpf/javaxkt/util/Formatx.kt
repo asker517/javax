@@ -163,68 +163,68 @@ inline fun Int.formatShortFileSize(): String = Formatx.shortFileSize(this.toLong
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTime(ignoreMillisecond: Boolean = false, divider: String, daySuffix: String, hourSuffix: String,
+inline fun Long.formatTotalTime(level: Int = 0, divider: String, daySuffix: String, hourSuffix: String,
                                 minuteSuffix: String, secondSuffix: String, millisecondSuffix: String): String {
-    return Formatx.totalTime(this, ignoreMillisecond, divider, daySuffix, hourSuffix, minuteSuffix, secondSuffix, millisecondSuffix)
+    return Formatx.totalTime(this, level, divider, daySuffix, hourSuffix, minuteSuffix, secondSuffix, millisecondSuffix)
 }
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTime(ignoreMillisecond: Boolean = false): String = Formatx.totalTime(this, ignoreMillisecond)
+inline fun Long.formatTotalTime(level: Int = 0): String = Formatx.totalTime(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Int.formatTotalTime(ignoreMillisecond: Boolean = false): String = Formatx.totalTime(this, ignoreMillisecond)
+inline fun Int.formatTotalTime(level: Int = 0): String = Formatx.totalTime(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTimeShort(ignoreMillisecond: Boolean = false): String = Formatx.totalTimeShort(this, ignoreMillisecond)
+inline fun Long.formatTotalTimeShort(level: Int = 0): String = Formatx.totalTimeShort(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Int.formatTotalTimeShort(ignoreMillisecond: Boolean = false): String = Formatx.totalTimeShort(this, ignoreMillisecond)
+inline fun Int.formatTotalTimeShort(level: Int = 0): String = Formatx.totalTimeShort(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTimeZH(ignoreMillisecond: Boolean = false): String = Formatx.totalTimeZH(this, ignoreMillisecond)
+inline fun Long.formatTotalTimeZH(level: Int = 0): String = Formatx.totalTimeZH(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Int.formatTotalTimeZH(ignoreMillisecond: Boolean = false): String = Formatx.totalTimeZH(this, ignoreMillisecond)
+inline fun Int.formatTotalTimeZH(level: Int = 0): String = Formatx.totalTimeZH(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String = Formatx.totalTimeZHShort(this, ignoreMillisecond)
+inline fun Long.formatTotalTimeZHShort(level: Int = 0): String = Formatx.totalTimeZHShort(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
- * @param ignoreMillisecond Ignore milliseconds
+ * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Int.formatTotalTimeZHShort(ignoreMillisecond: Boolean = false): String = Formatx.totalTimeZHShort(this, ignoreMillisecond)
+inline fun Int.formatTotalTimeZHShort(level: Int = 0): String = Formatx.totalTimeZHShort(this, level)
 
 
 /* ******************************************* count *******************************************/

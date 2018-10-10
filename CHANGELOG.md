@@ -13,6 +13,7 @@
 * :fire: Numberx in, notIn method move to Rangex
 * :fire: Numberx coerceAtLeast, coerceAtMost method move to Rangex
 * :fire: Numberx pad method move to Formatx
+* :fire: Formatx totalTime method ignoreMillisecond parameter changed to level
 
 ## 0.6.6
 

@@ -321,56 +321,56 @@ public class Formatx {
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTime(long totalTimeMillis, boolean ignoreMillisecond, @NotNull String divider,
+    public static String totalTime(long totalTimeMillis, int level, @NotNull String divider,
                                    @NotNull String daySuffix, @NotNull String hourSuffix, @NotNull String minuteSuffix,
                                    @NotNull String secondSuffix, @NotNull String millisecondSuffix) {
         long finalTotalTimeMillis = totalTimeMillis >= 0 ? totalTimeMillis : 0;
+        int finalLevel = Math.max(level, 0);
 
-        if (!ignoreMillisecond && finalTotalTimeMillis < ONE_SECOND_MILLISECONDS) {
-            // millisecond
-            return finalTotalTimeMillis + millisecondSuffix;
-        } else if (finalTotalTimeMillis < ONE_MINUTE_MILLISECONDS) {
-            // second
-            long second = finalTotalTimeMillis / ONE_SECOND_MILLISECONDS;
-            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return second + secondSuffix + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
-        } else if (finalTotalTimeMillis < ONE_HOUR_MILLISECONDS) {
-            // minute
-            long minute = finalTotalTimeMillis / (ONE_MINUTE_MILLISECONDS);
-            long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
-            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return minute + minuteSuffix + (second > 0 ? divider + second + secondSuffix : "") + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
-        } else if (finalTotalTimeMillis < ONE_DAY_MILLISECONDS) {
-            // hour
-            long hour = finalTotalTimeMillis / (ONE_HOUR_MILLISECONDS);
-            long minute = finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS);
-            long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
-            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return hour + hourSuffix + (minute > 0 ? divider + minute + minuteSuffix : "") + (second > 0 ? divider + second + secondSuffix : "")
-                    + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
-        } else {
-            // day
-            long day = finalTotalTimeMillis / ONE_DAY_MILLISECONDS;
-            long hour = finalTotalTimeMillis % (ONE_DAY_MILLISECONDS) / (ONE_HOUR_MILLISECONDS);
-            long minute = finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS);
-            long second = finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS;
-            long millisecond = !ignoreMillisecond ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
-            return day + daySuffix + (hour > 0 ? divider + hour + hourSuffix : "") + (minute > 0 ? divider + minute + minuteSuffix : "")
-                    + (second > 0 ? divider + second + secondSuffix : "") + (millisecond > 0 ? divider + millisecond + millisecondSuffix : "");
+        long day = finalLevel <= 4 ? finalTotalTimeMillis / ONE_DAY_MILLISECONDS : 0;
+        long hour = finalLevel <= 3 ? finalTotalTimeMillis % (ONE_DAY_MILLISECONDS) / (ONE_HOUR_MILLISECONDS) : 0;
+        long minute = finalLevel <= 2 ? finalTotalTimeMillis % (ONE_HOUR_MILLISECONDS) / (ONE_MINUTE_MILLISECONDS) : 0;
+        long second = finalLevel <= 1 ? finalTotalTimeMillis % (ONE_MINUTE_MILLISECONDS) / ONE_SECOND_MILLISECONDS : 0;
+        long millisecond = finalLevel <= 0 ? finalTotalTimeMillis % ONE_SECOND_MILLISECONDS : 0;
+
+        StringBuilder builder = new StringBuilder();
+        if (day > 0) {
+            if (builder.length() > 0) builder.append(divider);
+            builder.append(day).append(daySuffix);
         }
+        if (hour > 0) {
+            if (builder.length() > 0) builder.append(divider);
+            builder.append(hour).append(hourSuffix);
+        }
+        if (minute > 0) {
+            if (builder.length() > 0) builder.append(divider);
+            builder.append(minute).append(minuteSuffix);
+        }
+        if (second > 0) {
+            if (builder.length() > 0) builder.append(divider);
+            builder.append(second).append(secondSuffix);
+        }
+        if (millisecond > 0) {
+            if (builder.length() > 0) builder.append(divider);
+            builder.append(millisecond).append(millisecondSuffix);
+        }
+        if (builder.length() == 0) {
+            builder.append(0).append(secondSuffix);
+        }
+        return builder.toString();
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTime(long totalTimeMillis, boolean ignoreMillisecond) {
-        return totalTime(totalTimeMillis, ignoreMillisecond, " ", "d", "h", "m", "s", "ms");
+    public static String totalTime(long totalTimeMillis, int level) {
+        return totalTime(totalTimeMillis, level, " ", "d", "h", "m", "s", "ms");
     }
 
     /**
@@ -378,17 +378,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTime(long totalTimeMillis) {
-        return totalTime(totalTimeMillis, false);
+        return totalTime(totalTimeMillis, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTime(int totalTime, boolean ignoreMillisecond) {
-        return totalTime((long) totalTime, ignoreMillisecond);
+    public static String totalTime(int totalTime, int level) {
+        return totalTime((long) totalTime, level);
     }
 
     /**
@@ -396,17 +396,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTime(int totalTime) {
-        return totalTime((long) totalTime, false);
+        return totalTime((long) totalTime, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTimeZH(long totalTimeMillis, boolean ignoreMillisecond) {
-        return totalTime(totalTimeMillis, ignoreMillisecond, " ", "天", "小时", "分", "秒", "毫秒");
+    public static String totalTimeZH(long totalTimeMillis, int level) {
+        return totalTime(totalTimeMillis, level, " ", "天", "小时", "分", "秒", "毫秒");
     }
 
     /**
@@ -414,17 +414,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeZH(long totalTimeMillis) {
-        return totalTimeZH(totalTimeMillis, false);
+        return totalTimeZH(totalTimeMillis, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTimeZH(int totalTime, boolean ignoreMillisecond) {
-        return totalTimeZH((long) totalTime, ignoreMillisecond);
+    public static String totalTimeZH(int totalTime, int level) {
+        return totalTimeZH((long) totalTime, level);
     }
 
     /**
@@ -432,17 +432,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeZH(int totalTime) {
-        return totalTimeZH((long) totalTime, false);
+        return totalTimeZH((long) totalTime, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTimeShort(long totalTimeMillis, boolean ignoreMillisecond) {
-        return totalTime(totalTimeMillis, ignoreMillisecond, "", "d", "h", "m", "s", "ms");
+    public static String totalTimeShort(long totalTimeMillis, int level) {
+        return totalTime(totalTimeMillis, level, "", "d", "h", "m", "s", "ms");
     }
 
     /**
@@ -450,17 +450,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeShort(long totalTimeMillis) {
-        return totalTimeShort(totalTimeMillis, false);
+        return totalTimeShort(totalTimeMillis, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTimeShort(int totalTime, boolean ignoreMillisecond) {
-        return totalTimeShort((long) totalTime, ignoreMillisecond);
+    public static String totalTimeShort(int totalTime, int level) {
+        return totalTimeShort((long) totalTime, level);
     }
 
     /**
@@ -468,17 +468,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeShort(int totalTime) {
-        return totalTimeShort((long) totalTime, false);
+        return totalTimeShort((long) totalTime, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTimeZHShort(long totalTimeMillis, boolean ignoreMillisecond) {
-        return totalTime(totalTimeMillis, ignoreMillisecond, "", "天", "小时", "分", "秒", "毫秒");
+    public static String totalTimeZHShort(long totalTimeMillis, int level) {
+        return totalTime(totalTimeMillis, level, "", "天", "小时", "分", "秒", "毫秒");
     }
 
     /**
@@ -486,17 +486,17 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeZHShort(long totalTimeMillis) {
-        return totalTimeZHShort(totalTimeMillis, false);
+        return totalTimeZHShort(totalTimeMillis, 0);
     }
 
     /**
      * Returns the total time of formatting that can be displayed
      *
-     * @param ignoreMillisecond Ignore milliseconds
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTimeZHShort(int totalTime, boolean ignoreMillisecond) {
-        return totalTimeZHShort((long) totalTime, ignoreMillisecond);
+    public static String totalTimeZHShort(int totalTime, int level) {
+        return totalTimeZHShort((long) totalTime, level);
     }
 
     /**
@@ -504,7 +504,7 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeZHShort(int totalTime) {
-        return totalTimeZHShort((long) totalTime, false);
+        return totalTimeZHShort((long) totalTime, 0);
     }
 
 
