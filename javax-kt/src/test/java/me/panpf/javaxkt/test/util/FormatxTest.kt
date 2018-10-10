@@ -18,6 +18,7 @@ package me.panpf.javaxkt.test.util
 
 import me.panpf.javaxkt.util.*
 import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class FormatxTest {
@@ -347,5 +348,11 @@ class FormatxTest {
         Assert.assertEquals("123".hiddenEndChars(4, '$'), "$$$")
         Assert.assertEquals("13509853689".hiddenEndChars(4, '$'), "1350985$$$$")
         Assert.assertEquals(null.hiddenEndChars(4, '$'), "")
+    }
+
+    @Test
+    fun testPad() {
+        assertEquals(10.pad(5), "00010")
+        assertEquals(10L.pad(5), "00010")
     }
 }

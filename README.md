@@ -77,7 +77,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Math: [Mathx.java] ([Test][MathxTest.java]) | [Mathx.kt] ([Test][MathxTest.kt])
     * divide, divideToInt, divideToLong, scale, proportion, percent
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
-    * pad, to\*OrDefault, to\*OrZero, orZero
+    * to\*OrDefault, to\*OrZero, orZero
 * String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
     * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr
@@ -118,7 +118,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Format: [Formatx.java] ([Test][FormatxTest.java]) | [Formatx.kt] ([Test][FormatxTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
-    * hiddenStartChars, hiddenMiddleChars, hiddenEndChars
+    * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad
 * Map: [Mapx.java]
     * mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])

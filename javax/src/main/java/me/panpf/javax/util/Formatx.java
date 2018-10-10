@@ -628,4 +628,22 @@ public class Formatx {
     public static String hiddenEndChars(@Nullable final String input, final int hiddenLength) {
         return hiddenEndChars(input, hiddenLength, '*');
     }
+
+
+    /* ******************************************* pad *******************************************/
+
+
+    /**
+     * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
+     */
+    public static String pad(int digit, int stringLength) {
+        return String.format("%0" + stringLength + "d", digit);
+    }
+
+    /**
+     * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
+     */
+    public static String pad(long digit, int stringLength) {
+        return String.format("%0" + stringLength + "d", digit);
+    }
 }

@@ -33,21 +33,7 @@ public class Numberx {
      * From kotlin standard library
      * *****************************************************************************************************************
      */
-    // TODO: 2018/10/10 挪到 Mathx 中
 
-    /**
-     * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
-     */
-    public static String pad(int digit, int stringLength) {
-        return String.format("%0" + stringLength + "d", digit);
-    }
-
-    /**
-     * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
-     */
-    public static String pad(long digit, int stringLength) {
-        return String.format("%0" + stringLength + "d", digit);
-    }
 
     /**
      * Convert a String to an byte, returning a default value if the conversion fails.

@@ -19,6 +19,7 @@
 package me.panpf.javaxkt.util
 
 import me.panpf.javax.util.Formatx
+import me.panpf.javaxkt.lang.orZero
 
 
 /*
@@ -246,29 +247,43 @@ inline fun Int.formatCount(): String = Formatx.count(this)
 /**
  * Replaces the character of the specified length at the beginning of the string with the specified character
  */
-fun String?.hiddenStartChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenStartChars(this, hiddenLength, targetChar)
+inline fun String?.hiddenStartChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenStartChars(this, hiddenLength, targetChar)
 
 /**
  * Replace the character of the specified length at the beginning of the string with the '*' character
  */
-fun String?.hiddenStartChars(hiddenLength: Int): String = Formatx.hiddenStartChars(this, hiddenLength)
+inline fun String?.hiddenStartChars(hiddenLength: Int): String = Formatx.hiddenStartChars(this, hiddenLength)
 
 /**
  * Replaces the specified length of characters in the middle of the string with the specified character
  */
-fun String?.hiddenMiddleChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenMiddleChars(this, hiddenLength, targetChar)
+inline fun String?.hiddenMiddleChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenMiddleChars(this, hiddenLength, targetChar)
 
 /**
  * Replace the character of the specified length in the middle of the string with the '*' character
  */
-fun String?.hiddenMiddleChars(hiddenLength: Int): String = Formatx.hiddenMiddleChars(this, hiddenLength)
+inline fun String?.hiddenMiddleChars(hiddenLength: Int): String = Formatx.hiddenMiddleChars(this, hiddenLength)
 
 /**
  * Replaces the specified length of characters at the end of the string with the specified character
  */
-fun String?.hiddenEndChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenEndChars(this, hiddenLength, targetChar)
+inline fun String?.hiddenEndChars(hiddenLength: Int, targetChar: Char): String = Formatx.hiddenEndChars(this, hiddenLength, targetChar)
 
 /**
  * Replace the character of the specified length at the end of the string with the '*' character
  */
-fun String?.hiddenEndChars(hiddenLength: Int): String = Formatx.hiddenEndChars(this, hiddenLength)
+inline fun String?.hiddenEndChars(hiddenLength: Int): String = Formatx.hiddenEndChars(this, hiddenLength)
+
+
+/* ******************************************* pad *******************************************/
+
+
+/**
+ * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
+ */
+inline fun Int?.pad(stringLength: Int): String = Formatx.pad(this.orZero(), stringLength)
+
+/**
+ * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
+ */
+inline fun Long?.pad(stringLength: Int): String = Formatx.pad(this.orZero(), stringLength)

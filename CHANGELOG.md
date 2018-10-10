@@ -12,6 +12,7 @@
 * :fire: Numberx scale method move to Mathx
 * :fire: Numberx in, notIn method move to Rangex
 * :fire: Numberx coerceAtLeast, coerceAtMost method move to Rangex
+* :fire: Numberx pad method move to Formatx
 
 ## 0.6.6
 

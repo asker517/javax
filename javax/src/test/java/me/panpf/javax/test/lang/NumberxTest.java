@@ -24,12 +24,6 @@ import static org.junit.Assert.*;
 public class NumberxTest {
 
     @Test
-    public void testPad() {
-        assertEquals(Numberx.pad(10, 5), "00010");
-        assertEquals(Numberx.pad(10L, 5), "00010");
-    }
-
-    @Test
     public void testTo() {
         assertEquals(String.valueOf(Numberx.toByteOrDefault("5", (byte) 4)), String.valueOf(5));
         assertEquals(String.valueOf(Numberx.toByteOrDefault("g", (byte) 4)), String.valueOf(4));
