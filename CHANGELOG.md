@@ -4,6 +4,7 @@
 * :sparkles: Stringx add reversed, filter, filterBlank method
 * :fire: Base64x encodeToBytes method renamed to encode, decodeToBytes method renamed to decode
 * :fire: Base64x removes encodeTo, encodeToBuffer, decodeTo, decodeToBuffer and all methods whose method names begin with 'url' or 'mime'
+* :fire: Remove Mapx.EMPTY_MAP, Collectionx.EMPTY_LIST, Collectionx.EMPTY_SET
 
 ## 0.6.6
 

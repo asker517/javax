@@ -27,9 +27,6 @@ import java.util.*;
 @SuppressWarnings({"WeakerAccess"})
 public class Collectionx {
 
-    public static final List EMPTY_LIST = Collections.EMPTY_LIST;
-    public static final Set EMPTY_SET = Collections.EMPTY_SET;
-
     private Collectionx() {
     }
 
