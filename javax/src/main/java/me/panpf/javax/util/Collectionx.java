@@ -277,23 +277,18 @@ public class Collectionx {
 
 
     /**
-     * Returns an immutable list containing only the specified object [element].
-     * The returned list is serializable.
-     */
-    @NotNull
-    public static <T> List<T> listOf(@Nullable T element) {
-        //noinspection unchecked
-        return element != null ? Collections.singletonList(element) : (List<T>) emptyList();
-    }
-
-    /**
      * Returns a new read-only list of given elements.  The returned list is serializable (JVM).
      */
     @NotNull
     @SafeVarargs
     public static <T> List<T> listOf(@Nullable T... elements) {
-        //noinspection unchecked
-        return elements != null && elements.length > 0 ? Arrays.asList(elements) : (List<T>) emptyList();
+        if (elements != null && elements.length > 0) {
+            List<T> list = new ArrayList<>();
+            addAll(list, elements);
+            return list;
+        } else {
+            return emptyList();
+        }
     }
 
     /**
@@ -301,8 +296,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> emptyList() {
-        //noinspection unchecked
-        return EMPTY_LIST;
+        return new ArrayList<>(0);
     }
 
     /**
@@ -310,8 +304,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> Set<T> emptySet() {
-        //noinspection unchecked
-        return EMPTY_SET;
+        return new HashSet<>(0);
     }
 
 
@@ -2219,7 +2212,7 @@ public class Collectionx {
                 //noinspection unchecked
                 T[] result = (T[]) collection.toArray();
                 Arrayx.sortWith(result, comparator);
-                return Arrays.asList(result);
+                return listOf(result);
             }
         } else {
             List<T> result = toList(iterable);
@@ -2249,7 +2242,7 @@ public class Collectionx {
                 //noinspection unchecked
                 T[] result = (T[]) collection.toArray();
                 Arrayx.sort(result);
-                return Arrays.asList(result);
+                return listOf(result);
             }
         } else {
             List<T> result = toList(iterable);
@@ -2585,8 +2578,7 @@ public class Collectionx {
     public static <T> List<T> slice(@Nullable List<T> list, @NotNull Iterable<Integer> indices) {
         int size = collectionSizeOrDefault(indices, 10);
         if (size == 0) {
-            //noinspection unchecked
-            return EMPTY_LIST;
+            return emptyList();
         } else {
             ArrayList<T> resultList = new ArrayList<>(size);
             for (int index : indices) {
@@ -2614,8 +2606,7 @@ public class Collectionx {
             }
         });
         if (n == 0) {
-            //noinspection unchecked
-            return EMPTY_LIST;
+            return emptyList();
         }
         if (iterable instanceof Collection) {
             if (n >= ((Collection) iterable).size()) {
@@ -2642,8 +2633,7 @@ public class Collectionx {
      */
     public static <T> List<T> takeLast(@Nullable List<T> list, final int n) {
         if (isEmpty(list)) {
-            //noinspection unchecked
-            return EMPTY_LIST;
+            return emptyList();
         }
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
@@ -2653,8 +2643,7 @@ public class Collectionx {
             }
         });
         if (n == 0) {
-            //noinspection unchecked
-            return EMPTY_LIST;
+            return emptyList();
         }
         int size = count(list);
         if (n >= size) {
@@ -2684,8 +2673,7 @@ public class Collectionx {
     @NotNull
     public static <T> List<T> takeLastWhile(@Nullable List<T> list, @NotNull Predicate<T> predicate) {
         if (isEmpty(list)) {
-            //noinspection unchecked
-            return EMPTY_LIST;
+            return emptyList();
         }
         ListIterator<T> iterator = list.listIterator(list.size());
         while (iterator.hasPrevious()) {
