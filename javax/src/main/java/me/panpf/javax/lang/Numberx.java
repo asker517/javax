@@ -34,6 +34,7 @@ public class Numberx {
 
     /* ******************************************* scale *******************************************/
 
+    // TODO: 2018/10/10 挪到 Mathx 中
 
     /**
      * Scale numbers in the specified mode
@@ -73,7 +74,7 @@ public class Numberx {
 
 
     /* ******************************************* in *******************************************/
-
+    // TODO: 2018/10/10 挪到 Rangex 中
 
     /**
      * If [value] is within the range of [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
@@ -119,7 +120,7 @@ public class Numberx {
 
 
     /* ******************************************* notIn *******************************************/
-
+// TODO: 2018/10/10 挪到 Rangex 中
 
     /**
      * If [value] is not in the range [minValue] and [maxValue], it returns itself, otherwise it throws an IllegalArgumentException
@@ -169,7 +170,7 @@ public class Numberx {
      * From kotlin standard library
      * *****************************************************************************************************************
      */
-
+    // TODO: 2018/10/10 挪到 Mathx 中
 
     /**
      * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
@@ -439,6 +440,7 @@ public class Numberx {
     }
 
 
+    // TODO: 2018/10/10 挪到 Mathx 中 并完善
     public static int mod(int a, int b) {
         int mod = a % b;
         return mod >= 0 ? mod : mod + b;

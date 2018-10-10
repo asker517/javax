@@ -75,7 +75,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * getMethodWithParent, getMethodsWithParent, callMethod,
     * getConstructorWithParent, getConstructorsWithParent, getClassHierarchy, isTypeArray, isTypeCollection
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
-    * scale, pad, coerce, to\*OrDefault, to\*OrZero
+    * scale, pad, coerce, to\*OrDefault, to\*OrZero, orZero
 * String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
     * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr

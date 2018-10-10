@@ -26,6 +26,36 @@ import java.math.RoundingMode
  * Number related extension methods or properties
  */
 
+/**
+ * Return to yourself if you are not null, otherwise return 0
+ */
+inline fun Byte?.orZero(): Byte = this ?: 0.toByte()
+
+/**
+ * Return to yourself if you are not null, otherwise return 0
+ */
+inline fun Short?.orZero(): Short = this ?: 0.toShort()
+
+/**
+ * Return to yourself if you are not null, otherwise return 0
+ */
+inline fun Int?.orZero(): Int = this ?: 0
+
+/**
+ * Return to yourself if you are not null, otherwise return 0
+ */
+inline fun Long?.orZero(): Long = this ?: 0.toLong()
+
+/**
+ * Return to yourself if you are not null, otherwise return 0
+ */
+inline fun Float?.orZero(): Float = this ?: 0.toFloat()
+
+/**
+ * Return to yourself if you are not null, otherwise return 0
+ */
+inline fun Double?.orZero(): Double = this ?: 0.toDouble()
+
 
 /**
  * Scale numbers in the specified mode

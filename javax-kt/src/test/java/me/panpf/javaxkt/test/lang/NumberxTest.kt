@@ -24,6 +24,27 @@ import java.math.RoundingMode
 class NumberxTest {
 
     @Test
+    fun testOrZero() {
+        Assert.assertEquals(3.toByte().orZero(), 3.toByte())
+        Assert.assertEquals((null as Byte?).orZero(), 0.toByte())
+
+        Assert.assertEquals(3.toShort().orZero(), 3.toShort())
+        Assert.assertEquals((null as Short?).orZero(), 0.toShort())
+
+        Assert.assertEquals(3.orZero(), 3)
+        Assert.assertEquals((null as Int?).orZero(), 0)
+
+        Assert.assertEquals(3.toLong().orZero(), 3.toLong())
+        Assert.assertEquals((null as Long?).orZero(), 0.toLong())
+
+        Assert.assertEquals(3.toFloat().orZero(), 3.toFloat(), 0f)
+        Assert.assertEquals((null as Float?).orZero(), 0.toFloat(), 0f)
+
+        Assert.assertEquals(3.toDouble().orZero(), 3.toDouble(), 0.toDouble())
+        Assert.assertEquals((null as Double?).orZero(), 0.toDouble(), 0.toDouble())
+    }
+
+    @Test
     fun testScale() {
         Assert.assertEquals(0.2489.scale(2).toString(), 0.25f.toString())
         Assert.assertEquals(0.2449.scale(2).toString(), 0.24f.toString())

@@ -7,6 +7,7 @@
 * :fire: Remove Mapx.EMPTY_MAP, Collectionx.EMPTY_LIST, Collectionx.EMPTY_SET
 * :bug: Collectionx avoids using java.util.ArrayList because it can't be added
 * :sparkles: Digestx add \*OrEmpty and \*OrNull method
+* :sparkles: Numberx.kt add orZero method
 
 ## 0.6.6
 
