@@ -19,6 +19,7 @@ package me.panpf.javax.security;
 import me.panpf.javax.io.Filex;
 import me.panpf.javax.io.IOStreamx;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
@@ -72,11 +73,63 @@ public class Digestx {
     }
 
     /**
+     * Get the message digest of the input stream using the specified [algorithm]
+     */
+    @NotNull
+    public static String getDigestOrEmpty(@NotNull InputStream inputStream, @NotNull String algorithm) {
+        try {
+            return getDigest(inputStream, algorithm);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * Get the message digest of the input stream using the specified [algorithm]
+     */
+    @Nullable
+    public static String getDigestOrNull(@NotNull InputStream inputStream, @NotNull String algorithm) {
+        try {
+            return getDigest(inputStream, algorithm);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Get the message digest of the input stream using the MD5 algorithm
      */
     @NotNull
     public static String getMD5(@NotNull InputStream inputStream) throws IOException {
         return getDigest(inputStream, "MD5");
+    }
+
+    /**
+     * Get the message digest of the input stream using the MD5 algorithm
+     */
+    @NotNull
+    public static String getMD5OrEmpty(@NotNull InputStream inputStream) {
+        try {
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * Get the message digest of the input stream using the MD5 algorithm
+     */
+    @Nullable
+    public static String getMD5OrNull(@NotNull InputStream inputStream) {
+        try {
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -88,11 +141,63 @@ public class Digestx {
     }
 
     /**
+     * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
+     */
+    @NotNull
+    public static String getMD5_16OrEmpty(@NotNull InputStream inputStream) {
+        try {
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
+     */
+    @Nullable
+    public static String getMD5_16OrNull(@NotNull InputStream inputStream) {
+        try {
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Get the message digest of the input stream using the SHA1 algorithm
      */
     @NotNull
     public static String getSHA1(@NotNull InputStream inputStream) throws IOException {
         return getDigest(inputStream, "SHA1");
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA1 algorithm
+     */
+    @NotNull
+    public static String getSHA1OrEmpty(@NotNull InputStream inputStream) {
+        try {
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA1 algorithm
+     */
+    @Nullable
+    public static String getSHA1OrNull(@NotNull InputStream inputStream) {
+        try {
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -104,11 +209,63 @@ public class Digestx {
     }
 
     /**
+     * Get the message digest of the input stream using the SHA-256 algorithm
+     */
+    @NotNull
+    public static String getSHA256OrEmpty(@NotNull InputStream inputStream) {
+        try {
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA-256 algorithm
+     */
+    @Nullable
+    public static String getSHA256OrNull(@NotNull InputStream inputStream) {
+        try {
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Get the message digest of the input stream using the SHA-512 algorithm
      */
     @NotNull
     public static String getSHA512(@NotNull InputStream inputStream) throws IOException {
         return getDigest(inputStream, "SHA-512");
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA-512 algorithm
+     */
+    @NotNull
+    public static String getSHA512OrEmpty(@NotNull InputStream inputStream) {
+        try {
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    /**
+     * Get the message digest of the input stream using the SHA-512 algorithm
+     */
+    @Nullable
+    public static String getSHA512OrNull(@NotNull InputStream inputStream) {
+        try {
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -308,9 +465,44 @@ public class Digestx {
      */
     @NotNull
     public static String getDigest(@NotNull File file, @NotNull String algorithm) throws IOException {
-        InputStream inputStream = Filex.inputStream(file);
+        InputStream inputStream = null;
         try {
+            inputStream = Filex.inputStream(file);
             return getDigest(inputStream, algorithm);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the specified [algorithm]
+     */
+    @NotNull
+    public static String getDigestOrEmpty(@NotNull File file, @NotNull String algorithm) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getDigest(inputStream, algorithm);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the specified [algorithm]
+     */
+    @Nullable
+    public static String getDigestOrNull(@NotNull File file, @NotNull String algorithm) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getDigest(inputStream, algorithm);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -321,9 +513,44 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull File file) throws IOException {
-        InputStream inputStream = Filex.inputStream(file);
+        InputStream inputStream = null;
         try {
+            inputStream = Filex.inputStream(file);
             return getMD5(inputStream);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the MD5 algorithm
+     */
+    @NotNull
+    public static String getMD5OrEmpty(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the MD5 algorithm
+     */
+    @Nullable
+    public static String getMD5OrNull(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getMD5(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -334,9 +561,44 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull File file) throws IOException {
-        InputStream inputStream = Filex.inputStream(file);
+        InputStream inputStream = null;
         try {
+            inputStream = Filex.inputStream(file);
             return getMD5_16(inputStream);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
+     */
+    @NotNull
+    public static String getMD5_16OrEmpty(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
+     */
+    @Nullable
+    public static String getMD5_16OrNull(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getMD5_16(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -347,9 +609,44 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull File file) throws IOException {
-        InputStream inputStream = Filex.inputStream(file);
+        InputStream inputStream = null;
         try {
+            inputStream = Filex.inputStream(file);
             return getSHA1(inputStream);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the SHA1 algorithm
+     */
+    @NotNull
+    public static String getSHA1OrEmpty(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the SHA1 algorithm
+     */
+    @Nullable
+    public static String getSHA1OrNull(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA1(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -360,9 +657,44 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull File file) throws IOException {
-        InputStream inputStream = Filex.inputStream(file);
+        InputStream inputStream = null;
         try {
+            inputStream = Filex.inputStream(file);
             return getSHA256(inputStream);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the SHA-256 algorithm
+     */
+    @NotNull
+    public static String getSHA256OrEmpty(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the SHA-256 algorithm
+     */
+    @Nullable
+    public static String getSHA256OrNull(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA256(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             IOStreamx.safeClose(inputStream);
         }
@@ -373,9 +705,44 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull File file) throws IOException {
-        InputStream inputStream = Filex.inputStream(file);
+        InputStream inputStream = null;
         try {
+            inputStream = Filex.inputStream(file);
             return getSHA512(inputStream);
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the SHA-512 algorithm
+     */
+    @NotNull
+    public static String getSHA512OrEmpty(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        } finally {
+            IOStreamx.safeClose(inputStream);
+        }
+    }
+
+    /**
+     * Get the message digest of the file using the SHA-512 algorithm
+     */
+    @Nullable
+    public static String getSHA512OrNull(@NotNull File file) {
+        InputStream inputStream = null;
+        try {
+            inputStream = Filex.inputStream(file);
+            return getSHA512(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         } finally {
             IOStreamx.safeClose(inputStream);
         }

@@ -6,6 +6,7 @@
 * :fire: Base64x removes encodeTo, encodeToBuffer, decodeTo, decodeToBuffer and all methods whose method names begin with 'url' or 'mime'
 * :fire: Remove Mapx.EMPTY_MAP, Collectionx.EMPTY_LIST, Collectionx.EMPTY_SET
 * :bug: Collectionx avoids using java.util.ArrayList because it can't be added
+* :sparkles: Digestx add \*OrEmpty and \*OrNull method
 
 ## 0.6.6
 

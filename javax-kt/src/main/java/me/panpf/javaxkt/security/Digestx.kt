@@ -39,9 +39,31 @@ import java.io.InputStream
 inline fun InputStream.getDigest(algorithm: String): String = Digestx.getDigest(this, algorithm)
 
 /**
+ * Get the message digest of the input stream using the specified [algorithm]
+ */
+@Throws(IOException::class)
+inline fun InputStream.getDigestOrEmpty(algorithm: String): String = Digestx.getDigestOrEmpty(this, algorithm)
+
+/**
+ * Get the message digest of the input stream using the specified [algorithm]
+ */
+@Throws(IOException::class)
+inline fun InputStream.getDigestOrNull(algorithm: String): String? = Digestx.getDigestOrNull(this, algorithm)
+
+/**
  * Get the message digest of the input stream using the MD5 algorithm
  */
 inline fun InputStream.getMD5Digest(): String = Digestx.getMD5(this)
+
+/**
+ * Get the message digest of the input stream using the MD5 algorithm
+ */
+inline fun InputStream.getMD5DigestOrEmpty(): String = Digestx.getMD5OrEmpty(this)
+
+/**
+ * Get the message digest of the input stream using the MD5 algorithm
+ */
+inline fun InputStream.getMD5DigestOrNull(): String? = Digestx.getMD5OrNull(this)
 
 /**
  * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
@@ -49,9 +71,29 @@ inline fun InputStream.getMD5Digest(): String = Digestx.getMD5(this)
 inline fun InputStream.getMD5_16Digest(): String = Digestx.getMD5_16(this)
 
 /**
+ * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
+ */
+inline fun InputStream.getMD5_16DigestOrEmpty(): String = Digestx.getMD5_16OrEmpty(this)
+
+/**
+ * Get the message digest of the input stream using the MD5 algorithm, only the middle 16 bits are reserved
+ */
+inline fun InputStream.getMD5_16DigestOrNull(): String? = Digestx.getMD5_16OrNull(this)
+
+/**
  * Get the message digest of the input stream using the SHA1 algorithm
  */
 inline fun InputStream.getSHA1Digest(): String = Digestx.getSHA1(this)
+
+/**
+ * Get the message digest of the input stream using the SHA1 algorithm
+ */
+inline fun InputStream.getSHA1DigestOrEmpty(): String = Digestx.getSHA1OrEmpty(this)
+
+/**
+ * Get the message digest of the input stream using the SHA1 algorithm
+ */
+inline fun InputStream.getSHA1DigestOrNull(): String? = Digestx.getSHA1OrNull(this)
 
 /**
  * Get the message digest of the input stream using the SHA-256 algorithm
@@ -59,9 +101,29 @@ inline fun InputStream.getSHA1Digest(): String = Digestx.getSHA1(this)
 inline fun InputStream.getSHA256Digest(): String = Digestx.getSHA256(this)
 
 /**
+ * Get the message digest of the input stream using the SHA-256 algorithm
+ */
+inline fun InputStream.getSHA256DigestOrEmpty(): String = Digestx.getSHA256OrEmpty(this)
+
+/**
+ * Get the message digest of the input stream using the SHA-256 algorithm
+ */
+inline fun InputStream.getSHA256DigestOrNull(): String? = Digestx.getSHA256OrNull(this)
+
+/**
  * Get the message digest of the input stream using the SHA-512 algorithm
  */
 inline fun InputStream.getSHA512Digest(): String = Digestx.getSHA512(this)
+
+/**
+ * Get the message digest of the input stream using the SHA-512 algorithm
+ */
+inline fun InputStream.getSHA512DigestOrEmpty(): String = Digestx.getSHA512OrEmpty(this)
+
+/**
+ * Get the message digest of the input stream using the SHA-512 algorithm
+ */
+inline fun InputStream.getSHA512DigestOrNull(): String? = Digestx.getSHA512OrNull(this)
 
 
 /* ******************************************* ByteArray *******************************************/
@@ -142,10 +204,34 @@ inline fun String.getSHA512Digest(): String = Digestx.getSHA512(this)
 inline fun File.getDigest(algorithm: String): String = Digestx.getDigest(this, algorithm)
 
 /**
+ * Get the message digest of the file using the specified [algorithm]
+ */
+@Throws(IOException::class)
+inline fun File.getDigestOrEmpty(algorithm: String): String = Digestx.getDigestOrEmpty(this, algorithm)
+
+/**
+ * Get the message digest of the file using the specified [algorithm]
+ */
+@Throws(IOException::class)
+inline fun File.getDigestOrNull(algorithm: String): String? = Digestx.getDigestOrNull(this, algorithm)
+
+/**
  * Get the message digest of the file using the MD5 algorithm
  */
 @Throws(IOException::class)
 inline fun File.getMD5Digest(): String = Digestx.getMD5(this)
+
+/**
+ * Get the message digest of the file using the MD5 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getMD5DigestOrEmpty(): String = Digestx.getMD5OrEmpty(this)
+
+/**
+ * Get the message digest of the file using the MD5 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getMD5DigestOrNull(): String? = Digestx.getMD5OrNull(this)
 
 /**
  * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
@@ -154,10 +240,34 @@ inline fun File.getMD5Digest(): String = Digestx.getMD5(this)
 inline fun File.getMD5_16Digest(): String = Digestx.getMD5_16(this)
 
 /**
+ * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
+ */
+@Throws(IOException::class)
+inline fun File.getMD5_16DigestOrEmpty(): String = Digestx.getMD5_16OrEmpty(this)
+
+/**
+ * Get the message digest of the file using the MD5 algorithm, only the middle 16 bits are reserved
+ */
+@Throws(IOException::class)
+inline fun File.getMD5_16DigestOrNull(): String? = Digestx.getMD5_16OrNull(this)
+
+/**
  * Get the message digest of the file using the SHA1 algorithm
  */
 @Throws(IOException::class)
 inline fun File.getSHA1Digest(): String = Digestx.getSHA1(this)
+
+/**
+ * Get the message digest of the file using the SHA1 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getSHA1DigestOrEmpty(): String = Digestx.getSHA1OrEmpty(this)
+
+/**
+ * Get the message digest of the file using the SHA1 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getSHA1DigestOrNull(): String? = Digestx.getSHA1OrNull(this)
 
 /**
  * Get the message digest of the file using the SHA-256 algorithm
@@ -166,7 +276,31 @@ inline fun File.getSHA1Digest(): String = Digestx.getSHA1(this)
 inline fun File.getSHA256Digest(): String = Digestx.getSHA256(this)
 
 /**
+ * Get the message digest of the file using the SHA-256 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getSHA256DigestOrEmpty(): String = Digestx.getSHA256OrEmpty(this)
+
+/**
+ * Get the message digest of the file using the SHA-256 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getSHA256DigestOrNull(): String? = Digestx.getSHA256OrNull(this)
+
+/**
  * Get the message digest of the file using the SHA-512 algorithm
  */
 @Throws(IOException::class)
 inline fun File.getSHA512Digest(): String = Digestx.getSHA512(this)
+
+/**
+ * Get the message digest of the file using the SHA-512 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getSHA512DigestOrEmpty(): String = Digestx.getSHA512OrEmpty(this)
+
+/**
+ * Get the message digest of the file using the SHA-512 algorithm
+ */
+@Throws(IOException::class)
+inline fun File.getSHA512DigestOrNull(): String? = Digestx.getSHA512OrNull(this)

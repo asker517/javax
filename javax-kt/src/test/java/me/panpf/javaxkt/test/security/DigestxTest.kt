@@ -48,11 +48,28 @@ class DigestxTest {
     @Test
     fun testInputStreamDigest() {
         Assert.assertEquals(TEST_TEXT.byteInputStream().getDigest("MD2"), TEXT_MD2)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getDigestOrEmpty("MD2"), TEXT_MD2)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getDigestOrNull("MD2"), TEXT_MD2)
+
         Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5Digest(), TEXT_MD5)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5DigestOrEmpty(), TEXT_MD5)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5DigestOrNull(), TEXT_MD5)
+
         Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5_16Digest(), TEXT_MD5_16)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5_16DigestOrEmpty(), TEXT_MD5_16)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getMD5_16DigestOrNull(), TEXT_MD5_16)
+
         Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA1Digest(), TEXT_SHA1)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA1DigestOrEmpty(), TEXT_SHA1)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA1DigestOrNull(), TEXT_SHA1)
+
         Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA256Digest(), TEXT_SHA256)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA256DigestOrEmpty(), TEXT_SHA256)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA256DigestOrNull(), TEXT_SHA256)
+
         Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA512Digest(), TEXT_SHA512)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA512DigestOrEmpty(), TEXT_SHA512)
+        Assert.assertEquals(TEST_TEXT.byteInputStream().getSHA512DigestOrNull(), TEXT_SHA512)
     }
 
     @Test
@@ -79,14 +96,33 @@ class DigestxTest {
     fun testFileDigest() {
         val file = File("/tmp/testFileDigest.tmp").apply { writeText(TEST_FILE_TEXT) }
 
-        Assert.assertEquals(file.getDigest("MD2"), FILE_MD2)
-        Assert.assertEquals(file.getMD5Digest(), FILE_MD5)
-        Assert.assertEquals(file.getMD5_16Digest(), FILE_MD5_16)
-        Assert.assertEquals(file.getSHA1Digest(), FILE_SHA1)
-        Assert.assertEquals(file.getSHA256Digest(), FILE_SHA256)
-        Assert.assertEquals(file.getSHA512Digest(), FILE_SHA512)
+        try {
+            Assert.assertEquals(file.getDigest("MD2"), FILE_MD2)
+            Assert.assertEquals(file.getDigestOrEmpty("MD2"), FILE_MD2)
+            Assert.assertEquals(file.getDigestOrNull("MD2"), FILE_MD2)
 
-        file.delete()
+            Assert.assertEquals(file.getMD5Digest(), FILE_MD5)
+            Assert.assertEquals(file.getMD5DigestOrEmpty(), FILE_MD5)
+            Assert.assertEquals(file.getMD5DigestOrNull(), FILE_MD5)
+
+            Assert.assertEquals(file.getMD5_16Digest(), FILE_MD5_16)
+            Assert.assertEquals(file.getMD5_16DigestOrEmpty(), FILE_MD5_16)
+            Assert.assertEquals(file.getMD5_16DigestOrNull(), FILE_MD5_16)
+
+            Assert.assertEquals(file.getSHA1Digest(), FILE_SHA1)
+            Assert.assertEquals(file.getSHA1DigestOrEmpty(), FILE_SHA1)
+            Assert.assertEquals(file.getSHA1DigestOrNull(), FILE_SHA1)
+
+            Assert.assertEquals(file.getSHA256Digest(), FILE_SHA256)
+            Assert.assertEquals(file.getSHA256DigestOrEmpty(), FILE_SHA256)
+            Assert.assertEquals(file.getSHA256DigestOrNull(), FILE_SHA256)
+
+            Assert.assertEquals(file.getSHA512Digest(), FILE_SHA512)
+            Assert.assertEquals(file.getSHA512DigestOrEmpty(), FILE_SHA512)
+            Assert.assertEquals(file.getSHA512DigestOrNull(), FILE_SHA512)
+        } finally {
+            file.delete()
+        }
     }
 
     @Test
