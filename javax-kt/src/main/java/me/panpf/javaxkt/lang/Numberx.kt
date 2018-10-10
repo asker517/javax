@@ -58,21 +58,6 @@ inline fun Double?.orZero(): Double = this ?: 0.toDouble()
 
 
 /**
- * Scale numbers in the specified mode
- *
- * @param newScale Number of digits after the decimal point
- */
-inline fun Float.scale(newScale: Int, roundingMode: RoundingMode = RoundingMode.HALF_UP): Float = Numberx.scale(this, newScale, roundingMode)
-
-/**
- * Scale numbers in the specified mode
- *
- * @param newScale Number of digits after the decimal point
- */
-inline fun Double.scale(newScale: Int, roundingMode: RoundingMode = RoundingMode.HALF_UP): Double = Numberx.scale(this, newScale, roundingMode)
-
-
-/**
  * Convert a String to an byte, returning a default value if the conversion fails.
  */
 inline fun String?.toByteOrDefault(defaultValue: Byte): Byte = Numberx.toByteOrDefault(this, defaultValue)

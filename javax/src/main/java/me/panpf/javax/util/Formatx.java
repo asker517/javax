@@ -16,7 +16,7 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Numberx;
+import me.panpf.javax.lang.Mathx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -520,9 +520,9 @@ public class Formatx {
         if (finalCount < (long) 1000) {
             return String.valueOf(finalCount);
         } else if (finalCount < (long) 10000) {
-            return format(Numberx.scale((float) finalCount / (float) 1000, 1, RoundingMode.DOWN), "k", 1, false);
+            return format(Mathx.scale((float) finalCount / (float) 1000, 1, RoundingMode.DOWN), "k", 1, false);
         } else {
-            return format(Numberx.scale((float) finalCount / (float) 10000, 1, RoundingMode.DOWN), "w", 1, false);
+            return format(Mathx.scale((float) finalCount / (float) 10000, 1, RoundingMode.DOWN), "w", 1, false);
         }
     }
 

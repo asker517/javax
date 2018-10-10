@@ -19,29 +19,9 @@ package me.panpf.javax.test.lang;
 import me.panpf.javax.lang.Numberx;
 import org.junit.Test;
 
-import java.math.RoundingMode;
-
 import static org.junit.Assert.*;
 
 public class NumberxTest {
-
-    @Test
-    public void testScale() {
-        assertEquals(String.valueOf(Numberx.scale(0.2489, 2)), String.valueOf(0.25f));
-        assertEquals(String.valueOf(Numberx.scale(0.2449, 2)), String.valueOf(0.24f));
-
-        assertEquals(String.valueOf(Numberx.scale(0.2489, 2, RoundingMode.UP)), String.valueOf(0.25f));
-        assertEquals(String.valueOf(Numberx.scale(0.2449, 2, RoundingMode.UP)), String.valueOf(0.25f));
-
-        assertEquals(String.valueOf(Numberx.scale(0.2589f, 1)), String.valueOf(0.3f));
-        assertEquals(String.valueOf(Numberx.scale(0.2449f, 1)), String.valueOf(0.2f));
-
-        assertEquals(String.valueOf(Numberx.scale(0.2589f, 1, RoundingMode.UP)), String.valueOf(0.3f));
-        assertEquals(String.valueOf(Numberx.scale(0.2449f, 1, RoundingMode.UP)), String.valueOf(0.3f));
-
-        assertEquals(String.valueOf(Numberx.scale(0.2489, 0)), String.valueOf(0f));
-        assertEquals(String.valueOf(Numberx.scale(0.2449, 0)), String.valueOf(0f));
-    }
 
     @Test
     public void testPad() {

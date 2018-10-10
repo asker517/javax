@@ -20,6 +20,8 @@ import me.panpf.javax.lang.Mathx;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.RoundingMode;
+
 public class MathxTest {
 
     @Test
@@ -136,6 +138,24 @@ public class MathxTest {
         Assert.assertEquals(Mathx.divideToLong(0d, 3d), 0L);
         Assert.assertEquals(Mathx.divideToLong(15d, 0d), 0L);
         Assert.assertEquals(Mathx.divideToLong(0d, 0d), 0L);
+    }
+
+    @Test
+    public void testScale() {
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2489, 2)), String.valueOf(0.25f));
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2449, 2)), String.valueOf(0.24f));
+
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2489, 2, RoundingMode.UP)), String.valueOf(0.25f));
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2449, 2, RoundingMode.UP)), String.valueOf(0.25f));
+
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2589f, 1)), String.valueOf(0.3f));
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2449f, 1)), String.valueOf(0.2f));
+
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2589f, 1, RoundingMode.UP)), String.valueOf(0.3f));
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2449f, 1, RoundingMode.UP)), String.valueOf(0.3f));
+
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2489, 0)), String.valueOf(0f));
+        Assert.assertEquals(String.valueOf(Mathx.scale(0.2449, 0)), String.valueOf(0f));
     }
 
     @Test

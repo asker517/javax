@@ -19,6 +19,7 @@
 package me.panpf.javaxkt.lang
 
 import me.panpf.javax.lang.Mathx
+import java.math.RoundingMode
 
 
 /* ******************************************* divide *******************************************/
@@ -115,6 +116,24 @@ inline fun Float?.divideToLong(divisor: Float?): Long = Mathx.divideToLong(this.
  * Divide the two numbers and convert the result to long. If the divisor is 0, it always return 0.
  */
 inline fun Double?.divideToLong(divisor: Double?): Long = Mathx.divideToLong(this.orZero(), divisor.orZero())
+
+
+/* ******************************************* scale *******************************************/
+
+
+/**
+ * Scale numbers in the specified mode
+ *
+ * @param newScale Number of digits after the decimal point
+ */
+inline fun Float?.scale(newScale: Int, roundingMode: RoundingMode = RoundingMode.HALF_UP): Float = Mathx.scale(this.orZero(), newScale, roundingMode)
+
+/**
+ * Scale numbers in the specified mode
+ *
+ * @param newScale Number of digits after the decimal point
+ */
+inline fun Double?.scale(newScale: Int, roundingMode: RoundingMode = RoundingMode.HALF_UP): Double = Mathx.scale(this.orZero(), newScale, roundingMode)
 
 
 /* ******************************************* proportion *******************************************/

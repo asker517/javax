@@ -9,6 +9,7 @@
 * :sparkles: Digestx add \*OrEmpty and \*OrNull method
 * :sparkles: Numberx.kt add orZero method
 * :sparkles: Add Mathx
+* :fire: Numberx scale method move to Mathx
 
 ## 0.6.6
 

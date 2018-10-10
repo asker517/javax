@@ -45,24 +45,6 @@ class NumberxTest {
     }
 
     @Test
-    fun testScale() {
-        Assert.assertEquals(0.2489.scale(2).toString(), 0.25f.toString())
-        Assert.assertEquals(0.2449.scale(2).toString(), 0.24f.toString())
-
-        Assert.assertEquals(0.2489.scale(2, RoundingMode.UP).toString(), 0.25f.toString())
-        Assert.assertEquals(0.2449.scale(2, RoundingMode.UP).toString(), 0.25f.toString())
-
-        Assert.assertEquals(0.2589f.scale(1).toString(), 0.3f.toString())
-        Assert.assertEquals(0.2449f.scale(1).toString(), 0.2f.toString())
-
-        Assert.assertEquals(0.2589f.scale(1, RoundingMode.UP).toString(), 0.3f.toString())
-        Assert.assertEquals(0.2449f.scale(1, RoundingMode.UP).toString(), 0.3f.toString())
-
-        Assert.assertEquals(0.2489.scale(0).toString(), 0f.toString())
-        Assert.assertEquals(0.2449.scale(0).toString(), 0f.toString())
-    }
-
-    @Test
     fun testToByte() {
         Assert.assertEquals("5".toByteOrDefault(4.toByte()).toString(), 5.toString())
         Assert.assertEquals("g".toByteOrDefault(4.toByte()).toString(), 4.toString())

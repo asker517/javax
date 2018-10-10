@@ -16,11 +16,7 @@
 
 package me.panpf.javax.lang;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /**
  * Number tool method
@@ -29,47 +25,6 @@ import java.math.RoundingMode;
 public class Numberx {
 
     private Numberx() {
-    }
-
-
-    /* ******************************************* scale *******************************************/
-
-    // TODO: 2018/10/10 挪到 Mathx 中
-
-    /**
-     * Scale numbers in the specified mode
-     *
-     * @param newScale Number of digits after the decimal point
-     */
-    public static float scale(float number, int newScale, @NotNull RoundingMode roundingMode) {
-        return new BigDecimal(number).setScale(newScale, roundingMode).floatValue();
-    }
-
-    /**
-     * Scale numbers in the specified mode
-     *
-     * @param newScale Number of digits after the decimal point
-     */
-    public static float scale(float number, int newScale) {
-        return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).floatValue();
-    }
-
-    /**
-     * Scale numbers in the specified mode
-     *
-     * @param newScale Number of digits after the decimal point
-     */
-    public static double scale(double number, int newScale, @NotNull RoundingMode roundingMode) {
-        return new BigDecimal(number).setScale(newScale, roundingMode).doubleValue();
-    }
-
-    /**
-     * Scale numbers in the specified mode
-     *
-     * @param newScale Number of digits after the decimal point
-     */
-    public static double scale(double number, int newScale) {
-        return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
 

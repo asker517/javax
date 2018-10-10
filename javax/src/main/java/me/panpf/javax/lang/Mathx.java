@@ -16,6 +16,11 @@
 
 package me.panpf.javax.lang;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 @SuppressWarnings("WeakerAccess")
 public class Mathx {
 
@@ -155,6 +160,46 @@ public class Mathx {
     }
 
 
+    /* ******************************************* scale *******************************************/
+
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static float scale(float number, int newScale, @NotNull RoundingMode roundingMode) {
+        return new BigDecimal(number).setScale(newScale, roundingMode).floatValue();
+    }
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static float scale(float number, int newScale) {
+        return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).floatValue();
+    }
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static double scale(double number, int newScale, @NotNull RoundingMode roundingMode) {
+        return new BigDecimal(number).setScale(newScale, roundingMode).doubleValue();
+    }
+
+    /**
+     * Scale numbers in the specified mode
+     *
+     * @param newScale Number of digits after the decimal point
+     */
+    public static double scale(double number, int newScale) {
+        return new BigDecimal(number).setScale(newScale, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+
     /* ******************************************* proportion *******************************************/
 
 
@@ -162,84 +207,84 @@ public class Mathx {
      * Divide two numbers. If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(byte divided, byte divisor, int newScale) {
-        return Numberx.scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), newScale);
+        return scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), newScale);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(byte divided, byte divisor) {
-        return Numberx.scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), 2);
+        return scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), 2);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(short divided, short divisor, int newScale) {
-        return Numberx.scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), newScale);
+        return scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), newScale);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(short divided, short divisor) {
-        return Numberx.scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), 2);
+        return scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), 2);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(int divided, int divisor, int newScale) {
-        return Numberx.scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), newScale);
+        return scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), newScale);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(int divided, int divisor) {
-        return Numberx.scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), 2);
+        return scale(divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f), 2);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(long divided, long divisor, int newScale) {
-        return Numberx.scale(divisor != 0 ? (float) ((double) divided / (double) divisor) : (divided != 0 ? 1f : 0f), newScale);
+        return scale(divisor != 0 ? (float) ((double) divided / (double) divisor) : (divided != 0 ? 1f : 0f), newScale);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(long divided, long divisor) {
-        return Numberx.scale(divisor != 0 ? (float) ((double) divided / (double) divisor) : (divided != 0 ? 1f : 0f), 2);
+        return scale(divisor != 0 ? (float) ((double) divided / (double) divisor) : (divided != 0 ? 1f : 0f), 2);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(float divided, float divisor, int newScale) {
-        return Numberx.scale(divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f), newScale);
+        return scale(divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f), newScale);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(float divided, float divisor) {
-        return Numberx.scale(divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f), 2);
+        return scale(divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f), 2);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(double divided, double divisor, int newScale) {
-        return Numberx.scale(divisor != 0 ? (float) (divided / divisor) : (divided != 0 ? 1f : 0f), newScale);
+        return scale(divisor != 0 ? (float) (divided / divisor) : (divided != 0 ? 1f : 0f), newScale);
     }
 
     /**
      * Divide two numbers, If the divisor is 0, then [divided] is not equal to 0, then 1f is returned, otherwise 0f is returned.
      */
     public static float proportion(double divided, double divisor) {
-        return Numberx.scale(divisor != 0 ? (float) (divided / divisor) : (divided != 0 ? 1f : 0f), 2);
+        return scale(divisor != 0 ? (float) (divided / divisor) : (divided != 0 ? 1f : 0f), 2);
     }
 
 
@@ -250,83 +295,83 @@ public class Mathx {
      * Divide the two numbers, multiply the result by 100 and retain [newScale] decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(byte divided, byte divisor, int newScale) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain two decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(byte divided, byte divisor) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain [newScale] decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(short divided, short divisor, int newScale) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain two decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(short divided, short divisor) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain [newScale] decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(int divided, int divisor, int newScale) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain two decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(int divided, int divisor) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain [newScale] decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(long divided, long divisor, int newScale) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain two decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(long divided, long divisor) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain [newScale] decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(float divided, float divisor, int newScale) {
-        return Numberx.scale((divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
+        return scale((divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain two decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(float divided, float divisor) {
-        return Numberx.scale((divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
+        return scale((divisor != 0 ? divided / divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain [newScale] decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(double divided, double divisor, int newScale) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, newScale);
     }
 
     /**
      * Divide the two numbers, multiply the result by 100 and retain two decimal places. If the divisor is 0, then [divided] is not equal to 0, then 100f is returned, otherwise 0f is returned.
      */
     public static float percent(double divided, double divisor) {
-        return Numberx.scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
+        return scale((divisor != 0 ? (float) divided / (float) divisor : (divided != 0 ? 1f : 0f)) * 100, 2);
     }
 }
