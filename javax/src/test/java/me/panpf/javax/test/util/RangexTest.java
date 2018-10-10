@@ -27,7 +27,64 @@ import org.junit.Test;
 import java.text.ParseException;
 import java.util.Date;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public final class RangexTest {
+
+    @Test
+    public void testIn() {
+        assertTrue(Rangex.in((byte) 9, (byte) 3, (byte) 10));
+        assertFalse(Rangex.in((byte) 2, (byte) 3, (byte) 10));
+        assertFalse(Rangex.in((byte) 11, (byte) 3, (byte) 10));
+
+        assertTrue(Rangex.in((short) 9, (short) 3, (short) 10));
+        assertFalse(Rangex.in((short) 2, (short) 3, (short) 10));
+        assertFalse(Rangex.in((short) 11, (short) 3, (short) 10));
+
+        assertTrue(Rangex.in(9, 3, 10));
+        assertFalse(Rangex.in(2, 3, 10));
+        assertFalse(Rangex.in(11, 3, 10));
+
+        assertTrue(Rangex.in(9L, 3L, 10L));
+        assertFalse(Rangex.in(2L, 3L, 10L));
+        assertFalse(Rangex.in(11L, 3L, 10L));
+
+        assertTrue(Rangex.in(9F, 3F, 10F));
+        assertFalse(Rangex.in(2F, 3F, 10F));
+        assertFalse(Rangex.in(11F, 3F, 10F));
+
+        assertTrue(Rangex.in(9.0, 3.0, 10.0));
+        assertFalse(Rangex.in(2.0, 3.0, 10.0));
+        assertFalse(Rangex.in(11.0, 3.0, 10.0));
+    }
+
+    @Test
+    public void testNotIn() {
+        assertFalse(Rangex.notIn((byte) 9, (byte) 3, (byte) 10));
+        assertTrue(Rangex.notIn((byte) 2, (byte) 3, (byte) 10));
+        assertTrue(Rangex.notIn((byte) 11, (byte) 3, (byte) 10));
+
+        assertFalse(Rangex.notIn((short) 9, (short) 3, (short) 10));
+        assertTrue(Rangex.notIn((short) 2, (short) 3, (short) 10));
+        assertTrue(Rangex.notIn((short) 11, (short) 3, (short) 10));
+
+        assertFalse(Rangex.notIn(9, 3, 10));
+        assertTrue(Rangex.notIn(2, 3, 10));
+        assertTrue(Rangex.notIn(11, 3, 10));
+
+        assertFalse(Rangex.notIn(9L, 3L, 10L));
+        assertTrue(Rangex.notIn(2L, 3L, 10L));
+        assertTrue(Rangex.notIn(11L, 3L, 10L));
+
+        assertFalse(Rangex.notIn(9F, 3F, 10F));
+        assertTrue(Rangex.notIn(2F, 3F, 10F));
+        assertTrue(Rangex.notIn(11F, 3F, 10F));
+
+        assertFalse(Rangex.notIn(9.0, 3.0, 10.0));
+        assertTrue(Rangex.notIn(2.0, 3.0, 10.0));
+        assertTrue(Rangex.notIn(11.0, 3.0, 10.0));
+    }
 
     @Test
     public void testByteRange() {
@@ -397,18 +454,18 @@ public final class RangexTest {
 
     @Test
     public final void testContains() throws ParseException {
-        Assert.assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 666", null)));
-        Assert.assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 669", null)));
-        Assert.assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 667", null)));
-        Assert.assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 668", null)));
-        Assert.assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 665", null)));
-        Assert.assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 670", null)));
+        assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 666", null)));
+        assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 669", null)));
+        assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 667", null)));
+        assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 668", null)));
+        assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 665", null)));
+        assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").contains(Datex.toDateYMDHMSM("2018-08-06 18:22:15 670", null)));
     }
 
     @Test
     public final void testEmpty() throws ParseException {
-        Assert.assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 665").isEmpty());
-        Assert.assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").isEmpty());
-        Assert.assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 666").isEmpty());
+        assertTrue(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 665").isEmpty());
+        assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 669").isEmpty());
+        assertFalse(Rangex.millisecondYMDHMSMRangeTo("2018-08-06 18:22:15 666", "2018-08-06 18:22:15 666").isEmpty());
     }
 }

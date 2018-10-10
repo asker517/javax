@@ -10,6 +10,7 @@
 * :sparkles: Numberx.kt add orZero method
 * :sparkles: Add Mathx
 * :fire: Numberx scale method move to Mathx
+* :fire: Numberx in, notIn method move to Rangex
 
 ## 0.6.6
 
