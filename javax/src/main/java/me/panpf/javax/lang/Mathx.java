@@ -24,7 +24,7 @@ import java.math.RoundingMode;
 @SuppressWarnings("WeakerAccess")
 public class Mathx {
 
-    public Mathx() {
+    private Mathx() {
     }
 
 

@@ -27,6 +27,9 @@ import java.lang.annotation.Annotation;
 @SuppressWarnings("WeakerAccess")
 public class Annotationx {
 
+    private Annotationx() {
+    }
+
     /**
      * Get an annotation of the specified type on an enumeration
      */
