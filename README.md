@@ -5,7 +5,7 @@
 ![SourceCompatibility][source_compatibility_icon]
 ![TargetCompatibility][target_compatibility_icon]
 ![converage_java][converage_java]
-![converage_kotlin][converage_kotlin]
+<!--![converage_kotlin][converage_kotlin]-->
 [![License][license_icon]][license_link]
 
 Extensions to the Java standard library, some tool methods related to File, IO, primitive types, String, Array, and Collection
@@ -164,7 +164,7 @@ Please view the [CHANGELOG.md] file
 [version_kotlin_link]: https://bintray.com/panpf/maven/javax-kt/_latestVersion
 [source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
 [target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
-[converage_java]: https://img.shields.io/badge/ConverageJava-25%25-orange.svg
+[converage_java]: https://img.shields.io/badge/ConverageJava-28%25-orange.svg
 [converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-88%25-orange.svg
 
 [CHANGELOG.md]: CHANGELOG.md

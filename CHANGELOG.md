@@ -1,19 +1,19 @@
 ## 0.6.7
 
-* :hammer: The method in Stringx whose name ends with `or` adds a String overload method.
-* :sparkles: Stringx add reversed, filter, filterBlank method
+* :bug: Collectionx avoids using java.util.ArrayList because it can't be added
 * :fire: Base64x encodeToBytes method renamed to encode, decodeToBytes method renamed to decode
 * :fire: Base64x removes encodeTo, encodeToBuffer, decodeTo, decodeToBuffer and all methods whose method names begin with 'url' or 'mime'
 * :fire: Remove Mapx.EMPTY_MAP, Collectionx.EMPTY_LIST, Collectionx.EMPTY_SET
-* :bug: Collectionx avoids using java.util.ArrayList because it can't be added
-* :sparkles: Digestx add \*OrEmpty and \*OrNull method
-* :sparkles: Numberx.kt add orZero method
-* :sparkles: Add Mathx
 * :fire: Numberx scale method move to Mathx
 * :fire: Numberx in, notIn method move to Rangex
 * :fire: Numberx coerceAtLeast, coerceAtMost method move to Rangex
 * :fire: Numberx pad method move to Formatx
 * :fire: Formatx totalTime method ignoreMillisecond parameter changed to level
+* :sparkles: Stringx add reversed, filter, filterBlank method
+* :sparkles: Digestx add \*OrEmpty and \*OrNull method
+* :sparkles: Numberx.kt add orZero method
+* :sparkles: Add Mathx
+* :hammer: The method in Stringx whose name ends with `or` adds a String overload method.
 
 ## 0.6.6
 
