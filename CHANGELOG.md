@@ -8,6 +8,7 @@
 * :bug: Collectionx avoids using java.util.ArrayList because it can't be added
 * :sparkles: Digestx add \*OrEmpty and \*OrNull method
 * :sparkles: Numberx.kt add orZero method
+* :sparkles: Add Mathx
 
 ## 0.6.6
 

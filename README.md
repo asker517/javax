@@ -74,6 +74,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * getFieldWithParent, getFieldsWithParent, getFieldValue, setFieldValue,
     * getMethodWithParent, getMethodsWithParent, callMethod,
     * getConstructorWithParent, getConstructorsWithParent, getClassHierarchy, isTypeArray, isTypeCollection
+* Math: [Mathx.java] ([Test][MathxTest.java]) | [Mathx.kt] ([Test][MathxTest.kt])
+    * divide, divideToInt, divideToLong, proportion, percent
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
     * scale, pad, coerce, to\*OrDefault, to\*OrZero, orZero
 * String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
@@ -206,6 +208,11 @@ Please view the [CHANGELOG.md] file
 [ClassxTest.java]: javax/src/test/java/me/panpf/javax/test/lang/ClassxTest.java
 [Classx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Classx.kt
 [ClassxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ClassxTest.kt
+
+[Mathx.java]: javax/src/main/java/me/panpf/javax/lang/Mathx.java
+[MathxTest.java]: javax/src/test/java/me/panpf/javax/test/lang/MathxTest.java
+[Mathx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Mathx.kt
+[MathxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/MathxTest.kt
 
 [Numberx.java]: javax/src/main/java/me/panpf/javax/lang/Numberx.java
 [NumberxTest.java]: javax/src/test/java/me/panpf/javax/test/lang/NumberxTest.java
