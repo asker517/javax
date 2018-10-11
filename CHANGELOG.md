@@ -1,3 +1,7 @@
+## 0.6.8
+
+* :sparkles: Classx getFieldValue(Class<?>, String), setFieldValue(Class<?>, String, Object), callMethod(Class<?>, String, Object...),
+
 ## 0.6.7
 
 * :bug: Collectionx avoids using java.util.ArrayList because it can't be added

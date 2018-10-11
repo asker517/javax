@@ -46,6 +46,15 @@ public class ClassxTest {
         public String testFiled32 = "field32";
     }
 
+    @SuppressWarnings("WeakerAccess")
+    public static class TestStatic {
+        public static String filed1 = "filed11";
+
+        public static String test() {
+            return filed1;
+        }
+    }
+
     public static class TestMethod {
 
         private String update;
@@ -59,6 +68,7 @@ public class ClassxTest {
         }
     }
 
+    @SuppressWarnings("WeakerAccess")
     public static class TestConstructor {
 
         public TestConstructor() {
@@ -78,7 +88,20 @@ public class ClassxTest {
 
     @Test
     public void testField() throws NoSuchFieldException {
+        Classx.setFieldValue(TestStatic.class, "filed1", "filed12");
+        Assert.assertEquals(Classx.getFieldValue(TestStatic.class, "filed1"), "filed12");
+
+        Classx.setFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1"), "filed13");
+        Assert.assertEquals(Classx.getFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1")), "filed13");
+
         Assert.assertNotNull(Classx.getFieldValue(new TestField3(), "testFiled31"));
+
+        try {
+            Classx.getFieldValue(new TestField3(), Classx.getFieldWithParent(TestField3.class, "unknown"));
+            Assert.fail();
+        } catch (Exception ignored) {
+        }
+
         try {
             Classx.getFieldValue(new TestField3(), "unknown");
             Assert.fail();
@@ -89,6 +112,12 @@ public class ClassxTest {
 
         try {
             Classx.setFieldValue(testClass, "testFiled11", "field11x");
+        } catch (NoSuchFieldException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        try {
+            Classx.setFieldValue(testClass, Classx.getFieldWithParent(testClass, "testFiled11"), "field11x");
         } catch (NoSuchFieldException e) {
             throw new IllegalArgumentException(e);
         }
@@ -108,7 +137,7 @@ public class ClassxTest {
         Assert.assertNotNull(fields);
         Assert.assertEquals(fields.length, 6);
 
-        Field[] field2 = Arrayx.filter(Classx.getFieldsWithParent(TestField3.class, 1), new Predicate<Field>() {
+        Field[] field2 = Arrayx.filter(Classx.getFieldsWithParent(new TestField3(), 1), new Predicate<Field>() {
             @Override
             public boolean accept(@NotNull Field field) {
                 return !field.getName().equals("$jacocoData");
@@ -120,6 +149,14 @@ public class ClassxTest {
 
     @Test
     public void testMethod() throws NoSuchMethodException {
+        Assert.assertNotNull(Classx.getMethodWithParent(TestStatic.class, "test"));
+
+        Assert.assertNotNull(Classx.getMethodsWithParent(TestStatic.class));
+
+        Assert.assertNotNull(Classx.callMethod(TestStatic.class, "test"));
+
+        Assert.assertNotNull(Classx.callMethod(Classx.getMethodWithParent(TestStatic.class, "test")));
+
         Assert.assertNotNull(Classx.callMethod(new TestMethod(), "toString"));
         try {
             Classx.callMethod(new TestMethod(), "unknown");
@@ -162,6 +199,15 @@ public class ClassxTest {
         Assert.assertNotNull(methods);
         Assert.assertEquals(methods.length, 14);
 
+        Method[] methods1 = Arrayx.filter(Classx.getMethodsWithParent(new TestMethod()), new Predicate<Method>() {
+            @Override
+            public boolean accept(@NotNull Method field) {
+                return !field.getName().equals("$jacocoInit");
+            }
+        }).toArray(new Method[0]);
+        Assert.assertNotNull(methods1);
+        Assert.assertEquals(methods1.length, 14);
+
         Method[] methods2 = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class, 0), new Predicate<Method>() {
             @Override
             public boolean accept(@NotNull Method field) {
@@ -170,6 +216,15 @@ public class ClassxTest {
         }).toArray(new Method[0]);
         Assert.assertNotNull(methods2);
         Assert.assertEquals(methods2.length, 2);
+
+        Method[] methods3 = Arrayx.filter(Classx.getMethodsWithParent(new TestMethod(), 0), new Predicate<Method>() {
+            @Override
+            public boolean accept(@NotNull Method field) {
+                return !field.getName().equals("$jacocoInit");
+            }
+        }).toArray(new Method[0]);
+        Assert.assertNotNull(methods3);
+        Assert.assertEquals(methods3.length, 2);
     }
 
     @Test
@@ -180,6 +235,14 @@ public class ClassxTest {
             throw new IllegalArgumentException(e);
         }
 
+        try {
+            Assert.assertNotNull(Classx.getConstructorWithParent(new TestConstructor(), String.class));
+        } catch (NoSuchMethodException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class).length, 4);
+
         Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class).length, 4);
 
         Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class, 0).length, 3);
@@ -188,7 +251,9 @@ public class ClassxTest {
     @Test
     public void testHierarchy() {
         Assert.assertEquals(Classx.getClassHierarchy(TestField3.class).length, 4);
-        Assert.assertEquals(Classx.getClassHierarchy(TestField3.class, true).length, 3);
+        Assert.assertEquals(Classx.getClassHierarchy(new TestField3()).length, 4);
+
+        Assert.assertEquals(Classx.getClassHierarchy(new TestField3(), true).length, 3);
     }
 
     @Test

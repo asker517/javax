@@ -29,6 +29,9 @@ import java.lang.reflect.Method
  */
 
 
+/* ******************************************* Field *******************************************/
+
+
 /**
  * Get the field with the specified name from the specified class
  */
@@ -41,19 +44,31 @@ inline fun Class<*>.getFieldWithParent(fieldName: String): Field = Classx.getFie
 @Throws(NoSuchFieldException::class)
 inline fun Any.getFieldWithParent(fieldName: String): Field = Classx.getFieldWithParent(this, fieldName)
 
-/**
- * Get all the fields of a given class and its parent classes
- *
- * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
- */
-inline fun Class<*>.getFieldsWithParent(upwards: Int = -1): Array<Field> = Classx.getFieldsWithParent(this, upwards)
 
 /**
  * Get all the fields of a given class and its parent classes
  *
  * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
  */
-inline fun Any.getFieldsWithParent(upwards: Int = -1): Array<Field> = Classx.getFieldsWithParent(this, upwards)
+inline fun Class<*>.getFieldsWithParent(upwards: Int): Array<Field> = Classx.getFieldsWithParent(this, upwards)
+
+/**
+ * Get all the fields of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
+ */
+inline fun Any.getFieldsWithParent(upwards: Int): Array<Field> = Classx.getFieldsWithParent(this, upwards)
+
+/**
+ * Get all the fields of a given class and all its parent classes
+ */
+inline fun Class<*>.getFieldsWithParent(): Array<Field> = Classx.getFieldsWithParent(this)
+
+/**
+ * Get all the fields of a given class and all its parent classes
+ */
+inline fun Any.getFieldsWithParent(): Array<Field> = Classx.getFieldsWithParent(this)
+
 
 /**
  * Get the value of the specified field
@@ -61,15 +76,38 @@ inline fun Any.getFieldsWithParent(upwards: Int = -1): Array<Field> = Classx.get
 inline fun Any.getFieldValue(field: Field): Any? = Classx.getFieldValue(this, field)
 
 /**
+ * Get the value of the specified field
+ */
+inline fun Field.getValue(): Any? = Classx.getFieldValue(this)
+
+/**
+ * Get the value of the specified field name
+ */
+@Throws(NoSuchFieldException::class)
+inline fun Class<*>.getFieldValue(fieldName: String): Any? = Classx.getFieldValue(this, fieldName)
+
+/**
  * Get the value of the specified field name
  */
 @Throws(NoSuchFieldException::class)
 inline fun Any.getFieldValue(fieldName: String): Any? = Classx.getFieldValue(this, fieldName)
 
+
 /**
  * Set field value
  */
 inline fun Any.setFieldValue(field: Field, newValue: Any?) = Classx.setFieldValue(this, field, newValue)
+
+/**
+ * Set field value
+ */
+inline fun Field.setValue(newValue: Any?) = Classx.setFieldValue(this, newValue)
+
+/**
+ * Set field value by field name
+ */
+@Throws(NoSuchFieldException::class)
+inline fun Class<*>.setFieldValue(fieldName: String, newValue: Any?) = Classx.setFieldValue(this, fieldName, newValue)
 
 /**
  * Set field value by field name
@@ -78,12 +116,14 @@ inline fun Any.setFieldValue(field: Field, newValue: Any?) = Classx.setFieldValu
 inline fun Any.setFieldValue(fieldName: String, newValue: Any?) = Classx.setFieldValue(this, fieldName, newValue)
 
 
+/* ******************************************* Method *******************************************/
+
+
 /**
  * Get the method with the specified name from the specified class
  */
 @Throws(NoSuchMethodException::class)
 inline fun Class<*>.getMethodWithParent(methodName: String, vararg params: Class<*>): Method = Classx.getMethodWithParent(this, methodName, *params)
-
 
 /**
  * Get the method with the specified name from the object
@@ -91,24 +131,47 @@ inline fun Class<*>.getMethodWithParent(methodName: String, vararg params: Class
 @Throws(NoSuchMethodException::class)
 inline fun Any.getMethodWithParent(methodName: String, vararg params: Class<*>): Method = Classx.getMethodWithParent(this, methodName, *params)
 
-/**
- * Get all the methods of a given class and its parent classes
- *
- * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
- */
-inline fun Class<*>.getMethodsWithParent(upwards: Int = -1): Array<Method> = Classx.getMethodsWithParent(this, upwards)
 
 /**
  * Get all the methods of a given class and its parent classes
  *
  * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
  */
-inline fun Any.getMethodsWithParent(upwards: Int = -1): Array<Method> = Classx.getMethodsWithParent(this, upwards)
+inline fun Class<*>.getMethodsWithParent(upwards: Int): Array<Method> = Classx.getMethodsWithParent(this, upwards)
+
+/**
+ * Get all the methods of a given class and its parent classes
+ */
+inline fun Class<*>.getMethodsWithParent(): Array<Method> = Classx.getMethodsWithParent(this)
+
+/**
+ * Get all the methods of a given class and its parent classes
+ *
+ * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
+ */
+inline fun Any.getMethodsWithParent(upwards: Int): Array<Method> = Classx.getMethodsWithParent(this, upwards)
+
+/**
+ * Get all the methods of a given class and its parent classes
+ */
+inline fun Any.getMethodsWithParent(): Array<Method> = Classx.getMethodsWithParent(this)
+
 
 /**
  * Method of executing of the specified object
  */
 inline fun Any.callMethod(method: Method, vararg params: Any): Any? = Classx.callMethod(this, method, *params)
+
+/**
+ * Method of executing of the specified object
+ */
+inline fun Method.call(vararg params: Any): Any? = Classx.callMethod(this, *params)
+
+/**
+ * Method of executing the specified name of the specified object
+ */
+@Throws(NoSuchMethodException::class)
+inline fun Class<*>.callMethod(methodName: String, vararg params: Any): Any? = Classx.callMethod(this, methodName, *params)
 
 /**
  * Method of executing the specified name of the specified object
@@ -117,12 +180,14 @@ inline fun Any.callMethod(method: Method, vararg params: Any): Any? = Classx.cal
 inline fun Any.callMethod(methodName: String, vararg params: Any): Any? = Classx.callMethod(this, methodName, *params)
 
 
+/* ******************************************* Constructor *******************************************/
+
+
 /**
  * Get the constructor from the specified class
  */
 @Throws(NoSuchMethodException::class)
 inline fun Class<*>.getConstructorWithParent(vararg params: Class<*>): Constructor<*> = Classx.getConstructorWithParent(this, *params)
-
 
 /**
  * Get the constructor from the object
@@ -135,14 +200,27 @@ inline fun Any.getConstructorWithParent(vararg params: Class<*>): Constructor<*>
  *
  * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
  */
-inline fun Class<*>.getConstructorsWithParent(upwards: Int = -1): Array<Constructor<*>> = Classx.getConstructorsWithParent(this, upwards)
+inline fun Class<*>.getConstructorsWithParent(upwards: Int): Array<Constructor<*>> = Classx.getConstructorsWithParent(this, upwards)
+
+/**
+ * Get all the constructors of a given class and its parent classes
+ */
+inline fun Class<*>.getConstructorsWithParent(): Array<Constructor<*>> = Classx.getConstructorsWithParent(this)
 
 /**
  * Get all the constructors of a given class and its parent classes
  *
  * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
  */
-inline fun Any.getConstructorsWithParent(upwards: Int = -1): Array<Constructor<*>> = Classx.getConstructorsWithParent(this, upwards)
+inline fun Any.getConstructorsWithParent(upwards: Int): Array<Constructor<*>> = Classx.getConstructorsWithParent(this, upwards)
+
+/**
+ * Get all the constructors of a given class and its parent classes
+ */
+inline fun Any.getConstructorsWithParent(): Array<Constructor<*>> = Classx.getConstructorsWithParent(this)
+
+
+/* ******************************************* Class Hierarchy *******************************************/
 
 
 /**
@@ -150,14 +228,27 @@ inline fun Any.getConstructorsWithParent(upwards: Int = -1): Array<Constructor<*
  *
  * @param ignoreSelf Ignore myself in the return list
  */
-inline fun Class<*>.getClassHierarchy(ignoreSelf: Boolean = false): Array<Class<*>> = Classx.getClassHierarchy(this, ignoreSelf)
+inline fun Class<*>.getClassHierarchy(ignoreSelf: Boolean): Array<Class<*>> = Classx.getClassHierarchy(this, ignoreSelf)
+
+/**
+ * Get all the inheritance lists of the specified class
+ */
+inline fun Class<*>.getClassHierarchy(): Array<Class<*>> = Classx.getClassHierarchy(this)
 
 /**
  * Get all the inheritance lists of the object
  *
  * @param ignoreSelf Ignore myself in the return list
  */
-inline fun Any.getClassHierarchy(ignoreSelf: Boolean = false): Array<Class<*>> = Classx.getClassHierarchy(this, ignoreSelf)
+inline fun Any.getClassHierarchy(ignoreSelf: Boolean): Array<Class<*>> = Classx.getClassHierarchy(this, ignoreSelf)
+
+/**
+ * Get all the inheritance lists of the object
+ */
+inline fun Any.getClassHierarchy(): Array<Class<*>> = Classx.getClassHierarchy(this)
+
+
+/* ******************************************* Type *******************************************/
 
 
 /**

@@ -71,6 +71,7 @@ public class Classx {
         return getFieldWithParent(object.getClass(), fieldName);
     }
 
+
     /**
      * Get all the fields of a given class and its parent classes
      *
@@ -124,6 +125,7 @@ public class Classx {
         return getFieldsWithParent(object.getClass(), -1);
     }
 
+
     /**
      * Get the value of the specified field
      */
@@ -137,6 +139,28 @@ public class Classx {
         }
     }
 
+
+    /**
+     * Get the value of the specified field
+     */
+    @Nullable
+    public static Object getFieldValue(@NotNull Field field) {
+        field.setAccessible(true);
+        try {
+            return field.get(null);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Get the value of the specified field name
+     */
+    @Nullable
+    public static Object getFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName) throws NoSuchFieldException {
+        return getFieldValue(getFieldWithParent(clazz, fieldName));
+    }
+
     /**
      * Get the value of the specified field name
      */
@@ -144,6 +168,7 @@ public class Classx {
     public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
         return getFieldValue(object, getFieldWithParent(object.getClass(), fieldName));
     }
+
 
     /**
      * Set field value
@@ -155,6 +180,25 @@ public class Classx {
         } catch (IllegalAccessException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    /**
+     * Set field value
+     */
+    public static void setFieldValue(@NotNull Field field, @Nullable Object newValue) {
+        field.setAccessible(true);
+        try {
+            field.set(null, newValue);
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Set field value by field name
+     */
+    public static void setFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
+        setFieldValue(getFieldWithParent(clazz, fieldName), newValue);
     }
 
     /**
@@ -202,6 +246,7 @@ public class Classx {
     public static Method getMethodWithParent(@NotNull Object object, @NotNull String methodName, @Nullable Class<?>... params) throws NoSuchMethodException {
         return getMethodWithParent(object.getClass(), methodName, params);
     }
+
 
     /**
      * Get all the methods of a given class and its parent classes
@@ -256,6 +301,7 @@ public class Classx {
         return getMethodsWithParent(object.getClass(), -1);
     }
 
+
     /**
      * Method of executing of the specified object
      */
@@ -267,6 +313,35 @@ public class Classx {
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    /**
+     * Method of executing of the specified object
+     */
+    @Nullable
+    public static Object callMethod(@NotNull Method method, @Nullable Object... params) {
+        method.setAccessible(true);
+        try {
+            return method.invoke(null, params);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    /**
+     * Method of executing the specified name of the specified class
+     */
+    @Nullable
+    public static Object callMethod(@NotNull Class<?> clazz, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
+        Class[] paramClazzs = params != null ? Arrayx.map(params, new Transformer<Object, Class<?>>() {
+            @NotNull
+            @Override
+            public Class<?> transform(@NotNull Object o) {
+                return o.getClass();
+            }
+        }).toArray(new Class[params.length]) : null;
+        Method method = getMethodWithParent(clazz, methodName, paramClazzs);
+        return callMethod(method, params);
     }
 
     /**

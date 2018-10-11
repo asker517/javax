@@ -19,8 +19,7 @@ package me.panpf.javaxkt.test.lang
 import me.panpf.javaxkt.lang.*
 import org.junit.Assert
 import org.junit.Test
-
-import java.util.ArrayList
+import java.util.*
 
 class ClassxTest {
 
@@ -47,6 +46,16 @@ class ClassxTest {
     }
 
     @Suppress("unused")
+    class TestStatic {
+        companion object {
+            var filed1 = "filed11"
+
+            @JvmStatic
+            fun test() = filed1
+        }
+    }
+
+    @Suppress("unused")
     class TestConstructor {
         constructor()
 
@@ -65,7 +74,20 @@ class ClassxTest {
 
     @Test
     fun testField() {
+        TestStatic::class.java.setFieldValue("filed1", "filed12")
+        Assert.assertEquals(TestStatic::class.java.getFieldValue("filed1"), "filed12")
+
+        TestStatic::class.java.getFieldWithParent("filed1").setValue("filed13")
+        Assert.assertEquals(TestStatic::class.java.getFieldWithParent("filed1").getValue(), "filed13")
+
         Assert.assertNotNull(TestField3().getFieldValue("testFiled31"))
+
+        try {
+            TestField3().getFieldValue(TestField3::class.java.getFieldWithParent("unknown"))
+            Assert.fail()
+        } catch (e: Exception) {
+        }
+
         try {
             TestField3().getFieldValue("unknown")
             Assert.fail()
@@ -81,14 +103,28 @@ class ClassxTest {
         }
 
         try {
+            testClass.setFieldValue(testClass.getFieldWithParent("testFiled11"), "field11x")
+        } catch (e: NoSuchFieldException) {
+            throw IllegalArgumentException(e)
+        }
+
+        try {
             Assert.assertEquals(testClass.getFieldValue("testFiled11"), "field11x")
         } catch (e: NoSuchFieldException) {
             throw IllegalArgumentException(e)
         }
 
-        val fields = TestField3().getFieldsWithParent().filter { it.name != "\$jacocoData" }.toTypedArray()
+        val fields = TestField3::class.java.getFieldsWithParent().filter { it.name != "\$jacocoData" }.toTypedArray()
         Assert.assertNotNull(fields)
         Assert.assertEquals(fields.size.toLong(), 6)
+
+        val fields1 = TestField3::class.java.getFieldsWithParent(-1).filter { it.name != "\$jacocoData" }.toTypedArray()
+        Assert.assertNotNull(fields1)
+        Assert.assertEquals(fields1.size.toLong(), 6)
+
+        val fields3 = TestField3().getFieldsWithParent().filter { it.name != "\$jacocoData" }.toTypedArray()
+        Assert.assertNotNull(fields3)
+        Assert.assertEquals(fields3.size.toLong(), 6)
 
         val field2 = TestField3().getFieldsWithParent(1).filter { it.name != "\$jacocoData" }.toTypedArray()
         Assert.assertNotNull(field2)
@@ -97,6 +133,14 @@ class ClassxTest {
 
     @Test
     fun testMethod() {
+        Assert.assertNotNull(TestStatic::class.java.getMethodWithParent("test"))
+
+        Assert.assertNotNull(TestStatic::class.java.getMethodsWithParent())
+
+        Assert.assertNotNull(TestStatic::class.java.callMethod("test"))
+
+        Assert.assertNotNull(TestStatic::class.java.getMethodWithParent("test").call())
+
         Assert.assertNotNull(TestMethod().callMethod("toString"))
         try {
             TestMethod().callMethod("unknown")
@@ -134,18 +178,36 @@ class ClassxTest {
         Assert.assertNotNull(methods)
         Assert.assertEquals(methods.size.toLong(), 14)
 
+        val methods1 = TestMethod::class.java.getMethodsWithParent().filter { it.name != "\$jacocoInit" }.toTypedArray()
+        Assert.assertNotNull(methods1)
+        Assert.assertEquals(methods1.size.toLong(), 14)
+
         val methods2 = TestMethod().getMethodsWithParent(0).filter { it.name != "\$jacocoInit" }.toTypedArray()
         Assert.assertNotNull(methods2)
         Assert.assertEquals(methods2.size.toLong(), 2)
+
+        val methods3 = TestMethod::class.java.getMethodsWithParent(0).filter { it.name != "\$jacocoInit" }.toTypedArray()
+        Assert.assertNotNull(methods3)
+        Assert.assertEquals(methods3.size.toLong(), 2)
     }
 
     @Test
     fun testConstructor() {
         try {
+            Assert.assertNotNull(TestConstructor::class.java.getConstructorWithParent(String::class.java))
+        } catch (e: NoSuchMethodException) {
+            throw IllegalArgumentException(e)
+        }
+
+        try {
             Assert.assertNotNull(TestConstructor().getConstructorWithParent(String::class.java))
         } catch (e: NoSuchMethodException) {
             throw IllegalArgumentException(e)
         }
+
+        Assert.assertEquals(TestConstructor::class.java.getConstructorsWithParent(-1).size, 4)
+
+        Assert.assertEquals(TestConstructor::class.java.getConstructorsWithParent().size, 4)
 
         Assert.assertEquals(TestConstructor().getConstructorsWithParent().size, 4)
 
@@ -154,12 +216,21 @@ class ClassxTest {
 
     @Test
     fun testHierarchy() {
+        Assert.assertEquals(TestField3::class.java.getClassHierarchy(false).size, 4)
+        Assert.assertEquals(TestField3::class.java.getClassHierarchy().size, 4)
         Assert.assertEquals(TestField3().getClassHierarchy().size, 4)
+
         Assert.assertEquals(TestField3().getClassHierarchy(true).size, 3)
     }
 
     @Test
     fun testType() {
+        try {
+            Assert.assertTrue(TestType::class.java.getFieldWithParent("strings").isTypeArray(String::class.java))
+        } catch (e: NoSuchFieldException) {
+            throw IllegalArgumentException(e)
+        }
+
         try {
             Assert.assertTrue(TestType().getFieldWithParent("strings").isTypeArray(String::class.java))
         } catch (e: NoSuchFieldException) {
