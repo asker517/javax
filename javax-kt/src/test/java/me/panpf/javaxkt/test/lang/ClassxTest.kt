@@ -74,11 +74,11 @@ class ClassxTest {
 
     @Test
     fun testField() {
-        TestStatic::class.java.setFieldValue("filed1", "filed12")
-        Assert.assertEquals(TestStatic::class.java.getFieldValue("filed1"), "filed12")
+        TestStatic::class.java.setStaticFieldValue("filed1", "filed12")
+        Assert.assertEquals(TestStatic::class.java.getStaticFieldValue("filed1"), "filed12")
 
-        TestStatic::class.java.getFieldWithParent("filed1").setValue("filed13")
-        Assert.assertEquals(TestStatic::class.java.getFieldWithParent("filed1").getValue(), "filed13")
+        TestStatic::class.java.getFieldWithParent("filed1").setStaticValue("filed13")
+        Assert.assertEquals(TestStatic::class.java.getFieldWithParent("filed1").getStaticValue(), "filed13")
 
         Assert.assertNotNull(TestField3().getFieldValue("testFiled31"))
 
@@ -137,9 +137,9 @@ class ClassxTest {
 
         Assert.assertNotNull(TestStatic::class.java.getMethodsWithParent())
 
-        Assert.assertNotNull(TestStatic::class.java.callMethod("test"))
+        Assert.assertNotNull(TestStatic::class.java.callStaticMethod("test"))
 
-        Assert.assertNotNull(TestStatic::class.java.getMethodWithParent("test").call())
+        Assert.assertNotNull(TestStatic::class.java.getMethodWithParent("test").callStaticMethod())
 
         Assert.assertNotNull(TestMethod().callMethod("toString"))
         try {

@@ -88,11 +88,11 @@ public class ClassxTest {
 
     @Test
     public void testField() throws NoSuchFieldException {
-        Classx.setFieldValue(TestStatic.class, "filed1", "filed12");
-        Assert.assertEquals(Classx.getFieldValue(TestStatic.class, "filed1"), "filed12");
+        Classx.setStaticFieldValue(TestStatic.class, "filed1", "filed12");
+        Assert.assertEquals(Classx.getStaticFieldValue(TestStatic.class, "filed1"), "filed12");
 
-        Classx.setFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1"), "filed13");
-        Assert.assertEquals(Classx.getFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1")), "filed13");
+        Classx.setStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1"), "filed13");
+        Assert.assertEquals(Classx.getStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1")), "filed13");
 
         Assert.assertNotNull(Classx.getFieldValue(new TestField3(), "testFiled31"));
 
@@ -153,9 +153,11 @@ public class ClassxTest {
 
         Assert.assertNotNull(Classx.getMethodsWithParent(TestStatic.class));
 
-        Assert.assertNotNull(Classx.callMethod(TestStatic.class, "test"));
+        Assert.assertNotNull(Classx.callStaticMethod(TestStatic.class, "test"));
 
-        Assert.assertNotNull(Classx.callMethod(Classx.getMethodWithParent(TestStatic.class, "test")));
+        Assert.assertNotNull(Classx.callStaticMethod(Classx.getMethodWithParent(TestStatic.class, "test")));
+
+        Assert.assertNotNull(Classx.callStaticMethod(TestStatic.class, "test"));
 
         Assert.assertNotNull(Classx.callMethod(new TestMethod(), "toString"));
         try {

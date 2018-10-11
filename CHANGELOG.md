@@ -1,3 +1,12 @@
+## 0.6.9
+
+* :fire: Classx getFieldValue(Field) rename to getStaticFieldValue(Field)
+* :fire: Classx getFieldValue(Class<?>, String) rename to getStaticFieldValue(Class<?>, String)
+* :fire: Classx setFieldValue(Field, Object) rename to setStaticFieldValue(Field, Object)
+* :fire: Classx setFieldValue(Class<?>, String, Object) rename to setStaticFieldValue(Class<?>, String, Object)
+* :fire: Classx callMethod(Method, Object...) rename to callStaticMethod(Method, Object...)
+* :fire: Classx callMethod(Class<?>, String, Object...) rename to callStaticMethod(Class<?>, String, Object...)
+
 ## 0.6.8
 
 * :sparkles: Classx getFieldValue(Class<?>, String), setFieldValue(Class<?>, String, Object), callMethod(Class<?>, String, Object...),

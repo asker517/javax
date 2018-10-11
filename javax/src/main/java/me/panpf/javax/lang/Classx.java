@@ -139,12 +139,19 @@ public class Classx {
         }
     }
 
+    /**
+     * Get the value of the specified field name
+     */
+    @Nullable
+    public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
+        return getFieldValue(object, getFieldWithParent(object, fieldName));
+    }
 
     /**
      * Get the value of the specified field
      */
     @Nullable
-    public static Object getFieldValue(@NotNull Field field) {
+    public static Object getStaticFieldValue(@NotNull Field field) {
         field.setAccessible(true);
         try {
             return field.get(null);
@@ -157,16 +164,8 @@ public class Classx {
      * Get the value of the specified field name
      */
     @Nullable
-    public static Object getFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName) throws NoSuchFieldException {
-        return getFieldValue(getFieldWithParent(clazz, fieldName));
-    }
-
-    /**
-     * Get the value of the specified field name
-     */
-    @Nullable
-    public static Object getFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
-        return getFieldValue(object, getFieldWithParent(object.getClass(), fieldName));
+    public static Object getStaticFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName) throws NoSuchFieldException {
+        return getStaticFieldValue(getFieldWithParent(clazz, fieldName));
     }
 
 
@@ -183,9 +182,16 @@ public class Classx {
     }
 
     /**
+     * Set field value by field name
+     */
+    public static void setFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
+        setFieldValue(object, getFieldWithParent(object, fieldName), newValue);
+    }
+
+    /**
      * Set field value
      */
-    public static void setFieldValue(@NotNull Field field, @Nullable Object newValue) {
+    public static void setStaticFieldValue(@NotNull Field field, @Nullable Object newValue) {
         field.setAccessible(true);
         try {
             field.set(null, newValue);
@@ -197,15 +203,8 @@ public class Classx {
     /**
      * Set field value by field name
      */
-    public static void setFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
-        setFieldValue(getFieldWithParent(clazz, fieldName), newValue);
-    }
-
-    /**
-     * Set field value by field name
-     */
-    public static void setFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
-        setFieldValue(object, getFieldWithParent(object.getClass(), fieldName), newValue);
+    public static void setStaticFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
+        setStaticFieldValue(getFieldWithParent(clazz, fieldName), newValue);
     }
 
 
@@ -316,10 +315,26 @@ public class Classx {
     }
 
     /**
+     * Method of executing the specified name of the specified object
+     */
+    @Nullable
+    public static Object callMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
+        Class[] paramClazzs = params != null ? Arrayx.map(params, new Transformer<Object, Class<?>>() {
+            @NotNull
+            @Override
+            public Class<?> transform(@NotNull Object o) {
+                return o.getClass();
+            }
+        }).toArray(new Class[params.length]) : null;
+        Method method = getMethodWithParent(object, methodName, paramClazzs);
+        return callMethod(object, method, params);
+    }
+
+    /**
      * Method of executing of the specified object
      */
     @Nullable
-    public static Object callMethod(@NotNull Method method, @Nullable Object... params) {
+    public static Object callStaticMethod(@NotNull Method method, @Nullable Object... params) {
         method.setAccessible(true);
         try {
             return method.invoke(null, params);
@@ -332,7 +347,7 @@ public class Classx {
      * Method of executing the specified name of the specified class
      */
     @Nullable
-    public static Object callMethod(@NotNull Class<?> clazz, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
+    public static Object callStaticMethod(@NotNull Class<?> clazz, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
         Class[] paramClazzs = params != null ? Arrayx.map(params, new Transformer<Object, Class<?>>() {
             @NotNull
             @Override
@@ -341,23 +356,7 @@ public class Classx {
             }
         }).toArray(new Class[params.length]) : null;
         Method method = getMethodWithParent(clazz, methodName, paramClazzs);
-        return callMethod(method, params);
-    }
-
-    /**
-     * Method of executing the specified name of the specified object
-     */
-    @Nullable
-    public static Object callMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
-        Class[] paramClazzs = params != null ? Arrayx.map(params, new Transformer<Object, Class<?>>() {
-            @NotNull
-            @Override
-            public Class<?> transform(@NotNull Object o) {
-                return o.getClass();
-            }
-        }).toArray(new Class[params.length]) : null;
-        Method method = getMethodWithParent(object.getClass(), methodName, paramClazzs);
-        return callMethod(object, method, params);
+        return callStaticMethod(method, params);
     }
 
 

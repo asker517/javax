@@ -76,21 +76,21 @@ inline fun Any.getFieldsWithParent(): Array<Field> = Classx.getFieldsWithParent(
 inline fun Any.getFieldValue(field: Field): Any? = Classx.getFieldValue(this, field)
 
 /**
- * Get the value of the specified field
- */
-inline fun Field.getValue(): Any? = Classx.getFieldValue(this)
-
-/**
- * Get the value of the specified field name
- */
-@Throws(NoSuchFieldException::class)
-inline fun Class<*>.getFieldValue(fieldName: String): Any? = Classx.getFieldValue(this, fieldName)
-
-/**
  * Get the value of the specified field name
  */
 @Throws(NoSuchFieldException::class)
 inline fun Any.getFieldValue(fieldName: String): Any? = Classx.getFieldValue(this, fieldName)
+
+/**
+ * Get the value of the specified field
+ */
+inline fun Field.getStaticValue(): Any? = Classx.getStaticFieldValue(this)
+
+/**
+ * Get the value of the specified field name
+ */
+@Throws(NoSuchFieldException::class)
+inline fun Class<*>.getStaticFieldValue(fieldName: String): Any? = Classx.getStaticFieldValue(this, fieldName)
 
 
 /**
@@ -99,21 +99,21 @@ inline fun Any.getFieldValue(fieldName: String): Any? = Classx.getFieldValue(thi
 inline fun Any.setFieldValue(field: Field, newValue: Any?) = Classx.setFieldValue(this, field, newValue)
 
 /**
- * Set field value
- */
-inline fun Field.setValue(newValue: Any?) = Classx.setFieldValue(this, newValue)
-
-/**
- * Set field value by field name
- */
-@Throws(NoSuchFieldException::class)
-inline fun Class<*>.setFieldValue(fieldName: String, newValue: Any?) = Classx.setFieldValue(this, fieldName, newValue)
-
-/**
  * Set field value by field name
  */
 @Throws(NoSuchFieldException::class)
 inline fun Any.setFieldValue(fieldName: String, newValue: Any?) = Classx.setFieldValue(this, fieldName, newValue)
+
+/**
+ * Set field value
+ */
+inline fun Field.setStaticValue(newValue: Any?) = Classx.setStaticFieldValue(this, newValue)
+
+/**
+ * Set field value by field name
+ */
+@Throws(NoSuchFieldException::class)
+inline fun Class<*>.setStaticFieldValue(fieldName: String, newValue: Any?) = Classx.setStaticFieldValue(this, fieldName, newValue)
 
 
 /* ******************************************* Method *******************************************/
@@ -163,21 +163,21 @@ inline fun Any.getMethodsWithParent(): Array<Method> = Classx.getMethodsWithPare
 inline fun Any.callMethod(method: Method, vararg params: Any): Any? = Classx.callMethod(this, method, *params)
 
 /**
- * Method of executing of the specified object
- */
-inline fun Method.call(vararg params: Any): Any? = Classx.callMethod(this, *params)
-
-/**
- * Method of executing the specified name of the specified object
- */
-@Throws(NoSuchMethodException::class)
-inline fun Class<*>.callMethod(methodName: String, vararg params: Any): Any? = Classx.callMethod(this, methodName, *params)
-
-/**
  * Method of executing the specified name of the specified object
  */
 @Throws(NoSuchMethodException::class)
 inline fun Any.callMethod(methodName: String, vararg params: Any): Any? = Classx.callMethod(this, methodName, *params)
+
+/**
+ * Method of executing of the specified object
+ */
+inline fun Method.callStaticMethod(vararg params: Any): Any? = Classx.callStaticMethod(this, *params)
+
+/**
+ * Method of executing the specified name of the specified object
+ */
+@Throws(NoSuchMethodException::class)
+inline fun Class<*>.callStaticMethod(methodName: String, vararg params: Any): Any? = Classx.callStaticMethod(this, methodName, *params)
 
 
 /* ******************************************* Constructor *******************************************/

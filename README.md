@@ -71,8 +71,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * isBlank, isNotBlank, isBlankOr, isChinese, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr
     * isLetter, isNotLetter, isNotLetterOr, isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr
 * Class: [Classx.java] ([Test][ClassxTest.java]) | [Classx.kt] ([Test][ClassxTest.kt])
-    * getFieldWithParent, getFieldsWithParent, getFieldValue, setFieldValue,
-    * getMethodWithParent, getMethodsWithParent, callMethod,
+    * getFieldWithParent, getFieldsWithParent, getFieldValue, getStaticFieldValue, setFieldValue,
+    * setStaticFieldValue, getMethodWithParent, getMethodsWithParent, callMethod, callStaticMethod,
     * getConstructorWithParent, getConstructorsWithParent, getClassHierarchy, isTypeArray, isTypeCollection
 * Math: [Mathx.java] ([Test][MathxTest.java]) | [Mathx.kt] ([Test][MathxTest.kt])
     * divide, divideToInt, divideToLong, scale, proportion, percent
