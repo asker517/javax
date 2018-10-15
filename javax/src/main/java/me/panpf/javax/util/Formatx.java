@@ -406,7 +406,7 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeZH(long totalTimeMillis, int level) {
-        return totalTime(totalTimeMillis, level, " ", "天", "小时", "分", "秒", "毫秒");
+        return totalTime(totalTimeMillis, level, " ", "天", "小时", "分钟", "秒", "毫秒");
     }
 
     /**
@@ -478,7 +478,7 @@ public class Formatx {
      */
     @NotNull
     public static String totalTimeZHShort(long totalTimeMillis, int level) {
-        return totalTime(totalTimeMillis, level, "", "天", "小时", "分", "秒", "毫秒");
+        return totalTime(totalTimeMillis, level, "", "天", "小时", "分钟", "秒", "毫秒");
     }
 
     /**

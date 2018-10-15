@@ -233,27 +233,27 @@ public class FormatxTest {
         assertEquals(Formatx.totalTimeZH(1000 * 3 + 590, 1), "3秒");
 
         // minute
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3), "3分");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + (1000 * 23)), "3分 23秒");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + (1000 * 23) + 467), "3分 23秒 467毫秒");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + 467), "3分 467毫秒");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + 467, 1), "3分");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3), "3分钟");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + (1000 * 23)), "3分钟 23秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + (1000 * 23) + 467), "3分钟 23秒 467毫秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + 467), "3分钟 467毫秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 3 + 467, 1), "3分钟");
 
         // hour
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60), "1小时");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 60 * 23)), "1小时 23分");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1小时 23分 23秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 60 * 23)), "1小时 23分钟");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1小时 23分钟 23秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 23)), "1小时 23秒");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1小时 23分 23秒 467毫秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1小时 23分钟 23秒 467毫秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + 467), "1小时 467毫秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 + 467, 1), "1小时");
 
         // day
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24), "1天");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23)), "1天 1小时 23分");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1天 1小时 23分 23秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23)), "1天 1小时 23分钟");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1天 1小时 23分钟 23秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 23)), "1天 1小时 23秒");
-        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1天 1小时 23分 23秒 467毫秒");
+        assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1天 1小时 23分钟 23秒 467毫秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467), "1天 1小时 467毫秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 467), "1天 467毫秒");
         assertEquals(Formatx.totalTimeZH(1000 * 60 * 60 * 24 + 467, 1), "1天");
@@ -272,27 +272,27 @@ public class FormatxTest {
         assertEquals(Formatx.totalTimeZHShort(1000 * 3 + 590, 1), "3秒");
 
         // minute
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3), "3分");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + (1000 * 23)), "3分23秒");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + (1000 * 23) + 467), "3分23秒467毫秒");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + 467), "3分467毫秒");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + 467, 1), "3分");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3), "3分钟");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + (1000 * 23)), "3分钟23秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + (1000 * 23) + 467), "3分钟23秒467毫秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + 467), "3分钟467毫秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 3 + 467, 1), "3分钟");
 
         // hour
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60), "1小时");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 60 * 23)), "1小时23分");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1小时23分23秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 60 * 23)), "1小时23分钟");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1小时23分钟23秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 23)), "1小时23秒");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1小时23分23秒467毫秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1小时23分钟23秒467毫秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + 467), "1小时467毫秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 + 467, 1), "1小时");
 
         // day
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24), "1天");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23)), "1天1小时23分");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1天1小时23分23秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23)), "1天1小时23分钟");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23)), "1天1小时23分钟23秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 23)), "1天1小时23秒");
-        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1天1小时23分23秒467毫秒");
+        assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + (1000 * 60 * 23) + (1000 * 23) + 467), "1天1小时23分钟23秒467毫秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467), "1天1小时467毫秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 467), "1天467毫秒");
         assertEquals(Formatx.totalTimeZHShort(1000 * 60 * 60 * 24 + 467, 1), "1天");
