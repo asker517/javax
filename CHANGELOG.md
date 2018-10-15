@@ -2,6 +2,7 @@
 
 * :arrow_up: Updating to Kotlin 1.2.71
 * :fire: Formatx totalTimeZH and totalTimeZHSHort method default parameter '分' to '分钟'
+* :sparkles: Formatx adds totalTime(long, FormatTotalTimeConfig) method
 
 
 ## v0.6.9

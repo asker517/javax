@@ -320,15 +320,11 @@ public class Formatx {
 
     /**
      * Returns the total time of formatting that can be displayed
-     *
-     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
      */
     @NotNull
-    public static String totalTime(long totalTimeMillis, int level, @NotNull String divider,
-                                   @NotNull String daySuffix, @NotNull String hourSuffix, @NotNull String minuteSuffix,
-                                   @NotNull String secondSuffix, @NotNull String millisecondSuffix) {
+    public static String totalTime(long totalTimeMillis, @NotNull FormatTotalTimeConfig config) {
         long finalTotalTimeMillis = totalTimeMillis >= 0 ? totalTimeMillis : 0;
-        int finalLevel = Math.max(level, 0);
+        int finalLevel = Math.max(config.getLevel(), 0);
 
         long day = finalLevel <= 4 ? finalTotalTimeMillis / ONE_DAY_MILLISECONDS : 0;
         long hour = finalLevel <= 3 ? finalTotalTimeMillis % (ONE_DAY_MILLISECONDS) / (ONE_HOUR_MILLISECONDS) : 0;
@@ -338,29 +334,53 @@ public class Formatx {
 
         StringBuilder builder = new StringBuilder();
         if (day > 0) {
-            if (builder.length() > 0) builder.append(divider);
-            builder.append(day).append(daySuffix);
+            if (builder.length() > 0) builder.append(config.getDivider());
+            builder.append(day).append(config.getDaySuffix());
         }
         if (hour > 0) {
-            if (builder.length() > 0) builder.append(divider);
-            builder.append(hour).append(hourSuffix);
+            if (builder.length() > 0) builder.append(config.getDivider());
+            builder.append(hour).append(config.getHourSuffix());
         }
         if (minute > 0) {
-            if (builder.length() > 0) builder.append(divider);
-            builder.append(minute).append(minuteSuffix);
+            if (builder.length() > 0) builder.append(config.getDivider());
+            builder.append(minute).append(config.getMinuteSuffix());
         }
         if (second > 0) {
-            if (builder.length() > 0) builder.append(divider);
-            builder.append(second).append(secondSuffix);
+            if (builder.length() > 0) builder.append(config.getDivider());
+            builder.append(second).append(config.getSecondSuffix());
         }
         if (millisecond > 0) {
-            if (builder.length() > 0) builder.append(divider);
-            builder.append(millisecond).append(millisecondSuffix);
+            if (builder.length() > 0) builder.append(config.getDivider());
+            builder.append(millisecond).append(config.getMillisecondSuffix());
         }
         if (builder.length() == 0) {
-            builder.append(0).append(secondSuffix);
+            if (finalLevel <= 0) {
+                builder.append(0).append(config.getSecondSuffix());
+            } else if (finalLevel <= 1) {
+                builder.append(0).append(config.getSecondSuffix());
+            } else if (finalLevel <= 2) {
+                builder.append(0).append(config.getMinuteSuffix());
+            } else if (finalLevel <= 3) {
+                builder.append(0).append(config.getHourSuffix());
+            } else if (finalLevel <= 4) {
+                builder.append(0).append(config.getDaySuffix());
+            } else {
+                builder.append(0).append(config.getDaySuffix());
+            }
         }
         return builder.toString();
+    }
+
+    /**
+     * Returns the total time of formatting that can be displayed
+     *
+     * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
+     */
+    @NotNull
+    public static String totalTime(long totalTimeMillis, int level, @NotNull String divider,
+                                   @NotNull String daySuffix, @NotNull String hourSuffix, @NotNull String minuteSuffix,
+                                   @NotNull String secondSuffix, @NotNull String millisecondSuffix) {
+        return totalTime(totalTimeMillis, new FormatTotalTimeConfig(level, divider, daySuffix, hourSuffix, minuteSuffix, secondSuffix, millisecondSuffix));
     }
 
     /**

@@ -173,8 +173,15 @@ class FormatxTest {
         Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(2), "1d 1h 23m")
         Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(3), "1d 1h")
         Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(4), "1d")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(5), "0s")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(6), "0s")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(5), "0d")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTime(6), "0d")
+
+        Assert.assertEquals(0.formatTotalTime(0), "0s")
+        Assert.assertEquals(0.formatTotalTime(1), "0s")
+        Assert.assertEquals(0.formatTotalTime(2), "0m")
+        Assert.assertEquals(0.formatTotalTime(3), "0h")
+        Assert.assertEquals(0.formatTotalTime(4), "0d")
+        Assert.assertEquals(0.formatTotalTime(5), "0d")
     }
 
     @Test
