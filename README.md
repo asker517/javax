@@ -32,7 +32,7 @@ compile "me.panpf:javax-kt:$lastVersion"
 ```
 
 Dependencies：
-* org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.61
+* org.jetbrains.kotlin:kotlin-stdlib-jdk7: 1.2.71
 
 Please replace `$lastVersion` with the latest version: [![Download][version_kotlin_icon]][version_kotlin_link]
 

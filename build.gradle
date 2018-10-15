@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' } // 华为镜像服务，JCenter 最近不稳定
         jcenter()
         mavenCentral()
     }

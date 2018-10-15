@@ -1,4 +1,9 @@
-## 0.6.9
+## v0.7.0
+
+* :arrow_up: Updating to Kotlin 1.2.71
+
+
+## v0.6.9
 
 * :fire: Classx getFieldValue(Field) rename to getStaticFieldValue(Field)
 * :fire: Classx getFieldValue(Class<?>, String) rename to getStaticFieldValue(Class<?>, String)
@@ -7,11 +12,13 @@
 * :fire: Classx callMethod(Method, Object...) rename to callStaticMethod(Method, Object...)
 * :fire: Classx callMethod(Class<?>, String, Object...) rename to callStaticMethod(Class<?>, String, Object...)
 
-## 0.6.8
+
+## v0.6.8
 
 * :sparkles: Classx getFieldValue(Class<?>, String), setFieldValue(Class<?>, String, Object), callMethod(Class<?>, String, Object...),
 
-## 0.6.7
+
+## v0.6.7
 
 * :bug: Collectionx avoids using java.util.ArrayList because it can't be added
 * :fire: Base64x encodeToBytes method renamed to encode, decodeToBytes method renamed to decode
@@ -28,7 +35,8 @@
 * :sparkles: Add Mathx
 * :hammer: The method in Stringx whose name ends with `or` adds a String overload method.
 
-## 0.6.6
+
+## v0.6.6
 
 Removed Or Renamed
 * :fire: EMPTY_MAP from Collectionx move to Mapx
@@ -67,7 +75,7 @@ Hammer
 * :hammer: The primary parameters of all Arrayx methods are now Nullable
 
 
-## 0.6.5
+## v0.6.5
 * :hammer: String orContains and andContains change to extension method
 * :hammer: Premise's areEqual method moves to Comparison
 * :fire: Remove Premise's requireNoNulls method
@@ -89,7 +97,8 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
     requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireSafe, requireNotSafe method signature
 * :arrow_up: Updating to Kotlin 1.2.61
 
-## 0.6.4
+
+## v0.6.4
 * Char add isNotBlank, isBlankOr, isNotChinese, isNotChineseOr, isDigit, isNotDigit, isNotDigitOr,
     isLetter, isNotLetter, isNotLetterOr, isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr method
 * String add isSafe, isNotSafe, isNotSafeOr, isNotBlank, isBlankOr, isNotNullOrBlank, isNullOrBlankOr,
@@ -98,7 +107,8 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
 * The return content of Format's totalTime method has spaces added, and the totalTimeShort, totalTimeZH, totalTimeZHShort methods have been added.
 * Format add formatCount method
 
-## 0.6.3
+
+## v0.6.3
 * 修复 Zip 中 compressionDirTo() 方法 使用 '/' 作为文件路径分隔符导致在 Windows 上没有正确的返回文件名的 bug
 * IOStream.kt 增加 safeClose()
 * Digest 中 File 相关方法抛出 IOException
@@ -106,7 +116,8 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
 * 增加 Range
 * Number 中的 rangeTo, untilTo, downTo, downUntilTo 移到 Range
 
-## 0.6.2
+
+## v0.6.2
 * 增加 Throwable
 * Number 增加 toByte、toShort、toInt 等方法
 * Premise 增加 checkInRange、checkNotInRange
@@ -124,13 +135,16 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
     foldRightIndexed, intersect, subtract, binarySearch,  drop, take, slice, distinct, associate, withIndex
 * 增加 Arrayx2
 
-## 0.6.1
+
+## v0.6.1
 * Arrayx 增加 plus, contentToString
 * Number 修复 range(1, 1) 崩溃的 bug，并增加 downUntilTo 方法
+
 
 ## v0.6
 * Intx 重命名为 Numberx 并增加 scale 系列方法
 * Format 强制设置 roundingMode 为 RoundingMode.HALF_UP
+
 
 ## v0.5
 * Digest 增加 InputStream 系列方法
@@ -139,6 +153,7 @@ decryptToString(String, String, Key), decryptToStringFromBase64(byte\[\], String
 * javax-kt 移除对 kotlinx 的依赖
 * Arrayx 增加 group、iterator、asIterable、toList、asList、sorted、sortedArray、reverse reversed、reversedArray、map、count、max、min、join、requireNoNulls、sum 系列方法
 * Arrayx 删除 toString(byte[]) 方法
+
 
 ## v0.4
 
