@@ -311,9 +311,33 @@ inline fun String?.blankToNull(): String? = Stringx.blankToNull(this)
 /**
  * Filter out whitespace characters in a sequence of characters
  */
-fun CharSequence?.filterBlank(): CharSequence = Stringx.filterBlank(this)
+inline fun CharSequence?.filterBlank(): CharSequence = Stringx.filterBlank(this)
 
 /**
  * Filter out whitespace characters in a sequence of characters
  */
-fun String?.filterBlank(): String = Stringx.filterBlank(this)
+inline fun String?.filterBlank(): String = Stringx.filterBlank(this)
+
+
+/* ******************************************* remove *******************************************/
+
+
+/**
+ * Delete all specified characters in the string and return the new string
+ */
+inline fun String.removeChar(ch: Char): String = Stringx.removeChar(this, ch)
+
+/**
+ * Delete the first occurrence of the specified character in the string and return the new string
+ */
+inline fun String.removeFirstChar(ch: Char): String = Stringx.removeFirstChar(this, ch)
+
+/**
+ * Delete the last specified character in the string and return the new string
+ */
+inline fun String.removeLastChar(ch: Char): String = Stringx.removeLastChar(this, ch)
+
+/**
+ * Delete the character at the specified position in the string and return the new string
+ */
+inline fun String.removeIndex(removeIndex: Int): String = Stringx.removeIndex(this, removeIndex)

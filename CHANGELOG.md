@@ -1,3 +1,8 @@
+## 0.8.0
+
+* :sparkles: Stringx.kt adds removeChar, removeFirstChar, removeLastChar, removeIndex
+
+
 ## v0.7.1
 
 * :fire: Collectionx remove emptyList, emptySet method
