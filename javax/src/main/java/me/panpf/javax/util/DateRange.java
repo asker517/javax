@@ -39,7 +39,7 @@ public abstract class DateRange implements Iterable<Date>, ClosedRange<Date> {
 
     @NotNull
     public Iterator<Date> iterator() {
-        return (new DateIterator(this, this.getStart(), this.getEndInclusive(), this.step));
+        return (new DateRangeIterator(this, this.getStart(), this.getEndInclusive(), this.step));
     }
 
     @Override

@@ -23,14 +23,14 @@ import java.util.NoSuchElementException;
  * An iterator over a progression of values of type `Long`.
  */
 @SuppressWarnings("WeakerAccess")
-public class LongIterator implements Iterator<Long> {
+public class LongRangeIterator implements Iterator<Long> {
     private long step;
 
     private long finalElement;
     private long next;
     private boolean hasNext;
 
-    public LongIterator(long start, long endInclusive, long step) {
+    public LongRangeIterator(long start, long endInclusive, long step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.step = step;
         finalElement = Rangex.getProgressionLastElement(start, endInclusive, step);

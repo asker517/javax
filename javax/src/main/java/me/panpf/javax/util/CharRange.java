@@ -37,7 +37,7 @@ public class CharRange implements Iterable<Character>, ClosedRange<Character> {
 
     @NotNull
     public Iterator<Character> iterator() {
-        return new CharIterator(this.start, this.endInclusive, this.step);
+        return new CharRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override

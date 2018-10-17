@@ -37,7 +37,7 @@ public class IntRange implements Iterable<Integer>, ClosedRange<Integer> {
 
     @NotNull
     public Iterator<Integer> iterator() {
-        return new IntIterator(this.start, this.endInclusive, this.step);
+        return new IntRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override

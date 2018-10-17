@@ -20,22 +20,22 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An iterator over a progression of values of type `Int`.
+ * An iterator over a progression of values of type `Double`.
  */
 @SuppressWarnings("WeakerAccess")
-public class IntIterator implements Iterator<Integer> {
-    private int step;
+public class DoubleRangeIterator implements Iterator<Double> {
+    private double step;
 
-    private int finalElement;
-    private int next;
+    private double finalElement;
+    private double next;
     private boolean hasNext;
 
-    public IntIterator(int start, int endInclusive, int step) {
+    public DoubleRangeIterator(double start, double endInclusive, double step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.step = step;
-        this.finalElement = Rangex.getProgressionLastElement(start, endInclusive, step);
-        this.hasNext = step > 0 ? start <= finalElement : start >= finalElement;
-        this.next = hasNext ? start : finalElement;
+        finalElement = endInclusive;
+        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        next = hasNext ? start : finalElement;
     }
 
     @Override
@@ -44,9 +44,9 @@ public class IntIterator implements Iterator<Integer> {
     }
 
     @Override
-    public Integer next() {
-        int value = next;
-        if (value == finalElement) {
+    public Double next() {
+        double value = next;
+        if (step > 0 ? value >= finalElement : value <= finalElement) {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }

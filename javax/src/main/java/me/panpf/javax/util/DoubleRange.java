@@ -37,7 +37,7 @@ public class DoubleRange implements Iterable<Double>, ClosedRange<Double> {
 
     @NotNull
     public Iterator<Double> iterator() {
-        return new DoubleIterator(this.start, this.endInclusive, this.step);
+        return new DoubleRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override

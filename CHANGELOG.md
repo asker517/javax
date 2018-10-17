@@ -4,6 +4,8 @@
 * :art: Perfect Stringx.kt startsWith and endWith
 * :sparkles: Stringx.kt adds removeRange, removePrefix, removeSuffix, removeSurrounding method
 * :sparkles: Stringx.kt adds find, findLast, first, firstOrNull, last, lastOrNull, getOrElse, getOrNull, indexOfFirst, indexOfLast, substring, subSequence, iterator, iterable, indices, lastIndex method
+* :fire: CharIterator rename to CharRangeIterator, DoubleIterator rename to DoubleRangeIterator, FloatIterator rename to FloatRangeIterator,
+    IntIterator rename to IntRangeIterator, LongIterator rename to LongRangeIterator, DateIterator rename to DateRangeIterator
 
 
 ## v0.7.1

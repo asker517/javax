@@ -37,7 +37,7 @@ public class FloatRange implements Iterable<Float>, ClosedRange<Float> {
 
     @NotNull
     public Iterator<Float> iterator() {
-        return new FloatIterator(this.start, this.endInclusive, this.step);
+        return new FloatRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override

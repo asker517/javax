@@ -20,21 +20,21 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * An iterator over a progression of values of type `Float`.
+ * An iterator over a progression of values of type `Character`.
  */
 @SuppressWarnings("WeakerAccess")
-public class FloatIterator implements Iterator<Float> {
-    private float step;
+public class CharRangeIterator implements Iterator<Character> {
+    private int step;
 
-    private float finalElement;
-    private float next;
+    private char finalElement;
+    private char next;
     private boolean hasNext;
 
-    public FloatIterator(float start, float endInclusive, float step) {
+    public CharRangeIterator(char start, char endInclusive, int step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.step = step;
-        finalElement = endInclusive;
-        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        finalElement = (char) Rangex.getProgressionLastElement(start, endInclusive, step);
+        hasNext = step > 0 ? start <= finalElement : start >= finalElement;
         next = hasNext ? start : finalElement;
     }
 
@@ -44,15 +44,15 @@ public class FloatIterator implements Iterator<Float> {
     }
 
     @Override
-    public Float next() {
-        float value = next;
-        if (step > 0 ? value >= finalElement : value <= finalElement) {
+    public Character next() {
+        char value = next;
+        if (value == finalElement) {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             hasNext = false;
         } else {
-            next += step;
+            next = (char) Math.max(Math.min(next + step, Character.MAX_VALUE), Character.MIN_VALUE);
         }
         return value;
     }

@@ -16,45 +16,44 @@
 
 package me.panpf.javax.util;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * An iterator over a progression of values of type `Character`.
- */
 @SuppressWarnings("WeakerAccess")
-public class CharIterator implements Iterator<Character> {
-    private int step;
-
-    private char finalElement;
-    private char next;
+public final class DateRangeIterator implements Iterator<Date> {
     private boolean hasNext;
+    @NotNull
+    private Date next;
+    private final DateRange range;
+    private final Date last;
+    private final int step;
 
-    public CharIterator(char start, char endInclusive, int step) {
+    public DateRangeIterator(@NotNull DateRange range, @NotNull Date first, @NotNull Date last, int step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
+        this.range = range;
+        this.last = last;
         this.step = step;
-        finalElement = (char) Rangex.getProgressionLastElement(start, endInclusive, step);
-        hasNext = step > 0 ? start <= finalElement : start >= finalElement;
-        next = hasNext ? start : finalElement;
+        this.hasNext = this.step > 0 ? first.compareTo(this.last) <= 0 : first.compareTo(this.last) >= 0;
+        this.next = this.hasNext ? first : this.last;
     }
 
-    @Override
     public boolean hasNext() {
-        return hasNext;
+        return this.hasNext;
     }
 
-    @Override
-    public Character next() {
-        char value = next;
-        if (value == finalElement) {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            hasNext = false;
+    @NotNull
+    public Date next() {
+        if (!this.hasNext) {
+            throw (new NoSuchElementException());
         } else {
-            next = (char) Math.max(Math.min(next + step, Character.MAX_VALUE), Character.MIN_VALUE);
+            Date result = this.next;
+            this.next = this.range.nextDate(this.next);
+            this.hasNext = this.step > 0 ? this.next.compareTo(this.last) <= 0 : (this.step < 0 && this.next.compareTo(this.last) >= 0);
+            return result;
         }
-        return value;
     }
 
     @Override

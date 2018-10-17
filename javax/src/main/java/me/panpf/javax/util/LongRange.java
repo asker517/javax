@@ -37,7 +37,7 @@ public class LongRange implements Iterable<Long>, ClosedRange<Long> {
 
     @NotNull
     public Iterator<Long> iterator() {
-        return new LongIterator(this.start, this.endInclusive, this.step);
+        return new LongRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override

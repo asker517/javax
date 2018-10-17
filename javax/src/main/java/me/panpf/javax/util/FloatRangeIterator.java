@@ -16,44 +16,45 @@
 
 package me.panpf.javax.util;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Date;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * An iterator over a progression of values of type `Float`.
+ */
 @SuppressWarnings("WeakerAccess")
-public final class DateIterator implements Iterator<Date> {
+public class FloatRangeIterator implements Iterator<Float> {
+    private float step;
+
+    private float finalElement;
+    private float next;
     private boolean hasNext;
-    @NotNull
-    private Date next;
-    private final DateRange range;
-    private final Date last;
-    private final int step;
 
-    public DateIterator(@NotNull DateRange range, @NotNull Date first, @NotNull Date last, int step) {
+    public FloatRangeIterator(float start, float endInclusive, float step) {
         if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
-        this.range = range;
-        this.last = last;
         this.step = step;
-        this.hasNext = this.step > 0 ? first.compareTo(this.last) <= 0 : first.compareTo(this.last) >= 0;
-        this.next = this.hasNext ? first : this.last;
+        finalElement = endInclusive;
+        hasNext = step > 0 ? start <= endInclusive : start >= endInclusive;
+        next = hasNext ? start : finalElement;
     }
 
+    @Override
     public boolean hasNext() {
-        return this.hasNext;
+        return hasNext;
     }
 
-    @NotNull
-    public Date next() {
-        if (!this.hasNext) {
-            throw (new NoSuchElementException());
+    @Override
+    public Float next() {
+        float value = next;
+        if (step > 0 ? value >= finalElement : value <= finalElement) {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            hasNext = false;
         } else {
-            Date result = this.next;
-            this.next = this.range.nextDate(this.next);
-            this.hasNext = this.step > 0 ? this.next.compareTo(this.last) <= 0 : (this.step < 0 && this.next.compareTo(this.last) >= 0);
-            return result;
+            next += step;
         }
+        return value;
     }
 
     @Override
