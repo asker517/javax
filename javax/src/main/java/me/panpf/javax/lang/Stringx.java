@@ -744,7 +744,7 @@ public class Stringx {
      *                   [endIndex] is not included in the removed part.
      */
     @NotNull
-    public CharSequence removeRange(@NotNull CharSequence charSequence, int startIndex, int endIndex) {
+    public static CharSequence removeRange(@NotNull CharSequence charSequence, int startIndex, int endIndex) {
         if (endIndex < startIndex)
             throw new IndexOutOfBoundsException("End index (" + endIndex + ") is less than start index (" + startIndex + ").");
         if (endIndex == startIndex) return charSequence.subSequence(0, charSequence.length());
@@ -764,7 +764,7 @@ public class Stringx {
      *                   [endIndex] is not included in the removed part.
      */
     @NotNull
-    public String removeRange(@NotNull String string, int startIndex, int endIndex) {
+    public static String removeRange(@NotNull String string, int startIndex, int endIndex) {
         return removeRange((CharSequence) string, startIndex, endIndex).toString();
     }
 
@@ -774,7 +774,7 @@ public class Stringx {
      * The end index of the [range] is included in the removed part.
      */
     @NotNull
-    public CharSequence removeRange(@NotNull CharSequence charSequence, @NotNull IntRange range) {
+    public static CharSequence removeRange(@NotNull CharSequence charSequence, @NotNull IntRange range) {
         return removeRange(charSequence, range.getStart(), range.getEndInclusive() + 1);
     }
 
@@ -784,7 +784,7 @@ public class Stringx {
      * The end index of the [range] is included in the removed part.
      */
     @NotNull
-    public String removeRange(@NotNull String string, @NotNull IntRange range) {
+    public static String removeRange(@NotNull String string, @NotNull IntRange range) {
         return removeRange((CharSequence) string, range).toString();
     }
 
@@ -793,7 +793,7 @@ public class Stringx {
      * with the prefix removed. Otherwise, returns a new char sequence with the same characters.
      */
     @NotNull
-    public CharSequence removePrefix(@NotNull CharSequence charSequence, @NotNull CharSequence prefix) {
+    public static CharSequence removePrefix(@NotNull CharSequence charSequence, @NotNull CharSequence prefix) {
         if (startsWith(charSequence, prefix)) {
             return charSequence.subSequence(prefix.length(), charSequence.length());
         }
@@ -805,7 +805,7 @@ public class Stringx {
      * with the prefix removed. Otherwise, returns this string.
      */
     @NotNull
-    public String removePrefix(@NotNull String string, @NotNull CharSequence prefix) {
+    public static String removePrefix(@NotNull String string, @NotNull CharSequence prefix) {
         if (startsWith(string, prefix)) {
             return string.substring(prefix.length());
         }
@@ -817,7 +817,7 @@ public class Stringx {
      * with the suffix removed. Otherwise, returns a new char sequence with the same characters.
      */
     @NotNull
-    public CharSequence removeSuffix(@NotNull CharSequence charSequence, @NotNull CharSequence suffix) {
+    public static CharSequence removeSuffix(@NotNull CharSequence charSequence, @NotNull CharSequence suffix) {
         if (endsWith(charSequence, suffix)) {
             return charSequence.subSequence(0, charSequence.length() - suffix.length());
         }
@@ -829,7 +829,7 @@ public class Stringx {
      * with the suffix removed. Otherwise, returns this string.
      */
     @NotNull
-    public String removeSuffix(@NotNull String string, @NotNull CharSequence suffix) {
+    public static String removeSuffix(@NotNull String string, @NotNull CharSequence suffix) {
         if (endsWith(string, suffix)) {
             return string.substring(0, string.length() - suffix.length());
         }
@@ -842,7 +842,7 @@ public class Stringx {
      * Otherwise returns a new char sequence with the same characters.
      */
     @NotNull
-    public CharSequence removeSurrounding(@NotNull CharSequence charSequence, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
+    public static CharSequence removeSurrounding(@NotNull CharSequence charSequence, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
         if ((charSequence.length() >= prefix.length() + suffix.length()) && startsWith(charSequence, prefix) && endsWith(charSequence, suffix)) {
             return charSequence.subSequence(prefix.length(), charSequence.length() - suffix.length());
         }
@@ -855,7 +855,7 @@ public class Stringx {
      * Otherwise returns this string unchanged.
      */
     @NotNull
-    public String removeSurrounding(@NotNull String string, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
+    public static String removeSurrounding(@NotNull String string, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
         if ((string.length() >= prefix.length() + suffix.length()) && startsWith(string, prefix) && endsWith(string, suffix)) {
             return string.substring(prefix.length(), string.length() - suffix.length());
         }
@@ -868,7 +868,7 @@ public class Stringx {
      * Otherwise returns a new char sequence with the same characters.
      */
     @NotNull
-    public CharSequence removeSurrounding(@NotNull CharSequence charSequence, @NotNull CharSequence delimiter) {
+    public static CharSequence removeSurrounding(@NotNull CharSequence charSequence, @NotNull CharSequence delimiter) {
         return removeSurrounding(charSequence, delimiter, delimiter);
     }
 
@@ -878,7 +878,7 @@ public class Stringx {
      * Otherwise returns this string unchanged.
      */
     @NotNull
-    public String removeSurrounding(@NotNull String string, @NotNull CharSequence delimiter) {
+    public static String removeSurrounding(@NotNull String string, @NotNull CharSequence delimiter) {
         return removeSurrounding(string, delimiter, delimiter);
     }
 
