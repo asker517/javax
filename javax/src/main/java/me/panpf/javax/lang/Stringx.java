@@ -567,55 +567,89 @@ public class Stringx {
 
 
     /**
-     * Return `tru`e if the specified character sequence begins with the specified prefix
-     *
-     * @param ignoreCase If true, ignore case
+     * Returns `true` if this char sequence starts with the specified character.
      */
-    public static boolean startsWith(@NotNull CharSequence sequence, @NotNull String prefix, boolean ignoreCase) {
-        if (sequence.length() < prefix.length()) return false;
-        String subPrefix = sequence.subSequence(0, prefix.length()).toString();
-        if (ignoreCase) {
-            return subPrefix.equalsIgnoreCase(prefix);
+    public static boolean startsWith(CharSequence charSequence, char cha, boolean ignoreCase) {
+        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(0), cha, ignoreCase);
+    }
+
+    /**
+     * Returns `true` if this char sequence starts with the specified character.
+     */
+    public static boolean startsWith(CharSequence charSequence, char cha) {
+        return startsWith(charSequence, cha, false);
+    }
+
+    /**
+     * Returns `true` if this char sequence starts with the specified prefix.
+     */
+    public static boolean startsWith(CharSequence charSequence, CharSequence prefix, boolean ignoreCase) {
+        if (!ignoreCase && charSequence instanceof String && prefix instanceof String) {
+            return ((String) charSequence).startsWith((String) prefix);
         } else {
-            return subPrefix.equals(prefix);
+            return regionMatchesImpl(charSequence, 0, prefix, 0, prefix.length(), ignoreCase);
         }
     }
 
     /**
-     * Return `tru`e if the specified character sequence begins with the specified prefix
+     * Returns `true` if this char sequence starts with the specified prefix.
      */
-    public static boolean startsWith(@NotNull CharSequence sequence, @NotNull String prefix) {
-        return startsWith(sequence, prefix, false);
+    public static boolean startsWith(CharSequence charSequence, CharSequence prefix) {
+        return startsWith(charSequence, prefix, false);
     }
 
     /**
-     * Return `tru`e if the specified string begins with the specified prefix
-     *
-     * @param ignoreCase If true, ignore case
+     * Returns `true` if a substring of this char sequence starting at the specified offset [startIndex] starts with the specified prefix.
      */
-    public static boolean startsWith(@NotNull String string, @NotNull String prefix, boolean ignoreCase) {
-        return startsWith((CharSequence) string, prefix, ignoreCase);
+    public static boolean startsWith(CharSequence charSequence, CharSequence prefix, int startIndex, boolean ignoreCase) {
+        if (!ignoreCase && charSequence instanceof String && prefix instanceof String) {
+            return ((String) charSequence).startsWith((String) prefix, startIndex);
+        } else {
+            return regionMatchesImpl(charSequence, startIndex, prefix, 0, prefix.length(), ignoreCase);
+        }
     }
 
     /**
-     * Return `tru`e if the specified string begins with the specified prefix
+     * Returns `true` if a substring of this char sequence starting at the specified offset [startIndex] starts with the specified prefix.
      */
-    public static boolean startsWith(@NotNull String string, @NotNull String prefix) {
-        return startsWith((CharSequence) string, prefix, false);
+    public static boolean startsWith(CharSequence charSequence, CharSequence prefix, int startIndex) {
+        return startsWith(charSequence, prefix, startIndex, false);
     }
 
     /**
-     * Returns `true` if this char sequence starts with the specified character.
+     * Returns `true` if this string starts with the specified prefix.
      */
-    public static boolean startsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase) {
-        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(0), charr, ignoreCase);
+    public static boolean startsWith(String string, String prefix, boolean ignoreCase) {
+        if (!ignoreCase) {
+            return string.startsWith(prefix);
+        } else {
+            return regionMatches(string, 0, prefix, 0, prefix.length(), ignoreCase);
+        }
     }
 
     /**
-     * Returns `true` if this char sequence starts with the specified character.
+     * Returns `true` if this string starts with the specified prefix.
      */
-    public static boolean startsWith(@NotNull CharSequence charSequence, char charr) {
-        return startsWith(charSequence, charr, false);
+    public static boolean startsWith(String string, String prefix) {
+        return startsWith(string, prefix, false);
+    }
+
+    /**
+     * Returns `true` if a substring of this string starting at the specified offset [startIndex] starts with the specified prefix.
+     */
+    public static boolean startsWith(String string, String prefix, int startIndex, boolean ignoreCase) {
+        if (!ignoreCase) {
+            return string.startsWith(prefix, startIndex);
+        } else {
+            return regionMatches(string, startIndex, prefix, 0, prefix.length(), ignoreCase);
+        }
+    }
+
+    /**
+     * Returns `true` if a substring of this string starting at the specified offset [startIndex] starts with the specified prefix.
+     */
+    public static boolean startsWith(String string, String prefix, int startIndex) {
+        return startsWith(string, prefix, startIndex, false);
     }
 
 
@@ -623,55 +657,53 @@ public class Stringx {
 
 
     /**
-     * Return `tru`e if the specified character sequence end with the specified suffix
-     *
-     * @param ignoreCase If true, ignore case
+     * Returns `true` if this char sequence ends with the specified character.
      */
-    public static boolean endsWith(@NotNull CharSequence sequence, @NotNull String suffix, boolean ignoreCase) {
-        if (sequence.length() < suffix.length()) return false;
-        String subSuffix = sequence.subSequence(sequence.length() - suffix.length(), sequence.length()).toString();
-        if (ignoreCase) {
-            return subSuffix.equalsIgnoreCase(suffix);
+    public static boolean endsWith(CharSequence charSequence, char cha, boolean ignoreCase) {
+        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(charSequence.length() - 1), cha, ignoreCase);
+    }
+
+    /**
+     * Returns `true` if this char sequence ends with the specified character.
+     */
+    public static boolean endsWith(CharSequence charSequence, char cha) {
+        return endsWith(charSequence, cha, false);
+    }
+
+    /**
+     * Returns `true` if this char sequence ends with the specified suffix.
+     */
+    public static boolean endsWith(CharSequence charSequence, CharSequence suffix, boolean ignoreCase) {
+        if (!ignoreCase && charSequence instanceof String && suffix instanceof String) {
+            return ((String) charSequence).endsWith((String) suffix);
         } else {
-            return subSuffix.equals(suffix);
+            return regionMatchesImpl(charSequence, charSequence.length() - suffix.length(), suffix, 0, suffix.length(), ignoreCase);
         }
     }
 
     /**
-     * Return `tru`e if the specified character sequence end with the specified suffix
+     * Returns `true` if this char sequence ends with the specified suffix.
      */
-    public static boolean endsWith(@NotNull CharSequence sequence, @NotNull String suffix) {
-        return startsWith(sequence, suffix, false);
+    public static boolean endsWith(CharSequence charSequence, CharSequence suffix) {
+        return endsWith(charSequence, suffix, false);
     }
 
     /**
-     * Return `tru`e if the specified string end with the specified suffix
-     *
-     * @param ignoreCase If true, ignore case
+     * Returns `true` if this string ends with the specified suffix.
      */
-    public static boolean endsWith(@NotNull String string, @NotNull String suffix, boolean ignoreCase) {
-        return endsWith((CharSequence) string, suffix, ignoreCase);
+    public static boolean endsWith(String string, String suffix, boolean ignoreCase) {
+        if (!ignoreCase) {
+            return string.endsWith(suffix);
+        } else {
+            return regionMatches(string, string.length() - suffix.length(), suffix, 0, suffix.length(), ignoreCase);
+        }
     }
 
     /**
-     * Return `tru`e if the specified string end with the specified suffix
+     * Returns `true` if this string ends with the specified suffix.
      */
-    public static boolean endsWith(@NotNull String string, @NotNull String suffix) {
-        return endsWith((CharSequence) string, suffix, false);
-    }
-
-    /**
-     * Returns `true` if this char sequence ends with the specified character.
-     */
-    public static boolean endsWith(@NotNull CharSequence charSequence, char charr, boolean ignoreCase) {
-        return charSequence.length() > 0 && Charx.equals(charSequence.charAt(charSequence.length() - 1), charr, ignoreCase);
-    }
-
-    /**
-     * Returns `true` if this char sequence ends with the specified character.
-     */
-    public static boolean endsWith(@NotNull CharSequence charSequence, char charr) {
-        return endsWith(charSequence, charr, false);
+    public static boolean endsWith(String string, String suffix) {
+        return endsWith(string, suffix, false);
     }
 
 
@@ -733,30 +765,32 @@ public class Stringx {
 //    public String removeRange(String string, int startIndex, int endIndex) {
 //        return removeRange((CharSequence) string, startIndex, endIndex).toString();
 //    }
-    // todo 继续翻译
-
+//
 //    /**
 //     * Returns a char sequence with content of this char sequence where its part at the given [range] is removed.
-//     *
+//     * <p>
 //     * The end index of the [range] is included in the removed part.
 //     */
-//    public fun CharSequence.removeRange(range: IntRange): CharSequence = removeRange(range.start, range.endInclusive + 1)
+//    public CharSequence removeRange(CharSequence charSequence, IntRange range) {
+//        return removeRange(charSequence, range.getStart(), range.getEndInclusive() + 1);
+//    }
 //
-///**
-// * Removes the part of a string at the given [range].
-// *
-// * The end index of the [range] is included in the removed part.
-// */
-//    @kotlin.internal.InlineOnly
-//    public inline fun String.removeRange(range: IntRange): String =
-//            (this as CharSequence).removeRange(range).toString()
+//    /**
+//     * Removes the part of a string at the given [range].
+//     * <p>
+//     * The end index of the [range] is included in the removed part.
+//     */
+//    public String removeRange(String string, IntRange range) {
+//        return removeRange((CharSequence) string, range).toString();
+//    }
+//     // todo 继续翻译
 //
 //    /**
 //     * If this char sequence starts with the given [prefix], returns a new char sequence
 //     * with the prefix removed. Otherwise, returns a new char sequence with the same characters.
 //     */
-//    public fun CharSequence.removePrefix(prefix: CharSequence): CharSequence {
-//        if (startsWith(prefix)) {
+//    public CharSequence removePrefix(CharSequence charSequence, CharSequence prefix) {
+//        if (startsWith(charSequence, prefix)) {
 //            return subSequence(prefix.length, length)
 //        }
 //        return subSequence(0, length)

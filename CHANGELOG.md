@@ -1,6 +1,7 @@
 ## 0.8.0
 
 * :sparkles: Stringx.kt adds removeChar, removeFirstChar, removeLastChar, removeIndex
+* :art: Perfect Stringx.kt startsWith and endWith
 
 
 ## v0.7.1
