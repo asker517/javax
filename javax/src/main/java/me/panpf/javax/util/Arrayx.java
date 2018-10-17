@@ -16,7 +16,6 @@
 
 package me.panpf.javax.util;
 
-import me.panpf.javax.lang.Numberx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -1622,7 +1621,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> List<T> reversed(@Nullable T[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<T> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1633,7 +1632,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Byte> reversed(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Byte> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1644,7 +1643,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Short> reversed(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Short> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1655,7 +1654,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Integer> reversed(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Integer> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1666,7 +1665,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Long> reversed(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Long> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1677,7 +1676,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Float> reversed(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Float> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1688,7 +1687,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Double> reversed(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Double> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1699,7 +1698,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Boolean> reversed(@Nullable boolean[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Boolean> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1710,7 +1709,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Character> reversed(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.emptyList();
+        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Character> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -3494,7 +3493,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> Iterable<T> asIterable(@Nullable final T[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<T>() {
             @NotNull
             @Override
@@ -3509,7 +3508,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Byte> asIterable(@Nullable final byte[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Byte>() {
             @NotNull
             @Override
@@ -3524,7 +3523,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Short> asIterable(@Nullable final short[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Short>() {
             @NotNull
             @Override
@@ -3539,7 +3538,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Integer> asIterable(@Nullable final int[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Integer>() {
             @NotNull
             @Override
@@ -3554,7 +3553,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Long> asIterable(@Nullable final long[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Long>() {
             @NotNull
             @Override
@@ -3569,7 +3568,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Float> asIterable(@Nullable final float[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Float>() {
             @NotNull
             @Override
@@ -3584,7 +3583,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Double> asIterable(@Nullable final double[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Double>() {
             @NotNull
             @Override
@@ -3599,7 +3598,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Boolean> asIterable(@Nullable final boolean[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Boolean>() {
             @NotNull
             @Override
@@ -3614,7 +3613,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Character> asIterable(@Nullable final char[] elements) {
-        if (isEmpty(elements)) return Collectionx.emptyList();
+        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Character>() {
             @NotNull
             @Override
@@ -13038,7 +13037,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13053,7 +13052,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13068,7 +13067,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13083,7 +13082,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13098,7 +13097,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13113,7 +13112,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13128,7 +13127,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13143,7 +13142,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13158,7 +13157,7 @@ public class Arrayx {
                 }
             }
         }
-        return Collectionx.emptyList();
+        return Collectionx.createEmptyArrayList();
     }
 
     /**
@@ -13357,7 +13356,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13382,7 +13381,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13407,7 +13406,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13432,7 +13431,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13457,7 +13456,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13482,7 +13481,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13507,7 +13506,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13532,7 +13531,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13557,7 +13556,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[0]);
         int count = 0;
@@ -13582,7 +13581,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13604,7 +13603,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13626,7 +13625,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13648,7 +13647,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13670,7 +13669,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13692,7 +13691,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13714,7 +13713,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13736,7 +13735,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);
@@ -13758,7 +13757,7 @@ public class Arrayx {
                 return String.format("Requested element count %d is less than zero.", n);
             }
         });
-        if (elements == null || n == 0) return Collectionx.emptyList();
+        if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
         if (n == 1) return Collectionx.listOf(elements[size - 1]);

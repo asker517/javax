@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * Collection tool method
@@ -230,11 +231,163 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* create empty ******************************************* */
+
+
+    /**
+     * Returns an empty readable and writable List<T>.
+     */
+    @NotNull
+    public static <T> List<T> createEmptyList() {
+        return new ArrayList<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable ArrayList<T>.
+     */
+    @NotNull
+    public static <T> ArrayList<T> createEmptyArrayList() {
+        return new ArrayList<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable LinkedList<T>.
+     */
+    @NotNull
+    public static <T> LinkedList<T> createEmptyLinkedList() {
+        return new LinkedList<>();
+    }
+
+    /**
+     * Returns an empty only readable List<T>.
+     */
+    @NotNull
+    public static <T> List<T> createOnlyReadEmptyList() {
+        //noinspection unchecked
+        return Collections.EMPTY_LIST;
+    }
+
+
+    /**
+     * Returns an empty readable and writable Set<T>.
+     */
+    @NotNull
+    public static <T> Set<T> createEmptySet() {
+        return new HashSet<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable HashSet<T>.
+     */
+    @NotNull
+    public static <T> HashSet<T> createEmptyHashSet() {
+        return new HashSet<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable LinkedHashSet<T>.
+     */
+    @NotNull
+    public static <T> LinkedHashSet<T> createEmptyLinkedHashSet() {
+        return new LinkedHashSet<>(0);
+    }
+
+    /**
+     * Returns an empty only readable Set<T>.
+     */
+    @NotNull
+    public static <T> Set<T> createOnlyReadEmptySet() {
+        //noinspection unchecked
+        return Collections.EMPTY_SET;
+    }
+
+
+    /**
+     * Returns an empty readable and writable Stack<T>.
+     */
+    @NotNull
+    public static <T> Stack<T> createEmptyStack() {
+        return new Stack<>();
+    }
+
+
+    /**
+     * Returns an empty readable and writable Queue<T>.
+     */
+    @NotNull
+    public static <T> Queue<T> createEmptyQueue() {
+        return new LinkedList<>();
+    }
+
+    /**
+     * Returns an empty readable and writable BlockingQueue<T>.
+     */
+    @NotNull
+    public static <T> BlockingQueue<T> createEmptyBlockingQueue() {
+        return new ArrayBlockingQueue<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable ArrayBlockingQueue<T>.
+     */
+    @NotNull
+    public static <T> ArrayBlockingQueue<T> createEmptyArrayBlockingQueue() {
+        return new ArrayBlockingQueue<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable LinkedBlockingQueue<T>.
+     */
+    @NotNull
+    public static <T> LinkedBlockingQueue<T> createEmptyLinkedBlockingQueue() {
+        return new LinkedBlockingQueue<>();
+    }
+
+    /**
+     * Returns an empty readable and writable PriorityQueue<T>.
+     */
+    @NotNull
+    public static <T> PriorityQueue<T> createEmptyPriorityQueue() {
+        return new PriorityQueue<>();
+    }
+
+
+    /**
+     * Returns an empty readable and writable Queue<T>.
+     */
+    @NotNull
+    public static <T> Deque<T> createEmptyDeque() {
+        return new LinkedList<>();
+    }
+
+    /**
+     * Returns an empty readable and writable ArrayDeque<T>.
+     */
+    @NotNull
+    public static <T> ArrayDeque<T> createEmptyArrayDeque() {
+        return new ArrayDeque<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable BlockingDeque<T>.
+     */
+    @NotNull
+    public static <T> BlockingDeque<T> createEmptyBlockingDeque() {
+        return new LinkedBlockingDeque<>();
+    }
+
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
      * *****************************************************************************************************************
      */
+
+
+    public static int collectionSizeOrDefault(@Nullable Iterable iterable, int defaultValue) {
+        if (iterable == null) return 0;
+        return iterable instanceof Collection ? ((Collection) iterable).size() : defaultValue;
+    }
 
 
     /* ******************************************* empty ******************************************* */
@@ -260,7 +413,7 @@ public class Collectionx {
     @NotNull
     public static <T> Collection<T> orEmpty(@Nullable Collection<T> collection) {
         //noinspection unchecked
-        return collection != null ? collection : (Collection<T>) emptyList();
+        return collection != null ? collection : (Collection<T>) createEmptyArrayList();
     }
 
     /**
@@ -269,7 +422,7 @@ public class Collectionx {
     @NotNull
     public static <T> List<T> orEmpty(@Nullable List<T> list) {
         //noinspection unchecked
-        return list != null ? list : (List<T>) emptyList();
+        return list != null ? list : (List<T>) createEmptyArrayList();
     }
 
 
@@ -287,30 +440,8 @@ public class Collectionx {
             addAll(list, elements);
             return list;
         } else {
-            return emptyList();
+            return createEmptyArrayList();
         }
-    }
-
-    /**
-     * Returns an empty read-only list.  The returned list is serializable (JVM).
-     */
-    @NotNull
-    public static <T> List<T> emptyList() {
-        return new ArrayList<>(0);
-    }
-
-    /**
-     * Returns an empty read-only list.  The returned list is serializable (JVM).
-     */
-    @NotNull
-    public static <T> Set<T> emptySet() {
-        return new HashSet<>(0);
-    }
-
-
-    public static int collectionSizeOrDefault(@Nullable Iterable iterable, int defaultValue) {
-        if (iterable == null) return 0;
-        return iterable instanceof Collection ? ((Collection) iterable).size() : defaultValue;
     }
 
 
@@ -2578,7 +2709,7 @@ public class Collectionx {
     public static <T> List<T> slice(@Nullable List<T> list, @NotNull Iterable<Integer> indices) {
         int size = collectionSizeOrDefault(indices, 10);
         if (size == 0) {
-            return emptyList();
+            return createEmptyArrayList();
         } else {
             ArrayList<T> resultList = new ArrayList<>(size);
             for (int index : indices) {
@@ -2606,7 +2737,7 @@ public class Collectionx {
             }
         });
         if (n == 0) {
-            return emptyList();
+            return createEmptyArrayList();
         }
         if (iterable instanceof Collection) {
             if (n >= ((Collection) iterable).size()) {
@@ -2633,7 +2764,7 @@ public class Collectionx {
      */
     public static <T> List<T> takeLast(@Nullable List<T> list, final int n) {
         if (isEmpty(list)) {
-            return emptyList();
+            return createEmptyArrayList();
         }
         Premisex.require(n >= 0, new LazyValue<String>() {
             @NotNull
@@ -2643,7 +2774,7 @@ public class Collectionx {
             }
         });
         if (n == 0) {
-            return emptyList();
+            return createEmptyArrayList();
         }
         int size = count(list);
         if (n >= size) {
@@ -2673,14 +2804,14 @@ public class Collectionx {
     @NotNull
     public static <T> List<T> takeLastWhile(@Nullable List<T> list, @NotNull Predicate<T> predicate) {
         if (isEmpty(list)) {
-            return emptyList();
+            return createEmptyArrayList();
         }
         ListIterator<T> iterator = list.listIterator(list.size());
         while (iterator.hasPrevious()) {
             if (!predicate.accept(iterator.previous())) {
                 iterator.next();
                 int expectedSize = list.size() - iterator.nextIndex();
-                if (expectedSize == 0) return emptyList();
+                if (expectedSize == 0) return createEmptyArrayList();
                 ArrayList<T> resultList = new ArrayList<>(expectedSize);
                 while (iterator.hasNext()) {
                     resultList.add(iterator.next());
@@ -2927,7 +3058,7 @@ public class Collectionx {
             Collection<T> collection = (Collection<T>) iterable;
             int resultSize = collection.size() - n;
             if (resultSize <= 0) {
-                return emptyList();
+                return createEmptyArrayList();
             }
             if (resultSize == 1) {
                 return listOf(last(collection));
@@ -2992,7 +3123,7 @@ public class Collectionx {
                 }
             }
         }
-        return emptyList();
+        return createEmptyArrayList();
     }
 
     /**

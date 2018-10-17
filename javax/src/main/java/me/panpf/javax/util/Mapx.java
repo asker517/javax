@@ -39,6 +39,58 @@ public class Mapx {
         return new MapBuilder<>(k, v);
     }
 
+    /**
+     * Returns an empty readable and writable Map<K, V>.
+     */
+    public static <K, V> Map<K, V> createEmptyMap() {
+        return new HashMap<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable HashMap<K, V>.
+     */
+    public static <K, V> HashMap<K, V> createEmptyHashMap() {
+        return new HashMap<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable WeakHashMap<K, V>.
+     */
+    public static <K, V> WeakHashMap<K, V> createEmptyWeakHashMap() {
+        return new WeakHashMap<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable LinkedHashMap<K, V>.
+     */
+    public static <K, V> LinkedHashMap<K, V> createEmptyLinkedHashMap() {
+        return new LinkedHashMap<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable Hashtable<K, V>.
+     */
+    public static <K, V> Hashtable<K, V> createEmptyHashtable() {
+        return new Hashtable<>(0);
+    }
+
+    /**
+     * Returns an empty readable and writable TreeMap<K, V>.
+     */
+    public static <K, V> TreeMap<K, V> createEmptyTreeMap() {
+        return new TreeMap<>();
+    }
+
+
+    /**
+     * Returns an empty only readable Map<K, T>.
+     */
+    @NotNull
+    public static <K, T> Map<K, T> createOnlyReadEmptyMap() {
+        //noinspection unchecked
+        return Collections.EMPTY_MAP;
+    }
+
 
     /*
      * *****************************************************************************************************************

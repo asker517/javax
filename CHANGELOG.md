@@ -1,3 +1,15 @@
+## v0.7.1
+
+* :fire: Collectionx remove emptyList, emptySet method
+* :sparkles: Collectionx adds createEmptyList, createEmptyArrayList, createEmptyLinkedList,
+    createOnlyReadEmptyList, createEmptySet, createEmptyHashSet, createEmptyLinkedHashSet,
+    createOnlyReadEmptySet, createEmptyStack, createEmptyQueue, createEmptyBlockingQueue,
+    createEmptyArrayBlockingQueue, createEmptyLinkedBlockingQueue, createEmptyPriorityQueue,
+    createEmptyDeque, createEmptyArrayDeque, createEmptyBlockingDeque method
+* :sparkles: Mapx adds createEmptyMap, createEmptyHashMap, createEmptyWeakHashMap, createEmptyLinkedHashMap
+    createEmptyHashtable, createEmptyTreeMap, createOnlyReadEmptyMap method
+
+
 ## v0.7.0
 
 * :arrow_up: Updating to Kotlin 1.2.71

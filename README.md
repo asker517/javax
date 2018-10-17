@@ -109,7 +109,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
     * encode, encodeToString, decode, decodeToString
 * Collection: [Collectionx.java] | [Collectionx.kt]
-    * isEmpty, isNotEmpty, orEmpty, listOf, emptyList, collectionSizeOrDefault, filter, map, flatMap, join, count,
+    * isEmpty, isNotEmpty, orEmpty, listOf, createEmptyList, createEmptySet, createEmptyStack, createEmptyQueue,
+    * createEmptyDeque, collectionSizeOrDefault, filter, map, flatMap, join, count,
     * average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList, toSet, toHashSet,
     * convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold,
     * reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
@@ -120,7 +121,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
     * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad
 * Map: [Mapx.java]
-    * mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
+    * createEmptyMap, mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])
     * require, requireNotNull, check, checkNotNull, requireSafe, requireNotSafe
     * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireNotZero
