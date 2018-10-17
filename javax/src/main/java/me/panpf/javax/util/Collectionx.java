@@ -430,18 +430,53 @@ public class Collectionx {
 
 
     /**
-     * Returns a new read-only list of given elements.  The returned list is serializable (JVM).
+     * Returns a new readable and writable list of given elements
      */
     @NotNull
     @SafeVarargs
     public static <T> List<T> listOf(@Nullable T... elements) {
+        return arrayListOf(elements);
+    }
+
+    /**
+     * Returns a new readable and writable array list of given elements
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> ArrayList<T> arrayListOf(@Nullable T... elements) {
         if (elements != null && elements.length > 0) {
-            List<T> list = new ArrayList<>();
+            ArrayList<T> list = new ArrayList<>(elements.length);
             addAll(list, elements);
             return list;
         } else {
             return createEmptyArrayList();
         }
+    }
+
+    /**
+     * Returns a new readable and writable linked list of given elements
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> LinkedList<T> linkedListOf(@Nullable T... elements) {
+        if (elements != null && elements.length > 0) {
+            LinkedList<T> list = new LinkedList<>();
+            addAll(list, elements);
+            return list;
+        } else {
+            return createEmptyLinkedList();
+        }
+    }
+
+
+    /**
+     * Returns a new read-only list of given elements.
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> List<T> onlyReadListOf(@Nullable T... elements) {
+        //noinspection unchecked
+        return elements != null && elements.length > 0 ? Arrays.asList(elements) : (List<T>) createEmptyArrayList();
     }
 
 

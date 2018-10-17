@@ -8,6 +8,7 @@
     createEmptyDeque, createEmptyArrayDeque, createEmptyBlockingDeque method
 * :sparkles: Mapx adds createEmptyMap, createEmptyHashMap, createEmptyWeakHashMap, createEmptyLinkedHashMap
     createEmptyHashtable, createEmptyTreeMap, createOnlyReadEmptyMap method
+* :sparkles: Collectionx adds arrayListOf, linkedListOf, onlyReadListOf method
 
 
 ## v0.7.0
