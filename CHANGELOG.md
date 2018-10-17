@@ -3,6 +3,7 @@
 * :sparkles: Stringx.kt adds removeChar, removeFirstChar, removeLastChar, removeIndex
 * :art: Perfect Stringx.kt startsWith and endWith
 * :sparkles: Stringx.kt adds removeRange, removePrefix, removeSuffix, removeSurrounding method
+* :sparkles: Stringx.kt adds find, findLast, first, firstOrNull, last, lastOrNull, getOrElse, getOrNull, indexOfFirst, indexOfLast, substring, subSequence, iterator, iterable, indices, lastIndex method
 
 
 ## v0.7.1

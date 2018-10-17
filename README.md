@@ -85,8 +85,11 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * isDigit, isNotDigit, isNotDigitOr, isLetter, isNotLetter, isNotLetterOr,
     * isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr, orContains, andContains,
     * startsWith, endsWith, equals, orEmpty, orDefault, emptyToNull, blankToNull, remove,
-    * capitalize, decapitalize, limit, pad, regionMatches, find, indexOf, substring, toByteArray
-    * reversed, filter, filterBlank, removeChar, removeIndex, removeRange, removePrefix, removeSuffix, removeSurrounding
+    * capitalize, decapitalize, limit, pad, regionMatches, find, findLast,
+    * indexOf, indexOfFirst, indexOfLast, substring, subSequence, toByteArray
+    * reversed, filter, filterBlank, removeChar, removeIndex, removeRange, removePrefix, removeSuffix,
+    * removeSurrounding, first, firstOrNull, last, lastOrNull, getOrElse, getOrNull,
+    * iterator, iterable, indices, lastIndex
 * Throwable: [Throwablex.java] ([Test][ThrowablexTest.java]) | [Throwablex.kt] ([Test][ThrowablexTest.kt])
     * stackTraceToString
 

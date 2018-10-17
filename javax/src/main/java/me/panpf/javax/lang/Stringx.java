@@ -23,6 +23,8 @@ import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
@@ -1097,14 +1099,14 @@ public class Stringx {
 
 
     /* ******************************************* matches *******************************************/
-    // todo 继续翻译
 
 
-///**
-// * Returns `true` if this char sequence matches the given regular expression.
-// */
-//    @kotlin.internal.InlineOnly
-//    public inline infix fun CharSequence.matches(regex: Regex): Boolean = regex.matches(this)
+//    /**
+//     * Returns `true` if this char sequence matches the given regular expression.
+//     */
+//    public static boolean matches(CharSequence charSequence, Regex regex) {
+//        return regex.matches(charSequence);
+//    }
 
     /**
      * Returns `true` if the specified range in this string is equal to the specified range in another string.
@@ -1142,24 +1144,23 @@ public class Stringx {
 
 
     /* ******************************************* find *******************************************/
-    // todo 继续翻译
 
 
-//    /**
-//     * Returns the first character matching the given [predicate], or `null` if no such character was found.
-//     */
-//    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.find(predicate: (Char) -> Boolean): Char? {
-//        return firstOrNull(predicate)
-//    }
-//
-///**
-// * Returns the last character matching the given [predicate], or `null` if no such character was found.
-// */
-//    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.findLast(predicate: (Char) -> Boolean): Char? {
-//        return lastOrNull(predicate)
-//    }
+    /**
+     * Returns the first character matching the given [predicate], or `null` if no such character was found.
+     */
+    @Nullable
+    public static Character find(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        return firstOrNull(charSequence, predicate);
+    }
+
+    /**
+     * Returns the last character matching the given [predicate], or `null` if no such character was found.
+     */
+    @Nullable
+    public static Character findLast(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        return lastOrNull(charSequence, predicate);
+    }
 
 
     @Nullable
@@ -1236,104 +1237,114 @@ public class Stringx {
 
 
     /* ******************************************* first *******************************************/
-    // todo 继续翻译
 
-//    /**
-//     * Returns first character.
-//     * @throws [NoSuchElementException] if the char sequence is empty.
-//     */
-//    public fun CharSequence.first(): Char {
-//        if (isEmpty())
-//            throw NoSuchElementException("Char sequence is empty.")
-//        return this[0]
-//    }
-//
-//    /**
-//     * Returns the first character matching the given [predicate].
-//     * @throws [NoSuchElementException] if no such character is found.
-//     */
-//    public inline fun CharSequence.first(predicate: (Char) -> Boolean): Char {
-//        for (element in this) if (predicate(element)) return element
-//        throw NoSuchElementException("Char sequence contains no character matching the predicate.")
-//    }
-//
-//    /**
-//     * Returns the first character, or `null` if the char sequence is empty.
-//     */
-//    public fun CharSequence.firstOrNull(): Char? {
-//        return if (isEmpty()) null else this[0]
-//    }
-//
-//    /**
-//     * Returns the first character matching the given [predicate], or `null` if character was not found.
-//     */
-//    public inline fun CharSequence.firstOrNull(predicate: (Char) -> Boolean): Char? {
-//        for (element in this) if (predicate(element)) return element
-//        return null
-//    }
+    /**
+     * Returns first character.
+     *
+     * @throws NoSuchElementException if the char sequence is empty.
+     */
+    @NotNull
+    public static Character first(CharSequence charSequence) {
+        if (isEmpty(charSequence)) throw new NoSuchElementException("Char sequence is empty.");
+        return charSequence.charAt(0);
+    }
+
+    /**
+     * Returns the first character matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such character is found.
+     */
+    @NotNull
+    public static Character first(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        for (char element : iterable(charSequence)) if (predicate.accept(element)) return element;
+        throw new NoSuchElementException("Char sequence contains no character matching the predicate.");
+    }
+
+    /**
+     * Returns the first character, or `null` if the char sequence is empty.
+     */
+    @Nullable
+    public static Character firstOrNull(@NotNull CharSequence charSequence) {
+        return isEmpty(charSequence) ? null : charSequence.charAt(0);
+    }
+
+    /**
+     * Returns the first character matching the given [predicate], or `null` if character was not found.
+     */
+    @Nullable
+    public static Character firstOrNull(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        for (char element : iterable(charSequence)) if (predicate.accept(element)) return element;
+        return null;
+    }
 
 
     /* ******************************************* last *******************************************/
-    // todo 继续翻译
 
-//    /**
-//     * Returns the last character.
-//     * @throws [NoSuchElementException] if the char sequence is empty.
-//     */
-//    public fun CharSequence.last(): Char {
-//        if (isEmpty())
-//            throw NoSuchElementException("Char sequence is empty.")
-//        return this[lastIndex]
-//    }
-//
-//    /**
-//     * Returns the last character matching the given [predicate].
-//     * @throws [NoSuchElementException] if no such character is found.
-//     */
-//    public inline fun CharSequence.last(predicate: (Char) -> Boolean): Char {
-//        for (index in this.indices.reversed()) {
-//            val element = this[index]
-//            if (predicate(element)) return element
-//        }
-//        throw NoSuchElementException("Char sequence contains no character matching the predicate.")
-//    }
-//
-//    /**
-//     * Returns the last character, or `null` if the char sequence is empty.
-//     */
-//    public fun CharSequence.lastOrNull(): Char? {
-//        return if (isEmpty()) null else this[length - 1]
-//    }
-//
-//    /**
-//     * Returns the last character matching the given [predicate], or `null` if no such character was found.
-//     */
-//    public inline fun CharSequence.lastOrNull(predicate: (Char) -> Boolean): Char? {
-//        for (index in this.indices.reversed()) {
-//            val element = this[index]
-//            if (predicate(element)) return element
-//        }
-//        return null
-//    }
+
+    /**
+     * Returns the last character.
+     *
+     * @throws NoSuchElementException if the char sequence is empty.
+     */
+    @NotNull
+    public static Character last(@NotNull CharSequence charSequence) {
+        if (isEmpty(charSequence))
+            throw new NoSuchElementException("Char sequence is empty.");
+        return charSequence.charAt(charSequence.length() - 1);
+    }
+
+    /**
+     * Returns the last character matching the given [predicate].
+     *
+     * @throws NoSuchElementException if no such character is found.
+     */
+    @NotNull
+    public static Character last(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        for (int index : Collectionx.reversed(indices(charSequence))) {
+            char element = charSequence.charAt(index);
+            if (predicate.accept(element)) return element;
+        }
+        throw new NoSuchElementException("Char sequence contains no character matching the predicate.");
+    }
+
+    /**
+     * Returns the last character, or `null` if the char sequence is empty.
+     */
+    @Nullable
+    public static Character lastOrNull(@NotNull CharSequence charSequence) {
+        return isEmpty(charSequence) ? null : charSequence.charAt(charSequence.length() - 1);
+    }
+
+    /**
+     * Returns the last character matching the given [predicate], or `null` if no such character was found.
+     */
+    @Nullable
+    public static Character lastOrNull(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        for (int index : Collectionx.reversed(indices(charSequence))) {
+            char element = charSequence.charAt(index);
+            if (predicate.accept(element)) return element;
+        }
+        return null;
+    }
 
 
     /* ******************************************* get *******************************************/
-    // todo 继续翻译
 
-///**
-// * Returns a character at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this char sequence.
-// */
-//    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.getOrElse(index: Int, defaultValue: (Int) -> Char): Char {
-//        return if (index >= 0 && index <= lastIndex) get(index) else defaultValue(index)
-//    }
-//
-//    /**
-//     * Returns a character at the given [index] or `null` if the [index] is out of bounds of this char sequence.
-//     */
-//    public fun CharSequence.getOrNull(index: Int): Char? {
-//        return if (index >= 0 && index <= lastIndex) get(index) else null
-//    }
+    /**
+     * Returns a character at the given [index] or the result of calling the [defaultValue] staticction if the [index] is out of bounds of this char sequence.
+     */
+    @NotNull
+    public static Character getOrElse(@NotNull CharSequence charSequence, int index, IndexedDefaultValue<Character> defaultValue) {
+        return index >= 0 && index <= lastIndex(charSequence) ? charSequence.charAt(index) : defaultValue.get(index);
+    }
+
+    /**
+     * Returns a character at the given [index] or `null` if the [index] is out of bounds of this char sequence.
+     */
+    @Nullable
+    public static Character getOrNull(@NotNull CharSequence charSequence, int index) {
+        return index >= 0 && index <= lastIndex(charSequence) ? charSequence.charAt(index) : null;
+    }
 
 
     /* ******************************************* indexOf *******************************************/
@@ -1459,31 +1470,30 @@ public class Stringx {
         Pair<Integer, String> pair = findAnyOf(charSequence, strings, startIndex, ignoreCase, false);
         return pair != null ? pair.first : -1;
     }
-    // todo 继续翻译
 
-//    /**
-//     * Returns index of the first character matching the given [predicate], or -1 if the char sequence does not contain such character.
-//     */
-//    public inline fun CharSequence.indexOfFirst(predicate: (Char) -> Boolean): Int {
-//        for (index in indices) {
-//            if (predicate(this[index])) {
-//                return index
-//            }
-//        }
-//        return -1
-//    }
-//
-//    /**
-//     * Returns index of the last character matching the given [predicate], or -1 if the char sequence does not contain such character.
-//     */
-//    public inline fun CharSequence.indexOfLast(predicate: (Char) -> Boolean): Int {
-//        for (index in indices.reversed()) {
-//            if (predicate(this[index])) {
-//                return index
-//            }
-//        }
-//        return -1
-//    }
+    /**
+     * Returns index of the first character matching the given [predicate], or -1 if the char sequence does not contain such character.
+     */
+    public static int indexOfFirst(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        for (int index : indices(charSequence)) {
+            if (predicate.accept(charSequence.charAt(index))) {
+                return index;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Returns index of the last character matching the given [predicate], or -1 if the char sequence does not contain such character.
+     */
+    public static int indexOfLast(@NotNull CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        for (int index : Collectionx.reversed(indices(charSequence))) {
+            if (predicate.accept(charSequence.charAt(index))) {
+                return index;
+            }
+        }
+        return -1;
+    }
 
 
     /**
@@ -1565,44 +1575,42 @@ public class Stringx {
 
 
     /* ******************************************* substring *******************************************/
-    // todo 继续翻译
 
 
-//    /**
-//     * Returns a substring specified by the given [range] of indices.
-//     */
-//    public fun String.substring(range: IntRange): String = substring(range.start, range.endInclusive + 1)
-//
-//    /**
-//     * Returns a subsequence of this char sequence specified by the given [range] of indices.
-//     */
-//    public fun CharSequence.subSequence(range: IntRange): CharSequence = subSequence(range.start, range.endInclusive + 1)
-//
-///**
-// * Returns a subsequence of this char sequence.
-// *
-// * This extension is chosen only for invocation with old-named parameters.
-// * Replace parameter names with the same as those of [CharSequence.subSequence].
-// */
-//    @kotlin.internal.InlineOnly
-//    @Suppress("EXTENSION_SHADOWED_BY_MEMBER") // false warning
-//    @Deprecated("Use parameters named startIndex and endIndex.", ReplaceWith("subSequence(startIndex = start, endIndex = end)"))
-//    public inline fun String.subSequence(start: Int, end: Int): CharSequence = subSequence(start, end)
-//
-///**
-// * Returns a substring of chars from a range of this char sequence starting at the [startIndex] and ending right before the [endIndex].
-// *
-// * @param startIndex the start index (inclusive).
-// * @param endIndex the end index (exclusive). If not specified, the length of the char sequence is used.
-// */
-//    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.substring(startIndex: Int, endIndex: Int = length): String = subSequence(startIndex, endIndex).toString()
-//
-//    /**
-//     * Returns a substring of chars at indices from the specified [range] of this char sequence.
-//     */
-//    public fun CharSequence.substring(range: IntRange): String = subSequence(range.start, range.endInclusive + 1).toString()
+    /**
+     * Returns a substring specified by the given [range] of indices.
+     */
+    @NotNull
+    public static String substring(@NotNull String string, @NotNull IntRange range) {
+        return string.substring(range.getStart(), range.getEndInclusive() + 1);
+    }
 
+    /**
+     * Returns a subsequence of this char sequence specified by the given [range] of indices.
+     */
+    @NotNull
+    public static CharSequence subSequence(@NotNull CharSequence charSequence, @NotNull IntRange range) {
+        return charSequence.subSequence(range.getStart(), range.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a substring of chars from a range of this char sequence starting at the [startIndex] and ending right before the [endIndex].
+     *
+     * @param startIndex the start index (inclusive).
+     * @param endIndex   the end index (exclusive). If not specified, the length of the char sequence is used.
+     */
+    @NotNull
+    public static String substring(@NotNull CharSequence charSequence, int startIndex, int endIndex) {
+        return charSequence.subSequence(startIndex, endIndex).toString();
+    }
+
+    /**
+     * Returns a substring of chars at indices from the specified [range] of this char sequence.
+     */
+    @NotNull
+    public static String substring(@NotNull CharSequence charSequence, @NotNull IntRange range) {
+        return charSequence.subSequence(range.getStart(), range.getEndInclusive() + 1).toString();
+    }
 
     /**
      * Returns a substring before the first occurrence of [delimiter].
@@ -1877,7 +1885,7 @@ public class Stringx {
 //    /**
 //     * Returns a sub sequence of this char sequence having leading and trailing characters matching the [predicate] removed.
 //     */
-//    public inline fun CharSequence.trim(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.trim(predicate: (Char) -> Boolean): CharSequence {
 //        var startIndex = 0
 //        var endIndex = length - 1
 //        var startFound = false
@@ -1905,13 +1913,13 @@ public class Stringx {
 //    /**
 //     * Returns a string having leading and trailing characters matching the [predicate] removed.
 //     */
-//    public inline fun String.trim(predicate: (Char) -> Boolean): String =
+//    public static String.trim(predicate: (Char) -> Boolean): String =
 //            (this as CharSequence).trim(predicate).toString()
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having leading characters matching the [predicate] removed.
 //     */
-//    public inline fun CharSequence.trimStart(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.trimStart(predicate: (Char) -> Boolean): CharSequence {
 //        for (index in this.indices)
 //            if (!predicate(this[index]))
 //                return subSequence(index, length)
@@ -1922,13 +1930,13 @@ public class Stringx {
 //    /**
 //     * Returns a string having leading characters matching the [predicate] removed.
 //     */
-//    public inline fun String.trimStart(predicate: (Char) -> Boolean): String =
+//    public static String.trimStart(predicate: (Char) -> Boolean): String =
 //            (this as CharSequence).trimStart(predicate).toString()
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having trailing characters matching the [predicate] removed.
 //     */
-//    public inline fun CharSequence.trimEnd(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.trimEnd(predicate: (Char) -> Boolean): CharSequence {
 //        for (index in this.indices.reversed())
 //            if (!predicate(this[index]))
 //                return subSequence(0, index + 1)
@@ -1939,103 +1947,109 @@ public class Stringx {
 //    /**
 //     * Returns a string having trailing characters matching the [predicate] removed.
 //     */
-//    public inline fun String.trimEnd(predicate: (Char) -> Boolean): String =
+//    public static String.trimEnd(predicate: (Char) -> Boolean): String =
 //            (this as CharSequence).trimEnd(predicate).toString()
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having leading and trailing characters from the [chars] array removed.
 //     */
-//    public fun CharSequence.trim(vararg chars: Char): CharSequence = trim { it in chars }
+//    public static CharSequence.trim(vararg chars: Char): CharSequence = trim { it in chars }
 //
 //    /**
 //     * Returns a string having leading and trailing characters from the [chars] array removed.
 //     */
-//    public fun String.trim(vararg chars: Char): String = trim { it in chars }
+//    public static String.trim(vararg chars: Char): String = trim { it in chars }
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having leading characters from the [chars] array removed.
 //     */
-//    public fun CharSequence.trimStart(vararg chars: Char): CharSequence = trimStart { it in chars }
+//    public static CharSequence.trimStart(vararg chars: Char): CharSequence = trimStart { it in chars }
 //
 //    /**
 //     * Returns a string having leading characters from the [chars] array removed.
 //     */
-//    public fun String.trimStart(vararg chars: Char): String = trimStart { it in chars }
+//    public static String.trimStart(vararg chars: Char): String = trimStart { it in chars }
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having trailing characters from the [chars] array removed.
 //     */
-//    public fun CharSequence.trimEnd(vararg chars: Char): CharSequence = trimEnd { it in chars }
+//    public static CharSequence.trimEnd(vararg chars: Char): CharSequence = trimEnd { it in chars }
 //
 //    /**
 //     * Returns a string having trailing characters from the [chars] array removed.
 //     */
-//    public fun String.trimEnd(vararg chars: Char): String = trimEnd { it in chars }
+//    public static String.trimEnd(vararg chars: Char): String = trimEnd { it in chars }
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having leading and trailing whitespace removed.
 //     */
-//    public fun CharSequence.trim(): CharSequence = trim(Char::isWhitespace)
+//    public static CharSequence.trim(): CharSequence = trim(Char::isWhitespace)
 //
 ///**
 // * Returns a string having leading and trailing whitespace removed.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun String.trim(): String = (this as CharSequence).trim().toString()
+//    public static String.trim(): String = (this as CharSequence).trim().toString()
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having leading whitespace removed.
 //     */
-//    public fun CharSequence.trimStart(): CharSequence = trimStart(Char::isWhitespace)
+//    public static CharSequence.trimStart(): CharSequence = trimStart(Char::isWhitespace)
 //
 ///**
 // * Returns a string having leading whitespace removed.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun String.trimStart(): String = (this as CharSequence).trimStart().toString()
+//    public static String.trimStart(): String = (this as CharSequence).trimStart().toString()
 //
 //    /**
 //     * Returns a sub sequence of this char sequence having trailing whitespace removed.
 //     */
-//    public fun CharSequence.trimEnd(): CharSequence = trimEnd(Char::isWhitespace)
+//    public static CharSequence.trimEnd(): CharSequence = trimEnd(Char::isWhitespace)
 //
 ///**
 // * Returns a string having trailing whitespace removed.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun String.trimEnd(): String = (this as CharSequence).trimEnd().toString()
+//    public static String.trimEnd(): String = (this as CharSequence).trimEnd().toString()
 //
 //
 //    /* ******************************************* iterator *******************************************/
 //
 //
-//    /**
-//     * Iterator for characters of the given char sequence.
-//     */
-//    public operator fun CharSequence.iterator(): CharIterator = object : CharIterator() {
-//        private var index = 0
-//
-//        public override fun nextChar(): Char = get(index++)
-//
-//        public override fun hasNext(): Boolean = index < length
-//    }
-//
-//    /**
-//     * Returns the range of valid character indices for this char sequence.
-//     */
-//    public val CharSequence.indices: IntRange
-//    get() = 0..length - 1
-//
-//    /**
-//     * Returns the index of the last character in the char sequence or -1 if it is empty.
-//     */
-//    public val CharSequence.lastIndex: Int
-//    get() = this.length - 1
+
+    /**
+     * Iterator for characters of the given char sequence.
+     */
+    public static Iterator<Character> iterator(@NotNull final CharSequence charSequence) {
+        return new CharSequenceIterator(charSequence);
+    }
+
+    /**
+     * Iterator for characters of the given char sequence.
+     */
+    public static Iterable<Character> iterable(@NotNull final CharSequence charSequence) {
+        return new CharSequenceIterable(charSequence);
+    }
+
+    /**
+     * Returns the range of valid character indices for this char sequence.
+     */
+    public static IntRange indices(@NotNull CharSequence charSequence) {
+        return Rangex.until(0, charSequence.length());
+    }
+
+    /**
+     * Returns the index of the last character in the char sequence or -1 if it is empty.
+     */
+    public static int lastIndex(@NotNull CharSequence charSequence) {
+        return charSequence.length() - 1;
+    }
 //
 //    /**
 //     * Returns `true` if this CharSequence has Unicode surrogate pair at the specified [index].
 //     */
-//    public fun CharSequence.hasSurrogatePairAt(index: Int): Boolean {
+//    public static CharSequence.hasSurrogatePairAt(index: Int): Boolean {
 //        return index in 0..length - 2
 //                && this[index].isHighSurrogate()
 //                && this[index + 1].isLowSurrogate()
@@ -2051,7 +2065,7 @@ public class Stringx {
 //     * @param startIndex the index of the first character to be replaced.
 //     * @param endIndex the index of the first character after the replacement to keep in the string.
 //     */
-//    public fun CharSequence.replaceRange(startIndex: Int, endIndex: Int, replacement: CharSequence): CharSequence {
+//    public static CharSequence.replaceRange(startIndex: Int, endIndex: Int, replacement: CharSequence): CharSequence {
 //        if (endIndex < startIndex)
 //            throw IndexOutOfBoundsException("End index ($endIndex) is less than start index ($startIndex).")
 //        val sb = StringBuilder()
@@ -2067,7 +2081,7 @@ public class Stringx {
 // * @param endIndex the index of the first character after the replacement to keep in the string.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun String.replaceRange(startIndex: Int, endIndex: Int, replacement: CharSequence): String =
+//    public static String.replaceRange(startIndex: Int, endIndex: Int, replacement: CharSequence): String =
 //            (this as CharSequence).replaceRange(startIndex, endIndex, replacement).toString()
 //
 //    /**
@@ -2076,7 +2090,7 @@ public class Stringx {
 //     *
 //     * The end index of the [range] is included in the part to be replaced.
 //     */
-//    public fun CharSequence.replaceRange(range: IntRange, replacement: CharSequence): CharSequence =
+//    public static CharSequence.replaceRange(range: IntRange, replacement: CharSequence): CharSequence =
 //    replaceRange(range.start, range.endInclusive + 1, replacement)
 //
 ///**
@@ -2085,12 +2099,12 @@ public class Stringx {
 // * The end index of the [range] is included in the part to be replaced.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun String.replaceRange(range: IntRange, replacement: CharSequence): String =
+//    public static String.replaceRange(range: IntRange, replacement: CharSequence): String =
 //            (this as CharSequence).replaceRange(range, replacement).toString()/**
 //     * Replace part of string before the first occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceBefore(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceBefore(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = indexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(0, index, replacement)
 //    }
@@ -2099,7 +2113,7 @@ public class Stringx {
 //     * Replace part of string before the first occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceBefore(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceBefore(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = indexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(0, index, replacement)
 //    }
@@ -2108,7 +2122,7 @@ public class Stringx {
 //     * Replace part of string after the first occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceAfter(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceAfter(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = indexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(index + 1, length, replacement)
 //    }
@@ -2117,7 +2131,7 @@ public class Stringx {
 //     * Replace part of string after the first occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceAfter(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceAfter(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = indexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(index + delimiter.length, length, replacement)
 //    }
@@ -2126,7 +2140,7 @@ public class Stringx {
 //     * Replace part of string after the last occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceAfterLast(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceAfterLast(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = lastIndexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(index + delimiter.length, length, replacement)
 //    }
@@ -2135,7 +2149,7 @@ public class Stringx {
 //     * Replace part of string after the last occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceAfterLast(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceAfterLast(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = lastIndexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(index + 1, length, replacement)
 //    }
@@ -2144,7 +2158,7 @@ public class Stringx {
 //     * Replace part of string before the last occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceBeforeLast(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceBeforeLast(delimiter: Char, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = lastIndexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(0, index, replacement)
 //    }
@@ -2153,14 +2167,14 @@ public class Stringx {
 //     * Replace part of string before the last occurrence of given delimiter with the [replacement] string.
 //     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
 //     */
-//    public fun String.replaceBeforeLast(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
+//    public static String.replaceBeforeLast(delimiter: String, replacement: String, missingDelimiterValue: String = this): String {
 //        val index = lastIndexOf(delimiter)
 //        return if (index == -1) missingDelimiterValue else replaceRange(0, index, replacement)
 //    }
 //
 //
-//// public fun String.replace(oldChar: Char, newChar: Char, ignoreCase: Boolean): String // JVM- and JS-specific
-//// public fun String.replace(oldValue: String, newValue: String, ignoreCase: Boolean): String // JVM- and JS-specific
+//// public static String.replace(oldChar: Char, newChar: Char, ignoreCase: Boolean): String // JVM- and JS-specific
+//// public static String.replace(oldValue: String, newValue: String, ignoreCase: Boolean): String // JVM- and JS-specific
 //
 ///**
 // * Returns a new string obtained by replacing each substring of this char sequence that matches the given regular expression
@@ -2170,7 +2184,7 @@ public class Stringx {
 // * literally escape it with the [kotlin.text.Regex.Companion.escapeReplacement] method.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.replace(regex: Regex, replacement: String): String = regex.replace(this, replacement)
+//    public static CharSequence.replace(regex: Regex, replacement: String): String = regex.replace(this, replacement)
 //
 ///**
 // * Returns a new string obtained by replacing each substring of this char sequence that matches the given regular expression
@@ -2178,7 +2192,7 @@ public class Stringx {
 // * replacement for that match.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.replace(regex: Regex, noinline transform: (MatchResult) -> CharSequence): String =
+//    public static CharSequence.replace(regex: Regex, noinline transform: (MatchResult) -> CharSequence): String =
 //            regex.replace(this, transform)
 //
 ///**
@@ -2187,7 +2201,7 @@ public class Stringx {
 // * @param replacement A replacement expression that can include substitutions. See [Regex.replaceFirst] for details.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.replaceFirst(regex: Regex, replacement: String): String = regex.replaceFirst(this, replacement)// common prefix and suffix
+//    public static CharSequence.replaceFirst(regex: Regex, replacement: String): String = regex.replaceFirst(this, replacement)// common prefix and suffix
 //
 //
 //    /* ******************************************* commonWith *******************************************/
@@ -2200,7 +2214,7 @@ public class Stringx {
 //
 //     * @param ignoreCase `true` to ignore character case when matching a character. By default `false`.
 //     */
-//    public fun CharSequence.commonPrefixWith(other: CharSequence, ignoreCase: Boolean = false): String {
+//    public static CharSequence.commonPrefixWith(other: CharSequence, ignoreCase: Boolean = false): String {
 //        val shortestLength = minOf(this.length, other.length)
 //
 //        var i = 0
@@ -2220,7 +2234,7 @@ public class Stringx {
 //
 //     * @param ignoreCase `true` to ignore character case when matching a character. By default `false`.
 //     */
-//    public fun CharSequence.commonSuffixWith(other: CharSequence, ignoreCase: Boolean = false): String {
+//    public static CharSequence.commonSuffixWith(other: CharSequence, ignoreCase: Boolean = false): String {
 //        val thisLength = this.length
 //        val otherLength = other.length
 //        val shortestLength = minOf(thisLength, otherLength)
@@ -2245,7 +2259,7 @@ public class Stringx {
 // * @param ignoreCase `true` to ignore character case when comparing strings. By default `false`.
 // */
 //    @Suppress("INAPPLICABLE_OPERATOR_MODIFIER")
-//    public operator fun CharSequence.contains(other: CharSequence, ignoreCase: Boolean = false): Boolean =
+//    public operator static CharSequence.contains(other: CharSequence, ignoreCase: Boolean = false): Boolean =
 //            if (other is String)
 //    indexOf(other, ignoreCase = ignoreCase) >= 0
 //            else
@@ -2259,14 +2273,14 @@ public class Stringx {
 // * @param ignoreCase `true` to ignore character case when comparing characters. By default `false`.
 // */
 //    @Suppress("INAPPLICABLE_OPERATOR_MODIFIER")
-//    public operator fun CharSequence.contains(char: Char, ignoreCase: Boolean = false): Boolean =
+//    public operator static CharSequence.contains(char: Char, ignoreCase: Boolean = false): Boolean =
 //    indexOf(char, ignoreCase = ignoreCase) >= 0
 //
 ///**
 // * Returns `true` if this char sequence contains at least one match of the specified regular expression [regex].
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline operator fun CharSequence.contains(regex: Regex): Boolean = regex.containsMatchIn(this)/**
+//    public inline operator static CharSequence.contains(regex: Regex): Boolean = regex.containsMatchIn(this)/**
 //     * Returns a sequence of index ranges of substrings in this char sequence around occurrences of the specified [delimiters].
 //     *
 //     * @param delimiters One or more characters to be used as delimiters.
@@ -2276,7 +2290,7 @@ public class Stringx {
 //     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
 //     * @param limit The maximum number of substrings to return. Zero by default means no limit is set.
 //     */
-//    private fun CharSequence.rangesDelimitedBy(delimiters: CharArray, startIndex: Int = 0, ignoreCase: Boolean = false, limit: Int = 0): Sequence<IntRange> {
+//    private static CharSequence.rangesDelimitedBy(delimiters: CharArray, startIndex: Int = 0, ignoreCase: Boolean = false, limit: Int = 0): Sequence<IntRange> {
 //        require(limit >= 0, { "Limit must be non-negative, but was $limit." })
 //
 //        return DelimitedRangesSequence(this, startIndex, limit, { startIndex ->
@@ -2299,7 +2313,7 @@ public class Stringx {
 //     * the beginning to the end of this string, and finds at each position the first element in [delimiters]
 //     * that matches this string at that position.
 //     */
-//    private fun CharSequence.rangesDelimitedBy(delimiters: Array<out String>, startIndex: Int = 0, ignoreCase: Boolean = false, limit: Int = 0): Sequence<IntRange> {
+//    private static CharSequence.rangesDelimitedBy(delimiters: Array<out String>, startIndex: Int = 0, ignoreCase: Boolean = false, limit: Int = 0): Sequence<IntRange> {
 //        require(limit >= 0, { "Limit must be non-negative, but was $limit." } )
 //        val delimitersList = delimiters.asList()
 //
@@ -2321,7 +2335,7 @@ public class Stringx {
 //     * the beginning to the end of this string, and finds at each position the first element in [delimiters]
 //     * that matches this string at that position.
 //     */
-//    public fun CharSequence.splitToSequence(vararg delimiters: String, ignoreCase: Boolean = false, limit: Int = 0): Sequence<String> =
+//    public static CharSequence.splitToSequence(vararg delimiters: String, ignoreCase: Boolean = false, limit: Int = 0): Sequence<String> =
 //    rangesDelimitedBy(delimiters, ignoreCase = ignoreCase, limit = limit).map { substring(it) }
 //
 //    /**
@@ -2335,7 +2349,7 @@ public class Stringx {
 //     * the beginning to the end of this string, and matches at each position the first element in [delimiters]
 //     * that is equal to a delimiter in this instance at that position.
 //     */
-//    public fun CharSequence.split(vararg delimiters: String, ignoreCase: Boolean = false, limit: Int = 0): List<String> {
+//    public static CharSequence.split(vararg delimiters: String, ignoreCase: Boolean = false, limit: Int = 0): List<String> {
 //        if (delimiters.size == 1) {
 //            val delimiter = delimiters[0]
 //            if (!delimiter.isEmpty()) {
@@ -2353,7 +2367,7 @@ public class Stringx {
 //     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
 //     * @param limit The maximum number of substrings to return.
 //     */
-//    public fun CharSequence.splitToSequence(vararg delimiters: Char, ignoreCase: Boolean = false, limit: Int = 0): Sequence<String> =
+//    public static CharSequence.splitToSequence(vararg delimiters: Char, ignoreCase: Boolean = false, limit: Int = 0): Sequence<String> =
 //    rangesDelimitedBy(delimiters, ignoreCase = ignoreCase, limit = limit).map { substring(it) }
 //
 //    /**
@@ -2363,7 +2377,7 @@ public class Stringx {
 //     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
 //     * @param limit The maximum number of substrings to return.
 //     */
-//    public fun CharSequence.split(vararg delimiters: Char, ignoreCase: Boolean = false, limit: Int = 0): List<String> {
+//    public static CharSequence.split(vararg delimiters: Char, ignoreCase: Boolean = false, limit: Int = 0): List<String> {
 //        if (delimiters.size == 1) {
 //            return split(delimiters[0].toString(), ignoreCase, limit)
 //        }
@@ -2379,7 +2393,7 @@ public class Stringx {
 //     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
 //     * @param limit The maximum number of substrings to return.
 //     */
-//    private fun CharSequence.split(delimiter: String, ignoreCase: Boolean, limit: Int): List<String> {
+//    private static CharSequence.split(delimiter: String, ignoreCase: Boolean, limit: Int): List<String> {
 //        require(limit >= 0, { "Limit must be non-negative, but was $limit." })
 //
 //        var currentOffset = 0
@@ -2409,23 +2423,23 @@ public class Stringx {
 // * Zero by default means no limit is set.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.split(regex: Regex, limit: Int = 0): List<String> = regex.split(this, limit)
+//    public static CharSequence.split(regex: Regex, limit: Int = 0): List<String> = regex.split(this, limit)
 //
 //    /**
 //     * Splits this char sequence to a sequence of lines delimited by any of the following character sequences: CRLF, LF or CR.
 //     */
-//    public fun CharSequence.lineSequence(): Sequence<String> = splitToSequence("\r\n", "\n", "\r")
+//    public static CharSequence.lineSequence(): Sequence<String> = splitToSequence("\r\n", "\n", "\r")
 //
 //    /**
 //     * * Splits this char sequence to a list of lines delimited by any of the following character sequences: CRLF, LF or CR.
 //     */
-//    public fun CharSequence.lines(): List<String> = lineSequence().toList()
+//    public static CharSequence.lines(): List<String> = lineSequence().toList()
 //
 //    /**
 //     * Returns a character at the given [index] or throws an [IndexOutOfBoundsException] if the [index] is out of bounds of this char sequence.
 //     */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.elementAt(index: Int): Char {
+//    public static CharSequence.elementAt(index: Int): Char {
 //        return get(index)
 //    }
 //
@@ -2433,7 +2447,7 @@ public class Stringx {
 // * Returns a character at the given [index] or the result of calling the [defaultValue] function if the [index] is out of bounds of this char sequence.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.elementAtOrElse(index: Int, defaultValue: (Int) -> Char): Char {
+//    public static CharSequence.elementAtOrElse(index: Int, defaultValue: (Int) -> Char): Char {
 //        return if (index >= 0 && index <= lastIndex) get(index) else defaultValue(index)
 //    }
 //
@@ -2441,7 +2455,7 @@ public class Stringx {
 // * Returns a character at the given [index] or `null` if the [index] is out of bounds of this char sequence.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.elementAtOrNull(index: Int): Char? {
+//    public static CharSequence.elementAtOrNull(index: Int): Char? {
 //        return this.getOrNull(index)
 //    }
 //
@@ -2451,7 +2465,7 @@ public class Stringx {
 //    /**
 //     * Returns the single character, or throws an exception if the char sequence is empty or has more than one character.
 //     */
-//    public fun CharSequence.single(): Char {
+//    public static CharSequence.single(): Char {
 //        return when (length) {
 //            0 -> throw NoSuchElementException("Char sequence is empty.")
 //            1 -> this[0]
@@ -2462,7 +2476,7 @@ public class Stringx {
 //    /**
 //     * Returns the single character matching the given [predicate], or throws exception if there is no or more than one matching character.
 //     */
-//    public inline fun CharSequence.single(predicate: (Char) -> Boolean): Char {
+//    public static CharSequence.single(predicate: (Char) -> Boolean): Char {
 //        var single: Char? = null
 //        var found = false
 //        for (element in this) {
@@ -2480,14 +2494,14 @@ public class Stringx {
 //    /**
 //     * Returns single character, or `null` if the char sequence is empty or has more than one character.
 //     */
-//    public fun CharSequence.singleOrNull(): Char? {
+//    public static CharSequence.singleOrNull(): Char? {
 //        return if (length == 1) this[0] else null
 //    }
 //
 //    /**
 //     * Returns the single character matching the given [predicate], or `null` if character was not found or more than one character was found.
 //     */
-//    public inline fun CharSequence.singleOrNull(predicate: (Char) -> Boolean): Char? {
+//    public static CharSequence.singleOrNull(predicate: (Char) -> Boolean): Char? {
 //        var single: Char? = null
 //        var found = false
 //        for (element in this) {
@@ -2509,7 +2523,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public fun CharSequence.drop(n: Int): CharSequence {
+//    public static CharSequence.drop(n: Int): CharSequence {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        return subSequence(n.coerceAtMost(length), length)
 //    }
@@ -2519,7 +2533,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public fun String.drop(n: Int): String {
+//    public static String.drop(n: Int): String {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        return substring(n.coerceAtMost(length))
 //    }
@@ -2529,7 +2543,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public fun CharSequence.dropLast(n: Int): CharSequence {
+//    public static CharSequence.dropLast(n: Int): CharSequence {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        return take((length - n).coerceAtLeast(0))
 //    }
@@ -2539,7 +2553,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public fun String.dropLast(n: Int): String {
+//    public static String.dropLast(n: Int): String {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        return take((length - n).coerceAtLeast(0))
 //    }
@@ -2549,7 +2563,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public inline fun CharSequence.dropLastWhile(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.dropLastWhile(predicate: (Char) -> Boolean): CharSequence {
 //        for (index in lastIndex downTo 0)
 //        if (!predicate(this[index]))
 //            return subSequence(0, index + 1)
@@ -2561,7 +2575,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public inline fun String.dropLastWhile(predicate: (Char) -> Boolean): String {
+//    public static String.dropLastWhile(predicate: (Char) -> Boolean): String {
 //        for (index in lastIndex downTo 0)
 //        if (!predicate(this[index]))
 //            return substring(0, index + 1)
@@ -2573,7 +2587,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public inline fun CharSequence.dropWhile(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.dropWhile(predicate: (Char) -> Boolean): CharSequence {
 //        for (index in this.indices)
 //            if (!predicate(this[index]))
 //                return subSequence(index, length)
@@ -2585,7 +2599,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.drop
 //     */
-//    public inline fun String.dropWhile(predicate: (Char) -> Boolean): String {
+//    public static String.dropWhile(predicate: (Char) -> Boolean): String {
 //        for (index in this.indices)
 //            if (!predicate(this[index]))
 //                return substring(index)
@@ -2598,7 +2612,7 @@ public class Stringx {
 //    /**
 //     * Returns a char sequence containing characters of the original char sequence at the specified range of [indices].
 //     */
-//    public fun CharSequence.slice(indices: IntRange): CharSequence {
+//    public static CharSequence.slice(indices: IntRange): CharSequence {
 //        if (indices.isEmpty()) return ""
 //        return subSequence(indices)
 //    }
@@ -2606,7 +2620,7 @@ public class Stringx {
 //    /**
 //     * Returns a string containing characters of the original string at the specified range of [indices].
 //     */
-//    public fun String.slice(indices: IntRange): String {
+//    public static String.slice(indices: IntRange): String {
 //        if (indices.isEmpty()) return ""
 //        return substring(indices)
 //    }
@@ -2614,7 +2628,7 @@ public class Stringx {
 //    /**
 //     * Returns a char sequence containing characters of the original char sequence at specified [indices].
 //     */
-//    public fun CharSequence.slice(indices: Iterable<Int>): CharSequence {
+//    public static CharSequence.slice(indices: Iterable<Int>): CharSequence {
 //        val size = indices.collectionSizeOrDefault(10)
 //        if (size == 0) return ""
 //        val result = StringBuilder(size)
@@ -2628,7 +2642,7 @@ public class Stringx {
 // * Returns a string containing characters of the original string at specified [indices].
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun String.slice(indices: Iterable<Int>): String {
+//    public static String.slice(indices: Iterable<Int>): String {
 //        return (this as CharSequence).slice(indices).toString()
 //    }
 //
@@ -2640,7 +2654,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public fun CharSequence.take(n: Int): CharSequence {
+//    public static CharSequence.take(n: Int): CharSequence {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        return subSequence(0, n.coerceAtMost(length))
 //    }
@@ -2650,7 +2664,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public fun String.take(n: Int): String {
+//    public static String.take(n: Int): String {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        return substring(0, n.coerceAtMost(length))
 //    }
@@ -2660,7 +2674,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public fun CharSequence.takeLast(n: Int): CharSequence {
+//    public static CharSequence.takeLast(n: Int): CharSequence {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        val length = length
 //        return subSequence(length - n.coerceAtMost(length), length)
@@ -2671,7 +2685,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public fun String.takeLast(n: Int): String {
+//    public static String.takeLast(n: Int): String {
 //        require(n >= 0) { "Requested character count $n is less than zero." }
 //        val length = length
 //        return substring(length - n.coerceAtMost(length))
@@ -2682,7 +2696,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public inline fun CharSequence.takeLastWhile(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.takeLastWhile(predicate: (Char) -> Boolean): CharSequence {
 //        for (index in lastIndex downTo 0) {
 //            if (!predicate(this[index])) {
 //                return subSequence(index + 1, length)
@@ -2696,7 +2710,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public inline fun String.takeLastWhile(predicate: (Char) -> Boolean): String {
+//    public static String.takeLastWhile(predicate: (Char) -> Boolean): String {
 //        for (index in lastIndex downTo 0) {
 //            if (!predicate(this[index])) {
 //                return substring(index + 1)
@@ -2710,7 +2724,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public inline fun CharSequence.takeWhile(predicate: (Char) -> Boolean): CharSequence {
+//    public static CharSequence.takeWhile(predicate: (Char) -> Boolean): CharSequence {
 //        for (index in 0 until length)
 //        if (!predicate(get(index))) {
 //            return subSequence(0, index)
@@ -2723,7 +2737,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.take
 //     */
-//    public inline fun String.takeWhile(predicate: (Char) -> Boolean): String {
+//    public static String.takeWhile(predicate: (Char) -> Boolean): String {
 //        for (index in 0 until length)
 //        if (!predicate(get(index))) {
 //            return substring(0, index)
@@ -2739,7 +2753,7 @@ public class Stringx {
 //     *
 //     * The returned map preserves the entry iteration order of the original char sequence.
 //     */
-//    public inline fun <K, V> CharSequence.associate(transform: (Char) -> Pair<K, V>): Map<K, V> {
+//    public static <K, V> CharSequence.associate(transform: (Char) -> Pair<K, V>): Map<K, V> {
 //        val capacity = mapCapacity(length).coerceAtLeast(16)
 //        return associateTo(LinkedHashMap<K, V>(capacity), transform)
 //    }
@@ -2752,7 +2766,7 @@ public class Stringx {
 //     *
 //     * The returned map preserves the entry iteration order of the original char sequence.
 //     */
-//    public inline fun <K> CharSequence.associateBy(keySelector: (Char) -> K): Map<K, Char> {
+//    public static <K> CharSequence.associateBy(keySelector: (Char) -> K): Map<K, Char> {
 //        val capacity = mapCapacity(length).coerceAtLeast(16)
 //        return associateByTo(LinkedHashMap<K, Char>(capacity), keySelector)
 //    }
@@ -2764,7 +2778,7 @@ public class Stringx {
 //     *
 //     * The returned map preserves the entry iteration order of the original char sequence.
 //     */
-//    public inline fun <K, V> CharSequence.associateBy(keySelector: (Char) -> K, valueTransform: (Char) -> V): Map<K, V> {
+//    public static <K, V> CharSequence.associateBy(keySelector: (Char) -> K, valueTransform: (Char) -> V): Map<K, V> {
 //        val capacity = mapCapacity(length).coerceAtLeast(16)
 //        return associateByTo(LinkedHashMap<K, V>(capacity), keySelector, valueTransform)
 //    }
@@ -2776,7 +2790,7 @@ public class Stringx {
 //     *
 //     * If any two characters would have the same key returned by [keySelector] the last one gets added to the map.
 //     */
-//    public inline fun <K, M : MutableMap<in K, in Char>> CharSequence.associateByTo(destination: M, keySelector: (Char) -> K): M {
+//    public static <K, M : MutableMap<in K, in Char>> CharSequence.associateByTo(destination: M, keySelector: (Char) -> K): M {
 //        for (element in this) {
 //            destination.put(keySelector(element), element)
 //        }
@@ -2790,7 +2804,7 @@ public class Stringx {
 //     *
 //     * If any two characters would have the same key returned by [keySelector] the last one gets added to the map.
 //     */
-//    public inline fun <K, V, M : MutableMap<in K, in V>> CharSequence.associateByTo(destination: M, keySelector: (Char) -> K, valueTransform: (Char) -> V): M {
+//    public static <K, V, M : MutableMap<in K, in V>> CharSequence.associateByTo(destination: M, keySelector: (Char) -> K, valueTransform: (Char) -> V): M {
 //        for (element in this) {
 //            destination.put(keySelector(element), valueTransform(element))
 //        }
@@ -2803,7 +2817,7 @@ public class Stringx {
 //     *
 //     * If any of two pairs would have the same key the last one gets added to the map.
 //     */
-//    public inline fun <K, V, M : MutableMap<in K, in V>> CharSequence.associateTo(destination: M, transform: (Char) -> Pair<K, V>): M {
+//    public static <K, V, M : MutableMap<in K, in V>> CharSequence.associateTo(destination: M, transform: (Char) -> Pair<K, V>): M {
 //        for (element in this) {
 //            destination += transform(element)
 //        }
@@ -2813,7 +2827,7 @@ public class Stringx {
 ///**
 // * Appends all characters to the given [destination] collection.
 // */
-//    public fun <C : MutableCollection<in Char>> CharSequence.toCollection(destination: C): C {
+//    public static <C : MutableCollection<in Char>> CharSequence.toCollection(destination: C): C {
 //        for (item in this) {
 //            destination.add(item)
 //        }
@@ -2823,14 +2837,14 @@ public class Stringx {
 //    /**
 //     * Returns a [HashSet] of all characters.
 //     */
-//    public fun CharSequence.toHashSet(): HashSet<Char> {
+//    public static CharSequence.toHashSet(): HashSet<Char> {
 //        return toCollection(HashSet<Char>(mapCapacity(length)))
 //    }
 //
 //    /**
 //     * Returns a [List] containing all characters.
 //     */
-//    public fun CharSequence.toList(): List<Char> {
+//    public static CharSequence.toList(): List<Char> {
 //        return when (length) {
 //            0 -> emptyList()
 //            1 -> listOf(this[0])
@@ -2841,7 +2855,7 @@ public class Stringx {
 //    /**
 //     * Returns a [MutableList] filled with all characters of this char sequence.
 //     */
-//    public fun CharSequence.toMutableList(): MutableList<Char> {
+//    public static CharSequence.toMutableList(): MutableList<Char> {
 //        return toCollection(ArrayList<Char>(length))
 //    }
 //
@@ -2850,7 +2864,7 @@ public class Stringx {
 //     *
 //     * The returned set preserves the element iteration order of the original char sequence.
 //     */
-//    public fun CharSequence.toSet(): Set<Char> {
+//    public static CharSequence.toSet(): Set<Char> {
 //        return when (length) {
 //            0 -> emptySet()
 //            1 -> setOf(this[0])
@@ -2861,14 +2875,14 @@ public class Stringx {
 //    /**
 //     * Returns a single list of all elements yielded from results of [transform] function being invoked on each character of original char sequence.
 //     */
-//    public inline fun <R> CharSequence.flatMap(transform: (Char) -> Iterable<R>): List<R> {
+//    public static <R> CharSequence.flatMap(transform: (Char) -> Iterable<R>): List<R> {
 //        return flatMapTo(ArrayList<R>(), transform)
 //    }
 //
 //    /**
 //     * Appends all elements yielded from results of [transform] function being invoked on each character of original char sequence, to the given [destination].
 //     */
-//    public inline fun <R, C : MutableCollection<in R>> CharSequence.flatMapTo(destination: C, transform: (Char) -> Iterable<R>): C {
+//    public static <R, C : MutableCollection<in R>> CharSequence.flatMapTo(destination: C, transform: (Char) -> Iterable<R>): C {
 //        for (element in this) {
 //            val list = transform(element)
 //            destination.addAll(list)
@@ -2884,7 +2898,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.groupBy
 //     */
-//    public inline fun <K> CharSequence.groupBy(keySelector: (Char) -> K): Map<K, List<Char>> {
+//    public static <K> CharSequence.groupBy(keySelector: (Char) -> K): Map<K, List<Char>> {
 //        return groupByTo(LinkedHashMap<K, MutableList<Char>>(), keySelector)
 //    }
 //
@@ -2897,7 +2911,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.groupByKeysAndValues
 //     */
-//    public inline fun <K, V> CharSequence.groupBy(keySelector: (Char) -> K, valueTransform: (Char) -> V): Map<K, List<V>> {
+//    public static <K, V> CharSequence.groupBy(keySelector: (Char) -> K, valueTransform: (Char) -> V): Map<K, List<V>> {
 //        return groupByTo(LinkedHashMap<K, MutableList<V>>(), keySelector, valueTransform)
 //    }
 //
@@ -2909,7 +2923,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.groupBy
 //     */
-//    public inline fun <K, M : MutableMap<in K, MutableList<Char>>> CharSequence.groupByTo(destination: M, keySelector: (Char) -> K): M {
+//    public static <K, M : MutableMap<in K, MutableList<Char>>> CharSequence.groupByTo(destination: M, keySelector: (Char) -> K): M {
 //        for (element in this) {
 //            val key = keySelector(element)
 //            val list = destination.getOrPut(key) { ArrayList<Char>() }
@@ -2927,7 +2941,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Transformations.groupByKeysAndValues
 //     */
-//    public inline fun <K, V, M : MutableMap<in K, MutableList<V>>> CharSequence.groupByTo(destination: M, keySelector: (Char) -> K, valueTransform: (Char) -> V): M {
+//    public static <K, V, M : MutableMap<in K, MutableList<V>>> CharSequence.groupByTo(destination: M, keySelector: (Char) -> K, valueTransform: (Char) -> V): M {
 //        for (element in this) {
 //            val key = keySelector(element)
 //            val list = destination.getOrPut(key) { ArrayList<V>() }
@@ -2943,7 +2957,7 @@ public class Stringx {
 // * @sample samples.collections.Collections.Transformations.groupingByEachCount
 // */
 //    @SinceKotlin("1.1")
-//    public inline fun <K> CharSequence.groupingBy(crossinline keySelector: (Char) -> K): Grouping<Char, K> {
+//    public static <K> CharSequence.groupingBy(crossinline keySelector: (Char) -> K): Grouping<Char, K> {
 //        return object : Grouping<Char, K> {
 //            override fun sourceIterator(): Iterator<Char> = this@groupingBy.iterator()
 //            override fun keyOf(element: Char): K = keySelector(element)
@@ -2954,7 +2968,7 @@ public class Stringx {
 //     * Returns a list containing the results of applying the given [transform] function
 //     * to each character in the original char sequence.
 //     */
-//    public inline fun <R> CharSequence.map(transform: (Char) -> R): List<R> {
+//    public static <R> CharSequence.map(transform: (Char) -> R): List<R> {
 //        return mapTo(ArrayList<R>(length), transform)
 //    }
 //
@@ -2964,7 +2978,7 @@ public class Stringx {
 //     * @param [transform] function that takes the index of a character and the character itself
 //     * and returns the result of the transform applied to the character.
 //     */
-//    public inline fun <R> CharSequence.mapIndexed(transform: (index: Int, Char) -> R): List<R> {
+//    public static <R> CharSequence.mapIndexed(transform: (index: Int, Char) -> R): List<R> {
 //        return mapIndexedTo(ArrayList<R>(length), transform)
 //    }
 //
@@ -2974,7 +2988,7 @@ public class Stringx {
 //     * @param [transform] function that takes the index of a character and the character itself
 //     * and returns the result of the transform applied to the character.
 //     */
-//    public inline fun <R : Any> CharSequence.mapIndexedNotNull(transform: (index: Int, Char) -> R?): List<R> {
+//    public static <R : Any> CharSequence.mapIndexedNotNull(transform: (index: Int, Char) -> R?): List<R> {
 //        return mapIndexedNotNullTo(ArrayList<R>(), transform)
 //    }
 //
@@ -2984,7 +2998,7 @@ public class Stringx {
 //     * @param [transform] function that takes the index of a character and the character itself
 //     * and returns the result of the transform applied to the character.
 //     */
-//    public inline fun <R : Any, C : MutableCollection<in R>> CharSequence.mapIndexedNotNullTo(destination: C, transform: (index: Int, Char) -> R?): C {
+//    public static <R : Any, C : MutableCollection<in R>> CharSequence.mapIndexedNotNullTo(destination: C, transform: (index: Int, Char) -> R?): C {
 //        forEachIndexed { index, element -> transform(index, element)?.let { destination.add(it) } }
 //        return destination
 //    }
@@ -2995,7 +3009,7 @@ public class Stringx {
 //     * @param [transform] function that takes the index of a character and the character itself
 //     * and returns the result of the transform applied to the character.
 //     */
-//    public inline fun <R, C : MutableCollection<in R>> CharSequence.mapIndexedTo(destination: C, transform: (index: Int, Char) -> R): C {
+//    public static <R, C : MutableCollection<in R>> CharSequence.mapIndexedTo(destination: C, transform: (index: Int, Char) -> R): C {
 //        var index = 0
 //        for (item in this)
 //            destination.add(transform(index++, item))
@@ -3006,7 +3020,7 @@ public class Stringx {
 //     * Returns a list containing only the non-null results of applying the given [transform] function
 //     * to each character in the original char sequence.
 //     */
-//    public inline fun <R : Any> CharSequence.mapNotNull(transform: (Char) -> R?): List<R> {
+//    public static <R : Any> CharSequence.mapNotNull(transform: (Char) -> R?): List<R> {
 //        return mapNotNullTo(ArrayList<R>(), transform)
 //    }
 //
@@ -3014,7 +3028,7 @@ public class Stringx {
 //     * Applies the given [transform] function to each character in the original char sequence
 //     * and appends only the non-null results to the given [destination].
 //     */
-//    public inline fun <R : Any, C : MutableCollection<in R>> CharSequence.mapNotNullTo(destination: C, transform: (Char) -> R?): C {
+//    public static <R : Any, C : MutableCollection<in R>> CharSequence.mapNotNullTo(destination: C, transform: (Char) -> R?): C {
 //        forEach { element -> transform(element)?.let { destination.add(it) } }
 //        return destination
 //    }
@@ -3023,7 +3037,7 @@ public class Stringx {
 //     * Applies the given [transform] function to each character of the original char sequence
 //     * and appends the results to the given [destination].
 //     */
-//    public inline fun <R, C : MutableCollection<in R>> CharSequence.mapTo(destination: C, transform: (Char) -> R): C {
+//    public static <R, C : MutableCollection<in R>> CharSequence.mapTo(destination: C, transform: (Char) -> R): C {
 //        for (item in this)
 //            destination.add(transform(item))
 //        return destination
@@ -3032,7 +3046,7 @@ public class Stringx {
 //    /**
 //     * Returns a lazy [Iterable] of [IndexedValue] for each character of the original char sequence.
 //     */
-//    public fun CharSequence.withIndex(): Iterable<IndexedValue<Char>> {
+//    public static CharSequence.withIndex(): Iterable<IndexedValue<Char>> {
 //        return IndexingIterable { iterator() }
 //    }
 //
@@ -3041,7 +3055,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Aggregates.all
 //     */
-//    public inline fun CharSequence.all(predicate: (Char) -> Boolean): Boolean {
+//    public static CharSequence.all(predicate: (Char) -> Boolean): Boolean {
 //        for (element in this) if (!predicate(element)) return false
 //        return true
 //    }
@@ -3051,7 +3065,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Aggregates.any
 //     */
-//    public fun CharSequence.any(): Boolean {
+//    public static CharSequence.any(): Boolean {
 //        return !isEmpty()
 //    }
 //
@@ -3060,7 +3074,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Aggregates.anyWithPredicate
 //     */
-//    public inline fun CharSequence.any(predicate: (Char) -> Boolean): Boolean {
+//    public static CharSequence.any(predicate: (Char) -> Boolean): Boolean {
 //        for (element in this) if (predicate(element)) return true
 //        return false
 //    }
@@ -3069,14 +3083,14 @@ public class Stringx {
 // * Returns the length of this char sequence.
 // */
 //    @kotlin.internal.InlineOnly
-//    public inline fun CharSequence.count(): Int {
+//    public static CharSequence.count(): Int {
 //        return length
 //    }
 //
 //    /**
 //     * Returns the number of characters matching the given [predicate].
 //     */
-//    public inline fun CharSequence.count(predicate: (Char) -> Boolean): Int {
+//    public static CharSequence.count(predicate: (Char) -> Boolean): Int {
 //        var count = 0
 //        for (element in this) if (predicate(element)) count++
 //        return count
@@ -3085,7 +3099,7 @@ public class Stringx {
 //    /**
 //     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each character.
 //     */
-//    public inline fun <R> CharSequence.fold(initial: R, operation: (acc: R, Char) -> R): R {
+//    public static <R> CharSequence.fold(initial: R, operation: (acc: R, Char) -> R): R {
 //        var accumulator = initial
 //        for (element in this) accumulator = operation(accumulator, element)
 //        return accumulator
@@ -3097,7 +3111,7 @@ public class Stringx {
 //     * @param [operation] function that takes the index of a character, current accumulator value
 //     * and the character itself, and calculates the next accumulator value.
 //     */
-//    public inline fun <R> CharSequence.foldIndexed(initial: R, operation: (index: Int, acc: R, Char) -> R): R {
+//    public static <R> CharSequence.foldIndexed(initial: R, operation: (index: Int, acc: R, Char) -> R): R {
 //        var index = 0
 //        var accumulator = initial
 //        for (element in this) accumulator = operation(index++, accumulator, element)
@@ -3107,7 +3121,7 @@ public class Stringx {
 //    /**
 //     * Accumulates value starting with [initial] value and applying [operation] from right to left to each character and current accumulator value.
 //     */
-//    public inline fun <R> CharSequence.foldRight(initial: R, operation: (Char, acc: R) -> R): R {
+//    public static <R> CharSequence.foldRight(initial: R, operation: (Char, acc: R) -> R): R {
 //        var index = lastIndex
 //        var accumulator = initial
 //        while (index >= 0) {
@@ -3122,7 +3136,7 @@ public class Stringx {
 //     * @param [operation] function that takes the index of a character, the character itself
 //     * and current accumulator value, and calculates the next accumulator value.
 //     */
-//    public inline fun <R> CharSequence.foldRightIndexed(initial: R, operation: (index: Int, Char, acc: R) -> R): R {
+//    public static <R> CharSequence.foldRightIndexed(initial: R, operation: (index: Int, Char, acc: R) -> R): R {
 //        var index = lastIndex
 //        var accumulator = initial
 //        while (index >= 0) {
@@ -3135,7 +3149,7 @@ public class Stringx {
 //    /**
 //     * Performs the given [action] on each character.
 //     */
-//    public inline fun CharSequence.forEach(action: (Char) -> Unit): Unit {
+//    public static CharSequence.forEach(action: (Char) -> Unit): Unit {
 //        for (element in this) action(element)
 //    }
 //
@@ -3144,7 +3158,7 @@ public class Stringx {
 //     * @param [action] function that takes the index of a character and the character itself
 //     * and performs the desired action on the character.
 //     */
-//    public inline fun CharSequence.forEachIndexed(action: (index: Int, Char) -> Unit): Unit {
+//    public static CharSequence.forEachIndexed(action: (index: Int, Char) -> Unit): Unit {
 //        var index = 0
 //        for (item in this) action(index++, item)
 //    }
@@ -3152,7 +3166,7 @@ public class Stringx {
 //    /**
 //     * Returns the largest character or `null` if there are no characters.
 //     */
-//    public fun CharSequence.max(): Char? {
+//    public static CharSequence.max(): Char? {
 //        if (isEmpty()) return null
 //        var max = this[0]
 //        for (i in 1..lastIndex) {
@@ -3165,7 +3179,7 @@ public class Stringx {
 //    /**
 //     * Returns the first character yielding the largest value of the given function or `null` if there are no characters.
 //     */
-//    public inline fun <R : Comparable<R>> CharSequence.maxBy(selector: (Char) -> R): Char? {
+//    public static <R : Comparable<R>> CharSequence.maxBy(selector: (Char) -> R): Char? {
 //        if (isEmpty()) return null
 //        var maxElem = this[0]
 //        var maxValue = selector(maxElem)
@@ -3183,7 +3197,7 @@ public class Stringx {
 //    /**
 //     * Returns the first character having the largest value according to the provided [comparator] or `null` if there are no characters.
 //     */
-//    public fun CharSequence.maxWith(comparator: Comparator<in Char>): Char? {
+//    public static CharSequence.maxWith(comparator: Comparator<in Char>): Char? {
 //        if (isEmpty()) return null
 //        var max = this[0]
 //        for (i in 1..lastIndex) {
@@ -3196,7 +3210,7 @@ public class Stringx {
 //    /**
 //     * Returns the smallest character or `null` if there are no characters.
 //     */
-//    public fun CharSequence.min(): Char? {
+//    public static CharSequence.min(): Char? {
 //        if (isEmpty()) return null
 //        var min = this[0]
 //        for (i in 1..lastIndex) {
@@ -3209,7 +3223,7 @@ public class Stringx {
 //    /**
 //     * Returns the first character yielding the smallest value of the given function or `null` if there are no characters.
 //     */
-//    public inline fun <R : Comparable<R>> CharSequence.minBy(selector: (Char) -> R): Char? {
+//    public static <R : Comparable<R>> CharSequence.minBy(selector: (Char) -> R): Char? {
 //        if (isEmpty()) return null
 //        var minElem = this[0]
 //        var minValue = selector(minElem)
@@ -3227,7 +3241,7 @@ public class Stringx {
 //    /**
 //     * Returns the first character having the smallest value according to the provided [comparator] or `null` if there are no characters.
 //     */
-//    public fun CharSequence.minWith(comparator: Comparator<in Char>): Char? {
+//    public static CharSequence.minWith(comparator: Comparator<in Char>): Char? {
 //        if (isEmpty()) return null
 //        var min = this[0]
 //        for (i in 1..lastIndex) {
@@ -3242,7 +3256,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Aggregates.none
 //     */
-//    public fun CharSequence.none(): Boolean {
+//    public static CharSequence.none(): Boolean {
 //        return isEmpty()
 //    }
 //
@@ -3251,7 +3265,7 @@ public class Stringx {
 //     *
 //     * @sample samples.collections.Collections.Aggregates.noneWithPredicate
 //     */
-//    public inline fun CharSequence.none(predicate: (Char) -> Boolean): Boolean {
+//    public static CharSequence.none(predicate: (Char) -> Boolean): Boolean {
 //        for (element in this) if (predicate(element)) return false
 //        return true
 //    }
@@ -3260,14 +3274,14 @@ public class Stringx {
 // * Performs the given [action] on each character and returns the char sequence itself afterwards.
 // */
 //    @SinceKotlin("1.1")
-//    public inline fun <S : CharSequence> S.onEach(action: (Char) -> Unit): S {
+//    public static <S : CharSequence> S.onEach(action: (Char) -> Unit): S {
 //        return apply { for (element in this) action(element) }
 //    }
 //
 //    /**
 //     * Accumulates value starting with the first character and applying [operation] from left to right to current accumulator value and each character.
 //     */
-//    public inline fun CharSequence.reduce(operation: (acc: Char, Char) -> Char): Char {
+//    public static CharSequence.reduce(operation: (acc: Char, Char) -> Char): Char {
 //        if (isEmpty())
 //            throw UnsupportedOperationException("Empty char sequence can't be reduced.")
 //        var accumulator = this[0]
@@ -3283,7 +3297,7 @@ public class Stringx {
 //     * @param [operation] function that takes the index of a character, current accumulator value
 //     * and the character itself and calculates the next accumulator value.
 //     */
-//    public inline fun CharSequence.reduceIndexed(operation: (index: Int, acc: Char, Char) -> Char): Char {
+//    public static CharSequence.reduceIndexed(operation: (index: Int, acc: Char, Char) -> Char): Char {
 //        if (isEmpty())
 //            throw UnsupportedOperationException("Empty char sequence can't be reduced.")
 //        var accumulator = this[0]
@@ -3296,7 +3310,7 @@ public class Stringx {
 //    /**
 //     * Accumulates value starting with last character and applying [operation] from right to left to each character and current accumulator value.
 //     */
-//    public inline fun CharSequence.reduceRight(operation: (Char, acc: Char) -> Char): Char {
+//    public static CharSequence.reduceRight(operation: (Char, acc: Char) -> Char): Char {
 //        var index = lastIndex
 //        if (index < 0) throw UnsupportedOperationException("Empty char sequence can't be reduced.")
 //        var accumulator = get(index--)
@@ -3312,7 +3326,7 @@ public class Stringx {
 //     * @param [operation] function that takes the index of a character, the character itself
 //     * and current accumulator value, and calculates the next accumulator value.
 //     */
-//    public inline fun CharSequence.reduceRightIndexed(operation: (index: Int, Char, acc: Char) -> Char): Char {
+//    public static CharSequence.reduceRightIndexed(operation: (index: Int, Char, acc: Char) -> Char): Char {
 //        var index = lastIndex
 //        if (index < 0) throw UnsupportedOperationException("Empty char sequence can't be reduced.")
 //        var accumulator = get(index--)
@@ -3326,7 +3340,7 @@ public class Stringx {
 //    /**
 //     * Returns the sum of all values produced by [selector] function applied to each character in the char sequence.
 //     */
-//    public inline fun CharSequence.sumBy(selector: (Char) -> Int): Int {
+//    public static CharSequence.sumBy(selector: (Char) -> Int): Int {
 //        var sum: Int = 0
 //        for (element in this) {
 //            sum += selector(element)
@@ -3337,7 +3351,7 @@ public class Stringx {
 //    /**
 //     * Returns the sum of all values produced by [selector] function applied to each character in the char sequence.
 //     */
-//    public inline fun CharSequence.sumByDouble(selector: (Char) -> Double): Double {
+//    public static CharSequence.sumByDouble(selector: (Char) -> Double): Double {
 //        var sum: Double = 0.0
 //        for (element in this) {
 //            sum += selector(element)
@@ -3355,7 +3369,7 @@ public class Stringx {
 // * @sample samples.collections.Collections.Transformations.chunked
 // */
 //    @SinceKotlin("1.2")
-//    public fun CharSequence.chunked(size: Int): List<String> {
+//    public static CharSequence.chunked(size: Int): List<String> {
 //        return windowed(size, size, partialWindows = true)
 //    }
 //
@@ -3374,7 +3388,7 @@ public class Stringx {
 // * @sample samples.text.Strings.chunkedTransform
 // */
 //    @SinceKotlin("1.2")
-//    public fun <R> CharSequence.chunked(size: Int, transform: (CharSequence) -> R): List<R> {
+//    public static <R> CharSequence.chunked(size: Int, transform: (CharSequence) -> R): List<R> {
 //        return windowed(size, size, partialWindows = true, transform = transform)
 //    }
 //
@@ -3388,7 +3402,7 @@ public class Stringx {
 // * @sample samples.collections.Collections.Transformations.chunked
 // */
 //    @SinceKotlin("1.2")
-//    public fun CharSequence.chunkedSequence(size: Int): Sequence<String> {
+//    public static CharSequence.chunkedSequence(size: Int): Sequence<String> {
 //        return chunkedSequence(size) { it.toString() }
 //    }
 //
@@ -3407,7 +3421,7 @@ public class Stringx {
 // * @sample samples.text.Strings.chunkedTransformToSequence
 // */
 //    @SinceKotlin("1.2")
-//    public fun <R> CharSequence.chunkedSequence(size: Int, transform: (CharSequence) -> R): Sequence<R> {
+//    public static <R> CharSequence.chunkedSequence(size: Int, transform: (CharSequence) -> R): Sequence<R> {
 //        return windowedSequence(size, size, partialWindows = true, transform = transform)
 //    }
 //
@@ -3416,7 +3430,7 @@ public class Stringx {
 //     * where *first* char sequence contains characters for which [predicate] yielded `true`,
 //     * while *second* char sequence contains characters for which [predicate] yielded `false`.
 //     */
-//    public inline fun CharSequence.partition(predicate: (Char) -> Boolean): Pair<CharSequence, CharSequence> {
+//    public static CharSequence.partition(predicate: (Char) -> Boolean): Pair<CharSequence, CharSequence> {
 //        val first = StringBuilder()
 //        val second = StringBuilder()
 //        for (element in this) {
@@ -3434,7 +3448,7 @@ public class Stringx {
 //     * where *first* string contains characters for which [predicate] yielded `true`,
 //     * while *second* string contains characters for which [predicate] yielded `false`.
 //     */
-//    public inline fun String.partition(predicate: (Char) -> Boolean): Pair<String, String> {
+//    public static String.partition(predicate: (Char) -> Boolean): Pair<String, String> {
 //        val first = StringBuilder()
 //        val second = StringBuilder()
 //        for (element in this) {
@@ -3463,7 +3477,7 @@ public class Stringx {
 // * @sample samples.collections.Sequences.Transformations.takeWindows
 // */
 //    @SinceKotlin("1.2")
-//    public fun CharSequence.windowed(size: Int, step: Int = 1, partialWindows: Boolean = false): List<String> {
+//    public static CharSequence.windowed(size: Int, step: Int = 1, partialWindows: Boolean = false): List<String> {
 //        return windowed(size, step, partialWindows) { it.toString() }
 //    }
 //
@@ -3485,7 +3499,7 @@ public class Stringx {
 // * @sample samples.collections.Sequences.Transformations.averageWindows
 // */
 //    @SinceKotlin("1.2")
-//    public fun <R> CharSequence.windowed(size: Int, step: Int = 1, partialWindows: Boolean = false, transform: (CharSequence) -> R): List<R> {
+//    public static <R> CharSequence.windowed(size: Int, step: Int = 1, partialWindows: Boolean = false, transform: (CharSequence) -> R): List<R> {
 //        checkWindowSizeStep(size, step)
 //        val thisSize = this.length
 //        val result = ArrayList<R>((thisSize + step - 1) / step)
@@ -3515,7 +3529,7 @@ public class Stringx {
 // * @sample samples.collections.Sequences.Transformations.takeWindows
 // */
 //    @SinceKotlin("1.2")
-//    public fun CharSequence.windowedSequence(size: Int, step: Int = 1, partialWindows: Boolean = false): Sequence<String> {
+//    public static CharSequence.windowedSequence(size: Int, step: Int = 1, partialWindows: Boolean = false): Sequence<String> {
 //        return windowedSequence(size, step, partialWindows) { it.toString() }
 //    }
 //
@@ -3537,7 +3551,7 @@ public class Stringx {
 // * @sample samples.collections.Sequences.Transformations.averageWindows
 // */
 //    @SinceKotlin("1.2")
-//    public fun <R> CharSequence.windowedSequence(size: Int, step: Int = 1, partialWindows: Boolean = false, transform: (CharSequence) -> R): Sequence<R> {
+//    public static <R> CharSequence.windowedSequence(size: Int, step: Int = 1, partialWindows: Boolean = false, transform: (CharSequence) -> R): Sequence<R> {
 //        checkWindowSizeStep(size, step)
 //        val windows = (if (partialWindows) indices else 0 until length - size + 1) step step
 //        return windows.asSequence().map { index -> transform(subSequence(index, (index + size).coerceAtMost(length))) }
@@ -3549,7 +3563,7 @@ public class Stringx {
 //     *
 //     * @sample samples.text.Strings.zip
 //     */
-//    public infix fun CharSequence.zip(other: CharSequence): List<Pair<Char, Char>> {
+//    public infix static CharSequence.zip(other: CharSequence): List<Pair<Char, Char>> {
 //        return zip(other) { c1, c2 -> c1 to c2 }
 //    }
 //
@@ -3560,7 +3574,7 @@ public class Stringx {
 //     *
 //     * @sample samples.text.Strings.zipWithTransform
 //     */
-//    public inline fun <V> CharSequence.zip(other: CharSequence, transform: (a: Char, b: Char) -> V): List<V> {
+//    public static <V> CharSequence.zip(other: CharSequence, transform: (a: Char, b: Char) -> V): List<V> {
 //        val length = minOf(this.length, other.length)
 //        val list = ArrayList<V>(length)
 //        for (i in 0 until length) {
@@ -3577,7 +3591,7 @@ public class Stringx {
 // * @sample samples.collections.Collections.Transformations.zipWithNext
 // */
 //    @SinceKotlin("1.2")
-//    public fun CharSequence.zipWithNext(): List<Pair<Char, Char>> {
+//    public static CharSequence.zipWithNext(): List<Pair<Char, Char>> {
 //        return zipWithNext { a, b -> a to b }
 //    }
 //
@@ -3590,7 +3604,7 @@ public class Stringx {
 // * @sample samples.collections.Collections.Transformations.zipWithNextToFindDeltas
 // */
 //    @SinceKotlin("1.2")
-//    public inline fun <R> CharSequence.zipWithNext(transform: (a: Char, b: Char) -> R): List<R> {
+//    public static <R> CharSequence.zipWithNext(transform: (a: Char, b: Char) -> R): List<R> {
 //        val size = length - 1
 //        if (size < 1) return emptyList()
 //        val result = ArrayList<R>(size)
@@ -3603,7 +3617,7 @@ public class Stringx {
 //    /**
 //     * Creates an [Iterable] instance that wraps the original char sequence returning its characters when being iterated.
 //     */
-//    public fun CharSequence.asIterable(): Iterable<Char> {
+//    public static CharSequence.asIterable(): Iterable<Char> {
 //        if (this is String && isEmpty()) return emptyList()
 //        return Iterable { this.iterator() }
 //    }
@@ -3611,7 +3625,7 @@ public class Stringx {
 //    /**
 //     * Creates a [Sequence] instance that wraps the original char sequence returning its characters when being iterated.
 //     */
-//    public fun CharSequence.asSequence(): Sequence<Char> {
+//    public static CharSequence.asSequence(): Sequence<Char> {
 //        if (this is String && isEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
@@ -3619,7 +3633,7 @@ public class Stringx {
 //    /**
 //     * Returns a [SortedSet][java.util.SortedSet] of all characters.
 //     */
-//    public fun CharSequence.toSortedSet(): java.util.SortedSet<Char> {
+//    public static CharSequence.toSortedSet(): java.util.SortedSet<Char> {
 //        return toCollection(java.util.TreeSet<Char>())
 //    }
 }
