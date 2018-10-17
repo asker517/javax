@@ -1455,5 +1455,5 @@ public class Stringx {
         return destination;
     }
 
-    // TODO: 2018/10/9 翻译 _Strings.kt 和 _StringJVM.kt
+    // TODO: 2018/10/9 翻译 _Strings.kt 和 Strings.kt 和 _StringJVM.kt
 }
