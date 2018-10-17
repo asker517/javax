@@ -735,137 +735,152 @@ public class Stringx {
 
     /* ******************************************* remove *******************************************/
 
-//    /**
-//     * Returns a char sequence with content of this char sequence where its part at the given range is removed.
-//     *
-//     * @param startIndex the index of the first character to be removed.
-//     * @param endIndex   the index of the first character after the removed part to keep in the string.
-//     *                   <p>
-//     *                   [endIndex] is not included in the removed part.
-//     */
-//    public CharSequence removeRange(CharSequence charSequence, int startIndex, int endIndex) {
-//        if (endIndex < startIndex)
-//            throw new IndexOutOfBoundsException("End index (" + endIndex + ") is less than start index (" + startIndex + ").");
-//        if (endIndex == startIndex) return charSequence.subSequence(0, charSequence.length());
-//
-//        StringBuilder sb = new StringBuilder(charSequence.length() - (endIndex - startIndex));
-//        sb.append(charSequence, 0, startIndex);
-//        sb.append(charSequence, endIndex, charSequence.length());
-//        return sb;
-//    }
-//
-//    /**
-//     * Removes the part of a string at a given range.
-//     *
-//     * @param startIndex the index of the first character to be removed.
-//     * @param endIndex   the index of the first character after the removed part to keep in the string.
-//     *                   <p>
-//     *                   [endIndex] is not included in the removed part.
-//     */
-//    public String removeRange(String string, int startIndex, int endIndex) {
-//        return removeRange((CharSequence) string, startIndex, endIndex).toString();
-//    }
-//
-//    /**
-//     * Returns a char sequence with content of this char sequence where its part at the given [range] is removed.
-//     * <p>
-//     * The end index of the [range] is included in the removed part.
-//     */
-//    public CharSequence removeRange(CharSequence charSequence, IntRange range) {
-//        return removeRange(charSequence, range.getStart(), range.getEndInclusive() + 1);
-//    }
-//
-//    /**
-//     * Removes the part of a string at the given [range].
-//     * <p>
-//     * The end index of the [range] is included in the removed part.
-//     */
-//    public String removeRange(String string, IntRange range) {
-//        return removeRange((CharSequence) string, range).toString();
-//    }
-//     // todo 继续翻译
-//
-//    /**
-//     * If this char sequence starts with the given [prefix], returns a new char sequence
-//     * with the prefix removed. Otherwise, returns a new char sequence with the same characters.
-//     */
-//    public CharSequence removePrefix(CharSequence charSequence, CharSequence prefix) {
-//        if (startsWith(charSequence, prefix)) {
-//            return subSequence(prefix.length, length)
-//        }
-//        return subSequence(0, length)
-//    }
-//
-//    /**
-//     * If this string starts with the given [prefix], returns a copy of this string
-//     * with the prefix removed. Otherwise, returns this string.
-//     */
-//    public fun String.removePrefix(prefix: CharSequence): String {
-//        if (startsWith(prefix)) {
-//            return substring(prefix.length)
-//        }
-//        return this
-//    }
-//
-//    /**
-//     * If this char sequence ends with the given [suffix], returns a new char sequence
-//     * with the suffix removed. Otherwise, returns a new char sequence with the same characters.
-//     */
-//    public fun CharSequence.removeSuffix(suffix: CharSequence): CharSequence {
-//        if (endsWith(suffix)) {
-//            return subSequence(0, length - suffix.length)
-//        }
-//        return subSequence(0, length)
-//    }
-//
-//    /**
-//     * If this string ends with the given [suffix], returns a copy of this string
-//     * with the suffix removed. Otherwise, returns this string.
-//     */
-//    public fun String.removeSuffix(suffix: CharSequence): String {
-//        if (endsWith(suffix)) {
-//            return substring(0, length - suffix.length)
-//        }
-//        return this
-//    }
-//
-//    /**
-//     * When this char sequence starts with the given [prefix] and ends with the given [suffix],
-//     * returns a new char sequence having both the given [prefix] and [suffix] removed.
-//     * Otherwise returns a new char sequence with the same characters.
-//     */
-//    public fun CharSequence.removeSurrounding(prefix: CharSequence, suffix: CharSequence): CharSequence {
-//        if ((length >= prefix.length + suffix.length) && startsWith(prefix) && endsWith(suffix)) {
-//            return subSequence(prefix.length, length - suffix.length)
-//        }
-//        return subSequence(0, length)
-//    }
-//
-//    /**
-//     * Removes from a string both the given [prefix] and [suffix] if and only if
-//     * it starts with the [prefix] and ends with the [suffix].
-//     * Otherwise returns this string unchanged.
-//     */
-//    public fun String.removeSurrounding(prefix: CharSequence, suffix: CharSequence): String {
-//        if ((length >= prefix.length + suffix.length) && startsWith(prefix) && endsWith(suffix)) {
-//            return substring(prefix.length, length - suffix.length)
-//        }
-//        return this
-//    }
-//
-//    /**
-//     * When this char sequence starts with and ends with the given [delimiter],
-//     * returns a new char sequence having this [delimiter] removed both from the start and end.
-//     * Otherwise returns a new char sequence with the same characters.
-//     */
-//    public fun CharSequence.removeSurrounding(delimiter: CharSequence): CharSequence = removeSurrounding(delimiter, delimiter)
-//
-//    /**
-//     * Removes the given [delimiter] string from both the start and the end of this string
-//     * if and only if it starts with and ends with the [delimiter].
-//     * Otherwise returns this string unchanged.
-//     */
-//    public fun String.removeSurrounding(delimiter: CharSequence): String = removeSurrounding(delimiter, delimiter)
+    /**
+     * Returns a char sequence with content of this char sequence where its part at the given range is removed.
+     *
+     * @param startIndex the index of the first character to be removed.
+     * @param endIndex   the index of the first character after the removed part to keep in the string.
+     *                   <p>
+     *                   [endIndex] is not included in the removed part.
+     */
+    @NotNull
+    public CharSequence removeRange(@NotNull CharSequence charSequence, int startIndex, int endIndex) {
+        if (endIndex < startIndex)
+            throw new IndexOutOfBoundsException("End index (" + endIndex + ") is less than start index (" + startIndex + ").");
+        if (endIndex == startIndex) return charSequence.subSequence(0, charSequence.length());
+
+        StringBuilder sb = new StringBuilder(charSequence.length() - (endIndex - startIndex));
+        sb.append(charSequence, 0, startIndex);
+        sb.append(charSequence, endIndex, charSequence.length());
+        return sb;
+    }
+
+    /**
+     * Removes the part of a string at a given range.
+     *
+     * @param startIndex the index of the first character to be removed.
+     * @param endIndex   the index of the first character after the removed part to keep in the string.
+     *                   <p>
+     *                   [endIndex] is not included in the removed part.
+     */
+    @NotNull
+    public String removeRange(@NotNull String string, int startIndex, int endIndex) {
+        return removeRange((CharSequence) string, startIndex, endIndex).toString();
+    }
+
+    /**
+     * Returns a char sequence with content of this char sequence where its part at the given [range] is removed.
+     * <p>
+     * The end index of the [range] is included in the removed part.
+     */
+    @NotNull
+    public CharSequence removeRange(@NotNull CharSequence charSequence, @NotNull IntRange range) {
+        return removeRange(charSequence, range.getStart(), range.getEndInclusive() + 1);
+    }
+
+    /**
+     * Removes the part of a string at the given [range].
+     * <p>
+     * The end index of the [range] is included in the removed part.
+     */
+    @NotNull
+    public String removeRange(@NotNull String string, @NotNull IntRange range) {
+        return removeRange((CharSequence) string, range).toString();
+    }
+
+    /**
+     * If this char sequence starts with the given [prefix], returns a new char sequence
+     * with the prefix removed. Otherwise, returns a new char sequence with the same characters.
+     */
+    @NotNull
+    public CharSequence removePrefix(@NotNull CharSequence charSequence, @NotNull CharSequence prefix) {
+        if (startsWith(charSequence, prefix)) {
+            return charSequence.subSequence(prefix.length(), charSequence.length());
+        }
+        return charSequence.subSequence(0, charSequence.length());
+    }
+
+    /**
+     * If this string starts with the given [prefix], returns a copy of this string
+     * with the prefix removed. Otherwise, returns this string.
+     */
+    @NotNull
+    public String removePrefix(@NotNull String string, @NotNull CharSequence prefix) {
+        if (startsWith(string, prefix)) {
+            return string.substring(prefix.length());
+        }
+        return string;
+    }
+
+    /**
+     * If this char sequence ends with the given [suffix], returns a new char sequence
+     * with the suffix removed. Otherwise, returns a new char sequence with the same characters.
+     */
+    @NotNull
+    public CharSequence removeSuffix(@NotNull CharSequence charSequence, @NotNull CharSequence suffix) {
+        if (endsWith(charSequence, suffix)) {
+            return charSequence.subSequence(0, charSequence.length() - suffix.length());
+        }
+        return charSequence.subSequence(0, charSequence.length());
+    }
+
+    /**
+     * If this string ends with the given [suffix], returns a copy of this string
+     * with the suffix removed. Otherwise, returns this string.
+     */
+    @NotNull
+    public String removeSuffix(@NotNull String string, @NotNull CharSequence suffix) {
+        if (endsWith(string, suffix)) {
+            return string.substring(0, string.length() - suffix.length());
+        }
+        return string;
+    }
+
+    /**
+     * When this char sequence starts with the given [prefix] and ends with the given [suffix],
+     * returns a new char sequence having both the given [prefix] and [suffix] removed.
+     * Otherwise returns a new char sequence with the same characters.
+     */
+    @NotNull
+    public CharSequence removeSurrounding(@NotNull CharSequence charSequence, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
+        if ((charSequence.length() >= prefix.length() + suffix.length()) && startsWith(charSequence, prefix) && endsWith(charSequence, suffix)) {
+            return charSequence.subSequence(prefix.length(), charSequence.length() - suffix.length());
+        }
+        return charSequence.subSequence(0, charSequence.length());
+    }
+
+    /**
+     * Removes from a string both the given [prefix] and [suffix] if and only if
+     * it starts with the [prefix] and ends with the [suffix].
+     * Otherwise returns this string unchanged.
+     */
+    @NotNull
+    public String removeSurrounding(@NotNull String string, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
+        if ((string.length() >= prefix.length() + suffix.length()) && startsWith(string, prefix) && endsWith(string, suffix)) {
+            return string.substring(prefix.length(), string.length() - suffix.length());
+        }
+        return string;
+    }
+
+    /**
+     * When this char sequence starts with and ends with the given [delimiter],
+     * returns a new char sequence having this [delimiter] removed both from the start and end.
+     * Otherwise returns a new char sequence with the same characters.
+     */
+    @NotNull
+    public CharSequence removeSurrounding(@NotNull CharSequence charSequence, @NotNull CharSequence delimiter) {
+        return removeSurrounding(charSequence, delimiter, delimiter);
+    }
+
+    /**
+     * Removes the given [delimiter] string from both the start and the end of this string
+     * if and only if it starts with and ends with the [delimiter].
+     * Otherwise returns this string unchanged.
+     */
+    @NotNull
+    public String removeSurrounding(@NotNull String string, @NotNull CharSequence delimiter) {
+        return removeSurrounding(string, delimiter, delimiter);
+    }
 
 
     /* ******************************************* capitalize *******************************************/
