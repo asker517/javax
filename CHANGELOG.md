@@ -1,9 +1,13 @@
 ## 0.8.0
 
-* :sparkles: Stringx.kt adds removeChar, removeFirstChar, removeLastChar, removeIndex
 * :art: Perfect Stringx.kt startsWith and endWith
-* :sparkles: Stringx.kt adds removeRange, removePrefix, removeSuffix, removeSurrounding method
-* :sparkles: Stringx.kt adds find, findLast, first, firstOrNull, last, lastOrNull, getOrElse, getOrNull, indexOfFirst, indexOfLast, substring, subSequence, iterator, iterable, indices, lastIndex method
+* :sparkles: Stringx adds removeChar, removeFirstChar, removeLastChar, removeIndex, removeRange,
+    removePrefix, removeSuffix, removeSurrounding method, find, findLast, first, firstOrNull,
+    last, lastOrNull, getOrElse, getOrNull, indexOf, lastIndexOf, substring, subSequence, toByteArray,
+    indices, lastIndex, reversed, filter, trim, iterator, iterable, replace, commonWith, contains,
+    elementAt, single, drop, slice, take, associate, toCollection, toHashSet, toList, toSet, toSortedSet,
+    flatMap, group, map, withIndex, all, any, count, fold, forEach, max, min, none, onEach, reduce, sum,
+    chunked, partition, windowed, zip, asIterable, toSortedSet, method
 * :fire: CharIterator rename to CharRangeIterator, DoubleIterator rename to DoubleRangeIterator, FloatIterator rename to FloatRangeIterator,
     IntIterator rename to IntRangeIterator, LongIterator rename to LongRangeIterator, DateIterator rename to DateRangeIterator
 * :sparkles: Collectionx adds setOf
