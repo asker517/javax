@@ -115,7 +115,7 @@ public class StringxTest {
 
         assertTrue(Stringx.isNotEmpty(BLANK));
         assertTrue(Stringx.isNotEmpty(YES));
-        assertTrue(Stringx.isNotEmpty(null));
+        assertFalse(Stringx.isNotEmpty(null));
         assertFalse(Stringx.isNotEmpty(EMPTY));
 
         assertEquals(Stringx.isEmptyOr(EMPTY, "default"), "default");
