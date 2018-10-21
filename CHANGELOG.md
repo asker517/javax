@@ -9,6 +9,8 @@
 * :sparkles: Collectionx adds setOf
 * :zap: Optimize the implementation of the Collectionx.isNotEmpty() method, expecting the IDE to recognize that isNotEmpty has been filtered null
 * :fire: Collectionx isEmpty rename to isNullOrEmpty, isNotEmpty rename to isNotNullOrEmpty
+* :fire: Arrayx isEmpty and isNotEmpty method not support null
+* :sparkles: Arrayx adds isNullOrEmpty and isNotNullOrEmpty method
 
 
 ## v0.7.1

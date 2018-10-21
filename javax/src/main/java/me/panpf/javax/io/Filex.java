@@ -17,7 +17,6 @@
 package me.panpf.javax.io;
 
 import me.panpf.javax.lang.Charx;
-import me.panpf.javax.lang.Numberx;
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
@@ -113,7 +112,7 @@ public class Filex {
         if (!dir.exists() || dir.isFile()) return true;
 
         File[] childFiles = dir.listFiles();
-        if (childFiles == null || Arrayx.isEmpty(childFiles)) return true;
+        if (childFiles == null || Arrayx.isNullOrEmpty(childFiles)) return true;
 
         boolean result = true;
 
@@ -137,7 +136,7 @@ public class Filex {
                     dirStack.push(childFile);
 
                     File[] childChildFiles = childFile.listFiles();
-                    if (childChildFiles != null && Arrayx.isNotEmpty(childChildFiles)) {
+                    if (childChildFiles != null && Arrayx.isNotNullOrEmpty(childChildFiles)) {
                         Collections.addAll(fileStack, childChildFiles);
                     }
                 }
@@ -183,7 +182,7 @@ public class Filex {
                 length += childFile.length();
             } else {
                 File[] childChildFiles = childFile.listFiles();
-                if (Arrayx.isNotEmpty(childChildFiles)) {
+                if (Arrayx.isNotNullOrEmpty(childChildFiles)) {
                     Collections.addAll(fileQueue, childChildFiles);
                 }
             }

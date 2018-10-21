@@ -896,7 +896,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Byte> slice(@Nullable byte[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Byte> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -910,7 +910,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Short> slice(@Nullable short[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Short> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -924,7 +924,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Integer> slice(@Nullable int[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Integer> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -938,7 +938,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Long> slice(@Nullable long[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Long> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -952,7 +952,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Float> slice(@Nullable float[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Float> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -966,7 +966,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Double> slice(@Nullable double[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Double> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -980,7 +980,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Boolean> slice(@Nullable boolean[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Boolean> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -994,7 +994,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Character> slice(@Nullable char[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Character> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -1949,7 +1949,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static <T> Sequence<T> asSequence(@NotNull T[] elements) {
-//        if (Arrayx.isEmpty(elements)) return emptySequence();
+//        if (Arrayx.isNullOrEmpty(elements)) return emptySequence();
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -1959,7 +1959,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull byte[] elements): Sequence<Byte> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -1969,7 +1969,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull short[] elements): Sequence<Short> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -1979,7 +1979,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull int[] elements): Sequence<Integer> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -1989,7 +1989,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull long[] elements): Sequence<Long> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -1999,7 +1999,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull long[] elements): Sequence<Float> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -2009,7 +2009,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull double[] elements): Sequence<Double> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -2019,7 +2019,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull boolean[] elements): Sequence<Boolean> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 //
@@ -2029,7 +2029,7 @@ public class Arrayx2 {
 //     * @sample samples.collections.Sequences.Building.sequenceFromArray
 //     */
 //    public static asSequence(@NotNull char[] elements): Sequence<Character> {
-//        if (isEmpty()) return emptySequence()
+//        if (isNullOrEmpty()) return emptySequence()
 //        return Sequence { this.iterator() }
 //    }
 }

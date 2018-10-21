@@ -34,6 +34,284 @@ public class Arrayx {
     }
 
 
+    /* ******************************************* null or empty ******************************************* */
+
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static <T> boolean isNullOrEmpty(@Nullable T[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable char[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable byte[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable short[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable int[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable long[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable float[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable double[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is empty.
+     */
+    public static boolean isNullOrEmpty(@Nullable boolean[] elements) {
+        return elements == null || elements.length == 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static <T> boolean isNotNullOrEmpty(@Nullable T[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable char[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable byte[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable short[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable int[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable long[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable float[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable double[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+    /**
+     * Returns `true` if the array is not empty.
+     */
+    public static boolean isNotNullOrEmpty(@Nullable boolean[] elements) {
+        return elements != null && elements.length > 0;
+    }
+
+
+    /* ******************************************* joinToArrayString ******************************************* */
+
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static <T> String joinToArrayString(@Nullable T[] elements, @Nullable Transformer<T, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static <T> String joinToArrayString(@Nullable T[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable byte[] elements, @Nullable Transformer<Byte, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable byte[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable short[] elements, @Nullable Transformer<Short, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable short[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable int[] elements, @Nullable Transformer<Integer, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable int[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable long[] elements, @Nullable Transformer<Long, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable long[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable float[] elements, @Nullable Transformer<Float, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable float[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable double[] elements, @Nullable Transformer<Double, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable double[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable boolean[] elements, @Nullable Transformer<Boolean, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable boolean[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable char[] elements, @Nullable Transformer<Character, CharSequence> transform) {
+        return joinToString(elements, null, "[", "]", -1, null, transform);
+    }
+
+    /**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
+    @NotNull
+    public static String joinToArrayString(@Nullable char[] elements) {
+        return joinToString(elements, null, "[", "]", -1, null, null);
+    }
+
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
@@ -125,63 +403,63 @@ public class Arrayx {
      * Returns `true` if the array is empty.
      */
     public static <T> boolean isEmpty(@Nullable T[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable char[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable byte[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable short[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable int[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable long[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable float[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable double[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
      * Returns `true` if the array is empty.
      */
     public static boolean isEmpty(@Nullable boolean[] elements) {
-        return elements == null || elements.length == 0;
+        return elements != null && elements.length == 0;
     }
 
     /**
@@ -1621,7 +1899,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> List<T> reversed(@Nullable T[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<T> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1632,7 +1910,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Byte> reversed(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Byte> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1643,7 +1921,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Short> reversed(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Short> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1654,7 +1932,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Integer> reversed(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Integer> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1665,7 +1943,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Long> reversed(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Long> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1676,7 +1954,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Float> reversed(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Float> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1687,7 +1965,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Double> reversed(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Double> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1698,7 +1976,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Boolean> reversed(@Nullable boolean[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Boolean> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1709,7 +1987,7 @@ public class Arrayx {
      */
     @NotNull
     public static List<Character> reversed(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         List<Character> list = Arrayx.toList(elements);
         Collectionx.reverse(list);
         return list;
@@ -1729,7 +2007,7 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] reversedArray(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return new byte[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new byte[0];
         byte[] result = new byte[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1743,7 +2021,7 @@ public class Arrayx {
      */
     @NotNull
     public static short[] reversedArray(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return new short[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new short[0];
         short[] result = new short[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1757,7 +2035,7 @@ public class Arrayx {
      */
     @NotNull
     public static int[] reversedArray(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return new int[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new int[0];
         int[] result = new int[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1771,7 +2049,7 @@ public class Arrayx {
      */
     @NotNull
     public static long[] reversedArray(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return new long[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new long[0];
         long[] result = new long[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1785,7 +2063,7 @@ public class Arrayx {
      */
     @NotNull
     public static float[] reversedArray(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return new float[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new float[0];
         float[] result = new float[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1799,7 +2077,7 @@ public class Arrayx {
      */
     @NotNull
     public static double[] reversedArray(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return new double[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new double[0];
         double[] result = new double[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1813,7 +2091,7 @@ public class Arrayx {
      */
     @NotNull
     public static boolean[] reversedArray(@Nullable boolean[] elements) {
-        if (Arrayx.isEmpty(elements)) return new boolean[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new boolean[0];
         boolean[] result = new boolean[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -1827,7 +2105,7 @@ public class Arrayx {
      */
     @NotNull
     public static char[] reversedArray(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return new char[0];
+        if (Arrayx.isNullOrEmpty(elements)) return new char[0];
         char[] result = new char[elements.length];
         int lastIndex = elements.length - 1;
         for (int i : Rangex.rangeTo(0, lastIndex)) {
@@ -2460,7 +2738,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T extends Comparable<T>> T[] sortedArray(@Nullable T[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         T[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2471,7 +2749,7 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] sortedArray(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         byte[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2482,7 +2760,7 @@ public class Arrayx {
      */
     @NotNull
     public static short[] sortedArray(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         short[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2493,7 +2771,7 @@ public class Arrayx {
      */
     @NotNull
     public static int[] sortedArray(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         int[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2504,7 +2782,7 @@ public class Arrayx {
      */
     @NotNull
     public static long[] sortedArray(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         long[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2515,7 +2793,7 @@ public class Arrayx {
      */
     @NotNull
     public static float[] sortedArray(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         float[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2526,7 +2804,7 @@ public class Arrayx {
      */
     @NotNull
     public static double[] sortedArray(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         double[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2537,7 +2815,7 @@ public class Arrayx {
      */
     @NotNull
     public static char[] sortedArray(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         char[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2549,7 +2827,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T extends Comparable<T>> T[] sortedArrayDescending(@Nullable T[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         T[] result = copyOf(elements);
         Arrayx.sortWith(elements, new Comparisonx.ReverseOrderComparator<T>());
         return result;
@@ -2560,7 +2838,7 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] sortedArrayDescending(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         byte[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2571,7 +2849,7 @@ public class Arrayx {
      */
     @NotNull
     public static short[] sortedArrayDescending(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         short[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2582,7 +2860,7 @@ public class Arrayx {
      */
     @NotNull
     public static int[] sortedArrayDescending(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         int[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2593,7 +2871,7 @@ public class Arrayx {
      */
     @NotNull
     public static long[] sortedArrayDescending(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         long[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2604,7 +2882,7 @@ public class Arrayx {
      */
     @NotNull
     public static float[] sortedArrayDescending(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         float[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2615,7 +2893,7 @@ public class Arrayx {
      */
     @NotNull
     public static double[] sortedArrayDescending(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         double[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2626,7 +2904,7 @@ public class Arrayx {
      */
     @NotNull
     public static char[] sortedArrayDescending(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         char[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2637,7 +2915,7 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according the specified [comparator].
      */
     public static <T> T[] sortedArrayWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
-        if (Arrayx.isEmpty(elements)) return orEmpty(elements);
+        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         T[] result = copyOf(elements);
         Arrayx.sortWith(elements, comparator);
         return result;
@@ -3197,63 +3475,63 @@ public class Arrayx {
      * Returns `true` if array has at least one element.
      */
     public static <T> boolean any(@Nullable T[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable byte[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable short[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable int[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable long[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable float[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable double[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable boolean[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if array has at least one element.
      */
     public static boolean any(@Nullable char[] elements) {
-        return !isEmpty(elements);
+        return !isNullOrEmpty(elements);
     }
 
     /**
@@ -3493,7 +3771,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> Iterable<T> asIterable(@Nullable final T[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<T>() {
             @NotNull
             @Override
@@ -3508,7 +3786,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Byte> asIterable(@Nullable final byte[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Byte>() {
             @NotNull
             @Override
@@ -3523,7 +3801,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Short> asIterable(@Nullable final short[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Short>() {
             @NotNull
             @Override
@@ -3538,7 +3816,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Integer> asIterable(@Nullable final int[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Integer>() {
             @NotNull
             @Override
@@ -3553,7 +3831,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Long> asIterable(@Nullable final long[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Long>() {
             @NotNull
             @Override
@@ -3568,7 +3846,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Float> asIterable(@Nullable final float[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Float>() {
             @NotNull
             @Override
@@ -3583,7 +3861,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Double> asIterable(@Nullable final double[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Double>() {
             @NotNull
             @Override
@@ -3598,7 +3876,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Boolean> asIterable(@Nullable final boolean[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Boolean>() {
             @NotNull
             @Override
@@ -3613,7 +3891,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterable<Character> asIterable(@Nullable final char[] elements) {
-        if (isEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
         return new Iterable<Character>() {
             @NotNull
             @Override
@@ -4516,7 +4794,7 @@ public class Arrayx {
      */
     @Nullable
     public static Double max(@Nullable Double[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Double max = elements[0];
         if (max.isNaN()) return max;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4534,7 +4812,7 @@ public class Arrayx {
      */
     @Nullable
     public static Float max(@Nullable Float[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Float max = elements[0];
         if (max.isNaN()) return max;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4550,7 +4828,7 @@ public class Arrayx {
      */
     @Nullable
     public static <T extends Comparable<T>> T max(@Nullable T[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         T max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
@@ -4564,7 +4842,7 @@ public class Arrayx {
      */
     @Nullable
     public static Byte max(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         byte max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
@@ -4578,7 +4856,7 @@ public class Arrayx {
      */
     @Nullable
     public static Short max(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         short max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
@@ -4592,7 +4870,7 @@ public class Arrayx {
      */
     @Nullable
     public static Integer max(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         int max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
@@ -4606,7 +4884,7 @@ public class Arrayx {
      */
     @Nullable
     public static Long max(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         long max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
@@ -4622,7 +4900,7 @@ public class Arrayx {
      */
     @Nullable
     public static Float max(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Float max = elements[0];
         if (max.isNaN()) return max;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4640,7 +4918,7 @@ public class Arrayx {
      */
     @Nullable
     public static Double max(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Double max = elements[0];
         if (max.isNaN()) return max;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4656,7 +4934,7 @@ public class Arrayx {
      */
     @Nullable
     public static Character max(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         char max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
@@ -4670,7 +4948,7 @@ public class Arrayx {
      */
     @Nullable
     public static <T, R extends Comparable<R>> T maxBy(@Nullable T[] elements, @NotNull Transformer<T, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         T maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4689,7 +4967,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Byte maxBy(@Nullable byte[] elements, @NotNull Transformer<Byte, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         byte maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4708,7 +4986,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Short maxBy(@Nullable short[] elements, @NotNull Transformer<Short, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         short maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4727,7 +5005,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Integer maxBy(@Nullable int[] elements, @NotNull Transformer<Integer, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         int maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4746,7 +5024,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Long maxBy(@Nullable long[] elements, @NotNull Transformer<Long, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         long maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4765,7 +5043,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Float maxBy(@Nullable float[] elements, @NotNull Transformer<Float, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         float maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4784,7 +5062,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Double maxBy(@Nullable double[] elements, @NotNull Transformer<Double, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         double maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4803,7 +5081,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Boolean maxBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         boolean maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4822,7 +5100,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Character maxBy(@Nullable char[] elements, @NotNull Transformer<Character, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         char maxElem = elements[0];
         R maxValue = selector.transform(maxElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4841,7 +5119,7 @@ public class Arrayx {
      */
     @Nullable
     public static <T> T maxWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         T max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
@@ -4855,7 +5133,7 @@ public class Arrayx {
      */
     @Nullable
     public static Byte maxWith(@Nullable byte[] elements, @NotNull Comparator<Byte> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         byte max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
@@ -4869,7 +5147,7 @@ public class Arrayx {
      */
     @Nullable
     public static Short maxWith(@Nullable short[] elements, @NotNull Comparator<Short> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         short max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
@@ -4883,7 +5161,7 @@ public class Arrayx {
      */
     @Nullable
     public static Integer maxWith(@Nullable int[] elements, @NotNull Comparator<Integer> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         int max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
@@ -4897,7 +5175,7 @@ public class Arrayx {
      */
     @Nullable
     public static Long maxWith(@Nullable long[] elements, @NotNull Comparator<Long> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         long max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
@@ -4911,7 +5189,7 @@ public class Arrayx {
      */
     @Nullable
     public static Float maxWith(@Nullable float[] elements, @NotNull Comparator<Float> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         float max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             float e = elements[i];
@@ -4925,7 +5203,7 @@ public class Arrayx {
      */
     @Nullable
     public static Double maxWith(@Nullable double[] elements, @NotNull Comparator<Double> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         double max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             double e = elements[i];
@@ -4939,7 +5217,7 @@ public class Arrayx {
      */
     @Nullable
     public static Boolean maxWith(@Nullable boolean[] elements, @NotNull Comparator<Boolean> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         boolean max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             boolean e = elements[i];
@@ -4953,7 +5231,7 @@ public class Arrayx {
      */
     @Nullable
     public static Character maxWith(@Nullable char[] elements, @NotNull Comparator<Character> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         char max = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
@@ -4973,7 +5251,7 @@ public class Arrayx {
      */
     @Nullable
     public static Double min(@Nullable Double[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Double min = elements[0];
         if (min.isNaN()) return min;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -4991,7 +5269,7 @@ public class Arrayx {
      */
     @Nullable
     public static Float min(@Nullable Float[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Float min = elements[0];
         if (min.isNaN()) return min;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5007,7 +5285,7 @@ public class Arrayx {
      */
     @Nullable
     public static <T extends Comparable<T>> T min(@Nullable T[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         T min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
@@ -5021,7 +5299,7 @@ public class Arrayx {
      */
     @Nullable
     public static Byte min(@Nullable byte[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         byte min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
@@ -5035,7 +5313,7 @@ public class Arrayx {
      */
     @Nullable
     public static Short min(@Nullable short[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         short min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
@@ -5049,7 +5327,7 @@ public class Arrayx {
      */
     @Nullable
     public static Integer min(@Nullable int[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         int min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
@@ -5063,7 +5341,7 @@ public class Arrayx {
      */
     @Nullable
     public static Long min(@Nullable long[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         long min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
@@ -5079,7 +5357,7 @@ public class Arrayx {
      */
     @Nullable
     public static Float min(@Nullable float[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Float min = elements[0];
         if (min.isNaN()) return min;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5097,7 +5375,7 @@ public class Arrayx {
      */
     @Nullable
     public static Double min(@Nullable double[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         Double min = elements[0];
         if (min.isNaN()) return min;
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5113,7 +5391,7 @@ public class Arrayx {
      */
     @Nullable
     public static Character min(@Nullable char[] elements) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         char min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
@@ -5127,7 +5405,7 @@ public class Arrayx {
      */
     @Nullable
     public static <T, R extends Comparable<R>> T minBy(@Nullable T[] elements, @NotNull Transformer<T, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         T minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5146,7 +5424,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Byte minBy(@Nullable byte[] elements, @NotNull Transformer<Byte, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         byte minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5165,7 +5443,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Short minBy(@Nullable short[] elements, @NotNull Transformer<Short, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         short minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5184,7 +5462,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Integer minBy(@Nullable int[] elements, @NotNull Transformer<Integer, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         int minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5203,7 +5481,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Long minBy(@Nullable long[] elements, @NotNull Transformer<Long, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         long minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5222,7 +5500,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Float minBy(@Nullable float[] elements, @NotNull Transformer<Float, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         float minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5241,7 +5519,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Double minBy(@Nullable double[] elements, @NotNull Transformer<Double, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         double minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5260,7 +5538,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Boolean minBy(@Nullable boolean[] elements, @NotNull Transformer<Boolean, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         boolean minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5279,7 +5557,7 @@ public class Arrayx {
      */
     @Nullable
     public static <R extends Comparable<R>> Character minBy(@Nullable char[] elements, @NotNull Transformer<Character, R> selector) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         char minElem = elements[0];
         R minValue = selector.transform(minElem);
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
@@ -5298,7 +5576,7 @@ public class Arrayx {
      */
     @Nullable
     public static <T> T minWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         T min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             T e = elements[i];
@@ -5312,7 +5590,7 @@ public class Arrayx {
      */
     @Nullable
     public static Byte minWith(@Nullable byte[] elements, @NotNull Comparator<Byte> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         byte min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             byte e = elements[i];
@@ -5326,7 +5604,7 @@ public class Arrayx {
      */
     @Nullable
     public static Short minWith(@Nullable short[] elements, @NotNull Comparator<Short> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         short min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             short e = elements[i];
@@ -5340,7 +5618,7 @@ public class Arrayx {
      */
     @Nullable
     public static Integer minWith(@Nullable int[] elements, @NotNull Comparator<Integer> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         int min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             int e = elements[i];
@@ -5354,7 +5632,7 @@ public class Arrayx {
      */
     @Nullable
     public static Long minWith(@Nullable long[] elements, @NotNull Comparator<Long> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         long min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             long e = elements[i];
@@ -5368,7 +5646,7 @@ public class Arrayx {
      */
     @Nullable
     public static Float minWith(@Nullable float[] elements, @NotNull Comparator<Float> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         float min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             float e = elements[i];
@@ -5382,7 +5660,7 @@ public class Arrayx {
      */
     @Nullable
     public static Double minWith(@Nullable double[] elements, @NotNull Comparator<Double> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         double min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             double e = elements[i];
@@ -5396,7 +5674,7 @@ public class Arrayx {
      */
     @Nullable
     public static Boolean minWith(@Nullable boolean[] elements, @NotNull Comparator<Boolean> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         boolean min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             boolean e = elements[i];
@@ -5410,7 +5688,7 @@ public class Arrayx {
      */
     @Nullable
     public static Character minWith(@Nullable char[] elements, @NotNull Comparator<Character> comparator) {
-        if (Arrayx.isEmpty(elements)) return null;
+        if (Arrayx.isNullOrEmpty(elements)) return null;
         char min = elements[0];
         for (int i : Rangex.rangeTo(1, elements.length - 1)) {
             char e = elements[i];
@@ -5793,28 +6071,6 @@ public class Arrayx {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     @NotNull
-    public static <T> String joinToArrayString(@Nullable T[] elements, @Nullable Transformer<T, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static <T> String joinToArrayString(@Nullable T[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
     public static String joinToString(byte[] elements, @Nullable CharSequence separator,
                                       @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
                                       @Nullable CharSequence truncated, @Nullable Transformer<Byte, CharSequence> transform) {
@@ -5867,28 +6123,6 @@ public class Arrayx {
     @NotNull
     public static String joinToString(@Nullable byte[] elements) {
         return joinToString(elements, null, null, null, -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable byte[] elements, @Nullable Transformer<Byte, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable byte[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
     }
 
     /**
@@ -5959,28 +6193,6 @@ public class Arrayx {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     @NotNull
-    public static String joinToArrayString(@Nullable short[] elements, @Nullable Transformer<Short, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable short[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
     public static String joinToString(int[] elements, @Nullable CharSequence separator,
                                       @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
                                       @Nullable CharSequence truncated, @Nullable Transformer<Integer, CharSequence> transform) {
@@ -6033,28 +6245,6 @@ public class Arrayx {
     @NotNull
     public static String joinToString(@Nullable int[] elements) {
         return joinToString(elements, null, null, null, -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable int[] elements, @Nullable Transformer<Integer, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable int[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
     }
 
     /**
@@ -6125,28 +6315,6 @@ public class Arrayx {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     @NotNull
-    public static String joinToArrayString(@Nullable long[] elements, @Nullable Transformer<Long, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable long[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
     public static String joinToString(float[] elements, @Nullable CharSequence separator,
                                       @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
                                       @Nullable CharSequence truncated, @Nullable Transformer<Float, CharSequence> transform) {
@@ -6199,28 +6367,6 @@ public class Arrayx {
     @NotNull
     public static String joinToString(@Nullable float[] elements) {
         return joinToString(elements, null, null, null, -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable float[] elements, @Nullable Transformer<Float, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable float[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
     }
 
     /**
@@ -6291,28 +6437,6 @@ public class Arrayx {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     @NotNull
-    public static String joinToArrayString(@Nullable double[] elements, @Nullable Transformer<Double, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable double[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
     public static String joinToString(boolean[] elements, @Nullable CharSequence separator,
                                       @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
                                       @Nullable CharSequence truncated, @Nullable Transformer<Boolean, CharSequence> transform) {
@@ -6374,28 +6498,6 @@ public class Arrayx {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     @NotNull
-    public static String joinToArrayString(@Nullable boolean[] elements, @Nullable Transformer<Boolean, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable boolean[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
     public static String joinToString(char[] elements, @Nullable CharSequence separator,
                                       @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
                                       @Nullable CharSequence truncated, @Nullable Transformer<Character, CharSequence> transform) {
@@ -6448,28 +6550,6 @@ public class Arrayx {
     @NotNull
     public static String joinToString(@Nullable char[] elements) {
         return joinToString(elements, null, null, null, -1, null, null);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable char[] elements, @Nullable Transformer<Character, CharSequence> transform) {
-        return joinToString(elements, null, "[", "]", -1, null, transform);
-    }
-
-    /**
-     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-     * <p>
-     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-     */
-    @NotNull
-    public static String joinToArrayString(@Nullable char[] elements) {
-        return joinToString(elements, null, "[", "]", -1, null, null);
     }
 
 
@@ -7125,7 +7205,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> T[] plus(@Nullable T[] selfElements, @NotNull T[] elements) {
-        if (isEmpty(elements)) {
+        if (isNullOrEmpty(elements)) {
             //noinspection unchecked
             return selfElements != null ? copyOf(selfElements) : (T[]) new Object[0];
         }
@@ -7142,7 +7222,7 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] plus(@Nullable byte[] selfElements, @NotNull byte[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new byte[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new byte[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7156,7 +7236,7 @@ public class Arrayx {
      */
     @NotNull
     public static short[] plus(@Nullable short[] selfElements, @NotNull short[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new short[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new short[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7170,7 +7250,7 @@ public class Arrayx {
      */
     @NotNull
     public static int[] plus(@Nullable int[] selfElements, @NotNull int[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new int[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new int[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7184,7 +7264,7 @@ public class Arrayx {
      */
     @NotNull
     public static long[] plus(@Nullable long[] selfElements, @NotNull long[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new long[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new long[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7198,7 +7278,7 @@ public class Arrayx {
      */
     @NotNull
     public static float[] plus(@Nullable float[] selfElements, @NotNull float[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new float[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new float[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7212,7 +7292,7 @@ public class Arrayx {
      */
     @NotNull
     public static double[] plus(@Nullable double[] selfElements, @NotNull double[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new double[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new double[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7226,7 +7306,7 @@ public class Arrayx {
      */
     @NotNull
     public static boolean[] plus(@Nullable boolean[] selfElements, @NotNull boolean[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new boolean[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new boolean[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -7240,7 +7320,7 @@ public class Arrayx {
      */
     @NotNull
     public static char[] plus(@Nullable char[] selfElements, @NotNull char[] elements) {
-        if (isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new char[0];
+        if (isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new char[0];
         if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
@@ -8796,7 +8876,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T, R, V> List<V> zip(@Nullable T[] elements, @Nullable R[] other, @NotNull Transformer2<T, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8810,7 +8890,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable byte[] elements, @Nullable R[] other, @NotNull Transformer2<Byte, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8824,7 +8904,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable short[] elements, @Nullable R[] other, @NotNull Transformer2<Short, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8838,7 +8918,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable int[] elements, @Nullable R[] other, @NotNull Transformer2<Integer, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8852,7 +8932,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable long[] elements, @Nullable R[] other, @NotNull Transformer2<Long, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8866,7 +8946,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable float[] elements, @Nullable R[] other, @NotNull Transformer2<Float, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8880,7 +8960,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable double[] elements, @Nullable R[] other, @NotNull Transformer2<Double, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8894,7 +8974,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable boolean[] elements, @Nullable R[] other, @NotNull Transformer2<Boolean, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -8908,7 +8988,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable char[] elements, @Nullable R[] other, @NotNull Transformer2<Character, R, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9048,7 +9128,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T, R, V> List<V> zip(@Nullable T[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<T, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9064,7 +9144,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable byte[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Byte, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9080,7 +9160,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable short[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Short, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9096,7 +9176,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable int[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Integer, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9112,7 +9192,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable long[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Long, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9128,7 +9208,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable float[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Float, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9144,7 +9224,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable double[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Double, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9160,7 +9240,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable boolean[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Boolean, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9176,7 +9256,7 @@ public class Arrayx {
      */
     @NotNull
     public static <R, V> List<V> zip(@Nullable char[] elements, @Nullable Iterable<R> other, @NotNull Transformer2<Character, R, V> transform) {
-        if (isEmpty(elements) || other == null) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || other == null) return new ArrayList<>(0);
         int arraySize = elements.length;
         List<V> list = new ArrayList<>(Comparisonx.minOf(Collectionx.collectionSizeOrDefault(other, 10), arraySize));
         int i = 0;
@@ -9304,7 +9384,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable byte[] elements, @Nullable byte[] other, @NotNull Transformer2<Byte, Byte, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9318,7 +9398,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable short[] elements, @Nullable short[] other, @NotNull Transformer2<Short, Short, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9332,7 +9412,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable int[] elements, @Nullable int[] other, @NotNull Transformer2<Integer, Integer, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9346,7 +9426,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable long[] elements, @Nullable long[] other, @NotNull Transformer2<Long, Long, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9360,7 +9440,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable float[] elements, @Nullable float[] other, @NotNull Transformer2<Float, Float, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9374,7 +9454,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable double[] elements, @Nullable double[] other, @NotNull Transformer2<Double, Double, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9388,7 +9468,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable boolean[] elements, @Nullable boolean[] other, @NotNull Transformer2<Boolean, Boolean, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -9402,7 +9482,7 @@ public class Arrayx {
      */
     @NotNull
     public static <V> List<V> zip(@Nullable char[] elements, @Nullable char[] other, @NotNull Transformer2<Character, Character, V> transform) {
-        if (isEmpty(elements) || isEmpty(other)) return new ArrayList<>(0);
+        if (isNullOrEmpty(elements) || isNullOrEmpty(other)) return new ArrayList<>(0);
         int size = Comparisonx.minOf(count(elements), count(other));
         List<V> list = new ArrayList<>(size);
         for (int i : Rangex.until(0, size)) {
@@ -11286,63 +11366,63 @@ public class Arrayx {
      * Returns `true` if the array has no elements.
      */
     public static <T> boolean none(@Nullable T[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable byte[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable short[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable int[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable long[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable float[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable double[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable boolean[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
      * Returns `true` if the array has no elements.
      */
     public static boolean none(@Nullable char[] elements) {
-        return Arrayx.isEmpty(elements);
+        return Arrayx.isNullOrEmpty(elements);
     }
 
     /**
@@ -11426,7 +11506,7 @@ public class Arrayx {
      */
     @NotNull
     public static <S, T extends S> S reduce(@Nullable T[] elements, @NotNull Operation<T, S> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11438,7 +11518,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static byte reduce(@Nullable byte[] elements, @NotNull Operation<Byte, Byte> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11450,7 +11530,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static short reduce(@Nullable short[] elements, @NotNull Operation<Short, Short> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11462,7 +11542,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static int reduce(@Nullable int[] elements, @NotNull Operation<Integer, Integer> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11474,7 +11554,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static long reduce(@Nullable long[] elements, @NotNull Operation<Long, Long> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11486,7 +11566,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static float reduce(@Nullable float[] elements, @NotNull Operation<Float, Float> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11498,7 +11578,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static double reduce(@Nullable double[] elements, @NotNull Operation<Double, Double> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11510,7 +11590,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static boolean reduce(@Nullable boolean[] elements, @NotNull Operation<Boolean, Boolean> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11522,7 +11602,7 @@ public class Arrayx {
      * Accumulates value starting with the first element and applying [operation] from left to right to current accumulator value and each element.
      */
     public static char reduce(@Nullable char[] elements, @NotNull Operation<Character, Character> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(accumulator, elements[index]);
@@ -11539,7 +11619,7 @@ public class Arrayx {
      */
     @NotNull
     public static <S, T extends S> S reduceIndexed(@Nullable T[] elements, @NotNull IndexedOperation<T, S> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11555,7 +11635,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static byte reduceIndexed(@Nullable byte[] elements, @NotNull IndexedOperation<Byte, Byte> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11571,7 +11651,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static short reduceIndexed(@Nullable short[] elements, @NotNull IndexedOperation<Short, Short> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11587,7 +11667,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static int reduceIndexed(@Nullable int[] elements, @NotNull IndexedOperation<Integer, Integer> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11603,7 +11683,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static long reduceIndexed(@Nullable long[] elements, @NotNull IndexedOperation<Long, Long> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11619,7 +11699,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static float reduceIndexed(@Nullable float[] elements, @NotNull IndexedOperation<Float, Float> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11635,7 +11715,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static double reduceIndexed(@Nullable double[] elements, @NotNull IndexedOperation<Double, Double> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11651,7 +11731,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static boolean reduceIndexed(@Nullable boolean[] elements, @NotNull IndexedOperation<Boolean, Boolean> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11667,7 +11747,7 @@ public class Arrayx {
      *                  and the element itself and calculates the next accumulator value.
      */
     public static char reduceIndexed(@Nullable char[] elements, @NotNull IndexedOperation<Character, Character> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[0];
         for (int index : Rangex.rangeTo(1, elements.length - 1)) {
             accumulator = operation.operation(index, accumulator, elements[index]);
@@ -11680,7 +11760,7 @@ public class Arrayx {
      */
     @NotNull
     public static <S, T extends S> S reduceRight(@Nullable T[] elements, @NotNull RightOperation<T, S> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[index--];
@@ -11694,7 +11774,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static byte reduceRight(@Nullable byte[] elements, @NotNull RightOperation<Byte, Byte> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[index--];
@@ -11708,7 +11788,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static short reduceRight(@Nullable short[] elements, @NotNull RightOperation<Short, Short> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[index--];
@@ -11722,7 +11802,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static int reduceRight(@Nullable int[] elements, @NotNull RightOperation<Integer, Integer> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[index--];
@@ -11736,7 +11816,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static long reduceRight(@Nullable long[] elements, @NotNull RightOperation<Long, Long> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[index--];
@@ -11750,7 +11830,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static float reduceRight(@Nullable float[] elements, @NotNull RightOperation<Float, Float> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[index--];
@@ -11764,7 +11844,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static double reduceRight(@Nullable double[] elements, @NotNull RightOperation<Double, Double> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[index--];
@@ -11778,7 +11858,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static boolean reduceRight(@Nullable boolean[] elements, @NotNull RightOperation<Boolean, Boolean> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[index--];
@@ -11792,7 +11872,7 @@ public class Arrayx {
      * Accumulates value starting with last element and applying [operation] from right to left to each element and current accumulator value.
      */
     public static char reduceRight(@Nullable char[] elements, @NotNull RightOperation<Character, Character> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[index--];
@@ -11811,7 +11891,7 @@ public class Arrayx {
      */
     @NotNull
     public static <S, T extends S> S reduceRightIndexed(@Nullable T[] elements, @NotNull IndexedRightOperation<T, S> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         S accumulator = elements[index--];
@@ -11830,7 +11910,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static byte reduceRightIndexed(@Nullable byte[] elements, @NotNull IndexedRightOperation<Byte, Byte> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         byte accumulator = elements[index--];
@@ -11849,7 +11929,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static short reduceRightIndexed(@Nullable short[] elements, @NotNull IndexedRightOperation<Short, Short> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         short accumulator = elements[index--];
@@ -11868,7 +11948,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static int reduceRightIndexed(@Nullable int[] elements, @NotNull IndexedRightOperation<Integer, Integer> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int accumulator = elements[index--];
@@ -11887,7 +11967,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static long reduceRightIndexed(@Nullable long[] elements, @NotNull IndexedRightOperation<Long, Long> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         long accumulator = elements[index--];
@@ -11906,7 +11986,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static float reduceRightIndexed(@Nullable float[] elements, @NotNull IndexedRightOperation<Float, Float> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         float accumulator = elements[index--];
@@ -11925,7 +12005,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static double reduceRightIndexed(@Nullable double[] elements, @NotNull IndexedRightOperation<Double, Double> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         double accumulator = elements[index--];
@@ -11944,7 +12024,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static boolean reduceRightIndexed(@Nullable boolean[] elements, @NotNull IndexedRightOperation<Boolean, Boolean> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         boolean accumulator = elements[index--];
@@ -11963,7 +12043,7 @@ public class Arrayx {
      *                  and current accumulator value, and calculates the next accumulator value.
      */
     public static char reduceRightIndexed(@Nullable char[] elements, @NotNull IndexedRightOperation<Character, Character> operation) {
-        if (Arrayx.isEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
+        if (Arrayx.isNullOrEmpty(elements)) throw new UnsupportedOperationException("Empty array can't be reduced.");
         int index = count(elements) - 1;
         if (index < 0) throw new UnsupportedOperationException("Empty array can't be reduced.");
         char accumulator = elements[index--];

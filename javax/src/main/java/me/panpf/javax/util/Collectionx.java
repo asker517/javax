@@ -1739,7 +1739,7 @@ public class Collectionx {
      * Removes all elements from this [MutableCollection] that are also contained in the given [elements] array.
      */
     public static <T> boolean removeAll(@Nullable Collection<T> collection, @Nullable T[] elements) {
-        return Arrayx.isNotEmpty(elements) && collection != null && collection.removeAll(Arrayx.toHashSet(elements));
+        return Arrayx.isNotNullOrEmpty(elements) && collection != null && collection.removeAll(Arrayx.toHashSet(elements));
     }
 
     /**
@@ -2989,7 +2989,7 @@ public class Collectionx {
      * Retains only elements of this [Collection] that are contained in the given [elements] array.
      */
     public static <T> boolean retainAll(@Nullable Collection<T> collection, @NotNull T[] elements) {
-        if (Arrayx.isNotEmpty(elements)) {
+        if (Arrayx.isNotNullOrEmpty(elements)) {
             return collection != null && collection.retainAll(Arrayx.toHashSet(elements));
         } else {
             return retainNothing(collection);
