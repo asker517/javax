@@ -112,7 +112,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
     * encode, encodeToString, decode, decodeToString
 * Collection: [Collectionx.java] | [Collectionx.kt]
-    * isEmpty, isNotEmpty, orEmpty, listOf, setOf, createEmptyList, createEmptySet, createEmptyStack, createEmptyQueue,
+    * isNullEmpty, isNotNullEmpty, orEmpty, listOf, setOf, createEmptyList, createEmptySet, createEmptyStack, createEmptyQueue,
     * createEmptyDeque, collectionSizeOrDefault, filter, map, flatMap, join, count, average, sum, first, last,
     * find, get, max, min, addAll, removeAll, partition, toCollection, toList, toSet, toHashSet,
     * convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold,

@@ -6987,7 +6987,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> T[] plus(@Nullable T[] selfElements, @Nullable Collection<T> elements) {
-        if (Collectionx.isEmpty(elements)) {
+        if (Collectionx.isNullOrEmpty(elements)) {
             //noinspection unchecked
             return selfElements != null ? copyOf(selfElements) : (T[]) new Object[0];
         }
@@ -7005,7 +7005,7 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] plus(@Nullable byte[] selfElements, @Nullable Collection<Byte> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new byte[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new byte[0];
         if (selfElements == null) return Collectionx.toByteArray(elements);
         int index = selfElements.length;
         byte[] result = copyOf(selfElements, index + elements.size());
@@ -7020,7 +7020,7 @@ public class Arrayx {
      */
     @NotNull
     public static short[] plus(@Nullable short[] selfElements, @Nullable Collection<Short> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new short[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new short[0];
         if (selfElements == null) return Collectionx.toShortArray(elements);
         int index = selfElements.length;
         short[] result = copyOf(selfElements, index + elements.size());
@@ -7035,7 +7035,7 @@ public class Arrayx {
      */
     @NotNull
     public static int[] plus(@Nullable int[] selfElements, @Nullable Collection<Integer> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new int[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new int[0];
         if (selfElements == null) return Collectionx.toIntArray(elements);
         int index = selfElements.length;
         int[] result = copyOf(selfElements, index + elements.size());
@@ -7050,7 +7050,7 @@ public class Arrayx {
      */
     @NotNull
     public static long[] plus(@Nullable long[] selfElements, @Nullable Collection<Long> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new long[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new long[0];
         if (selfElements == null) return Collectionx.toLongArray(elements);
         int index = selfElements.length;
         long[] result = copyOf(selfElements, index + elements.size());
@@ -7065,7 +7065,7 @@ public class Arrayx {
      */
     @NotNull
     public static float[] plus(@Nullable float[] selfElements, @Nullable Collection<Float> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new float[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new float[0];
         if (selfElements == null) return Collectionx.toFloatArray(elements);
         int index = selfElements.length;
         float[] result = copyOf(selfElements, index + elements.size());
@@ -7080,7 +7080,7 @@ public class Arrayx {
      */
     @NotNull
     public static double[] plus(@Nullable double[] selfElements, @Nullable Collection<Double> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new double[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new double[0];
         if (selfElements == null) return Collectionx.toDoubleArray(elements);
         int index = selfElements.length;
         double[] result = copyOf(selfElements, index + elements.size());
@@ -7095,7 +7095,7 @@ public class Arrayx {
      */
     @NotNull
     public static boolean[] plus(@Nullable boolean[] selfElements, @Nullable Collection<Boolean> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new boolean[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new boolean[0];
         if (selfElements == null) return Collectionx.toBooleanArray(elements);
         int index = selfElements.length;
         boolean[] result = copyOf(selfElements, index + elements.size());
@@ -7110,7 +7110,7 @@ public class Arrayx {
      */
     @NotNull
     public static char[] plus(@Nullable char[] selfElements, @Nullable Collection<Character> elements) {
-        if (Collectionx.isEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new char[0];
+        if (Collectionx.isNullOrEmpty(elements)) return selfElements != null ? copyOf(selfElements) : new char[0];
         if (selfElements == null) return Collectionx.toCharArray(elements);
         int index = selfElements.length;
         char[] result = copyOf(selfElements, index + elements.size());

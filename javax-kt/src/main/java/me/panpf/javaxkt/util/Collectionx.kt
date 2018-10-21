@@ -27,6 +27,28 @@ import me.panpf.javax.util.Transformer
  */
 
 
+/* ******************************************* null or empty ******************************************* */
+
+
+/**
+ * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
+ */
+inline fun <T> Collection<T>?.isNullOrEmpty(): Boolean = Collectionx.isNullOrEmpty(this)
+
+/**
+ * Returns `true` if the collection is not empty.
+ */
+inline fun <T> Collection<T>?.isNotNullOrEmpty(): Boolean = Collectionx.isNotNullOrEmpty(this)
+
+
+/* ******************************************* joinToArrayString ******************************************* */
+
+/**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
 inline fun <T> Iterable<T>?.joinToArrayString(transform: Transformer<T, CharSequence>?): String = Collectionx.joinToArrayString(this, transform)
 
+/**
+ * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+ */
 inline fun <T> Iterable<T>?.joinToArrayString(): String = Collectionx.joinToArrayString(this)

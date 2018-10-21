@@ -32,10 +32,51 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* null or empty ******************************************* */
+
+
+    /**
+     * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
+     */
+    public static <T> boolean isNullOrEmpty(@Nullable Collection<T> collection) {
+        return collection == null || collection.size() == 0;
+    }
+
+    /**
+     * Returns `true` if the collection is not empty.
+     */
+    public static <T> boolean isNotNullOrEmpty(@Nullable Collection<T> collection) {
+        return collection != null && collection.size() > 0;
+    }
+
+
+    /* ******************************************* joinToArrayString ******************************************* */
+
+
+    /**
+     * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+     */
+    @NotNull
+    public static <T> String joinToArrayString(@Nullable Iterable<T> iterable, @Nullable Transformer<T, CharSequence> transform) {
+        return joinToString(iterable, ", ", "[", "]", -1, null, transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+     */
+    @NotNull
+    public static <T> String joinToArrayString(@Nullable Iterable<T> iterable) {
+        return joinToString(iterable, ", ", "[", "]", -1, null, null);
+    }
+
+
+    /* ******************************************* toArray ******************************************* */
+
+
     @NotNull
     public static <T> T[] toTypeArray(@Nullable Collection<T> collection) {
         //noinspection unchecked
-        return isNotEmpty(collection) ? (T[]) collection.toArray() : (T[]) new Object[0];
+        return isNotNullOrEmpty(collection) ? (T[]) collection.toArray() : (T[]) new Object[0];
     }
 
     @NotNull
@@ -139,7 +180,7 @@ public class Collectionx {
     public static <T> T[] toTypeArray(@Nullable Iterable<T> collection) {
         List<T> list = toList(collection);
         //noinspection unchecked
-        return isNotEmpty(list) ? (T[]) list.toArray() : (T[]) new Object[0];
+        return isNotNullOrEmpty(list) ? (T[]) list.toArray() : (T[]) new Object[0];
     }
 
     @NotNull
@@ -390,22 +431,7 @@ public class Collectionx {
     }
 
 
-    /* ******************************************* empty ******************************************* */
-
-
-    /**
-     * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
-     */
-    public static <T> boolean isEmpty(@Nullable Collection<T> collection) {
-        return collection == null || collection.size() == 0;
-    }
-
-    /**
-     * Returns `true` if the collection is not empty.
-     */
-    public static <T> boolean isNotEmpty(@Nullable Collection<T> collection) {
-        return !isEmpty(collection);
-    }
+    /* ******************************************* orEmpty ******************************************* */
 
     /**
      * Returns this Collection if it's not `null` and the empty list otherwise.
@@ -934,16 +960,6 @@ public class Collectionx {
     @NotNull
     public static <T> String joinToString(@Nullable Iterable<T> iterable) {
         return joinToString(iterable, null, null, null, -1, null, null);
-    }
-
-    @NotNull
-    public static <T> String joinToArrayString(@Nullable Iterable<T> iterable, @Nullable Transformer<T, CharSequence> transform) {
-        return joinToString(iterable, ", ", "[", "]", -1, null, transform);
-    }
-
-    @NotNull
-    public static <T> String joinToArrayString(@Nullable Iterable<T> iterable) {
-        return joinToString(iterable, ", ", "[", "]", -1, null, null);
     }
 
 
@@ -2829,7 +2845,7 @@ public class Collectionx {
      * Returns a list containing last [n] elements.
      */
     public static <T> List<T> takeLast(@Nullable List<T> list, final int n) {
-        if (isEmpty(list)) {
+        if (isNullOrEmpty(list)) {
             return createEmptyArrayList();
         }
         Premisex.require(n >= 0, new LazyValue<String>() {
@@ -2869,7 +2885,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> takeLastWhile(@Nullable List<T> list, @NotNull Predicate<T> predicate) {
-        if (isEmpty(list)) {
+        if (isNullOrEmpty(list)) {
             return createEmptyArrayList();
         }
         ListIterator<T> iterator = list.listIterator(list.size());
@@ -2962,7 +2978,7 @@ public class Collectionx {
 
 
     private static boolean retainNothing(@Nullable Collection collection) {
-        boolean result = isNotEmpty(collection);
+        boolean result = isNotNullOrEmpty(collection);
         if (collection != null) {
             collection.clear();
         }
@@ -3181,7 +3197,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> List<T> dropLastWhile(@Nullable List<T> list, @NotNull Predicate<T> predicate) {
-        if (!isEmpty(list)) {
+        if (!isNullOrEmpty(list)) {
             ListIterator<T> iterator = list.listIterator(list.size());
             while (iterator.hasPrevious()) {
                 if (!predicate.accept(iterator.previous())) {
@@ -3387,7 +3403,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> T elementAt(@Nullable List<T> list, int index) {
-        if (isEmpty(list)) {
+        if (isNullOrEmpty(list)) {
             throw new IndexOutOfBoundsException("Collection doesn't contain element at index " + index + ".");
         }
         return list.get(index);
