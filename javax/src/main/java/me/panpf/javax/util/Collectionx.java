@@ -480,6 +480,37 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* setOf ******************************************* */
+
+
+    /**
+     * Returns a new readable and writable set of given elements
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> Set<T> setOf(@Nullable T... elements) {
+        return hashSetOf(elements);
+    }
+
+    /**
+     * Returns a new readable and writable hash set of given elements
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> HashSet<T> hashSetOf(@Nullable T... elements) {
+        return Arrayx.toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements != null ? elements.length : 0)));
+    }
+
+    /**
+     * Returns a new readable and writable linked hash set of given elements
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> LinkedHashSet<T> linkedHashSetOf(@Nullable T... elements) {
+        return Arrayx.toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(elements != null ? elements.length : 0)));
+    }
+
+
     /* ******************************************* filter ******************************************* */
 
 
