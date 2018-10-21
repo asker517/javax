@@ -11,8 +11,8 @@
 * :fire: CharIterator rename to CharRangeIterator, DoubleIterator rename to DoubleRangeIterator, FloatIterator rename to FloatRangeIterator,
     IntIterator rename to IntRangeIterator, LongIterator rename to LongRangeIterator, DateIterator rename to DateRangeIterator
 * :sparkles: Collectionx adds setOf
-* :zap: Optimize the implementation of the Collectionx.isNotEmpty() method, expecting the IDE to recognize that isNotEmpty has been filtered null
-* :fire: Collectionx isEmpty rename to isNullOrEmpty, isNotEmpty rename to isNotNullOrEmpty
+* :fire: Collectionx isEmpty and isNotEmpty method not support null
+* :sparkles: Collectionx adds isNullOrEmpty and isNotNullOrEmpty method
 * :fire: Arrayx isEmpty and isNotEmpty method not support null
 * :sparkles: Arrayx adds isNullOrEmpty and isNotNullOrEmpty method
 

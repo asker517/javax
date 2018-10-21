@@ -36,14 +36,14 @@ public class Collectionx {
 
 
     /**
-     * Returns `true` if the collection is empty (contains no elements), `false` otherwise.
+     * Returns `true` if the collection is null or empty (contains no elements), `false` otherwise.
      */
     public static <T> boolean isNullOrEmpty(@Nullable Collection<T> collection) {
         return collection == null || collection.size() == 0;
     }
 
     /**
-     * Returns `true` if the collection is not empty.
+     * Returns `true` if the collection is not null and not empty.
      */
     public static <T> boolean isNotNullOrEmpty(@Nullable Collection<T> collection) {
         return collection != null && collection.size() > 0;
@@ -269,6 +269,24 @@ public class Collectionx {
             result[index++] = by;
         }
         return result;
+    }
+
+
+    /* ******************************************* empty ******************************************* */
+
+
+    /**
+     * Returns `true` if the collection is not null and empty (contains no elements), `false` otherwise.
+     */
+    public static <T> boolean isEmpty(@Nullable Collection<T> collection) {
+        return collection != null && collection.size() == 0;
+    }
+
+    /**
+     * Returns `true` if the collection is not null and not empty.
+     */
+    public static <T> boolean isNotEmpty(@Nullable Collection<T> collection) {
+        return collection != null && collection.size() > 0;
     }
 
 
