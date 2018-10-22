@@ -15,6 +15,7 @@
 * :sparkles: Collectionx adds isNullOrEmpty and isNotNullOrEmpty method
 * :fire: Arrayx isEmpty and isNotEmpty method not support null
 * :sparkles: Arrayx adds isNullOrEmpty and isNotNullOrEmpty method
+* :bug: Fix IOStreamx's readBytes(URL) method does not close the InputStream bug
 
 
 ## v0.7.1

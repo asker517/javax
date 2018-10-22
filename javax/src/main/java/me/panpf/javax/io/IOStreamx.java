@@ -317,7 +317,12 @@ public class IOStreamx {
      */
     @NotNull
     public static byte[] readBytes(@NotNull URL url) throws IOException {
-        return readBytes(url.openStream());
+        InputStream inputStream = url.openStream();
+        try {
+            return readBytes(inputStream);
+        } finally {
+            safeClose(inputStream);
+        }
     }
 
 
