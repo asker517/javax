@@ -45,7 +45,7 @@ public class Stringx {
      * Returns `true` if this string is is not `null` and not empty and contains some characters except of whitespace characters.
      */
     public static boolean isSafe(@Nullable CharSequence sequence) {
-        return isNotNullOrEmpty(sequence) && isNotBlank(sequence);
+        return sequence != null && sequence.length() > 0 && isNotBlank(sequence);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Stringx {
      */
     @NotNull
     public static String isNotSafeOr(@Nullable String string, @NotNull String defaultValue) {
-        return string != null && isSafe(string) ? string : defaultValue;
+        return isSafe(string) ? string : defaultValue;
     }
 
 
@@ -100,7 +100,7 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence isBlankOr(@Nullable CharSequence sequence, @NotNull CharSequence defaultValue) {
-        return isNotBlank(sequence) ? sequence : defaultValue;
+        return isNotBlank(sequence) ? orEmpty(sequence) : defaultValue;
     }
 
     /**
