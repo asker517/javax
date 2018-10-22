@@ -15,7 +15,15 @@
 * :sparkles: Collectionx adds isNullOrEmpty and isNotNullOrEmpty method
 * :fire: Arrayx isEmpty and isNotEmpty method not support null
 * :sparkles: Arrayx adds isNullOrEmpty and isNotNullOrEmpty method
-* :bug: Fix IOStreamx's readBytes(URL) method does not close the InputStream bug
+* :bug: Fix IOStreamx readBytes(URL) method does not close the InputStream bug
+* :fire: Arrayx remove orEmpty(T\[\]) method
+* :sparkles: Arrayx adds arrayOfNulls method
+* :fire: Arrayx reversedArray(T\[\]), sortedArray(T\[\]), sortedArrayDescending(T\[\]), sortedArrayWith(T\[\]), plus(T\[\]), plusElement(T\[\]) method the first parameter is marked @NotNull
+* :fire: Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\]) method the first parameter is marked @NotNull
+* :fire: Collectionx remove toTypeArray(Collection<T>), toTypeArray(Iterable<T>) method
+* :bug: Fix Collectionx sortedWith(Iterable<T>), sorted(Iterable<T>) ClassCastException
+* :bug: Fix Arrayx reversedArray(T\[\]), plus(T\[\])  ClassCastException
+* :bug: Fix Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\])  ClassCastException
 
 
 ## v0.7.1

@@ -327,8 +327,14 @@ public class Arrayx {
      */
     @NotNull
     @SafeVarargs
-    public static <T> T[] arrayOf(T... elements) {
+    public static <T> T[] arrayOf(@NotNull T... elements) {
         return elements;
+    }
+
+    /** Internal unsafe construction of array based on reference array type */
+    public static <T> T[] arrayOfNulls(@NotNull T[] reference, int size) {
+        //noinspection unchecked
+        return (T[]) java.lang.reflect.Array.newInstance(reference.getClass().getComponentType(), size);
     }
 
     /**
@@ -533,16 +539,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> T[] orEmpty(@Nullable T[] elements) {
-        //noinspection unchecked
-        return elements != null ? elements : (T[]) new Object[0];
-    }
-
-    /**
-     * Return itself if it is not null, otherwise return a newly created empty array
-     */
-    @NotNull
-    public static <T> byte[] orEmpty(@Nullable byte[] elements) {
+    public static byte[] orEmpty(@Nullable byte[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new byte[0];
     }
@@ -551,7 +548,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> short[] orEmpty(@Nullable short[] elements) {
+    public static short[] orEmpty(@Nullable short[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new short[0];
     }
@@ -560,7 +557,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> int[] orEmpty(@Nullable int[] elements) {
+    public static int[] orEmpty(@Nullable int[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new int[0];
     }
@@ -569,7 +566,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> long[] orEmpty(@Nullable long[] elements) {
+    public static long[] orEmpty(@Nullable long[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new long[0];
     }
@@ -578,7 +575,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> float[] orEmpty(@Nullable float[] elements) {
+    public static float[] orEmpty(@Nullable float[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new float[0];
     }
@@ -587,7 +584,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> double[] orEmpty(@Nullable double[] elements) {
+    public static double[] orEmpty(@Nullable double[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new double[0];
     }
@@ -596,7 +593,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> boolean[] orEmpty(@Nullable boolean[] elements) {
+    public static boolean[] orEmpty(@Nullable boolean[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new boolean[0];
     }
@@ -605,7 +602,7 @@ public class Arrayx {
      * Return itself if it is not null, otherwise return a newly created empty array
      */
     @NotNull
-    public static <T> char[] orEmpty(@Nullable char[] elements) {
+    public static char[] orEmpty(@Nullable char[] elements) {
         //noinspection unchecked
         return elements != null ? elements : new char[0];
     }
@@ -1997,9 +1994,14 @@ public class Arrayx {
      * Returns an array with elements of this array in reversed order.
      */
     @NotNull
-    public static <T> T[] reversedArray(@Nullable T[] elements) {
-        //noinspection unchecked
-        return (T[]) reversed(elements).toArray();
+    public static <T> T[] reversedArray(@NotNull T[] elements) {
+        if (isEmpty(elements)) return elements;
+        T[] result = arrayOfNulls(elements, elements.length);
+        int lastIndex = elements.length - 1;
+        for (int i : Rangex.rangeTo(0, lastIndex)) {
+            result[lastIndex - i] = elements[i];
+        }
+        return result;
     }
 
     /**
@@ -2737,8 +2739,7 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted according to their natural sort order.
      */
     @NotNull
-    public static <T extends Comparable<T>> T[] sortedArray(@Nullable T[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
+    public static <T extends Comparable<T>> T[] sortedArray(@NotNull T[] elements) {
         T[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2749,7 +2750,6 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] sortedArray(@Nullable byte[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         byte[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2760,7 +2760,6 @@ public class Arrayx {
      */
     @NotNull
     public static short[] sortedArray(@Nullable short[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         short[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2771,7 +2770,6 @@ public class Arrayx {
      */
     @NotNull
     public static int[] sortedArray(@Nullable int[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         int[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2782,7 +2780,6 @@ public class Arrayx {
      */
     @NotNull
     public static long[] sortedArray(@Nullable long[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         long[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2793,7 +2790,6 @@ public class Arrayx {
      */
     @NotNull
     public static float[] sortedArray(@Nullable float[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         float[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2804,7 +2800,6 @@ public class Arrayx {
      */
     @NotNull
     public static double[] sortedArray(@Nullable double[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         double[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2815,7 +2810,6 @@ public class Arrayx {
      */
     @NotNull
     public static char[] sortedArray(@Nullable char[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         char[] result = copyOf(elements);
         sort(result);
         return result;
@@ -2826,8 +2820,7 @@ public class Arrayx {
      * Returns an array with all elements of this array sorted descending according to their natural sort order.
      */
     @NotNull
-    public static <T extends Comparable<T>> T[] sortedArrayDescending(@Nullable T[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
+    public static <T extends Comparable<T>> T[] sortedArrayDescending(@NotNull T[] elements) {
         T[] result = copyOf(elements);
         Arrayx.sortWith(elements, new Comparisonx.ReverseOrderComparator<T>());
         return result;
@@ -2838,7 +2831,6 @@ public class Arrayx {
      */
     @NotNull
     public static byte[] sortedArrayDescending(@Nullable byte[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         byte[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2849,7 +2841,6 @@ public class Arrayx {
      */
     @NotNull
     public static short[] sortedArrayDescending(@Nullable short[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         short[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2860,7 +2851,6 @@ public class Arrayx {
      */
     @NotNull
     public static int[] sortedArrayDescending(@Nullable int[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         int[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2871,7 +2861,6 @@ public class Arrayx {
      */
     @NotNull
     public static long[] sortedArrayDescending(@Nullable long[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         long[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2882,7 +2871,6 @@ public class Arrayx {
      */
     @NotNull
     public static float[] sortedArrayDescending(@Nullable float[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         float[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2893,7 +2881,6 @@ public class Arrayx {
      */
     @NotNull
     public static double[] sortedArrayDescending(@Nullable double[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         double[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2904,7 +2891,6 @@ public class Arrayx {
      */
     @NotNull
     public static char[] sortedArrayDescending(@Nullable char[] elements) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
         char[] result = copyOf(elements);
         Arrayx.sortDescending(elements);
         return result;
@@ -2914,8 +2900,8 @@ public class Arrayx {
     /**
      * Returns an array with all elements of this array sorted according the specified [comparator].
      */
-    public static <T> T[] sortedArrayWith(@Nullable T[] elements, @NotNull Comparator<T> comparator) {
-        if (Arrayx.isNullOrEmpty(elements)) return orEmpty(elements);
+    @NotNull
+    public static <T> T[] sortedArrayWith(@NotNull T[] elements, @NotNull Comparator<T> comparator) {
         T[] result = copyOf(elements);
         Arrayx.sortWith(elements, comparator);
         return result;
@@ -6954,12 +6940,11 @@ public class Arrayx {
      * Returns an array containing all elements of the original array and then the given [element].
      */
     @NotNull
-    public static <T> T[] plus(@Nullable T[] elements, @Nullable T element) {
+    public static <T> T[] plus(@NotNull T[] elements, @Nullable T element) {
         if (element == null) {
             //noinspection unchecked
-            return elements != null ? copyOf(elements) : (T[]) new Object[0];
+            return copyOf(elements);
         }
-        if (elements == null) return arrayOf(element);
         int index = elements.length;
         T[] result = copyOf(elements, index + 1);
         result[index] = element;
@@ -7066,12 +7051,11 @@ public class Arrayx {
      * Returns an array containing all elements of the original array and then all elements of the given [elements] collection.
      */
     @NotNull
-    public static <T> T[] plus(@Nullable T[] selfElements, @Nullable Collection<T> elements) {
-        if (Collectionx.isNullOrEmpty(elements)) {
+    public static <T> T[] plus(@NotNull T[] selfElements, @NotNull Collection<T> elements) {
+        if (Collectionx.isEmpty(elements)) {
             //noinspection unchecked
-            return selfElements != null ? copyOf(selfElements) : (T[]) new Object[0];
+            return copyOf(selfElements);
         }
-        if (selfElements == null) return Collectionx.toTypeArray(elements);
         int index = selfElements.length;
         T[] result = copyOf(selfElements, index + elements.size());
         for (T element : elements) {
@@ -7204,12 +7188,11 @@ public class Arrayx {
      * Returns an array containing all elements of the original array and then all elements of the given [elements] array.
      */
     @NotNull
-    public static <T> T[] plus(@Nullable T[] selfElements, @NotNull T[] elements) {
+    public static <T> T[] plus(@NotNull T[] selfElements, @NotNull T[] elements) {
         if (isNullOrEmpty(elements)) {
             //noinspection unchecked
-            return selfElements != null ? copyOf(selfElements) : (T[]) new Object[0];
+            return copyOf(selfElements);
         }
-        if (selfElements == null) return copyOf(elements);
         int thisSize = selfElements.length;
         int arraySize = elements.length;
         T[] result = copyOf(selfElements, thisSize + arraySize);
@@ -7333,7 +7316,7 @@ public class Arrayx {
      * Returns an array containing all elements of the original array and then the given [element].
      */
     @NotNull
-    public static <T> T[] plusElement(@Nullable T[] elements, @NotNull T element) {
+    public static <T> T[] plusElement(@NotNull T[] elements, @NotNull T element) {
         return plus(elements, element);
     }
 

@@ -574,9 +574,8 @@ public class Arrayx2 {
      * Returns new array which is a copy of the original array.
      */
     @NotNull
-    public static <T> T[] copyOf(@Nullable T[] elements) {
-        //noinspection unchecked
-        return elements != null ? Arrays.copyOf(elements, elements.length) : (T[]) new Object[0];
+    public static <T> T[] copyOf(@NotNull T[] elements) {
+        return Arrays.copyOf(elements, elements.length);
     }
 
     /**
@@ -711,18 +710,16 @@ public class Arrayx2 {
      * Returns new array which is a copy of the original array, resized to the given [newSize].
      */
     @NotNull
-    public static <T> T[] copyOf(@Nullable T[] elements, int newSize) {
-        //noinspection unchecked
-        return elements != null ? Arrays.copyOf(elements, newSize) : (T[]) new Object[0];
+    public static <T> T[] copyOf(@NotNull T[] elements, int newSize) {
+        return Arrays.copyOf(elements, newSize);
     }
 
     /**
      * Returns new array which is a copy of range of original array.
      */
     @NotNull
-    public static <T> T[] copyOfRange(@Nullable T[] elements, int fromIndex, int toIndex) {
-        //noinspection unchecked
-        return elements != null ? Arrays.copyOfRange(elements, fromIndex, toIndex) : (T[]) new Object[0];
+    public static <T> T[] copyOfRange(@NotNull T[] elements, int fromIndex, int toIndex) {
+        return Arrays.copyOfRange(elements, fromIndex, toIndex);
     }
 
     /**
@@ -1006,16 +1003,13 @@ public class Arrayx2 {
      * Returns an array containing elements of this array at specified [indices].
      */
     @NotNull
-    public static <T> T[] sliceArray(@Nullable T[] elements, @NotNull Collection<Integer> indices) {
-        ArrayList<T> result = new ArrayList<>(indices.size());
-        if (elements != null) {
-            int targetIndex = 0;
-            for (int sourceIndex : indices) {
-                result.add(targetIndex++, elements[sourceIndex]);
-            }
+    public static <T> T[] sliceArray(@NotNull T[] elements, @NotNull Collection<Integer> indices) {
+        T[] result = Arrayx.arrayOfNulls(elements, indices.size());
+        int targetIndex = 0;
+        for (int sourceIndex : indices) {
+            result[targetIndex++] = elements[sourceIndex];
         }
-        //noinspection unchecked
-        return (T[]) result.toArray();
+        return result;
     }
 
     /**
@@ -1142,7 +1136,7 @@ public class Arrayx2 {
      * Returns a list containing elements at indices in the specified [indices] range.
      */
     @NotNull
-    public static <T> T[] sliceArray(@Nullable T[] elements, @NotNull IntRange indices) {
+    public static <T> T[] sliceArray(@NotNull T[] elements, @NotNull IntRange indices) {
         if (indices.isEmpty()) return Arrayx2.copyOfRange(elements, 0, 0);
         return Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1);
     }

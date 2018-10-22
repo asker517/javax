@@ -74,12 +74,6 @@ public class Collectionx {
 
 
     @NotNull
-    public static <T> T[] toTypeArray(@Nullable Collection<T> collection) {
-        //noinspection unchecked
-        return isNotNullOrEmpty(collection) ? (T[]) collection.toArray() : (T[]) new Object[0];
-    }
-
-    @NotNull
     public static byte[] toByteArray(@Nullable Collection<Byte> collection) {
         byte[] result = new byte[count(collection)];
         if (collection != null) {
@@ -173,14 +167,6 @@ public class Collectionx {
             }
         }
         return result;
-    }
-
-
-    @NotNull
-    public static <T> T[] toTypeArray(@Nullable Iterable<T> collection) {
-        List<T> list = toList(collection);
-        //noinspection unchecked
-        return isNotNullOrEmpty(list) ? (T[]) list.toArray() : (T[]) new Object[0];
     }
 
     @NotNull
@@ -2436,14 +2422,13 @@ public class Collectionx {
     @NotNull
     public static <T> List<T> sortedWith(@Nullable Iterable<T> iterable, @NotNull Comparator<T> comparator) {
         if (iterable instanceof Collection) {
-            Collection collection = (Collection) iterable;
+            Collection<T> collection = (Collection<T>) iterable;
             if (collection.size() <= 1) {
                 return toList(iterable);
             } else {
-                //noinspection unchecked
-                T[] result = (T[]) collection.toArray();
-                Arrayx.sortWith(result, comparator);
-                return listOf(result);
+                List<T> newList = toList(collection);
+                sortWith(newList, comparator);
+                return newList;
             }
         } else {
             List<T> result = toList(iterable);
@@ -2466,14 +2451,13 @@ public class Collectionx {
     @NotNull
     public static <T extends Comparable<T>> List<T> sorted(@Nullable Iterable<T> iterable) {
         if (iterable instanceof Collection) {
-            Collection collection = (Collection) iterable;
+            Collection<T> collection = (Collection<T>) iterable;
             if (collection.size() <= 1) {
                 return toList(iterable);
             } else {
-                //noinspection unchecked
-                T[] result = (T[]) collection.toArray();
-                Arrayx.sort(result);
-                return listOf(result);
+                List<T> newList = toList(collection);
+                sort(newList);
+                return newList;
             }
         } else {
             List<T> result = toList(iterable);
