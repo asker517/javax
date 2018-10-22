@@ -24,6 +24,7 @@
 * :bug: Fix Collectionx sortedWith(Iterable<T>), sorted(Iterable<T>) ClassCastException
 * :bug: Fix Arrayx reversedArray(T\[\]), plus(T\[\])  ClassCastException
 * :bug: Fix Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\])  ClassCastException
+* :sparkles: Add Regexx
 
 
 ## v0.7.1

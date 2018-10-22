@@ -134,6 +134,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * in, notIn, coerceAtLeast, coerceAtMost, rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
+* Regex: [Regexx.java] ([Test][RegexxTest.java]) | [Regexx.kt] ([Test][RegexxTest.kt])
+    * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
 * Zip: [Zipx.java] ([Test][ZipxTest.java]) | [Zipx.kt] ([Test][ZipxTest.kt])
     * compressFilesTo, compressDirTo, compressDir, getCompressDstDir, decompressTo, decompress, getDecompressDstDir
 
@@ -289,6 +291,11 @@ Please view the [CHANGELOG.md] file
 [RangexTest.java]: javax/src/test/java/me/panpf/javax/test/util/RangexTest.java
 [Rangex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Rangex.kt
 [RangexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/RangexTest.kt
+
+[Regexx.java]: javax/src/main/java/me/panpf/javax/util/Regexx.java
+[RegexxTest.java]: javax/src/test/java/me/panpf/javax/test/util/RegexxTest.java
+[Regexx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Regexx.kt
+[RegexxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/RegexxTest.kt
 
 [Stopwatchx.java]: javax/src/main/java/me/panpf/javax/util/Stopwatch.java
 [StopwatchxTest.java]: javax/src/test/java/me/panpf/javax/test/util/StopwatchxTest.java
