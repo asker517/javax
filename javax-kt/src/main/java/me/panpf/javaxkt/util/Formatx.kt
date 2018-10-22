@@ -293,3 +293,27 @@ inline fun Int?.pad(stringLength: Int): String = Formatx.pad(this.orZero(), stri
  * Converts the given number to a string of a given length. If the number of digits is not enough, it is added 0 in front.
  */
 inline fun Long?.pad(stringLength: Int): String = Formatx.pad(this.orZero(), stringLength)
+
+
+/* ******************************************* duration *******************************************/
+
+
+/**
+ * Format the duration of the video or music, such as '01:23:22'
+ */
+inline fun Long?.formatDuration(): String = Formatx.duration(this.orZero())
+
+/**
+ * Format the duration of the video or music, such as '01:23:22', '00:23:22' will return '23:22'
+ */
+inline fun Long?.formatDurationShort(): String = Formatx.durationShort(this.orZero())
+
+/**
+ * Format the duration of the video or music, such as '01:23:22'
+ */
+inline fun Int?.formatDuration(): String = Formatx.duration(this.orZero().toLong())
+
+/**
+ * Format the duration of the video or music, such as '01:23:22', '00:23:22' will return '23:22'
+ */
+inline fun Int?.formatDurationShort(): String = Formatx.durationShort(this.orZero().toLong())

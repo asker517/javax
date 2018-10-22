@@ -377,4 +377,23 @@ public class FormatxTest {
         assertEquals(Formatx.pad(10, 5), "00010");
         assertEquals(Formatx.pad(10L, 5), "00010");
     }
+
+    @Test
+    public void testDuration() {
+        assertEquals(Formatx.duration(0), "00:00:00");
+        assertEquals(Formatx.duration(1000 * 5), "00:00:05");
+        assertEquals(Formatx.duration(1000 * 59), "00:00:59");
+        assertEquals(Formatx.duration(1000 * 60), "00:01:00");
+        assertEquals(Formatx.duration((1000 * 60) + (1000 * 4)), "00:01:04");
+        assertEquals(Formatx.duration(1000 * 60 * 60), "01:00:00");
+        assertEquals(Formatx.duration((1000 * 60 * 60) + (1000 * 4)), "01:00:04");
+        assertEquals(Formatx.duration((1000 * 60 * 60) + (1000 * 60 * 18) + (1000 * 4)), "01:18:04");
+        assertEquals(Formatx.duration((1000 * 60 * 60 * 100) + (1000 * 60 * 18) + (1000 * 4)), "100:18:04");
+
+        assertEquals(Formatx.durationShort(0), "00:00");
+        assertEquals(Formatx.durationShort(1000 * 5), "00:05");
+        assertEquals(Formatx.durationShort(1000 * 59), "00:59");
+        assertEquals(Formatx.durationShort(1000 * 60), "01:00");
+        assertEquals(Formatx.durationShort((1000 * 60) + (1000 * 4)), "01:04");
+    }
 }

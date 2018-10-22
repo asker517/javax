@@ -666,4 +666,73 @@ public class Formatx {
     public static String pad(long digit, int stringLength) {
         return String.format("%0" + stringLength + "d", digit);
     }
+
+
+    /* ******************************************* duration *******************************************/
+
+
+    /**
+     * Format the duration of the video or music, such as '01:23:22'
+     *
+     * @param duration Duration, in milliseconds
+     * @param shorted  If true, '00:23:22' will return '23:22'
+     */
+    private static String duration(long duration, boolean shorted) {
+        long secondsRemaining = duration / 1000 % 60;
+        long minuteRemaining = duration / 1000 / 60 % 60;
+        long hour = duration / 1000 / 60 / 60;
+
+        StringBuilder builder = new StringBuilder();
+
+        if (hour >= 10) {
+            builder.append(hour);
+        } else if (hour >= 1) {
+            builder.append("0").append(hour);
+        } else {
+            if (!shorted) {
+                builder.append("00");
+            }
+        }
+
+        if (builder.length() > 0) {
+            builder.append(":");
+        }
+        if (minuteRemaining >= 10) {
+            builder.append(minuteRemaining);
+        } else if (minuteRemaining >= 1) {
+            builder.append("0").append(minuteRemaining);
+        } else {
+            builder.append("00");
+        }
+
+        if (builder.length() > 0) {
+            builder.append(":");
+        }
+        if (secondsRemaining >= 10) {
+            builder.append(secondsRemaining);
+        } else if (secondsRemaining >= 1) {
+            builder.append("0").append(secondsRemaining);
+        } else {
+            builder.append("00");
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Format the duration of the video or music, such as '01:23:22'
+     *
+     * @param duration Duration, in milliseconds
+     */
+    public static String duration(long duration) {
+        return duration(duration, false);
+    }
+
+    /**
+     * Format the duration of the video or music, such as '01:23:22', '00:23:22' will return '23:22'
+     *
+     * @param duration Duration, in milliseconds
+     */
+    public static String durationShort(long duration) {
+        return duration(duration, true);
+    }
 }

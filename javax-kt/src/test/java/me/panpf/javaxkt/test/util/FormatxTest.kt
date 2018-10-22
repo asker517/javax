@@ -373,4 +373,23 @@ class FormatxTest {
         assertEquals(10.pad(5), "00010")
         assertEquals(10L.pad(5), "00010")
     }
+
+    @Test
+    fun testDuration() {
+        assertEquals(0.formatDuration(), "00:00:00")
+        assertEquals((1000 * 5).toLong().formatDuration(), "00:00:05")
+        assertEquals((1000 * 59).toLong().formatDuration(), "00:00:59")
+        assertEquals((1000 * 60).toLong().formatDuration(), "00:01:00")
+        assertEquals((1000 * 60 + 1000 * 4).toLong().formatDuration(), "00:01:04")
+        assertEquals((1000 * 60 * 60).toLong().formatDuration(), "01:00:00")
+        assertEquals((1000 * 60 * 60 + 1000 * 4).toLong().formatDuration(), "01:00:04")
+        assertEquals((1000 * 60 * 60 + 1000 * 60 * 18 + 1000 * 4).toLong().formatDuration(), "01:18:04")
+        assertEquals((1000 * 60 * 60 * 100 + 1000 * 60 * 18 + 1000 * 4).toLong().formatDuration(), "100:18:04")
+
+        assertEquals(0.formatDurationShort(), "00:00")
+        assertEquals((1000 * 5).toLong().formatDurationShort(), "00:05")
+        assertEquals((1000 * 59).toLong().formatDurationShort(), "00:59")
+        assertEquals((1000 * 60).toLong().formatDurationShort(), "01:00")
+        assertEquals((1000 * 60 + 1000 * 4).toLong().formatDurationShort(), "01:04")
+    }
 }

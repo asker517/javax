@@ -26,6 +26,7 @@
 * :bug: Fix Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\])  ClassCastException
 * :sparkles: Add Regexx
 * :sparkles: Add Netx
+* :sparkles: Formatx adds duration and durationShort method
 
 
 ## v0.7.1
