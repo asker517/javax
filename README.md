@@ -93,6 +93,10 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Throwable: [Throwablex.java] ([Test][ThrowablexTest.java]) | [Throwablex.kt] ([Test][ThrowablexTest.kt])
     * stackTraceToString
 
+### net
+* net: [Netx.java] ([Test][NetxTest.java]) | [Netx.kt] ([Test][NetxTest.kt])
+    * isIPV4, isIPV6, getLocalIPAddress, getLocalIPV4Address, getExternalIPV4Address
+
 ### security
 * Digest: [Digestx.java] ([Test][DigestxTest.java]) | [Digestx.kt] ([Test][DigestxTest.kt])
     * getDigest, getMD5, getMD5_16, getSHA1, getSHA256, getSHA512
@@ -236,6 +240,11 @@ Please view the [CHANGELOG.md] file
 [ThrowablexTest.java]: javax/src/test/java/me/panpf/javax/test/lang/ThrowablexTest.java
 [Throwablex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Throwablex.kt
 [ThrowablexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/ThrowablexTest.kt
+
+[Netx.java]: javax/src/main/java/me/panpf/javax/security/Netx.java
+[NetxTest.java]: javax/src/test/java/me/panpf/javax/test/security/NetxTest.java
+[Netx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/security/Netx.kt
+[NetxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/security/NetxTest.kt
 
 [Digestx.java]: javax/src/main/java/me/panpf/javax/security/Digestx.java
 [DigestxTest.java]: javax/src/test/java/me/panpf/javax/test/security/DigestxTest.java
