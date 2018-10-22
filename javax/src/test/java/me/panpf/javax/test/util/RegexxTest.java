@@ -32,6 +32,69 @@ public class RegexxTest {
     private static final String SAMPLE_IP_V4_MULTI_REPLACE = "var returnCitySN = {\"cip\": \"天天向上\", \"cip2\": \"天天向上\", \"cip3\": \"天天向上\", \"cid\": \"110105\", \"cname\": \"北京市朝阳区\"};";
 
     @Test
+    public void testRegex() {
+        Assert.assertTrue(Regexx.matches(Regexx.IPV4, "8.8.8.8"));
+        Assert.assertFalse(Regexx.matches(Regexx.IPV4, "天天向上"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.IPV6, "11:11:e:1EEE:11:11:200.200.200.200"));
+        Assert.assertTrue(Regexx.matches(Regexx.IPV6, "5e:0:0:0:0:0:5668:eeee"));
+        Assert.assertTrue(Regexx.matches(Regexx.IPV6, "8.8.8.8"));
+        Assert.assertFalse(Regexx.matches(Regexx.IPV6, "天天向上"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.CHINESE, "天天向上"));
+        Assert.assertFalse(Regexx.matches(Regexx.CHINESE, "天天向上a"));
+        Assert.assertTrue(Regexx.find(Regexx.CHINESE, "天天向上a"));
+        Assert.assertFalse(Regexx.find(Regexx.CHINESE, "，。，"));
+        Assert.assertFalse(Regexx.find(Regexx.CHINESE, ""));
+
+        Assert.assertTrue(Regexx.matches(Regexx.CHINESE_AND_SYMBOL, "天天向上"));
+        Assert.assertFalse(Regexx.matches(Regexx.CHINESE_AND_SYMBOL, "天天向上a"));
+        Assert.assertTrue(Regexx.find(Regexx.CHINESE_AND_SYMBOL, "天天向上a"));
+        Assert.assertTrue(Regexx.find(Regexx.CHINESE_AND_SYMBOL, "，。，"));
+        Assert.assertFalse(Regexx.find(Regexx.CHINESE_AND_SYMBOL, ""));
+
+        Assert.assertTrue(Regexx.find(Regexx.BLANK, "天天向上,好好学习 "));
+        Assert.assertTrue(Regexx.find(Regexx.BLANK, "天天向上,好好学习\t"));
+        Assert.assertTrue(Regexx.find(Regexx.BLANK, "天天向上,好好学习\n"));
+        Assert.assertFalse(Regexx.find(Regexx.BLANK, "天天向上，好好学习"));
+        Assert.assertFalse(Regexx.find(Regexx.BLANK, ""));
+
+        Assert.assertTrue(Regexx.find(Regexx.EMAIL, "service@gmail.com"));
+        Assert.assertTrue(Regexx.find(Regexx.EMAIL, "sky@panpf.me"));
+        Assert.assertFalse(Regexx.find(Regexx.EMAIL, "skypanpf.me"));
+        Assert.assertFalse(Regexx.find(Regexx.EMAIL, ""));
+
+        Assert.assertTrue(Regexx.find(Regexx.URI, "https://google.com"));
+        Assert.assertTrue(Regexx.find(Regexx.URI, "https://home.panpf.me"));
+        Assert.assertTrue(Regexx.find(Regexx.URI, "custom://home.panpf.me"));
+        Assert.assertFalse(Regexx.find(Regexx.URI, "https:/home.panpf.me"));
+        Assert.assertFalse(Regexx.find(Regexx.URI, ""));
+
+        Assert.assertTrue(Regexx.matches(Regexx.POSITIVE_FLOAT_NUMBER, "3.21"));
+        Assert.assertTrue(Regexx.matches(Regexx.POSITIVE_FLOAT_NUMBER, "3.00"));
+        Assert.assertFalse(Regexx.matches(Regexx.POSITIVE_FLOAT_NUMBER, "-3.00"));
+        Assert.assertFalse(Regexx.matches(Regexx.POSITIVE_FLOAT_NUMBER, "3"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.NEGATIVE_FLOAT_NUMBER, "-3.21"));
+        Assert.assertTrue(Regexx.matches(Regexx.NEGATIVE_FLOAT_NUMBER, "-3.00"));
+        Assert.assertFalse(Regexx.matches(Regexx.NEGATIVE_FLOAT_NUMBER, "3.00"));
+        Assert.assertFalse(Regexx.matches(Regexx.NEGATIVE_FLOAT_NUMBER, "-3"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.FLOAT_NUMBER, "3.21"));
+        Assert.assertTrue(Regexx.matches(Regexx.FLOAT_NUMBER, "-3.00"));
+        Assert.assertFalse(Regexx.matches(Regexx.FLOAT_NUMBER, "-3"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.POSITIVE_INTEGER, "3"));
+        Assert.assertFalse(Regexx.matches(Regexx.POSITIVE_INTEGER, "-3"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.NEGATIVE_INTEGER, "-3"));
+        Assert.assertFalse(Regexx.matches(Regexx.NEGATIVE_INTEGER, "3"));
+
+        Assert.assertTrue(Regexx.matches(Regexx.INTEGER, "-3"));
+        Assert.assertTrue(Regexx.matches(Regexx.INTEGER, "3"));
+    }
+
+    @Test
     public void testMatches() {
         Assert.assertTrue(Regexx.matches(Regexx.IPV4, SAMPLE_IP_V4_MATCHES));
         Assert.assertFalse(Regexx.matches(Regexx.IPV4, SAMPLE_IP_V4));

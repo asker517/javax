@@ -33,6 +33,72 @@ class RegexxTest {
         private const val SAMPLE_IP_V4_MULTI = "var returnCitySN = {\"cip\": \"221.217.228.166\", \"cip2\": \"221.217.228.167\", \"cip3\": \"221.217.228.168\", \"cid\": \"110105\", \"cname\": \"北京市朝阳区\"};"
         private const val SAMPLE_IP_V4_REPLACE = "var returnCitySN = {\"cip\": \"天天向上\", \"cid\": \"110105\", \"cname\": \"北京市朝阳区\"};"
         private const val SAMPLE_IP_V4_MULTI_REPLACE = "var returnCitySN = {\"cip\": \"天天向上\", \"cip2\": \"天天向上\", \"cip3\": \"天天向上\", \"cid\": \"110105\", \"cname\": \"北京市朝阳区\"};"
+        private const val SAMPLE_IP_V6 = "var returnCitySN = {\"cip\": \"5e:0:0:0:0:0:5668:eeee\", \"cid\": \"110105\", \"cname\": \"北京市朝阳区\"};"
+    }
+
+    @Test
+    fun testRegex() {
+        Assert.assertTrue(Regexx.IPV4.regexMatches("8.8.8.8"))
+        Assert.assertFalse(Regexx.IPV4.regexMatches("天天向上"))
+        Assert.assertFalse(Regexx.IPV4.regexMatches(""))
+
+        Assert.assertTrue(Regexx.IPV6.regexMatches("11:11:e:1EEE:11:11:200.200.200.200"))
+        Assert.assertTrue(Regexx.IPV6.regexMatches("5e:0:0:0:0:0:5668:eeee"))
+        Assert.assertTrue(Regexx.IPV6.regexMatches("8.8.8.8"))
+        Assert.assertFalse(Regexx.IPV6.regexMatches("天天向上"))
+        Assert.assertFalse(Regexx.IPV6.regexMatches(""))
+
+        Assert.assertTrue(Regexx.CHINESE.regexMatches("天天向上"))
+        Assert.assertFalse(Regexx.CHINESE.regexMatches("天天向上a"))
+        Assert.assertTrue(Regexx.CHINESE.regexFind("天天向上a"))
+        Assert.assertFalse(Regexx.CHINESE.regexFind("，。，"))
+        Assert.assertFalse(Regexx.CHINESE.regexFind(""))
+
+        Assert.assertTrue(Regexx.CHINESE_AND_SYMBOL.regexMatches("天天向上"))
+        Assert.assertFalse(Regexx.CHINESE_AND_SYMBOL.regexMatches("天天向上a"))
+        Assert.assertTrue(Regexx.CHINESE_AND_SYMBOL.regexFind("天天向上a"))
+        Assert.assertTrue(Regexx.CHINESE_AND_SYMBOL.regexFind("，。，"))
+        Assert.assertFalse(Regexx.CHINESE_AND_SYMBOL.regexFind(""))
+
+        Assert.assertTrue(Regexx.BLANK.regexFind("天天向上,好好学习 "))
+        Assert.assertTrue(Regexx.BLANK.regexFind("天天向上,好好学习\t"))
+        Assert.assertTrue(Regexx.BLANK.regexFind("天天向上,好好学习\n"))
+        Assert.assertFalse(Regexx.BLANK.regexFind("天天向上，好好学习"))
+        Assert.assertFalse(Regexx.BLANK.regexFind(""))
+
+        Assert.assertTrue(Regexx.EMAIL.regexFind("service@gmail.com"))
+        Assert.assertTrue(Regexx.EMAIL.regexFind("sky@panpf.me"))
+        Assert.assertFalse(Regexx.EMAIL.regexFind("skypanpf.me"))
+        Assert.assertFalse(Regexx.EMAIL.regexFind(""))
+
+        Assert.assertTrue(Regexx.URI.regexFind("https://google.com"))
+        Assert.assertTrue(Regexx.URI.regexFind("https://home.panpf.me"))
+        Assert.assertTrue(Regexx.URI.regexFind("custom://home.panpf.me"))
+        Assert.assertFalse(Regexx.URI.regexFind("https:/home.panpf.me"))
+        Assert.assertFalse(Regexx.URI.regexFind(""))
+
+        Assert.assertTrue(Regexx.POSITIVE_FLOAT_NUMBER.regexMatches("3.21"))
+        Assert.assertTrue(Regexx.POSITIVE_FLOAT_NUMBER.regexMatches("3.00"))
+        Assert.assertFalse(Regexx.POSITIVE_FLOAT_NUMBER.regexMatches("-3.00"))
+        Assert.assertFalse(Regexx.POSITIVE_FLOAT_NUMBER.regexMatches("3"))
+
+        Assert.assertTrue(Regexx.NEGATIVE_FLOAT_NUMBER.regexMatches("-3.21"))
+        Assert.assertTrue(Regexx.NEGATIVE_FLOAT_NUMBER.regexMatches("-3.00"))
+        Assert.assertFalse(Regexx.NEGATIVE_FLOAT_NUMBER.regexMatches("3.00"))
+        Assert.assertFalse(Regexx.NEGATIVE_FLOAT_NUMBER.regexMatches("-3"))
+
+        Assert.assertTrue(Regexx.FLOAT_NUMBER.regexMatches("3.21"))
+        Assert.assertTrue(Regexx.FLOAT_NUMBER.regexMatches("-3.00"))
+        Assert.assertFalse(Regexx.FLOAT_NUMBER.regexMatches("-3"))
+
+        Assert.assertTrue(Regexx.POSITIVE_INTEGER.regexMatches("3"))
+        Assert.assertFalse(Regexx.POSITIVE_INTEGER.regexMatches("-3"))
+
+        Assert.assertTrue(Regexx.NEGATIVE_INTEGER.regexMatches("-3"))
+        Assert.assertFalse(Regexx.NEGATIVE_INTEGER.regexMatches("3"))
+
+        Assert.assertTrue(Regexx.INTEGER.regexMatches("-3"))
+        Assert.assertTrue(Regexx.INTEGER.regexMatches("3"))
     }
 
     @Test
@@ -66,8 +132,8 @@ class RegexxTest {
 
     @Test
     fun testGetFirst() {
-        Assert.assertEquals(Regexx.IPV4.regexGetFirst(SAMPLE_IP_V4), "221.217.228.166")
-        Assert.assertNull(Regexx.IPV4.regexGetFirst("好好学习"))
+        Assert.assertEquals(Regexx.IPV6.regexGetFirst(SAMPLE_IP_V6), "5e:0:0:0:0:0:5668:eeee")
+        Assert.assertNull(Regexx.IPV6.regexGetFirst("好好学习"))
 
         Assert.assertEquals(REGEX_IPV4.regexGetFirst(SAMPLE_IP_V4), "221.217.228.166")
         Assert.assertNull(REGEX_IPV4.regexGetFirst("好好学习"))

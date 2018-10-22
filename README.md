@@ -140,6 +140,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Regex: [Regexx.java] ([Test][RegexxTest.java]) | [Regexx.kt] ([Test][RegexxTest.kt])
     * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
+    * IPV4, IPV6, CHINESE, CHINESE_SYMBOL, BLANK, EMAIL, URI, FLOAT_NUMBER, INTEGER
 * Zip: [Zipx.java] ([Test][ZipxTest.java]) | [Zipx.kt] ([Test][ZipxTest.kt])
     * compressFilesTo, compressDirTo, compressDir, getCompressDstDir, decompressTo, decompress, getDecompressDstDir
 
