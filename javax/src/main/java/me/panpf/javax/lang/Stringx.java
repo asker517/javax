@@ -374,9 +374,25 @@ public class Stringx {
     /**
      * Return true if the specified string contains one of the strings in [params]
      */
-    public static boolean orContains(@Nullable String string, @Nullable String[] params) {
+    public static boolean orContains(@Nullable String string, @Nullable String[] params, boolean ignoreCase) {
         if (string == null || params == null || params.length == 0) return false;
-        for (String param : params) if (string.contains(param)) return true;
+        for (String param : params) if (contains(string, param, ignoreCase)) return true;
+        return false;
+    }
+
+    /**
+     * Return true if the specified string contains one of the strings in [params]
+     */
+    public static boolean orContains(@Nullable String string, @Nullable String[] params) {
+        return orContains(string, params, false);
+    }
+
+    /**
+     * Return true if the specified string contains one of the strings in [params]
+     */
+    public static boolean orContains(@Nullable String string, @Nullable Collection<String> params, boolean ignoreCase) {
+        if (string == null || params == null || params.size() == 0) return false;
+        for (String param : params) if (contains(string, param, ignoreCase)) return true;
         return false;
     }
 
@@ -384,17 +400,31 @@ public class Stringx {
      * Return true if the specified string contains one of the strings in [params]
      */
     public static boolean orContains(@Nullable String string, @Nullable Collection<String> params) {
-        if (string == null || params == null || params.size() == 0) return false;
-        for (String param : params) if (string.contains(param)) return true;
-        return false;
+        return orContains(string, params, false);
+    }
+
+    /**
+     * Return true if the specified string contains all the strings in[params]
+     */
+    public static boolean andContains(@Nullable String string, @Nullable String[] params, boolean ignoreCase) {
+        if (string == null || params == null || params.length == 0) return false;
+        for (String param : params) if (!contains(string, param, ignoreCase)) return false;
+        return true;
     }
 
     /**
      * Return true if the specified string contains all the strings in[params]
      */
     public static boolean andContains(@Nullable String string, @Nullable String[] params) {
-        if (string == null || params == null || params.length == 0) return false;
-        for (String param : params) if (!string.contains(param)) return false;
+        return andContains(string, params, false);
+    }
+
+    /**
+     * Return true if the specified string contains all the strings in[params]
+     */
+    public static boolean andContains(@Nullable String string, @Nullable Collection<String> params, boolean ignoreCase) {
+        if (string == null || params == null || params.size() == 0) return false;
+        for (String param : params) if (!contains(string, param, ignoreCase)) return false;
         return true;
     }
 
@@ -402,9 +432,7 @@ public class Stringx {
      * Return true if the specified string contains all the strings in[params]
      */
     public static boolean andContains(@Nullable String string, @Nullable Collection<String> params) {
-        if (string == null || params == null || params.size() == 0) return false;
-        for (String param : params) if (!string.contains(param)) return false;
-        return true;
+        return andContains(string, params, false);
     }
 
 

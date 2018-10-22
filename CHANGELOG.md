@@ -27,6 +27,7 @@
 * :sparkles: Add Regexx
 * :sparkles: Add Netx
 * :sparkles: Formatx adds duration and durationShort method
+* :sparkles: Stringx orContains and andContains support ignoreCase
 
 
 ## v0.7.1

@@ -238,6 +238,16 @@ public class StringxTest {
         assertFalse(Stringx.andContains(null, (Collection<String>) null));
         assertFalse(Stringx.andContains("今天天气晴", new String[0]));
         assertFalse(Stringx.andContains("今天天气晴", new LinkedList<String>()));
+
+        assertFalse(Stringx.orContains("HCHC", new String[]{"h", "a"}));
+        assertTrue(Stringx.orContains("HCHC", new String[]{"h", "a"}, true));
+        assertFalse(Stringx.orContains("HCHC", Collectionx.listOf("h", "a")));
+        assertTrue(Stringx.orContains("HCHC", Collectionx.listOf("h", "a"), true));
+
+        assertFalse(Stringx.andContains("HAHA", new String[]{"h", "a"}));
+        assertTrue(Stringx.andContains("HAHA", new String[]{"h", "a"}, true));
+        assertFalse(Stringx.andContains("HAHA", Collectionx.listOf("h", "a")));
+        assertTrue(Stringx.andContains("HAHA", Collectionx.listOf("h", "a"), true));
     }
 
     @Test

@@ -16,6 +16,8 @@
 
 package me.panpf.javaxkt.test.lang
 
+import me.panpf.javax.lang.Stringx
+import me.panpf.javax.util.Collectionx
 import me.panpf.javaxkt.lang.*
 import org.junit.Assert
 import org.junit.Assert.*
@@ -234,6 +236,16 @@ class StringxTest {
         assertFalse(null.andContains(null as Collection<String>?))
         assertFalse("今天天气晴".andContains(arrayOf()))
         assertFalse("今天天气晴".andContains(LinkedList()))
+
+        assertFalse("HCHC".orContains(arrayOf("h", "a")))
+        assertTrue("HCHC".orContains(arrayOf("h", "a"), true))
+        assertFalse("HCHC".orContains(listOf("h", "a")))
+        assertTrue("HCHC".orContains(listOf("h", "a"), true))
+
+        assertFalse("HAHA".andContains(arrayOf("h", "a")))
+        assertTrue("HAHA".andContains(arrayOf("h", "a"), true))
+        assertFalse("HAHA".andContains(listOf("h", "a")))
+        assertTrue("HAHA".andContains(listOf("h", "a"), true))
     }
 
     @Test

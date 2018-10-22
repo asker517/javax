@@ -242,7 +242,17 @@ inline fun String?.isNotLetterOrDigitOr(defaultValue: String): String = Stringx.
 /**
  * Return true if the specified string contains one of the strings in [params]
  */
+inline fun String?.orContains(params: Array<String>?, ignoreCase: Boolean): Boolean = Stringx.orContains(this, params, ignoreCase)
+
+/**
+ * Return true if the specified string contains one of the strings in [params]
+ */
 inline fun String?.orContains(params: Array<String>?): Boolean = Stringx.orContains(this, params)
+
+/**
+ * Return true if the specified string contains one of the strings in [params]
+ */
+inline fun String?.orContains(params: Collection<String>?, ignoreCase: Boolean): Boolean = Stringx.orContains(this, params, ignoreCase)
 
 /**
  * Return true if the specified string contains one of the strings in [params]
@@ -252,7 +262,17 @@ inline fun String?.orContains(params: Collection<String>?): Boolean = Stringx.or
 /**
  * Return true if the specified string contains all the strings in[params]
  */
+inline fun String?.andContains(params: Array<String>?, ignoreCase: Boolean): Boolean = Stringx.andContains(this, params, ignoreCase)
+
+/**
+ * Return true if the specified string contains all the strings in[params]
+ */
 inline fun String?.andContains(params: Array<String>?): Boolean = Stringx.andContains(this, params)
+
+/**
+ * Return true if the specified string contains all the strings in[params]
+ */
+inline fun String?.andContains(params: Collection<String>?, ignoreCase: Boolean): Boolean = Stringx.andContains(this, params, ignoreCase)
 
 /**
  * Return true if the specified string contains all the strings in[params]
