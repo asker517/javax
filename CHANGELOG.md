@@ -1,6 +1,25 @@
 ## 0.8.0
 
+Fix bug:
+* :bug: Fix IOStreamx readBytes(URL) method does not close the InputStream bug
+* :bug: Fix Collectionx sortedWith(Iterable<T>), sorted(Iterable<T>) ClassCastException
+* :bug: Fix Arrayx reversedArray(T\[\]), plus(T\[\])  ClassCastException
+* :bug: Fix Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\])  ClassCastException
+
+Removed Or Renamed
+* :fire: CharIterator rename to CharRangeIterator, DoubleIterator rename to DoubleRangeIterator, FloatIterator rename to FloatRangeIterator,
+    IntIterator rename to IntRangeIterator, LongIterator rename to LongRangeIterator, DateIterator rename to DateRangeIterator
+* :fire: Collectionx isEmpty and isNotEmpty method not support null
+* :fire: Arrayx isEmpty and isNotEmpty method not support null
+* :fire: Arrayx remove orEmpty(T\[\]) method
+* :fire: Arrayx reversedArray(T\[\]), sortedArray(T\[\]), sortedArrayDescending(T\[\]), sortedArrayWith(T\[\]), plus(T\[\]), plusElement(T\[\]) method the first parameter is marked @NotNull
+* :fire: Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\]) method the first parameter is marked @NotNull
+* :fire: Collectionx remove toTypeArray(Collection<T>), toTypeArray(Iterable<T>) method
+
+Hammer:
 * :art: Perfect Stringx.kt startsWith and endWith
+
+New:
 * :sparkles: Stringx adds removeChar, removeFirstChar, removeLastChar, removeIndex, removeRange,
     removePrefix, removeSuffix, removeSurrounding method, find, findLast, first, firstOrNull,
     last, lastOrNull, getOrElse, getOrNull, indexOf, lastIndexOf, substring, subSequence, toByteArray,
@@ -8,26 +27,12 @@
     elementAt, single, drop, slice, take, associate, toCollection, toHashSet, toList, toSet, toSortedSet,
     flatMap, group, map, withIndex, all, any, count, fold, forEach, max, min, none, onEach, reduce, sum,
     chunked, partition, windowed, zip, asIterable, toSortedSet, method
-* :fire: CharIterator rename to CharRangeIterator, DoubleIterator rename to DoubleRangeIterator, FloatIterator rename to FloatRangeIterator,
-    IntIterator rename to IntRangeIterator, LongIterator rename to LongRangeIterator, DateIterator rename to DateRangeIterator
-* :sparkles: Collectionx adds setOf
-* :fire: Collectionx isEmpty and isNotEmpty method not support null
-* :sparkles: Collectionx adds isNullOrEmpty and isNotNullOrEmpty method
-* :fire: Arrayx isEmpty and isNotEmpty method not support null
-* :sparkles: Arrayx adds isNullOrEmpty and isNotNullOrEmpty method
-* :bug: Fix IOStreamx readBytes(URL) method does not close the InputStream bug
-* :fire: Arrayx remove orEmpty(T\[\]) method
-* :sparkles: Arrayx adds arrayOfNulls method
-* :fire: Arrayx reversedArray(T\[\]), sortedArray(T\[\]), sortedArrayDescending(T\[\]), sortedArrayWith(T\[\]), plus(T\[\]), plusElement(T\[\]) method the first parameter is marked @NotNull
-* :fire: Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\]) method the first parameter is marked @NotNull
-* :fire: Collectionx remove toTypeArray(Collection<T>), toTypeArray(Iterable<T>) method
-* :bug: Fix Collectionx sortedWith(Iterable<T>), sorted(Iterable<T>) ClassCastException
-* :bug: Fix Arrayx reversedArray(T\[\]), plus(T\[\])  ClassCastException
-* :bug: Fix Arrayx2 copyOf(T\[\]), copyOfRange(T\[\]), sliceArray(T\[\])  ClassCastException
+* :sparkles: Stringx orContains and andContains support ignoreCase
+* :sparkles: Collectionx adds setOf, isNullOrEmpty and isNotNullOrEmpty method
+* :sparkles: Arrayx adds isNullOrEmpty and isNotNullOrEmpty, arrayOfNulls method
 * :sparkles: Add Regexx
 * :sparkles: Add Netx
 * :sparkles: Formatx adds duration and durationShort method
-* :sparkles: Stringx orContains and andContains support ignoreCase
 
 
 ## v0.7.1
