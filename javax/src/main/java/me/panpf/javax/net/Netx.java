@@ -33,6 +33,9 @@ import java.util.regex.Pattern;
 @SuppressWarnings("WeakerAccess")
 public class Netx {
 
+    private Netx() {
+    }
+
     /**
      * Return true if the given ip address is IP v4
      */

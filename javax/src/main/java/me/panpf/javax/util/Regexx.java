@@ -93,6 +93,8 @@ public class Regexx {
      */
     public static final Pattern INTEGER = Pattern.compile("-?[1-9]\\d*");
 
+    private Regexx() {
+    }
 
     /**
      * Return true if the entire sequence of characters matches the given regular expression
