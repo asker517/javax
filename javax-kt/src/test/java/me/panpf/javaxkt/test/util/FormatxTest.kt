@@ -42,28 +42,39 @@ class FormatxTest {
     fun testFileSize() {
         Assert.assertEquals((-10).formatFileSize(), "0 B")
         Assert.assertEquals(0.formatFileSize(2, false), "0 B")
-        Assert.assertEquals(800.formatFileSize(), "800 B")
+        Assert.assertEquals(999.formatFileSize(), "999 B")
 
+        Assert.assertEquals((999 + 1).formatFileSize(), "0.98 KB")
         Assert.assertEquals(1024.formatFileSize(), "1 KB")
         Assert.assertEquals((800 + 1024).formatFileSize(), "1.78 KB")
         Assert.assertEquals((800 + 1024 * 500).formatFileSize(), "500.78 KB")
+        Assert.assertEquals((1024L * 999).formatFileSize(), "999 KB")
 
+        Assert.assertEquals((1024L * 999 + 1).formatFileSize(), "0.98 MB")
         Assert.assertEquals((1024L * 1024).formatFileSize(true), "1.00 MB")
         Assert.assertEquals((1024 * 500 + 1024L * 1024).formatFileSize(), "1.49 MB")
         Assert.assertEquals((1024 * 500 + 1024L * 1024 * 500).formatFileSize(), "500.49 MB")
+        Assert.assertEquals((1024L * 1024 * 999).formatFileSize(), "999 MB")
 
+        Assert.assertEquals((1024L * 1024 * 999 + 1).formatFileSize(), "0.98 GB")
         Assert.assertEquals((1024L * 1024 * 1024).formatFileSize(), "1 GB")
         Assert.assertEquals((1024L * 1024 * 500 + 1024L * 1024 * 1024).formatFileSize(), "1.49 GB")
         Assert.assertEquals((1024L * 1024 * 500 + 1024L * 1024 * 1024 * 500).formatFileSize(), "500.49 GB")
+        Assert.assertEquals((1024L * 1024 * 1024 * 999).formatFileSize(), "999 GB")
 
+        Assert.assertEquals((1024L * 1024 * 1024 * 999 + 1).formatFileSize(), "0.98 TB")
         Assert.assertEquals((1024L * 1024 * 1024 * 1024).formatFileSize(), "1 TB")
         Assert.assertEquals((1024L * 1024 * 1024 * 500 + 1024L * 1024 * 1024 * 1024).formatFileSize(), "1.49 TB")
         Assert.assertEquals((1024L * 1024 * 1024 * 500 + 1024L * 1024 * 1024 * 1024 * 500).formatFileSize(), "500.49 TB")
+        Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 999).formatFileSize(), "999 TB")
 
+        Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 999 + 1).formatFileSize(), "0.98 PB")
         Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 1024).formatFileSize(), "1 PB")
         Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 500 + 1024L * 1024 * 1024 * 1024 * 1024).formatFileSize(), "1.49 PB")
         Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 500 + 1024L * 1024 * 1024 * 1024 * 1024 * 500).formatFileSize(), "500.49 PB")
+        Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 1024 * 999).formatFileSize(), "999 PB")
 
+        Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 1024 * 999 + 1).formatFileSize(), "0.98 EB")
         Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 1024 * 1024).formatFileSize(), "1 EB")
         Assert.assertEquals((1024L * 1024 * 1024 * 1024 * 1024 * 500 + 1024L * 1024 * 1024 * 1024 * 1024 * 1024).formatFileSize(), "1.49 EB")
     }

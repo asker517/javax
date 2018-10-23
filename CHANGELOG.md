@@ -1,4 +1,9 @@
-## 0.8.0
+## v0.8.1
+
+* :zap: Formatx's fileSize method now returns 1000 KB 0.98 MB
+
+
+## v0.8.0
 
 Fix bug:
 * :bug: Fix IOStreamx readBytes(URL) method does not close the InputStream bug

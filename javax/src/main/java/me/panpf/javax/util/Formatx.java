@@ -234,18 +234,19 @@ public class Formatx {
      */
     @NotNull
     public static String fileSize(long fileSize, int decimalPlacesLength, boolean decimalPlacesFillZero) {
+        // Multiplied by 999 to avoid 1000 KB, 1000 MB
         long finalFileSize = Math.max(fileSize, 0);
-        if (finalFileSize < 1024) {
+        if (finalFileSize <= 999) {
             return finalFileSize + " B";
-        } else if (finalFileSize < 1024L * 1024) {
+        } else if (finalFileSize <= 1024L * 999) {
             return format(finalFileSize / 1024f, " KB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (finalFileSize < 1024L * 1024 * 1024) {
+        } else if (finalFileSize <= 1024L * 1024 * 999) {
             return format(finalFileSize / 1024f / 1024f, " MB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (finalFileSize < 1024L * 1024 * 1024 * 1024) {
+        } else if (finalFileSize <= 1024L * 1024 * 1024 * 999) {
             return format(finalFileSize / 1024f / 1024f / 1024f, " GB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (finalFileSize < 1024L * 1024 * 1024 * 1024 * 1024) {
+        } else if (finalFileSize <= 1024L * 1024 * 1024 * 1024 * 999) {
             return format(finalFileSize / 1024f / 1024f / 1024f / 1024f, " TB", decimalPlacesLength, decimalPlacesFillZero);
-        } else if (finalFileSize < 1024L * 1024 * 1024 * 1024 * 1024 * 1024) {
+        } else if (finalFileSize <= 1024L * 1024 * 1024 * 1024 * 1024 * 999) {
             return format(finalFileSize / 1024f / 1024f / 1024f / 1024f / 1024f, " PB", decimalPlacesLength, decimalPlacesFillZero);
         } else {
             return format(finalFileSize / 1024f / 1024f / 1024f / 1024f / 1024f / 1024f, " EB", decimalPlacesLength, decimalPlacesFillZero);

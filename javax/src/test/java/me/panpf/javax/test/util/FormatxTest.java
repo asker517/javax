@@ -46,28 +46,39 @@ public class FormatxTest {
     public void testFileSize() {
         assertEquals(Formatx.fileSize(-10L), "0 B");
         assertEquals(Formatx.fileSize(0L), "0 B");
-        assertEquals(Formatx.fileSize(800), "800 B");
+        assertEquals(Formatx.fileSize(999), "999 B");
 
+        assertEquals(Formatx.fileSize(999 + 1), "0.98 KB");
         assertEquals(Formatx.fileSize(1024), "1 KB");
         assertEquals(Formatx.fileSize(800 + 1024), "1.78 KB");
         assertEquals(Formatx.fileSize(800 + 1024 * 500), "500.78 KB");
+        assertEquals(Formatx.fileSize(1024L * 999), "999 KB");
 
+        assertEquals(Formatx.fileSize(1024L * 999 + 1), "0.98 MB");
         assertEquals(Formatx.fileSize(1024L * 1024, true), "1.00 MB");
         assertEquals(Formatx.fileSize((1024 * 500) + 1024L * 1024), "1.49 MB");
         assertEquals(Formatx.fileSize((1024 * 500) + 1024L * 1024 * 500), "500.49 MB");
+        assertEquals(Formatx.fileSize(1024L * 1024 * 999), "999 MB");
 
+        assertEquals(Formatx.fileSize(1024L * 1024 * 999 + 1), "0.98 GB");
         assertEquals(Formatx.fileSize(1024L * 1024 * 1024), "1 GB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 500) + 1024L * 1024 * 1024), "1.49 GB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 500) + 1024L * 1024 * 1024 * 500), "500.49 GB");
+        assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 999), "999 GB");
 
+        assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 999 + 1), "0.98 TB");
         assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024), "1 TB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 1024 * 500) + 1024L * 1024 * 1024 * 1024), "1.49 TB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 1024 * 500) + 1024L * 1024 * 1024 * 1024 * 500), "500.49 TB");
+        assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024 * 999), "999 TB");
 
+        assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024 * 999 + 1), "0.98 PB");
         assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024 * 1024), "1 PB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 1024 * 1024 * 500) + 1024L * 1024 * 1024 * 1024 * 1024), "1.49 PB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 1024 * 1024 * 500) + 1024L * 1024 * 1024 * 1024 * 1024 * 500), "500.49 PB");
+        assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024 * 1024 * 999), "999 PB");
 
+        assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024 * 1024 * 999 + 1), "0.98 EB");
         assertEquals(Formatx.fileSize(1024L * 1024 * 1024 * 1024 * 1024 * 1024), "1 EB");
         assertEquals(Formatx.fileSize((1024L * 1024 * 1024 * 1024 * 1024 * 500) + 1024L * 1024 * 1024 * 1024 * 1024 * 1024), "1.49 EB");
     }
