@@ -160,4 +160,98 @@ public class Netx {
     public static String getExternalIPV4Address() {
         return getExternalIPV4AddressFromSohu();
     }
+
+    /**
+     * Get city info
+     */
+    @Nullable
+    public static City getCityFromSohu() {
+        String response;
+        try {
+            response = IOStreamx.readText(new URL("http://pv.sohu.com/cityjson?ie=utf-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        String cipValue = null;
+        final String cipKey = "\"cip\"";
+        int cipIndex = response.indexOf(cipKey);
+        if (cipIndex != -1) {
+            int cipValueStartIndex = response.indexOf("\"", cipIndex + cipKey.length());
+            if (cipValueStartIndex != -1) {
+                int cipValueEndIndex = response.indexOf("\"", cipValueStartIndex + 1);
+                if (cipValueEndIndex != -1) {
+                    cipValue = response.substring(cipValueStartIndex + 1, cipValueEndIndex);
+                }
+            }
+        }
+
+        String cidValue = null;
+        final String cidKey = "\"cid\"";
+        int cidIndex = response.indexOf(cidKey);
+        if (cidIndex != -1) {
+            int cidValueStartIndex = response.indexOf("\"", cidIndex + cidKey.length());
+            if (cidValueStartIndex != -1) {
+                int cidValueEndIndex = response.indexOf("\"", cidValueStartIndex + 1);
+                if (cidValueEndIndex != -1) {
+                    cidValue = response.substring(cidValueStartIndex + 1, cidValueEndIndex);
+                }
+            }
+        }
+
+        String cnameValue = null;
+        final String cnameKey = "\"cname\"";
+        int cnameIndex = response.indexOf(cnameKey);
+        if (cnameIndex != -1) {
+            int cnameValueStartIndex = response.indexOf("\"", cnameIndex + cnameKey.length());
+            if (cnameValueStartIndex != -1) {
+                int cnameValueEndIndex = response.indexOf("\"", cnameValueStartIndex + 1);
+                if (cnameValueEndIndex != -1) {
+                    cnameValue = response.substring(cnameValueStartIndex + 1, cnameValueEndIndex);
+                }
+            }
+        }
+
+        return cipValue != null && cidValue != null && cnameValue != null ? new City(cidValue, cnameValue, cipValue) : null;
+    }
+
+    /**
+     * Get city info
+     */
+    @Nullable
+    public static City getCity() {
+        return getCityFromSohu();
+    }
+
+    public static class City {
+
+        @NotNull
+        private String id;
+        @NotNull
+        private String name;
+        @NotNull
+        private String ip;
+
+        public City(@NotNull String id, @NotNull String name, @NotNull String ip) {
+            this.id = id;
+            this.name = name;
+            this.ip = ip;
+        }
+
+        @NotNull
+        public String getId() {
+            return id;
+        }
+
+        @NotNull
+        public String getName() {
+            return name;
+        }
+
+        @NotNull
+        public String getIp() {
+            return ip;
+        }
+    }
 }

@@ -86,4 +86,19 @@ public class NetxTest {
         Assert.assertNotNull(ipv4);
         Assert.assertTrue("ipv4: " + ipv4, Netx.isIPV4(ipv4));
     }
+
+    @Test
+    public void testCity() {
+        Netx.City city = Netx.getCityFromSohu();
+        Assert.assertNotNull(city);
+        Assert.assertNotNull(city.getId());
+        Assert.assertNotNull(city.getName());
+        Assert.assertTrue("ipv4: " + city.getIp(), Netx.isIPV4(city.getIp()));
+
+        Netx.City city2 = Netx.getCity();
+        Assert.assertNotNull(city2);
+        Assert.assertNotNull(city2.getId());
+        Assert.assertNotNull(city2.getName());
+        Assert.assertTrue("ipv4: " + city2.getIp(), Netx.isIPV4(city2.getIp()));
+    }
 }
