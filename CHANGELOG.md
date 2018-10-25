@@ -2,6 +2,7 @@
 
 * :zap: Formatx's fileSize method now returns 1000 KB 0.98 MB
 * :sparkles: Netx adds getCity method
+* :fire: FormatTotalTimeConfig change to Formatx.TotalTimeConfig
 
 
 ## v0.8.0

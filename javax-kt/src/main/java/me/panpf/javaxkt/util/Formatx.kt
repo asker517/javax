@@ -18,7 +18,7 @@
 
 package me.panpf.javaxkt.util
 
-import me.panpf.javax.util.FormatTotalTimeConfig
+import me.panpf.javax.util.Formatx.TotalTimeConfig
 import me.panpf.javax.util.Formatx
 import me.panpf.javaxkt.lang.orZero
 
@@ -164,7 +164,7 @@ inline fun Int.formatShortFileSize(): String = Formatx.shortFileSize(this.toLong
 /**
  * Returns the total time of formatting that can be displayed
  */
-inline fun Long.formatTotalTime(config: FormatTotalTimeConfig): String = Formatx.totalTime(this, config)
+inline fun Long.formatTotalTime(config: TotalTimeConfig): String = Formatx.totalTime(this, config)
 
 /**
  * Returns the total time of formatting that can be displayed
