@@ -101,4 +101,10 @@ public class NetxTest {
         Assert.assertNotNull(city2.getName());
         Assert.assertTrue("ipv4: " + city2.getIp(), Netx.isIPV4(city2.getIp()));
     }
+
+    @Test
+    public void testIpLong2String(){
+        String ip = "221.217.228.166";
+        Assert.assertEquals(Netx.ipLongToString(Netx.ipStringToLong(ip)), ip);
+    }
 }

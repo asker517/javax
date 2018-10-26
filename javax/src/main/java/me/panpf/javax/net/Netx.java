@@ -224,6 +224,28 @@ public class Netx {
         return getCityFromSohu();
     }
 
+    public static long ipStringToLong(String ipString) {
+        long[] ip = new long[4];
+        int position1 = ipString.indexOf(".");
+        int position2 = ipString.indexOf(".", position1 + 1);
+        int position3 = ipString.indexOf(".", position2 + 1);
+        ip[0] = Long.parseLong(ipString.substring(0, position1));
+        ip[1] = Long.parseLong(ipString.substring(position1 + 1, position2));
+        ip[2] = Long.parseLong(ipString.substring(position2 + 1, position3));
+        ip[3] = Long.parseLong(ipString.substring(position3 + 1));
+        return (ip[0] << 24) + (ip[1] << 16) + (ip[2] << 8) + ip[3];
+    }
+
+    public static String ipLongToString(long ipLong) {
+        return String.valueOf((ipLong >>> 24)) +
+                "." +
+                String.valueOf((ipLong & 0x00FFFFFF) >>> 16) +
+                "." +
+                String.valueOf((ipLong & 0x0000FFFF) >>> 8) +
+                "." +
+                String.valueOf((ipLong & 0x000000FF));
+    }
+
     public static class City {
 
         @NotNull

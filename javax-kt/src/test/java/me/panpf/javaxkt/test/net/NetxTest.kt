@@ -16,6 +16,8 @@
 
 package me.panpf.javaxkt.test.net
 
+import me.panpf.javaxkt.net.ipLongToString
+import me.panpf.javaxkt.net.ipStringToLong
 import me.panpf.javaxkt.net.isIPV4
 import me.panpf.javaxkt.net.isIPV6
 import org.junit.Assert
@@ -32,5 +34,11 @@ class NetxTest {
         Assert.assertTrue("5e:0:0:0:0:0:5668:eeee".isIPV6())
         Assert.assertTrue("8.8.8.8".isIPV6())
         Assert.assertFalse("天天向上".isIPV6())
+    }
+
+    @Test
+    fun testIpLong2String() {
+        val ip = "221.217.228.166"
+        Assert.assertEquals(ip.ipStringToLong().ipLongToString(), ip)
     }
 }

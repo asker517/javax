@@ -99,6 +99,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 ### net
 * net: [Netx.java] ([Test][NetxTest.java]) | [Netx.kt] ([Test][NetxTest.kt])
     * isIPV4, isIPV6, getLocalIPAddress, getLocalIPV4Address, getExternalIPV4Address, getCity
+    * ipStringToLong, ipLongToString
 
 ### security
 * Digest: [Digestx.java] ([Test][DigestxTest.java]) | [Digestx.kt] ([Test][DigestxTest.kt])
