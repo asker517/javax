@@ -10,7 +10,8 @@
 
 Extensions to the Java standard library, some tool methods related to File, IO, primitive types, String, Array, and Collection
 
-### `Warning`
+### :warning: `Warning`
+
 `Currently in the development stage, some APIs have not been tested yet, please use them carefully`
 
 ## Getting Started
