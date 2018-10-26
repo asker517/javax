@@ -87,175 +87,178 @@ public class ClassxTest {
     }
 
     @Test
-    public void testField() throws NoSuchFieldException {
-        Classx.setStaticFieldValue(TestStatic.class, "filed1", "filed12");
-        Assert.assertEquals(Classx.getStaticFieldValue(TestStatic.class, "filed1"), "filed12");
-
-        Classx.setStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1"), "filed13");
-        Assert.assertEquals(Classx.getStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1")), "filed13");
-
-        Assert.assertNotNull(Classx.getFieldValue(new TestField3(), "testFiled31"));
-
+    public void testField() throws NoSuchFieldException, ClassNotFoundException {
+        /*
+         * getFieldWithParent
+         */
+        Assert.assertNotNull(Classx.getFieldWithParent(TestStatic.class, "filed1"));
         try {
-            Classx.getFieldValue(new TestField3(), Classx.getFieldWithParent(TestField3.class, "unknown"));
+            Classx.getFieldWithParent(TestStatic.class, "filed_no");
             Assert.fail();
         } catch (Exception ignored) {
         }
 
+        Assert.assertNotNull(Classx.getFieldWithParent(new TestStatic(), "filed1"));
         try {
-            Classx.getFieldValue(new TestField3(), "unknown");
+            Classx.getFieldWithParent(new TestStatic(), "filed_no");
             Assert.fail();
-        } catch (NoSuchFieldException ignored) {
+        } catch (Exception ignored) {
         }
 
-        TestField1 testClass = new TestField1();
-
+        Assert.assertNotNull(Classx.getFieldWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1"));
         try {
-            Classx.setFieldValue(testClass, "testFiled11", "field11x");
-        } catch (NoSuchFieldException e) {
-            throw new IllegalArgumentException(e);
+            Classx.getFieldWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed_no");
+            Assert.fail();
+        } catch (Exception ignored) {
         }
 
-        try {
-            Classx.setFieldValue(testClass, Classx.getFieldWithParent(testClass, "testFiled11"), "field11x");
-        } catch (NoSuchFieldException e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        try {
-            Assert.assertEquals(Classx.getFieldValue(testClass, "testFiled11"), "field11x");
-        } catch (NoSuchFieldException e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        Field[] fields = Arrayx.filter(Classx.getFieldsWithParent(TestField3.class), new Predicate<Field>() {
+        /*
+         * getFieldsWithParent
+         */
+        Predicate<Field> filterJacocoFiledPredicate = new Predicate<Field>() {
             @Override
             public boolean accept(@NotNull Field field) {
                 return !field.getName().equals("$jacocoData");
             }
-        }).toArray(new Field[0]);
-        Assert.assertNotNull(fields);
-        Assert.assertEquals(fields.length, 6);
+        };
 
-        Field[] field2 = Arrayx.filter(Classx.getFieldsWithParent(new TestField3(), 1), new Predicate<Field>() {
-            @Override
-            public boolean accept(@NotNull Field field) {
-                return !field.getName().equals("$jacocoData");
-            }
-        }).toArray(new Field[0]);
-        Assert.assertNotNull(field2);
-        Assert.assertEquals(field2.length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(TestField3.class, 1), filterJacocoFiledPredicate).toArray(new Field[0]).length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(TestField3.class), filterJacocoFiledPredicate).toArray(new Field[0]).length, 6);
+
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(new TestField3(), 1), filterJacocoFiledPredicate).toArray(new Field[0]).length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(new TestField3()), filterJacocoFiledPredicate).toArray(new Field[0]).length, 6);
+
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent("me.panpf.javax.test.lang.ClassxTest$TestField3", 1), filterJacocoFiledPredicate).toArray(new Field[0]).length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent("me.panpf.javax.test.lang.ClassxTest$TestField3"), filterJacocoFiledPredicate).toArray(new Field[0]).length, 6);
+
+
+        /*
+         * get and set field value
+         */
+
+        TestField1 testField1 = new TestField1();
+
+        Classx.setFieldValue(testField1, Classx.getFieldWithParent(testField1, "testFiled11"), "field11x");
+        Assert.assertEquals(Classx.getFieldValue(testField1, Classx.getFieldWithParent(testField1, "testFiled11")), "field11x");
+
+        Classx.setFieldValue(testField1, "testFiled11", "field11y");
+        Assert.assertEquals(Classx.getFieldValue(testField1, "testFiled11"), "field11y");
+
+
+        /*
+         * get and set static filed value
+         */
+
+        Classx.setStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1"), "filed12");
+        Assert.assertEquals(Classx.getStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1")), "filed12");
+
+        Classx.setStaticFieldValue(TestStatic.class, "filed1", "filed13");
+        Assert.assertEquals(Classx.getStaticFieldValue(TestStatic.class, "filed1"), "filed13");
+
+        Classx.setStaticFieldValue(new TestStatic(), "filed1", "filed14");
+        Assert.assertEquals(Classx.getStaticFieldValue(new TestStatic(), "filed1"), "filed14");
+
+        Classx.setStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1", "filed15");
+        Assert.assertEquals(Classx.getStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1"), "filed15");
     }
 
     @Test
-    public void testMethod() throws NoSuchMethodException {
+    public void testMethod() throws NoSuchMethodException, ClassNotFoundException, NoSuchFieldException {
+        /*
+         * getMethodWithParent
+         */
+
         Assert.assertNotNull(Classx.getMethodWithParent(TestStatic.class, "test"));
-
-        Assert.assertNotNull(Classx.getMethodsWithParent(TestStatic.class));
-
-        Assert.assertNotNull(Classx.callStaticMethod(TestStatic.class, "test"));
-
-        Assert.assertNotNull(Classx.callStaticMethod(Classx.getMethodWithParent(TestStatic.class, "test")));
-
-        Assert.assertNotNull(Classx.callStaticMethod(TestStatic.class, "test"));
-
-        Assert.assertNotNull(Classx.callMethod(new TestMethod(), "toString"));
         try {
-            Classx.callMethod(new TestMethod(), "unknown");
+            Classx.getMethodWithParent(TestStatic.class, "test_no");
             Assert.fail();
-        } catch (Exception ignored) {
+        } catch (NoSuchMethodException ignored) {
         }
+
+        Assert.assertNotNull(Classx.getMethodWithParent(new TestStatic(), "test"));
+        try {
+            Classx.getMethodWithParent(new TestStatic(), "test_no");
+            Assert.fail();
+        } catch (NoSuchMethodException ignored) {
+        }
+
+        Assert.assertNotNull(Classx.getMethodWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "test"));
+        try {
+            Classx.getMethodWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "test_no");
+            Assert.fail();
+        } catch (NoSuchMethodException ignored) {
+        }
+
+        /*
+         * getMethodsWithParent
+         */
+
+        Predicate<Method> filterJacocoMethodPredicate = new Predicate<Method>() {
+            @Override
+            public boolean accept(@NotNull Method field) {
+                return !field.getName().equals("$jacocoInit");
+            }
+        };
+
+        Assert.assertEquals(Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class), filterJacocoMethodPredicate).toArray(new Method[0]).length, 14);
+        Assert.assertEquals(Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class, 0), filterJacocoMethodPredicate).toArray(new Method[0]).length, 2);
+
+        Assert.assertEquals(Arrayx.filter(Classx.getMethodsWithParent(new TestMethod()), filterJacocoMethodPredicate).toArray(new Method[0]).length, 14);
+        Assert.assertEquals(Arrayx.filter(Classx.getMethodsWithParent(new TestMethod(), 0), filterJacocoMethodPredicate).toArray(new Method[0]).length, 2);
+
+        Assert.assertEquals(Arrayx.filter(Classx.getMethodsWithParent("me.panpf.javax.test.lang.ClassxTest$TestMethod"), filterJacocoMethodPredicate).toArray(new Method[0]).length, 14);
+        Assert.assertEquals(Arrayx.filter(Classx.getMethodsWithParent("me.panpf.javax.test.lang.ClassxTest$TestMethod", 0), filterJacocoMethodPredicate).toArray(new Method[0]).length, 2);
+
+        /*
+         * callMethod
+         */
 
         TestMethod testMethod = new TestMethod();
 
-        try {
-            Classx.callMethod(testMethod, "setUpdate", "testMethod");
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
+        Classx.callMethod(testMethod, Classx.getMethodWithParent(testMethod, "setUpdate", String.class), "updatex");
+        Assert.assertEquals(Classx.callMethod(testMethod, Classx.getMethodWithParent(testMethod, "getUpdate")), "updatex");
 
-        try {
-            Assert.assertEquals(Classx.callMethod(testMethod, "getUpdate"), "testMethod");
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
+        Classx.callMethod(testMethod, "setUpdate", "updatex");
+        Assert.assertEquals(Classx.callMethod(testMethod, "getUpdate"), "updatex");
 
-        try {
-            Classx.callMethod(testMethod, Classx.getMethodWithParent(testMethod.getClass(), "setUpdate", String.class), "testMethod2");
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
 
-        try {
-            Assert.assertEquals(Classx.callMethod(testMethod, Classx.getMethodWithParent(testMethod.getClass(), "getUpdate")), "testMethod2");
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
+        /*
+         * callStaticMethod
+         */
+        Classx.setStaticFieldValue(TestStatic.class, "filed1", "filedx");
 
-        Method[] methods = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class), new Predicate<Method>() {
-            @Override
-            public boolean accept(@NotNull Method field) {
-                return !field.getName().equals("$jacocoInit");
-            }
-        }).toArray(new Method[0]);
-        Assert.assertNotNull(methods);
-        Assert.assertEquals(methods.length, 14);
-
-        Method[] methods1 = Arrayx.filter(Classx.getMethodsWithParent(new TestMethod()), new Predicate<Method>() {
-            @Override
-            public boolean accept(@NotNull Method field) {
-                return !field.getName().equals("$jacocoInit");
-            }
-        }).toArray(new Method[0]);
-        Assert.assertNotNull(methods1);
-        Assert.assertEquals(methods1.length, 14);
-
-        Method[] methods2 = Arrayx.filter(Classx.getMethodsWithParent(TestMethod.class, 0), new Predicate<Method>() {
-            @Override
-            public boolean accept(@NotNull Method field) {
-                return !field.getName().equals("$jacocoInit");
-            }
-        }).toArray(new Method[0]);
-        Assert.assertNotNull(methods2);
-        Assert.assertEquals(methods2.length, 2);
-
-        Method[] methods3 = Arrayx.filter(Classx.getMethodsWithParent(new TestMethod(), 0), new Predicate<Method>() {
-            @Override
-            public boolean accept(@NotNull Method field) {
-                return !field.getName().equals("$jacocoInit");
-            }
-        }).toArray(new Method[0]);
-        Assert.assertNotNull(methods3);
-        Assert.assertEquals(methods3.length, 2);
+        Assert.assertEquals(Classx.callStaticMethod(Classx.getMethodWithParent(TestStatic.class, "test")), "filedx");
+        Assert.assertEquals(Classx.callStaticMethod(TestStatic.class, "test"), "filedx");
+        Assert.assertEquals(Classx.callStaticMethod(new TestStatic(), "test"), "filedx");
+        Assert.assertEquals(Classx.callStaticMethod("me.panpf.javax.test.lang.ClassxTest$TestStatic", "test"), "filedx");
     }
 
     @Test
-    public void testConstructor() {
-        try {
-            Assert.assertNotNull(Classx.getConstructorWithParent(TestConstructor.class, String.class));
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
-
-        try {
-            Assert.assertNotNull(Classx.getConstructorWithParent(new TestConstructor(), String.class));
-        } catch (NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
+    public void testConstructor() throws NoSuchMethodException, ClassNotFoundException {
+        Assert.assertNotNull(Classx.getConstructorWithParent(TestConstructor.class, String.class));
+        Assert.assertNotNull(Classx.getConstructorWithParent(new TestConstructor(), String.class));
+        Assert.assertNotNull(Classx.getConstructorWithParent("me.panpf.javax.test.lang.ClassxTest$TestConstructor", String.class));
 
         Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class).length, 4);
-
-        Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class).length, 4);
-
         Assert.assertEquals(Classx.getConstructorsWithParent(TestConstructor.class, 0).length, 3);
+
+        Assert.assertEquals(Classx.getConstructorsWithParent(new TestConstructor()).length, 4);
+        Assert.assertEquals(Classx.getConstructorsWithParent(new TestConstructor(), 0).length, 3);
+
+        Assert.assertEquals(Classx.getConstructorsWithParent("me.panpf.javax.test.lang.ClassxTest$TestConstructor").length, 4);
+        Assert.assertEquals(Classx.getConstructorsWithParent("me.panpf.javax.test.lang.ClassxTest$TestConstructor", 0).length, 3);
     }
 
     @Test
-    public void testHierarchy() {
+    public void testHierarchy() throws ClassNotFoundException {
         Assert.assertEquals(Classx.getClassHierarchy(TestField3.class).length, 4);
-        Assert.assertEquals(Classx.getClassHierarchy(new TestField3()).length, 4);
+        Assert.assertEquals(Classx.getClassHierarchy(TestField3.class, true).length, 3);
 
+        Assert.assertEquals(Classx.getClassHierarchy(new TestField3()).length, 4);
         Assert.assertEquals(Classx.getClassHierarchy(new TestField3(), true).length, 3);
+
+        Assert.assertEquals(Classx.getClassHierarchy("me.panpf.javax.test.lang.ClassxTest$TestField3").length, 4);
+        Assert.assertEquals(Classx.getClassHierarchy("me.panpf.javax.test.lang.ClassxTest$TestField3", true).length, 3);
     }
 
     @Test

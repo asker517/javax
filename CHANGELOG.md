@@ -1,3 +1,7 @@
+## v0.8.2
+
+* :sparkles: Classx support class name
+
 ## v0.8.1
 
 * :zap: Formatx's fileSize method now returns 1000 KB 0.98 MB

@@ -71,6 +71,14 @@ public class Classx {
         return getFieldWithParent(object.getClass(), fieldName);
     }
 
+    /**
+     * Get the field with the specified name from the specified class
+     */
+    @NotNull
+    public static Field getFieldWithParent(@NotNull String className, @NotNull String fieldName) throws NoSuchFieldException, ClassNotFoundException {
+        return getFieldWithParent(Class.forName(className), fieldName);
+    }
+
 
     /**
      * Get all the fields of a given class and its parent classes
@@ -100,6 +108,14 @@ public class Classx {
     }
 
     /**
+     * Get all the fields of a given class and all its parent classes
+     */
+    @NotNull
+    public static Field[] getFieldsWithParent(@NotNull Class<?> clazz) {
+        return getFieldsWithParent(clazz, -1);
+    }
+
+    /**
      * Get all the fields of a given class and its parent class
      *
      * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
@@ -113,16 +129,26 @@ public class Classx {
      * Get all the fields of a given class and all its parent classes
      */
     @NotNull
-    public static Field[] getFieldsWithParent(@NotNull Class<?> clazz) {
-        return getFieldsWithParent(clazz, -1);
+    public static Field[] getFieldsWithParent(@NotNull Object object) {
+        return getFieldsWithParent(object.getClass(), -1);
+    }
+
+    /**
+     * Get all the fields of a given class and its parent class
+     *
+     * @param upwards Go up to how many layers to get the parent class's field, -1: Get all the parent class fields
+     */
+    @NotNull
+    public static Field[] getFieldsWithParent(@NotNull String className, int upwards) throws ClassNotFoundException {
+        return getFieldsWithParent(Class.forName(className), upwards);
     }
 
     /**
      * Get all the fields of a given class and all its parent classes
      */
     @NotNull
-    public static Field[] getFieldsWithParent(@NotNull Object object) {
-        return getFieldsWithParent(object.getClass(), -1);
+    public static Field[] getFieldsWithParent(@NotNull String className) throws ClassNotFoundException {
+        return getFieldsWithParent(Class.forName(className), -1);
     }
 
 
@@ -147,6 +173,7 @@ public class Classx {
         return getFieldValue(object, getFieldWithParent(object, fieldName));
     }
 
+
     /**
      * Get the value of the specified field
      */
@@ -166,6 +193,22 @@ public class Classx {
     @Nullable
     public static Object getStaticFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName) throws NoSuchFieldException {
         return getStaticFieldValue(getFieldWithParent(clazz, fieldName));
+    }
+
+    /**
+     * Get the value of the specified field name
+     */
+    @Nullable
+    public static Object getStaticFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
+        return getStaticFieldValue(getFieldWithParent(object, fieldName));
+    }
+
+    /**
+     * Get the value of the specified field name
+     */
+    @Nullable
+    public static Object getStaticFieldValue(@NotNull String className, @NotNull String fieldName) throws NoSuchFieldException, ClassNotFoundException {
+        return getStaticFieldValue(getFieldWithParent(className, fieldName));
     }
 
 
@@ -188,6 +231,7 @@ public class Classx {
         setFieldValue(object, getFieldWithParent(object, fieldName), newValue);
     }
 
+
     /**
      * Set field value
      */
@@ -205,6 +249,20 @@ public class Classx {
      */
     public static void setStaticFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
         setStaticFieldValue(getFieldWithParent(clazz, fieldName), newValue);
+    }
+
+    /**
+     * Set field value by field name
+     */
+    public static void setStaticFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
+        setStaticFieldValue(getFieldWithParent(object, fieldName), newValue);
+    }
+
+    /**
+     * Set field value by field name
+     */
+    public static void setStaticFieldValue(@NotNull String className, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException, ClassNotFoundException {
+        setStaticFieldValue(getFieldWithParent(className, fieldName), newValue);
     }
 
 
@@ -246,6 +304,14 @@ public class Classx {
         return getMethodWithParent(object.getClass(), methodName, params);
     }
 
+    /**
+     * Get the method with the specified name from the specified class
+     */
+    @NotNull
+    public static Method getMethodWithParent(@NotNull String className, @NotNull String methodName, @Nullable Class<?>... params) throws NoSuchMethodException, ClassNotFoundException {
+        return getMethodWithParent(Class.forName(className), methodName, params);
+    }
+
 
     /**
      * Get all the methods of a given class and its parent classes
@@ -275,6 +341,14 @@ public class Classx {
     }
 
     /**
+     * Get all the methods of a given class and all its parent classes
+     */
+    @NotNull
+    public static Method[] getMethodsWithParent(@NotNull Class<?> clazz) {
+        return getMethodsWithParent(clazz, -1);
+    }
+
+    /**
      * Get all the methods of a given class and its parent classes
      *
      * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
@@ -288,16 +362,26 @@ public class Classx {
      * Get all the methods of a given class and all its parent classes
      */
     @NotNull
-    public static Method[] getMethodsWithParent(@NotNull Class<?> clazz) {
-        return getMethodsWithParent(clazz, -1);
+    public static Method[] getMethodsWithParent(@NotNull Object object) {
+        return getMethodsWithParent(object.getClass(), -1);
+    }
+
+    /**
+     * Get all the methods of a given class and its parent classes
+     *
+     * @param upwards Go up to how many layers to get the parent class's method, -1: Get all the parent class methods
+     */
+    @NotNull
+    public static Method[] getMethodsWithParent(@NotNull String className, int upwards) throws ClassNotFoundException {
+        return getMethodsWithParent(Class.forName(className), upwards);
     }
 
     /**
      * Get all the methods of a given class and all its parent classes
      */
     @NotNull
-    public static Method[] getMethodsWithParent(@NotNull Object object) {
-        return getMethodsWithParent(object.getClass(), -1);
+    public static Method[] getMethodsWithParent(@NotNull String className) throws ClassNotFoundException {
+        return getMethodsWithParent(Class.forName(className), -1);
     }
 
 
@@ -330,6 +414,7 @@ public class Classx {
         return callMethod(object, method, params);
     }
 
+
     /**
      * Method of executing of the specified object
      */
@@ -357,6 +442,22 @@ public class Classx {
         }).toArray(new Class[params.length]) : null;
         Method method = getMethodWithParent(clazz, methodName, paramClazzs);
         return callStaticMethod(method, params);
+    }
+
+    /**
+     * Method of executing the specified name of the specified class
+     */
+    @Nullable
+    public static Object callStaticMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
+        return callStaticMethod(object.getClass(), methodName, params);
+    }
+
+    /**
+     * Method of executing the specified name of the specified class
+     */
+    @Nullable
+    public static Object callStaticMethod(@NotNull String className, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException, ClassNotFoundException {
+        return callStaticMethod(Class.forName(className), methodName, params);
     }
 
 
@@ -399,6 +500,15 @@ public class Classx {
     }
 
     /**
+     * Get the constructor from the specified class
+     */
+    @NotNull
+    public static Constructor<?> getConstructorWithParent(@NotNull String className, @Nullable Class<?>... params) throws NoSuchMethodException, ClassNotFoundException {
+        return getConstructorWithParent(Class.forName(className), params);
+    }
+
+
+    /**
      * Get all the constructors of a given class and its parent classes
      *
      * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
@@ -427,6 +537,14 @@ public class Classx {
 
     /**
      * Get all the constructors of a given class and its parent classes
+     */
+    @NotNull
+    public static Constructor[] getConstructorsWithParent(@NotNull Class<?> clazz) {
+        return getConstructorsWithParent(clazz, -1);
+    }
+
+    /**
+     * Get all the constructors of a given class and its parent classes
      *
      * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
      */
@@ -439,16 +557,26 @@ public class Classx {
      * Get all the constructors of a given class and its parent classes
      */
     @NotNull
-    public static Constructor[] getConstructorsWithParent(@NotNull Class<?> clazz) {
-        return getConstructorsWithParent(clazz, -1);
+    public static Constructor[] getConstructorsWithParent(@NotNull Object object) {
+        return getConstructorsWithParent(object.getClass(), -1);
+    }
+
+    /**
+     * Get all the constructors of a given class and its parent classes
+     *
+     * @param upwards Go up to how many layers to get the parent class's constructor, -1: Get all the parent class constructors
+     */
+    @NotNull
+    public static Constructor[] getConstructorsWithParent(@NotNull String className, int upwards) throws ClassNotFoundException {
+        return getConstructorsWithParent(Class.forName(className), upwards);
     }
 
     /**
      * Get all the constructors of a given class and its parent classes
      */
     @NotNull
-    public static Constructor[] getConstructorsWithParent(@NotNull Object object) {
-        return getConstructorsWithParent(object.getClass(), -1);
+    public static Constructor[] getConstructorsWithParent(@NotNull String className) throws ClassNotFoundException {
+        return getConstructorsWithParent(Class.forName(className), -1);
     }
 
 
@@ -479,6 +607,14 @@ public class Classx {
 
     /**
      * Get all the inheritance lists of the specified class
+     */
+    @NotNull
+    public static Class<?>[] getClassHierarchy(@NotNull Class<?> clazz) {
+        return getClassHierarchy(clazz, false);
+    }
+
+    /**
+     * Get all the inheritance lists of the specified class
      *
      * @param ignoreSelf Ignore myself in the return list
      */
@@ -491,16 +627,26 @@ public class Classx {
      * Get all the inheritance lists of the specified class
      */
     @NotNull
-    public static Class<?>[] getClassHierarchy(@NotNull Class<?> clazz) {
-        return getClassHierarchy(clazz, false);
+    public static Class<?>[] getClassHierarchy(@NotNull Object object) {
+        return getClassHierarchy(object.getClass(), false);
+    }
+
+    /**
+     * Get all the inheritance lists of the specified class
+     *
+     * @param ignoreSelf Ignore myself in the return list
+     */
+    @NotNull
+    public static Class<?>[] getClassHierarchy(@NotNull String className, boolean ignoreSelf) throws ClassNotFoundException {
+        return getClassHierarchy(Class.forName(className), ignoreSelf);
     }
 
     /**
      * Get all the inheritance lists of the specified class
      */
     @NotNull
-    public static Class<?>[] getClassHierarchy(@NotNull Object object) {
-        return getClassHierarchy(object.getClass(), false);
+    public static Class<?>[] getClassHierarchy(@NotNull String className) throws ClassNotFoundException {
+        return getClassHierarchy(Class.forName(className), false);
     }
 
 
