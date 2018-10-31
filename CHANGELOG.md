@@ -1,8 +1,14 @@
+## v0.8.3
+
+:fire: Removed Classx getStaticFieldValue(Object, String), setStaticFieldValue(Object, String, Object), callStaticMethod(Object, String, Object...) method
+
+
 ## v0.8.2
 
 * :sparkles: Classx support class name
 * :sparkles: Netx adds ipStringToLong, ipLongToString, isMacAddress method
 * :sparkles: Regexx adds MAC_ADDRESS
+
 
 ## v0.8.1
 

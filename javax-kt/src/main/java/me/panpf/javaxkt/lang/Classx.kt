@@ -116,12 +116,6 @@ inline fun Class<*>.getStaticFieldValue(fieldName: String): Any? = Classx.getSta
 /**
  * Get the value of the specified field name
  */
-@Throws(NoSuchFieldException::class)
-inline fun Any.getStaticFieldValue(fieldName: String): Any? = Classx.getStaticFieldValue(this, fieldName)
-
-/**
- * Get the value of the specified field name
- */
 @Throws(NoSuchFieldException::class, ClassNotFoundException::class)
 inline fun String.getStaticFieldValue(fieldName: String): Any? = Classx.getStaticFieldValue(this, fieldName)
 
@@ -148,12 +142,6 @@ inline fun Field.setStaticValue(newValue: Any?) = Classx.setStaticFieldValue(thi
  */
 @Throws(NoSuchFieldException::class)
 inline fun Class<*>.setStaticFieldValue(fieldName: String, newValue: Any?) = Classx.setStaticFieldValue(this, fieldName, newValue)
-
-/**
- * Set field value by field name
- */
-@Throws(NoSuchFieldException::class)
-inline fun Any.setStaticFieldValue(fieldName: String, newValue: Any?) = Classx.setStaticFieldValue(this, fieldName, newValue)
 
 /**
  * Set field value by field name
@@ -245,12 +233,6 @@ inline fun Method.callStaticMethod(vararg params: Any): Any? = Classx.callStatic
  */
 @Throws(NoSuchMethodException::class)
 inline fun Class<*>.callStaticMethod(methodName: String, vararg params: Any): Any? = Classx.callStaticMethod(this, methodName, *params)
-
-/**
- * Method of executing the specified name of the specified object
- */
-@Throws(NoSuchMethodException::class)
-inline fun Any.callStaticMethod(methodName: String, vararg params: Any): Any? = Classx.callStaticMethod(this, methodName, *params)
 
 /**
  * Method of executing the specified name of the specified object

@@ -199,14 +199,6 @@ public class Classx {
      * Get the value of the specified field name
      */
     @Nullable
-    public static Object getStaticFieldValue(@NotNull Object object, @NotNull String fieldName) throws NoSuchFieldException {
-        return getStaticFieldValue(getFieldWithParent(object, fieldName));
-    }
-
-    /**
-     * Get the value of the specified field name
-     */
-    @Nullable
     public static Object getStaticFieldValue(@NotNull String className, @NotNull String fieldName) throws NoSuchFieldException, ClassNotFoundException {
         return getStaticFieldValue(getFieldWithParent(className, fieldName));
     }
@@ -249,13 +241,6 @@ public class Classx {
      */
     public static void setStaticFieldValue(@NotNull Class<?> clazz, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
         setStaticFieldValue(getFieldWithParent(clazz, fieldName), newValue);
-    }
-
-    /**
-     * Set field value by field name
-     */
-    public static void setStaticFieldValue(@NotNull Object object, @NotNull String fieldName, @Nullable Object newValue) throws NoSuchFieldException {
-        setStaticFieldValue(getFieldWithParent(object, fieldName), newValue);
     }
 
     /**
@@ -442,14 +427,6 @@ public class Classx {
         }).toArray(new Class[params.length]) : null;
         Method method = getMethodWithParent(clazz, methodName, paramClazzs);
         return callStaticMethod(method, params);
-    }
-
-    /**
-     * Method of executing the specified name of the specified class
-     */
-    @Nullable
-    public static Object callStaticMethod(@NotNull Object object, @NotNull String methodName, @Nullable Object... params) throws NoSuchMethodException {
-        return callStaticMethod(object.getClass(), methodName, params);
     }
 
     /**

@@ -16,7 +16,6 @@
 
 package me.panpf.javaxkt.test.lang
 
-import me.panpf.javax.lang.Classx
 import me.panpf.javax.util.Arrayx
 import me.panpf.javax.util.Predicate
 import me.panpf.javaxkt.lang.*
@@ -142,9 +141,6 @@ class ClassxTest {
         TestStatic::class.java.setStaticFieldValue("filed1", "filed13")
         Assert.assertEquals(TestStatic::class.java.getStaticFieldValue("filed1"), "filed13")
 
-        TestStatic().setStaticFieldValue("filed1", "filed14")
-        Assert.assertEquals(TestStatic().getStaticFieldValue("filed1"), "filed14")
-
         "me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".setStaticFieldValue("filed1", "filed15")
         Assert.assertEquals("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getStaticFieldValue("filed1"), "filed15")
     }
@@ -212,7 +208,6 @@ class ClassxTest {
 
         Assert.assertEquals(TestStatic::class.java.getMethodWithParent("test").callStaticMethod(), "filedx")
         Assert.assertEquals(TestStatic::class.java.callStaticMethod("test"), "filedx")
-        Assert.assertEquals(TestStatic().callStaticMethod("test"), "filedx")
         Assert.assertEquals("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".callStaticMethod("test"), "filedx")
     }
 

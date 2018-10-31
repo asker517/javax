@@ -155,9 +155,6 @@ public class ClassxTest {
         Classx.setStaticFieldValue(TestStatic.class, "filed1", "filed13");
         Assert.assertEquals(Classx.getStaticFieldValue(TestStatic.class, "filed1"), "filed13");
 
-        Classx.setStaticFieldValue(new TestStatic(), "filed1", "filed14");
-        Assert.assertEquals(Classx.getStaticFieldValue(new TestStatic(), "filed1"), "filed14");
-
         Classx.setStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1", "filed15");
         Assert.assertEquals(Classx.getStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1"), "filed15");
     }
@@ -229,7 +226,6 @@ public class ClassxTest {
 
         Assert.assertEquals(Classx.callStaticMethod(Classx.getMethodWithParent(TestStatic.class, "test")), "filedx");
         Assert.assertEquals(Classx.callStaticMethod(TestStatic.class, "test"), "filedx");
-        Assert.assertEquals(Classx.callStaticMethod(new TestStatic(), "test"), "filedx");
         Assert.assertEquals(Classx.callStaticMethod("me.panpf.javax.test.lang.ClassxTest$TestStatic", "test"), "filedx");
     }
 
