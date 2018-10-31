@@ -16,10 +16,7 @@
 
 package me.panpf.javaxkt.test.net
 
-import me.panpf.javaxkt.net.ipLongToString
-import me.panpf.javaxkt.net.ipStringToLong
-import me.panpf.javaxkt.net.isIPV4
-import me.panpf.javaxkt.net.isIPV6
+import me.panpf.javaxkt.net.*
 import org.junit.Assert
 import org.junit.Test
 
@@ -34,6 +31,13 @@ class NetxTest {
         Assert.assertTrue("5e:0:0:0:0:0:5668:eeee".isIPV6())
         Assert.assertTrue("8.8.8.8".isIPV6())
         Assert.assertFalse("天天向上".isIPV6())
+
+        Assert.assertTrue("58:E8:76:83:A2:C7".isMacAddress())
+        Assert.assertTrue("58-E8-76-83-A2-C7".isMacAddress())
+        Assert.assertTrue("58:e8:76:83:a2:c7".isMacAddress())
+        Assert.assertTrue("58-e8-76-83-a2-c7".isMacAddress())
+        Assert.assertFalse("58/E8:76:83:A2:C7".isMacAddress())
+        Assert.assertFalse("天天向上".isMacAddress())
     }
 
     @Test

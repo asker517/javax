@@ -30,6 +30,11 @@ inline fun CharSequence?.isIPV4(): Boolean = Netx.isIPV4(this)
  */
 inline fun CharSequence?.isIPV6(): Boolean = Netx.isIPV6(this)
 
+/**
+ * Return true if the given char sequence is mac address. Support for splitting in ':' and '-'
+ */
+inline fun CharSequence?.isMacAddress(): Boolean = Netx.isMacAddress(this)
+
 inline fun Long.ipLongToString(): String = Netx.ipLongToString(this)
 
 inline fun String.ipStringToLong(): Long = Netx.ipStringToLong(this)

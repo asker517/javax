@@ -51,6 +51,13 @@ public class Netx {
     }
 
     /**
+     * Return true if the given char sequence is mac address. Support for splitting in ':' and '-'
+     */
+    public static boolean isMacAddress(@Nullable CharSequence ipAddress) {
+        return Regexx.matches(Regexx.MAC_ADDRESS, Stringx.orEmpty(ipAddress));
+    }
+
+    /**
      * Get local IP address
      */
     @Nullable

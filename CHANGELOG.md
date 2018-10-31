@@ -1,7 +1,8 @@
 ## v0.8.2
 
 * :sparkles: Classx support class name
-* :sparkles: Netx adds ipStringToLong, ipLongToString method
+* :sparkles: Netx adds ipStringToLong, ipLongToString, isMacAddress method
+* :sparkles: Regexx adds MAC_ADDRESS
 
 ## v0.8.1
 

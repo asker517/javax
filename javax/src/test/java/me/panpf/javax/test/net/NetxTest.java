@@ -35,6 +35,13 @@ public class NetxTest {
         Assert.assertTrue(Netx.isIPV6("5e:0:0:0:0:0:5668:eeee"));
         Assert.assertTrue(Netx.isIPV6("8.8.8.8"));
         Assert.assertFalse(Netx.isIPV6("天天向上"));
+
+        Assert.assertTrue(Netx.isMacAddress("58:E8:76:83:A2:C7"));
+        Assert.assertTrue(Netx.isMacAddress("58-E8-76-83-A2-C7"));
+        Assert.assertTrue(Netx.isMacAddress("58:e8:76:83:a2:c7"));
+        Assert.assertTrue(Netx.isMacAddress("58-e8-76-83-a2-c7"));
+        Assert.assertFalse(Netx.isMacAddress("58/E8:76:83:A2:C7"));
+        Assert.assertFalse(Netx.isMacAddress("天天向上"));
     }
 
     @Test
@@ -103,7 +110,7 @@ public class NetxTest {
     }
 
     @Test
-    public void testIpLong2String(){
+    public void testIpLong2String() {
         String ip = "221.217.228.166";
         Assert.assertEquals(Netx.ipLongToString(Netx.ipStringToLong(ip)), ip);
     }
