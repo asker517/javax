@@ -203,7 +203,7 @@ Please view the [CHANGELOG.md] file
 [RsaxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/RsaxTest.kt
 
 [Filex.java]: javax/src/main/java/me/panpf/javax/io/Filex.java
-[FilexTest.java]: javax/src/test/java/me/panpf/javax/test/io/FilexTest.java
+[FilexTest.java]: javax/src/test/java/me/panpf/javax/test/io/FilexTest.kt
 [Filex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/Filex.kt
 [FilexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/FilexTest.kt
 
@@ -278,7 +278,7 @@ Please view the [CHANGELOG.md] file
 [Base64xTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/Base64xTest.kt
 
 [Collectionx.java]: javax/src/main/java/me/panpf/javax/util/Collectionx.java
-[CollectionxTest.java]: javax/src/test/java/me/panpf/javax/test/util/CollectionxTest.java
+[CollectionxTest.java]: javax/src/test/java/me/panpf/javax/test/util/CollectionxTest.kt
 [Collectionx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Collectionx.kt
 [CollectionxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/CollectionxTest.kt
 

@@ -1,6 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'jacoco'
+apply plugin: 'kotlin'
 
 group 'me.panpf'
 version VERSION
@@ -15,6 +16,7 @@ repositories {
 dependencies {
     testCompile "junit:junit:$JUNIT_VERSION"
     compile "org.jetbrains:annotations:$JETBRAINS_ANNOTATIONS_VERSION"
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
 }
 
 Properties properties = new Properties()
