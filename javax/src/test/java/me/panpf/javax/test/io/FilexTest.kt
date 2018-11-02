@@ -302,13 +302,13 @@ class FilexTest {
         try {
             Filex.deleteRecursively(copyTargetDir)
             Filex.copyRecursively(copySourceDir, copyTargetDir)
-            // 测试 overwrite 为 false
+            // test overwrite is false
             try {
                 Filex.copyRecursively(copySourceDir, copyTargetDir)
                 Assert.fail()
             } catch (e: FileAlreadyExistsException) {
             }
-            // 测试 onError
+            // test onError
             try {
                 Filex.copyRecursively(copySourceDir, copyTargetDir) { _, e ->  throw IllegalArgumentException(e)}
                 Assert.fail()
