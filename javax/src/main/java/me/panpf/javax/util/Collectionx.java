@@ -3152,7 +3152,7 @@ public class Collectionx {
             if (iterable instanceof List) {
                 List<T> list1 = (List<T>) iterable;
                 if (iterable instanceof RandomAccess) {
-                    for (int index = 0, size = collection.size(); index < size; index++) {
+                    for (int index = n, size = collection.size(); index < size; index++) {
                         list.add(list1.get(index));
                     }
                 } else {

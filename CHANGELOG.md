@@ -1,3 +1,8 @@
+## v0.8.4
+
+* :bug: Fixed a bug where the Collectionx drop method did not return results as expected, the method affected by it is Filex.toRelativeString
+
+
 ## v0.8.3
 
 :fire: Removed Classx getStaticFieldValue(Object, String), setStaticFieldValue(Object, String, Object), callStaticMethod(Object, String, Object...) method
