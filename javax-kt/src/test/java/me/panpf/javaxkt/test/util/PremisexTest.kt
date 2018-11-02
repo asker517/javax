@@ -1,7 +1,7 @@
 package me.panpf.javaxkt.test.util
 
-import me.panpf.javaxkt.io.createNewFileCheck
-import me.panpf.javaxkt.io.mkdirsCheck
+import me.panpf.javaxkt.io.createNewFileOrCheck
+import me.panpf.javaxkt.io.mkdirsOrCheck
 import me.panpf.javaxkt.util.*
 import org.junit.Assert
 import org.junit.Test
@@ -22,7 +22,7 @@ class PremisexTest {
             false
         })
 
-        testFile.createNewFileCheck()
+        testFile.createNewFileOrCheck()
 
         Assert.assertTrue(try {
             testFile.requireFileExist()
@@ -48,7 +48,7 @@ class PremisexTest {
         })
 
         // 文件
-        testDir.createNewFileCheck()
+        testDir.createNewFileOrCheck()
         Assert.assertFalse(try {
             testDir.requireIsDir()
             true
@@ -58,7 +58,7 @@ class PremisexTest {
 
         // 目录
         testDir.deleteRecursively()
-        testDir.mkdirsCheck()
+        testDir.mkdirsOrCheck()
         Assert.assertTrue(try {
             testDir.requireIsDir()
             true
@@ -83,7 +83,7 @@ class PremisexTest {
         })
 
         // 目录
-        testFile.mkdirsCheck()
+        testFile.mkdirsOrCheck()
         Assert.assertFalse(try {
             testFile.requireIsFile()
             true
@@ -93,7 +93,7 @@ class PremisexTest {
 
         // 文件
         testFile.deleteRecursively()
-        testFile.createNewFileCheck()
+        testFile.createNewFileOrCheck()
         Assert.assertTrue(try {
             testFile.requireIsFile()
             true

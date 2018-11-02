@@ -57,7 +57,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 
 ### io
 * File: [Filex.java] ([Test][FilexTest.java]) | [Filex.kt] ([Test][FilexTest.kt])
-    * mkdirsOrThrow, mkdirsCheck, createNewFileOrThrow, createNewFileCheck, cleanRecursively, lengthRecursively,
+    * mkdirsOrThrow, mkdirsOrCheck, createNewFileOrThrow, createNewFileOrCheck, cleanRecursively, lengthRecursively,
     * listRecursively, listFilesRecursively, copyTo, copyRecursively, deleteRecursively, startsWith, endsWith,
     * normalize, resolve, resolveSibling, createTempDir, createTempFile, getInvariantSeparatorsPath, getExtension,
     * getNameWithoutExtension, toRelativeString, relative, getRootLength, getRootName, isRooted, toComponents,

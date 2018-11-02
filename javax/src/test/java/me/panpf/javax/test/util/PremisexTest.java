@@ -26,7 +26,7 @@ public class PremisexTest {
         }
         Assert.assertFalse(result);
 
-        Filex.createNewFileCheck(testFile);
+        Filex.createNewFileOrCheck(testFile);
 
         try {
             Premisex.requireFileExist(testFile);
@@ -55,7 +55,7 @@ public class PremisexTest {
         Assert.assertFalse(result);
 
         // 文件
-        Filex.createNewFileCheck(testDir);
+        Filex.createNewFileOrCheck(testDir);
         try {
             Premisex.requireIsDir(testDir);
             result = true;
@@ -66,7 +66,7 @@ public class PremisexTest {
 
         // 目录
         Filex.deleteRecursively(testDir);
-        Filex.mkdirsCheck(testDir);
+        Filex.mkdirsOrCheck(testDir);
         try {
             Premisex.requireIsDir(testDir);
             result = true;
@@ -94,7 +94,7 @@ public class PremisexTest {
         Assert.assertFalse(result);
 
         // 目录
-        Filex.mkdirsCheck(testFile);
+        Filex.mkdirsOrCheck(testFile);
         try {
             Premisex.requireIsFile(testFile);
             result = true;
@@ -105,7 +105,7 @@ public class PremisexTest {
 
         // 文件
         Filex.deleteRecursively(testFile);
-        Filex.createNewFileCheck(testFile);
+        Filex.createNewFileOrCheck(testFile);
         try {
             Premisex.requireIsFile(testFile);
             result = true;

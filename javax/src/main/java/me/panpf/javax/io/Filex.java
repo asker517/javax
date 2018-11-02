@@ -54,7 +54,7 @@ public class Filex {
      *
      * @return If true, the creation is successful.
      */
-    public static boolean mkdirsCheck(@NotNull File dir) {
+    public static boolean mkdirsOrCheck(@NotNull File dir) {
         if (dir.exists()) return true;
         //noinspection ResultOfMethodCallIgnored
         dir.mkdirs();
@@ -88,9 +88,9 @@ public class Filex {
      *
      * @return If true, the creation is successful.
      */
-    public static boolean createNewFileCheck(@NotNull File file) {
+    public static boolean createNewFileOrCheck(@NotNull File file) {
         if (file.exists()) return true;
-        if (!mkdirsCheck(file.getParentFile())) return false;
+        if (!mkdirsOrCheck(file.getParentFile())) return false;
 
         try {
             //noinspection ResultOfMethodCallIgnored

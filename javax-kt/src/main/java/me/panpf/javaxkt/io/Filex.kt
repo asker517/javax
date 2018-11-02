@@ -43,7 +43,7 @@ inline fun File.mkdirsOrThrow(): File = Filex.mkdirsOrThrow(this)
  * @return If true, the creation is successful.
  */
 @Throws(UnableCreateDirException::class)
-inline fun File.mkdirsCheck(): Boolean = Filex.mkdirsCheck(this)
+inline fun File.mkdirsOrCheck(): Boolean = Filex.mkdirsOrCheck(this)
 
 /**
  * Create a file, create its parent directory first, and throw an exception if it cannot be created
@@ -57,7 +57,7 @@ inline fun File.createNewFileOrThrow(): File = Filex.createNewFileOrThrow(this)
  * Create a file, create its parent directory first
  * @return If true, the creation is successful.
  */
-inline fun File.createNewFileCheck(): Boolean = Filex.createNewFileCheck(this)
+inline fun File.createNewFileOrCheck(): Boolean = Filex.createNewFileOrCheck(this)
 
 /**
  * Loop delete all files in the directory

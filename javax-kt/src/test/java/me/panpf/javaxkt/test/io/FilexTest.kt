@@ -38,7 +38,7 @@ class FilexTest {
         Assert.assertTrue(testFile1.exists())
 
         Assert.assertFalse(testFile2.exists())
-        testFile2.createNewFileCheck()
+        testFile2.createNewFileOrCheck()
         Assert.assertTrue(testFile2.exists())
 
         dir.cleanRecursively()
@@ -59,7 +59,7 @@ class FilexTest {
         Assert.assertTrue(testFile1.exists())
 
         Assert.assertFalse(testFile2.exists())
-        testFile2.createNewFileCheck()
+        testFile2.createNewFileOrCheck()
         Assert.assertTrue(testFile2.exists())
 
         dir.deleteRecursively()

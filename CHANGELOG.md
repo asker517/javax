@@ -5,6 +5,7 @@
 * :sparkles: Filex copyTo and copyRecursively method added overload method
 * :fire: Filex cleanDir rename to cleanRecursively
 * :bug: Fix FileTreeWalk.DirectoryState to force validation to be a directory bug
+* :fire: Filex mkdirsCheck rename to mkdirsOrCheck, createNewFileCheck rename to createNewFileOrCheck
 
 
 ## v0.8.3
