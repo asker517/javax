@@ -94,8 +94,6 @@ public class FileTreeWalk implements Sequence<File> {
 
         public DirectoryState(@NotNull File rootDir) {
             super(rootDir);
-
-            Premisex.requireIsDir(rootDir);
         }
     }
 

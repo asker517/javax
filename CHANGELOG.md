@@ -4,6 +4,7 @@
 * :bug: Fixed the Filex toRelativeString method to return a null bug when the two parameters are the same
 * :sparkles: Filex copyTo and copyRecursively method added overload method
 * :fire: Filex cleanDir rename to cleanRecursively
+* :bug: Fix FileTreeWalk.DirectoryState to force validation to be a directory bug
 
 
 ## v0.8.3
