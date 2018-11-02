@@ -136,7 +136,7 @@ public class Filex {
                     dirStack.push(childFile);
 
                     File[] childChildFiles = childFile.listFiles();
-                    if (childChildFiles != null && Arrayx.isNotNullOrEmpty(childChildFiles)) {
+                    if (Arrayx.isNotNullOrEmpty(childChildFiles)) {
                         Collections.addAll(fileStack, childChildFiles);
                     }
                 }
@@ -328,11 +328,13 @@ public class Filex {
         return listFilesRecursively(dir, (FileFilter) null);
     }
 
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
      * *****************************************************************************************************************
      */
+
 
     /**
      * Copies this file to the given [target] file.
@@ -410,6 +412,52 @@ public class Filex {
     }
 
     /**
+     * Copies this file to the given [target] file.
+     * <p>
+     * If some directories on a way to the [target] are missing, then they will be created.
+     * If the [target] file already exists, this function will fail unless [overwrite] argument is set to `true`.
+     * <p>
+     * When [overwrite] is `true` and [target] is a directory, it is replaced only if it is empty.
+     * <p>
+     * If this file is a directory, it is copied without its content, i.e. an empty [target] directory is created.
+     * If you want to copy directory including its contents, use [copyRecursively].
+     * <p>
+     * The operation doesn't preserve copied file attributes such as creation/modification date, permissions, etc.
+     *
+     * @return the [target] file.
+     * @throws NoSuchFileException        if the source file doesn't exist.
+     * @throws FileAlreadyExistsException if the destination file already exists and [overwrite] argument is set to `false`.
+     * @throws IOException                if any errors occur while copying.
+     */
+    @NotNull
+    public static File copyTo(@NotNull File source, @NotNull File target, int bufferSize) throws IOException {
+        return copyTo(source, target, false, bufferSize);
+    }
+
+    /**
+     * Copies this file to the given [target] file.
+     * <p>
+     * If some directories on a way to the [target] are missing, then they will be created.
+     * If the [target] file already exists, this function will fail unless [overwrite] argument is set to `true`.
+     * <p>
+     * When [overwrite] is `true` and [target] is a directory, it is replaced only if it is empty.
+     * <p>
+     * If this file is a directory, it is copied without its content, i.e. an empty [target] directory is created.
+     * If you want to copy directory including its contents, use [copyRecursively].
+     * <p>
+     * The operation doesn't preserve copied file attributes such as creation/modification date, permissions, etc.
+     *
+     * @return the [target] file.
+     * @throws NoSuchFileException        if the source file doesn't exist.
+     * @throws FileAlreadyExistsException if the destination file already exists and [overwrite] argument is set to `false`.
+     * @throws IOException                if any errors occur while copying.
+     */
+    @NotNull
+    public static File copyTo(@NotNull File source, @NotNull File target) throws IOException {
+        return copyTo(source, target, false, IOStreamx.DEFAULT_BUFFER_SIZE);
+    }
+
+    /**
      * Copies this file with all its children to the specified destination [target] path.
      * If some directories on the way to the destination are missing, then they will be created.
      * <p>
@@ -437,30 +485,23 @@ public class Filex {
      * @param overwrite `true` if it is allowed to overwrite existing destination files and directories.
      * @return `false` if the copying was terminated, `true` otherwise.
      */
-    public static boolean copyRecursively(@NotNull File source, @NotNull File target, boolean overwrite, @Nullable OnError onError) throws IOException {
-        final OnError finalError = onError != null ? onError : new OnError() {
-            @Override
-            public OnErrorAction onError(@NotNull File file, @NotNull IOException e) throws IOException {
-                throw e;
-            }
-        };
-
+    public static boolean copyRecursively(@NotNull File source, @NotNull File target, boolean overwrite, @NotNull final OnError onError) throws IOException {
         if (!source.exists()) {
-            return finalError.onError(source, new NoSuchFileException(source, null, "The source file doesn't exist.")) != OnErrorAction.TERMINATE;
+            return onError.onError(source, new NoSuchFileException(source, null, "The source file doesn't exist.")) != OnErrorAction.TERMINATE;
         }
         try {
             // We cannot break for loop from inside a lambda, so we have to use an exception here
             Sequence<File> sequence = walkTopDown(source).onFail(new OnFailed() {
                 @Override
                 public void onError(@NotNull File file, @NotNull IOException e) throws IOException {
-                    if (finalError.onError(file, e) == OnErrorAction.TERMINATE) {
+                    if (onError.onError(file, e) == OnErrorAction.TERMINATE) {
                         throw new TerminateException(file);
                     }
                 }
             });
             for (File src : sequence) {
                 if (!src.exists()) {
-                    if (finalError.onError(src, new NoSuchFileException(src, null, "The source file doesn't exist.")) == OnErrorAction.TERMINATE) {
+                    if (onError.onError(src, new NoSuchFileException(src, null, "The source file doesn't exist.")) == OnErrorAction.TERMINATE) {
                         return false;
                     }
                 } else {
@@ -479,7 +520,6 @@ public class Filex {
                         }
 
                         if (stillExists) {
-                            assert onError != null;
                             if (onError.onError(dstFile, new FileAlreadyExistsException(src, dstFile, "The destination file already exists.")) == OnErrorAction.TERMINATE) {
                                 return false;
                             }
@@ -492,7 +532,7 @@ public class Filex {
                         dstFile.mkdirs();
                     } else {
                         if (copyTo(src, dstFile, overwrite).length() != src.length()) {
-                            if (onError != null && onError.onError(src, new IOException("Source file wasn't copied completely, length of destination file differs.")) == OnErrorAction.TERMINATE) {
+                            if (onError.onError(src, new IOException("Source file wasn't copied completely, length of destination file differs.")) == OnErrorAction.TERMINATE) {
                                 return false;
                             }
                         }
@@ -503,6 +543,110 @@ public class Filex {
         } catch (TerminateException e) {
             return false;
         }
+    }
+
+    /**
+     * Copies this file with all its children to the specified destination [target] path.
+     * If some directories on the way to the destination are missing, then they will be created.
+     * <p>
+     * If this file path points to a single file, then it will be copied to a file with the path [target].
+     * If this file path points to a directory, then its children will be copied to a directory with the path [target].
+     * <p>
+     * If the [target] already exists, it will be deleted before copying when the [overwrite] parameter permits so.
+     * <p>
+     * The operation doesn't preserve copied file attributes such as creation/modification date, permissions, etc.
+     * <p>
+     * If any errors occur during the copying, then further actions will depend on the result of the call
+     * to `onError(File, IOException)` function, that will be called with arguments,
+     * specifying the file that caused the error and the exception itself.
+     * By default this function rethrows exceptions.
+     * <p>
+     * Exceptions that can be passed to the `onError` function:
+     * <p>
+     * - [NoSuchFileException] - if there was an attempt to copy a non-existent file
+     * - [FileAlreadyExistsException] - if there is a conflict
+     * - [AccessDeniedException] - if there was an attempt to open a directory that didn't succeed.
+     * - [IOException] - if some problems occur when copying.
+     * <p>
+     * Note that if this function fails, then partial copying may have taken place.
+     *
+     * @param overwrite `true` if it is allowed to overwrite existing destination files and directories.
+     * @return `false` if the copying was terminated, `true` otherwise.
+     */
+    public static boolean copyRecursively(@NotNull File source, @NotNull File target, boolean overwrite) throws IOException {
+        return copyRecursively(source, target, overwrite, new OnError() {
+            @Override
+            public OnErrorAction onError(@NotNull File file, @NotNull IOException e) throws IOException {
+                throw e;
+            }
+        });
+    }
+
+    /**
+     * Copies this file with all its children to the specified destination [target] path.
+     * If some directories on the way to the destination are missing, then they will be created.
+     * <p>
+     * If this file path points to a single file, then it will be copied to a file with the path [target].
+     * If this file path points to a directory, then its children will be copied to a directory with the path [target].
+     * <p>
+     * If the [target] already exists, it will be deleted before copying when the [overwrite] parameter permits so.
+     * <p>
+     * The operation doesn't preserve copied file attributes such as creation/modification date, permissions, etc.
+     * <p>
+     * If any errors occur during the copying, then further actions will depend on the result of the call
+     * to `onError(File, IOException)` function, that will be called with arguments,
+     * specifying the file that caused the error and the exception itself.
+     * By default this function rethrows exceptions.
+     * <p>
+     * Exceptions that can be passed to the `onError` function:
+     * <p>
+     * - [NoSuchFileException] - if there was an attempt to copy a non-existent file
+     * - [FileAlreadyExistsException] - if there is a conflict
+     * - [AccessDeniedException] - if there was an attempt to open a directory that didn't succeed.
+     * - [IOException] - if some problems occur when copying.
+     * <p>
+     * Note that if this function fails, then partial copying may have taken place.
+     *
+     * @return `false` if the copying was terminated, `true` otherwise.
+     */
+    public static boolean copyRecursively(@NotNull File source, @NotNull File target, @NotNull final OnError onError) throws IOException {
+        return copyRecursively(source, target, false, onError);
+    }
+
+    /**
+     * Copies this file with all its children to the specified destination [target] path.
+     * If some directories on the way to the destination are missing, then they will be created.
+     * <p>
+     * If this file path points to a single file, then it will be copied to a file with the path [target].
+     * If this file path points to a directory, then its children will be copied to a directory with the path [target].
+     * <p>
+     * If the [target] already exists, it will be deleted before copying when the [overwrite] parameter permits so.
+     * <p>
+     * The operation doesn't preserve copied file attributes such as creation/modification date, permissions, etc.
+     * <p>
+     * If any errors occur during the copying, then further actions will depend on the result of the call
+     * to `onError(File, IOException)` function, that will be called with arguments,
+     * specifying the file that caused the error and the exception itself.
+     * By default this function rethrows exceptions.
+     * <p>
+     * Exceptions that can be passed to the `onError` function:
+     * <p>
+     * - [NoSuchFileException] - if there was an attempt to copy a non-existent file
+     * - [FileAlreadyExistsException] - if there is a conflict
+     * - [AccessDeniedException] - if there was an attempt to open a directory that didn't succeed.
+     * - [IOException] - if some problems occur when copying.
+     * <p>
+     * Note that if this function fails, then partial copying may have taken place.
+     *
+     * @return `false` if the copying was terminated, `true` otherwise.
+     */
+    public static boolean copyRecursively(@NotNull File source, @NotNull File target) throws IOException {
+        return copyRecursively(source, target, false, new OnError() {
+            @Override
+            public OnErrorAction onError(@NotNull File file, @NotNull IOException e) throws IOException {
+                throw e;
+            }
+        });
     }
 
     /**

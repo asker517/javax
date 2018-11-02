@@ -2,6 +2,7 @@
 
 * :bug: Fixed a bug where the Collectionx drop method did not return results as expected, the method affected by it is Filex.toRelativeString
 * :bug: Fixed the Filex toRelativeString method to return a null bug when the two parameters are the same
+* :sparkles: Filex copyTo and copyRecursively method added overload method
 
 
 ## v0.8.3
