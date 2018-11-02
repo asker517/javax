@@ -846,7 +846,7 @@ public class Filex {
         // Check roots
         FilePathComponents thisComponents = normalize(toComponents(self));
         FilePathComponents baseComponents = normalize(toComponents(base));
-        if (thisComponents.root != baseComponents.root) {
+        if (!thisComponents.root.equals(baseComponents.root)) {
             return null;
         }
 
