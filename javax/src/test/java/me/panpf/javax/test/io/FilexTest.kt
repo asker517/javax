@@ -18,7 +18,6 @@ package me.panpf.javax.test.io
 
 import me.panpf.javax.io.FileAlreadyExistsException
 import me.panpf.javax.io.Filex
-import me.panpf.javax.io.OnError
 import me.panpf.javax.io.UnableCreateDirException
 import me.panpf.javax.io.UnableCreateFileException
 import me.panpf.javax.security.Digestx
@@ -95,8 +94,8 @@ class FilexTest {
 
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-    fun testCleanDir() {
-        val dir = File("/tmp/javaxCleanDirTest")
+    fun testCleanRecursively() {
+        val dir = File("/tmp/testCleanRecursively")
         val testFile1 = File(dir, "test1.txt")
         val testFile2 = File(dir, "test2.txt")
 
@@ -108,7 +107,7 @@ class FilexTest {
         Filex.createNewFileCheck(testFile2)
         Assert.assertTrue(testFile2.exists())
 
-        Filex.cleanDir(dir)
+        Filex.cleanRecursively(dir)
         Assert.assertEquals(Arrayx.count(dir.listFiles()).toLong(), 0)
 
         Filex.deleteRecursively(dir)
@@ -118,7 +117,7 @@ class FilexTest {
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testCreateNewFile() {
-        val dir = File("/tmp/javaxCreateNewFileTest")
+        val dir = File("/tmp/testCreateNewFile")
         val testFile1 = File(dir, "test1.txt")
         val testFile2 = File(dir, "test2.txt")
 
@@ -137,8 +136,8 @@ class FilexTest {
     @Test
     @Throws(UnableCreateDirException::class)
     fun testCreateDir() {
-        val dir1 = File("/tmp/javaxCreateDirTest1")
-        val dir2 = File("/tmp/javaxCreateDirTest2")
+        val dir1 = File("/tmp/testCreateDir1")
+        val dir2 = File("/tmp/testCreateDir2")
 
         Assert.assertFalse(dir1.exists())
         Filex.mkdirsOrThrow(dir1)

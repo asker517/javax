@@ -108,7 +108,7 @@ public class Filex {
      *
      * @return If true, the clean is successful, otherwise the clean fails.
      */
-    public static boolean cleanDir(@NotNull File dir) {
+    public static boolean cleanRecursively(@NotNull File dir) {
         if (!dir.exists() || dir.isFile()) return true;
 
         File[] childFiles = dir.listFiles();

@@ -63,7 +63,7 @@ inline fun File.createNewFileCheck(): Boolean = Filex.createNewFileCheck(this)
  * Loop delete all files in the directory
  * @return If true, the clean is successful, otherwise the clean fails.
  */
-inline fun File.cleanDir(): Boolean = Filex.cleanDir(this)
+inline fun File.cleanRecursively(): Boolean = Filex.cleanRecursively(this)
 
 /**
  * Get the length of the file or dir, if it is a directory, it will superimpose the length of all subfiles

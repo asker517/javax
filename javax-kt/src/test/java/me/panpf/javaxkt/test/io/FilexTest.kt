@@ -28,8 +28,8 @@ import java.io.FilenameFilter
 class FilexTest {
 
     @Test
-    fun testCleanDir() {
-        val dir = File("/tmp/javaxCleanDirTest")
+    fun testCleanRecursively() {
+        val dir = File("/tmp/testCleanRecursively")
         val testFile1 = File(dir, "test1.txt")
         val testFile2 = File(dir, "test2.txt")
 
@@ -41,7 +41,7 @@ class FilexTest {
         testFile2.createNewFileCheck()
         Assert.assertTrue(testFile2.exists())
 
-        dir.cleanDir()
+        dir.cleanRecursively()
         Assert.assertEquals(dir.listFiles().size, 0)
 
         dir.delete()
@@ -50,7 +50,7 @@ class FilexTest {
 
     @Test
     fun testCreateNewFile() {
-        val dir = File("/tmp/javaxCreateNewFileTest")
+        val dir = File("/tmp/testCreateNewFile")
         val testFile1 = File(dir, "test1.txt")
         val testFile2 = File(dir, "test2.txt")
 
@@ -68,8 +68,8 @@ class FilexTest {
 
     @Test
     fun testCreateDir() {
-        val dir1 = File("/tmp/javaxCreateDirTest1")
-        val dir2 = File("/tmp/javaxCreateDirTest2")
+        val dir1 = File("/tmp/testCreateDir1")
+        val dir2 = File("/tmp/testCreateDir2")
 
         Assert.assertFalse(dir1.exists())
         dir1.mkdirsOrThrow()
