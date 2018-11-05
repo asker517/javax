@@ -197,6 +197,38 @@ class FilexTest {
     }
 
     @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testDeleteRecursively() {
+        val dir = createFileTree(File("/tmp/testDeleteRecursively"), "testDeleteRecursively")
+        try {
+            Assert.assertTrue(dir.exists())
+            Assert.assertTrue(Filex.deleteRecursively(dir))
+            Assert.assertFalse(dir.exists())
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+
+        // is File
+        val file = Filex.createNewFileOrThrow(File("/tmp/testDeleteRecursively.file"))
+        try {
+            Assert.assertTrue(file.exists())
+            Assert.assertTrue(Filex.deleteRecursively(file))
+            Assert.assertFalse(file.exists())
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testCleanRecursively_not_exists.file")
+        try {
+            Assert.assertFalse(file.exists())
+            Assert.assertTrue(Filex.deleteRecursively(fileNotExists))
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
+    }
+
+    @Test
     fun testNameSuffix() {
         val file = File("/tmp/testNameSuffix.txt")
         Assert.assertEquals(Filex.getExtension(file), "txt")
