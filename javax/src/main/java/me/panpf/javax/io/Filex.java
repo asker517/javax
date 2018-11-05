@@ -37,7 +37,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* mkdirs and create *******************************************/
+    /* ******************************************* mkdirs and create ****************************************** */
 
 
     /**
@@ -108,67 +108,50 @@ public class Filex {
     }
 
 
-    /* ******************************************* clean *******************************************/
+    /* ******************************************* clean ****************************************** */
 
 
     /**
-     * Loop delete all files in the directory
+     * Delete all subfiles in the current directory (excluding subfolders)
      *
      * @return If true, the clean is successful, otherwise the clean fails.
      */
-    public static boolean cleanRecursively(@NotNull File dir) {
+    public static boolean clean(@NotNull File dir) {
         if (!dir.exists() || dir.isFile()) return true;
 
         File[] childFiles = dir.listFiles();
         if (childFiles == null || Arrayx.isNullOrEmpty(childFiles)) return true;
 
         boolean result = true;
-
-        Stack<File> fileStack = new Stack<>();
-        Stack<File> dirStack = new Stack<>();
-
-        Collections.addAll(fileStack, childFiles);
-
-        File childFile;
-        while (true) {
-            try {
-                childFile = fileStack.pop();
-            } catch (EmptyStackException e) {
-                break;
-            }
-
-            if (childFile != null && childFile.exists()) {
-                if (childFile.isFile()) {
-                    result = result && childFile.delete();
-                } else {
-                    dirStack.push(childFile);
-
-                    File[] childChildFiles = childFile.listFiles();
-                    if (Arrayx.isNotNullOrEmpty(childChildFiles)) {
-                        Collections.addAll(fileStack, childChildFiles);
-                    }
+        for (File childFile : childFiles) {
+            if (childFile.exists() && childFile.isFile()) {
+                if (!childFile.delete()) {
+                    result = false;
+                    break;
                 }
             }
         }
-
-        File childDir;
-        while (true) {
-            try {
-                childDir = dirStack.pop();
-            } catch (EmptyStackException e) {
-                break;
-            }
-
-            if (childDir != null && childDir.exists()) {
-                result = result && dir.delete();
-            }
-        }
-
         return result;
     }
 
 
-    /* ******************************************* length *******************************************/
+    /**
+     * Loop delete all files or folders in the directory
+     *
+     * @return If true, the clean is successful, otherwise the clean fails.
+     */
+    public static boolean cleanRecursively(@NotNull final File dir) {
+        return Collectionx.fold(walkBottomUp(dir), true, new Operation<File, Boolean>() {
+            @NotNull
+            @Override
+            public Boolean operation(@NotNull Boolean aBoolean, @NotNull File file) {
+                return (file.equals(dir) || file.delete() || !file.exists()) && aBoolean;
+            }
+        });
+    }
+
+
+    /* ******************************************* length ****************************************** */
 
 
     /**
@@ -229,7 +212,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* list *******************************************/
+    /* ******************************************* list ****************************************** */
 
 
     /**
@@ -344,6 +327,8 @@ public class Filex {
         return listFilesRecursively(dir, (FileFilter) null);
     }
 
+    // count
+
 
     /*
      * *****************************************************************************************************************
@@ -352,7 +337,7 @@ public class Filex {
      */
 
 
-    /* ******************************************* copy *******************************************/
+    /* ******************************************* copy ****************************************** */
 
 
     /**
@@ -669,7 +654,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* delete *******************************************/
+    /* ******************************************* delete ****************************************** */
 
 
     /**
@@ -689,7 +674,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* startsWith *******************************************/
+    /* ******************************************* startsWith ****************************************** */
 
 
     /**
@@ -723,7 +708,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* endsWith *******************************************/
+    /* ******************************************* endsWith ****************************************** */
 
 
     /**
@@ -763,7 +748,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* normalize *******************************************/
+    /* ******************************************* normalize ****************************************** */
 
 
     /**
@@ -805,7 +790,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* resolve *******************************************/
+    /* ******************************************* resolve ****************************************** */
 
 
     /**
@@ -867,7 +852,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* temp *******************************************/
+    /* ******************************************* temp ****************************************** */
 
 
     /**
@@ -942,7 +927,7 @@ public class Filex {
 
 
 
-    /* ******************************************* extension *******************************************/
+    /* ******************************************* extension ****************************************** */
 
 
     /**
@@ -962,7 +947,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* relative *******************************************/
+    /* ******************************************* relative ****************************************** */
 
 
     /**
@@ -1071,7 +1056,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* root *******************************************/
+    /* ******************************************* root ****************************************** */
 
 
     /**
@@ -1154,7 +1139,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* components *******************************************/
+    /* ******************************************* components ****************************************** */
 
 
     /**
@@ -1224,7 +1209,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* path *******************************************/
+    /* ******************************************* path ****************************************** */
 
 
     /**
@@ -1254,8 +1239,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* inputStream *******************************************/
-
+    /* ******************************************* inputStream ****************************************** */
 
 
     /**
@@ -1318,8 +1302,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* read *******************************************/
-
+    /* ******************************************* read ****************************************** */
 
 
     /**
@@ -1413,7 +1396,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* traversing *******************************************/
+    /* ******************************************* traversing ****************************************** */
 
 
     /**
@@ -1514,7 +1497,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* outputStream *******************************************/
+    /* ******************************************* outputStream ****************************************** */
 
 
     /**
@@ -1594,7 +1577,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* write *******************************************/
+    /* ******************************************* write ****************************************** */
 
 
     /**
@@ -1667,7 +1650,7 @@ public class Filex {
     }
 
 
-    /* ******************************************* walk *******************************************/
+    /* ******************************************* walk ****************************************** */
 
 
     /**
@@ -1687,7 +1670,6 @@ public class Filex {
     public static FileTreeWalk walk(@NotNull File file) {
         return walk(file, FileWalkDirection.TOP_DOWN);
     }
-
 
     /**
      * Gets a sequence for visiting this directory and all its content in top-down order.

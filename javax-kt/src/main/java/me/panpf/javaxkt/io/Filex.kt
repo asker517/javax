@@ -67,6 +67,14 @@ inline fun File.createNewFileOrCheck(): Boolean = Filex.createNewFileOrCheck(thi
 
 
 /**
+ * Delete all subfiles in the current directory (excluding subfolders)
+ *
+ * @return If true, the clean is successful, otherwise the clean fails.
+ */
+inline fun File.clean(): Boolean = Filex.clean(this)
+
+
+/**
  * Loop delete all files in the directory
  * @return If true, the clean is successful, otherwise the clean fails.
  */

@@ -57,13 +57,13 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 
 ### io
 * File: [Filex.java] ([Test][FilexTest.java]) | [Filex.kt] ([Test][FilexTest.kt])
-    * mkdirsOrThrow, mkdirsOrCheck, createNewFileOrThrow, createNewFileOrCheck, cleanRecursively, lengthRecursively,
-    * listRecursively, listFilesRecursively, copyTo, copyRecursively, deleteRecursively, startsWith, endsWith,
-    * normalize, resolve, resolveSibling, createTempDir, createTempFile, getInvariantSeparatorsPath, getExtension,
-    * getNameWithoutExtension, toRelativeString, relative, getRootLength, getRootName, isRooted, toComponents,
-    * subPath, inputStream, reader, bufferedReader, readBytes, readText, readLines, useLines, forEachBlock,
-    * forEachLine, outputStream, writer, bufferedWriter, printWriter, writeBytes, appendBytes, writeText,
-    * appendText, walk, walkTopDown, walkBottomUp
+    * mkdirsOrThrow, mkdirsOrCheck, createNewFileOrThrow, createNewFileOrCheck, clean, cleanRecursively,
+    * lengthRecursively, listRecursively, listFilesRecursively, copyTo, copyRecursively, deleteRecursively,
+    * startsWith, endsWith, normalize, resolve, resolveSibling, createTempDir, createTempFile,
+    * getInvariantSeparatorsPath, getExtension, getNameWithoutExtension, toRelativeString, relative,
+    * getRootLength, getRootName, isRooted, toComponents, subPath, inputStream, reader, bufferedReader,
+    * readBytes, readText, readLines, useLines, forEachBlock, forEachLine, outputStream, writer,
+    * bufferedWriter, printWriter, writeBytes, appendBytes, writeText, appendText, walk, walkTopDown, walkBottomUp
 * IOStream: [IOStreamx.java] ([Test][IOStreamxTest.java]) | [IOStreamx.kt] ([Test][IOStreamxTest.kt])
     * safeClose, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
     * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,

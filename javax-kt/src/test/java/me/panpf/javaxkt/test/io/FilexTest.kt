@@ -24,28 +24,68 @@ import org.junit.Test
 import java.io.File
 import java.io.FileFilter
 import java.io.FilenameFilter
+import java.io.IOException
 
 class FilexTest {
 
-    @Test
-    fun testCleanRecursively() {
-        val dir = File("/tmp/testCleanRecursively")
-        val testFile1 = File(dir, "test1.txt")
-        val testFile2 = File(dir, "test2.txt")
+    @Throws(IOException::class)
+    private fun createFileTree(dir: File, fileContent: String): File {
+        dir.deleteRecursively()
+        dir.mkdirsOrThrow()
 
-        Assert.assertFalse(testFile1.exists())
-        testFile1.createNewFileOrThrow()
-        Assert.assertTrue(testFile1.exists())
+        File(dir, "file1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "file2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "file3.txt").createNewFileOrThrow().writeText(fileContent)
 
-        Assert.assertFalse(testFile2.exists())
-        testFile2.createNewFileOrCheck()
-        Assert.assertTrue(testFile2.exists())
+        File(dir, "dir1/file1-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/file1-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/file1-3.txt").createNewFileOrThrow().writeText(fileContent)
 
-        dir.cleanRecursively()
-        Assert.assertEquals(dir.listFiles().size, 0)
+        File(dir, "dir1/dir1-1/file1-1-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/dir1-1/file1-1-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/dir1-1/file1-1-3.txt").createNewFileOrThrow().writeText(fileContent)
 
-        dir.delete()
-        Assert.assertFalse(dir.exists())
+        File(dir, "dir1/dir1-2/file1-2-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/dir1-2/file1-2-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/dir1-2/file1-2-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir1/dir1-3/file1-3-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/dir1-3/file1-3-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir1/dir1-3/file1-3-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir2/file2-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/file2-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/file2-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir2/dir2-1/file2-1-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/dir2-1/file2-1-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/dir2-1/file2-1-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir2/dir2-2/file2-2-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/dir2-2/file2-2-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/dir2-2/file2-2-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir2/dir2-3/file2-3-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/dir2-3/file2-3-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir2/dir2-3/file2-3-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir3/file3-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/file3-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/file3-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir3/dir3-1/file3-1-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/dir3-1/file3-1-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/dir3-1/file3-1-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir3/dir3-2/file3-2-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/dir3-2/file3-2-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/dir3-2/file3-2-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        File(dir, "dir3/dir3-3/file3-3-1.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/dir3-3/file3-3-2.txt").createNewFileOrThrow().writeText(fileContent)
+        File(dir, "dir3/dir3-3/file3-3-3.txt").createNewFileOrThrow().writeText(fileContent)
+
+        return dir
     }
 
     @Test
@@ -84,6 +124,71 @@ class FilexTest {
 
         dir2.deleteRecursively()
         Assert.assertFalse(dir2.exists())
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testClean() {
+        /*
+         * clean
+         */
+        val dir = createFileTree(File("/tmp/testClean"), "testClean")
+        try {
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(dir.listFiles().count(), 6)
+            dir.clean()
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(dir.listFiles().count(), 3)
+        } finally {
+            dir.deleteRecursively()
+        }
+
+        // is File
+        val file = File("/tmp/testClean.file").createNewFileOrThrow()
+        try {
+            Assert.assertTrue(file.clean())
+        } finally {
+            file.deleteRecursively()
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testClean_not_exists.file")
+        try {
+            Assert.assertTrue(fileNotExists.clean())
+        } finally {
+            fileNotExists.deleteRecursively()
+        }
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testCleanRecursively() {
+        val dir = createFileTree(File("/tmp/testCleanRecursively"), "testCleanRecursively")
+        try {
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(dir.listFilesRecursively()?.count() ?: 0, 51)
+            dir.cleanRecursively()
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(dir.listFilesRecursively()?.count() ?: 0, 0)
+        } finally {
+            dir.deleteRecursively()
+        }
+
+        // is File
+        val file = File("/tmp/testCleanRecursively.file").createNewFileOrThrow()
+        try {
+            Assert.assertTrue(file.cleanRecursively())
+        } finally {
+            file.deleteRecursively()
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testCleanRecursively_not_exists.file")
+        try {
+            Assert.assertTrue(fileNotExists.cleanRecursively())
+        } finally {
+            fileNotExists.deleteRecursively()
+        }
     }
 
     @Test

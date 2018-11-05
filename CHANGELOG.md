@@ -6,6 +6,7 @@
 * :fire: Filex cleanDir rename to cleanRecursively
 * :bug: Fix FileTreeWalk.DirectoryState to force validation to be a directory bug
 * :fire: Filex mkdirsCheck rename to mkdirsOrCheck, createNewFileCheck rename to createNewFileOrCheck
+* :sparkles: Filex adds clean method
 
 
 ## v0.8.3

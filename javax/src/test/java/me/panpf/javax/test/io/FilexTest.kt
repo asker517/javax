@@ -27,7 +27,6 @@ import org.junit.Assert
 import org.junit.Test
 import java.io.File
 import java.io.IOException
-import java.lang.IllegalArgumentException
 import java.util.*
 
 class FilexTest {
@@ -94,28 +93,6 @@ class FilexTest {
 
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-    fun testCleanRecursively() {
-        val dir = File("/tmp/testCleanRecursively")
-        val testFile1 = File(dir, "test1.txt")
-        val testFile2 = File(dir, "test2.txt")
-
-        Assert.assertFalse(testFile1.exists())
-        Filex.createNewFileOrThrow(testFile1)
-        Assert.assertTrue(testFile1.exists())
-
-        Assert.assertFalse(testFile2.exists())
-        Filex.createNewFileOrCheck(testFile2)
-        Assert.assertTrue(testFile2.exists())
-
-        Filex.cleanRecursively(dir)
-        Assert.assertEquals(Arrayx.count(dir.listFiles()).toLong(), 0)
-
-        Filex.deleteRecursively(dir)
-        Assert.assertFalse(dir.exists())
-    }
-
-    @Test
-    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testCreateNewFile() {
         val dir = File("/tmp/testCreateNewFile")
         val testFile1 = File(dir, "test1.txt")
@@ -152,6 +129,71 @@ class FilexTest {
 
         Filex.deleteRecursively(dir2)
         Assert.assertFalse(dir2.exists())
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testClean() {
+        /*
+         * clean
+         */
+        val dir = createFileTree(File("/tmp/testClean"), "testClean")
+        try {
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(Arrayx.count(dir.listFiles()), 6)
+            Filex.clean(dir)
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(Arrayx.count(dir.listFiles()), 3)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+
+        // is File
+        val file = Filex.createNewFileOrThrow(File("/tmp/testClean.file"))
+        try {
+            Assert.assertTrue(Filex.clean(file))
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testClean_not_exists.file")
+        try {
+            Assert.assertTrue(Filex.clean(fileNotExists))
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testCleanRecursively() {
+        val dir = createFileTree(File("/tmp/testCleanRecursively"), "testCleanRecursively")
+        try {
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(Arrayx.count(Filex.listFilesRecursively(dir)), 51)
+            Filex.cleanRecursively(dir)
+            Assert.assertTrue(dir.exists())
+            Assert.assertEquals(Arrayx.count(Filex.listFilesRecursively(dir)), 0)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+
+        // is File
+        val file = Filex.createNewFileOrThrow(File("/tmp/testCleanRecursively.file"))
+        try {
+            Assert.assertTrue(Filex.cleanRecursively(file))
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testCleanRecursively_not_exists.file")
+        try {
+            Assert.assertTrue(Filex.cleanRecursively(fileNotExists))
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
     }
 
     @Test
@@ -309,7 +351,7 @@ class FilexTest {
             }
             // test onError
             try {
-                Filex.copyRecursively(copySourceDir, copyTargetDir) { _, e ->  throw IllegalArgumentException(e)}
+                Filex.copyRecursively(copySourceDir, copyTargetDir) { _, e -> throw IllegalArgumentException(e) }
                 Assert.fail()
             } catch (e: IllegalArgumentException) {
             }
