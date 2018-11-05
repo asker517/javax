@@ -111,12 +111,12 @@ inline fun File.listRecursively(): Array<String>? = Filex.listRecursively(this)
 /**
  * Return files in this directory and all its subdirectories
  */
-inline fun File.listFilesRecursively(fileFilter: FileFilter?): Array<File>? = Filex.listFilesRecursively(this, fileFilter)
+inline fun File.listFilesRecursively(fileFilter: FileFilter): Array<File>? = Filex.listFilesRecursively(this, fileFilter)
 
 /**
  * Return files in this directory and all its subdirectories
  */
-inline fun File.listFilesRecursively(filenameFilter: FilenameFilter?): Array<File>? = Filex.listFilesRecursively(this, filenameFilter)
+inline fun File.listFilesRecursively(filenameFilter: FilenameFilter): Array<File>? = Filex.listFilesRecursively(this, filenameFilter)
 
 /**
  * Return files in this directory and all its subdirectories

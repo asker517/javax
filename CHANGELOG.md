@@ -4,9 +4,10 @@
 * :bug: Fixed the Filex toRelativeString method to return a null bug when the two parameters are the same
 * :sparkles: Filex copyTo and copyRecursively method added overload method
 * :fire: Filex cleanDir rename to cleanRecursively
-* :bug: Fix FileTreeWalk.DirectoryState to force validation to be a directory bug
+* :bug: Filex FileTreeWalk.DirectoryState to force validation to be a directory bug
 * :fire: Filex mkdirsCheck rename to mkdirsOrCheck, createNewFileCheck rename to createNewFileOrCheck
 * :sparkles: Filex adds clean method
+* :fire: Filex listFilesRecursively(File, @Nullable FileFilter) method change to listFilesRecursively(File, @NotNull FileFilter), listFilesRecursively(File, @Nullable FilenameFilter) method change to listFilesRecursively(File, @NotNull FilenameFilter)
 
 
 ## v0.8.3

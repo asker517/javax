@@ -252,7 +252,7 @@ public class Filex {
      * Return files in this directory and all its subdirectories
      */
     @Nullable
-    public static File[] listFilesRecursively(@NotNull File dir, @Nullable FileFilter fileFilter) {
+    public static File[] listFilesRecursively(@NotNull File dir, @NotNull FileFilter fileFilter) {
         if (!dir.exists()) return null;
         if (dir.isFile()) return null;
 
@@ -271,7 +271,7 @@ public class Filex {
             for (File childFile : childFiles) {
                 if (!childFile.exists()) continue;
 
-                if (fileFilter == null || fileFilter.accept(childFile)) {
+                if (fileFilter.accept(childFile)) {
                     files.add(childFile);
                 }
 
@@ -287,7 +287,7 @@ public class Filex {
      * Return files in this directory and all its subdirectories
      */
     @Nullable
-    public static File[] listFilesRecursively(@NotNull File dir, @Nullable FilenameFilter filenameFilter) {
+    public static File[] listFilesRecursively(@NotNull File dir, @NotNull FilenameFilter filenameFilter) {
         if (!dir.exists()) return null;
         if (dir.isFile()) return null;
 
@@ -307,7 +307,7 @@ public class Filex {
             for (File childFile : childFiles) {
                 if (!childFile.exists()) continue;
 
-                if (filenameFilter == null || filenameFilter.accept(childFile, childFile.getName())) {
+                if (filenameFilter.accept(childFile, childFile.getName())) {
                     files.add(childFile);
                 }
 
@@ -324,7 +324,32 @@ public class Filex {
      */
     @Nullable
     public static File[] listFilesRecursively(@NotNull File dir) {
-        return listFilesRecursively(dir, (FileFilter) null);
+        if (!dir.exists()) return null;
+        if (dir.isFile()) return null;
+
+        List<File> files = new LinkedList<>();
+
+        Queue<File> dirQueue = new LinkedList<>();
+        dirQueue.add(dir);
+
+        while (true) {
+            File currentDir = dirQueue.poll();
+            if (currentDir == null || !currentDir.exists()) break;
+
+            File[] childFiles = currentDir.listFiles();
+            if (childFiles == null) continue;
+
+            for (File childFile : childFiles) {
+                if (!childFile.exists()) continue;
+
+                files.add(childFile);
+
+                if (childFile.isDirectory()) {
+                    dirQueue.add(childFile);
+                }
+            }
+        }
+        return files.isEmpty() ? null : files.toArray(new File[0]);
     }
 
     // count
