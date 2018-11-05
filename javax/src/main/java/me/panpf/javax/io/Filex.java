@@ -32,8 +32,13 @@ import java.util.*;
 @SuppressWarnings("WeakerAccess")
 public class Filex {
 
+
     private Filex() {
     }
+
+
+    /* ******************************************* mkdirs and create *******************************************/
+
 
     /**
      * Create a directory and throw an exception if it cannot be created
@@ -103,6 +108,9 @@ public class Filex {
     }
 
 
+    /* ******************************************* clean *******************************************/
+
+
     /**
      * Loop delete all files in the directory
      *
@@ -158,6 +166,10 @@ public class Filex {
 
         return result;
     }
+
+
+    /* ******************************************* length *******************************************/
+
 
     /**
      * Get the length of the file or dir, if it is a directory, it will superimpose the length of all subfiles
@@ -215,6 +227,10 @@ public class Filex {
             }
         });
     }
+
+
+    /* ******************************************* list *******************************************/
+
 
     /**
      * Return the path to the file under this directory and all its subdirectories
@@ -334,6 +350,9 @@ public class Filex {
      * From kotlin standard library
      * *****************************************************************************************************************
      */
+
+
+    /* ******************************************* copy *******************************************/
 
 
     /**
@@ -649,6 +668,10 @@ public class Filex {
         });
     }
 
+
+    /* ******************************************* delete *******************************************/
+
+
     /**
      * Delete this file with all its children.
      * Note that if this operation fails then partial deletion may have taken place.
@@ -664,6 +687,10 @@ public class Filex {
             }
         });
     }
+
+
+    /* ******************************************* startsWith *******************************************/
+
 
     /**
      * Determines whether this file belongs to the same root as [other]
@@ -694,6 +721,10 @@ public class Filex {
     public static boolean startsWith(@NotNull File self, @NotNull String other) {
         return startsWith(self, new File(other));
     }
+
+
+    /* ******************************************* endsWith *******************************************/
+
 
     /**
      * Determines whether this file path ends with the path of [other] file.
@@ -730,6 +761,9 @@ public class Filex {
     public static boolean endsWith(@NotNull File self, @NotNull String other) {
         return endsWith(self, new File(other));
     }
+
+
+    /* ******************************************* normalize *******************************************/
 
 
     /**
@@ -769,6 +803,10 @@ public class Filex {
         }
         return list;
     }
+
+
+    /* ******************************************* resolve *******************************************/
+
 
     /**
      * Adds [relative] file to this, considering this as a directory.
@@ -827,6 +865,10 @@ public class Filex {
     public static File resolveSibling(@NotNull File self, @NotNull String relative) {
         return resolveSibling(self, new File(relative));
     }
+
+
+    /* ******************************************* temp *******************************************/
+
 
     /**
      * Creates an empty directory in the specified [directory], using the given [prefix] and [suffix] to generate its name.
@@ -898,14 +940,10 @@ public class Filex {
         return createTempFile("tmp", null, directory);
     }
 
-    /**
-     * Returns [path][File.path] of this File using the invariant separator '/' to
-     * separate the names in the name sequence.
-     */
-    @NotNull
-    public String getInvariantSeparatorsPath(@NotNull File file) {
-        return File.separatorChar != '/' ? file.getPath().replace(File.separatorChar, '/') : file.getPath();
-    }
+
+
+    /* ******************************************* extension *******************************************/
+
 
     /**
      * Returns the getExtension of this file (not including the dot), or an empty string if it doesn't have one.
@@ -922,6 +960,9 @@ public class Filex {
     public static String getNameWithoutExtension(@NotNull File file) {
         return Stringx.substringBeforeLast(file.getName(), ".", file.getName());
     }
+
+
+    /* ******************************************* relative *******************************************/
 
 
     /**
@@ -1029,6 +1070,10 @@ public class Filex {
         return res.toString();
     }
 
+
+    /* ******************************************* root *******************************************/
+
+
     /**
      * Estimation of a root name by a given file name.
      * <p>
@@ -1108,6 +1153,10 @@ public class Filex {
         return getRootLength(file.getPath()) > 0;
     }
 
+
+    /* ******************************************* components *******************************************/
+
+
     /**
      * Represents the path to a file as a collection of directories.
      */
@@ -1174,6 +1223,20 @@ public class Filex {
         return new FilePathComponents(new File(rootName), list);
     }
 
+
+    /* ******************************************* path *******************************************/
+
+
+    /**
+     * Returns [path][File.path] of this File using the invariant separator '/' to
+     * separate the names in the name sequence.
+     */
+    @NotNull
+    public String getInvariantSeparatorsPath(@NotNull File file) {
+        return File.separatorChar != '/' ? file.getPath().replace(File.separatorChar, '/') : file.getPath();
+    }
+
+
     /**
      * Returns a relative pathname which is a subsequence of this pathname,
      * beginning from component [beginIndex], inclusive,
@@ -1189,6 +1252,10 @@ public class Filex {
     public static File subPath(@NotNull File file, int beginIndex, int endIndex) {
         return toComponents(file).subPath(beginIndex, endIndex);
     }
+
+
+    /* ******************************************* inputStream *******************************************/
+
 
 
     /**
@@ -1249,6 +1316,10 @@ public class Filex {
     public static BufferedReader bufferedReader(@NotNull File file) throws FileNotFoundException {
         return bufferedReader(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
     }
+
+
+    /* ******************************************* read *******************************************/
+
 
 
     /**
@@ -1340,6 +1411,10 @@ public class Filex {
     public static List<String> readLines(@NotNull File file) throws IOException {
         return readLines(file, Charx.UTF_8);
     }
+
+
+    /* ******************************************* traversing *******************************************/
+
 
     /**
      * Calls the [block] callback giving it a sequence of all the lines in this file and closes the reader once
@@ -1439,6 +1514,9 @@ public class Filex {
     }
 
 
+    /* ******************************************* outputStream *******************************************/
+
+
     /**
      * Constructs a new FileOutputStream of this file and returns it as a result.
      */
@@ -1515,6 +1593,10 @@ public class Filex {
         return printWriter(file, Charx.UTF_8);
     }
 
+
+    /* ******************************************* write *******************************************/
+
+
     /**
      * Sets the content of this file as an [array] of bytes.
      * If this file already exists, it becomes overwritten.
@@ -1583,6 +1665,9 @@ public class Filex {
     public static void appendText(@NotNull File file, @NotNull String text) throws IOException {
         appendText(file, text, Charx.UTF_8);
     }
+
+
+    /* ******************************************* walk *******************************************/
 
 
     /**

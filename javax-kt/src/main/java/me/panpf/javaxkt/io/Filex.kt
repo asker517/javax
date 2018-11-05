@@ -31,6 +31,9 @@ import java.io.FilenameFilter
  */
 
 
+/* ******************************************* mkdirs and create *******************************************/
+
+
 /**
  * Create a directory and throw an exception if it cannot be created
  * @throws UnableCreateDirException Unable to create directory
@@ -59,11 +62,19 @@ inline fun File.createNewFileOrThrow(): File = Filex.createNewFileOrThrow(this)
  */
 inline fun File.createNewFileOrCheck(): Boolean = Filex.createNewFileOrCheck(this)
 
+
+/* ******************************************* clean *******************************************/
+
+
 /**
  * Loop delete all files in the directory
  * @return If true, the clean is successful, otherwise the clean fails.
  */
 inline fun File.cleanRecursively(): Boolean = Filex.cleanRecursively(this)
+
+
+/* ******************************************* length *******************************************/
+
 
 /**
  * Get the length of the file or dir, if it is a directory, it will superimpose the length of all subfiles
@@ -79,6 +90,10 @@ inline fun Array<File>.lengthRecursively(): Long = Filex.lengthRecursively(this)
  * Get the length of the files or dirs, if it is a directory, it will superimpose the length of all subfiles
  */
 inline fun Iterable<File>.lengthRecursively(): Long = Filex.lengthRecursively(this)
+
+
+/* ******************************************* list *******************************************/
+
 
 /**
  * Return the path to the file under this directory and all its subdirectories
