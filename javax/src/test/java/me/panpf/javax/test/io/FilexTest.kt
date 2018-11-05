@@ -157,7 +157,7 @@ class FilexTest {
         }
 
         // not exists
-        val fileNotExists = File("/tmp/testClean_not_exists.file")
+        val fileNotExists = File("/tmp/testClean.not_exists.file")
         try {
             Assert.assertTrue(Filex.clean(fileNotExists))
         } finally {
@@ -171,10 +171,10 @@ class FilexTest {
         val dir = createFileTree(File("/tmp/testCleanRecursively"), "testCleanRecursively")
         try {
             Assert.assertTrue(dir.exists())
-            Assert.assertEquals(Arrayx.count(Filex.listFilesRecursively(dir)), 51)
+            Assert.assertEquals(Filex.listCountRecursively(dir), 51)
             Filex.cleanRecursively(dir)
             Assert.assertTrue(dir.exists())
-            Assert.assertEquals(Arrayx.count(Filex.listFilesRecursively(dir)), 0)
+            Assert.assertEquals(Filex.listCountRecursively(dir), 0)
         } finally {
             Filex.deleteRecursively(dir)
         }
@@ -188,7 +188,7 @@ class FilexTest {
         }
 
         // not exists
-        val fileNotExists = File("/tmp/testCleanRecursively_not_exists.file")
+        val fileNotExists = File("/tmp/testCleanRecursively.not_exists.file")
         try {
             Assert.assertTrue(Filex.cleanRecursively(fileNotExists))
         } finally {
@@ -219,7 +219,7 @@ class FilexTest {
         }
 
         // not exists
-        val fileNotExists = File("/tmp/testCleanRecursively_not_exists.file")
+        val fileNotExists = File("/tmp/testCleanRecursively.not_exists.file")
         try {
             Assert.assertFalse(file.exists())
             Assert.assertTrue(Filex.deleteRecursively(fileNotExists))
@@ -242,8 +242,8 @@ class FilexTest {
 
     @Test
     @Throws(IOException::class)
-    fun testLengthWithDir() {
-        val dir = File("/tmp/testLengthWithDir")
+    fun testLengthRecursively() {
+        val dir = File("/tmp/testLengthRecursively")
 
         val childFile1 = File(dir, "test1.txt")
         Filex.createNewFileOrThrow(childFile1)
@@ -325,10 +325,70 @@ class FilexTest {
         }
 
         // not exists
-        val fileNotExists = File("/tmp/testListRecursively_not_exists.file")
+        val fileNotExists = File("/tmp/testListRecursively.not_exists.file")
         try {
             Assert.assertNull(Filex.listRecursively(fileNotExists))
             Assert.assertNull(Filex.listFilesRecursively(fileNotExists))
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testListCount() {
+        val dir = createFileTree(File("/tmp/testListCount"), "testListCount")
+
+        try {
+            Assert.assertEquals(Filex.listCount(dir), 6)
+            Assert.assertEquals(Filex.listCount(dir) { pathname -> pathname.isFile }, 3)
+            Assert.assertEquals(Filex.listCount(dir) { dir2, name -> File(dir2, name).isDirectory }, 3)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+
+        // is file
+        val file = Filex.createNewFileOrThrow(File("/tmp/testListCount.file"))
+        try {
+            Assert.assertEquals(Filex.listCount(file), 0)
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testListCount.not_exists.file")
+        try {
+            Assert.assertEquals(Filex.listCount(fileNotExists), 0)
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
+    }
+
+    @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testListCountRecursively() {
+        val dir = createFileTree(File("/tmp/testListCountRecursively"), "testListCountRecursively")
+
+        try {
+            Assert.assertEquals(Filex.listCountRecursively(dir), 51)
+            Assert.assertEquals(Filex.listCountRecursively(dir) { pathname -> pathname.isFile }, 39)
+            Assert.assertEquals(Filex.listCountRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }, 12)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+
+        // is file
+        val file = Filex.createNewFileOrThrow(File("/tmp/testListCountRecursively.file"))
+        try {
+            Assert.assertEquals(Filex.listCountRecursively(file), 0)
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testListCountRecursively.not_exists.file")
+        try {
+            Assert.assertEquals(Filex.listCountRecursively(fileNotExists), 0)
         } finally {
             Filex.deleteRecursively(fileNotExists)
         }
@@ -411,13 +471,13 @@ class FilexTest {
             }
             Filex.copyRecursively(copySourceDir, copyTargetDir, true)
             Assert.assertTrue(copyTargetDir.exists())
-            Assert.assertEquals(Arrayx.count(Filex.listFilesRecursively(copyTargetDir)).toLong(), Arrayx.count(Filex.listFilesRecursively(copySourceDir)).toLong())
+            Assert.assertEquals(Filex.listCountRecursively(copyTargetDir).toLong(), Filex.listCountRecursively(copySourceDir).toLong())
             Assert.assertEquals(Filex.lengthRecursively(copyTargetDir), Filex.lengthRecursively(copySourceDir))
 
             Filex.deleteRecursively(copyTargetDirKotlin)
             copySourceDir.copyRecursively(copyTargetDirKotlin)
             Assert.assertTrue(copyTargetDirKotlin.exists())
-            Assert.assertEquals(Arrayx.count(Filex.listFilesRecursively(copyTargetDirKotlin)).toLong(), Arrayx.count(Filex.listFilesRecursively(copySourceDir)).toLong())
+            Assert.assertEquals(Filex.listCountRecursively(copyTargetDirKotlin).toLong(), Filex.listCountRecursively(copySourceDir).toLong())
             Assert.assertEquals(Filex.lengthRecursively(copyTargetDirKotlin), Filex.lengthRecursively(copySourceDir))
         } finally {
             Filex.deleteRecursively(copySourceDir)

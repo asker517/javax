@@ -422,7 +422,78 @@ public class Filex {
         return files.isEmpty() ? null : files.toArray(new File[0]);
     }
 
-    // count
+
+    /* ******************************************* listCount ****************************************** */
+
+
+    /**
+     * Returns the number of files in the specified folder, excluding subfiles and subfolders
+     */
+    public static int listCount(@NotNull File dir, @NotNull FileFilter fileFilter) {
+        if (!dir.exists()) return 0;
+        if (dir.isFile()) return 0;
+        return Arrayx.count(dir.listFiles(fileFilter));
+    }
+
+    /**
+     * Returns the number of files in the specified folder, excluding subfiles and subfolders
+     */
+    public static int listCount(@NotNull File dir, @NotNull FilenameFilter filenameFilter) {
+        if (!dir.exists()) return 0;
+        if (dir.isFile()) return 0;
+        return Arrayx.count(dir.list(filenameFilter));
+    }
+
+    /**
+     * Returns the number of files in the specified folder, excluding subfiles and subfolders
+     */
+    public static int listCount(@NotNull File dir) {
+        if (!dir.exists()) return 0;
+        if (dir.isFile()) return 0;
+        return Arrayx.count(dir.list());
+    }
+
+    /**
+     * Returns the number of files in the specified directory and all its subdirectories
+     */
+    public static int listCountRecursively(@NotNull final File dir, @NotNull final FileFilter fileFilter) {
+        if (!dir.exists()) return 0;
+        if (dir.isFile()) return 0;
+        return Collectionx.count(walkTopDown(dir), new Predicate<File>() {
+            @Override
+            public boolean accept(@NotNull File file) {
+                return !file.equals(dir) && fileFilter.accept(file);
+            }
+        });
+    }
+
+    /**
+     * Returns the number of files in the specified directory and all its subdirectories
+     */
+    public static int listCountRecursively(@NotNull final File dir, @NotNull final FilenameFilter filenameFilter) {
+        if (!dir.exists()) return 0;
+        if (dir.isFile()) return 0;
+        return Collectionx.count(walkTopDown(dir), new Predicate<File>() {
+            @Override
+            public boolean accept(@NotNull File file) {
+                return !file.equals(dir) && filenameFilter.accept(file.getParentFile(), file.getName());
+            }
+        });
+    }
+
+    /**
+     * Returns the number of files in the specified directory and all its subdirectories
+     */
+    public static int listCountRecursively(@NotNull final File dir) {
+        if (!dir.exists()) return 0;
+        if (dir.isFile()) return 0;
+        return Collectionx.count(walkTopDown(dir), new Predicate<File>() {
+            @Override
+            public boolean accept(@NotNull File file) {
+                return !file.equals(dir);
+            }
+        });
+    }
 
 
     /*

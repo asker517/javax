@@ -9,6 +9,7 @@
 * :sparkles: Filex adds clean method
 * :fire: Filex listFilesRecursively(File, @Nullable FileFilter) method change to listFilesRecursively(File, @NotNull FileFilter), listFilesRecursively(File, @Nullable FilenameFilter) method change to listFilesRecursively(File, @NotNull FilenameFilter)
 * :sparkles: Filex adds `String[] listRecursively(File dir, FilenameFilter)` and `String[] listRecursively(File dir, FileFilter)` method
+* :sparkles: Filex adds listCount, listCountRecursively method
 
 
 ## v0.8.3
