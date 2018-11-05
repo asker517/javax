@@ -699,6 +699,7 @@ public class Filex {
                     }
 
                     if (src.isDirectory()) {
+                        //noinspection ResultOfMethodCallIgnored
                         dstFile.mkdirs();
                     } else {
                         if (copyTo(src, dstFile, overwrite).length() != src.length()) {
@@ -853,7 +854,7 @@ public class Filex {
     public static boolean startsWith(@NotNull File self, @NotNull File other) {
         FilePathComponents components = toComponents(self);
         FilePathComponents otherComponents = toComponents(other);
-        if (components.root != otherComponents.root) {
+        if (!components.root.equals(otherComponents.root)) {
             return false;
         } else if (components.size < otherComponents.size) {
             return false;
@@ -890,7 +891,7 @@ public class Filex {
         FilePathComponents components = toComponents(self);
         FilePathComponents otherComponents = toComponents(other);
         if (otherComponents.isRooted) {
-            return Comparisonx.areEqual(self, other);
+            return self.equals(other);
         } else {
             int shift = components.size - otherComponents.size;
             if (shift < 0) {

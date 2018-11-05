@@ -91,6 +91,7 @@ class FilexTest {
         return dir
     }
 
+
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testCreateNewFile() {
@@ -194,50 +195,6 @@ class FilexTest {
         } finally {
             Filex.deleteRecursively(fileNotExists)
         }
-    }
-
-    @Test
-    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-    fun testDeleteRecursively() {
-        val dir = createFileTree(File("/tmp/testDeleteRecursively"), "testDeleteRecursively")
-        try {
-            Assert.assertTrue(dir.exists())
-            Assert.assertTrue(Filex.deleteRecursively(dir))
-            Assert.assertFalse(dir.exists())
-        } finally {
-            Filex.deleteRecursively(dir)
-        }
-
-        // is File
-        val file = Filex.createNewFileOrThrow(File("/tmp/testDeleteRecursively.file"))
-        try {
-            Assert.assertTrue(file.exists())
-            Assert.assertTrue(Filex.deleteRecursively(file))
-            Assert.assertFalse(file.exists())
-        } finally {
-            Filex.deleteRecursively(file)
-        }
-
-        // not exists
-        val fileNotExists = File("/tmp/testCleanRecursively.not_exists.file")
-        try {
-            Assert.assertFalse(file.exists())
-            Assert.assertTrue(Filex.deleteRecursively(fileNotExists))
-        } finally {
-            Filex.deleteRecursively(fileNotExists)
-        }
-    }
-
-    @Test
-    fun testNameSuffix() {
-        val file = File("/tmp/testNameSuffix.txt")
-        Assert.assertEquals(Filex.getExtension(file), "txt")
-    }
-
-    @Test
-    fun testSimpleName() {
-        val file = File("/tmp/testSimpleName.txt")
-        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testSimpleName")
     }
 
     @Test
@@ -394,6 +351,14 @@ class FilexTest {
         }
     }
 
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
+
     @Test
     @Throws(IOException::class)
     fun testCopyTo() {
@@ -487,6 +452,38 @@ class FilexTest {
     }
 
     @Test
+    @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
+    fun testDeleteRecursively() {
+        val dir = createFileTree(File("/tmp/testDeleteRecursively"), "testDeleteRecursively")
+        try {
+            Assert.assertTrue(dir.exists())
+            Assert.assertTrue(Filex.deleteRecursively(dir))
+            Assert.assertFalse(dir.exists())
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+
+        // is File
+        val file = Filex.createNewFileOrThrow(File("/tmp/testDeleteRecursively.file"))
+        try {
+            Assert.assertTrue(file.exists())
+            Assert.assertTrue(Filex.deleteRecursively(file))
+            Assert.assertFalse(file.exists())
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+
+        // not exists
+        val fileNotExists = File("/tmp/testCleanRecursively.not_exists.file")
+        try {
+            Assert.assertFalse(file.exists())
+            Assert.assertTrue(Filex.deleteRecursively(fileNotExists))
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
+    }
+
+    @Test
     fun testToRelativeStringOrNull() {
         val baseDir = File("/tmp/testCopyRecursively")
 
@@ -500,6 +497,36 @@ class FilexTest {
         childDir = File("/tmp/testCopyRecursively/new/dir")
         Assert.assertEquals(Filex.toRelativeString(childDir, baseDir), childDir.toRelativeString(baseDir)) // result: "new/dir"
         Assert.assertEquals(Filex.toRelativeString(baseDir, childDir), baseDir.toRelativeString(childDir)) // result: "../.."
+    }
+
+    @Test
+    fun testStartsWith() {
+        var selfFile = File("/tmp/testStartsWith/file")
+        var otherFile = File("/tmp/testStartsWith")
+        Assert.assertTrue(Filex.startsWith(selfFile, otherFile) && Filex.startsWith(selfFile, otherFile) == selfFile.startsWith(otherFile))
+
+        selfFile = File("/tmp/testStartsWith")
+        otherFile = File("/tmp/testStartsWith/dir")
+        Assert.assertTrue(!Filex.startsWith(selfFile, otherFile) && Filex.startsWith(selfFile, otherFile) == selfFile.startsWith(otherFile))
+
+        selfFile = File("/tmp/testStartsWith/file")
+        val otherFilePath = "/tmp2/testStartsWith/dir"
+        Assert.assertTrue(!Filex.startsWith(selfFile, otherFilePath) && Filex.startsWith(selfFile, otherFilePath) == selfFile.startsWith(otherFilePath))
+    }
+
+    @Test
+    fun testEndsWith() {
+        var selfFile = File("/tmp/testStartsWith/file")
+        var otherFile = File("/tmp/testStartsWith/file")
+        Assert.assertTrue(Filex.endsWith(selfFile, otherFile) && Filex.endsWith(selfFile, otherFile) == selfFile.endsWith(otherFile))
+
+        selfFile = File("tmp/testStartsWith")
+        otherFile = File("tmp/testStartsWith/dir")
+        Assert.assertTrue(!Filex.endsWith(selfFile, otherFile) && Filex.endsWith(selfFile, otherFile) == selfFile.endsWith(otherFile))
+
+        selfFile = File("tmp/testStartsWith/file")
+        val otherFilePath = "tmp2/testStartsWith/dir"
+        Assert.assertTrue(!Filex.endsWith(selfFile, otherFilePath) && Filex.endsWith(selfFile, otherFile) == selfFile.endsWith(otherFilePath))
     }
 
     @Test
@@ -522,5 +549,17 @@ class FilexTest {
         } finally {
             Filex.deleteRecursively(sourceDir)
         }
+    }
+
+    @Test
+    fun testNameSuffix() {
+        val file = File("/tmp/testNameSuffix.txt")
+        Assert.assertEquals(Filex.getExtension(file), "txt")
+    }
+
+    @Test
+    fun testSimpleName() {
+        val file = File("/tmp/testSimpleName.txt")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testSimpleName")
     }
 }

@@ -1,3 +1,7 @@
+## v0.8.5
+
+* :bug: Fix Filex startsWith method bug
+
 ## v0.8.4
 
 Fix bug:
