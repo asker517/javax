@@ -106,6 +106,16 @@ inline fun Iterable<File>.lengthRecursively(): Long = Filex.lengthRecursively(th
 /**
  * Return the path to the file under this directory and all its subdirectories
  */
+inline fun File.listRecursively(fileFilter: FileFilter): Array<String>? = Filex.listRecursively(this, fileFilter)
+
+/**
+ * Return the path to the file under this directory and all its subdirectories
+ */
+inline fun File.listRecursively(filenameFilter: FilenameFilter): Array<String>? = Filex.listRecursively(this, filenameFilter)
+
+/**
+ * Return the path to the file under this directory and all its subdirectories
+ */
 inline fun File.listRecursively(): Array<String>? = Filex.listRecursively(this)
 
 /**

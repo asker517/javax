@@ -265,51 +265,73 @@ class FilexTest {
 
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
-    fun testList() {
-        val testDir = File("/tmp/testList")
+    fun testListRecursively() {
+        val dir = createFileTree(File("/tmp/testListRecursively"), "testListRecursively")
 
-        val testFile11 = File(testDir, "dir1/file1")
-        val testFile12 = File(testDir, "dir1/file2")
-        val testFile13 = File(testDir, "dir1/file3")
+        try {
+            val childPaths = Filex.listRecursively(dir)
+            Assert.assertEquals(Arrayx.count(childPaths), 51)
+            Assert.assertTrue(Arrayx.contains(childPaths, "file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/file1-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1-1/file1-1-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1-2/file1-2-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1-3/file1-3-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2-1/file2-1-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2-2/file2-2-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2-3/file2-3-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3-1/file3-1-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3-2/file3-2-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3-3/file3-3-1.txt"))
 
-        val testFile21 = File(testDir, "dir2/file1")
-        val testFile22 = File(testDir, "dir2/file2")
-        val testFile23 = File(testDir, "dir2/file3")
+            Assert.assertEquals((Filex.listRecursively(dir) { pathname -> pathname.isFile }?.size ?: 0).toLong(), 39)
+            Assert.assertEquals((Filex.listRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }?.size
+                    ?: 0).toLong(), 12)
 
-        val testFile31 = File(testDir, "dir3/file1")
-        val testFile32 = File(testDir, "dir3/file2")
-        val testFile33 = File(testDir, "dir3/file3")
+            val childFiles = Filex.listFilesRecursively(dir)
+            Assert.assertEquals(Arrayx.count(childFiles), 51)
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/file1-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1-1/file1-1-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1-2/file1-2-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1-3/file1-3-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2-1/file2-1-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2-2/file2-2-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2-3/file2-3-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3-1/file3-1-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3-2/file3-2-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3-3/file3-3-1.txt")))
 
-        val testFile4 = File(testDir, "file4")
-        val testFile5 = File(testDir, "file5")
-        val testFile6 = File(testDir, "file6")
+            Assert.assertEquals((Filex.listFilesRecursively(dir) { pathname -> pathname.isFile }?.size
+                    ?: 0).toLong(), 39)
+            Assert.assertEquals((Filex.listFilesRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }?.size
+                    ?: 0).toLong(), 12)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
 
-        Filex.createNewFileOrThrow(testFile11)
-        Filex.createNewFileOrThrow(testFile12)
-        Filex.createNewFileOrThrow(testFile13)
-        Filex.createNewFileOrThrow(testFile21)
-        Filex.createNewFileOrThrow(testFile22)
-        Filex.createNewFileOrThrow(testFile23)
-        Filex.createNewFileOrThrow(testFile31)
-        Filex.createNewFileOrThrow(testFile32)
-        Filex.createNewFileOrThrow(testFile33)
-        Filex.createNewFileOrThrow(testFile4)
-        Filex.createNewFileOrThrow(testFile5)
-        Filex.createNewFileOrThrow(testFile6)
+        // is file
+        val file = Filex.createNewFileOrThrow(File("/tmp/testListRecursively.file"))
+        try {
+            Assert.assertNull(Filex.listRecursively(file))
+            Assert.assertNull(Filex.listFilesRecursively(file))
+        } finally {
+            Filex.deleteRecursively(file)
+        }
 
-        val childPaths = Filex.listRecursively(testDir)
-        Assert.assertEquals((childPaths?.size ?: 0).toLong(), 15)
-
-        val childFiles = Filex.listFilesRecursively(testDir)
-        Assert.assertEquals((childFiles?.size ?: 0).toLong(), 15)
-
-        val childFiles2 = Filex.listFilesRecursively(testDir) { pathname -> pathname.isFile }
-        Assert.assertEquals((childFiles2?.size ?: 0).toLong(), 12)
-
-        val childFiles3 = Filex.listFilesRecursively(testDir) { dir, name -> dir.isFile && name.endsWith("2") }
-        Assert.assertEquals((childFiles3?.size ?: 0).toLong(), 3)
-
-        Filex.deleteRecursively(testDir)
+        // not exists
+        val fileNotExists = File("/tmp/testListRecursively_not_exists.file")
+        try {
+            Assert.assertNull(Filex.listRecursively(fileNotExists))
+            Assert.assertNull(Filex.listFilesRecursively(fileNotExists))
+        } finally {
+            Filex.deleteRecursively(fileNotExists)
+        }
     }
 
     @Test

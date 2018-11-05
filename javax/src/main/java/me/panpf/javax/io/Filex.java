@@ -219,6 +219,76 @@ public class Filex {
      * Return the path to the file under this directory and all its subdirectories
      */
     @Nullable
+    public static String[] listRecursively(@NotNull File dir, @NotNull FileFilter fileFilter) {
+        if (!dir.exists()) return null;
+        if (dir.isFile()) return null;
+
+        List<String> files = new LinkedList<>();
+
+        Queue<File> dirQueue = new LinkedList<>();
+        dirQueue.add(dir);
+
+        while (true) {
+            File currentDir = dirQueue.poll();
+            if (currentDir == null || !currentDir.exists()) break;
+
+            String[] childPaths = currentDir.list();
+            if (childPaths == null) continue;
+
+            for (String childPath : childPaths) {
+                File childFile = new File(currentDir, childPath);
+                if (!childFile.exists()) continue;
+                if (fileFilter.accept(childFile)) {
+                    files.add(childFile.getPath().replace(dir.getPath() + File.separator, ""));
+                }
+
+                if (childFile.isDirectory()) {
+                    dirQueue.add(childFile);
+                }
+            }
+        }
+        return files.isEmpty() ? null : files.toArray(new String[0]);
+    }
+
+    /**
+     * Return the path to the file under this directory and all its subdirectories
+     */
+    @Nullable
+    public static String[] listRecursively(@NotNull File dir, @NotNull FilenameFilter filenameFilter) {
+        if (!dir.exists()) return null;
+        if (dir.isFile()) return null;
+
+        List<String> files = new LinkedList<>();
+
+        Queue<File> dirQueue = new LinkedList<>();
+        dirQueue.add(dir);
+
+        while (true) {
+            File currentDir = dirQueue.poll();
+            if (currentDir == null || !currentDir.exists()) break;
+
+            String[] childPaths = currentDir.list();
+            if (childPaths == null) continue;
+
+            for (String childPath : childPaths) {
+                File childFile = new File(currentDir, childPath);
+                if (!childFile.exists()) continue;
+                if (filenameFilter.accept(currentDir, childPath)) {
+                    files.add(childFile.getPath().replace(dir.getPath() + File.separator, ""));
+                }
+
+                if (childFile.isDirectory()) {
+                    dirQueue.add(childFile);
+                }
+            }
+        }
+        return files.isEmpty() ? null : files.toArray(new String[0]);
+    }
+
+    /**
+     * Return the path to the file under this directory and all its subdirectories
+     */
+    @Nullable
     public static String[] listRecursively(@NotNull File dir) {
         if (!dir.exists()) return null;
         if (dir.isFile()) return null;
@@ -307,7 +377,7 @@ public class Filex {
             for (File childFile : childFiles) {
                 if (!childFile.exists()) continue;
 
-                if (filenameFilter.accept(childFile, childFile.getName())) {
+                if (filenameFilter.accept(currentDir, childFile.getName())) {
                     files.add(childFile);
                 }
 
