@@ -1,13 +1,18 @@
 ## v0.8.4
 
+Fix bug:
 * :bug: Fixed a bug where the Collectionx drop method did not return results as expected, the method affected by it is Filex.toRelativeString
 * :bug: Fixed the Filex toRelativeString method to return a null bug when the two parameters are the same
-* :sparkles: Filex copyTo and copyRecursively method added overload method
-* :fire: Filex cleanDir rename to cleanRecursively
 * :bug: Filex FileTreeWalk.DirectoryState to force validation to be a directory bug
+
+Rename:
+* :fire: Filex cleanDir rename to cleanRecursively
 * :fire: Filex mkdirsCheck rename to mkdirsOrCheck, createNewFileCheck rename to createNewFileOrCheck
-* :sparkles: Filex adds clean method
 * :fire: Filex listFilesRecursively(File, @Nullable FileFilter) method change to listFilesRecursively(File, @NotNull FileFilter), listFilesRecursively(File, @Nullable FilenameFilter) method change to listFilesRecursively(File, @NotNull FilenameFilter)
+
+New:
+* :sparkles: Filex copyTo and copyRecursively method added overload method
+* :sparkles: Filex adds clean method
 * :sparkles: Filex adds `String[] listRecursively(File dir, FilenameFilter)` and `String[] listRecursively(File dir, FileFilter)` method
 * :sparkles: Filex adds listCount, listCountRecursively method
 
