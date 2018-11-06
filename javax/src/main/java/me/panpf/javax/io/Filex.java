@@ -1324,33 +1324,6 @@ public class Filex {
     }
 
     /**
-     * Estimation of a root name for this file.
-     * <p>
-     * This implementation is able to find /, Drive:/, Drive: or
-     * //network.name/root as possible root names.
-     * / denotes File.separator here so \ can be used instead.
-     * All other possible roots cannot be identified by this implementation.
-     * It's also not guaranteed (but possible) that function will be able to detect a root
-     * which is incorrect for current OS. For instance, in Unix function cannot detect
-     * network root names like //network.name/root, but can detect Windows roots like C:/.
-     *
-     * @return string representing the root for this file, or empty string is this file name is relative.
-     */
-    @NotNull
-    public static String getRootName(@NotNull File file) {
-        return file.getPath().substring(0, getRootLength(file.getPath()));
-    }
-
-    /**
-     * Returns root component of this abstract name, like / from /home/user, or C:\ from C:\file.tmp,
-     * or //my.host/home for //my.host/home/user
-     */
-    @NotNull
-    public static File getRoot(@NotNull File file) {
-        return new File(getRootName(file));
-    }
-
-    /**
      * Determines whether this file has a root or it represents a relative path.
      * <p>
      * Returns `true` when this file has non-empty root.
@@ -1362,52 +1335,6 @@ public class Filex {
 
     /* ******************************************* components ****************************************** */
 
-
-    /**
-     * Represents the path to a file as a collection of directories.
-     */
-    public static class FilePathComponents {
-
-        @NotNull
-        public File root;
-        @NotNull
-        public List<File> segments;
-
-        /**
-         * Returns a string representing the root for this file, or an empty string is this file name is relative.
-         */
-        @NotNull
-        public String rootName;
-
-        /**
-         * Returns `true` when the [root] is not empty.
-         */
-        public boolean isRooted;
-
-        /**
-         * Returns the number of elements in the path to the file.
-         */
-        public int size;
-
-        public FilePathComponents(@NotNull File root, @NotNull List<File> segments) {
-            this.root = root;
-            this.segments = segments;
-            this.rootName = root.getPath();
-            this.isRooted = Stringx.isNotEmpty(root.getPath());
-            this.size = segments.size();
-        }
-
-        /**
-         * Returns a sub-path of the path, starting with the directory at the specified [beginIndex] and up
-         * to the specified [endIndex].
-         */
-        public File subPath(int beginIndex, int endIndex) {
-            if (beginIndex < 0 || beginIndex > endIndex || endIndex > size)
-                throw new IllegalArgumentException();
-
-            return new File(Collectionx.joinToString(segments.subList(beginIndex, endIndex), File.separator));
-        }
-    }
 
     /**
      * Splits the file into path components (the names of containing directories and the name of the file

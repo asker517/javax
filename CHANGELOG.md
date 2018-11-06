@@ -1,6 +1,8 @@
 ## v0.8.5
 
 * :bug: Fix Filex startsWith method bug
+* :sparkles: Filex createTempDir and createTempFile method added overload method
+* :fire: Filex remove getRootName and getRoot method
 
 ## v0.8.4
 
