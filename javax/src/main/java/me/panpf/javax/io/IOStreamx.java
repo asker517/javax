@@ -480,8 +480,7 @@ public class IOStreamx {
                 @Override
                 public Object transform(@NotNull Sequence<String> stringSequence) {
                     Sequencex.forEach(stringSequence, action);
-                    //noinspection ConstantConditions
-                    return null;
+                    return new Object();
                 }
             });
         } catch (Exception e) {
