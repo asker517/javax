@@ -3,6 +3,7 @@
 * :bug: Fix Filex startsWith method bug
 * :sparkles: Filex createTempDir and createTempFile method added overload method
 * :fire: Filex remove getRootName and getRoot method
+* :bug: Filex getInvariantSeparatorsPath method change to static
 
 ## v0.8.4
 

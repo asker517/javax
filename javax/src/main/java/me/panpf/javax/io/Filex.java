@@ -1365,7 +1365,7 @@ public class Filex {
      * separate the names in the name sequence.
      */
     @NotNull
-    public String getInvariantSeparatorsPath(@NotNull File file) {
+    public static String getInvariantSeparatorsPath(@NotNull File file) {
         return File.separatorChar != '/' ? file.getPath().replace(File.separatorChar, '/') : file.getPath();
     }
 
