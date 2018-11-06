@@ -71,7 +71,6 @@ inline fun Reader.copyTo(out: Writer, bufferSize: Int, listener: CopyListener): 
  * **Note** it is the caller's responsibility to close both of these resources.
  *
  * @param out        writer to write to.
- * @param bufferSize size of character buffer to use in process.
  * @return number of characters copied.
  */
 @Throws(IOException::class)
