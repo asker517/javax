@@ -66,10 +66,10 @@ public class FileSystemException extends IOException {
     private static String constructMessage(@NotNull File file, @Nullable File other, @Nullable String reason) {
         StringBuilder sb = new StringBuilder(file.toString());
         if (other != null) {
-            sb.append(" -> $other");
+            sb.append(" -> ").append(other);
         }
         if (reason != null) {
-            sb.append(": $reason");
+            sb.append(": ").append(reason);
         }
         return sb.toString();
     }
