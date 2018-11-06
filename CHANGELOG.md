@@ -6,6 +6,7 @@
 * :bug: Filex getInvariantSeparatorsPath method change to static
 * :bug: Fix IOStreamx forEachLine method crash bug
 * :sparkles: Filex.kt adds toComponents and subPath method
+* :sparkles: Filex adds bufferedInputStream and bufferedOutputStream method
 
 ## v0.8.4
 

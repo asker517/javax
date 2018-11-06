@@ -22,9 +22,7 @@ import me.panpf.javax.io.FilePathComponents
 import me.panpf.javax.io.Filex
 import me.panpf.javax.io.UnableCreateDirException
 import me.panpf.javax.io.UnableCreateFileException
-import java.io.File
-import java.io.FileFilter
-import java.io.FilenameFilter
+import java.io.*
 
 
 /*
@@ -241,3 +239,39 @@ inline fun File.toComponents(): FilePathComponents = Filex.toComponents(this)
  * or [beginIndex] is greater than [endIndex].
  */
 inline fun File.subPath(beginIndex: Int, endIndex: Int): File = Filex.subPath(this, beginIndex, endIndex)
+
+
+/* ******************************************* inputStream ****************************************** */
+
+
+/**
+ * Returns a new [BufferedInputStream] for reading the content of this file.
+ *
+ * @param bufferSize necessary size of the buffer.
+ */
+@Throws(FileNotFoundException::class)
+inline fun File.bufferedInputStream(bufferSize: Int): BufferedInputStream = Filex.bufferedInputStream(this, bufferSize)
+
+/**
+ * Returns a new [BufferedInputStream] for reading the content of this file.
+ */
+@Throws(FileNotFoundException::class)
+inline fun File.bufferedInputStream(): BufferedInputStream = Filex.bufferedInputStream(this)
+
+
+/* ******************************************* outputStream ****************************************** */
+
+
+/**
+ * Returns a new [BufferedOutputStream] for writing the content of this file.
+ *
+ * @param bufferSize necessary size of the buffer.
+ */
+@Throws(FileNotFoundException::class)
+inline fun File.bufferedOutputStream(bufferSize: Int): BufferedOutputStream = Filex.bufferedOutputStream(this, bufferSize)
+
+/**
+ * Returns a new [BufferedOutputStream] for writing the content of this file.
+ */
+@Throws(FileNotFoundException::class)
+inline fun File.bufferedOutputStream(): BufferedOutputStream = Filex.bufferedOutputStream(this)

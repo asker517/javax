@@ -1398,6 +1398,24 @@ public class Filex {
     }
 
     /**
+     * Returns a new [BufferedInputStream] for reading the content of this file.
+     *
+     * @param bufferSize necessary size of the buffer.
+     */
+    @NotNull
+    public static BufferedInputStream bufferedInputStream(@NotNull File file, int bufferSize) throws FileNotFoundException {
+        return IOStreamx.buffered(inputStream(file), bufferSize);
+    }
+
+    /**
+     * Returns a new [BufferedInputStream] for reading the content of this file.
+     */
+    @NotNull
+    public static BufferedInputStream bufferedInputStream(@NotNull File file) throws FileNotFoundException {
+        return IOStreamx.buffered(inputStream(file));
+    }
+
+    /**
      * Returns a new [FileReader] for reading the content of this file.
      */
     @NotNull
@@ -1410,7 +1428,7 @@ public class Filex {
      */
     @NotNull
     public static InputStreamReader reader(@NotNull File file) throws FileNotFoundException {
-        return reader(file, Charx.UTF_8);
+        return IOStreamx.reader(inputStream(file));
     }
 
     /**
@@ -1420,7 +1438,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, @NotNull Charset charset, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.buffered(reader(file, charset), bufferSize);
+        return IOStreamx.bufferedReader(inputStream(file), charset, bufferSize);
     }
 
     /**
@@ -1430,7 +1448,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, int bufferSize) throws FileNotFoundException {
-        return bufferedReader(file, Charx.UTF_8, bufferSize);
+        return IOStreamx.bufferedReader(inputStream(file), bufferSize);
     }
 
     /**
@@ -1438,7 +1456,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
-        return bufferedReader(file, charset, IOStreamx.DEFAULT_BUFFER_SIZE);
+        return IOStreamx.bufferedReader(inputStream(file), charset);
     }
 
     /**
@@ -1446,7 +1464,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file) throws FileNotFoundException {
-        return bufferedReader(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
+        return IOStreamx.bufferedReader(inputStream(file));
     }
 
 
@@ -1657,6 +1675,24 @@ public class Filex {
     }
 
     /**
+     * Returns a new [BufferedOutputStream] for writing the content of this file.
+     *
+     * @param bufferSize necessary size of the buffer.
+     */
+    @NotNull
+    public static BufferedOutputStream bufferedOutputStream(@NotNull File file, int bufferSize) throws FileNotFoundException {
+        return IOStreamx.buffered(outputStream(file), bufferSize);
+    }
+
+    /**
+     * Returns a new [BufferedOutputStream] for writing the content of this file.
+     */
+    @NotNull
+    public static BufferedOutputStream bufferedOutputStream(@NotNull File file) throws FileNotFoundException {
+        return IOStreamx.buffered(outputStream(file));
+    }
+
+    /**
      * Returns a new [FileWriter] for writing the content of this file.
      */
     @NotNull
@@ -1669,7 +1705,7 @@ public class Filex {
      */
     @NotNull
     public static OutputStreamWriter writer(@NotNull File file) throws FileNotFoundException {
-        return writer(file, Charx.UTF_8);
+        return IOStreamx.writer(outputStream(file));
     }
 
     /**
@@ -1679,7 +1715,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, @NotNull Charset charset, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.buffered(writer(file, charset), bufferSize);
+        return IOStreamx.bufferedWriter(outputStream(file), charset, bufferSize);
     }
 
     /**
@@ -1689,7 +1725,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.buffered(writer(file, Charx.UTF_8), bufferSize);
+        return IOStreamx.bufferedWriter(outputStream(file), bufferSize);
     }
 
     /**
@@ -1697,7 +1733,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
-        return IOStreamx.buffered(writer(file, charset), IOStreamx.DEFAULT_BUFFER_SIZE);
+        return IOStreamx.bufferedWriter(outputStream(file), charset);
     }
 
     /**
@@ -1705,7 +1741,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file) throws FileNotFoundException {
-        return bufferedWriter(file, Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE);
+        return IOStreamx.bufferedWriter(outputStream(file));
     }
 
     /**
