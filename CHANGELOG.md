@@ -9,6 +9,8 @@
 * :sparkles: Filex adds bufferedInputStream and bufferedOutputStream method
 * :white_check_mark: Improve Filex testing
 * :white_check_mark: Improve IOStreamx testing
+* :fire: Comparisonx compareBy method The selector parameter type is changed to NullableAllTransformer. The methods that are implicated are Arrayx.sortBy, Arrayx.sortedBy, Collectionx.sortBy, Collectionx.sortedBy
+* :white_check_mark: Improve Comparisonx testing
 
 ## v0.8.4
 

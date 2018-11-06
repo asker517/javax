@@ -46,11 +46,11 @@ public class Comparisonx {
     }
 
     public static boolean areEqual(@Nullable Double first, double second) {
-        return first != null && first.doubleValue() == second;
+        return first != null && first == second;
     }
 
     public static boolean areEqual(double first, Double second) {
-        return second != null && first == second.doubleValue();
+        return second != null && first == second;
     }
 
     public static boolean areEqual(@Nullable Float first, @Nullable Float second) {
@@ -58,11 +58,11 @@ public class Comparisonx {
     }
 
     public static boolean areEqual(@Nullable Float first, float second) {
-        return first != null && first.floatValue() == second;
+        return first != null && first == second;
     }
 
     public static boolean areEqual(float first, @Nullable Float second) {
-        return second != null && first == second.floatValue();
+        return second != null && first == second;
     }
 
 
@@ -82,7 +82,7 @@ public class Comparisonx {
      * The function is applied to the given values [a] and [b] and return [Comparable] objects.
      * The result of comparison of these [Comparable] instances is returned.
      */
-    public static <T, R extends Comparable<R>> int compareValuesBy(T a, T b, NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> int compareValuesBy(@Nullable T a, @Nullable T b, NullableAllTransformer<T, R> selector) {
         return compareValues(selector.transform(a), selector.transform(b));
     }
 
@@ -90,7 +90,7 @@ public class Comparisonx {
      * Creates a comparator using the function to transform value to a [Comparable] instance for comparison.
      */
     @NotNull
-    public static <T, R extends Comparable<R>> Comparator<T> compareBy(final NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> Comparator<T> compareBy(@NotNull final NullableAllTransformer<T, R> selector) {
         return new Comparator<T>() {
             @Override
             public int compare(T a, T b) {
@@ -103,7 +103,7 @@ public class Comparisonx {
      * Creates a descending comparator using the function to transform value to a [Comparable] instance for comparison.
      */
     @NotNull
-    public static <T, R extends Comparable<R>> Comparator<T> compareByDescending(final NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> Comparator<T> compareByDescending(@NotNull final NullableAllTransformer<T, R> selector) {
         return new Comparator<T>() {
             @Override
             public int compare(T a, T b) {
@@ -120,7 +120,7 @@ public class Comparisonx {
         }
 
         public Comparator<T> reversed() {
-            return new ReverseOrderComparator<T>();
+            return new ReverseOrderComparator<>();
         }
     }
 
@@ -132,7 +132,7 @@ public class Comparisonx {
         }
 
         public Comparator<T> reversed() {
-            return new NaturalOrderComparator<T>();
+            return new NaturalOrderComparator<>();
         }
     }
 
@@ -140,7 +140,11 @@ public class Comparisonx {
      * Returns the greater of two values.
      * If values are equal, returns the first one.
      */
-    public static <T extends Comparable<T>> T maxOf(T a, T b) {
+    @Nullable
+    public static <T extends Comparable<T>> T maxOf(@Nullable T a, @Nullable T b) {
+        if (a == b) return a;
+        if (a == null) return b;
+        if (b == null) return a;
         return a.compareTo(b) >= 0 ? a : b;
     }
 
@@ -189,7 +193,8 @@ public class Comparisonx {
     /**
      * Returns the greater of three values.
      */
-    public static <T extends Comparable<T>> T maxOf(T a, T b, T c) {
+    @Nullable
+    public static <T extends Comparable<T>> T maxOf(@Nullable T a, @Nullable T b, @Nullable T c) {
         return maxOf(a, maxOf(b, c));
     }
 
@@ -239,7 +244,11 @@ public class Comparisonx {
      * Returns the smaller of two values.
      * If values are equal, returns the first one.
      */
-    public static <T extends Comparable<T>> T minOf(T a, T b) {
+    @Nullable
+    public static <T extends Comparable<T>> T minOf(@Nullable T a, @Nullable T b) {
+        if (a == b) return a;
+        if (a == null) return null;
+        if (b == null) return null;
         return a.compareTo(b) <= 0 ? a : b;
     }
 
@@ -288,7 +297,8 @@ public class Comparisonx {
     /**
      * Returns the smaller of three values.
      */
-    public static <T extends Comparable<T>> T minOf(T a, T b, T c) {
+    @Nullable
+    public static <T extends Comparable<T>> T minOf(@Nullable T a, @Nullable T b, @Nullable T c) {
         return minOf(a, minOf(b, c));
     }
 
