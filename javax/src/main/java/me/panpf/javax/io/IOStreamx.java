@@ -86,21 +86,8 @@ public class IOStreamx {
      */
 
 
-    /**
-     * Creates a new byte input stream for the string.
-     */
-    @NotNull
-    public static ByteArrayInputStream byteInputStream(@NotNull String string, @NotNull Charset charset) {
-        return new ByteArrayInputStream(Stringx.toByteArray(string, charset));
-    }
+    /* ******************************************* inputStream ****************************************** */
 
-    /**
-     * Creates a new byte input stream for the string.
-     */
-    @NotNull
-    public static ByteArrayInputStream byteInputStream(@NotNull String string) {
-        return new ByteArrayInputStream(Stringx.toByteArray(string));
-    }
 
     /**
      * Creates an input stream for reading data from this byte array.
@@ -119,6 +106,23 @@ public class IOStreamx {
     @NotNull
     public static ByteArrayInputStream inputStream(@NotNull byte[] bytes, int offset, int length) {
         return new ByteArrayInputStream(bytes, offset, length);
+    }
+
+
+    /**
+     * Creates a new byte input stream for the string.
+     */
+    @NotNull
+    public static ByteArrayInputStream byteInputStream(@NotNull String string, @NotNull Charset charset) {
+        return inputStream(Stringx.toByteArray(string, charset));
+    }
+
+    /**
+     * Creates a new byte input stream for the string.
+     */
+    @NotNull
+    public static ByteArrayInputStream byteInputStream(@NotNull String string) {
+        return inputStream(Stringx.toByteArray(string));
     }
 
 
@@ -144,23 +148,6 @@ public class IOStreamx {
     @NotNull
     public static StringReader reader(@NotNull String string) {
         return new StringReader(string);
-    }
-
-
-    /**
-     * Creates a writer on this output stream using UTF-8 or the specified [charset].
-     */
-    @NotNull
-    public static OutputStreamWriter writer(@NotNull OutputStream outputStream, @NotNull Charset charset) {
-        return new OutputStreamWriter(outputStream, charset);
-    }
-
-    /**
-     * Creates a writer on this output stream using UTF-8 or the specified [charset].
-     */
-    @NotNull
-    public static OutputStreamWriter writer(@NotNull OutputStream outputStream) {
-        return writer(outputStream, Charx.UTF_8);
     }
 
 
@@ -199,6 +186,23 @@ public class IOStreamx {
         return buffered(reader, DEFAULT_BUFFER_SIZE);
     }
 
+
+    /**
+     * Creates a buffered reader on this input stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static BufferedReader bufferedReader(@NotNull InputStream inputStream, @NotNull Charset charset, int bufferSize) {
+        return buffered(reader(inputStream, charset), bufferSize);
+    }
+
+    /**
+     * Creates a buffered reader on this input stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static BufferedReader bufferedReader(@NotNull InputStream inputStream, int bufferSize) {
+        return buffered(reader(inputStream), bufferSize);
+    }
+
     /**
      * Creates a buffered reader on this input stream using UTF-8 or the specified [charset].
      */
@@ -215,40 +219,8 @@ public class IOStreamx {
         return bufferedReader(inputStream, Charx.UTF_8);
     }
 
-    /**
-     * Creates a buffered output stream wrapping this stream.
-     *
-     * @param bufferSize the buffer size to use.
-     */
-    @NotNull
-    public static BufferedOutputStream buffered(@NotNull OutputStream outputStream, int bufferSize) {
-        return outputStream instanceof BufferedOutputStream ? (BufferedOutputStream) outputStream
-                : new BufferedOutputStream(outputStream, bufferSize);
-    }
 
-    /**
-     * Creates a buffered writer on this output stream using UTF-8 or the specified [charset].
-     */
-    @NotNull
-    public static BufferedWriter bufferedWriter(@NotNull OutputStream outputStream, @NotNull Charset charset) {
-        return buffered(writer(outputStream, charset));
-    }
-
-    /**
-     * Returns a buffered reader wrapping this Writer, or this Writer itself if it is already buffered.
-     */
-    @NotNull
-    public static BufferedWriter buffered(@NotNull Writer writer, int bufferSize) {
-        return writer instanceof BufferedWriter ? (BufferedWriter) writer : new BufferedWriter(writer, bufferSize);
-    }
-
-    /**
-     * Returns a buffered reader wrapping this Writer, or this Writer itself if it is already buffered.
-     */
-    @NotNull
-    public static BufferedWriter buffered(@NotNull Writer writer) {
-        return buffered(writer, DEFAULT_BUFFER_SIZE);
-    }
+    /* ******************************************* read ****************************************** */
 
 
     /**
@@ -324,6 +296,184 @@ public class IOStreamx {
             safeClose(inputStream);
         }
     }
+
+
+    /**
+     * Reads this reader content as a list of lines.
+     * Do not use this function for huge files.
+     */
+    @NotNull
+    public static List<String> readLines(@NotNull Reader reader) throws IOException {
+        final List<String> result = new ArrayList<>();
+        forEachLine(reader, new Action<String>() {
+            @Override
+            public void action(@NotNull String s) {
+                result.add(s);
+            }
+        });
+        return result;
+    }
+
+
+    /* ******************************************* traversing ****************************************** */
+
+
+    /**
+     * Returns a sequence of corresponding file lines.
+     * <p>
+     * *Note*: the caller must close the underlying `BufferedReader`
+     * when the iteration is finished; as the user may not complete the iteration loop (e.g. using a method like find() or any() on the iterator
+     * may terminate the iteration early.
+     * <p>
+     * We suggest you try the method [useLines] instead which closes the stream when the processing is complete.
+     *
+     * @return a sequence of corresponding file lines. The sequence returned can be iterated only once.
+     */
+    @NotNull
+    public static Sequence<String> lineSequence(@NotNull BufferedReader bufferedReader) {
+        return Sequencex.constrainOnce(new LinesSequence(bufferedReader));
+    }
+
+    /**
+     * Calls the [block] callback giving it a sequence of all the lines in this file and closes the reader once
+     * the processing is complete.
+     *
+     * @return the value returned by [block].
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    @NotNull
+    public static <T> T useLines(@NotNull Reader reader, @NotNull Transformer<Sequence<String>, T> block) {
+        BufferedReader bufferedReader = buffered(reader);
+        T t;
+        try {
+            t = block.transform(lineSequence(bufferedReader));
+        } finally {
+            IOStreamx.safeClose(bufferedReader);
+        }
+        return t;
+    }
+
+
+    /**
+     * Iterates through each line of this reader, calls [action] for each line read
+     * and closes the [Reader] when it's completed.
+     *
+     * @param action function to process file lines.
+     */
+    public static void forEachLine(@NotNull Reader reader, @NotNull final Action<String> action) throws IOException {
+        try {
+            useLines(reader, new Transformer<Sequence<String>, Object>() {
+                @NotNull
+                @Override
+                public Object transform(@NotNull Sequence<String> stringSequence) {
+                    Sequencex.forEach(stringSequence, action);
+                    return new Object();
+                }
+            });
+        } catch (Exception e) {
+            if (e instanceof IllegalStateException) {
+                if ("hasNextIOException".equals(e.getMessage()) && e.getCause() instanceof IOException) {
+                    throw (IOException) e.getCause();
+                } else {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+    /* ******************************************* outputStream ****************************************** */
+
+
+    /**
+     * Creates a writer on this output stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static OutputStreamWriter writer(@NotNull OutputStream outputStream, @NotNull Charset charset) {
+        return new OutputStreamWriter(outputStream, charset);
+    }
+
+    /**
+     * Creates a writer on this output stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static OutputStreamWriter writer(@NotNull OutputStream outputStream) {
+        return writer(outputStream, Charx.UTF_8);
+    }
+
+
+    /**
+     * Creates a buffered output stream wrapping this stream.
+     *
+     * @param bufferSize the buffer size to use.
+     */
+    @NotNull
+    public static BufferedOutputStream buffered(@NotNull OutputStream outputStream, int bufferSize) {
+        return outputStream instanceof BufferedOutputStream ? (BufferedOutputStream) outputStream
+                : new BufferedOutputStream(outputStream, bufferSize);
+    }
+
+    /**
+     * Creates a buffered output stream wrapping this stream.
+     */
+    @NotNull
+    public static BufferedOutputStream buffered(@NotNull OutputStream outputStream) {
+        return buffered(outputStream, DEFAULT_BUFFER_SIZE);
+    }
+
+    /**
+     * Returns a buffered reader wrapping this Writer, or this Writer itself if it is already buffered.
+     */
+    @NotNull
+    public static BufferedWriter buffered(@NotNull Writer writer, int bufferSize) {
+        return writer instanceof BufferedWriter ? (BufferedWriter) writer : new BufferedWriter(writer, bufferSize);
+    }
+
+    /**
+     * Returns a buffered reader wrapping this Writer, or this Writer itself if it is already buffered.
+     */
+    @NotNull
+    public static BufferedWriter buffered(@NotNull Writer writer) {
+        return buffered(writer, DEFAULT_BUFFER_SIZE);
+    }
+
+
+    /**
+     * Creates a buffered writer on this output stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static BufferedWriter bufferedWriter(@NotNull OutputStream outputStream, @NotNull Charset charset, int bufferSize) {
+        return buffered(writer(outputStream, charset), bufferSize);
+    }
+
+    /**
+     * Creates a buffered writer on this output stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static BufferedWriter bufferedWriter(@NotNull OutputStream outputStream, @NotNull Charset charset) {
+        return buffered(writer(outputStream, charset));
+    }
+
+    /**
+     * Creates a buffered writer on this output stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static BufferedWriter bufferedWriter(@NotNull OutputStream outputStream, int bufferSize) {
+        return buffered(writer(outputStream), bufferSize);
+    }
+
+    /**
+     * Creates a buffered writer on this output stream using UTF-8 or the specified [charset].
+     */
+    @NotNull
+    public static BufferedWriter bufferedWriter(@NotNull OutputStream outputStream) {
+        return buffered(writer(outputStream));
+    }
+
+
+    /* ******************************************* copyTo ****************************************** */
 
 
     /**
@@ -430,87 +580,6 @@ public class IOStreamx {
         return copyTo(reader, out, DEFAULT_BUFFER_SIZE, null);
     }
 
-
-    /**
-     * Returns a sequence of corresponding file lines.
-     * <p>
-     * *Note*: the caller must close the underlying `BufferedReader`
-     * when the iteration is finished; as the user may not complete the iteration loop (e.g. using a method like find() or any() on the iterator
-     * may terminate the iteration early.
-     * <p>
-     * We suggest you try the method [useLines] instead which closes the stream when the processing is complete.
-     *
-     * @return a sequence of corresponding file lines. The sequence returned can be iterated only once.
-     */
-    @NotNull
-    public static Sequence<String> lineSequence(@NotNull BufferedReader bufferedReader) {
-        return Sequencex.constrainOnce(new LinesSequence(bufferedReader));
-    }
-
-    /**
-     * Calls the [block] callback giving it a sequence of all the lines in this file and closes the reader once
-     * the processing is complete.
-     *
-     * @return the value returned by [block].
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    @NotNull
-    public static <T> T useLines(@NotNull Reader reader, @NotNull Transformer<Sequence<String>, T> block) {
-        BufferedReader bufferedReader = buffered(reader);
-        T t;
-        try {
-            t = block.transform(lineSequence(bufferedReader));
-        } finally {
-            IOStreamx.safeClose(bufferedReader);
-        }
-        return t;
-    }
-
-
-    /**
-     * Iterates through each line of this reader, calls [action] for each line read
-     * and closes the [Reader] when it's completed.
-     *
-     * @param action function to process file lines.
-     */
-    public static void forEachLine(@NotNull Reader reader, @NotNull final Action<String> action) throws IOException {
-        try {
-            useLines(reader, new Transformer<Sequence<String>, Object>() {
-                @NotNull
-                @Override
-                public Object transform(@NotNull Sequence<String> stringSequence) {
-                    Sequencex.forEach(stringSequence, action);
-                    return new Object();
-                }
-            });
-        } catch (Exception e) {
-            if (e instanceof IllegalStateException) {
-                if ("hasNextIOException".equals(e.getMessage()) && e.getCause() instanceof IOException) {
-                    throw (IOException) e.getCause();
-                } else {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    /**
-     * Reads this reader content as a list of lines.
-     * Do not use this function for huge files.
-     */
-    @NotNull
-    public static List<String> readLines(@NotNull Reader reader) throws IOException {
-        final List<String> result = new ArrayList<String>();
-        forEachLine(reader, new Action<String>() {
-            @Override
-            public void action(@NotNull String s) {
-                result.add(s);
-            }
-        });
-        return result;
-    }
 
     private static class LinesSequence implements Sequence<String> {
         private BufferedReader reader;

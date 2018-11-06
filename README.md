@@ -209,7 +209,7 @@ Please view the [CHANGELOG.md] file
 [FilexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/FilexTest.kt
 
 [IOStreamx.java]: javax/src/main/java/me/panpf/javax/io/IOStreamx.java
-[IOStreamxTest.java]: javax/src/test/java/me/panpf/javax/test/io/IOStreamxTest.java
+[IOStreamxTest.java]: javax/src/test/java/me/panpf/javax/test/io/IOStreamxTest.kt
 [IOStreamx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/IOStreamx.kt
 [IOStreamxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/IOStreamxTest.kt
 

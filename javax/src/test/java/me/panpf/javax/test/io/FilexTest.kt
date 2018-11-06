@@ -470,7 +470,7 @@ class FilexTest {
 
         try {
             Filex.deleteRecursively(copyTargetDir)
-            Filex.copyRecursively(copySourceDir, copyTargetDir){ _, e -> throw IllegalArgumentException(e) }
+            Filex.copyRecursively(copySourceDir, copyTargetDir) { _, e -> throw IllegalArgumentException(e) }
 
             Assert.assertTrue(copyTargetDir.exists())
             Assert.assertEquals(Filex.listCountRecursively(copyTargetDir).toLong(), Filex.listCountRecursively(copySourceDir).toLong())
@@ -848,8 +848,8 @@ class FilexTest {
     }
 
     @Test
-    fun testUseLines() {
-        val file = File("/tmp/testUseLines.txt")
+    fun testLines() {
+        val file = File("/tmp/testLines.txt")
         val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
         Filex.writeText(file, content)
         try {
@@ -870,44 +870,26 @@ class FilexTest {
                     }
                 }
             }.toString(), content)
-        } finally {
-            Filex.deleteRecursively(file)
-        }
-    }
 
-    @Test
-    fun testForEachBlock() {
-        val file = File("/tmp/testForEachBlock.txt")
-        val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
-        Filex.writeText(file, content)
-        try {
             Assert.assertEquals(StringBuilder().apply {
                 Filex.forEachBlock(file, IOStreamx.DEFAULT_BLOCK_SIZE) { data, size ->
                     append(String(data, 0, size))
                 }
             }.toString(), content)
+
             Assert.assertEquals(StringBuilder().apply {
                 Filex.forEachBlock(file) { data, size ->
                     append(String(data, 0, size))
                 }
             }.toString(), content)
-        } finally {
-            Filex.deleteRecursively(file)
-        }
-    }
 
-    @Test
-    fun testForEachLine() {
-        val file = File("/tmp/testForEachLine.txt")
-        val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
-        Filex.writeText(file, content)
-        try {
             Assert.assertEquals(StringBuilder().apply {
                 Filex.forEachLine(file, Charx.UTF_8) { lineString ->
                     if (length > 0) append("\n")
                     append(lineString)
                 }
             }.toString(), content)
+
             Assert.assertEquals(StringBuilder().apply {
                 Filex.forEachLine(file) { lineString ->
                     if (length > 0) append("\n")

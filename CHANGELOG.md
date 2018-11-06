@@ -7,6 +7,8 @@
 * :bug: Fix IOStreamx forEachLine method crash bug
 * :sparkles: Filex.kt adds toComponents and subPath method
 * :sparkles: Filex adds bufferedInputStream and bufferedOutputStream method
+* :white_check_mark: Improve Filex testing
+* :white_check_mark: Improve IOStreamx testing
 
 ## v0.8.4
 

@@ -18,25 +18,27 @@ package me.panpf.javaxkt.test.io
 
 import me.panpf.javaxkt.io.safeClose
 import org.junit.Test
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
 class IOStreamxTest {
 
     @Test
-    fun testInputStream() {
-        val inputStream = "".byteInputStream()
-        inputStream.safeClose()
-    }
+    fun testSafeClose() {
+        ByteArrayInputStream("1234567890".toByteArray()).safeClose()
+        object : ByteArrayInputStream("1234567890".toByteArray()) {
+            override fun close() {
+                throw RuntimeException("test")
+            }
+        }.safeClose()
 
-    @Test
-    fun testOutputStream() {
-        val outputStream = ByteArrayOutputStream()
-        outputStream.safeClose()
-    }
+        ByteArrayOutputStream().safeClose()
+        object : ByteArrayOutputStream() {
+            override fun close() {
+                throw RuntimeException("test")
+            }
+        }.safeClose()
 
-    @Test
-    fun testNull() {
-        val outputStream: ByteArrayOutputStream? = null
-        outputStream.safeClose()
+        null.safeClose()
     }
 }
