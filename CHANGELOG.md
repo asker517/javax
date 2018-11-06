@@ -5,6 +5,7 @@
 * :fire: Filex remove getRootName and getRoot method
 * :bug: Filex getInvariantSeparatorsPath method change to static
 * :bug: Fix IOStreamx forEachLine method crash bug
+* :sparkles: Filex.kt adds toComponents and subPath method
 
 ## v0.8.4
 

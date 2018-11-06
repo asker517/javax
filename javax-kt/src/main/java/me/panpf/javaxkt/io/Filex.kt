@@ -18,6 +18,7 @@
 
 package me.panpf.javaxkt.io
 
+import me.panpf.javax.io.FilePathComponents
 import me.panpf.javax.io.Filex
 import me.panpf.javax.io.UnableCreateDirException
 import me.panpf.javax.io.UnableCreateFileException
@@ -206,3 +207,37 @@ inline fun File.listCountRecursively(crossinline filenameFilter: (dir: File, nam
  * Returns the number of files in the specified directory and all its subdirectories
  */
 inline fun File.listCountRecursively(): Int = Filex.listCountRecursively(this)
+
+
+/*
+ * *****************************************************************************************************************
+ * From kotlin standard library
+ * *****************************************************************************************************************
+ */
+
+
+/* ******************************************* components ****************************************** */
+
+
+/**
+ * Splits the file into path components (the names of containing directories and the name of the file
+ * itself) and returns the resulting collection of components.
+ */
+inline fun File.toComponents(): FilePathComponents = Filex.toComponents(this)
+
+
+/* ******************************************* path ****************************************** */
+
+
+/**
+ * Returns a relative pathname which is a subsequence of this pathname,
+ * beginning from component [beginIndex], inclusive,
+ * ending at component [endIndex], exclusive.
+ * Number 0 belongs to a component closest to the root,
+ * number count-1 belongs to a component farthest from the root.
+ *
+ * @throws IllegalArgumentException if [beginIndex] is negative,
+ * or [endIndex] is greater than existing number of components,
+ * or [beginIndex] is greater than [endIndex].
+ */
+inline fun File.subPath(beginIndex: Int, endIndex: Int): File = Filex.subPath(this, beginIndex, endIndex)
