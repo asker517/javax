@@ -40,7 +40,29 @@ inline fun Closeable?.safeClose() = IOStreamx.safeClose(this)
  * **Note** It is the caller's responsibility to close both of these resources.
  */
 @Throws(IOException::class)
-fun InputStream.copyTo(out: OutputStream, bufferSize: Int = IOStreamx.DEFAULT_BUFFER_SIZE, listener: CopyListener? = null): Long =
+inline fun InputStream.copyTo(out: OutputStream, bufferSize: Int, listener: CopyListener): Long =
+        IOStreamx.copyTo(this, out, bufferSize, listener)
+
+/**
+ * Copies this stream to the given output stream, returning the number of bytes copied
+ *
+ * **Note** It is the caller's responsibility to close both of these resources.
+ */
+@Throws(IOException::class)
+inline fun InputStream.copyTo(out: OutputStream, listener: CopyListener): Long =
+        IOStreamx.copyTo(this, out, listener)
+
+
+/**
+ * Copies this reader to the given [out] writer, returning the number of characters copied.
+ * **Note** it is the caller's responsibility to close both of these resources.
+ *
+ * @param out        writer to write to.
+ * @param bufferSize size of character buffer to use in process.
+ * @return number of characters copied.
+ */
+@Throws(IOException::class)
+inline fun Reader.copyTo(out: Writer, bufferSize: Int, listener: CopyListener): Long =
         IOStreamx.copyTo(this, out, bufferSize, listener)
 
 
@@ -53,5 +75,5 @@ fun InputStream.copyTo(out: OutputStream, bufferSize: Int = IOStreamx.DEFAULT_BU
  * @return number of characters copied.
  */
 @Throws(IOException::class)
-fun Reader.copyTo(out: Writer, bufferSize: Int = IOStreamx.DEFAULT_BUFFER_SIZE, listener: CopyListener? = null): Long =
-        IOStreamx.copyTo(this, out, bufferSize, listener)
+inline fun Reader.copyTo(out: Writer, listener: CopyListener): Long =
+        IOStreamx.copyTo(this, out, listener)

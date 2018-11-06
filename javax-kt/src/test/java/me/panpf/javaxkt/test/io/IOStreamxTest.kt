@@ -16,6 +16,8 @@
 
 package me.panpf.javaxkt.test.io
 
+import me.panpf.javax.io.CopyListener
+import me.panpf.javaxkt.io.copyTo
 import me.panpf.javaxkt.io.safeClose
 import org.junit.Test
 import java.io.ByteArrayInputStream
@@ -40,5 +42,44 @@ class IOStreamxTest {
         }.safeClose()
 
         null.safeClose()
+    }
+
+    @Test
+    fun testCopyTo() {
+        var inputStream = "1234567890".byteInputStream()
+        var outputStream = ByteArrayOutputStream()
+        try {
+            inputStream.copyTo(outputStream, 1024 * 4, CopyListener { })
+        } finally {
+            inputStream.safeClose()
+            outputStream.safeClose()
+        }
+
+        inputStream = "1234567890".byteInputStream()
+        outputStream = ByteArrayOutputStream()
+        try {
+            inputStream.copyTo(outputStream, CopyListener { })
+        } finally {
+            inputStream.safeClose()
+            outputStream.safeClose()
+        }
+
+        inputStream = "1234567890".byteInputStream()
+        outputStream = ByteArrayOutputStream()
+        try {
+            inputStream.reader().copyTo(outputStream.writer(), 1024 * 4, CopyListener { })
+        } finally {
+            inputStream.safeClose()
+            outputStream.safeClose()
+        }
+
+        inputStream = "1234567890".byteInputStream()
+        outputStream = ByteArrayOutputStream()
+        try {
+            inputStream.reader().copyTo(outputStream.writer(), CopyListener { })
+        } finally {
+            inputStream.safeClose()
+            outputStream.safeClose()
+        }
     }
 }
