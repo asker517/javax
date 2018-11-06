@@ -1036,6 +1036,7 @@ public class Filex {
     @NotNull
     public static File createTempDir(@NotNull String prefix, @Nullable String suffix, @Nullable File directory) throws IOException {
         File dir = File.createTempFile(prefix, suffix, directory);
+        //noinspection ResultOfMethodCallIgnored
         dir.delete();
         if (dir.mkdir()) {
             return dir;
@@ -1049,6 +1050,19 @@ public class Filex {
      * <p>
      * If [prefix] is not specified then some unspecified name will be used.
      * If [suffix] is not specified then ".tmp" will be used.
+     *
+     * @return a file object corresponding to a newly-created directory.
+     * @throws IOException              in case of input/output error.
+     * @throws IllegalArgumentException if [prefix] is shorter than three symbols.
+     */
+    @NotNull
+    public static File createTempDir(@NotNull String prefix, @Nullable String suffix) throws IOException {
+        return createTempDir(prefix, suffix, null);
+    }
+
+    /**
+     * Creates an empty directory in the specified [directory], using the given [prefix] and [suffix] to generate its name.
+     * <p>
      * If [directory] is not specified then the default temporary-file directory will be used.
      *
      * @return a file object corresponding to a newly-created directory.
@@ -1058,6 +1072,18 @@ public class Filex {
     @NotNull
     public static File createTempDir(@Nullable File directory) throws IOException {
         return createTempDir("tmp", null, directory);
+    }
+
+    /**
+     * Creates an empty directory in the specified [directory], using the given [prefix] and [suffix] to generate its name.
+     *
+     * @return a file object corresponding to a newly-created directory.
+     * @throws IOException              in case of input/output error.
+     * @throws IllegalArgumentException if [prefix] is shorter than three symbols.
+     */
+    @NotNull
+    public static File createTempDir() throws IOException {
+        return createTempDir("tmp", null, null);
     }
 
     /**
@@ -1088,8 +1114,36 @@ public class Filex {
      * @throws IllegalArgumentException if [prefix] is shorter than three symbols.
      */
     @NotNull
+    public static File createTempFile(@NotNull String prefix, @Nullable String suffix) throws IOException {
+        return File.createTempFile(prefix, suffix, null);
+    }
+
+    /**
+     * Creates a new empty file in the specified [directory], using the given [prefix] and [suffix] to generate its name.
+     * <p>
+     * If [prefix] is not specified then some unspecified name will be used.
+     * If [suffix] is not specified then ".tmp" will be used.
+     * If [directory] is not specified then the default temporary-file directory will be used.
+     *
+     * @return a file object corresponding to a newly-created file.
+     * @throws IOException              in case of input/output error.
+     * @throws IllegalArgumentException if [prefix] is shorter than three symbols.
+     */
+    @NotNull
     public static File createTempFile(@Nullable File directory) throws IOException {
         return createTempFile("tmp", null, directory);
+    }
+
+    /**
+     * Creates a new empty file in the specified [directory], using the given [prefix] and [suffix] to generate its name.
+     *
+     * @return a file object corresponding to a newly-created file.
+     * @throws IOException              in case of input/output error.
+     * @throws IllegalArgumentException if [prefix] is shorter than three symbols.
+     */
+    @NotNull
+    public static File createTempFile() throws IOException {
+        return createTempFile("tmp", null, null);
     }
 
 
