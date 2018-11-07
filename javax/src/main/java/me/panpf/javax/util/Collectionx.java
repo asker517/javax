@@ -2394,7 +2394,7 @@ public class Collectionx {
     /**
      * Sorts elements in the list in-place according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <T, R extends Comparable<R>> void sortBy(@Nullable List<T> list, @NotNull final NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> void sortBy(@Nullable List<T> list, @NotNull final NullableAllTransformer<T, R> selector) {
         if (list != null && list.size() > 1) {
             sortWith(list, Comparisonx.compareBy(selector));
         }
@@ -2403,7 +2403,7 @@ public class Collectionx {
     /**
      * Sorts elements in the list in-place descending according to natural sort order of the value returned by specified [selector] function.
      */
-    public static <T, R extends Comparable<R>> void sortByDescending(@Nullable List<T> list, @NotNull NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> void sortByDescending(@Nullable List<T> list, @NotNull NullableAllTransformer<T, R> selector) {
         if (list != null && list.size() > 1) {
             sortWith(list, Comparisonx.compareByDescending(selector));
         }
@@ -2441,7 +2441,7 @@ public class Collectionx {
      * Returns a list of all elements sorted according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <T, R extends Comparable<R>> List<T> sortedBy(@Nullable Iterable<T> iterable, @NotNull NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> List<T> sortedBy(@Nullable Iterable<T> iterable, @NotNull NullableAllTransformer<T, R> selector) {
         return sortedWith(iterable, Comparisonx.compareBy(selector));
     }
 
@@ -2470,7 +2470,7 @@ public class Collectionx {
      * Returns a list of all elements sorted descending according to natural sort order of the value returned by specified [selector] function.
      */
     @NotNull
-    public static <T, R extends Comparable<R>> List<T> sortedByDescending(@Nullable Iterable<T> iterable, @NotNull NullableTransformer<T, R> selector) {
+    public static <T, R extends Comparable<R>> List<T> sortedByDescending(@Nullable Iterable<T> iterable, @NotNull NullableAllTransformer<T, R> selector) {
         return sortedWith(iterable, Comparisonx.compareByDescending(selector));
     }
 

@@ -16,7 +16,6 @@
 
 package me.panpf.javaxkt.test.lang
 
-import me.panpf.javax.lang.Annotationx
 import me.panpf.javaxkt.lang.getAnnotationFromEnum
 import org.junit.Assert
 import org.junit.Test
@@ -38,6 +37,5 @@ class AnnotationxTest {
     fun testFromEnum() {
         Assert.assertEquals(TesetEnum.VALUE1.getAnnotationFromEnum(TestAnnotation::class.java)?.value, "1")
         Assert.assertNull(TesetEnum.VALUE2.getAnnotationFromEnum(TestAnnotation::class.java))
-
     }
 }

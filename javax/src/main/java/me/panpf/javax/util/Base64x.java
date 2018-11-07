@@ -68,6 +68,7 @@ public class Base64x {
      * should not close the output stream it is wrapping when it
      * itself is closed.
      */
+    @SuppressWarnings("unused")
     public static final int NO_CLOSE = 16;
 
     //  --------------------------------------------------------
