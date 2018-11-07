@@ -1,16 +1,28 @@
 ## v0.8.5
 
+Fix bug:
 * :bug: Fix Filex startsWith method bug
-* :sparkles: Filex createTempDir and createTempFile method added overload method
-* :fire: Filex remove getRootName and getRoot method
 * :bug: Filex getInvariantSeparatorsPath method change to static
 * :bug: Fix IOStreamx forEachLine method crash bug
+
+Removed:
+* :fire: Filex remove getRootName and getRoot method
+
+Major change:
+* :fire: Comparisonx compareBy method The selector parameter type is changed to NullableAllTransformer. The methods that are implicated are Arrayx.sortBy, Arrayx.sortedBy, Collectionx.sortBy, Collectionx.sortedBy
+
+Add:
+* :sparkles: Filex createTempDir and createTempFile method added overload method
 * :sparkles: Filex.kt adds toComponents and subPath method
 * :sparkles: Filex adds bufferedInputStream and bufferedOutputStream method
+
+Perfect test:
 * :white_check_mark: Improve Filex testing
 * :white_check_mark: Improve IOStreamx testing
-* :fire: Comparisonx compareBy method The selector parameter type is changed to NullableAllTransformer. The methods that are implicated are Arrayx.sortBy, Arrayx.sortedBy, Collectionx.sortBy, Collectionx.sortedBy
+* :white_check_mark: Improve Annotationx testing
 * :white_check_mark: Improve Comparisonx testing
+* :white_check_mark: Improve Premisex testing
+
 
 ## v0.8.4
 

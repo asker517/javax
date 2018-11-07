@@ -44,6 +44,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 
 ## Index
 
+:warning: Representatives with the `(Test)` tag have passed the test and can be used with confidence.
+
 ### crypto
 * Aes: [Aesx.java] ([Test][AesxTest.java]) | [Aesx.kt] ([Test][AesxTest.kt])
     * createKey, createKeyByPassword, keyFromBytes, keyFromBase64, encrypt, encryptToBase64,
@@ -51,6 +53,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Des: [Desx.java] ([Test][DesxTest.java]) | [Desx.kt] ([Test][DesxTest.kt])
     * createKeyByPassword, encrypt, encryptToBase64,
     * decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64,
+* Key: [Keyx.java] ([Test][KeyTest.java]) | [Keyx.kt] ([Test][KeyxTest.kt])
+    * toBase64, toBytes
 * Rsa: [Rsax.java] ([Test][RsaxTest.java]) | [Rsax.kt] ([Test][RsaxTest.kt])
     * createKey, pubKeyFromBase64, priKeyFromBase64, sign, signToBase64, verify, verifyFromBase64,
     * encrypt, encryptToBase64, decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64
@@ -83,7 +87,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * divide, divideToInt, divideToLong, scale, proportion, percent
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
     * to\*OrDefault, to\*OrZero, orZero(Kt)
-* String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
+* String: [Stringx.java] | [Stringx.kt]
     * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr
     * isEmpty, isNotEmpty, isEmptyOr, isNullOrEmpty, isNotNullOrEmpty, isNullOrEmptyOr,
@@ -117,7 +121,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Array2: [Arrayx2.java]
     * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
     * contentEquals, binarySearch, copyOf, slice, associate
-* Date: [Datex.java] ([Test][DatexTest.java]) | [Datex.kt] ([Test][DatexTest.kt])
+* Date: [Datex.java] | [Datex.kt]
     * createCalendar, toDate, toMillisecond, format, getYear, getMonth, get\*, addYear, addMonth, add\*,
     * isSameYear, isSameMonth, isSame\*, differYear, differMonth, differ\*
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
@@ -129,9 +133,9 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse,
     * indexOf, fold, reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt,
     * fill, shuffle
-* Comparison: [Comparisonx.java]
+* Comparison: [Comparisonx.java] ([Test][ComparisonxTest.java])
     * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf, areEqual
-* Format: [Formatx.java] ([Test][FormatxTest.java]) | [Formatx.kt] ([Test][FormatxTest.kt])
+* Format: [Formatx.java] | [Formatx.kt]
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
     * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad, duration, durationShort
@@ -140,14 +144,14 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])
     * require, requireNotNull, check, checkNotNull, requireSafe, requireNotSafe
     * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireNotZero
-* Range: [Rangex.java] ([Test][RangexTest.java]) | [Rangex.kt] ([Test][RangexTest.kt])
+* Range: [Rangex.java] | [Rangex.kt]
     * in, notIn, coerceAtLeast, coerceAtMost, rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
 * Regex: [Regexx.java] ([Test][RegexxTest.java]) | [Regexx.kt] ([Test][RegexxTest.kt])
     * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
     * IPV4, IPV6, MAC_ADDRESS, CHINESE, CHINESE_SYMBOL, BLANK, EMAIL, URI, FLOAT_NUMBER, INTEGER
-* Zip: [Zipx.java] ([Test][ZipxTest.java]) | [Zipx.kt] ([Test][ZipxTest.kt])
+* Zip: [Zipx.java] | [Zipx.kt]
     * compressFilesTo, compressDirTo, compressDir, getCompressDstDir, decompressTo, decompress, getDecompressDstDir
 
 ## Change Log
@@ -197,6 +201,11 @@ Please view the [CHANGELOG.md] file
 [DesxTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/DesxTest.java
 [Desx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/crypto/Desx.kt
 [DesxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/DesxTest.kt
+
+[Keyx.java]: javax/src/main/java/me/panpf/javax/crypto/Keyx.java
+[KeyxTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/KeyxTest.java
+[Keyx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/crypto/Keyx.kt
+[KeyxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/crypto/KeyxTest.kt
 
 [Rsax.java]: javax/src/main/java/me/panpf/javax/crypto/Rsax.java
 [RsaxTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/RsaxTest.java
