@@ -73,7 +73,6 @@ inline fun Array<File>?.zipCompressFilesTo(destinationFile: File, crossinline zi
  * Compress the specified file
  *
  * @param destinationFile       Output file
- * @param zipEntryNameTransform Get the name of the file compressed into the zip package
  * @return Output file
  * @throws IOException IO exceptions
  */
