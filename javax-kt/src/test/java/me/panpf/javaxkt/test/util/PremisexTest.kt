@@ -1,5 +1,6 @@
 package me.panpf.javaxkt.test.util
 
+import me.panpf.javax.util.LazyValue
 import me.panpf.javaxkt.io.createNewFileOrCheck
 import me.panpf.javaxkt.io.mkdirsOrCheck
 import me.panpf.javaxkt.util.*
@@ -235,6 +236,7 @@ class PremisexTest {
         "".requireNotNull()
         "".requireNotNull("param")
         "".requireNotNull { "param is null" }
+        "".requireNotNull(LazyValue { "param is null" })
 
         try {
             null.requireNotNull("param")
@@ -250,6 +252,7 @@ class PremisexTest {
         "".checkNotNull()
         "".checkNotNull("param")
         "".checkNotNull { "param is null" }
+        "".checkNotNull(LazyValue { "param is null" })
 
         try {
             null.checkNotNull("param")
