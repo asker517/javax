@@ -1,6 +1,6 @@
 ## v...
 
-* :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension, createFileTree, compareFilePath method
+* :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension, createFileTree, compareFilePath, existOrAddNumber method
 * :sparkles: Filex adds FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator method
 * :sparkles: Zipx adds compressChildFileTo, compressChildFile, listEntry, listEntryName, size, ZipEntryNameTransformer
 * :fire: Zipx removed compressDirTo, compressDir method

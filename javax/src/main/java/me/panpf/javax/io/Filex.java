@@ -557,6 +557,45 @@ public class Filex {
         return compareFilePath(file1 != null ? file1.getPath() : null, file2 != null ? file2.getPath() : null);
     }
 
+    /**
+     * If the specified file does not exist, return the file, otherwise add a number after the name of the original file until you find a file that does not exist.
+     *
+     * @param maxNumber Maximum number
+     */
+    @NotNull
+    public static File existOrAddNumber(@NotNull File file, int maxNumber) {
+        if (!file.exists()) return file;
+
+        String nameWithoutExtension = Filex.getNameWithoutExtension(file);
+        String extension = Filex.getExtension(file);
+        File parentFile = file.getParentFile();
+
+        final int finalMaxNumber = maxNumber > 0 ? maxNumber : Integer.MAX_VALUE;
+        int number = 1;
+        File finalFile;
+        while (number <= finalMaxNumber) {
+            finalFile = new File(parentFile, nameWithoutExtension + number + (Stringx.isSafe(extension) ? ("." + extension) : ""));
+            if (!finalFile.exists()) return finalFile;
+            number++;
+        }
+
+        finalFile = new File(parentFile, nameWithoutExtension + String.valueOf(System.currentTimeMillis()) + (Stringx.isSafe(extension) ? ("." + extension) : ""));
+        if (!finalFile.exists()) return finalFile;
+
+        finalFile = new File(parentFile, nameWithoutExtension + UUID.randomUUID().toString() + (Stringx.isSafe(extension) ? ("." + extension) : ""));
+        if (!finalFile.exists()) return finalFile;
+
+        throw new RuntimeException("Unable to find a file that does not exist: " + file.getPath());
+    }
+
+    /**
+     * If the specified file does not exist, return the file, otherwise add a number after the name of the original file until you find a file that does not exist.
+     */
+    @NotNull
+    public static File existOrAddNumber(@NotNull File file) {
+        return existOrAddNumber(file, -1);
+    }
+
 
     /*
      * *****************************************************************************************************************

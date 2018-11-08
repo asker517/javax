@@ -339,6 +339,31 @@ class FilexTest {
     }
 
     @Test
+    fun testExistOrAddNumber() {
+        val dir = File("/tmp/testExistOrAddNumber")
+        try {
+            Assert.assertEquals(File(dir, "test/file.txt").path, File(dir, "test/file.txt").existOrAddNumber().path)
+
+            File(dir, "test/file.txt").createNewFileOrThrow()
+            Assert.assertEquals(File(dir, "test/file1.txt").path, File(dir, "test/file.txt").existOrAddNumber().path)
+
+            File(dir, "test/file1.txt").createNewFileOrThrow()
+            Assert.assertEquals(File(dir, "test/file2.txt").path, File(dir, "test/file.txt").existOrAddNumber().path)
+
+
+            Assert.assertEquals(File(dir, "test/dir").path, File(dir, "test/dir").existOrAddNumber().path)
+
+            File(dir, "test/dir").createNewFileOrThrow()
+            Assert.assertEquals(File(dir, "test/dir1").path, File(dir, "test/dir").existOrAddNumber().path)
+
+            File(dir, "test/dir1").createNewFileOrThrow()
+            Assert.assertEquals(File(dir, "test/dir2").path, File(dir, "test/dir").existOrAddNumber(10).path)
+        } finally {
+            dir.deleteRecursively()
+        }
+    }
+
+    @Test
     fun testComponents() {
         var file = File("/tmp/testRoot")
         var components = file.toComponents()

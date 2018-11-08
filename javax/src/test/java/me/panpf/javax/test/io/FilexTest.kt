@@ -345,6 +345,31 @@ class FilexTest {
         Assert.assertEquals(Filex.compareFilePath(null as String?, null as String?), 0)
     }
 
+    @Test
+    fun testExistOrAddNumber() {
+        val dir = File("/tmp/testExistOrAddNumber")
+        try {
+            Assert.assertEquals(File(dir, "test/file.txt").path, Filex.existOrAddNumber(File(dir, "test/file.txt")).path)
+
+            Filex.createNewFileOrThrow(File(dir, "test/file.txt"))
+            Assert.assertEquals(File(dir, "test/file1.txt").path, Filex.existOrAddNumber(File(dir, "test/file.txt")).path)
+
+            Filex.createNewFileOrThrow(File(dir, "test/file1.txt"))
+            Assert.assertEquals(File(dir, "test/file2.txt").path, Filex.existOrAddNumber(File(dir, "test/file.txt")).path)
+
+
+            Assert.assertEquals(File(dir, "test/dir").path, Filex.existOrAddNumber(File(dir, "test/dir")).path)
+
+            Filex.createNewFileOrThrow(File(dir, "test/dir"))
+            Assert.assertEquals(File(dir, "test/dir1").path, Filex.existOrAddNumber(File(dir, "test/dir")).path)
+
+            Filex.createNewFileOrThrow(File(dir, "test/dir1"))
+            Assert.assertEquals(File(dir, "test/dir2").path, Filex.existOrAddNumber(File(dir, "test/dir"), 10).path)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
+    }
+
 
     /*
      * *****************************************************************************************************************

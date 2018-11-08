@@ -70,6 +70,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * bufferedWriter, printWriter, writeBytes, appendBytes, writeText, appendText, walk, walkTopDown,
     * walkBottomUp listCount, listCountRecursively, getAllExtension, getNameWithoutAllExtension,
     * createFileTree, compareFilePath, FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator
+    * existOrAddNumber
 * IOStream: [IOStreamx.java] ([Test][IOStreamxTest.java]) | [IOStreamx.kt] ([Test][IOStreamxTest.kt])
     * safeClose, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
     * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,

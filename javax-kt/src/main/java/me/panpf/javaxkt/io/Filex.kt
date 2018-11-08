@@ -244,6 +244,18 @@ inline fun String?.compareFilePath(filePath2: String?): Int = Filex.compareFileP
  */
 inline fun File?.compareFilePath(file2: File?): Int = Filex.compareFilePath(this, file2)
 
+/**
+ * If the specified file does not exist, return the file, otherwise add a number after the name of the original file until you find a file that does not exist.
+ *
+ * @param maxNumber Maximum number
+ */
+inline fun File.existOrAddNumber(maxNumber: Int): File = Filex.existOrAddNumber(this, maxNumber)
+
+/**
+ * If the specified file does not exist, return the file, otherwise add a number after the name of the original file until you find a file that does not exist.
+ */
+inline fun File.existOrAddNumber(): File = Filex.existOrAddNumber(this)
+
 
 /*
  * *****************************************************************************************************************
