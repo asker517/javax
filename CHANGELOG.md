@@ -1,6 +1,6 @@
 ## v...
 
-* :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension method
+* :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension, createFileTree method
 
 
 ## v0.8.5

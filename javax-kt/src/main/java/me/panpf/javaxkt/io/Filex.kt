@@ -221,6 +221,19 @@ val File.allExtension: String
 val File.nameWithoutAllExtension: String
     get() = Filex.getNameWithoutAllExtension(this)
 
+/**
+ * Create a file tree
+ *
+ * @receiver         Start directory
+ * @param maxSpan     Max span. Decide how many files or directories are in the same directory
+ * @param maxDepth    Max depth
+ * @param fileName    File name. For example 'test.txt', 'test1.txt', 'test2.txt'... will be created in the folder...
+ * @param fileContent The content to be written to the file
+ * @return Start directory
+ */
+@Throws(IOException::class)
+inline fun File.createFileTree(maxSpan: Int, maxDepth: Int, fileName: String, fileContent: String?): File = Filex.createFileTree(this, maxSpan, maxDepth, fileName, fileContent)
+
 
 /*
  * *****************************************************************************************************************

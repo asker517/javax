@@ -29,66 +29,6 @@ import java.util.*
 
 class FilexTest {
 
-    @Throws(IOException::class)
-    private fun createFileTree(dir: File, fileContent: String): File {
-        Filex.deleteRecursively(dir)
-        Filex.mkdirsOrThrow(dir)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "file1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "file2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "file3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/file1-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/file1-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/file1-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-1/file1-1-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-1/file1-1-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-1/file1-1-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-2/file1-2-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-2/file1-2-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-2/file1-2-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-3/file1-3-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-3/file1-3-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir1/dir1-3/file1-3-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/file2-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/file2-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/file2-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-1/file2-1-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-1/file2-1-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-1/file2-1-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-2/file2-2-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-2/file2-2-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-2/file2-2-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-3/file2-3-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-3/file2-3-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir2/dir2-3/file2-3-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/file3-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/file3-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/file3-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-1/file3-1-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-1/file3-1-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-1/file3-1-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-2/file3-2-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-2/file3-2-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-2/file3-2-3.txt")), fileContent)
-
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-3/file3-3-1.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-3/file3-3-2.txt")), fileContent)
-        Filex.writeText(Filex.createNewFileOrThrow(File(dir, "dir3/dir3-3/file3-3-3.txt")), fileContent)
-
-        return dir
-    }
-
 
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
@@ -140,7 +80,7 @@ class FilexTest {
         /*
          * clean
          */
-        val dir = createFileTree(File("/tmp/testClean"), "testClean")
+        val dir = Filex.createFileTree(File("/tmp/testClean"), 3, 3, "file.txt", "testClean")
         try {
             Assert.assertTrue(dir.exists())
             Assert.assertEquals(Arrayx.count(dir.listFiles()), 6)
@@ -171,7 +111,7 @@ class FilexTest {
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testCleanRecursively() {
-        val dir = createFileTree(File("/tmp/testCleanRecursively"), "testCleanRecursively")
+        val dir = Filex.createFileTree(File("/tmp/testCleanRecursively"), 3, 3, "file.txt", "testCleanRecursively")
         try {
             Assert.assertTrue(dir.exists())
             Assert.assertEquals(Filex.listCountRecursively(dir), 51)
@@ -225,25 +165,25 @@ class FilexTest {
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testListRecursively() {
-        val dir = createFileTree(File("/tmp/testListRecursively"), "testListRecursively")
+        val dir = Filex.createFileTree(File("/tmp/testListRecursively"), 3, 3, "file.txt", "testListRecursively")
 
         try {
             val childPaths = Filex.listRecursively(dir)
             Assert.assertEquals(Arrayx.count(childPaths), 51)
             Assert.assertTrue(Arrayx.contains(childPaths, "file1.txt"))
             Assert.assertTrue(Arrayx.contains(childPaths, "dir1"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/file1-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1-1/file1-1-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1-2/file1-2-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1-3/file1-3-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir1/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir2/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir1/dir3/file1.txt"))
             Assert.assertTrue(Arrayx.contains(childPaths, "dir2"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2-1/file2-1-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2-2/file2-2-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2-3/file2-3-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir1/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir2/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir2/dir3/file1.txt"))
             Assert.assertTrue(Arrayx.contains(childPaths, "dir3"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3-1/file3-1-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3-2/file3-2-1.txt"))
-            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3-3/file3-3-1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir1/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir2/file1.txt"))
+            Assert.assertTrue(Arrayx.contains(childPaths, "dir3/dir3/file1.txt"))
 
             Assert.assertEquals((Filex.listRecursively(dir) { pathname -> pathname.isFile }?.size ?: 0).toLong(), 39)
             Assert.assertEquals((Filex.listRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }?.size
@@ -253,18 +193,18 @@ class FilexTest {
             Assert.assertEquals(Arrayx.count(childFiles), 51)
             Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "file1.txt")))
             Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/file1-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1-1/file1-1-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1-2/file1-2-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1-3/file1-3-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir1/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir2/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir1/dir3/file1.txt")))
             Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2-1/file2-1-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2-2/file2-2-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2-3/file2-3-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir1/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir2/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir2/dir3/file1.txt")))
             Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3-1/file3-1-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3-2/file3-2-1.txt")))
-            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3-3/file3-3-1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir1/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir2/file1.txt")))
+            Assert.assertTrue(Arrayx.contains(childFiles, File(dir, "dir3/dir3/file1.txt")))
 
             Assert.assertEquals((Filex.listFilesRecursively(dir) { pathname -> pathname.isFile }?.size
                     ?: 0).toLong(), 39)
@@ -296,7 +236,7 @@ class FilexTest {
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testListCount() {
-        val dir = createFileTree(File("/tmp/testListCount"), "testListCount")
+        val dir = Filex.createFileTree(File("/tmp/testListCount"), 3, 3, "file.txt", "testListCount")
 
         try {
             Assert.assertEquals(Filex.listCount(dir), 6)
@@ -326,7 +266,7 @@ class FilexTest {
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testListCountRecursively() {
-        val dir = createFileTree(File("/tmp/testListCountRecursively"), "testListCountRecursively")
+        val dir = Filex.createFileTree(File("/tmp/testListCountRecursively"), 3, 3, "file.txt", "testListCountRecursively")
 
         try {
             Assert.assertEquals(Filex.listCountRecursively(dir), 51)
@@ -367,6 +307,15 @@ class FilexTest {
         Assert.assertEquals("testExtension", Filex.getNameWithoutAllExtension(File("/tmp/testExtension.txt.zip")))
         Assert.assertEquals("testExtension", Filex.getNameWithoutAllExtension(File("/tmp/testExtension")))
         Assert.assertEquals("", Filex.getNameWithoutAllExtension(File("/tmp/.txt")))
+    }
+
+    @Test
+    fun testCreateFileTree() {
+        val dir = File("/tmp/testCreateFileTree")
+        Filex.createFileTree(dir, 3, 3, "file.txt", "testCreateFileTree")
+        Assert.assertEquals(Filex.listCountRecursively(dir), 51)
+        Assert.assertEquals(Filex.listCountRecursively(dir) { pathname -> pathname.isFile }, 39)
+        Assert.assertEquals(Filex.listCountRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }, 12)
     }
 
 
@@ -424,7 +373,7 @@ class FilexTest {
         /*
          * test copy dir
          */
-        val copySourceDir = createFileTree(File("/tmp/testCopyDir"), "testCopyDir")
+        val copySourceDir = Filex.createFileTree(File("/tmp/testCopyDir"), 3, 3, "file.txt", "testCopyDir")
         val copyTargetDir = File(copySourceDir.path + "_copyTarget")
         try {
             Filex.deleteRecursively(copyTargetDir)
@@ -451,7 +400,7 @@ class FilexTest {
     @Test
     @Throws(IOException::class)
     fun testCopyRecursively() {
-        val copySourceDir = createFileTree(File("/tmp/testCopyRecursively"), "testCopyRecursively")
+        val copySourceDir = Filex.createFileTree(File("/tmp/testCopyRecursively"), 3, 3, "file.txt", "testCopyRecursively")
         val copyTargetDir = File(copySourceDir.path + "_copyTarget")
         val copyTargetDirKotlin = File(copySourceDir.path + "_copyTarget_kotlin")
         try {
@@ -516,7 +465,7 @@ class FilexTest {
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testDeleteRecursively() {
-        val dir = createFileTree(File("/tmp/testDeleteRecursively"), "testDeleteRecursively")
+        val dir = Filex.createFileTree(File("/tmp/testDeleteRecursively"), 3, 3, "file.txt", "testDeleteRecursively")
         try {
             Assert.assertTrue(dir.exists())
             Assert.assertTrue(Filex.deleteRecursively(dir))
@@ -988,7 +937,7 @@ class FilexTest {
     @Test
     @Throws(IOException::class)
     fun testWalk() {
-        val sourceDir = createFileTree(File("/tmp/testWalk"), "testWalk")
+        val sourceDir = Filex.createFileTree(File("/tmp/testWalk"), 3, 3, "file.txt", "testWalk")
         try {
             Assert.assertEquals(Collectionx.joinToArrayString(LinkedList<String>().apply {
                 for (file in Filex.walk(sourceDir, FileWalkDirection.BOTTOM_UP)) {

@@ -439,6 +439,29 @@ public class Filex {
         return Stringx.substringBefore(file.getName(), ".", file.getName());
     }
 
+    /**
+     * Create a file tree
+     *
+     * @param dir         Start directory
+     * @param maxSpan     Max span. Decide how many files or directories are in the same directory
+     * @param maxDepth    Max depth
+     * @param fileName    File name. For example 'test.txt', 'test1.txt', 'test2.txt'... will be created in the folder...
+     * @param fileContent The content to be written to the file
+     * @return Start directory
+     */
+    public static File createFileTree(@NotNull File dir, int maxSpan, int maxDepth, @NotNull String fileName, @Nullable String fileContent) throws IOException {
+        File file = new File(fileName);
+        String nameWithoutExtension = Filex.getNameWithoutExtension(file);
+        String extension = Filex.getExtension(file);
+        for (int span : Rangex.rangeTo(1, maxSpan)) {
+            File outFile = new File(dir, nameWithoutExtension + span + "." + extension);
+            Filex.createNewFileOrThrow(outFile);
+            if (fileContent != null) Filex.writeText(outFile, fileContent);
+            if (maxDepth > 1) createFileTree(new File(dir, "dir" + span), maxSpan, maxDepth - 1, fileName, fileContent);
+        }
+        return dir;
+    }
+
 
     /* ******************************************* listCount ****************************************** */
 
