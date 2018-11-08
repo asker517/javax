@@ -353,6 +353,22 @@ class FilexTest {
         }
     }
 
+    @Test
+    fun testAllExtension() {
+        Assert.assertEquals("txt", Filex.getAllExtension(File("/tmp/testExtension.txt")))
+        Assert.assertEquals("txt.zip", Filex.getAllExtension(File("/tmp/testExtension.txt.zip")))
+        Assert.assertEquals("", Filex.getAllExtension(File("/tmp/testExtension")))
+        Assert.assertEquals("txt", Filex.getAllExtension(File("/tmp/.txt")))
+    }
+
+    @Test
+    fun testNameWithoutAllExtension() {
+        Assert.assertEquals("testExtension", Filex.getNameWithoutAllExtension(File("/tmp/testExtension.txt")))
+        Assert.assertEquals("testExtension", Filex.getNameWithoutAllExtension(File("/tmp/testExtension.txt.zip")))
+        Assert.assertEquals("testExtension", Filex.getNameWithoutAllExtension(File("/tmp/testExtension")))
+        Assert.assertEquals("", Filex.getNameWithoutAllExtension(File("/tmp/.txt")))
+    }
+
 
     /*
      * *****************************************************************************************************************
@@ -717,15 +733,38 @@ class FilexTest {
     fun testExtension() {
         var file = File("/tmp/testExtension.txt")
         Assert.assertEquals(Filex.getExtension(file), "txt")
-        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testExtension")
+        Assert.assertEquals(Filex.getExtension(file), file.extension)
+
+        file = File("/tmp/testExtension.txt.zip")
+        Assert.assertEquals(Filex.getExtension(file), "zip")
+        Assert.assertEquals(Filex.getExtension(file), file.extension)
 
         file = File("/tmp/testExtension")
         Assert.assertEquals(Filex.getExtension(file), "")
-        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testExtension")
+        Assert.assertEquals(Filex.getExtension(file), file.extension)
 
         file = File("/tmp/.txt")
         Assert.assertEquals(Filex.getExtension(file), "txt")
+        Assert.assertEquals(Filex.getExtension(file), file.extension)
+    }
+
+    @Test
+    fun testNameWithoutExtension() {
+        var file = File("/tmp/testExtension.txt")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testExtension")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), file.nameWithoutExtension)
+
+        file = File("/tmp/testExtension.txt.zip")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testExtension.txt")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), file.nameWithoutExtension)
+
+        file = File("/tmp/testExtension")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), "testExtension")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), file.nameWithoutExtension)
+
+        file = File("/tmp/.txt")
         Assert.assertEquals(Filex.getNameWithoutExtension(file), "")
+        Assert.assertEquals(Filex.getNameWithoutExtension(file), file.nameWithoutExtension)
     }
 
     @Test

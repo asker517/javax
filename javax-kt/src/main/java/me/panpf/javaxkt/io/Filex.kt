@@ -207,6 +207,21 @@ inline fun File.listCountRecursively(crossinline filenameFilter: (dir: File, nam
 inline fun File.listCountRecursively(): Int = Filex.listCountRecursively(this)
 
 
+/* ******************************************* other ****************************************** */
+
+/**
+ * Returns all extensions for this file, or an empty string if none. For example: '/tmp/testExtension.txt.zip' returns 'txt.zip'
+ */
+val File.allExtension: String
+    get() = Filex.getAllExtension(this)
+
+/**
+ * Returns file's name without an all extension. For example: '/tmp/testExtension.txt.zip' returns 'testExtension'
+ */
+val File.nameWithoutAllExtension: String
+    get() = Filex.getNameWithoutAllExtension(this)
+
+
 /*
  * *****************************************************************************************************************
  * From kotlin standard library

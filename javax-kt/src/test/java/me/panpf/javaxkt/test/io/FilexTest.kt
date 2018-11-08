@@ -348,6 +348,22 @@ class FilexTest {
     }
 
     @Test
+    fun testAllExtension() {
+        Assert.assertEquals("txt", File("/tmp/testExtension.txt").allExtension)
+        Assert.assertEquals("txt.zip", File("/tmp/testExtension.txt.zip").allExtension)
+        Assert.assertEquals("", File("/tmp/testExtension").allExtension)
+        Assert.assertEquals("txt", File("/tmp/.txt").allExtension)
+    }
+
+    @Test
+    fun testNameWithoutAllExtension() {
+        Assert.assertEquals("testExtension", File("/tmp/testExtension.txt").nameWithoutAllExtension)
+        Assert.assertEquals("testExtension", File("/tmp/testExtension.txt.zip").nameWithoutAllExtension)
+        Assert.assertEquals("testExtension", File("/tmp/testExtension").nameWithoutAllExtension)
+        Assert.assertEquals("", File("/tmp/.txt").nameWithoutAllExtension)
+    }
+
+    @Test
     fun testComponents() {
         var file = File("/tmp/testRoot")
         var components = file.toComponents()

@@ -423,6 +423,23 @@ public class Filex {
     }
 
 
+    /* ******************************************* other ****************************************** */
+
+    /**
+     * Returns all extensions for this file, or an empty string if none. For example: '/tmp/testExtension.txt.zip' returns 'txt.zip'
+     */
+    public static String getAllExtension(@NotNull File file) {
+        return Stringx.substringAfter(file.getName(), ".", "");
+    }
+
+    /**
+     * Returns file's name without an all extension. For example: '/tmp/testExtension.txt.zip' returns 'testExtension'
+     */
+    public static String getNameWithoutAllExtension(@NotNull File file) {
+        return Stringx.substringBefore(file.getName(), ".", file.getName());
+    }
+
+
     /* ******************************************* listCount ****************************************** */
 
 
@@ -1152,7 +1169,7 @@ public class Filex {
 
 
     /**
-     * Returns the getExtension of this file (not including the dot), or an empty string if it doesn't have one.
+     * Returns the extension of this file (not including the dot), or an empty string if it doesn't have one.
      */
     @NotNull
     public static String getExtension(@NotNull File file) {
@@ -1160,7 +1177,7 @@ public class Filex {
     }
 
     /**
-     * Returns file's name without an getExtension.
+     * Returns file's name without an extension.
      */
     @NotNull
     public static String getNameWithoutExtension(@NotNull File file) {

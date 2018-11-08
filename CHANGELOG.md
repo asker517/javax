@@ -1,3 +1,8 @@
+## v...
+
+* :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension method
+
+
 ## v0.8.5
 
 Fix bug:
