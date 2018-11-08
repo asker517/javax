@@ -28,22 +28,24 @@ class FilexTest {
 
     @Test
     fun testCreateNewFile() {
-        val file1 = File("/tmp/testCreateNewFile/test1.txt")
+        val dir = File("/tmp/testCreateNewFile1")
         try {
+            val file1 = File(dir, "test1.txt")
             Assert.assertFalse(file1.exists())
             Assert.assertTrue(file1.createNewFileOrThrow().exists())
             Assert.assertTrue(file1.createNewFileOrThrow().exists())
         } finally {
-            file1.deleteRecursively()
+            dir.deleteRecursively()
         }
 
-        val file2 = File("/tmp/testCreateNewFile/test2.txt")
+        val dir2 = File("/tmp/testCreateNewFile2")
         try {
+            val file2 = File(dir2, "test2.txt")
             Assert.assertFalse(file2.exists())
             Assert.assertTrue(file2.createNewFileOrCheck())
             Assert.assertTrue(file2.createNewFileOrCheck())
         } finally {
-            file2.deleteRecursively()
+            dir2.deleteRecursively()
         }
     }
 
@@ -305,10 +307,14 @@ class FilexTest {
     @Test
     fun testCreateFileTree() {
         val dir = File("/tmp/testCreateFileTree")
-        dir.createFileTree(3, 3, "file.txt", "testCreateFileTree")
-        Assert.assertEquals(dir.listCountRecursively(), 51)
-        Assert.assertEquals(dir.listCountRecursively { pathname -> pathname.isFile }, 39)
-        Assert.assertEquals(dir.listCountRecursively { dir2, name -> File(dir2, name).isDirectory }, 12)
+        try {
+            dir.createFileTree(3, 3, "file.txt", "testCreateFileTree")
+            Assert.assertEquals(dir.listCountRecursively(), 51)
+            Assert.assertEquals(dir.listCountRecursively { pathname -> pathname.isFile }, 39)
+            Assert.assertEquals(dir.listCountRecursively { dir2, name -> File(dir2, name).isDirectory }, 12)
+        } finally {
+            dir.deleteRecursively()
+        }
     }
 
     @Test

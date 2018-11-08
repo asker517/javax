@@ -29,26 +29,27 @@ import java.util.*
 
 class FilexTest {
 
-
     @Test
     @Throws(UnableCreateFileException::class, UnableCreateDirException::class)
     fun testCreateNewFile() {
-        val file1 = File("/tmp/testCreateNewFile/test1.txt")
+        val dir = File("/tmp/testCreateNewFile1")
         try {
+            val file1 = File(dir, "test1.txt")
             Assert.assertFalse(file1.exists())
             Assert.assertTrue(Filex.createNewFileOrThrow(file1).exists())
             Assert.assertTrue(Filex.createNewFileOrThrow(file1).exists())
         } finally {
-            Filex.deleteRecursively(file1)
+            Filex.deleteRecursively(dir)
         }
 
-        val file2 = File("/tmp/testCreateNewFile/test2.txt")
+        val dir2 = File("/tmp/testCreateNewFile2")
         try {
+            val file2 = File(dir2, "test2.txt")
             Assert.assertFalse(file2.exists())
             Assert.assertTrue(Filex.createNewFileOrCheck(file2))
             Assert.assertTrue(Filex.createNewFileOrCheck(file2))
         } finally {
-            Filex.deleteRecursively(file2)
+            Filex.deleteRecursively(dir2)
         }
     }
 
@@ -312,10 +313,14 @@ class FilexTest {
     @Test
     fun testCreateFileTree() {
         val dir = File("/tmp/testCreateFileTree")
-        Filex.createFileTree(dir, 3, 3, "file.txt", "testCreateFileTree")
-        Assert.assertEquals(Filex.listCountRecursively(dir), 51)
-        Assert.assertEquals(Filex.listCountRecursively(dir) { pathname -> pathname.isFile }, 39)
-        Assert.assertEquals(Filex.listCountRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }, 12)
+        try {
+            Filex.createFileTree(dir, 3, 3, "file.txt", "testCreateFileTree")
+            Assert.assertEquals(Filex.listCountRecursively(dir), 51)
+            Assert.assertEquals(Filex.listCountRecursively(dir) { pathname -> pathname.isFile }, 39)
+            Assert.assertEquals(Filex.listCountRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }, 12)
+        } finally {
+            Filex.deleteRecursively(dir)
+        }
     }
 
     @Test
@@ -664,7 +669,7 @@ class FilexTest {
             Assert.assertTrue(dir.name.endsWith("testCreateTempDir"))
             Assert.assertEquals(dir.parent, "/tmp/testCreateTempDir")
         } finally {
-            Filex.deleteRecursively(dir)
+            Filex.deleteRecursively(dir.parentFile)
         }
 
         dir = Filex.createTempDir(Filex.mkdirsOrThrow(File("/tmp/testCreateTempDir2")))
@@ -674,7 +679,7 @@ class FilexTest {
             Assert.assertTrue(dir.name.startsWith("tmp"))
             Assert.assertEquals(dir.parent, "/tmp/testCreateTempDir2")
         } finally {
-            Filex.deleteRecursively(dir)
+            Filex.deleteRecursively(dir.parentFile)
         }
 
         dir = Filex.createTempDir()
@@ -707,7 +712,7 @@ class FilexTest {
             Assert.assertTrue(file.name.endsWith("testCreateTempFile"))
             Assert.assertEquals(file.parent, "/tmp/testCreateTempFile")
         } finally {
-            Filex.deleteRecursively(file)
+            Filex.deleteRecursively(file.parentFile)
         }
 
         file = Filex.createTempFile(Filex.mkdirsOrThrow(File("/tmp/testCreateTempFile2")))
@@ -717,7 +722,7 @@ class FilexTest {
             Assert.assertTrue(file.name.startsWith("tmp"))
             Assert.assertEquals(file.parent, "/tmp/testCreateTempFile2")
         } finally {
-            Filex.deleteRecursively(file)
+            Filex.deleteRecursively(file.parentFile)
         }
 
         file = Filex.createTempFile()
@@ -965,25 +970,29 @@ class FilexTest {
     @Test
     fun testWrite() {
         val file = File("/tmp/testWrite.txt")
-        val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
+        try {
+            val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
 
-        Filex.writeBytes(file, (content + "1").toByteArray())
-        Assert.assertEquals(Filex.readText(file), content + "1")
+            Filex.writeBytes(file, (content + "1").toByteArray())
+            Assert.assertEquals(Filex.readText(file), content + "1")
 
-        Filex.appendBytes(file, (content + "2").toByteArray())
-        Assert.assertEquals(Filex.readText(file), content + "1" + content + "2")
+            Filex.appendBytes(file, (content + "2").toByteArray())
+            Assert.assertEquals(Filex.readText(file), content + "1" + content + "2")
 
-        Filex.writeText(file, content + "3", Charx.UTF_8)
-        Assert.assertEquals(Filex.readText(file), content + "3")
+            Filex.writeText(file, content + "3", Charx.UTF_8)
+            Assert.assertEquals(Filex.readText(file), content + "3")
 
-        Filex.writeText(file, content + "4")
-        Assert.assertEquals(Filex.readText(file), content + "4")
+            Filex.writeText(file, content + "4")
+            Assert.assertEquals(Filex.readText(file), content + "4")
 
-        Filex.appendText(file, content + "5", Charx.UTF_8)
-        Assert.assertEquals(Filex.readText(file), content + "4" + content + "5")
+            Filex.appendText(file, content + "5", Charx.UTF_8)
+            Assert.assertEquals(Filex.readText(file), content + "4" + content + "5")
 
-        Filex.appendText(file, content + "6")
-        Assert.assertEquals(Filex.readText(file), content + "4" + content + "5" + content + "6")
+            Filex.appendText(file, content + "6")
+            Assert.assertEquals(Filex.readText(file), content + "4" + content + "5" + content + "6")
+        } finally {
+            Filex.deleteRecursively(file)
+        }
     }
 
     @Test
