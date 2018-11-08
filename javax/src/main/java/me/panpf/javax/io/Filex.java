@@ -423,46 +423,6 @@ public class Filex {
     }
 
 
-    /* ******************************************* other ****************************************** */
-
-    /**
-     * Returns all extensions for this file, or an empty string if none. For example: '/tmp/testExtension.txt.zip' returns 'txt.zip'
-     */
-    public static String getAllExtension(@NotNull File file) {
-        return Stringx.substringAfter(file.getName(), ".", "");
-    }
-
-    /**
-     * Returns file's name without an all extension. For example: '/tmp/testExtension.txt.zip' returns 'testExtension'
-     */
-    public static String getNameWithoutAllExtension(@NotNull File file) {
-        return Stringx.substringBefore(file.getName(), ".", file.getName());
-    }
-
-    /**
-     * Create a file tree
-     *
-     * @param dir         Start directory
-     * @param maxSpan     Max span. Decide how many files or directories are in the same directory
-     * @param maxDepth    Max depth
-     * @param fileName    File name. For example 'test.txt', 'test1.txt', 'test2.txt'... will be created in the folder...
-     * @param fileContent The content to be written to the file
-     * @return Start directory
-     */
-    public static File createFileTree(@NotNull File dir, int maxSpan, int maxDepth, @NotNull String fileName, @Nullable String fileContent) throws IOException {
-        File file = new File(fileName);
-        String nameWithoutExtension = Filex.getNameWithoutExtension(file);
-        String extension = Filex.getExtension(file);
-        for (int span : Rangex.rangeTo(1, maxSpan)) {
-            File outFile = new File(dir, nameWithoutExtension + span + "." + extension);
-            Filex.createNewFileOrThrow(outFile);
-            if (fileContent != null) Filex.writeText(outFile, fileContent);
-            if (maxDepth > 1) createFileTree(new File(dir, "dir" + span), maxSpan, maxDepth - 1, fileName, fileContent);
-        }
-        return dir;
-    }
-
-
     /* ******************************************* listCount ****************************************** */
 
 
@@ -533,6 +493,68 @@ public class Filex {
                 return !file.equals(dir);
             }
         });
+    }
+
+
+    /* ******************************************* other ****************************************** */
+
+    /**
+     * Returns all extensions for this file, or an empty string if none. For example: '/tmp/testExtension.txt.zip' returns 'txt.zip'
+     */
+    public static String getAllExtension(@NotNull File file) {
+        return Stringx.substringAfter(file.getName(), ".", "");
+    }
+
+    /**
+     * Returns file's name without an all extension. For example: '/tmp/testExtension.txt.zip' returns 'testExtension'
+     */
+    public static String getNameWithoutAllExtension(@NotNull File file) {
+        return Stringx.substringBefore(file.getName(), ".", file.getName());
+    }
+
+    /**
+     * Create a file tree
+     *
+     * @param dir         Start directory
+     * @param maxSpan     Max span. Decide how many files or directories are in the same directory
+     * @param maxDepth    Max depth
+     * @param fileName    File name. For example 'test.txt', 'test1.txt', 'test2.txt'... will be created in the folder...
+     * @param fileContent The content to be written to the file
+     * @return Start directory
+     */
+    public static File createFileTree(@NotNull File dir, int maxSpan, int maxDepth, @NotNull String fileName, @Nullable String fileContent) throws IOException {
+        File file = new File(fileName);
+        String nameWithoutExtension = Filex.getNameWithoutExtension(file);
+        String extension = Filex.getExtension(file);
+        for (int span : Rangex.rangeTo(1, maxSpan)) {
+            File outFile = new File(dir, nameWithoutExtension + span + "." + extension);
+            Filex.createNewFileOrThrow(outFile);
+            Filex.writeText(outFile, maxDepth + "-" + span + "\n" + Stringx.orEmpty(fileContent));
+            if (maxDepth > 1) createFileTree(new File(dir, "dir" + span), maxSpan, maxDepth - 1, fileName, fileContent);
+        }
+        return dir;
+    }
+
+    /**
+     * Compare file paths, commonly used to sort, for example '/a/b/c' is greater than '/a/b' is greater than '/a/c'
+     */
+    public static int compareFilePath(@Nullable String filePath1, @Nullable String filePath2) {
+        final String finalFilePath1 = Stringx.orEmpty(filePath1);
+        final String finalFilePath2 = Stringx.orEmpty(filePath2);
+        final int filePathLength1 = finalFilePath1.length();
+        final int filePathLength2 = finalFilePath2.length();
+        if (filePathLength1 != filePathLength2) {
+            return filePathLength1 > filePathLength2 ? 1 : -1;
+        } else {
+            return finalFilePath1.compareTo(finalFilePath2);
+        }
+    }
+
+    /**
+     * Compare file paths, commonly used to sort, for example '/a/b/c' is greater than '/a/b' is greater than '/a/c'
+     */
+    public static int compareFilePath(@Nullable File file1, @Nullable File file2) {
+        return compareFilePath(file1 != null ? file1.getPath() : null, file2 != null ? file2.getPath() : null);
     }
 
 
@@ -1911,5 +1933,39 @@ public class Filex {
     @NotNull
     public static FileTreeWalk walkBottomUp(@NotNull File file) {
         return walk(file, FileWalkDirection.BOTTOM_UP);
+    }
+
+    public static class FilePredicate implements Predicate<File> {
+
+        @Override
+        public boolean accept(@NotNull File file) {
+            return file.isFile();
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static class DirectoryPredicate implements Predicate<File> {
+
+        @Override
+        public boolean accept(@NotNull File file) {
+            return file.isDirectory();
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static class FileComparator implements Comparator<File> {
+
+        @Override
+        public int compare(File o1, File o2) {
+            return compareFilePath(o1, o2);
+        }
+    }
+
+    public static class FilePathComparator implements Comparator<String> {
+
+        @Override
+        public int compare(String o1, String o2) {
+            return compareFilePath(o1, o2);
+        }
     }
 }

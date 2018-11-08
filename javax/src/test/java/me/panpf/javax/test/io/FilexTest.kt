@@ -318,6 +318,33 @@ class FilexTest {
         Assert.assertEquals(Filex.listCountRecursively(dir) { dir2, name -> File(dir2, name).isDirectory }, 12)
     }
 
+    @Test
+    fun testCompareFilePath() {
+        Assert.assertEquals(Filex.compareFilePath(File("/a/b/c"), File("/a/b")), 1)
+        Assert.assertEquals(Filex.compareFilePath(File("/a/c"), File("/a/b")), 1)
+        Assert.assertEquals(Filex.compareFilePath(File("/a/b"), null), 1)
+
+        Assert.assertEquals(Filex.compareFilePath(File("/a/b"), File("/a/b/c")), -1)
+        Assert.assertEquals(Filex.compareFilePath(File("/a/b"), File("/a/c")), -1)
+        Assert.assertEquals(Filex.compareFilePath(null, File("/a/b")), -1)
+
+        Assert.assertEquals(Filex.compareFilePath(File(""), File("")), 0)
+        Assert.assertEquals(Filex.compareFilePath(File("/a/b"), File("/a/b")), 0)
+        Assert.assertEquals(Filex.compareFilePath(null as File?, null as File?), 0)
+
+        Assert.assertEquals(Filex.compareFilePath("/a/b/c", "/a/b"), 1)
+        Assert.assertEquals(Filex.compareFilePath("/a/c", "/a/b"), 1)
+        Assert.assertEquals(Filex.compareFilePath("/a/b", null), 1)
+
+        Assert.assertEquals(Filex.compareFilePath("/a/b", "/a/b/c"), -1)
+        Assert.assertEquals(Filex.compareFilePath("/a/b", "/a/c"), -1)
+        Assert.assertEquals(Filex.compareFilePath(null, "/a/b"), -1)
+
+        Assert.assertEquals(Filex.compareFilePath("", ""), 0)
+        Assert.assertEquals(Filex.compareFilePath("/a/b", "/a/b"), 0)
+        Assert.assertEquals(Filex.compareFilePath(null as String?, null as String?), 0)
+    }
+
 
     /*
      * *****************************************************************************************************************

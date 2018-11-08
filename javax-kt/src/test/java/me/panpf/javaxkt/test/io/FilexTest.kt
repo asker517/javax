@@ -312,6 +312,33 @@ class FilexTest {
     }
 
     @Test
+    fun testCompareFilePath() {
+        Assert.assertEquals(File("/a/b/c").compareFilePath(File("/a/b")), 1)
+        Assert.assertEquals(File("/a/c").compareFilePath(File("/a/b")), 1)
+        Assert.assertEquals(File("/a/b").compareFilePath(null), 1)
+
+        Assert.assertEquals(File("/a/b").compareFilePath(File("/a/b/c")), -1)
+        Assert.assertEquals(File("/a/b").compareFilePath(File("/a/c")), -1)
+        Assert.assertEquals(null.compareFilePath(File("/a/b")), -1)
+
+        Assert.assertEquals(File("").compareFilePath(File("")), 0)
+        Assert.assertEquals(File("/a/b").compareFilePath(File("/a/b")), 0)
+        Assert.assertEquals((null as File?).compareFilePath(null as File?), 0)
+
+        Assert.assertEquals("/a/b/c".compareFilePath("/a/b"), 1)
+        Assert.assertEquals("/a/c".compareFilePath("/a/b"), 1)
+        Assert.assertEquals("/a/b".compareFilePath(null), 1)
+
+        Assert.assertEquals("/a/b".compareFilePath("/a/b/c"), -1)
+        Assert.assertEquals("/a/b".compareFilePath("/a/c"), -1)
+        Assert.assertEquals(null.compareFilePath("/a/b"), -1)
+
+        Assert.assertEquals("".compareFilePath(""), 0)
+        Assert.assertEquals("/a/b".compareFilePath("/a/b"), 0)
+        Assert.assertEquals((null as String?).compareFilePath(null as String?), 0)
+    }
+
+    @Test
     fun testComponents() {
         var file = File("/tmp/testRoot")
         var components = file.toComponents()

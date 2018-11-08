@@ -234,6 +234,16 @@ val File.nameWithoutAllExtension: String
 @Throws(IOException::class)
 inline fun File.createFileTree(maxSpan: Int, maxDepth: Int, fileName: String, fileContent: String?): File = Filex.createFileTree(this, maxSpan, maxDepth, fileName, fileContent)
 
+/**
+ * Compare file paths, commonly used to sort, for example '/a/b/c' is greater than '/a/b' is greater than '/a/c'
+ */
+inline fun String?.compareFilePath(filePath2: String?): Int = Filex.compareFilePath(this, filePath2)
+
+/**
+ * Compare file paths, commonly used to sort, for example '/a/b/c' is greater than '/a/b' is greater than '/a/c'
+ */
+inline fun File?.compareFilePath(file2: File?): Int = Filex.compareFilePath(this, file2)
+
 
 /*
  * *****************************************************************************************************************
