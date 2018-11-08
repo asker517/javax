@@ -1,6 +1,7 @@
 ## v...
 
 * :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension, createFileTree, compareFilePath method
+* :sparkles: Filex adds FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator method
 
 
 ## v0.8.5
