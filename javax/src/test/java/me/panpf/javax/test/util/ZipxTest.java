@@ -126,6 +126,33 @@ public class ZipxTest {
             if (decompress2Dir != null) Filex.deleteRecursively(decompress2Dir);
             if (decompress2File != null) Filex.deleteRecursively(decompress2File);
         }
+
+        File file3 = new File("/tmp/testCompression/file3.txt");
+        File compress3File = null;
+        try {
+            Filex.writeText(Filex.createNewFileOrThrow(file3), "testFile3");
+            final List<String> progress = new ArrayList<>();
+            compress3File = Zipx.compressFile(file3, new ZipListener() {
+                @Override
+                public void onEntryStart(@NotNull ZipEntry zipEntry) {
+                    progress.add("EntryStart: " + zipEntry.getName());
+                }
+
+                @Override
+                public void onUpdateProgress(long totalLength, long completedLength, @NotNull ZipEntry zipEntry, long entryTotalLength, long entryCompletedLength) {
+                    progress.add(completedLength + "/" + totalLength + "->" + zipEntry.getName() + ": " + entryCompletedLength + "/" + entryTotalLength);
+                }
+
+                @Override
+                public void onEntryEnd(@NotNull ZipEntry zipEntry) {
+                    progress.add("EntryEnd: " + zipEntry.getName());
+                }
+            });
+            Assert.assertEquals(Collectionx.joinToArrayString(progress), "[EntryStart: file3.txt, 9/9->file3.txt: 9/9, EntryEnd: file3.txt]");
+        } finally {
+            Filex.deleteRecursively(file3);
+            if (compress3File != null) Filex.deleteRecursively(compress3File);
+        }
     }
 
     @Test

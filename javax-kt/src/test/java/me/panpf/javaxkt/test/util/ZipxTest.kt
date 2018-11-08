@@ -16,6 +16,7 @@
 
 package me.panpf.javaxkt.test.util
 
+import me.panpf.javax.util.Collectionx
 import me.panpf.javax.util.ZipListener
 import me.panpf.javaxkt.io.createNewFileOrThrow
 import me.panpf.javaxkt.security.getMD5Digest
@@ -120,6 +121,30 @@ class ZipxTest {
             compress2File?.deleteRecursively()
             decompress2Dir?.deleteRecursively()
             decompress2File?.deleteRecursively()
+        }
+
+        val file3 = File("/tmp/testCompression/file3.txt")
+        var compress3File: File? = null
+        try {
+            file3.createNewFileOrThrow().writeText("testFile3")
+            val progress = ArrayList<String>()
+            compress3File = file3.zipCompressFile(object : ZipListener {
+                override fun onEntryStart(zipEntry: ZipEntry) {
+                    progress.add("EntryStart: " + zipEntry.name)
+                }
+
+                override fun onUpdateProgress(totalLength: Long, completedLength: Long, zipEntry: ZipEntry, entryTotalLength: Long, entryCompletedLength: Long) {
+                    progress.add(completedLength.toString() + "/" + totalLength + "->" + zipEntry.name + ": " + entryCompletedLength + "/" + entryTotalLength)
+                }
+
+                override fun onEntryEnd(zipEntry: ZipEntry) {
+                    progress.add("EntryEnd: " + zipEntry.name)
+                }
+            })
+            Assert.assertEquals(Collectionx.joinToArrayString(progress), "[EntryStart: file3.txt, 9/9->file3.txt: 9/9, EntryEnd: file3.txt]")
+        } finally {
+            file3.deleteRecursively()
+            compress3File?.deleteRecursively()
         }
     }
 
