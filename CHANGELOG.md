@@ -2,6 +2,12 @@
 
 * :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension, createFileTree, compareFilePath method
 * :sparkles: Filex adds FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator method
+* :sparkles: Zipx adds compressChildFileTo, compressChildFile, listEntry, listEntryName, size, ZipEntryNameTransformer
+* :fire: Zipx removed compressDirTo, compressDir method
+* :fire: The Zipx getDecompressDstDir method now returns `zipSourceFile.getParentFile()`
+
+Perfect test:
+* :white_check_mark: Perfect Zipx testing
 
 
 ## v0.8.5
@@ -23,11 +29,11 @@ Add:
 * :sparkles: Filex adds bufferedInputStream and bufferedOutputStream method
 
 Perfect test:
-* :white_check_mark: Improve Filex testing
-* :white_check_mark: Improve IOStreamx testing
-* :white_check_mark: Improve Annotationx testing
-* :white_check_mark: Improve Comparisonx testing
-* :white_check_mark: Improve Premisex testing
+* :white_check_mark: Perfect Filex testing
+* :white_check_mark: Perfect IOStreamx testing
+* :white_check_mark: Perfect Annotationx testing
+* :white_check_mark: Perfect Comparisonx testing
+* :white_check_mark: Perfect Premisex testing
 
 
 ## v0.8.4

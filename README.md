@@ -153,7 +153,9 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
     * IPV4, IPV6, MAC_ADDRESS, CHINESE, CHINESE_SYMBOL, BLANK, EMAIL, URI, FLOAT_NUMBER, INTEGER
 * Zip: [Zipx.java] | [Zipx.kt]
-    * compressFilesTo, compressDirTo, compressDir, getCompressDstDir, decompressTo, decompress, getDecompressDstDir
+    * compressFilesTo, compressFilesTo, compressFileTo, compressFile, compressChildFileTo, compressChildFile,
+    * decompressTo, decompress, getCompressDstFile, getDecompressDstDir, getTrueSize, listEntry, listEntryName,
+    * size, ZipEntryNameTransformer
 
 ## Change Log
 

@@ -16,9 +16,13 @@
 
 package me.panpf.javaxkt.test.util
 
+import me.panpf.javax.io.Filex
 import me.panpf.javax.util.Collectionx
 import me.panpf.javax.util.ZipListener
+import me.panpf.javax.util.Zipx
+import me.panpf.javaxkt.io.createFileTree
 import me.panpf.javaxkt.io.createNewFileOrThrow
+import me.panpf.javaxkt.io.listFilesRecursively
 import me.panpf.javaxkt.security.getMD5Digest
 import me.panpf.javaxkt.util.*
 import org.junit.Assert
@@ -27,220 +31,377 @@ import java.io.File
 import java.io.IOException
 import java.util.*
 import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
 
 class ZipxTest {
 
     @Test
     @Throws(IOException::class)
     fun testFilesTo() {
-        val dir = File("/tmp/testCompression")
-        var compressDstFile: File? = null
-        var decompressionDstDir: File? = null
+        val dir1 = File("/tmp/testFilesTo1")
         try {
-            val file1 = File("/tmp/testCompression/file1")
-            val file2 = File("/tmp/testCompression/file2")
-            val file3 = File("/tmp/testCompression/file3")
-            val file41 = File("/tmp/testCompression/dir4/file41")
-            val file42 = File("/tmp/testCompression/dir4/file42")
-            val file51 = File("/tmp/testCompression/dir5/file51")
-            val file52 = File("/tmp/testCompression/dir5/file52")
+            val sourceDir = File(dir1, "test").createFileTree(3, 2, "file.txt", "testFilesTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
 
-            dir.deleteRecursively()
-            file1.createNewFileOrThrow().writeText("testFile1")
-            file2.createNewFileOrThrow().writeText("testFile2")
-            file3.createNewFileOrThrow().writeText("testFile3")
-            file41.createNewFileOrThrow().writeText("testFile41")
-            file42.createNewFileOrThrow().writeText("testFile42")
-            file51.createNewFileOrThrow().writeText("testFile51")
-            file52.createNewFileOrThrow().writeText("testFile52")
+            val compressDstFile = sourceDir.getZipCompressDstFile()
+            val compressProgressListener = ZipProgressListener()
+            sourceDir.listFiles().zipCompressFilesTo(compressDstFile, Zipx.ZipEntryNameTransformer.createByParent(sourceDir), compressProgressListener)
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+            Assert.assertEquals(compressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
 
-            compressDstFile = dir.getZipCompressDstFile()
-            arrayOf(dir).zipCompressFilesTo(compressDstFile) { it.path.replace(dir.path + File.separator, "") }
+            sourceDir.deleteRecursively()
+            val decompressDstDir = File(compressDstFile.parentFile, compressDstFile.nameWithoutExtension + "1")
+            val decompressProgressListener = ZipProgressListener()
+            compressDstFile.zipDecompressTo(decompressDstDir, decompressProgressListener)
+            Assert.assertEquals(decompressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
 
-            val decompressDstDir = compressDstFile.getZipDecompressDstDir()
-            decompressDstDir.deleteRecursively()
-            decompressionDstDir = compressDstFile.zipDecompressTo(decompressDstDir)
-
-            Assert.assertEquals(file1.getMD5Digest(), File(decompressionDstDir, "file1").getMD5Digest())
-            Assert.assertEquals(file2.getMD5Digest(), File(decompressionDstDir, "file2").getMD5Digest())
-            Assert.assertEquals(file3.getMD5Digest(), File(decompressionDstDir, "file3").getMD5Digest())
-            Assert.assertEquals(file41.getMD5Digest(), File(decompressionDstDir, "dir4/file41").getMD5Digest())
-            Assert.assertEquals(file42.getMD5Digest(), File(decompressionDstDir, "dir4/file42").getMD5Digest())
-            Assert.assertEquals(file51.getMD5Digest(), File(decompressionDstDir, "dir5/file51").getMD5Digest())
-            Assert.assertEquals(file52.getMD5Digest(), File(decompressionDstDir, "dir5/file52").getMD5Digest())
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
         } finally {
-            dir.deleteRecursively()
-            compressDstFile?.deleteRecursively()
-            decompressionDstDir?.deleteRecursively()
+            dir1.deleteRecursively()
+        }
+
+        val dir2 = File("/tmp/testFilesTo2")
+        try {
+            val sourceDir = File(dir2, "test").createFileTree(3, 2, "file.txt", "testFilesTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+
+            val compressDstFile = sourceDir.getZipCompressDstFile()
+            sourceDir.listFiles().zipCompressFilesTo(compressDstFile, Zipx.ZipEntryNameTransformer.createByParent(sourceDir))
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+
+            Filex.deleteRecursively(sourceDir)
+            val decompressDstDir = File(compressDstFile.parentFile, compressDstFile.nameWithoutExtension + "1")
+            compressDstFile.zipDecompressTo(decompressDstDir)
+
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
+        } finally {
+            dir2.deleteRecursively()
+        }
+
+        val dir3 = File("/tmp/testFilesTo3")
+        try {
+            val sourceDir = File(dir3, "test").createFileTree(3, 2, "file.txt", "testFilesTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+
+            val compressDstFile = sourceDir.getZipCompressDstFile()
+            val compressProgressListener = ZipProgressListener()
+            sourceDir.listFiles().zipCompressFilesTo(compressDstFile, { t -> t.path.replace(sourceDir.parent + File.separator, "") }, compressProgressListener)
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+            Assert.assertEquals(compressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
+
+            sourceDir.deleteRecursively()
+            val decompressDstDir = File(compressDstFile.parentFile, compressDstFile.nameWithoutExtension + "1")
+            val decompressProgressListener = ZipProgressListener()
+            compressDstFile.zipDecompressTo(decompressDstDir, decompressProgressListener)
+            Assert.assertEquals(decompressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
+
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
+        } finally {
+            dir3.deleteRecursively()
+        }
+
+        val dir4 = File("/tmp/testFilesTo4")
+        try {
+            val sourceDir = File(dir4, "test").createFileTree(3, 2, "file.txt", "testFilesTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+
+            val compressDstFile = sourceDir.getZipCompressDstFile()
+            sourceDir.listFiles().zipCompressFilesTo(compressDstFile, { t -> t.path.replace(sourceDir.parent + File.separator, "") })
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+
+            Filex.deleteRecursively(sourceDir)
+            val decompressDstDir = File(compressDstFile.parentFile, compressDstFile.nameWithoutExtension + "1")
+            compressDstFile.zipDecompressTo(decompressDstDir)
+
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
+        } finally {
+            dir4.deleteRecursively()
         }
     }
 
     @Test
     @Throws(IOException::class)
     fun testFileTo() {
-        val file1 = File("/tmp/testCompression/file1.txt")
-        var compress1File: File? = null
-        var decompress1Dir: File? = null
-        var decompress1File: File? = null
+        val dir1 = File("/tmp/testFileTo1")
         try {
-            file1.createNewFileOrThrow().writeText("testFile1")
+            val sourceDir = File(dir1, "test").createFileTree(3, 2, "file.txt", "testFilesTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
 
-            compress1File = file1.zipCompressFileTo(File(file1.path + "1"))
-            decompress1Dir = compress1File.zipDecompressTo(File(compress1File.parentFile.path + "1"))
-            decompress1File = File(decompress1Dir, file1.name)
+            val compressDstFile = sourceDir.getZipCompressDstFile()
+            val compressProgressListener = ZipProgressListener()
+            sourceDir.zipCompressFileTo(compressDstFile, compressProgressListener)
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+            Assert.assertEquals(compressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
 
-            Assert.assertEquals(file1.getMD5Digest(), decompress1File.getMD5Digest())
+            sourceDir.deleteRecursively()
+            val decompressDstDir = File(compressDstFile.parentFile, compressDstFile.nameWithoutExtension + "1")
+            val decompressProgressListener = ZipProgressListener()
+            compressDstFile.zipDecompressTo(decompressDstDir, decompressProgressListener)
+            Assert.assertEquals(decompressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
+
+            Filex.deleteRecursively(compressDstFile)
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
         } finally {
-            file1.deleteRecursively()
-            compress1File?.deleteRecursively()
-            decompress1Dir?.deleteRecursively()
-            decompress1File?.deleteRecursively()
+            dir1.deleteRecursively()
+        }
+
+        val file2 = File("/tmp/testFileTo2/file.txt")
+        try {
+            Filex.writeText(file2.createNewFileOrThrow(), "testFilesTo")
+            val sourceMd5 = file2.getMD5Digest()
+
+            val compressDstFile = file2.getZipCompressDstFile()
+            file2.zipCompressFileTo(compressDstFile)
+
+            file2.deleteRecursively()
+            val decompressDstDir = compressDstFile.getZipDecompressDstDir()
+            compressDstFile.zipDecompressTo(decompressDstDir)
+
+            val decompressMd5 = File(decompressDstDir, file2.name).getMD5Digest()
+            Assert.assertEquals(sourceMd5, decompressMd5)
+        } finally {
+            file2.parentFile.deleteRecursively()
         }
     }
 
     @Test
     @Throws(IOException::class)
     fun testFile() {
-        val file2 = File("/tmp/testCompression/file2.txt")
-        var compress2File: File? = null
-        var decompress2Dir: File? = null
-        var decompress2File: File? = null
+        val dir1 = File("/tmp/testFile1")
         try {
-            file2.createNewFileOrThrow().writeText("testFile2")
-            val originMd5 = file2.getMD5Digest()
+            val sourceDir = File(dir1, "test").createFileTree(3, 2, "file.txt", "testFilesTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
 
-            compress2File = file2.zipCompressFile()
-            file2.deleteRecursively()
+            val compressProgressListener = ZipProgressListener()
+            val compressDstFile = sourceDir.zipCompressFile(compressProgressListener)
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+            Assert.assertEquals(compressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
 
-            decompress2Dir = compress2File.zipDecompress()
-            decompress2File = File(decompress2Dir, file2.name)
+            sourceDir.deleteRecursively()
+            val decompressProgressListener = ZipProgressListener()
+            val decompressDstDir = compressDstFile.zipDecompress(decompressProgressListener)
+            Assert.assertEquals(decompressProgressListener.log, "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]")
 
-            Assert.assertEquals(originMd5, decompress2File.getMD5Digest())
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
         } finally {
-            file2.deleteRecursively()
-            compress2File?.deleteRecursively()
-            decompress2Dir?.deleteRecursively()
-            decompress2File?.deleteRecursively()
+            dir1.deleteRecursively()
         }
 
-        val file3 = File("/tmp/testCompression/file3.txt")
-        var compress3File: File? = null
+        val file2 = File("/tmp/testFile2/file.txt")
         try {
-            file3.createNewFileOrThrow().writeText("testFile3")
-            val progress = ArrayList<String>()
-            compress3File = file3.zipCompressFile(object : ZipListener {
-                override fun onEntryStart(zipEntry: ZipEntry) {
-                    progress.add("EntryStart: " + zipEntry.name)
-                }
+            file2.createNewFileOrThrow().writeText("testFilesTo")
+            val sourceMd5 = file2.getMD5Digest()
 
-                override fun onUpdateProgress(totalLength: Long, completedLength: Long, zipEntry: ZipEntry, entryTotalLength: Long, entryCompletedLength: Long) {
-                    progress.add(completedLength.toString() + "/" + totalLength + "->" + zipEntry.name + ": " + entryCompletedLength + "/" + entryTotalLength)
-                }
+            val compressDstFile = file2.zipCompressFile()
 
-                override fun onEntryEnd(zipEntry: ZipEntry) {
-                    progress.add("EntryEnd: " + zipEntry.name)
-                }
-            })
-            Assert.assertEquals(Collectionx.joinToArrayString(progress), "[EntryStart: file3.txt, 9/9->file3.txt: 9/9, EntryEnd: file3.txt]")
+            file2.deleteRecursively()
+            val decompressDstDir = compressDstFile.zipDecompress()
+
+            val decompressMd5 = File(decompressDstDir, file2.name).getMD5Digest()
+            Assert.assertEquals(sourceMd5, decompressMd5)
         } finally {
-            file3.deleteRecursively()
-            compress3File?.deleteRecursively()
+            file2.parentFile.deleteRecursively()
         }
     }
 
     @Test
     @Throws(IOException::class)
-    fun testCompressListener() {
-        val dir = File("/tmp/testCompression")
-        var dstFile: File? = null
+    fun testChildFileTo() {
+        val dir1 = File("/tmp/testChildFileTo1")
         try {
-            val file1 = File("/tmp/testCompression/file1")
-            val file2 = File("/tmp/testCompression/file2")
-            val file3 = File("/tmp/testCompression/file3")
-            val file41 = File("/tmp/testCompression/dir4/file41")
-            val file42 = File("/tmp/testCompression/dir4/file42")
-            val file51 = File("/tmp/testCompression/dir5/file51")
-            val file52 = File("/tmp/testCompression/dir5/file52")
+            val sourceDir = File(dir1, "test").createFileTree(3, 2, "file.txt", "testChildFileTo")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
 
-            dir.deleteRecursively()
-            file1.createNewFileOrThrow().writeText("testFile1")
-            file2.createNewFileOrThrow().writeText("testFile2")
-            file3.createNewFileOrThrow().writeText("testFile3")
-            file41.createNewFileOrThrow().writeText("testFile41")
-            file42.createNewFileOrThrow().writeText("testFile42")
-            file51.createNewFileOrThrow().writeText("testFile51")
-            file52.createNewFileOrThrow().writeText("testFile52")
+            val compressDstFile = sourceDir.getZipCompressDstFile()
+            val compressProgressListener = ZipProgressListener()
+            sourceDir.zipCompressChildFileTo(compressDstFile, compressProgressListener)
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[file1.txt, file2.txt, file3.txt, dir1/file1.txt, dir1/file2.txt, dir1/file3.txt, dir2/file1.txt, dir2/file2.txt, dir2/file3.txt, dir3/file1.txt, dir3/file2.txt, dir3/file3.txt]")
+            Assert.assertEquals(compressProgressListener.log, "[EntryStart: dir1/file1.txt, 19/228->dir1/file1.txt: 19/19, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 38/228->dir1/file3.txt: 19/19, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 57/228->dir1/file2.txt: 19/19, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 76/228->dir3/file1.txt: 19/19, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 95/228->dir3/file3.txt: 19/19, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 114/228->dir3/file2.txt: 19/19, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 133/228->dir2/file1.txt: 19/19, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 152/228->dir2/file3.txt: 19/19, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 171/228->dir2/file2.txt: 19/19, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 190/228->file1.txt: 19/19, EntryEnd: file1.txt, EntryStart: file3.txt, 209/228->file3.txt: 19/19, EntryEnd: file3.txt, EntryStart: file2.txt, 228/228->file2.txt: 19/19, EntryEnd: file2.txt]")
 
-            val progress = ArrayList<String>()
-            dstFile = dir.zipCompressDir(object : ZipListener {
-                override fun onEntryStart(zipEntry: ZipEntry) {
-                    progress.add("EntryStart: " + zipEntry.name)
-                }
+            sourceDir.deleteRecursively()
+            val decompressDstDir = File(compressDstFile.parentFile, compressDstFile.nameWithoutExtension + "1")
+            val decompressProgressListener = ZipProgressListener()
+            compressDstFile.zipDecompressTo(decompressDstDir, decompressProgressListener)
+            Assert.assertEquals(decompressProgressListener.log, "[EntryStart: dir1/file1.txt, 19/228->dir1/file1.txt: 19/19, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 38/228->dir1/file3.txt: 19/19, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 57/228->dir1/file2.txt: 19/19, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 76/228->dir3/file1.txt: 19/19, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 95/228->dir3/file3.txt: 19/19, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 114/228->dir3/file2.txt: 19/19, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 133/228->dir2/file1.txt: 19/19, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 152/228->dir2/file3.txt: 19/19, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 171/228->dir2/file2.txt: 19/19, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 190/228->file1.txt: 19/19, EntryEnd: file1.txt, EntryStart: file3.txt, 209/228->file3.txt: 19/19, EntryEnd: file3.txt, EntryStart: file2.txt, 228/228->file2.txt: 19/19, EntryEnd: file2.txt]")
 
-                override fun onUpdateProgress(totalLength: Long, completedLength: Long, zipEntry: ZipEntry, entryTotalLength: Long, entryCompletedLength: Long) {
-                    progress.add(completedLength.toString() + "/" + totalLength + "->" + zipEntry.name + ": " + entryCompletedLength + "/" + entryTotalLength)
-                }
-
-                override fun onEntryEnd(zipEntry: ZipEntry) {
-                    progress.add("EntryEnd: " + zipEntry.name)
-                }
-            })
-
-            Assert.assertEquals(progress.joinToArrayString(), "[EntryStart: file1, 9/67->file1: 9/9, EntryEnd: file1, EntryStart: dir4/file41, 19/67->dir4/file41: 10/10, EntryEnd: dir4/file41, EntryStart: dir4/file42, 29/67->dir4/file42: 10/10, EntryEnd: dir4/file42, EntryStart: dir5/file52, 39/67->dir5/file52: 10/10, EntryEnd: dir5/file52, EntryStart: dir5/file51, 49/67->dir5/file51: 10/10, EntryEnd: dir5/file51, EntryStart: file2, 58/67->file2: 9/9, EntryEnd: file2, EntryStart: file3, 67/67->file3: 9/9, EntryEnd: file3]")
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
         } finally {
-            dir.deleteRecursively()
-            dstFile?.deleteRecursively()
+            dir1.deleteRecursively()
+        }
+
+        val file2 = File("/tmp/testChildFileTo2/file.txt")
+        try {
+            file2.createNewFileOrThrow().writeText("testChildFileTo")
+            val sourceMd5 = file2.getMD5Digest()
+
+            val compressDstFile = file2.getZipCompressDstFile()
+            file2.zipCompressChildFileTo(compressDstFile)
+
+            file2.deleteRecursively()
+            val decompressDstDir = compressDstFile.getZipDecompressDstDir()
+            compressDstFile.zipDecompressTo(decompressDstDir)
+
+            val decompressMd5 = File(decompressDstDir, file2.name).getMD5Digest()
+            Assert.assertEquals(sourceMd5, decompressMd5)
+        } finally {
+            file2.parentFile.deleteRecursively()
         }
     }
 
     @Test
     @Throws(IOException::class)
-    fun testDecompressListener() {
-        val dir = File("/tmp/testCompression")
-        var dstFile: File? = null
-        var decompressionDstDir: File? = null
+    fun testChildFile() {
+        val dir1 = File("/tmp/testChildFile1")
         try {
-            val file1 = File("/tmp/testCompression/file1")
-            val file2 = File("/tmp/testCompression/file2")
-            val file3 = File("/tmp/testCompression/file3")
-            val file41 = File("/tmp/testCompression/dir4/file41")
-            val file42 = File("/tmp/testCompression/dir4/file42")
-            val file51 = File("/tmp/testCompression/dir5/file51")
-            val file52 = File("/tmp/testCompression/dir5/file52")
+            val sourceDir = File(dir1, "test").createFileTree(3, 2, "file.txt", "testChildFile")
+            val sourceContents = sourceDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
 
-            dir.deleteRecursively()
-            file1.createNewFileOrThrow().writeText("testFile1")
-            file2.createNewFileOrThrow().writeText("testFile2")
-            file3.createNewFileOrThrow().writeText("testFile3")
-            file41.createNewFileOrThrow().writeText("testFile41")
-            file42.createNewFileOrThrow().writeText("testFile42")
-            file51.createNewFileOrThrow().writeText("testFile51")
-            file52.createNewFileOrThrow().writeText("testFile52")
+            val compressProgressListener = ZipProgressListener()
+            val compressDstFile = sourceDir.zipCompressChildFile(compressProgressListener)
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[file1.txt, file2.txt, file3.txt, dir1/file1.txt, dir1/file2.txt, dir1/file3.txt, dir2/file1.txt, dir2/file2.txt, dir2/file3.txt, dir3/file1.txt, dir3/file2.txt, dir3/file3.txt]")
+            Assert.assertEquals(compressProgressListener.log, "[EntryStart: dir1/file1.txt, 17/204->dir1/file1.txt: 17/17, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 34/204->dir1/file3.txt: 17/17, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 51/204->dir1/file2.txt: 17/17, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 68/204->dir3/file1.txt: 17/17, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 85/204->dir3/file3.txt: 17/17, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 102/204->dir3/file2.txt: 17/17, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 119/204->dir2/file1.txt: 17/17, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 136/204->dir2/file3.txt: 17/17, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 153/204->dir2/file2.txt: 17/17, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 170/204->file1.txt: 17/17, EntryEnd: file1.txt, EntryStart: file3.txt, 187/204->file3.txt: 17/17, EntryEnd: file3.txt, EntryStart: file2.txt, 204/204->file2.txt: 17/17, EntryEnd: file2.txt]")
 
-            dstFile = dir.zipCompressDir()
+            sourceDir.deleteRecursively()
+            val decompressProgressListener = ZipProgressListener()
+            val decompressDstDir = compressDstFile.zipDecompress(decompressProgressListener)
+            Assert.assertEquals(decompressProgressListener.log, "[EntryStart: dir1/file1.txt, 17/204->dir1/file1.txt: 17/17, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 34/204->dir1/file3.txt: 17/17, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 51/204->dir1/file2.txt: 17/17, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 68/204->dir3/file1.txt: 17/17, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 85/204->dir3/file3.txt: 17/17, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 102/204->dir3/file2.txt: 17/17, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 119/204->dir2/file1.txt: 17/17, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 136/204->dir2/file3.txt: 17/17, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 153/204->dir2/file2.txt: 17/17, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 170/204->file1.txt: 17/17, EntryEnd: file1.txt, EntryStart: file3.txt, 187/204->file3.txt: 17/17, EntryEnd: file3.txt, EntryStart: file2.txt, 204/204->file2.txt: 17/17, EntryEnd: file2.txt]")
 
-            dstFile.getZipDecompressDstDir().deleteRecursively()
-
-            val progress = ArrayList<String>()
-            decompressionDstDir = dstFile.zipDecompress(object : ZipListener {
-                override fun onEntryStart(zipEntry: ZipEntry) {
-                    progress.add("EntryStart: " + zipEntry.name)
-                }
-
-                override fun onUpdateProgress(totalLength: Long, completedLength: Long, zipEntry: ZipEntry, entryTotalLength: Long, entryCompletedLength: Long) {
-                    progress.add(completedLength.toString() + "/" + totalLength + "->" + zipEntry.name + ": " + entryCompletedLength + "/" + entryTotalLength)
-                }
-
-                override fun onEntryEnd(zipEntry: ZipEntry) {
-                    progress.add("EntryEnd: " + zipEntry.name)
-                }
-            })
-
-            Assert.assertEquals(progress.joinToArrayString(), "[EntryStart: file1, 9/67->file1: 9/9, EntryEnd: file1, EntryStart: dir4/file41, 19/67->dir4/file41: 10/10, EntryEnd: dir4/file41, EntryStart: dir4/file42, 29/67->dir4/file42: 10/10, EntryEnd: dir4/file42, EntryStart: dir5/file52, 39/67->dir5/file52: 10/10, EntryEnd: dir5/file52, EntryStart: dir5/file51, 49/67->dir5/file51: 10/10, EntryEnd: dir5/file51, EntryStart: file2, 58/67->file2: 9/9, EntryEnd: file2, EntryStart: file3, 67/67->file3: 9/9, EntryEnd: file3]")
+            compressDstFile.deleteRecursively()
+            val decompressContents = decompressDstDir.listFilesRecursively()?.filter { it.isFile }?.joinToString("\n") { it.readText() }
+                    ?: ""
+            Assert.assertEquals(sourceContents, decompressContents)
         } finally {
-            dir.deleteRecursively()
-            dstFile?.deleteRecursively()
-            decompressionDstDir?.deleteRecursively()
+            dir1.deleteRecursively()
+        }
+
+        val file2 = File("/tmp/testChildFile2/file.txt")
+        try {
+            file2.createNewFileOrThrow().writeText("testChildFile")
+            val sourceMd5 = file2.getMD5Digest()
+
+            val compressDstFile = file2.zipCompressChildFile()
+
+            file2.deleteRecursively()
+            val decompressDstDir = compressDstFile.zipDecompress()
+
+            val decompressMd5 = File(decompressDstDir, file2.name).getMD5Digest()
+            Assert.assertEquals(sourceMd5, decompressMd5)
+        } finally {
+            file2.parentFile.deleteRecursively()
+        }
+    }
+
+    @Test
+    fun testGetCompressDstFile() {
+        Assert.assertEquals("/tmp/testGetCompressDstFile.txt.zip", File("/tmp/testGetCompressDstFile.txt").getZipCompressDstFile().path)
+    }
+
+    @Test
+    fun testGetDecompressDstFile() {
+        Assert.assertEquals("/tmp", File("/tmp/testGetCompressDstFile.zip").getZipDecompressDstDir().path)
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun testTrueSize() {
+        val dir1 = File("/tmp/testTrueSize/test").createFileTree(3, 2, "file.txt", "testTrueSize")
+        try {
+            val compressDstFile = dir1.zipCompressFile()
+            try {
+                Assert.assertEquals(192, compressDstFile.getZipTrueSize())
+                ZipFile(compressDstFile).use { zipFile -> Assert.assertEquals(192, zipFile.getZipTrueSize()) }
+            } finally {
+                compressDstFile.deleteRecursively()
+            }
+        } finally {
+            dir1.parentFile.deleteRecursively()
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun testListEntry() {
+        val dir1 = File("/tmp/testListEntry/test").createFileTree(3, 2, "file.txt", "testListEntry")
+        try {
+            val compressDstFile = dir1.zipCompressFile()
+            Assert.assertEquals(compressDstFile.listZipEntry().map { zipEntry -> zipEntry.name }.sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+
+            Assert.assertEquals(ZipFile(compressDstFile).listZipEntry().map { zipEntry -> zipEntry.name }.sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+        } finally {
+            dir1.parentFile.deleteRecursively()
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun testLisEntryName() {
+        val dir1 = Filex.createFileTree(File("/tmp/testLisEntryName/test"), 3, 2, "file.txt", "testListEntry")
+        try {
+            val compressDstFile = dir1.zipCompressFile()
+            Assert.assertEquals(compressDstFile.listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+
+            Assert.assertEquals(ZipFile(compressDstFile).listZipEntryName().sortedWith(Filex.FilePathComparator()).joinToArrayString(), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]")
+        } finally {
+            dir1.parentFile.deleteRecursively()
+        }
+    }
+
+    @Test
+    @Throws(IOException::class)
+    fun testSize() {
+        val dir1 = File("/tmp/testSize/test").createFileTree(3, 2, "file.txt", "testListEntry")
+        try {
+            val compressDstFile = dir1.zipCompressFile()
+            Assert.assertEquals(12, compressDstFile.zipSize().toLong())
+        } finally {
+            dir1.parentFile.deleteRecursively()
+        }
+    }
+
+    private class ZipProgressListener : ZipListener {
+        private val progress = ArrayList<String>()
+
+        internal val log: String
+            get() = Collectionx.joinToArrayString(progress)
+
+        override fun onEntryStart(zipEntry: ZipEntry) {
+            progress.add("EntryStart: " + zipEntry.name)
+        }
+
+        override fun onUpdateProgress(totalLength: Long, completedLength: Long, zipEntry: ZipEntry, entryTotalLength: Long, entryCompletedLength: Long) {
+            progress.add(completedLength.toString() + "/" + totalLength + "->" + zipEntry.name + ": " + entryCompletedLength + "/" + entryTotalLength)
+        }
+
+        override fun onEntryEnd(zipEntry: ZipEntry) {
+            progress.add("EntryEnd: " + zipEntry.name)
         }
     }
 }

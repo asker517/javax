@@ -28,235 +28,338 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public class ZipxTest {
 
     @Test
     public void testFilesTo() throws IOException {
-        final File dir = new File("/tmp/testCompression");
-        File compressDstFile = null;
-        File decompressionDstDir = null;
+        final File dir1 = new File("/tmp/testFilesTo1");
         try {
-            File file1 = new File("/tmp/testCompression/file1");
-            File file2 = new File("/tmp/testCompression/file2");
-            File file3 = new File("/tmp/testCompression/file3");
-            File file41 = new File("/tmp/testCompression/dir4/file41");
-            File file42 = new File("/tmp/testCompression/dir4/file42");
-            File file51 = new File("/tmp/testCompression/dir5/file51");
-            File file52 = new File("/tmp/testCompression/dir5/file52");
+            final File sourceDir = Filex.createFileTree(new File(dir1, "test"), 3, 2, "file.txt", "testFilesTo");
+            String sourceContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(sourceDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
 
-            Filex.deleteRecursively(dir);
-            Filex.writeText(Filex.createNewFileOrThrow(file1), "testFile1");
-            Filex.writeText(Filex.createNewFileOrThrow(file2), "testFile2");
-            Filex.writeText(Filex.createNewFileOrThrow(file3), "testFile3");
-            Filex.writeText(Filex.createNewFileOrThrow(file41), "testFile41");
-            Filex.writeText(Filex.createNewFileOrThrow(file42), "testFile42");
-            Filex.writeText(Filex.createNewFileOrThrow(file51), "testFile51");
-            Filex.writeText(Filex.createNewFileOrThrow(file52), "testFile52");
+            File compressDstFile = Zipx.getCompressDstFile(sourceDir);
+            ZipProgressListener compressProgressListener = new ZipProgressListener();
+            Zipx.compressFilesTo(sourceDir.listFiles(), compressDstFile, Zipx.ZipEntryNameTransformer.createByParent(sourceDir), compressProgressListener);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+            Assert.assertEquals(compressProgressListener.getLog(), "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]");
 
-            compressDstFile = Zipx.getCompressDstFile(dir);
-            Zipx.compressFilesTo(Arrayx.arrayOf(dir), compressDstFile, new Transformer<File, String>() {
-                @NotNull
-                @Override
-                public String transform(@NotNull File file) {
-                    return file.getPath().replace(dir.getPath() + File.separator, "");
-                }
-            });
+            Filex.deleteRecursively(sourceDir);
+            File decompressDstDir = new File(compressDstFile.getParentFile(), Filex.getNameWithoutExtension(compressDstFile) + "1");
+            ZipProgressListener decompressProgressListener = new ZipProgressListener();
+            Zipx.decompressTo(compressDstFile, decompressDstDir, decompressProgressListener);
+            Assert.assertEquals(decompressProgressListener.getLog(), "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]");
 
-            File decompressDstDir = Zipx.getDecompressDstDir(compressDstFile);
-            Filex.deleteRecursively(decompressDstDir);
-            decompressionDstDir = Zipx.decompressTo(compressDstFile, decompressDstDir);
-
-            Assert.assertEquals(Digestx.getMD5(file1), Digestx.getMD5(new File(decompressionDstDir, "file1")));
-            Assert.assertEquals(Digestx.getMD5(file2), Digestx.getMD5(new File(decompressionDstDir, "file2")));
-            Assert.assertEquals(Digestx.getMD5(file3), Digestx.getMD5(new File(decompressionDstDir, "file3")));
-            Assert.assertEquals(Digestx.getMD5(file41), Digestx.getMD5(new File(decompressionDstDir, "dir4/file41")));
-            Assert.assertEquals(Digestx.getMD5(file42), Digestx.getMD5(new File(decompressionDstDir, "dir4/file42")));
-            Assert.assertEquals(Digestx.getMD5(file51), Digestx.getMD5(new File(decompressionDstDir, "dir5/file51")));
-            Assert.assertEquals(Digestx.getMD5(file52), Digestx.getMD5(new File(decompressionDstDir, "dir5/file52")));
+            Filex.deleteRecursively(compressDstFile);
+            String decompressContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(decompressDstDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+            Assert.assertEquals(sourceContents, decompressContents);
         } finally {
-            Filex.deleteRecursively(dir);
-            if (compressDstFile != null) Filex.deleteRecursively(compressDstFile);
-            if (decompressionDstDir != null) Filex.deleteRecursively(decompressionDstDir);
+            Filex.deleteRecursively(dir1);
+        }
+
+        final File dir2 = new File("/tmp/testFilesTo2");
+        try {
+            final File sourceDir = Filex.createFileTree(new File(dir2, "test"), 3, 2, "file.txt", "testFilesTo");
+            String sourceContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(sourceDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+
+            File compressDstFile = Zipx.getCompressDstFile(sourceDir);
+            Zipx.compressFilesTo(sourceDir.listFiles(), compressDstFile, Zipx.ZipEntryNameTransformer.createByParent(sourceDir));
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+
+            Filex.deleteRecursively(sourceDir);
+            File decompressDstDir = new File(compressDstFile.getParentFile(), Filex.getNameWithoutExtension(compressDstFile) + "1");
+            Zipx.decompressTo(compressDstFile, decompressDstDir);
+
+            Filex.deleteRecursively(compressDstFile);
+            String decompressContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(decompressDstDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+            Assert.assertEquals(sourceContents, decompressContents);
+        } finally {
+            Filex.deleteRecursively(dir2);
         }
     }
 
     @Test
     public void testFileTo() throws IOException {
-        File file1 = new File("/tmp/testCompression/file1.txt");
-        File compress1File = null;
-        File decompress1Dir = null;
-        File decompress1File = null;
+        final File dir1 = new File("/tmp/testFileTo1");
         try {
-            Filex.writeText(Filex.createNewFileOrThrow(file1), "testFile1");
+            final File sourceDir = Filex.createFileTree(new File(dir1, "test"), 3, 2, "file.txt", "testFilesTo");
+            String sourceContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(sourceDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
 
-            compress1File = Zipx.compressFileTo(file1, new File(file1.getPath() + "1"));
-            decompress1Dir = Zipx.decompressTo(compress1File, new File(compress1File.getParentFile().getPath() + "1"));
-            decompress1File = new File(decompress1Dir, file1.getName());
+            File compressDstFile = Zipx.getCompressDstFile(sourceDir);
+            ZipProgressListener compressProgressListener = new ZipProgressListener();
+            Zipx.compressFileTo(sourceDir, compressDstFile, compressProgressListener);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+            Assert.assertEquals(compressProgressListener.getLog(), "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]");
 
-            Assert.assertEquals(Digestx.getMD5(file1), Digestx.getMD5(decompress1File));
+            Filex.deleteRecursively(sourceDir);
+            File decompressDstDir = new File(compressDstFile.getParentFile(), Filex.getNameWithoutExtension(compressDstFile) + "1");
+            ZipProgressListener decompressProgressListener = new ZipProgressListener();
+            Zipx.decompressTo(compressDstFile, decompressDstDir, decompressProgressListener);
+            Assert.assertEquals(decompressProgressListener.getLog(), "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]");
+
+            Filex.deleteRecursively(compressDstFile);
+            String decompressContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(decompressDstDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+            Assert.assertEquals(sourceContents, decompressContents);
         } finally {
-            Filex.deleteRecursively(file1);
-            if (compress1File != null) Filex.deleteRecursively(compress1File);
-            if (decompress1Dir != null) Filex.deleteRecursively(decompress1Dir);
-            if (decompress1File != null) Filex.deleteRecursively(decompress1File);
+            Filex.deleteRecursively(dir1);
+        }
+
+        final File file2 = new File("/tmp/testFileTo2/file.txt");
+        try {
+            Filex.writeText(Filex.createNewFileOrThrow(file2), "testFilesTo");
+            String sourceMd5 = Digestx.getMD5(file2);
+
+            File compressDstFile = Zipx.getCompressDstFile(file2);
+            Zipx.compressFileTo(file2, compressDstFile);
+
+            Filex.deleteRecursively(file2);
+            File decompressDstDir = Zipx.getDecompressDstDir(compressDstFile);
+            Zipx.decompressTo(compressDstFile, decompressDstDir);
+
+            String decompressMd5 = Digestx.getMD5(new File(decompressDstDir, file2.getName()));
+            Assert.assertEquals(sourceMd5, decompressMd5);
+        } finally {
+            Filex.deleteRecursively(file2.getParentFile());
         }
     }
 
     @Test
     public void testFile() throws IOException {
-        File file2 = new File("/tmp/testCompression/file2.txt");
-        File compress2File = null;
-        File decompress2Dir = null;
-        File decompress2File = null;
+        final File dir1 = new File("/tmp/testFile1");
         try {
-            Filex.writeText(Filex.createNewFileOrThrow(file2), "testFile2");
-            String originMd5 = Digestx.getMD5(file2);
+            final File sourceDir = Filex.createFileTree(new File(dir1, "test"), 3, 2, "file.txt", "testFilesTo");
+            String sourceContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(sourceDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
 
-            compress2File = Zipx.compressFile(file2);
-            Filex.deleteRecursively(file2);
+            ZipProgressListener compressProgressListener = new ZipProgressListener();
+            File compressDstFile = Zipx.compressFile(sourceDir, compressProgressListener);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+            Assert.assertEquals(compressProgressListener.getLog(), "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]");
 
-            decompress2Dir = Zipx.decompress(compress2File);
-            decompress2File = new File(decompress2Dir, file2.getName());
+            Filex.deleteRecursively(sourceDir);
+            ZipProgressListener decompressProgressListener = new ZipProgressListener();
+            File decompressDstDir = Zipx.decompress(compressDstFile, decompressProgressListener);
+            Assert.assertEquals(decompressProgressListener.getLog(), "[EntryStart: test/dir1/file1.txt, 15/180->test/dir1/file1.txt: 15/15, EntryEnd: test/dir1/file1.txt, EntryStart: test/dir1/file3.txt, 30/180->test/dir1/file3.txt: 15/15, EntryEnd: test/dir1/file3.txt, EntryStart: test/dir1/file2.txt, 45/180->test/dir1/file2.txt: 15/15, EntryEnd: test/dir1/file2.txt, EntryStart: test/dir3/file1.txt, 60/180->test/dir3/file1.txt: 15/15, EntryEnd: test/dir3/file1.txt, EntryStart: test/dir3/file3.txt, 75/180->test/dir3/file3.txt: 15/15, EntryEnd: test/dir3/file3.txt, EntryStart: test/dir3/file2.txt, 90/180->test/dir3/file2.txt: 15/15, EntryEnd: test/dir3/file2.txt, EntryStart: test/dir2/file1.txt, 105/180->test/dir2/file1.txt: 15/15, EntryEnd: test/dir2/file1.txt, EntryStart: test/dir2/file3.txt, 120/180->test/dir2/file3.txt: 15/15, EntryEnd: test/dir2/file3.txt, EntryStart: test/dir2/file2.txt, 135/180->test/dir2/file2.txt: 15/15, EntryEnd: test/dir2/file2.txt, EntryStart: test/file1.txt, 150/180->test/file1.txt: 15/15, EntryEnd: test/file1.txt, EntryStart: test/file3.txt, 165/180->test/file3.txt: 15/15, EntryEnd: test/file3.txt, EntryStart: test/file2.txt, 180/180->test/file2.txt: 15/15, EntryEnd: test/file2.txt]");
 
-            Assert.assertEquals(originMd5, Digestx.getMD5(decompress2File));
+            Filex.deleteRecursively(compressDstFile);
+            String decompressContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(decompressDstDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+            Assert.assertEquals(sourceContents, decompressContents);
         } finally {
-            Filex.deleteRecursively(file2);
-            if (compress2File != null) Filex.deleteRecursively(compress2File);
-            if (decompress2Dir != null) Filex.deleteRecursively(decompress2Dir);
-            if (decompress2File != null) Filex.deleteRecursively(decompress2File);
+            Filex.deleteRecursively(dir1);
         }
 
-        File file3 = new File("/tmp/testCompression/file3.txt");
-        File compress3File = null;
+        final File file2 = new File("/tmp/testFile2/file.txt");
         try {
-            Filex.writeText(Filex.createNewFileOrThrow(file3), "testFile3");
-            final List<String> progress = new ArrayList<>();
-            compress3File = Zipx.compressFile(file3, new ZipListener() {
-                @Override
-                public void onEntryStart(@NotNull ZipEntry zipEntry) {
-                    progress.add("EntryStart: " + zipEntry.getName());
-                }
+            Filex.writeText(Filex.createNewFileOrThrow(file2), "testFilesTo");
+            String sourceMd5 = Digestx.getMD5(file2);
 
-                @Override
-                public void onUpdateProgress(long totalLength, long completedLength, @NotNull ZipEntry zipEntry, long entryTotalLength, long entryCompletedLength) {
-                    progress.add(completedLength + "/" + totalLength + "->" + zipEntry.getName() + ": " + entryCompletedLength + "/" + entryTotalLength);
-                }
+            File compressDstFile = Zipx.compressFile(file2);
 
-                @Override
-                public void onEntryEnd(@NotNull ZipEntry zipEntry) {
-                    progress.add("EntryEnd: " + zipEntry.getName());
-                }
-            });
-            Assert.assertEquals(Collectionx.joinToArrayString(progress), "[EntryStart: file3.txt, 9/9->file3.txt: 9/9, EntryEnd: file3.txt]");
+            Filex.deleteRecursively(file2);
+            File decompressDstDir = Zipx.decompress(compressDstFile);
+
+            String decompressMd5 = Digestx.getMD5(new File(decompressDstDir, file2.getName()));
+            Assert.assertEquals(sourceMd5, decompressMd5);
         } finally {
-            Filex.deleteRecursively(file3);
-            if (compress3File != null) Filex.deleteRecursively(compress3File);
+            Filex.deleteRecursively(file2.getParentFile());
         }
     }
 
     @Test
-    public void testCompressListener() throws IOException {
-        File dir = new File("/tmp/testCompression");
-        File dstFile = null;
+    public void testChildFileTo() throws IOException {
+        final File dir1 = new File("/tmp/testChildFileTo1");
         try {
-            File file1 = new File("/tmp/testCompression/file1");
-            File file2 = new File("/tmp/testCompression/file2");
-            File file3 = new File("/tmp/testCompression/file3");
-            File file41 = new File("/tmp/testCompression/dir4/file41");
-            File file42 = new File("/tmp/testCompression/dir4/file42");
-            File file51 = new File("/tmp/testCompression/dir5/file51");
-            File file52 = new File("/tmp/testCompression/dir5/file52");
+            final File sourceDir = Filex.createFileTree(new File(dir1, "test"), 3, 2, "file.txt", "testChildFileTo");
+            String sourceContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(sourceDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
 
-            Filex.deleteRecursively(dir);
-            Filex.writeText(Filex.createNewFileOrThrow(file1), "testFile1");
-            Filex.writeText(Filex.createNewFileOrThrow(file2), "testFile2");
-            Filex.writeText(Filex.createNewFileOrThrow(file3), "testFile3");
-            Filex.writeText(Filex.createNewFileOrThrow(file41), "testFile41");
-            Filex.writeText(Filex.createNewFileOrThrow(file42), "testFile42");
-            Filex.writeText(Filex.createNewFileOrThrow(file51), "testFile51");
-            Filex.writeText(Filex.createNewFileOrThrow(file52), "testFile52");
+            File compressDstFile = Zipx.getCompressDstFile(sourceDir);
+            ZipProgressListener compressProgressListener = new ZipProgressListener();
+            Zipx.compressChildFileTo(sourceDir, compressDstFile, compressProgressListener);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[file1.txt, file2.txt, file3.txt, dir1/file1.txt, dir1/file2.txt, dir1/file3.txt, dir2/file1.txt, dir2/file2.txt, dir2/file3.txt, dir3/file1.txt, dir3/file2.txt, dir3/file3.txt]");
+            Assert.assertEquals(compressProgressListener.getLog(), "[EntryStart: dir1/file1.txt, 19/228->dir1/file1.txt: 19/19, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 38/228->dir1/file3.txt: 19/19, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 57/228->dir1/file2.txt: 19/19, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 76/228->dir3/file1.txt: 19/19, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 95/228->dir3/file3.txt: 19/19, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 114/228->dir3/file2.txt: 19/19, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 133/228->dir2/file1.txt: 19/19, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 152/228->dir2/file3.txt: 19/19, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 171/228->dir2/file2.txt: 19/19, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 190/228->file1.txt: 19/19, EntryEnd: file1.txt, EntryStart: file3.txt, 209/228->file3.txt: 19/19, EntryEnd: file3.txt, EntryStart: file2.txt, 228/228->file2.txt: 19/19, EntryEnd: file2.txt]");
 
-            final List<String> progress = new ArrayList<>();
-            dstFile = Zipx.compressDir(dir, new ZipListener() {
-                @Override
-                public void onEntryStart(@NotNull ZipEntry zipEntry) {
-                    progress.add("EntryStart: " + zipEntry.getName());
-                }
+            Filex.deleteRecursively(sourceDir);
+            File decompressDstDir = new File(compressDstFile.getParentFile(), Filex.getNameWithoutExtension(compressDstFile) + "1");
+            ZipProgressListener decompressProgressListener = new ZipProgressListener();
+            Zipx.decompressTo(compressDstFile, decompressDstDir, decompressProgressListener);
+            Assert.assertEquals(decompressProgressListener.getLog(), "[EntryStart: dir1/file1.txt, 19/228->dir1/file1.txt: 19/19, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 38/228->dir1/file3.txt: 19/19, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 57/228->dir1/file2.txt: 19/19, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 76/228->dir3/file1.txt: 19/19, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 95/228->dir3/file3.txt: 19/19, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 114/228->dir3/file2.txt: 19/19, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 133/228->dir2/file1.txt: 19/19, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 152/228->dir2/file3.txt: 19/19, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 171/228->dir2/file2.txt: 19/19, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 190/228->file1.txt: 19/19, EntryEnd: file1.txt, EntryStart: file3.txt, 209/228->file3.txt: 19/19, EntryEnd: file3.txt, EntryStart: file2.txt, 228/228->file2.txt: 19/19, EntryEnd: file2.txt]");
 
-                @Override
-                public void onUpdateProgress(long totalLength, long completedLength, @NotNull ZipEntry zipEntry, long entryTotalLength, long entryCompletedLength) {
-                    progress.add(completedLength + "/" + totalLength + "->" + zipEntry.getName() + ": " + entryCompletedLength + "/" + entryTotalLength);
-                }
-
-                @Override
-                public void onEntryEnd(@NotNull ZipEntry zipEntry) {
-                    progress.add("EntryEnd: " + zipEntry.getName());
-                }
-            });
-
-            Assert.assertEquals(Collectionx.joinToArrayString(progress), "[EntryStart: file1, 9/67->file1: 9/9, EntryEnd: file1, EntryStart: dir4/file41, 19/67->dir4/file41: 10/10, EntryEnd: dir4/file41, EntryStart: dir4/file42, 29/67->dir4/file42: 10/10, EntryEnd: dir4/file42, EntryStart: dir5/file52, 39/67->dir5/file52: 10/10, EntryEnd: dir5/file52, EntryStart: dir5/file51, 49/67->dir5/file51: 10/10, EntryEnd: dir5/file51, EntryStart: file2, 58/67->file2: 9/9, EntryEnd: file2, EntryStart: file3, 67/67->file3: 9/9, EntryEnd: file3]");
+            Filex.deleteRecursively(compressDstFile);
+            String decompressContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(decompressDstDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+            Assert.assertEquals(sourceContents, decompressContents);
         } finally {
-            Filex.deleteRecursively(dir);
-            if (dstFile != null) {
-                Filex.deleteRecursively(dstFile);
-            }
+            Filex.deleteRecursively(dir1);
+        }
+
+        final File file2 = new File("/tmp/testChildFileTo2/file.txt");
+        try {
+            Filex.writeText(Filex.createNewFileOrThrow(file2), "testChildFileTo");
+            String sourceMd5 = Digestx.getMD5(file2);
+
+            File compressDstFile = Zipx.getCompressDstFile(file2);
+            Zipx.compressChildFileTo(file2, compressDstFile);
+
+            Filex.deleteRecursively(file2);
+            File decompressDstDir = Zipx.getDecompressDstDir(compressDstFile);
+            Zipx.decompressTo(compressDstFile, decompressDstDir);
+
+            String decompressMd5 = Digestx.getMD5(new File(decompressDstDir, file2.getName()));
+            Assert.assertEquals(sourceMd5, decompressMd5);
+        } finally {
+            Filex.deleteRecursively(file2.getParentFile());
         }
     }
 
     @Test
-    public void testDecompressListener() throws IOException {
-        File dir = new File("/tmp/testCompression");
-        File dstFile = null;
-        File decompressionDstDir = null;
+    public void testChildFile() throws IOException {
+        final File dir1 = new File("/tmp/testChildFile1");
         try {
-            File file1 = new File("/tmp/testCompression/file1");
-            File file2 = new File("/tmp/testCompression/file2");
-            File file3 = new File("/tmp/testCompression/file3");
-            File file41 = new File("/tmp/testCompression/dir4/file41");
-            File file42 = new File("/tmp/testCompression/dir4/file42");
-            File file51 = new File("/tmp/testCompression/dir5/file51");
-            File file52 = new File("/tmp/testCompression/dir5/file52");
+            final File sourceDir = Filex.createFileTree(new File(dir1, "test"), 3, 2, "file.txt", "testChildFile");
+            String sourceContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(sourceDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
 
-            Filex.deleteRecursively(dir);
-            Filex.writeText(Filex.createNewFileOrThrow(file1), "testFile1");
-            Filex.writeText(Filex.createNewFileOrThrow(file2), "testFile2");
-            Filex.writeText(Filex.createNewFileOrThrow(file3), "testFile3");
-            Filex.writeText(Filex.createNewFileOrThrow(file41), "testFile41");
-            Filex.writeText(Filex.createNewFileOrThrow(file42), "testFile42");
-            Filex.writeText(Filex.createNewFileOrThrow(file51), "testFile51");
-            Filex.writeText(Filex.createNewFileOrThrow(file52), "testFile52");
+            ZipProgressListener compressProgressListener = new ZipProgressListener();
+            File compressDstFile = Zipx.compressChildFile(sourceDir, compressProgressListener);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[file1.txt, file2.txt, file3.txt, dir1/file1.txt, dir1/file2.txt, dir1/file3.txt, dir2/file1.txt, dir2/file2.txt, dir2/file3.txt, dir3/file1.txt, dir3/file2.txt, dir3/file3.txt]");
+            Assert.assertEquals(compressProgressListener.getLog(), "[EntryStart: dir1/file1.txt, 17/204->dir1/file1.txt: 17/17, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 34/204->dir1/file3.txt: 17/17, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 51/204->dir1/file2.txt: 17/17, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 68/204->dir3/file1.txt: 17/17, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 85/204->dir3/file3.txt: 17/17, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 102/204->dir3/file2.txt: 17/17, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 119/204->dir2/file1.txt: 17/17, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 136/204->dir2/file3.txt: 17/17, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 153/204->dir2/file2.txt: 17/17, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 170/204->file1.txt: 17/17, EntryEnd: file1.txt, EntryStart: file3.txt, 187/204->file3.txt: 17/17, EntryEnd: file3.txt, EntryStart: file2.txt, 204/204->file2.txt: 17/17, EntryEnd: file2.txt]");
 
-            dstFile = Zipx.compressDir(dir);
+            Filex.deleteRecursively(sourceDir);
+            ZipProgressListener decompressProgressListener = new ZipProgressListener();
+            File decompressDstDir = Zipx.decompress(compressDstFile, decompressProgressListener);
+            Assert.assertEquals(decompressProgressListener.getLog(), "[EntryStart: dir1/file1.txt, 17/204->dir1/file1.txt: 17/17, EntryEnd: dir1/file1.txt, EntryStart: dir1/file3.txt, 34/204->dir1/file3.txt: 17/17, EntryEnd: dir1/file3.txt, EntryStart: dir1/file2.txt, 51/204->dir1/file2.txt: 17/17, EntryEnd: dir1/file2.txt, EntryStart: dir3/file1.txt, 68/204->dir3/file1.txt: 17/17, EntryEnd: dir3/file1.txt, EntryStart: dir3/file3.txt, 85/204->dir3/file3.txt: 17/17, EntryEnd: dir3/file3.txt, EntryStart: dir3/file2.txt, 102/204->dir3/file2.txt: 17/17, EntryEnd: dir3/file2.txt, EntryStart: dir2/file1.txt, 119/204->dir2/file1.txt: 17/17, EntryEnd: dir2/file1.txt, EntryStart: dir2/file3.txt, 136/204->dir2/file3.txt: 17/17, EntryEnd: dir2/file3.txt, EntryStart: dir2/file2.txt, 153/204->dir2/file2.txt: 17/17, EntryEnd: dir2/file2.txt, EntryStart: file1.txt, 170/204->file1.txt: 17/17, EntryEnd: file1.txt, EntryStart: file3.txt, 187/204->file3.txt: 17/17, EntryEnd: file3.txt, EntryStart: file2.txt, 204/204->file2.txt: 17/17, EntryEnd: file2.txt]");
 
-            Filex.deleteRecursively(Zipx.getDecompressDstDir(dstFile));
-
-            final List<String> progress = new ArrayList<>();
-            decompressionDstDir = Zipx.decompress(dstFile, new ZipListener() {
-                @Override
-                public void onEntryStart(@NotNull ZipEntry zipEntry) {
-                    progress.add("EntryStart: " + zipEntry.getName());
-                }
-
-                @Override
-                public void onUpdateProgress(long totalLength, long completedLength, @NotNull ZipEntry zipEntry, long entryTotalLength, long entryCompletedLength) {
-                    progress.add(completedLength + "/" + totalLength + "->" + zipEntry.getName() + ": " + entryCompletedLength + "/" + entryTotalLength);
-                }
-
-                @Override
-                public void onEntryEnd(@NotNull ZipEntry zipEntry) {
-                    progress.add("EntryEnd: " + zipEntry.getName());
-                }
-            });
-
-            Assert.assertEquals(Collectionx.joinToArrayString(progress), "[EntryStart: file1, 9/67->file1: 9/9, EntryEnd: file1, EntryStart: dir4/file41, 19/67->dir4/file41: 10/10, EntryEnd: dir4/file41, EntryStart: dir4/file42, 29/67->dir4/file42: 10/10, EntryEnd: dir4/file42, EntryStart: dir5/file52, 39/67->dir5/file52: 10/10, EntryEnd: dir5/file52, EntryStart: dir5/file51, 49/67->dir5/file51: 10/10, EntryEnd: dir5/file51, EntryStart: file2, 58/67->file2: 9/9, EntryEnd: file2, EntryStart: file3, 67/67->file3: 9/9, EntryEnd: file3]");
+            Filex.deleteRecursively(compressDstFile);
+            String decompressContents = Collectionx.joinToString(Arrayx.filter(Filex.listFilesRecursively(decompressDstDir), new Filex.FilePredicate()), "\n", new FileContentTransformer());
+            Assert.assertEquals(sourceContents, decompressContents);
         } finally {
-            Filex.deleteRecursively(dir);
-            if (dstFile != null) {
-                Filex.deleteRecursively(dstFile);
+            Filex.deleteRecursively(dir1);
+        }
+
+        final File file2 = new File("/tmp/testChildFile2/file.txt");
+        try {
+            Filex.writeText(Filex.createNewFileOrThrow(file2), "testChildFile");
+            String sourceMd5 = Digestx.getMD5(file2);
+
+            File compressDstFile = Zipx.compressChildFile(file2);
+
+            Filex.deleteRecursively(file2);
+            File decompressDstDir = Zipx.decompress(compressDstFile);
+
+            String decompressMd5 = Digestx.getMD5(new File(decompressDstDir, file2.getName()));
+            Assert.assertEquals(sourceMd5, decompressMd5);
+        } finally {
+            Filex.deleteRecursively(file2.getParentFile());
+        }
+    }
+
+    @Test
+    public void testGetCompressDstFile() {
+        Assert.assertEquals("/tmp/testGetCompressDstFile.txt.zip", Zipx.getCompressDstFile(new File("/tmp/testGetCompressDstFile.txt")).getPath());
+    }
+
+    @Test
+    public void testGetDecompressDstFile() {
+        Assert.assertEquals("/tmp", Zipx.getDecompressDstDir(new File("/tmp/testGetCompressDstFile.zip")).getPath());
+    }
+
+    @Test
+    public void testTrueSize() throws IOException {
+        final File dir1 = Filex.createFileTree(new File("/tmp/testTrueSize/test"), 3, 2, "file.txt", "testTrueSize");
+        try {
+            File compressDstFile = Zipx.compressFile(dir1);
+            try {
+                Assert.assertEquals(192, Zipx.getTrueSize(compressDstFile));
+                try (ZipFile zipFile = new ZipFile(compressDstFile)) {
+                    Assert.assertEquals(192, Zipx.getTrueSize(zipFile));
+                }
+            } finally {
+                Filex.deleteRecursively(compressDstFile);
             }
-            if (decompressionDstDir != null) {
-                Filex.deleteRecursively(decompressionDstDir);
+        } finally {
+            Filex.deleteRecursively(dir1.getParentFile());
+        }
+    }
+
+    @Test
+    public void testListEntry() throws IOException {
+        final File dir1 = Filex.createFileTree(new File("/tmp/testListEntry/test"), 3, 2, "file.txt", "testListEntry");
+        try {
+            File compressDstFile = Zipx.compressFile(dir1);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Collectionx.map(Zipx.listEntry(compressDstFile), new Transformer<ZipEntry, String>() {
+                @NotNull
+                @Override
+                public String transform(@NotNull ZipEntry zipEntry) {
+                    return zipEntry.getName();
+                }
+            }), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Collectionx.map(Zipx.listEntry(new ZipFile(compressDstFile)), new Transformer<ZipEntry, String>() {
+                @NotNull
+                @Override
+                public String transform(@NotNull ZipEntry zipEntry) {
+                    return zipEntry.getName();
+                }
+            }), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+        } finally {
+            Filex.deleteRecursively(dir1.getParentFile());
+        }
+    }
+
+    @Test
+    public void testLisEntryName() throws IOException {
+        final File dir1 = Filex.createFileTree(new File("/tmp/testLisEntryName/test"), 3, 2, "file.txt", "testListEntry");
+        try {
+            File compressDstFile = Zipx.compressFile(dir1);
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(compressDstFile), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+
+            Assert.assertEquals(Collectionx.joinToArrayString(Collectionx.sortedWith(Zipx.listEntryName(new ZipFile(compressDstFile)), new Filex.FilePathComparator())), "[test/file1.txt, test/file2.txt, test/file3.txt, test/dir1/file1.txt, test/dir1/file2.txt, test/dir1/file3.txt, test/dir2/file1.txt, test/dir2/file2.txt, test/dir2/file3.txt, test/dir3/file1.txt, test/dir3/file2.txt, test/dir3/file3.txt]");
+        } finally {
+            Filex.deleteRecursively(dir1.getParentFile());
+        }
+    }
+
+    @Test
+    public void testSize() throws IOException {
+        final File dir1 = Filex.createFileTree(new File("/tmp/testSize/test"), 3, 2, "file.txt", "testListEntry");
+        try {
+            File compressDstFile = Zipx.compressFile(dir1);
+            Assert.assertEquals(12, Zipx.size(compressDstFile));
+        } finally {
+            Filex.deleteRecursively(dir1.getParentFile());
+        }
+    }
+
+    private static class ZipProgressListener implements ZipListener {
+        private final List<String> progress = new ArrayList<>();
+
+        @Override
+        public void onEntryStart(@NotNull ZipEntry zipEntry) {
+            progress.add("EntryStart: " + zipEntry.getName());
+        }
+
+        @Override
+        public void onUpdateProgress(long totalLength, long completedLength, @NotNull ZipEntry zipEntry, long entryTotalLength, long entryCompletedLength) {
+            progress.add(completedLength + "/" + totalLength + "->" + zipEntry.getName() + ": " + entryCompletedLength + "/" + entryTotalLength);
+        }
+
+        @Override
+        public void onEntryEnd(@NotNull ZipEntry zipEntry) {
+            progress.add("EntryEnd: " + zipEntry.getName());
+        }
+
+        String getLog() {
+            return Collectionx.joinToArrayString(progress);
+        }
+    }
+
+    private static class FileContentTransformer implements Transformer<File, CharSequence> {
+        @NotNull
+        @Override
+        public CharSequence transform(@NotNull File file) {
+            try {
+                return Filex.readText(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "";
             }
         }
     }

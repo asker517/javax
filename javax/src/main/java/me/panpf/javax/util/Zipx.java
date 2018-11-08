@@ -23,10 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.EmptyStackException;
-import java.util.Enumeration;
-import java.util.Stack;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
@@ -135,8 +132,9 @@ public class Zipx {
         return compressFilesTo(sourceFiles, destinationFile, zipEntryNameTransform, null);
     }
 
+
     /**
-     * Compress the specified file
+     * Compress the specified file or directory
      *
      * @param sourceFile      The file to be compressed
      * @param destinationFile Output file
@@ -144,18 +142,13 @@ public class Zipx {
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressFileTo(@NotNull File sourceFile, @NotNull File destinationFile, @Nullable final ZipListener listener) throws IOException {
-        return compressFilesTo(new File[]{sourceFile}, destinationFile, new Transformer<File, String>() {
-            @NotNull
-            @Override
-            public String transform(@NotNull File file) {
-                return file.getName();
-            }
-        }, listener);
+    public static File compressFileTo(@NotNull final File sourceFile, @NotNull File destinationFile, @Nullable final ZipListener listener) throws IOException {
+        Premisex.requireFileExist(sourceFile, "sourceFile");
+        return compressFilesTo(new File[]{sourceFile}, destinationFile, ZipEntryNameTransformer.createByParent(sourceFile), listener);
     }
 
     /**
-     * Compress the specified file
+     * Compress the specified file or directory
      *
      * @param sourceFile      The file to be compressed
      * @param destinationFile Output file
@@ -167,7 +160,7 @@ public class Zipx {
     }
 
     /**
-     * Compress the specified file
+     * Compress the specified file or directory
      *
      * @param sourceFile The file to be compressed
      * @param listener   Progress listener
@@ -179,7 +172,7 @@ public class Zipx {
     }
 
     /**
-     * Compress the specified file
+     * Compress the specified file or directory
      *
      * @param sourceFile The file to be compressed
      * @return Output file
@@ -189,67 +182,58 @@ public class Zipx {
         return compressFileTo(sourceFile, getCompressDstFile(sourceFile), null);
     }
 
+
     /**
-     * Compress all files in the specified directory to
+     * Compress the specified file or directory (exclude source directory)
      *
-     * @param sourceDirectory The directory to be compressed
+     * @param sourceFile      The file to be compressed
      * @param destinationFile Output file
      * @param listener        Progress listener
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressDirTo(@NotNull final File sourceDirectory, @NotNull File destinationFile, @Nullable final ZipListener listener) throws IOException {
-        Premisex.requireFileExist(sourceDirectory, "sourceDirectory");
-        Premisex.requireIsDir(sourceDirectory, "sourceDirectory");
-        return compressFilesTo(sourceDirectory.listFiles(), destinationFile, new Transformer<File, String>() {
-            @NotNull
-            @Override
-            public String transform(@NotNull File file) {
-                return file.getPath().replace(sourceDirectory.getPath() + File.separator, "");
-            }
-        }, listener);
+    public static File compressChildFileTo(@NotNull final File sourceFile, @NotNull File destinationFile, @Nullable final ZipListener listener) throws IOException {
+        Premisex.requireFileExist(sourceFile, "sourceFile");
+        if (sourceFile.isFile()) {
+            return compressFilesTo(new File[]{sourceFile}, destinationFile, ZipEntryNameTransformer.createByParent(sourceFile), listener);
+        } else {
+            return compressFilesTo(sourceFile.listFiles(), destinationFile, ZipEntryNameTransformer.createBySelf(sourceFile), listener);
+        }
     }
 
     /**
-     * Compress all files in the specified directory to
+     * Compress the specified file or directory (exclude source directory)
      *
-     * @param sourceDirectory The directory to be compressed
+     * @param sourceFile      The file to be compressed
      * @param destinationFile Output file
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressDirTo(@NotNull final File sourceDirectory, @NotNull File destinationFile) throws IOException {
-        return compressDirTo(sourceDirectory, destinationFile, null);
+    public static File compressChildFileTo(@NotNull final File sourceFile, @NotNull File destinationFile) throws IOException {
+        return compressChildFileTo(sourceFile, destinationFile, null);
     }
 
     /**
-     * Compress all files under the specified folder, output ZIP file and [sourceDirectory] in the same directory, name is [sourceDirectory] plus '.zip'
+     * Compress the specified file or directory (exclude source directory)
      *
-     * @param sourceDirectory The directory to be compressed
-     * @param listener        Progress listener
+     * @param sourceFile The file to be compressed
+     * @param listener   Progress listener
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressDir(@NotNull File sourceDirectory, @Nullable final ZipListener listener) throws IOException {
-        return compressDirTo(sourceDirectory, getCompressDstFile(sourceDirectory), listener);
+    public static File compressChildFile(@NotNull final File sourceFile, @Nullable final ZipListener listener) throws IOException {
+        return compressChildFileTo(sourceFile, getCompressDstFile(sourceFile), listener);
     }
 
     /**
-     * Compress all files under the specified folder, output ZIP file and [sourceDirectory] in the same directory, name is [sourceDirectory] plus '.zip'
+     * Compress the specified file or directory (exclude source directory)
      *
-     * @param sourceDirectory The directory to be compressed
+     * @param sourceFile The file to be compressed
      * @return Output file
      * @throws IOException IO exceptions
      */
-    public static File compressDir(@NotNull File sourceDirectory) throws IOException {
-        return compressDir(sourceDirectory, null);
-    }
-
-    /**
-     * Get the default compression dst file for the specified source file
-     */
-    public static File getCompressDstFile(@NotNull File sourceFile) {
-        return new File(sourceFile.getPath() + ".zip");
+    public static File compressChildFile(@NotNull final File sourceFile) throws IOException {
+        return compressChildFile(sourceFile, null);
     }
 
 
@@ -317,7 +301,6 @@ public class Zipx {
         return destinationDir;
     }
 
-
     /**
      * Decompress the ZIP file to the specified folder
      *
@@ -356,11 +339,19 @@ public class Zipx {
         return decompress(zipSourceFile, null);
     }
 
+
+    /**
+     * Get the default compression dst file for the specified source file
+     */
+    public static File getCompressDstFile(@NotNull File sourceFile) {
+        return new File(sourceFile.getPath() + ".zip");
+    }
+
     /**
      * Get the default decompression directory for the specified ZIP file
      */
     public static File getDecompressDstDir(@NotNull File zipSourceFile) {
-        return new File(zipSourceFile.getParentFile(), Filex.getNameWithoutExtension(zipSourceFile));
+        return zipSourceFile.getParentFile();
     }
 
 
@@ -382,6 +373,69 @@ public class Zipx {
     public static long getTrueSize(@NotNull File file) throws IOException {
         try (ZipFile zipFile = new ZipFile(file)) {
             return getTrueSize(zipFile);
+        }
+    }
+
+    @NotNull
+    public static ArrayList<ZipEntry> listEntry(@NotNull ZipFile zipFile) {
+        ArrayList<ZipEntry> zipEntries = new ArrayList<>(zipFile.size());
+        Enumeration<? extends ZipEntry> entries = zipFile.entries();
+        while (entries.hasMoreElements()) {
+            zipEntries.add(entries.nextElement());
+        }
+        return zipEntries;
+    }
+
+    @NotNull
+    public static ArrayList<ZipEntry> listEntry(@NotNull File file) throws IOException {
+        try (ZipFile zipFile = new ZipFile(file)) {
+            return listEntry(zipFile);
+        }
+    }
+
+    @NotNull
+    public static ArrayList<String> listEntryName(@NotNull ZipFile zipFile) {
+        ArrayList<String> zipEntries = new ArrayList<>(zipFile.size());
+        Enumeration<? extends ZipEntry> entries = zipFile.entries();
+        while (entries.hasMoreElements()) {
+            zipEntries.add(entries.nextElement().getName());
+        }
+        return zipEntries;
+    }
+
+    @NotNull
+    public static ArrayList<String> listEntryName(@NotNull File file) throws IOException {
+        try (ZipFile zipFile = new ZipFile(file)) {
+            return listEntryName(zipFile);
+        }
+    }
+
+    public static int size(@NotNull File file) throws IOException {
+        try (ZipFile zipFile = new ZipFile(file)) {
+            return zipFile.size();
+        }
+    }
+
+
+    public static class ZipEntryNameTransformer implements Transformer<File, String> {
+        private String sourceDirParentPath;
+
+        public ZipEntryNameTransformer(String sourceDirParentPath) {
+            this.sourceDirParentPath = sourceDirParentPath;
+        }
+
+        @NotNull
+        @Override
+        public String transform(@NotNull File file) {
+            return file.getPath().replace(sourceDirParentPath, "");
+        }
+
+        public static ZipEntryNameTransformer createByParent(File sourceDir) {
+            return new ZipEntryNameTransformer(sourceDir.getParent() + File.separator);
+        }
+
+        public static ZipEntryNameTransformer createBySelf(File sourceDir) {
+            return new ZipEntryNameTransformer(sourceDir.getPath() + File.separator);
         }
     }
 }
