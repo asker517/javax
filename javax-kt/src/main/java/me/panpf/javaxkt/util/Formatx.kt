@@ -194,14 +194,14 @@ inline fun Int.formatTotalTime(level: Int = 0): String = Formatx.totalTime(this,
  *
  * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTimeShort(level: Int = 0): String = Formatx.totalTimeShort(this, level)
+inline fun Long.formatShortTotalTime(level: Int = 0): String = Formatx.shortTotalTime(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
  * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Int.formatTotalTimeShort(level: Int = 0): String = Formatx.totalTimeShort(this, level)
+inline fun Int.formatShortTotalTime(level: Int = 0): String = Formatx.shortTotalTime(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
@@ -222,14 +222,14 @@ inline fun Int.formatTotalTimeZH(level: Int = 0): String = Formatx.totalTimeZH(t
  *
  * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Long.formatTotalTimeZHShort(level: Int = 0): String = Formatx.totalTimeZHShort(this, level)
+inline fun Long.formatShortTotalTimeZH(level: Int = 0): String = Formatx.shortTotalTimeZH(this, level)
 
 /**
  * Returns the total time of formatting that can be displayed
  *
  * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
-inline fun Int.formatTotalTimeZHShort(level: Int = 0): String = Formatx.totalTimeZHShort(this, level)
+inline fun Int.formatShortTotalTimeZH(level: Int = 0): String = Formatx.shortTotalTimeZH(this, level)
 
 
 /* ******************************************* count *******************************************/
@@ -305,7 +305,7 @@ inline fun Long?.formatDuration(): String = Formatx.duration(this.orZero())
 /**
  * Format the duration of the video or music, such as '01:23:22', '00:23:22' will return '23:22'
  */
-inline fun Long?.formatDurationShort(): String = Formatx.durationShort(this.orZero())
+inline fun Long?.formatShortDuration(): String = Formatx.shortDuration(this.orZero())
 
 /**
  * Format the duration of the video or music, such as '01:23:22'
@@ -315,4 +315,4 @@ inline fun Int?.formatDuration(): String = Formatx.duration(this.orZero().toLong
 /**
  * Format the duration of the video or music, such as '01:23:22', '00:23:22' will return '23:22'
  */
-inline fun Int?.formatDurationShort(): String = Formatx.durationShort(this.orZero().toLong())
+inline fun Int?.formatShortDuration(): String = Formatx.shortDuration(this.orZero().toLong())

@@ -139,8 +139,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf, areEqual
 * Format: [Formatx.java] ([Test][FormatxTest.java]) | [Formatx.kt] ([Test][FormatxTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
-    * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
-    * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad, duration, durationShort
+    * totalTime, shortTotalTime, totalTimeZH, shortTotalTimeZH, count
+    * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad, duration, shortDuration
 * Map: [Mapx.java]
     * createEmptyMap, mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])

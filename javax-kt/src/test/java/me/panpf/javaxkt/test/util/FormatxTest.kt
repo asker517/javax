@@ -208,42 +208,42 @@ class FormatxTest {
     }
 
     @Test
-    fun testTotalTimeShort() {
+    fun testShortTotalTime() {
         // millisecond
-        Assert.assertEquals(0L.formatTotalTimeShort(), "0s")
-        Assert.assertEquals(590.formatTotalTimeShort(), "590ms")
-        Assert.assertEquals(590.formatTotalTimeShort(1), "0s")
+        Assert.assertEquals(0L.formatShortTotalTime(), "0s")
+        Assert.assertEquals(590.formatShortTotalTime(), "590ms")
+        Assert.assertEquals(590.formatShortTotalTime(1), "0s")
 
         // second
-        Assert.assertEquals((1000 * 3).formatTotalTimeShort(), "3s")
-        Assert.assertEquals((1000 * 3 + 590).formatTotalTimeShort(), "3s590ms")
-        Assert.assertEquals((1000 * 3 + 590).formatTotalTimeShort(1), "3s")
+        Assert.assertEquals((1000 * 3).formatShortTotalTime(), "3s")
+        Assert.assertEquals((1000 * 3 + 590).formatShortTotalTime(), "3s590ms")
+        Assert.assertEquals((1000 * 3 + 590).formatShortTotalTime(1), "3s")
 
         // minute
-        Assert.assertEquals((1000 * 60 * 3).formatTotalTimeShort(), "3m")
-        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23).formatTotalTimeShort(), "3m23s")
-        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23 + 467).formatTotalTimeShort(), "3m23s467ms")
-        Assert.assertEquals((1000 * 60 * 3 + 467).formatTotalTimeShort(), "3m467ms")
-        Assert.assertEquals((1000 * 60 * 3 + 467).formatTotalTimeShort(1), "3m")
+        Assert.assertEquals((1000 * 60 * 3).formatShortTotalTime(), "3m")
+        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23).formatShortTotalTime(), "3m23s")
+        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23 + 467).formatShortTotalTime(), "3m23s467ms")
+        Assert.assertEquals((1000 * 60 * 3 + 467).formatShortTotalTime(), "3m467ms")
+        Assert.assertEquals((1000 * 60 * 3 + 467).formatShortTotalTime(1), "3m")
 
         // hour
-        Assert.assertEquals((1000 * 60 * 60).formatTotalTimeShort(), "1h")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23).formatTotalTimeShort(), "1h23m")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatTotalTimeShort(), "1h23m23s")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 23).formatTotalTimeShort(), "1h23s")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTimeShort(), "1h23m23s467ms")
-        Assert.assertEquals((1000 * 60 * 60 + 467).formatTotalTimeShort(), "1h467ms")
-        Assert.assertEquals((1000 * 60 * 60 + 467).formatTotalTimeShort(1), "1h")
+        Assert.assertEquals((1000 * 60 * 60).formatShortTotalTime(), "1h")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23).formatShortTotalTime(), "1h23m")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatShortTotalTime(), "1h23m23s")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 23).formatShortTotalTime(), "1h23s")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatShortTotalTime(), "1h23m23s467ms")
+        Assert.assertEquals((1000 * 60 * 60 + 467).formatShortTotalTime(), "1h467ms")
+        Assert.assertEquals((1000 * 60 * 60 + 467).formatShortTotalTime(1), "1h")
 
         // day
-        Assert.assertEquals((1000 * 60 * 60 * 24).formatTotalTimeShort(), "1d")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23).formatTotalTimeShort(), "1d1h23m")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatTotalTimeShort(), "1d1h23m23s")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 23).formatTotalTimeShort(), "1d1h23s")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTimeShort(), "1d1h23m23s467ms")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467).formatTotalTimeShort(), "1d1h467ms")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatTotalTimeShort(), "1d467ms")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatTotalTimeShort(1), "1d")
+        Assert.assertEquals((1000 * 60 * 60 * 24).formatShortTotalTime(), "1d")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23).formatShortTotalTime(), "1d1h23m")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatShortTotalTime(), "1d1h23m23s")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 23).formatShortTotalTime(), "1d1h23s")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatShortTotalTime(), "1d1h23m23s467ms")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467).formatShortTotalTime(), "1d1h467ms")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatShortTotalTime(), "1d467ms")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatShortTotalTime(1), "1d")
     }
 
     @Test
@@ -286,42 +286,42 @@ class FormatxTest {
     }
 
     @Test
-    fun testTotalTimeZHShort() {
+    fun testShortTotalTimeZH() {
         // millisecond
-        Assert.assertEquals(0L.formatTotalTimeZHShort(), "0秒")
-        Assert.assertEquals(590.formatTotalTimeZHShort(), "590毫秒")
-        Assert.assertEquals(590.formatTotalTimeZHShort(1), "0秒")
+        Assert.assertEquals(0L.formatShortTotalTimeZH(), "0秒")
+        Assert.assertEquals(590.formatShortTotalTimeZH(), "590毫秒")
+        Assert.assertEquals(590.formatShortTotalTimeZH(1), "0秒")
 
         // second
-        Assert.assertEquals((1000 * 3).formatTotalTimeZHShort(), "3秒")
-        Assert.assertEquals((1000 * 3 + 590).formatTotalTimeZHShort(), "3秒590毫秒")
-        Assert.assertEquals((1000 * 3 + 590).formatTotalTimeZHShort(1), "3秒")
+        Assert.assertEquals((1000 * 3).formatShortTotalTimeZH(), "3秒")
+        Assert.assertEquals((1000 * 3 + 590).formatShortTotalTimeZH(), "3秒590毫秒")
+        Assert.assertEquals((1000 * 3 + 590).formatShortTotalTimeZH(1), "3秒")
 
         // minute
-        Assert.assertEquals((1000 * 60 * 3).formatTotalTimeZHShort(), "3分钟")
-        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23).formatTotalTimeZHShort(), "3分钟23秒")
-        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23 + 467).formatTotalTimeZHShort(), "3分钟23秒467毫秒")
-        Assert.assertEquals((1000 * 60 * 3 + 467).formatTotalTimeZHShort(), "3分钟467毫秒")
-        Assert.assertEquals((1000 * 60 * 3 + 467).formatTotalTimeZHShort(1), "3分钟")
+        Assert.assertEquals((1000 * 60 * 3).formatShortTotalTimeZH(), "3分钟")
+        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23).formatShortTotalTimeZH(), "3分钟23秒")
+        Assert.assertEquals((1000 * 60 * 3 + 1000 * 23 + 467).formatShortTotalTimeZH(), "3分钟23秒467毫秒")
+        Assert.assertEquals((1000 * 60 * 3 + 467).formatShortTotalTimeZH(), "3分钟467毫秒")
+        Assert.assertEquals((1000 * 60 * 3 + 467).formatShortTotalTimeZH(1), "3分钟")
 
         // hour
-        Assert.assertEquals((1000 * 60 * 60).formatTotalTimeZHShort(), "1小时")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23).formatTotalTimeZHShort(), "1小时23分钟")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatTotalTimeZHShort(), "1小时23分钟23秒")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 23).formatTotalTimeZHShort(), "1小时23秒")
-        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTimeZHShort(), "1小时23分钟23秒467毫秒")
-        Assert.assertEquals((1000 * 60 * 60 + 467).formatTotalTimeZHShort(), "1小时467毫秒")
-        Assert.assertEquals((1000 * 60 * 60 + 467).formatTotalTimeZHShort(1), "1小时")
+        Assert.assertEquals((1000 * 60 * 60).formatShortTotalTimeZH(), "1小时")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23).formatShortTotalTimeZH(), "1小时23分钟")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatShortTotalTimeZH(), "1小时23分钟23秒")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 23).formatShortTotalTimeZH(), "1小时23秒")
+        Assert.assertEquals((1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatShortTotalTimeZH(), "1小时23分钟23秒467毫秒")
+        Assert.assertEquals((1000 * 60 * 60 + 467).formatShortTotalTimeZH(), "1小时467毫秒")
+        Assert.assertEquals((1000 * 60 * 60 + 467).formatShortTotalTimeZH(1), "1小时")
 
         // day
-        Assert.assertEquals((1000 * 60 * 60 * 24).formatTotalTimeZHShort(), "1天")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23).formatTotalTimeZHShort(), "1天1小时23分钟")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatTotalTimeZHShort(), "1天1小时23分钟23秒")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 23).formatTotalTimeZHShort(), "1天1小时23秒")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatTotalTimeZHShort(), "1天1小时23分钟23秒467毫秒")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467).formatTotalTimeZHShort(), "1天1小时467毫秒")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatTotalTimeZHShort(), "1天467毫秒")
-        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatTotalTimeZHShort(1), "1天")
+        Assert.assertEquals((1000 * 60 * 60 * 24).formatShortTotalTimeZH(), "1天")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23).formatShortTotalTimeZH(), "1天1小时23分钟")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23).formatShortTotalTimeZH(), "1天1小时23分钟23秒")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 23).formatShortTotalTimeZH(), "1天1小时23秒")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 1000 * 60 * 23 + 1000 * 23 + 467).formatShortTotalTimeZH(), "1天1小时23分钟23秒467毫秒")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 1000 * 60 * 60 + 467).formatShortTotalTimeZH(), "1天1小时467毫秒")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatShortTotalTimeZH(), "1天467毫秒")
+        Assert.assertEquals((1000 * 60 * 60 * 24 + 467).formatShortTotalTimeZH(1), "1天")
     }
 
     @Test
@@ -409,10 +409,10 @@ class FormatxTest {
         assertEquals((1000 * 60 * 60 + 1000 * 60 * 18 + 1000 * 4).toLong().formatDuration(), "01:18:04")
         assertEquals((1000 * 60 * 60 * 100 + 1000 * 60 * 18 + 1000 * 4).toLong().formatDuration(), "100:18:04")
 
-        assertEquals(0.formatDurationShort(), "00:00")
-        assertEquals((1000 * 5).toLong().formatDurationShort(), "00:05")
-        assertEquals((1000 * 59).toLong().formatDurationShort(), "00:59")
-        assertEquals((1000 * 60).toLong().formatDurationShort(), "01:00")
-        assertEquals((1000 * 60 + 1000 * 4).toLong().formatDurationShort(), "01:04")
+        assertEquals(0.formatShortDuration(), "00:00")
+        assertEquals((1000 * 5).toLong().formatShortDuration(), "00:05")
+        assertEquals((1000 * 59).toLong().formatShortDuration(), "00:59")
+        assertEquals((1000 * 60).toLong().formatShortDuration(), "01:00")
+        assertEquals((1000 * 60 + 1000 * 4).toLong().formatShortDuration(), "01:04")
     }
 }

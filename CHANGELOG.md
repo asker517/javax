@@ -5,6 +5,7 @@
 * :sparkles: Zipx adds compressChildFileTo, compressChildFile, listEntry, listEntryName, size, ZipEntryNameTransformer
 * :fire: Zipx removed compressDirTo, compressDir method
 * :fire: The Zipx getDecompressDstDir method now returns `zipSourceFile.getParentFile()`
+* :fire: Formatx totalTimeShort rename to shortTotalTime, durationShort rename to shortDuration
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing
