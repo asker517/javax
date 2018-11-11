@@ -24,22 +24,32 @@ import static org.junit.Assert.assertEquals;
 public class FormatxTest {
 
     @Test
+    public void testFormat() {
+        assertEquals(Formatx.format(3.0 / 8.0, "%", 2, false), "37.5%");
+        assertEquals(Formatx.format(3.0f / 8.0f, "%", 2, false), "37.5%");
+    }
+
+    @Test
     public void testPercent() {
         assertEquals(Formatx.percent(3, 8), "37.5%");
         assertEquals(Formatx.percent(3, 8, 2), "37.5%");
         assertEquals(Formatx.percent(3, 8, 2, true), "37.50%");
+        assertEquals(Formatx.percent(3, 0), "100%");
 
         assertEquals(Formatx.percent(3d, 8d), "37.5%");
         assertEquals(Formatx.percent(3d, 8d, 2), "37.5%");
         assertEquals(Formatx.percent(3d, 8d, 2, true), "37.50%");
+        assertEquals(Formatx.percent(3d, 0d), "100%");
 
         assertEquals(Formatx.percent(3f, 8f), "37.5%");
         assertEquals(Formatx.percent(3f, 8f, 2), "37.5%");
         assertEquals(Formatx.percent(3f, 8f, 2, true), "37.50%");
+        assertEquals(Formatx.percent(3f, 0f), "100%");
 
         assertEquals(Formatx.percent(3L, 8L), "37.5%");
         assertEquals(Formatx.percent(3L, 8L, 2), "37.5%");
         assertEquals(Formatx.percent(3L, 8L, 2, true), "37.50%");
+        assertEquals(Formatx.percent(3L, 0L), "100%");
     }
 
     @Test
@@ -54,7 +64,7 @@ public class FormatxTest {
         assertEquals(Formatx.fileSize(800 + 1024 * 500), "500.78 KB");
         assertEquals(Formatx.fileSize(1024L * 999), "999 KB");
 
-        assertEquals(Formatx.fileSize(1024L * 999 + 1), "0.98 MB");
+        assertEquals(Formatx.fileSize(1024L * 999 + 1, 2, false), "0.98 MB");
         assertEquals(Formatx.fileSize(1024L * 1024, true), "1.00 MB");
         assertEquals(Formatx.fileSize((1024 * 500) + 1024L * 1024), "1.49 MB");
         assertEquals(Formatx.fileSize((1024 * 500) + 1024L * 1024 * 500), "500.49 MB");
@@ -144,7 +154,8 @@ public class FormatxTest {
     @Test
     public void testTotalTime() {
         // millisecond
-        assertEquals(Formatx.totalTime(0L), "0s");
+        assertEquals(Formatx.totalTime(0L, 0, " ", "d", "h", "m", "s", "ms"), "0s");
+        assertEquals(Formatx.totalTime(-10L, new Formatx.TotalTimeConfig(0, " ", "d", "h", "m", "s", "ms")), "0s");
         assertEquals(Formatx.totalTime(-10L), "0s");
         assertEquals(Formatx.totalTime(590), "590ms");
         assertEquals(Formatx.totalTime(590, 1), "0s");
@@ -329,7 +340,7 @@ public class FormatxTest {
         assertEquals(Formatx.count(10000), "1w");
         assertEquals(Formatx.count(10999), "1w");
         assertEquals(Formatx.count(15001), "1.5w");
-        assertEquals(Formatx.count(101000), "10.1w");
+        assertEquals(Formatx.count((long) 101000), "10.1w");
     }
 
     @Test

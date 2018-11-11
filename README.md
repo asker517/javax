@@ -137,7 +137,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * fill, shuffle
 * Comparison: [Comparisonx.java] ([Test][ComparisonxTest.java])
     * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf, areEqual
-* Format: [Formatx.java] | [Formatx.kt]
+* Format: [Formatx.java] ([Test][FormatxTest.java]) | [Formatx.kt] ([Test][FormatxTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
     * totalTime, totalTimeShort, totalTimeZH, totalTimeZHShort, count
     * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad, duration, durationShort

@@ -16,6 +16,7 @@
 
 package me.panpf.javaxkt.test.util
 
+import me.panpf.javax.util.Formatx
 import me.panpf.javaxkt.util.*
 import org.junit.Assert
 import org.junit.Assert.assertEquals
@@ -24,18 +25,28 @@ import org.junit.Test
 class FormatxTest {
 
     @Test
+    fun testFormat() {
+        Assert.assertEquals((3.0 / 8.0).format("%"), "37.5%")
+        Assert.assertEquals((3.0f / 8.0f).format("%"), "37.5%")
+    }
+
+    @Test
     fun testPercent() {
         Assert.assertEquals(3.formatPercentWith(8), "37.5%")
         Assert.assertEquals(3.formatPercentWith(8, 2, true), "37.50%")
+        Assert.assertEquals(3.formatPercentWith(0), "100%")
 
         Assert.assertEquals(3.0.formatPercentWith(8.0), "37.5%")
         Assert.assertEquals(3.0.formatPercentWith(8.0, 2, true), "37.50%")
+        Assert.assertEquals(3.0.formatPercentWith(0.0), "100%")
 
         Assert.assertEquals(3f.formatPercentWith(8f), "37.5%")
         Assert.assertEquals(3f.formatPercentWith(8f, 2, true), "37.50%")
+        Assert.assertEquals(3f.formatPercentWith(0f), "100%")
 
         Assert.assertEquals(3L.formatPercentWith(8L), "37.5%")
         Assert.assertEquals(3L.formatPercentWith(8L, 2, true), "37.50%")
+        Assert.assertEquals(3L.formatPercentWith(0L), "100%")
     }
 
     @Test
@@ -50,7 +61,7 @@ class FormatxTest {
         Assert.assertEquals((800 + 1024 * 500).formatFileSize(), "500.78 KB")
         Assert.assertEquals((1024L * 999).formatFileSize(), "999 KB")
 
-        Assert.assertEquals((1024L * 999 + 1).formatFileSize(), "0.98 MB")
+        Assert.assertEquals((1024L * 999 + 1).formatFileSize(2, false), "0.98 MB")
         Assert.assertEquals((1024L * 1024).formatFileSize(true), "1.00 MB")
         Assert.assertEquals((1024 * 500 + 1024L * 1024).formatFileSize(), "1.49 MB")
         Assert.assertEquals((1024 * 500 + 1024L * 1024 * 500).formatFileSize(), "500.49 MB")
@@ -140,7 +151,8 @@ class FormatxTest {
     @Test
     fun testTotalTime() {
         // millisecond
-        Assert.assertEquals(0L.formatTotalTime(), "0s")
+        Assert.assertEquals(0L.formatTotalTime(0, " ", "d", "h", "m", "s", "ms"), "0s")
+        Assert.assertEquals((-10L).formatTotalTime(Formatx.TotalTimeConfig(0, " ", "d", "h", "m", "s", "ms")), "0s")
         Assert.assertEquals((-10L).formatTotalTime(), "0s")
         Assert.assertEquals(590.formatTotalTime(), "590ms")
         Assert.assertEquals(590.formatTotalTime(1), "0s")
@@ -325,7 +337,7 @@ class FormatxTest {
         Assert.assertEquals(10000.formatCount(), "1w")
         Assert.assertEquals(10999.formatCount(), "1w")
         Assert.assertEquals(15001.formatCount(), "1.5w")
-        Assert.assertEquals(101000.formatCount(), "10.1w")
+        Assert.assertEquals(101000L.formatCount(), "10.1w")
     }
 
     @Test

@@ -335,7 +335,6 @@ public class Formatx {
 
         StringBuilder builder = new StringBuilder();
         if (day > 0) {
-            if (builder.length() > 0) builder.append(config.getDivider());
             builder.append(day).append(config.getDaySuffix());
         }
         if (hour > 0) {

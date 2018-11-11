@@ -18,8 +18,8 @@
 
 package me.panpf.javaxkt.util
 
-import me.panpf.javax.util.Formatx.TotalTimeConfig
 import me.panpf.javax.util.Formatx
+import me.panpf.javax.util.Formatx.TotalTimeConfig
 import me.panpf.javaxkt.lang.orZero
 
 
@@ -172,9 +172,8 @@ inline fun Long.formatTotalTime(config: TotalTimeConfig): String = Formatx.total
  * @param level 0: Accurate to milliseconds; 1: Accurate to seconds; 2: Accurate to minute; 3: Accurate to hour; 4: Accurate to day; 5 or more always returns 0 seconds
  */
 inline fun Long.formatTotalTime(level: Int = 0, divider: String, daySuffix: String, hourSuffix: String,
-                                minuteSuffix: String, secondSuffix: String, millisecondSuffix: String): String {
-    return Formatx.totalTime(this, level, divider, daySuffix, hourSuffix, minuteSuffix, secondSuffix, millisecondSuffix)
-}
+                                minuteSuffix: String, secondSuffix: String, millisecondSuffix: String): String =
+        Formatx.totalTime(this, level, divider, daySuffix, hourSuffix, minuteSuffix, secondSuffix, millisecondSuffix)
 
 /**
  * Returns the total time of formatting that can be displayed

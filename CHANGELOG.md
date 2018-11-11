@@ -8,6 +8,7 @@
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing
+* :white_check_mark: Perfect Formatx testing
 
 
 ## v0.8.5
