@@ -18,18 +18,17 @@ package me.panpf.javax.collections;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
-public class LongArrayIterator implements Iterator<Long> {
+public class ArrayBooleanIterator extends BooleanIterator {
 
     private int index = 0;
 
     @Nullable
-    private long[] elements;
+    private boolean[] elements;
 
-    public LongArrayIterator(@Nullable long[] elements) {
+    public ArrayBooleanIterator(@Nullable boolean[] elements) {
         this.elements = elements;
     }
 
@@ -39,7 +38,7 @@ public class LongArrayIterator implements Iterator<Long> {
     }
 
     @Override
-    public Long next() {
+    public Boolean nextBoolean() {
         if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];

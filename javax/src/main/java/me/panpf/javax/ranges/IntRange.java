@@ -17,72 +17,45 @@
 package me.panpf.javax.ranges;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-
+/**
+ * A range of values of type `Integer`.
+ */
 @SuppressWarnings("WeakerAccess")
-public class IntRange implements Iterable<Integer>, ClosedRange<Integer> {
+public class IntRange extends IntProgression implements ClosedRange<Integer> {
 
-    private final int start;
-    private final int endInclusive;
-    private final int step;
-
-    public IntRange(int start, int endInclusive, int step) {
-        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
-        this.start = start;
-        this.endInclusive = Rangex.getProgressionLastElement(start, endInclusive, step);
-        this.step = step;
-    }
-
-    @NotNull
-    public Iterator<Integer> iterator() {
-        return new IntRangeIterator(this.start, this.endInclusive, this.step);
-    }
-
-    @Override
-    public boolean contains(@NotNull Integer value) {
-        return start <= value && value <= endInclusive;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object other) {
-        return other instanceof IntRange && (this.isEmpty() && ((IntRange) other).isEmpty() || this.start == ((IntRange) other).start && this.endInclusive == ((IntRange) other).endInclusive && this.step == ((IntRange) other).step);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step;
-    }
-
-    @NotNull
-    public String toString() {
-        return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
+    public IntRange(int start, int endInclusive) {
+        super(start, endInclusive, 1);
     }
 
     @NotNull
     @Override
     public Integer getStart() {
-        return this.start;
+        return getFirst();
     }
 
     @NotNull
     @Override
     public Integer getEndInclusive() {
-        return this.endInclusive;
+        return getLast();
     }
 
-    public int getStep() {
-        return this.step;
+    @Override
+    public boolean contains(@NotNull Integer value) {
+        return getFirst() <= value && value <= getLast();
+    }
+
+    public boolean isEmpty() {
+        return getFirst() > getLast();
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.isEmpty() ? -1 : 31 * (31 * this.getFirst() + this.getLast()));
     }
 
     @NotNull
-    public static IntRange fromClosedRange(int rangeStart, int rangeEnd, int step) {
-        return new IntRange(rangeStart, rangeEnd, step);
+    public String toString() {
+        return this.getFirst() + ".." + this.getLast();
     }
 }

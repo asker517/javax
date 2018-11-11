@@ -17,9 +17,10 @@
 package me.panpf.javax.test.ranges
 
 import me.panpf.javax.collections.Collectionx
-import me.panpf.javax.ranges.Rangex
-import me.panpf.javax.util.*
 import me.panpf.javax.ranges.ClosedRange
+import me.panpf.javax.ranges.Rangex
+import me.panpf.javax.util.Datex
+import me.panpf.javax.util.Transformer
 import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Test
@@ -27,6 +28,41 @@ import java.text.ParseException
 import java.util.*
 
 class RangexTest {
+
+    @Test
+    fun testGetProgressionLastElement() {
+        assertEquals(10, Rangex.getProgressionLastElement(0, 10, 1))
+        assertEquals(10, Rangex.getProgressionLastElement(0, 11, 2))
+        try {
+            Rangex.getProgressionLastElement(0, 10, 0)
+            Assert.fail()
+        } catch (e: IllegalArgumentException) {
+        }
+
+        assertEquals(10L, Rangex.getProgressionLastElement(0L, 10L, 1L))
+        assertEquals(10L, Rangex.getProgressionLastElement(0L, 11L, 2L))
+        try {
+            Rangex.getProgressionLastElement(0L, 10L, 0L)
+            Assert.fail()
+        } catch (e: IllegalArgumentException) {
+        }
+
+        assertEquals(0, Rangex.getProgressionLastElement(10, 0, -1))
+        assertEquals(1, Rangex.getProgressionLastElement(11, 0, -2))
+        try {
+            Rangex.getProgressionLastElement(10, 0, 0)
+            Assert.fail()
+        } catch (e: IllegalArgumentException) {
+        }
+
+        assertEquals(0L, Rangex.getProgressionLastElement(10L, 0L, -1L))
+        assertEquals(1L, Rangex.getProgressionLastElement(11L, 0L, -2L))
+        try {
+            Rangex.getProgressionLastElement(10L, 0L, 0L)
+            Assert.fail()
+        } catch (e: IllegalArgumentException) {
+        }
+    }
 
     @Test
     fun testIn() {
@@ -88,24 +124,25 @@ class RangexTest {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toByte(), 1.toByte())).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0.toByte(), 1.toByte())).toLong(), 2)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toByte(), 0.toByte())).toLong(), 0)
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toByte(), 10.toByte(), 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toByte(), 10.toByte())).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toByte(), 1.toByte())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toByte(), 0.toByte())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(0.toByte(), 1.toByte())).toLong(), 1)
+        Assert.assertEquals(Collectionx.count(Rangex.until(1.toByte(), 11.toByte(), 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downTo(10.toByte(), 1.toByte())).toLong(), 10)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1.toByte(), 1.toByte())).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(0.toByte(), 1.toByte())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1.toByte(), 0.toByte())).toLong(), 2)
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10.toByte(), 1.toByte(), -4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.toByte(), 1.toByte())).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.toByte(), 1.toByte())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0.toByte(), 1.toByte())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.toByte(), 0.toByte())).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toByte(), 10.toByte(), 4.toByte().toInt())).toLong(), 3)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10.toByte(), 1.toByte(), (-4).toByte().toInt())).toLong(), 3)
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.toByte(), 0.toByte(), -4)).toLong(), 3)
     }
 
     @Test
@@ -114,24 +151,25 @@ class RangexTest {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toShort(), 1.toShort())).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0.toShort(), 1.toShort())).toLong(), 2)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toShort(), 0.toShort())).toLong(), 0)
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toShort(), 10.toShort(), 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toShort(), 10.toShort())).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toShort(), 1.toShort())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toShort(), 0.toShort())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(0.toShort(), 1.toShort())).toLong(), 1)
+        Assert.assertEquals(Collectionx.count(Rangex.until(1.toShort(), 11.toShort(), 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downTo(10.toShort(), 1.toShort())).toLong(), 10)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1.toShort(), 1.toShort())).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(0.toShort(), 1.toShort())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1.toShort(), 0.toShort())).toLong(), 2)
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10.toShort(), 1.toShort(), -4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.toShort(), 1.toShort())).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.toShort(), 1.toShort())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0.toShort(), 1.toShort())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.toShort(), 0.toByte().toShort())).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toShort(), 10.toShort(), 4.toShort().toInt())).toLong(), 3)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10.toShort(), 1.toShort(), (-4).toShort().toInt())).toLong(), 3)
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.toShort(), 0.toShort(), -4)).toLong(), 3)
     }
 
     @Test
@@ -140,24 +178,25 @@ class RangexTest {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 1)).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0, 1)).toLong(), 2)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 0)).toLong(), 0)
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 10, 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.until(1, 10)).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.until(1, 1)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(1, 0)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(0, 1)).toLong(), 1)
+        Assert.assertEquals(Collectionx.count(Rangex.until(1, 11, 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downTo(10, 1)).toLong(), 10)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1, 1)).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(0, 1)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1, 0)).toLong(), 2)
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10, 1, -4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10, 1)).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1, 1)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0, 1)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1, 0)).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1, 10, 4)).toLong(), 3)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10, 1, -4)).toLong(), 3)
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10, 0, -4)).toLong(), 3)
     }
 
     @Test
@@ -166,24 +205,25 @@ class RangexTest {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 1L)).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0L, 1L)).toLong(), 2)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 0L)).toLong(), 0)
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 10L, 4L)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.until(1L, 10L)).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.until(1L, 1L)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(1L, 0L)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(0L, 1L)).toLong(), 1)
+        Assert.assertEquals(Collectionx.count(Rangex.until(1L, 11L, 4L)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downTo(10L, 1L)).toLong(), 10)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1L, 1L)).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(0L, 1L)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1L, 0L)).toLong(), 2)
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10L, 1L, -4L)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10L, 1L)).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1L, 1L)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0L, 1L)).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1L, 0L)).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1L, 10L, 4)).toLong(), 3)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10L, 1L, -4)).toLong(), 3)
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10L, 0L, -4L)).toLong(), 3)
     }
 
     @Test
@@ -211,24 +251,25 @@ class RangexTest {
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toChar(), 1.toChar())).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0.toChar(), 1.toChar())).toLong(), 2)
         Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toChar(), 0.toChar())).toLong(), 0)
+        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toChar(), 10.toChar(), 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toChar(), 10.toChar())).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toChar(), 1.toChar())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(1.toChar(), 0.toChar())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.until(0.toChar(), 1.toChar())).toLong(), 1)
+        Assert.assertEquals(Collectionx.count(Rangex.until(1.toChar(), 11.toChar(), 4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downTo(10.toChar(), 1.toChar())).toLong(), 10)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1.toChar(), 1.toChar())).toLong(), 1)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(0.toChar(), 1.toChar())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downTo(1.toChar(), 0.toChar())).toLong(), 2)
+        Assert.assertEquals(Collectionx.count(Rangex.downTo(10.toChar(), 0.toChar(), -4)).toLong(), 3)
 
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.toChar(), 1.toChar())).toLong(), 9)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.toChar(), 1.toChar())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0.toChar(), 1.toChar())).toLong(), 0)
         Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.toChar(), 0.toChar())).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.toChar(), 10.toChar(), 4)).toLong(), 3)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10.toChar(), 1.toChar(), -4)).toLong(), 3)
+        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.toChar(), 0.toChar(), -4)).toLong(), 3)
     }
 
     @Test

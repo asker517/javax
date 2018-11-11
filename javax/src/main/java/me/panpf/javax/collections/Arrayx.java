@@ -3696,7 +3696,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Byte> iterator(@Nullable byte[] elements) {
-        return new ByteArrayIterator(elements);
+        return new ArrayByteIterator(elements);
     }
 
     /**
@@ -3704,7 +3704,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Short> iterator(@Nullable short[] elements) {
-        return new ShortArrayIterator(elements);
+        return new ArrayShortIterator(elements);
     }
 
     /**
@@ -3712,7 +3712,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Integer> iterator(@Nullable int[] elements) {
-        return new IntArrayIterator(elements);
+        return new ArrayIntIterator(elements);
     }
 
     /**
@@ -3720,7 +3720,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Long> iterator(@Nullable long[] elements) {
-        return new LongArrayIterator(elements);
+        return new ArrayLongIterator(elements);
     }
 
     /**
@@ -3728,7 +3728,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Float> iterator(@Nullable float[] elements) {
-        return new FloatArrayIterator(elements);
+        return new ArrayFloatIterator(elements);
     }
 
     /**
@@ -3736,7 +3736,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Double> iterator(@Nullable double[] elements) {
-        return new DoubleArrayIterator(elements);
+        return new ArrayDoubleIterator(elements);
     }
 
     /**
@@ -3744,7 +3744,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Boolean> iterator(@Nullable boolean[] elements) {
-        return new BooleanArrayIterator(elements);
+        return new ArrayBooleanIterator(elements);
     }
 
     /**
@@ -3752,7 +3752,7 @@ public class Arrayx {
      */
     @NotNull
     public static Iterator<Character> iterator(@Nullable char[] elements) {
-        return new CharArrayIterator(elements);
+        return new ArrayCharIterator(elements);
     }
 
     /**
@@ -7332,7 +7332,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> IntRange indices(@Nullable T[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7340,7 +7340,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable byte[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7348,7 +7348,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable short[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7356,7 +7356,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable int[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7364,7 +7364,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable long[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7372,7 +7372,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable float[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7380,7 +7380,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable double[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7388,7 +7388,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable boolean[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
     /**
@@ -7396,7 +7396,7 @@ public class Arrayx {
      */
     @NotNull
     public static IntRange indices(@Nullable char[] elements) {
-        return Rangex.until(0, count(elements));
+        return new IntRange(0, count(elements) - 1);
     }
 
 

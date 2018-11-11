@@ -18,18 +18,16 @@ package me.panpf.javax.collections;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
-public class ShortArrayIterator implements Iterator<Short> {
-
+public class ArrayCharIterator extends CharIterator {
     private int index = 0;
 
     @Nullable
-    private short[] elements;
+    private char[] elements;
 
-    public ShortArrayIterator(@Nullable short[] elements) {
+    public ArrayCharIterator(@Nullable char[] elements) {
         this.elements = elements;
     }
 
@@ -39,7 +37,7 @@ public class ShortArrayIterator implements Iterator<Short> {
     }
 
     @Override
-    public Short next() {
+    public Character nextChar() {
         if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];

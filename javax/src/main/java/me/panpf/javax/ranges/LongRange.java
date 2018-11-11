@@ -17,71 +17,50 @@
 package me.panpf.javax.ranges;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-
+/**
+ * A range of values of type `Long`.
+ */
 @SuppressWarnings("WeakerAccess")
-public class LongRange implements Iterable<Long>, ClosedRange<Long> {
+public class LongRange extends LongProgression implements ClosedRange<Long> {
 
-    private final long start;
-    private final long endInclusive;
-    private final long step;
+    /**
+     * An empty range of values of type Char.
+     */
+    public static final LongRange EMPTY = new LongRange(1, 0);
 
-    public LongRange(long start, long endInclusive, long step) {
-        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
-        this.start = start;
-        this.endInclusive = Rangex.getProgressionLastElement(start, endInclusive, step);
-        this.step = step;
-    }
-
-    @NotNull
-    public Iterator<Long> iterator() {
-        return new LongRangeIterator(this.start, this.endInclusive, this.step);
-    }
-
-    @Override
-    public boolean contains(@NotNull Long value) {
-        return start <= value && value <= endInclusive;
-    }
-
-    public boolean isEmpty() {
-        return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object other) {
-        return other instanceof LongRange && (this.isEmpty() && ((LongRange) other).isEmpty() || this.start == ((LongRange) other).start && this.endInclusive == ((LongRange) other).endInclusive && this.step == ((LongRange) other).step);
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step);
-    }
-
-    @NotNull
-    public String toString() {
-        return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
+    public LongRange(long start, long endInclusive) {
+        super(start, endInclusive, 1);
     }
 
     @NotNull
     @Override
     public Long getStart() {
-        return this.start;
+        return getFirst();
     }
 
     @NotNull
     @Override
     public Long getEndInclusive() {
-        return this.endInclusive;
+        return getLast();
     }
 
-    public long getStep() {
-        return this.step;
+    @Override
+    public boolean contains(@NotNull Long value) {
+        return getFirst() <= value && value <= getLast();
+    }
+
+    public boolean isEmpty() {
+        return getFirst() > getLast();
+    }
+
+    @Override
+    public int hashCode() {
+        return this.isEmpty() ? -1 : (int) (31 * (31 * this.getFirst() + this.getLast()));
     }
 
     @NotNull
-    public static LongRange fromClosedRange(long rangeStart, long rangeEnd, long step) {
-        return new LongRange(rangeStart, rangeEnd, step);
+    public String toString() {
+        return this.getFirst() + ".." + this.getLast();
     }
 }

@@ -23,6 +23,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A base class to simplify implementing iterators so that implementations only have to implement [computeNext]
+ * to implement the iterator, calling [done] when the iteration is complete.
+ */
 public abstract class AbstractIterator<T> implements Iterator<T> {
 
     @NotNull
@@ -82,12 +86,5 @@ public abstract class AbstractIterator<T> implements Iterator<T> {
      */
     protected void done() {
         state = State.Done;
-    }
-
-    public enum State {
-        Ready,
-        NotReady,
-        Done,
-        Failed
     }
 }

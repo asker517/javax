@@ -18,17 +18,17 @@ package me.panpf.javax.collections;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
-public class ByteArrayIterator implements Iterator<Byte> {
+public class ArrayFloatIterator extends FloatIterator {
+
     private int index = 0;
 
     @Nullable
-    private byte[] elements;
+    private float[] elements;
 
-    public ByteArrayIterator(@Nullable byte[] elements) {
+    public ArrayFloatIterator(@Nullable float[] elements) {
         this.elements = elements;
     }
 
@@ -38,7 +38,7 @@ public class ByteArrayIterator implements Iterator<Byte> {
     }
 
     @Override
-    public Byte next() {
+    public Float nextFloat() {
         if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];

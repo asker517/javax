@@ -16,24 +16,20 @@
 
 package me.panpf.javax.collections;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.Iterator;
 
-@SuppressWarnings("WeakerAccess")
-public class CharSequenceIterable implements Iterable<Character> {
+/**
+ * An iterator over a sequence of values of type `Character`.
+ */
+public abstract class CharIterator implements Iterator<Character> {
 
-    @Nullable
-    private CharSequence charSequence;
-
-    public CharSequenceIterable(@Nullable CharSequence charSequence) {
-        this.charSequence = charSequence;
-    }
-
-    @NotNull
     @Override
-    public Iterator<Character> iterator() {
-        return new CharSequenceIterator(charSequence);
+    public final Character next() {
+        return nextChar();
     }
+
+    /**
+     * Returns the next value in the sequence without boxing.
+     */
+    public abstract Character nextChar();
 }

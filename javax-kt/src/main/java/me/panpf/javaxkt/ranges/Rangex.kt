@@ -19,9 +19,9 @@
 package me.panpf.javaxkt.ranges
 
 import me.panpf.javax.ranges.*
-import me.panpf.javax.ranges.CharRange
-import me.panpf.javax.ranges.IntRange
-import me.panpf.javax.ranges.LongRange
+import me.panpf.javax.ranges.CharProgression
+import me.panpf.javax.ranges.IntProgression
+import me.panpf.javax.ranges.LongProgression
 import java.text.ParseException
 import java.util.*
 
@@ -37,7 +37,7 @@ import java.util.*
 /**
  * Create a positive-order byte ranges
  */
-inline fun Byte.rangeTo(endInclusive: Byte, step: Int): IntRange = Rangex.rangeTo(this, endInclusive, step)
+inline fun Byte.rangeTo(endInclusive: Byte, step: Int): IntProgression = Rangex.rangeTo(this, endInclusive, step)
 
 ///**
 // * Create a positive-order byte ranges
@@ -47,47 +47,47 @@ inline fun Byte.rangeTo(endInclusive: Byte, step: Int): IntRange = Rangex.rangeT
 /**
  * Create a positive-order byte ranges that does not contain [end]
  */
-inline fun Byte.until(end: Byte, step: Int): IntRange = Rangex.until(this, end, step)
+inline fun Byte.until(end: Byte, step: Int): IntProgression = Rangex.until(this, end, step)
 
 ///**
 // * Create a positive-order byte ranges that does not contain [end]
 // */
-//inline infix fun Byte.until(end: Byte): IntRange = Rangex.until(this, end)
+//inline infix fun Byte.until(end: Byte): IntProgression = Rangex.until(this, end)
 
 /**
  * Create a reversed byte range
  */
-inline fun Byte.downTo(endInclusive: Byte, step: Int): IntRange = Rangex.downTo(this, endInclusive, step)
+inline fun Byte.downTo(endInclusive: Byte, step: Int): IntProgression = Rangex.downTo(this, endInclusive, step)
 
 ///**
 // * Create a reversed byte range
 // */
-//inline infix fun Byte.downTo(endInclusive: Byte): IntRange = Rangex.downTo(this, endInclusive)
+//inline infix fun Byte.downTo(endInclusive: Byte): IntProgression = Rangex.downTo(this, endInclusive)
 
 /**
  * Create a reversed byte range that does not contain [end]
  */
-inline fun Byte.downUntilTo(end: Byte, step: Int): IntRange = Rangex.downUntilTo(this, end, step)
+inline fun Byte.downUntilTo(end: Byte, step: Int): IntProgression = Rangex.downUntilTo(this, end, step)
 
 /**
  * Create a reversed byte range that does not contain [end]
  */
-inline infix fun Byte.downUntilTo(end: Byte): IntRange = Rangex.downUntilTo(this, end)
+inline infix fun Byte.downUntilTo(end: Byte): IntProgression = Rangex.downUntilTo(this, end)
 
 /**
  * Create a reversed byte range that does not contain [end]
  */
-inline infix fun Byte.downUntilTo(end: Short): IntRange = Rangex.downUntilTo(this.toInt(), end.toInt())
+inline infix fun Byte.downUntilTo(end: Short): IntProgression = Rangex.downUntilTo(this.toInt(), end.toInt())
 
 /**
  * Create a reversed byte range that does not contain [end]
  */
-inline infix fun Byte.downUntilTo(end: Int): IntRange = Rangex.downUntilTo(this.toInt(), end)
+inline infix fun Byte.downUntilTo(end: Int): IntProgression = Rangex.downUntilTo(this.toInt(), end)
 
 /**
  * Create a reversed byte range that does not contain [end]
  */
-inline infix fun Byte.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(this.toLong(), end)
+inline infix fun Byte.downUntilTo(end: Long): LongProgression = Rangex.downUntilTo(this.toLong(), end)
 
 
 /* ******************************************* Short Range *******************************************/
@@ -96,7 +96,7 @@ inline infix fun Byte.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(thi
 /**
  * Create a positive-order short ranges
  */
-inline fun Short.rangeTo(endInclusive: Short, step: Int): IntRange = Rangex.rangeTo(this, endInclusive, step)
+inline fun Short.rangeTo(endInclusive: Short, step: Int): IntProgression = Rangex.rangeTo(this, endInclusive, step)
 
 ///**
 // * Create a positive-order short ranges
@@ -106,47 +106,47 @@ inline fun Short.rangeTo(endInclusive: Short, step: Int): IntRange = Rangex.rang
 /**
  * Create a positive-order short ranges that does not contain [end]
  */
-inline fun Short.until(end: Short, step: Int): IntRange = Rangex.until(this, end, step)
+inline fun Short.until(end: Short, step: Int): IntProgression = Rangex.until(this, end, step)
 
 ///**
 // * Create a positive-order short ranges that does not contain [end]
 // */
-//inline infix fun Short.until(end: Short): IntRange = Rangex.until(this, end)
+//inline infix fun Short.until(end: Short): IntProgression = Rangex.until(this, end)
 
 /**
  * Create a reversed short range
  */
-inline fun Short.downTo(endInclusive: Short, step: Int): IntRange = Rangex.downTo(this, endInclusive, step)
+inline fun Short.downTo(endInclusive: Short, step: Int): IntProgression = Rangex.downTo(this, endInclusive, step)
 
 ///**
 // * Create a reversed short range
 // */
-//inline infix fun Short.downTo(endInclusive: Short): IntRange = Rangex.downTo(this, endInclusive)
+//inline infix fun Short.downTo(endInclusive: Short): IntProgression = Rangex.downTo(this, endInclusive)
 
 /**
  * Create a reversed short range that does not contain [end]
  */
-inline fun Short.downUntilTo(end: Short, step: Int): IntRange = Rangex.downUntilTo(this.toInt(), end.toInt(), step)
+inline fun Short.downUntilTo(end: Short, step: Int): IntProgression = Rangex.downUntilTo(this.toInt(), end.toInt(), step)
 
 /**
  * Create a reversed short range that does not contain [end]
  */
-inline infix fun Short.downUntilTo(end: Byte): IntRange = Rangex.downUntilTo(this.toInt(), end.toInt())
+inline infix fun Short.downUntilTo(end: Byte): IntProgression = Rangex.downUntilTo(this.toInt(), end.toInt())
 
 /**
  * Create a reversed short range that does not contain [end]
  */
-inline infix fun Short.downUntilTo(end: Short): IntRange = Rangex.downUntilTo(this, end)
+inline infix fun Short.downUntilTo(end: Short): IntProgression = Rangex.downUntilTo(this, end)
 
 /**
  * Create a reversed short range that does not contain [end]
  */
-inline infix fun Short.downUntilTo(end: Int): IntRange = Rangex.downUntilTo(this.toInt(), end)
+inline infix fun Short.downUntilTo(end: Int): IntProgression = Rangex.downUntilTo(this.toInt(), end)
 
 /**
  * Create a reversed short range that does not contain [end]
  */
-inline infix fun Short.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(this.toLong(), end)
+inline infix fun Short.downUntilTo(end: Long): LongProgression = Rangex.downUntilTo(this.toLong(), end)
 
 
 /* ******************************************* Int Range *******************************************/
@@ -155,7 +155,7 @@ inline infix fun Short.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(th
 /**
  * Create a positive-order int ranges
  */
-inline fun Int.rangeTo(endInclusive: Int, step: Int): IntRange = Rangex.rangeTo(this, endInclusive, step)
+inline fun Int.rangeTo(endInclusive: Int, step: Int): IntProgression = Rangex.rangeTo(this, endInclusive, step)
 
 ///**
 // * Create a positive-order int ranges
@@ -165,47 +165,47 @@ inline fun Int.rangeTo(endInclusive: Int, step: Int): IntRange = Rangex.rangeTo(
 /**
  * Create a positive-order int ranges that does not contain [end]
  */
-inline fun Int.until(end: Int, step: Int): IntRange = Rangex.until(this, end, step)
+inline fun Int.until(end: Int, step: Int): IntProgression = Rangex.until(this, end, step)
 
 ///**
 // * Create a positive-order int ranges that does not contain [end]
 // */
-//inline infix fun Int.until(end: Int): IntRange = Rangex.until(this, end)
+//inline infix fun Int.until(end: Int): IntProgression = Rangex.until(this, end)
 
 /**
  * Create a reversed int range
  */
-inline fun Int.downTo(endInclusive: Int, step: Int): IntRange = Rangex.downTo(this, endInclusive, step)
+inline fun Int.downTo(endInclusive: Int, step: Int): IntProgression = Rangex.downTo(this, endInclusive, step)
 
 ///**
 // * Create a reversed int range
 // */
-//inline infix fun Int.downTo(endInclusive: Int): IntRange = Rangex.downTo(this, endInclusive)
+//inline infix fun Int.downTo(endInclusive: Int): IntProgression = Rangex.downTo(this, endInclusive)
 
 /**
  * Create a reversed int range that does not contain [end]
  */
-inline fun Int.downUntilTo(end: Int, step: Int): IntRange = Rangex.downUntilTo(this, end, step)
+inline fun Int.downUntilTo(end: Int, step: Int): IntProgression = Rangex.downUntilTo(this, end, step)
 
 /**
  * Create a reversed int range that does not contain [end]
  */
-inline infix fun Int.downUntilTo(end: Byte): IntRange = Rangex.downUntilTo(this, end.toInt())
+inline infix fun Int.downUntilTo(end: Byte): IntProgression = Rangex.downUntilTo(this, end.toInt())
 
 /**
  * Create a reversed int range that does not contain [end]
  */
-inline infix fun Int.downUntilTo(end: Short): IntRange = Rangex.downUntilTo(this, end.toInt())
+inline infix fun Int.downUntilTo(end: Short): IntProgression = Rangex.downUntilTo(this, end.toInt())
 
 /**
  * Create a reversed int range that does not contain [end]
  */
-inline infix fun Int.downUntilTo(end: Int): IntRange = Rangex.downUntilTo(this, end)
+inline infix fun Int.downUntilTo(end: Int): IntProgression = Rangex.downUntilTo(this, end)
 
 /**
  * Create a reversed int range that does not contain [end]
  */
-inline infix fun Int.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(this.toLong(), end)
+inline infix fun Int.downUntilTo(end: Long): LongProgression = Rangex.downUntilTo(this.toLong(), end)
 
 
 /* ******************************************* Long Range *******************************************/
@@ -214,7 +214,7 @@ inline infix fun Int.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(this
 /**
  * Create a positive-order long ranges
  */
-inline fun Long.rangeTo(endInclusive: Long, step: Long): LongRange = Rangex.rangeTo(this, endInclusive, step)
+inline fun Long.rangeTo(endInclusive: Long, step: Long): LongProgression = Rangex.rangeTo(this, endInclusive, step)
 
 ///**
 // * Create a positive-order long ranges
@@ -224,47 +224,47 @@ inline fun Long.rangeTo(endInclusive: Long, step: Long): LongRange = Rangex.rang
 /**
  * Create a positive-order long ranges that does not contain [end]
  */
-inline fun Long.until(end: Long, step: Long): LongRange = Rangex.until(this, end, step)
+inline fun Long.until(end: Long, step: Long): LongProgression = Rangex.until(this, end, step)
 
 ///**
 // * Create a positive-order long ranges that does not contain [end]
 // */
-//inline infix fun Long.until(end: Long): LongRange = Rangex.until(this, end)
+//inline infix fun Long.until(end: Long): LongProgression = Rangex.until(this, end)
 
 /**
  * Create a reversed long range
  */
-inline fun Long.downTo(endInclusive: Long, step: Long): LongRange = Rangex.downTo(this, endInclusive, step)
+inline fun Long.downTo(endInclusive: Long, step: Long): LongProgression = Rangex.downTo(this, endInclusive, step)
 
 ///**
 // * Create a reversed long range
 // */
-//inline infix fun Long.downTo(endInclusive: Long): LongRange = Rangex.downTo(this, endInclusive)
+//inline infix fun Long.downTo(endInclusive: Long): LongProgression = Rangex.downTo(this, endInclusive)
 
 /**
  * Create a reversed int range that does not contain [end]
  */
-inline fun Long.downUntilTo(end: Long, step: Long): LongRange = Rangex.downUntilTo(this, end, step)
+inline fun Long.downUntilTo(end: Long, step: Long): LongProgression = Rangex.downUntilTo(this, end, step)
 
 /**
  * Create a reversed long range that does not contain [end]
  */
-inline infix fun Long.downUntilTo(end: Byte): LongRange = Rangex.downUntilTo(this, end.toLong())
+inline infix fun Long.downUntilTo(end: Byte): LongProgression = Rangex.downUntilTo(this, end.toLong())
 
 /**
  * Create a reversed long range that does not contain [end]
  */
-inline infix fun Long.downUntilTo(end: Short): LongRange = Rangex.downUntilTo(this, end.toLong())
+inline infix fun Long.downUntilTo(end: Short): LongProgression = Rangex.downUntilTo(this, end.toLong())
 
 /**
  * Create a reversed long range that does not contain [end]
  */
-inline infix fun Long.downUntilTo(end: Int): LongRange = Rangex.downUntilTo(this, end.toLong())
+inline infix fun Long.downUntilTo(end: Int): LongProgression = Rangex.downUntilTo(this, end.toLong())
 
 /**
  * Create a reversed long range that does not contain [end]
  */
-inline infix fun Long.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(this, end)
+inline infix fun Long.downUntilTo(end: Long): LongProgression = Rangex.downUntilTo(this, end)
 
 
 ///* ******************************************* Float Range *******************************************/
@@ -321,7 +321,7 @@ inline infix fun Long.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(thi
 /**
  * Create a positive-order char ranges
  */
-inline fun Char.rangeTo(endInclusive: Char, step: Int): CharRange = Rangex.rangeTo(this, endInclusive, step)
+inline fun Char.rangeTo(endInclusive: Char, step: Int): CharProgression = Rangex.rangeTo(this, endInclusive, step)
 
 ///**
 // * Create a positive-order char ranges
@@ -331,32 +331,32 @@ inline fun Char.rangeTo(endInclusive: Char, step: Int): CharRange = Rangex.range
 /**
  * Create a positive-order char ranges that does not contain [end]
  */
-inline fun Char.until(end: Char, step: Int): CharRange = Rangex.until(this, end, step)
+inline fun Char.until(end: Char, step: Int): CharProgression = Rangex.until(this, end, step)
 
 ///**
 // * Create a positive-order char ranges that does not contain [end]
 // */
-//inline infix fun Char.until(end: Char): CharRange = Rangex.until(this, end)
+//inline infix fun Char.until(end: Char): CharProgression = Rangex.until(this, end)
 
 /**
  * Create a reversed char range
  */
-inline fun Char.downTo(endInclusive: Char, step: Int): CharRange = Rangex.downTo(this, endInclusive, step)
+inline fun Char.downTo(endInclusive: Char, step: Int): CharProgression = Rangex.downTo(this, endInclusive, step)
 
 ///**
 // * Create a reversed char range
 // */
-//inline infix fun Char.downTo(endInclusive: Char): CharRange = Rangex.downTo(this, endInclusive)
+//inline infix fun Char.downTo(endInclusive: Char): CharProgression = Rangex.downTo(this, endInclusive)
 
 /**
  * Create a reversed char range that does not contain [end]
  */
-inline fun Char.downUntilTo(end: Char, step: Int): CharRange = Rangex.downUntilTo(this, end, step)
+inline fun Char.downUntilTo(end: Char, step: Int): CharProgression = Rangex.downUntilTo(this, end, step)
 
 /**
  * Create a reversed char range that does not contain [end]
  */
-inline infix fun Char.downUntilTo(end: Char): CharRange = Rangex.downUntilTo(this, end)
+inline infix fun Char.downUntilTo(end: Char): CharProgression = Rangex.downUntilTo(this, end)
 
 
 /* ******************************************* Year range ******************************************* */

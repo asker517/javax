@@ -17,6 +17,7 @@
 package me.panpf.javax.lang;
 
 import me.panpf.javax.collections.*;
+import me.panpf.javax.ranges.IntProgression;
 import me.panpf.javax.ranges.IntRange;
 import me.panpf.javax.ranges.Rangex;
 import me.panpf.javax.util.*;
@@ -627,7 +628,7 @@ public class Stringx {
      */
     @NotNull
     public static IntRange indices(@Nullable CharSequence charSequence) {
-        return Rangex.until(0, count(charSequence));
+        return Rangex.rangeTo(0, count(charSequence) - 1);
     }
 
     /**
@@ -1265,7 +1266,7 @@ public class Stringx {
             return index < 0 ? null : Pair.of(index, string);
         }
 
-        IntRange indices = !last ? Rangex.rangeTo(Rangex.coerceAtLeast(startIndex, 0), count(charSequence))
+        IntProgression indices = !last ? Rangex.rangeTo(Rangex.coerceAtLeast(startIndex, 0), count(charSequence))
                 : Rangex.downTo(Rangex.coerceAtMost(startIndex, count(charSequence) - 1), 0);
 
         if (charSequence instanceof String) {

@@ -85,6 +85,12 @@ class RangexTest {
         Assert.assertEquals(1.toChar().downUntilTo(1.toChar()).count().toLong(), 0)
         Assert.assertEquals(0.toChar().downUntilTo(1.toChar()).count().toLong(), 0)
         Assert.assertEquals(1.toChar().downUntilTo(0.toChar()).count().toLong(), 1)
+
+        Assert.assertEquals(1.toChar().rangeTo(10.toChar(), 4).count().toLong(), 3)
+        Assert.assertEquals(10.toChar().downTo(1.toChar(), (-4)).count().toLong(), 3)
+
+        Assert.assertEquals(1.toChar().until(11.toChar(), 4).count().toLong(), 3)
+        Assert.assertEquals(10.toChar().downUntilTo(0.toChar(), (-4)).count().toLong(), 3)
     }
 
     @Test

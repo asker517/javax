@@ -16,29 +16,36 @@
 
 package me.panpf.javax.collections;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
 public class CharSequenceIterator implements Iterator<Character> {
 
     private int index;
-    @NotNull
+    @Nullable
     private CharSequence charSequence;
 
-    public CharSequenceIterator(@NotNull CharSequence charSequence) {
+    public CharSequenceIterator(@Nullable CharSequence charSequence) {
         this.charSequence = charSequence;
     }
 
     @Override
     public boolean hasNext() {
-        return index < charSequence.length();
+        return charSequence != null && index < charSequence.length();
     }
 
     @Override
     public Character next() {
-        return charSequence.charAt(index++);
+        if (charSequence == null) throw new NoSuchElementException("elements is null");
+        try {
+            return charSequence.charAt(index++);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            index -= 1;
+            throw new NoSuchElementException(e.getMessage());
+        }
     }
 
     @Override

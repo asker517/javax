@@ -18,18 +18,17 @@ package me.panpf.javax.collections;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 @SuppressWarnings("WeakerAccess")
-public class FloatArrayIterator implements Iterator<Float> {
+public class ArrayShortIterator extends ShortIterator {
 
     private int index = 0;
 
     @Nullable
-    private float[] elements;
+    private short[] elements;
 
-    public FloatArrayIterator(@Nullable float[] elements) {
+    public ArrayShortIterator(@Nullable short[] elements) {
         this.elements = elements;
     }
 
@@ -39,7 +38,7 @@ public class FloatArrayIterator implements Iterator<Float> {
     }
 
     @Override
-    public Float next() {
+    public Short nextShort() {
         if (elements == null) throw new NoSuchElementException("elements is null");
         try {
             return elements[index++];

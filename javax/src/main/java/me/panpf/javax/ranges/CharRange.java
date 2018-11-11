@@ -17,71 +17,45 @@
 package me.panpf.javax.ranges;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-
+/**
+ * A range of values of type `Char`.
+ */
 @SuppressWarnings("WeakerAccess")
-public class CharRange implements Iterable<Character>, ClosedRange<Character> {
+public class CharRange extends CharProgression implements ClosedRange<Character> {
 
-    private final char start;
-    private final char endInclusive;
-    private final int step;
-
-    public CharRange(char start, char endInclusive, int step) {
-        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
-        this.start = start;
-        this.endInclusive = (char) Rangex.getProgressionLastElement(start, endInclusive, step);
-        this.step = step;
-    }
-
-    @NotNull
-    public Iterator<Character> iterator() {
-        return new CharRangeIterator(this.start, this.endInclusive, this.step);
-    }
-
-    @Override
-    public boolean contains(@NotNull Character value) {
-        return start <= value && value <= endInclusive;
-    }
-
-    public boolean isEmpty() {
-        return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object other) {
-        return other instanceof CharRange && (this.isEmpty() && ((CharRange) other).isEmpty() || this.start == ((CharRange) other).start && this.endInclusive == ((CharRange) other).endInclusive && this.step == ((CharRange) other).step);
-    }
-
-    @Override
-    public int hashCode() {
-        return (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step);
-    }
-
-    @NotNull
-    public String toString() {
-        return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
+    public CharRange(char start, char endInclusive) {
+        super(start, endInclusive, 1);
     }
 
     @NotNull
     @Override
     public Character getStart() {
-        return this.start;
+        return getFirst();
     }
 
     @NotNull
     @Override
     public Character getEndInclusive() {
-        return this.endInclusive;
+        return getLast();
     }
 
-    public int getStep() {
-        return this.step;
+    @Override
+    public boolean contains(@NotNull Character value) {
+        return getFirst() <= value && value <= getLast();
+    }
+
+    public boolean isEmpty() {
+        return getFirst() > getLast();
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.isEmpty() ? -1 : 31 * (31 * this.getFirst() + this.getLast()));
     }
 
     @NotNull
-    public static CharRange fromClosedRange(char rangeStart, char rangeEnd, int step) {
-        return new CharRange(rangeStart, rangeEnd, step);
+    public String toString() {
+        return this.getFirst() + ".." + this.getLast();
     }
 }
