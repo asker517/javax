@@ -9,6 +9,8 @@
 * :sparkles: Rangex adds coerceIn method
 * :fire: Rangex removed rangeTo(float, float, step), until(float..), downTo(float..), downUntilTo(float..) method
 * :fire: Rangex removed rangeTo(double, double, step), until(double..), downTo(double..), downUntilTo(double..) method
+* :fire: Arrayx, Arrayx2, Mapx and related class moved to collections package
+* :fire: Rangex moved and related class to collections ranges
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing

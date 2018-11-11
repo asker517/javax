@@ -46,6 +46,26 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 
 :warning: Representatives with the `(Test)` tag have passed the test and can be used with confidence.
 
+### collections
+* Array: [Arrayx.java] | [Arrayx.kt]
+    * arrayOf, isEmpty, isNotEmpty, isNullOrEmpty, isNotNullOrEmpty, toTypedArray, toCollection, toList, toSet,
+    * toHashSet, asList, map, reverse, sort, single, any, iterator, asIterable, groupBy, groupingBy, count,
+    * max, min, join, sum, plus, indices, indexOf, contains, forEach, filter, zip, partition, all, first, last,
+    * find, get, elementAt, flatMap, average, none, reduce, fold, intersect, subtract, drop, take, distinct,
+    * withIndex, orEmpty
+* Array2: [Arrayx2.java]
+    * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
+    * contentEquals, binarySearch, copyOf, slice, associate
+* Collection: [Collectionx.java] | [Collectionx.kt]
+    * ieEmpty, isNotEmpty, isNullEmpty, isNotNullEmpty, orEmpty, listOf, setOf, createEmptyList, createEmptySet,
+    * createEmptyStack, createEmptyQueue, createEmptyDeque, collectionSizeOrDefault, filter, map, flatMap, join,
+    * count, average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList,
+    * toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse,
+    * indexOf, fold, reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt,
+    * fill, shuffle
+* Map: [Mapx.java]
+    * createEmptyMap, mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
+
 ### crypto
 * Aes: [Aesx.java] ([Test][AesxTest.java]) | [Aesx.kt] ([Test][AesxTest.kt])
     * createKey, createKeyByPassword, keyFromBytes, keyFromBase64, encrypt, encryptToBase64,
@@ -109,48 +129,32 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * isIPV4, isIPV6, isMacAddress, getLocalIPAddress, getLocalIPV4Address, getExternalIPV4Address, getCity
     * ipStringToLong, ipLongToString
 
+### ranges
+* Range: [Rangex.java] | [Rangex.kt]
+    * in, notIn, rangeTo, until, downTo, downUntilTo,
+    * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
+    * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
+    * coerceAtLeast, coerceAtMost, coerceIn
+
 ### security
 * Digest: [Digestx.java] ([Test][DigestxTest.java]) | [Digestx.kt] ([Test][DigestxTest.kt])
     * getDigest, getMD5, getMD5_16, getSHA1, getSHA256, getSHA512
 
 ### util
-* Array: [Arrayx.java] | [Arrayx.kt]
-    * arrayOf, isEmpty, isNotEmpty, isNullOrEmpty, isNotNullOrEmpty, toTypedArray, toCollection, toList, toSet,
-    * toHashSet, asList, map, reverse, sort, single, any, iterator, asIterable, groupBy, groupingBy, count,
-    * max, min, join, sum, plus, indices, indexOf, contains, forEach, filter, zip, partition, all, first, last,
-    * find, get, elementAt, flatMap, average, none, reduce, fold, intersect, subtract, drop, take, distinct,
-    * withIndex, orEmpty
-* Array2: [Arrayx2.java]
-    * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
-    * contentEquals, binarySearch, copyOf, slice, associate
 * Date: [Datex.java] | [Datex.kt]
     * createCalendar, toDate, toMillisecond, format, getYear, getMonth, get\*, addYear, addMonth, add\*,
     * isSameYear, isSameMonth, isSame\*, differYear, differMonth, differ\*
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
     * encode, encodeToString, decode, decodeToString
-* Collection: [Collectionx.java] | [Collectionx.kt]
-    * ieEmpty, isNotEmpty, isNullEmpty, isNotNullEmpty, orEmpty, listOf, setOf, createEmptyList, createEmptySet,
-    * createEmptyStack, createEmptyQueue, createEmptyDeque, collectionSizeOrDefault, filter, map, flatMap, join,
-    * count, average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList,
-    * toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse,
-    * indexOf, fold, reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt,
-    * fill, shuffle
 * Comparison: [Comparisonx.java] ([Test][ComparisonxTest.java])
     * compareValues, compareValuesBy, compareBy, compareByDescending, maxOf, minOf, areEqual
 * Format: [Formatx.java] ([Test][FormatxTest.java]) | [Formatx.kt] ([Test][FormatxTest.kt])
     * formatDouble, formatFloat, percent, fileSize, mediumFileSize, shortFileSize,
     * totalTime, shortTotalTime, totalTimeZH, shortTotalTimeZH, count
     * hiddenStartChars, hiddenMiddleChars, hiddenEndChars, pad, duration, shortDuration
-* Map: [Mapx.java]
-    * createEmptyMap, mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
 * Premise: [Premisex.java] ([Test][PremisexTest.java]) | [Premisex.kt] ([Test][PremisexTest.kt])
     * require, requireNotNull, check, checkNotNull, requireSafe, requireNotSafe
     * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireNotZero
-* Range: [Rangex.java] | [Rangex.kt]
-    * in, notIn, rangeTo, until, downTo, downUntilTo,
-    * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
-    * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
-    * coerceAtLeast, coerceAtMost, coerceIn
 * Regex: [Regexx.java] ([Test][RegexxTest.java]) | [Regexx.kt] ([Test][RegexxTest.kt])
     * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
     * IPV4, IPV6, MAC_ADDRESS, CHINESE, CHINESE_SYMBOL, BLANK, EMAIL, URI, FLOAT_NUMBER, INTEGER
@@ -196,6 +200,26 @@ Please view the [CHANGELOG.md] file
 [converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-88%25-orange.svg
 
 [CHANGELOG.md]: CHANGELOG.md
+
+[Arrayx.java]: javax/src/main/java/me/panpf/javax/collections/Arrayx.java
+[ArrayxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/ArrayxTest.java
+[Arrayx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Arrayx.kt
+[ArrayxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/ArrayxTest.kt
+
+[Arrayx2.java]: javax/src/main/java/me/panpf/javax/collections/Arrayx2.java
+[Array2xTest.java]: javax/src/test/java/me/panpf/javax/test/collections/Array2xTest.java
+[Array2x.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Array2x.kt
+[Array2xTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/Array2xTest.kt
+
+[Collectionx.java]: javax/src/main/java/me/panpf/javax/collections/Collectionx.java
+[CollectionxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/CollectionxTest.kt
+[Collectionx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Collectionx.kt
+[CollectionxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/CollectionxTest.kt
+
+[Mapx.java]: javax/src/main/java/me/panpf/javax/collections/Map.java
+[MapxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/MapxTest.java
+[Mapx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Mapx.kt
+[MapxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/MapxTest.kt
 
 [Aesx.java]: javax/src/main/java/me/panpf/javax/crypto/Aesx.java
 [AesxTest.java]: javax/src/test/java/me/panpf/javax/test/crypto/AesxTest.java
@@ -267,20 +291,15 @@ Please view the [CHANGELOG.md] file
 [Netx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/security/Netx.kt
 [NetxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/security/NetxTest.kt
 
+[Rangex.java]: javax/src/main/java/me/panpf/javax/ranges/Rangex.java
+[RangexTest.java]: javax/src/test/java/me/panpf/javax/test/ranges/RangexTest.kt
+[Rangex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/ranges/Rangex.kt
+[RangexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/ranges/RangexTest.kt
+
 [Digestx.java]: javax/src/main/java/me/panpf/javax/security/Digestx.java
 [DigestxTest.java]: javax/src/test/java/me/panpf/javax/test/security/DigestxTest.java
 [Digestx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/security/Digestx.kt
 [DigestxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/security/DigestxTest.kt
-
-[Arrayx.java]: javax/src/main/java/me/panpf/javax/util/Arrayx.java
-[ArrayxTest.java]: javax/src/test/java/me/panpf/javax/test/util/ArrayxTest.java
-[Arrayx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Arrayx.kt
-[ArrayxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/ArrayxTest.kt
-
-[Arrayx2.java]: javax/src/main/java/me/panpf/javax/util/Arrayx2.java
-[Array2xTest.java]: javax/src/test/java/me/panpf/javax/test/util/Array2xTest.java
-[Array2x.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Array2x.kt
-[Array2xTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/Array2xTest.kt
 
 [Datex.java]: javax/src/main/java/me/panpf/javax/util/Datex.java
 [DatexTest.java]: javax/src/test/java/me/panpf/javax/test/util/DatexTest.java
@@ -292,11 +311,6 @@ Please view the [CHANGELOG.md] file
 [Base64x.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Base64x.kt
 [Base64xTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/Base64xTest.kt
 
-[Collectionx.java]: javax/src/main/java/me/panpf/javax/util/Collectionx.java
-[CollectionxTest.java]: javax/src/test/java/me/panpf/javax/test/util/CollectionxTest.kt
-[Collectionx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Collectionx.kt
-[CollectionxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/CollectionxTest.kt
-
 [Comparisonx.java]: javax/src/main/java/me/panpf/javax/util/Comparisonx.java
 [ComparisonxTest.java]: javax/src/test/java/me/panpf/javax/test/util/ComparisonxTest.java
 [Comparisonx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Comparisonx.kt
@@ -307,20 +321,10 @@ Please view the [CHANGELOG.md] file
 [Formatx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Formatx.kt
 [FormatxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/FormatxTest.kt
 
-[Mapx.java]: javax/src/main/java/me/panpf/javax/util/Map.java
-[MapxTest.java]: javax/src/test/java/me/panpf/javax/test/util/MapxTest.java
-[Mapx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Mapx.kt
-[MapxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/MapxTest.kt
-
 [Premisex.java]: javax/src/main/java/me/panpf/javax/util/Premisex.java
 [PremisexTest.java]: javax/src/test/java/me/panpf/javax/test/util/PremisexTest.java
 [Premisex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Premisex.kt
 [PremisexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/PremisexTest.kt
-
-[Rangex.java]: javax/src/main/java/me/panpf/javax/util/Rangex.java
-[RangexTest.java]: javax/src/test/java/me/panpf/javax/test/util/RangexTest.kt
-[Rangex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Rangex.kt
-[RangexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/RangexTest.kt
 
 [Regexx.java]: javax/src/main/java/me/panpf/javax/util/Regexx.java
 [RegexxTest.java]: javax/src/test/java/me/panpf/javax/test/util/RegexxTest.java

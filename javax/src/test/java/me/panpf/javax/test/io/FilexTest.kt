@@ -19,8 +19,8 @@ package me.panpf.javax.test.io
 import me.panpf.javax.io.*
 import me.panpf.javax.lang.Charx
 import me.panpf.javax.security.Digestx
-import me.panpf.javax.util.Arrayx
-import me.panpf.javax.util.Collectionx
+import me.panpf.javax.collections.Arrayx
+import me.panpf.javax.collections.Collectionx
 import org.junit.Assert
 import org.junit.Test
 import java.io.File

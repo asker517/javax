@@ -17,7 +17,7 @@
 package me.panpf.javax.test.lang;
 
 import me.panpf.javax.lang.Stringx;
-import me.panpf.javax.util.Collectionx;
+import me.panpf.javax.collections.Collectionx;
 import org.junit.Assert;
 import org.junit.Test;
 

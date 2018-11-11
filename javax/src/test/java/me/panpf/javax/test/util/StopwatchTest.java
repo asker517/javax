@@ -1,7 +1,7 @@
 package me.panpf.javax.test.util;
 
-import me.panpf.javax.util.Collectionx;
-import me.panpf.javax.util.Rangex;
+import me.panpf.javax.collections.Collectionx;
+import me.panpf.javax.ranges.Rangex;
 import me.panpf.javax.util.Stopwatch;
 import org.junit.Assert;
 import org.junit.Test;

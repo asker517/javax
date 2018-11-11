@@ -16,6 +16,8 @@
 
 package me.panpf.javax.test.util;
 
+import me.panpf.javax.collections.Arrayx;
+import me.panpf.javax.collections.Collectionx;
 import me.panpf.javax.io.Filex;
 import me.panpf.javax.security.Digestx;
 import me.panpf.javax.util.*;

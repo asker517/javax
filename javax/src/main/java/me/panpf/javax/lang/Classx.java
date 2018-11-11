@@ -16,7 +16,7 @@
 
 package me.panpf.javax.lang;
 
-import me.panpf.javax.util.Arrayx;
+import me.panpf.javax.collections.Arrayx;
 import me.panpf.javax.util.Transformer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -16,6 +16,9 @@
 
 package me.panpf.javax.lang;
 
+import me.panpf.javax.collections.*;
+import me.panpf.javax.ranges.IntRange;
+import me.panpf.javax.ranges.Rangex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

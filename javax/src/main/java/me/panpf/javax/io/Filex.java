@@ -16,8 +16,12 @@
 
 package me.panpf.javax.io;
 
+import me.panpf.javax.collections.Arrayx;
+import me.panpf.javax.collections.Collectionx;
+import me.panpf.javax.collections.Sequence;
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Stringx;
+import me.panpf.javax.ranges.Rangex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

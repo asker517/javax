@@ -16,7 +16,7 @@
 
 package me.panpf.javaxkt.test.lang
 
-import me.panpf.javax.util.Arrayx
+import me.panpf.javax.collections.Arrayx
 import me.panpf.javax.util.Predicate
 import me.panpf.javaxkt.lang.*
 import org.junit.Assert

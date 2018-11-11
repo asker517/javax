@@ -16,7 +16,7 @@
 
 package me.panpf.javax.test.util;
 
-import me.panpf.javax.util.Arrayx;
+import me.panpf.javax.collections.Arrayx;
 import me.panpf.javax.util.Regexx;
 import org.junit.Assert;
 import org.junit.Test;

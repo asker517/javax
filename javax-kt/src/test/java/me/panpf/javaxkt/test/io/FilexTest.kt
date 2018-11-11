@@ -19,7 +19,7 @@ package me.panpf.javaxkt.test.io
 import me.panpf.javax.io.UnableCreateDirException
 import me.panpf.javax.io.UnableCreateFileException
 import me.panpf.javaxkt.io.*
-import me.panpf.javaxkt.util.joinToArrayString
+import me.panpf.javaxkt.collections.joinToArrayString
 import org.junit.Assert
 import org.junit.Test
 import java.io.File

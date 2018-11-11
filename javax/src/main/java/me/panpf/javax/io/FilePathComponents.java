@@ -17,7 +17,7 @@
 package me.panpf.javax.io;
 
 import me.panpf.javax.lang.Stringx;
-import me.panpf.javax.util.Collectionx;
+import me.panpf.javax.collections.Collectionx;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;

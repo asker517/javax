@@ -17,7 +17,7 @@
 package me.panpf.javax.test.lang;
 
 import me.panpf.javax.lang.Classx;
-import me.panpf.javax.util.Arrayx;
+import me.panpf.javax.collections.Arrayx;
 import me.panpf.javax.util.Predicate;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
