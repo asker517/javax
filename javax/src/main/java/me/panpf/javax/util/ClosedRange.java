@@ -35,7 +35,13 @@ public interface ClosedRange<T extends Comparable<T>> {
     @NotNull
     T getEndInclusive();
 
-    boolean contains(@NotNull T var1);
+    /**
+     * Checks whether the specified [value] belongs to the range.
+     */
+    boolean contains(@NotNull T value);
 
+    /**
+     * Checks whether the range is empty.
+     */
     boolean isEmpty();
 }

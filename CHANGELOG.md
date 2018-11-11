@@ -6,6 +6,7 @@
 * :fire: Zipx removed compressDirTo, compressDir method
 * :fire: The Zipx getDecompressDstDir method now returns `zipSourceFile.getParentFile()`
 * :fire: Formatx totalTimeShort rename to shortTotalTime, durationShort rename to shortDuration
+* :sparkles: Rangex adds coerceIn method
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing

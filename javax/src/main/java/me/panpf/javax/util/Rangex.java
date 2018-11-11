@@ -17,6 +17,7 @@
 package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -2117,183 +2118,178 @@ public class Rangex {
 
     /* ******************************************* coerceIn *******************************************/
 
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceInComparable
-//     */
-//    public fun <T : Comparable<T>> T.coerceIn(minimumValue: T?, maximumValue: T?): T {
-//        if (minimumValue !== null && maximumValue !== null) {
-//            if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//            if (this < minimumValue) return minimumValue
-//            if (this > maximumValue) return maximumValue
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static <T extends Comparable<T>> T coerceIn(@NotNull T self, @Nullable T minimumValue, @Nullable T maximumValue) {
+        if (minimumValue != null && maximumValue != null) {
+            if (minimumValue.compareTo(maximumValue) > 0)
+                throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+            if (self.compareTo(minimumValue) < 0) return minimumValue;
+            if (self.compareTo(maximumValue) > 0) return maximumValue;
+        } else {
+            if (minimumValue != null && self.compareTo(minimumValue) < 0) return minimumValue;
+            if (maximumValue != null && self.compareTo(maximumValue) > 0) return maximumValue;
+        }
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static byte coerceIn(byte self, byte minimumValue, byte maximumValue) {
+        if (minimumValue > maximumValue)
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+        if (self < minimumValue) return minimumValue;
+        if (self > maximumValue) return maximumValue;
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static short coerceIn(short self, short minimumValue, short maximumValue) {
+        if (minimumValue > maximumValue)
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+        if (self < minimumValue) return minimumValue;
+        if (self > maximumValue) return maximumValue;
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static int coerceIn(int self, int minimumValue, int maximumValue) {
+        if (minimumValue > maximumValue)
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+        if (self < minimumValue) return minimumValue;
+        if (self > maximumValue) return maximumValue;
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static long coerceIn(long self, long minimumValue, long maximumValue) {
+        if (minimumValue > maximumValue)
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+        if (self < minimumValue) return minimumValue;
+        if (self > maximumValue) return maximumValue;
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static float coerceIn(float self, float minimumValue, float maximumValue) {
+        if (minimumValue > maximumValue)
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+        if (self < minimumValue) return minimumValue;
+        if (self > maximumValue) return maximumValue;
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
+     *
+     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
+     */
+    public static double coerceIn(double self, double minimumValue, double maximumValue) {
+        if (minimumValue > maximumValue)
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: maximum " + maximumValue + " is less than minimum " + minimumValue + ".");
+        if (self < minimumValue) return minimumValue;
+        if (self > maximumValue) return maximumValue;
+        return self;
+    }
+
+    /**
+     * Ensures that this value lies in the specified [range].
+     *
+     * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
+     */
+    public static <T extends Comparable<T>> T coerceIn(@NotNull T self, ClosedFloatingPointRange<T> range) {
+        if (range.isEmpty())
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: " + range + ".");
+        if (range.lessThanOrEquals(self, range.getStart()) && !range.lessThanOrEquals(range.getStart(), self)) {
+            // this < start equiv to this <= start && !(this >= start)
+            return range.getStart();
+        } else if (range.lessThanOrEquals(range.getEndInclusive(), self) && !range.lessThanOrEquals(self, range.getEndInclusive())) {
+            // this > end equiv to this >= end && !(this <= end)
+            return range.getEndInclusive();
+        } else {
+            return self;
+        }
+    }
+
+    /**
+     * Ensures that this value lies in the specified [range].
+     *
+     * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
+     */
+    public static <T extends Comparable<T>> T coerceIn(@NotNull T self, @NotNull ClosedRange<T> range) {
+        if (range instanceof ClosedFloatingPointRange) {
+            return coerceIn(self, (ClosedFloatingPointRange<T>) range);
+        }
+        if (range.isEmpty())
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: " + range + ".");
+        if (self.compareTo(range.getStart()) < 0) {
+            return range.getStart();
+        } else if (self.compareTo(range.getEndInclusive()) > 0) {
+            return range.getEndInclusive();
+        } else {
+            return self;
+        }
+    }
+
+    /**
+     * Ensures that this value lies in the specified [range].
+     *
+     * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
+     */
+    public static int coerceIn(int self, ClosedRange<Integer> range) {
+//        if (range instanceof ClosedFloatingPointRange) {
+//            return coerceIn(self, (ClosedFloatingPointRange<Integer>) range);
 //        }
-//        else {
-//            if (minimumValue !== null && this < minimumValue) return minimumValue
-//            if (maximumValue !== null && this > maximumValue) return maximumValue
+        if (range.isEmpty())
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: " + range + ".");
+        if (self < range.getStart()) {
+            return range.getStart();
+        } else if (self > range.getEndInclusive()) {
+            return range.getEndInclusive();
+        } else {
+            return self;
+        }
+    }
+
+    /**
+     * Ensures that this value lies in the specified [range].
+     *
+     * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
+     */
+    public static long coerceIn(long self, ClosedRange<Long> range) {
+//        if (range instanceof ClosedFloatingPointRange) {
+//            return coerceIn(self, (ClosedFloatingPointRange<Long>) range);
 //        }
-//        return this
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Byte.coerceIn(minimumValue: Byte, maximumValue: Byte): Byte {
-//        if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//        if (this < minimumValue) return minimumValue
-//        if (this > maximumValue) return maximumValue
-//        return this
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Short.coerceIn(minimumValue: Short, maximumValue: Short): Short {
-//        if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//        if (this < minimumValue) return minimumValue
-//        if (this > maximumValue) return maximumValue
-//        return this
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Int.coerceIn(minimumValue: Int, maximumValue: Int): Int {
-//        if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//        if (this < minimumValue) return minimumValue
-//        if (this > maximumValue) return maximumValue
-//        return this
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Long.coerceIn(minimumValue: Long, maximumValue: Long): Long {
-//        if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//        if (this < minimumValue) return minimumValue
-//        if (this > maximumValue) return maximumValue
-//        return this
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Float.coerceIn(minimumValue: Float, maximumValue: Float): Float {
-//        if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//        if (this < minimumValue) return minimumValue
-//        if (this > maximumValue) return maximumValue
-//        return this
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified range [minimumValue]..[maximumValue].
-//     *
-//     * @return this value if it's in the range, or [minimumValue] if this value is less than [minimumValue], or [maximumValue] if this value is greater than [maximumValue].
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Double.coerceIn(minimumValue: Double, maximumValue: Double): Double {
-//        if (minimumValue > maximumValue) throw IllegalArgumentException("Cannot coerce value to an empty range: maximum $maximumValue is less than minimum $minimumValue.")
-//        if (this < minimumValue) return minimumValue
-//        if (this > maximumValue) return maximumValue
-//        return this
-//    }
-//
-///**
-// * Ensures that this value lies in the specified [range].
-// *
-// * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
-// *
-// * @sample samples.comparisons.ComparableOps.coerceInFloatingPointRange
-// */
-//    @SinceKotlin("1.1")
-//    public fun <T : Comparable<T>> T.coerceIn(range: ClosedFloatingPointRange<T>): T {
-//        if (range.isEmpty()) throw IllegalArgumentException("Cannot coerce value to an empty range: $range.")
-//        return when {
-//            // this < start equiv to this <= start && !(this >= start)
-//            range.lessThanOrEquals(this, range.start) && !range.lessThanOrEquals(range.start, this) -> range.start
-//            // this > end equiv to this >= end && !(this <= end)
-//            range.lessThanOrEquals(range.endInclusive, this) && !range.lessThanOrEquals(this, range.endInclusive) -> range.endInclusive
-//        else -> this
-//        }
-//    }
-//
-///**
-// * Ensures that this value lies in the specified [range].
-// *
-// * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
-// *
-// * @sample samples.comparisons.ComparableOps.coerceInComparable
-// */
-//    public fun <T : Comparable<T>> T.coerceIn(range: ClosedRange<T>): T {
-//        if (range is ClosedFloatingPointRange) {
-//            return this.coerceIn<T>(range)
-//        }
-//        if (range.isEmpty()) throw IllegalArgumentException("Cannot coerce value to an empty range: $range.")
-//        return when {
-//            this < range.start -> range.start
-//            this > range.endInclusive -> range.endInclusive
-//        else -> this
-//        }
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified [range].
-//     *
-//     * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Int.coerceIn(range: ClosedRange<Int>): Int {
-//        if (range is ClosedFloatingPointRange) {
-//            return this.coerceIn<Int>(range)
-//        }
-//        if (range.isEmpty()) throw IllegalArgumentException("Cannot coerce value to an empty range: $range.")
-//        return when {
-//            this < range.start -> range.start
-//            this > range.endInclusive -> range.endInclusive
-//        else -> this
-//        }
-//    }
-//
-//    /**
-//     * Ensures that this value lies in the specified [range].
-//     *
-//     * @return this value if it's in the [range], or `range.start` if this value is less than `range.start`, or `range.endInclusive` if this value is greater than `range.endInclusive`.
-//     *
-//     * @sample samples.comparisons.ComparableOps.coerceIn
-//     */
-//    public fun Long.coerceIn(range: ClosedRange<Long>): Long {
-//        if (range is ClosedFloatingPointRange) {
-//            return this.coerceIn<Long>(range)
-//        }
-//        if (range.isEmpty()) throw IllegalArgumentException("Cannot coerce value to an empty range: $range.")
-//        return when {
-//            this < range.start -> range.start
-//            this > range.endInclusive -> range.endInclusive
-//        else -> this
-//        }
-//    }
+        if (range.isEmpty())
+            throw new IllegalArgumentException("Cannot coerce value to an empty range: " + range + ".");
+        if (self < range.getStart()) {
+            return range.getStart();
+        } else if (self > range.getEndInclusive()) {
+            return range.getEndInclusive();
+        } else {
+            return self;
+        }
+    }
 }

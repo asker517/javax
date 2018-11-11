@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Iterator;
 
 @SuppressWarnings("WeakerAccess")
-public class FloatRange implements Iterable<Float>, ClosedRange<Float> {
+public class FloatRange extends ClosedFloatingPointRange<Float> implements Iterable<Float> {
 
     private final float start;
     private final float endInclusive;
@@ -50,8 +50,15 @@ public class FloatRange implements Iterable<Float>, ClosedRange<Float> {
     }
 
     @Override
+    public boolean lessThanOrEquals(@NotNull Float a, @NotNull Float b) {
+        return a <= b;
+    }
+
+    @Override
     public boolean equals(@Nullable Object other) {
-        return other instanceof FloatRange && (this.isEmpty() && ((FloatRange) other).isEmpty() || this.start == ((FloatRange) other).start && this.endInclusive == ((FloatRange) other).endInclusive && this.step == ((FloatRange) other).step);
+        return other instanceof FloatRange && (
+                this.isEmpty() && ((FloatRange) other).isEmpty()
+                || this.start == ((FloatRange) other).start && this.endInclusive == ((FloatRange) other).endInclusive && this.step == ((FloatRange) other).step);
     }
 
     @Override

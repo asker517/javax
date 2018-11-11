@@ -147,9 +147,10 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * require, requireNotNull, check, checkNotNull, requireSafe, requireNotSafe
     * requireFileExist, requireIsDir, requireIsFile, requireInRange, requireNotInRange, requireNotZero
 * Range: [Rangex.java] | [Rangex.kt]
-    * in, notIn, coerceAtLeast, coerceAtMost, rangeTo, until, downTo, downUntilTo,
+    * in, notIn, rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
+    * coerceAtLeast, coerceAtMost, coerceIn
 * Regex: [Regexx.java] ([Test][RegexxTest.java]) | [Regexx.kt] ([Test][RegexxTest.kt])
     * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
     * IPV4, IPV6, MAC_ADDRESS, CHINESE, CHINESE_SYMBOL, BLANK, EMAIL, URI, FLOAT_NUMBER, INTEGER
@@ -317,7 +318,7 @@ Please view the [CHANGELOG.md] file
 [PremisexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/PremisexTest.kt
 
 [Rangex.java]: javax/src/main/java/me/panpf/javax/util/Rangex.java
-[RangexTest.java]: javax/src/test/java/me/panpf/javax/test/util/RangexTest.java
+[RangexTest.java]: javax/src/test/java/me/panpf/javax/test/util/RangexTest.kt
 [Rangex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/util/Rangex.kt
 [RangexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/util/RangexTest.kt
 

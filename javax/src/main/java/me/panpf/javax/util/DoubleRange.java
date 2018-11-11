@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Iterator;
 
 @SuppressWarnings("WeakerAccess")
-public class DoubleRange implements Iterable<Double>, ClosedRange<Double> {
+public class DoubleRange extends ClosedFloatingPointRange<Double> implements Iterable<Double> {
 
     private final double start;
     private final double endInclusive;
@@ -47,6 +47,11 @@ public class DoubleRange implements Iterable<Double>, ClosedRange<Double> {
 
     public boolean isEmpty() {
         return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
+    }
+
+    @Override
+    public boolean lessThanOrEquals(@NotNull Double a, @NotNull Double b) {
+        return a <= b;
     }
 
     @Override
