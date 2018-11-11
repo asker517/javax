@@ -267,92 +267,52 @@ inline infix fun Long.downUntilTo(end: Int): LongRange = Rangex.downUntilTo(this
 inline infix fun Long.downUntilTo(end: Long): LongRange = Rangex.downUntilTo(this, end)
 
 
-/* ******************************************* Float Range *******************************************/
-
-
-/**
- * Create a positive-order float ranges
- */
-inline fun Float.rangeTo(endInclusive: Float, step: Float): FloatRange = Rangex.rangeTo(this, endInclusive, step)
-
-/**
- * Create a positive-order float ranges
- */
-inline infix fun Float.rangeTo(endInclusive: Float): FloatRange = Rangex.rangeTo(this, endInclusive)
-
-/**
- * Create a positive-order float ranges that does not contain [end]
- */
-inline fun Float.until(end: Float, step: Float): FloatRange = Rangex.until(this, end, step)
-
-/**
- * Create a positive-order float ranges that does not contain [end]
- */
-inline infix fun Float.until(end: Float): FloatRange = Rangex.until(this, end)
-
-/**
- * Create a reversed float range
- */
-inline fun Float.downTo(endInclusive: Float, step: Float): FloatRange = Rangex.downTo(this, endInclusive, step)
-
-/**
- * Create a reversed float range
- */
-inline infix fun Float.downTo(endInclusive: Float): FloatRange = Rangex.downTo(this, endInclusive)
-
-/**
- * Create a reversed float range that does not contain [end]
- */
-inline fun Float.downUntilTo(end: Float, step: Float): FloatRange = Rangex.downUntilTo(this, end, step)
-
-/**
- * Create a reversed float range that does not contain [end]
- */
-inline infix fun Float.downUntilTo(end: Float): FloatRange = Rangex.downUntilTo(this, end)
-
-
-/* ******************************************* Double Range *******************************************/
-
-
-/**
- * Create a positive-order double ranges
- */
-inline fun Double.rangeTo(endInclusive: Double, step: Double): DoubleRange = Rangex.rangeTo(this, endInclusive, step)
-
-/**
- * Create a positive-order double ranges
- */
-inline infix fun Double.rangeTo(endInclusive: Double): DoubleRange = Rangex.rangeTo(this, endInclusive)
-
-/**
- * Create a positive-order double ranges that does not contain [end]
- */
-inline fun Double.until(end: Double, step: Double): DoubleRange = Rangex.until(this, end, step)
-
-/**
- * Create a positive-order double ranges that does not contain [end]
- */
-inline infix fun Double.until(end: Double): DoubleRange = Rangex.until(this, end)
-
-/**
- * Create a reversed double range
- */
-inline fun Double.downTo(endInclusive: Double, step: Double): DoubleRange = Rangex.downTo(this, endInclusive, step)
-
-/**
- * Create a reversed double range
- */
-inline infix fun Double.downTo(endInclusive: Double): DoubleRange = Rangex.downTo(this, endInclusive)
-
-/**
- * Create a reversed double range that does not contain [end]
- */
-inline fun Double.downUntilTo(end: Double, step: Double): DoubleRange = Rangex.downUntilTo(this, end, step)
-
-/**
- * Create a reversed double range that does not contain [end]
- */
-inline infix fun Double.downUntilTo(end: Double): DoubleRange = Rangex.downUntilTo(this, end)
+///* ******************************************* Float Range *******************************************/
+//
+//
+///**
+// * Create a positive-order float ranges
+// */
+//inline infix fun Float.rangeTo(endInclusive: Float): ClosedFloatingPointRange<Float> = Rangex.rangeTo(this, endInclusive)
+//
+///**
+// * Create a positive-order float ranges that does not contain [end]
+// */
+//inline infix fun Float.until(end: Float): ClosedFloatingPointRange<Float> = Rangex.until(this, end)
+//
+///**
+// * Create a reversed float range
+// */
+//inline infix fun Float.downTo(endInclusive: Float): ClosedFloatingPointRange<Float> = Rangex.downTo(this, endInclusive)
+//
+///**
+// * Create a reversed float range that does not contain [end]
+// */
+//inline infix fun Float.downUntilTo(end: Float): ClosedFloatingPointRange<Float> = Rangex.downUntilTo(this, end)
+//
+//
+///* ******************************************* Double Range *******************************************/
+//
+//
+///**
+// * Create a positive-order double ranges
+// */
+//inline infix fun Double.rangeTo(endInclusive: Double): ClosedFloatingPointRange<Double> = Rangex.rangeTo(this, endInclusive)
+//
+///**
+// * Create a positive-order double ranges that does not contain [end]
+// */
+//inline infix fun Double.until(end: Double): ClosedFloatingPointRange<Double> = Rangex.until(this, end)
+//
+///**
+// * Create a reversed double range
+// */
+//inline infix fun Double.downTo(endInclusive: Double): ClosedFloatingPointRange<Double> = Rangex.downTo(this, endInclusive)
+//
+///**
+// * Create a reversed double range that does not contain [end]
+// */
+//inline infix fun Double.downUntilTo(end: Double): ClosedFloatingPointRange<Double> = Rangex.downUntilTo(this, end)
 
 
 /* ******************************************* Char Range *******************************************/

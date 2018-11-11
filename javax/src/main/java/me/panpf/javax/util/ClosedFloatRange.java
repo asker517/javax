@@ -19,25 +19,15 @@ package me.panpf.javax.util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-
 @SuppressWarnings("WeakerAccess")
-public class FloatRange extends ClosedFloatingPointRange<Float> implements Iterable<Float> {
+public class ClosedFloatRange extends ClosedFloatingPointRange<Float> {
 
     private final float start;
     private final float endInclusive;
-    private final float step;
 
-    public FloatRange(float start, float endInclusive, float step) {
-        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
+    public ClosedFloatRange(float start, float endInclusive) {
         this.start = start;
         this.endInclusive = endInclusive;
-        this.step = step;
-    }
-
-    @NotNull
-    public Iterator<Float> iterator() {
-        return new FloatRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override
@@ -46,7 +36,7 @@ public class FloatRange extends ClosedFloatingPointRange<Float> implements Itera
     }
 
     public boolean isEmpty() {
-        return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
+        return this.start > this.endInclusive;
     }
 
     @Override
@@ -56,19 +46,17 @@ public class FloatRange extends ClosedFloatingPointRange<Float> implements Itera
 
     @Override
     public boolean equals(@Nullable Object other) {
-        return other instanceof FloatRange && (
-                this.isEmpty() && ((FloatRange) other).isEmpty()
-                || this.start == ((FloatRange) other).start && this.endInclusive == ((FloatRange) other).endInclusive && this.step == ((FloatRange) other).step);
+        return other instanceof ClosedFloatRange && (this.isEmpty() && ((ClosedFloatRange) other).isEmpty() || this.start == ((ClosedFloatRange) other).start && this.endInclusive == ((ClosedFloatRange) other).endInclusive);
     }
 
     @Override
     public int hashCode() {
-        return (int) (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step);
+        return (int) (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive));
     }
 
     @NotNull
     public String toString() {
-        return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
+        return this.start + ".." + this.endInclusive;
     }
 
     @NotNull
@@ -81,14 +69,5 @@ public class FloatRange extends ClosedFloatingPointRange<Float> implements Itera
     @Override
     public Float getEndInclusive() {
         return this.endInclusive;
-    }
-
-    public float getStep() {
-        return this.step;
-    }
-
-    @NotNull
-    public static FloatRange fromClosedRange(float rangeStart, float rangeEnd, float step) {
-        return new FloatRange(rangeStart, rangeEnd, step);
     }
 }

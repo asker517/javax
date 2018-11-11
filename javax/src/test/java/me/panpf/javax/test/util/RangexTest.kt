@@ -186,54 +186,21 @@ class RangexTest {
 
     @Test
     fun tesFloatRange() {
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1f, 10f)).toLong(), 10)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1f, 1f)).toLong(), 1)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0f, 1f)).toLong(), 2)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1f, 0f)).toLong(), 0)
+        Assert.assertTrue(Rangex.rangeTo(1f, 10f).contains(5f))
+        Assert.assertEquals(1f.rangeTo(10f).contains(5f), Rangex.rangeTo(1f, 10f).contains(5f))
 
-        Assert.assertEquals(Collectionx.count(Rangex.until(1f, 10f)).toLong(), 9)
-        Assert.assertEquals(Collectionx.count(Rangex.until(1f, 1f)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.until(1f, 0f)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.until(0f, 1f)).toLong(), 1)
+        Assert.assertFalse(Rangex.rangeTo(1f, 10f).contains(0f))
+        Assert.assertEquals(1f.rangeTo(10f).contains(0f), Rangex.rangeTo(1f, 10f).contains(0f))
 
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(10f, 1f)).toLong(), 10)
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(1f, 1f)).toLong(), 1)
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(0f, 1f)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(1f, 0f)).toLong(), 2)
-
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10f, 1f)).toLong(), 9)
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1f, 1f)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0f, 1f)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1f, 0f)).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1f, 10f, 1.3f)).toLong(), 8)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10f, 1f, -1.3f)).toLong(), 8)
+        Assert.assertFalse(Rangex.rangeTo(1f, 10f).contains(11f))
+        Assert.assertEquals(1f.rangeTo(10f).contains(11f), Rangex.rangeTo(1f, 10f).contains(11f))
     }
 
     @Test
     fun tesDoubleRange() {
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 10.0)).toLong(), 10)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 1.0)).toLong(), 1)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(0.0, 1.0)).toLong(), 2)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 0.0)).toLong(), 0)
-
-        Assert.assertEquals(Collectionx.count(Rangex.until(1.0, 10.0)).toLong(), 9)
-        Assert.assertEquals(Collectionx.count(Rangex.until(1.0, 1.0)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.until(1.0, 0.0)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.until(0.0, 1.0)).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(10.0, 1.0)).toLong(), 10)
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(1.0, 1.0)).toLong(), 1)
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(0.0, 1.0)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.downTo(1.0, 0.0)).toLong(), 2)
-
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(10.0, 1.0)).toLong(), 9)
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.0, 1.0)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(0.0, 1.0)).toLong(), 0)
-        Assert.assertEquals(Collectionx.count(Rangex.downUntilTo(1.0, 0.0)).toLong(), 1)
-
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(1.0, 10.0, 1.3)).toLong(), 8)
-        Assert.assertEquals(Collectionx.count(Rangex.rangeTo(10.0, 1.0, -1.3)).toLong(), 8)
+        Assert.assertTrue(Rangex.rangeTo(1.toDouble(), 10.toDouble()).contains(5.toDouble()))
+        Assert.assertFalse(Rangex.rangeTo(1.toDouble(), 10.toDouble()).contains(0.toDouble()))
+        Assert.assertFalse(Rangex.rangeTo(1.toDouble(), 10.toDouble()).contains(11.toDouble()))
     }
 
     @Test

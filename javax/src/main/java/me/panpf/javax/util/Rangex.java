@@ -408,58 +408,30 @@ public class Rangex {
     /**
      * Create a positive-order float ranges
      */
-    public static FloatRange rangeTo(float start, float endInclusive, float step) {
-        return FloatRange.fromClosedRange(start, endInclusive, step);
+    public static ClosedFloatingPointRange<Float> rangeTo(float start, float endInclusive) {
+        return new ClosedFloatRange(start, endInclusive);
     }
 
-    /**
-     * Create a positive-order float ranges
-     */
-    public static FloatRange rangeTo(float start, float endInclusive) {
-        return rangeTo(start, endInclusive, 1f);
-    }
-
-    /**
-     * Create a positive-order float range that does not contain [end]
-     */
-    public static FloatRange until(float start, float end, float step) {
-        return FloatRange.fromClosedRange(start, end - 1, step);
-    }
-
-    /**
-     * Create a positive-order float range that does not contain [end]
-     */
-    public static FloatRange until(float start, float end) {
-        return until(start, end, 1f);
-    }
-
-    /**
-     * Create a reversed float range
-     */
-    public static FloatRange downTo(float start, float endInclusive, float step) {
-        return FloatRange.fromClosedRange(start, endInclusive, step);
-    }
-
-    /**
-     * Create a reversed float range
-     */
-    public static FloatRange downTo(float start, float endInclusive) {
-        return downTo(start, endInclusive, -1f);
-    }
-
-    /**
-     * Create a reversed float range that does not contain [end]
-     */
-    public static FloatRange downUntilTo(float start, float end, float step) {
-        return FloatRange.fromClosedRange(start, end + 1f, step);
-    }
-
-    /**
-     * Create a reversed float range that does not contain [end]
-     */
-    public static FloatRange downUntilTo(float start, float end) {
-        return downUntilTo(start, end, -1f);
-    }
+//    /**
+//     * Create a positive-order float range that does not contain [end]
+//     */
+//    public static ClosedFloatingPointRange<Float> until(float start, float end) {
+//        return new ClosedFloatRange(start, end - 1f);
+//    }
+//
+//    /**
+//     * Create a reversed float range
+//     */
+//    public static ClosedFloatingPointRange<Float> downTo(float start, float endInclusive) {
+//        return new ClosedFloatRange(start, endInclusive);
+//    }
+//
+//    /**
+//     * Create a reversed float range that does not contain [end]
+//     */
+//    public static ClosedFloatingPointRange<Float> downUntilTo(float start, float end) {
+//        return new ClosedFloatRange(start, end + 1f);
+//    }
 
 
     /* ******************************************* Double Range *******************************************/
@@ -468,58 +440,30 @@ public class Rangex {
     /**
      * Create a positive-order double ranges
      */
-    public static DoubleRange rangeTo(double start, double endInclusive, double step) {
-        return DoubleRange.fromClosedRange(start, endInclusive, step);
+    public static ClosedFloatingPointRange<Double> rangeTo(double start, double endInclusive) {
+        return new ClosedDoubleRange(start, endInclusive);
     }
-
-    /**
-     * Create a positive-order double ranges
-     */
-    public static DoubleRange rangeTo(double start, double endInclusive) {
-        return rangeTo(start, endInclusive, 1.0);
-    }
-
-    /**
-     * Create a positive-order double range that does not contain [end]
-     */
-    public static DoubleRange until(double start, double end, double step) {
-        return DoubleRange.fromClosedRange(start, end - 1.0, step);
-    }
-
-    /**
-     * Create a positive-order double range that does not contain [end]
-     */
-    public static DoubleRange until(double start, double end) {
-        return until(start, end, 1.0);
-    }
-
-    /**
-     * Create a reversed double range
-     */
-    public static DoubleRange downTo(double start, double endInclusive, double step) {
-        return DoubleRange.fromClosedRange(start, endInclusive, step);
-    }
-
-    /**
-     * Create a reversed double range
-     */
-    public static DoubleRange downTo(double start, double endInclusive) {
-        return downTo(start, endInclusive, -1.0);
-    }
-
-    /**
-     * Create a reversed double range that does not contain [end]
-     */
-    public static DoubleRange downUntilTo(double start, double end, double step) {
-        return DoubleRange.fromClosedRange(start, end + 1.0, step);
-    }
-
-    /**
-     * Create a reversed double range that does not contain [end]
-     */
-    public static DoubleRange downUntilTo(double start, double end) {
-        return downUntilTo(start, end, -1.0);
-    }
+//
+//    /**
+//     * Create a positive-order double range that does not contain [end]
+//     */
+//    public static ClosedFloatingPointRange<Double> until(double start, double end) {
+//        return new ClosedDoubleRange(start, end - 1d);
+//    }
+//
+//    /**
+//     * Create a reversed double range
+//     */
+//    public static ClosedFloatingPointRange<Double> downTo(double start, double endInclusive) {
+//        return new ClosedDoubleRange(start, endInclusive);
+//    }
+//
+//    /**
+//     * Create a reversed double range that does not contain [end]
+//     */
+//    public static ClosedFloatingPointRange<Double> downUntilTo(double start, double end) {
+//        return new ClosedDoubleRange(start, end + 1d);
+//    }
 
 
     /* ******************************************* Char Range *******************************************/

@@ -19,25 +19,15 @@ package me.panpf.javax.util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Iterator;
-
 @SuppressWarnings("WeakerAccess")
-public class DoubleRange extends ClosedFloatingPointRange<Double> implements Iterable<Double> {
+public class ClosedDoubleRange extends ClosedFloatingPointRange<Double> {
 
     private final double start;
     private final double endInclusive;
-    private final double step;
 
-    public DoubleRange(double start, double endInclusive, double step) {
-        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
+    public ClosedDoubleRange(double start, double endInclusive) {
         this.start = start;
         this.endInclusive = endInclusive;
-        this.step = step;
-    }
-
-    @NotNull
-    public Iterator<Double> iterator() {
-        return new DoubleRangeIterator(this.start, this.endInclusive, this.step);
     }
 
     @Override
@@ -46,7 +36,7 @@ public class DoubleRange extends ClosedFloatingPointRange<Double> implements Ite
     }
 
     public boolean isEmpty() {
-        return this.step > 0 ? this.start > this.endInclusive : this.start < this.endInclusive;
+        return this.start > this.endInclusive;
     }
 
     @Override
@@ -56,17 +46,17 @@ public class DoubleRange extends ClosedFloatingPointRange<Double> implements Ite
 
     @Override
     public boolean equals(@Nullable Object other) {
-        return other instanceof DoubleRange && (this.isEmpty() && ((DoubleRange) other).isEmpty() || this.start == ((DoubleRange) other).start && this.endInclusive == ((DoubleRange) other).endInclusive && this.step == ((DoubleRange) other).step);
+        return other instanceof ClosedDoubleRange && (this.isEmpty() && ((ClosedDoubleRange) other).isEmpty() || this.start == ((ClosedDoubleRange) other).start && this.endInclusive == ((ClosedDoubleRange) other).endInclusive);
     }
 
     @Override
     public int hashCode() {
-        return (int) (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive) + this.step);
+        return (int) (this.isEmpty() ? -1 : 31 * (31 * this.start + this.endInclusive));
     }
 
     @NotNull
     public String toString() {
-        return this.step > 0 ? this.start + ".." + this.endInclusive + " step " + this.step : this.start + " downTo " + this.endInclusive + " step " + -this.step;
+        return this.start + ".." + this.endInclusive;
     }
 
     @NotNull
@@ -79,14 +69,5 @@ public class DoubleRange extends ClosedFloatingPointRange<Double> implements Ite
     @Override
     public Double getEndInclusive() {
         return this.endInclusive;
-    }
-
-    public double getStep() {
-        return this.step;
-    }
-
-    @NotNull
-    public static DoubleRange fromClosedRange(double rangeStart, double rangeEnd, double step) {
-        return new DoubleRange(rangeStart, rangeEnd, step);
     }
 }

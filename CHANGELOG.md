@@ -7,6 +7,8 @@
 * :fire: The Zipx getDecompressDstDir method now returns `zipSourceFile.getParentFile()`
 * :fire: Formatx totalTimeShort rename to shortTotalTime, durationShort rename to shortDuration
 * :sparkles: Rangex adds coerceIn method
+* :fire: Rangex removed rangeTo(float, float, step), until(float..), downTo(float..), downUntilTo(float..) method
+* :fire: Rangex removed rangeTo(double, double, step), until(double..), downTo(double..), downUntilTo(double..) method
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing
