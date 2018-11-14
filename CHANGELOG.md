@@ -11,6 +11,7 @@
 * :fire: Rangex removed rangeTo(double, double, step), until(double..), downTo(double..), downUntilTo(double..) method
 * :fire: Arrayx, Arrayx2, Mapx and related class moved to collections package
 * :fire: Rangex moved and related class to collections ranges
+* :fire: Rangex year\*, month\*, etc. remove long and String overload methods
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing
