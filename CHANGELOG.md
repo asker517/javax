@@ -18,6 +18,7 @@ Perfect test:
 * :white_check_mark: Perfect Zipx testing
 * :white_check_mark: Perfect Formatx testing
 * :white_check_mark: Perfect Rangex testing
+* :white_check_mark: Perfect Datex testing
 
 
 ## v0.8.5

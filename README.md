@@ -141,7 +141,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * getDigest, getMD5, getMD5_16, getSHA1, getSHA256, getSHA512
 
 ### util
-* Date: [Datex.java] | [Datex.kt]
+* Date: [Datex.java] ([Test][DatexTest.java]) | [Datex.kt] ([Test][DatexTest.kt])
     * createCalendar, toDate, toMillisecond, format, getYear, getMonth, get\*, addYear, addMonth, add\*,
     * isSameYear, isSameMonth, isSame\*, differYear, differMonth, differ\*
 * Base64: [Base64x.java] ([Test][Base64xTest.java]) | [Base64x.kt] ([Test][Base64xTest.kt])
