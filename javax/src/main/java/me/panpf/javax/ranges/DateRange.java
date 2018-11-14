@@ -31,7 +31,7 @@ public abstract class DateRange implements Iterable<Date>, ClosedRange<Date> {
     private final int step;
 
     public DateRange(@NotNull Date start, @NotNull Date endInclusive, int step) {
-        super();
+        if (step == 0) throw new IllegalArgumentException("Step must be non-zero");
         this.start = start;
         this.endInclusive = endInclusive;
         this.step = step;

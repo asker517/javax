@@ -130,7 +130,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * ipStringToLong, ipLongToString
 
 ### ranges
-* Range: [Rangex.java] | [Rangex.kt]
+* Range: [Rangex.java] ([Test][RangexTest.java]) | [Rangex.kt] ([Test][RangexTest.kt])
     * in, notIn, rangeTo, until, downTo, downUntilTo,
     * yearRangeTo, monthRangeTo, \*RangeTo, yearDownTo, monthDownTo, * \*DownTo,
     * yearUntilTo, monthUntilTo, \*UntilTo, yearDownUntilTo, monthDownUntilTo, \*DownUntilTo
