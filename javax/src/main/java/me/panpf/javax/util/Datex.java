@@ -1,7 +1,6 @@
 package me.panpf.javax.util;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,10 +21,10 @@ public class Datex {
      * Create a Calendar
      */
     @NotNull
-    public static Calendar createCalendar(long millisecondValue, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        Calendar calendar = locale != null ? Calendar.getInstance(locale) : Calendar.getInstance();
-        if (firstDayOfWeek != null) calendar.setFirstDayOfWeek(firstDayOfWeek);
-        calendar.setTimeInMillis(millisecondValue);
+    public static Calendar createCalendar(@NotNull Date date, int firstDayOfWeek, @NotNull Locale locale) {
+        Calendar calendar = Calendar.getInstance(locale);
+        calendar.setFirstDayOfWeek(firstDayOfWeek);
+        calendar.setTimeInMillis(date.getTime());
         return calendar;
     }
 
@@ -33,48 +32,21 @@ public class Datex {
      * Create a Calendar
      */
     @NotNull
-    public static Calendar createCalendar(long millisecondValue, @Nullable Integer firstDayOfWeek) {
-        return createCalendar(millisecondValue, firstDayOfWeek, null);
+    public static Calendar createCalendar(@NotNull Date date, int firstDayOfWeek) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setFirstDayOfWeek(firstDayOfWeek);
+        calendar.setTimeInMillis(date.getTime());
+        return calendar;
     }
 
     /**
      * Create a Calendar
      */
     @NotNull
-    public static Calendar createCalendar(long millisecondValue, @Nullable Locale locale) {
-        return createCalendar(millisecondValue, null, locale);
-    }
-
-    /**
-     * Create a Calendar
-     */
-    @NotNull
-    public static Calendar createCalendar(long millisecondValue) {
-        return createCalendar(millisecondValue, null, null);
-    }
-
-    /**
-     * Create a Calendar
-     */
-    @NotNull
-    public static Calendar createCalendar(@NotNull Date date, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return createCalendar(date.getTime(), firstDayOfWeek, locale);
-    }
-
-    /**
-     * Create a Calendar
-     */
-    @NotNull
-    public static Calendar createCalendar(@NotNull Date date, @Nullable Integer firstDayOfWeek) {
-        return createCalendar(date.getTime(), firstDayOfWeek);
-    }
-
-    /**
-     * Create a Calendar
-     */
-    @NotNull
-    public static Calendar createCalendar(@NotNull Date date, @Nullable Locale locale) {
-        return createCalendar(date.getTime(), locale);
+    public static Calendar createCalendar(@NotNull Date date, @NotNull Locale locale) {
+        Calendar calendar = Calendar.getInstance(locale);
+        calendar.setTimeInMillis(date.getTime());
+        return calendar;
     }
 
     /**
@@ -82,7 +54,9 @@ public class Datex {
      */
     @NotNull
     public static Calendar createCalendar(@NotNull Date date) {
-        return createCalendar(date.getTime());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date.getTime());
+        return calendar;
     }
 
 
@@ -112,8 +86,8 @@ public class Datex {
      * Convert formatted date string to Date
      */
     @NotNull
-    public static Date toDate(@NotNull String formattedDate, @NotNull String pattern, @Nullable Locale locale) throws ParseException {
-        return toDate(formattedDate, locale != null ? new SimpleDateFormat(pattern, locale) : new SimpleDateFormat(pattern));
+    public static Date toDate(@NotNull String formattedDate, @NotNull String pattern, @NotNull Locale locale) throws ParseException {
+        return toDate(formattedDate, new SimpleDateFormat(pattern, locale));
     }
 
     /**
@@ -121,14 +95,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDate(@NotNull String formattedDate, @NotNull String pattern) throws ParseException {
-        return toDate(formattedDate, pattern, null);
+        return toDate(formattedDate, new SimpleDateFormat(pattern));
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy'
      */
     @NotNull
-    public static Date toDateY(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateY(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy", locale);
     }
 
@@ -137,14 +111,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateY(@NotNull String formattedDate) throws ParseException {
-        return toDateY(formattedDate, null);
+        return toDate(formattedDate, "yyyy");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy-MM'
      */
     @NotNull
-    public static Date toDateYM(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYM(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy-MM", locale);
     }
 
@@ -153,14 +127,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYM(@NotNull String formattedDate) throws ParseException {
-        return toDateYM(formattedDate, null);
+        return toDate(formattedDate, "yyyy-MM");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyyMM'
      */
     @NotNull
-    public static Date toDateYMCompact(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMCompact(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyyMM", locale);
     }
 
@@ -169,14 +143,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMCompact(@NotNull String formattedDate) throws ParseException {
-        return toDateYMCompact(formattedDate, null);
+        return toDate(formattedDate, "yyyyMM");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy-MM-dd'
      */
     @NotNull
-    public static Date toDateYMD(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMD(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy-MM-dd", locale);
     }
 
@@ -185,14 +159,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMD(@NotNull String formattedDate) throws ParseException {
-        return toDateYMD(formattedDate, null);
+        return toDate(formattedDate, "yyyy-MM-dd");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyyMMdd'
      */
     @NotNull
-    public static Date toDateYMDCompact(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMDCompact(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyyMMdd", locale);
     }
 
@@ -201,14 +175,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMDCompact(@NotNull String formattedDate) throws ParseException {
-        return toDateYMDCompact(formattedDate, null);
+        return toDate(formattedDate, "yyyyMMdd");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH'
      */
     @NotNull
-    public static Date toDateYMDH(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMDH(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy-MM-dd HH", locale);
     }
 
@@ -217,14 +191,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMDH(@NotNull String formattedDate) throws ParseException {
-        return toDateYMDH(formattedDate, null);
+        return toDate(formattedDate, "yyyy-MM-dd HH");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm'
      */
     @NotNull
-    public static Date toDateYMDHM(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMDHM(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy-MM-dd HH:mm", locale);
     }
 
@@ -233,14 +207,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMDHM(@NotNull String formattedDate) throws ParseException {
-        return toDateYMDHM(formattedDate, null);
+        return toDate(formattedDate, "yyyy-MM-dd HH:mm");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss'
      */
     @NotNull
-    public static Date toDateYMDHMS(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMDHMS(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy-MM-dd HH:mm:ss", locale);
     }
 
@@ -249,14 +223,14 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMDHMS(@NotNull String formattedDate) throws ParseException {
-        return toDateYMDHMS(formattedDate, null);
+        return toDate(formattedDate, "yyyy-MM-dd HH:mm:ss");
     }
 
     /**
      * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss SSS'
      */
     @NotNull
-    public static Date toDateYMDHMSM(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
+    public static Date toDateYMDHMSM(@NotNull String formattedDate, @NotNull Locale locale) throws ParseException {
         return toDate(formattedDate, "yyyy-MM-dd HH:mm:ss SSS", locale);
     }
 
@@ -265,161 +239,7 @@ public class Datex {
      */
     @NotNull
     public static Date toDateYMDHMSM(@NotNull String formattedDate) throws ParseException {
-        return toDateYMDHMSM(formattedDate, null);
-    }
-
-
-    /*
-     * toMillisecond
-     */
-
-
-    /**
-     * Convert formatted date string to millisecond
-     */
-    public static long toMillisecond(@NotNull String formattedDate, @NotNull SimpleDateFormat format) throws ParseException {
-        Date var10000 = format.parse(formattedDate);
-        return var10000.getTime();
-    }
-
-    /**
-     * Convert formatted date string to millisecond
-     */
-    public static long toMillisecond(@NotNull String formattedDate, @NotNull String pattern, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, locale != null ? new SimpleDateFormat(pattern, locale) : new SimpleDateFormat(pattern));
-    }
-
-    /**
-     * Convert formatted date string to millisecond
-     */
-    public static long toMillisecond(@NotNull String formattedDate, @NotNull String pattern) throws ParseException {
-        return toMillisecond(formattedDate, pattern, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy'
-     */
-    public static long toMillisecondY(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy'
-     */
-    public static long toMillisecondY(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondY(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM'
-     */
-    public static long toMillisecondYM(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy-MM", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM'
-     */
-    public static long toMillisecondYM(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYM(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyyMM'
-     */
-    public static long toMillisecondYMCompact(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyyMM", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyyMM'
-     */
-    public static long toMillisecondYMCompact(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMCompact(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd'
-     */
-    public static long toMillisecondYMD(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy-MM-dd", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd'
-     */
-    public static long toMillisecondYMD(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMD(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyyMMdd'
-     */
-    public static long toMillisecondYMDCompact(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyyMMdd", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyyMMdd'
-     */
-    public static long toMillisecondYMDCompact(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMDCompact(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH'
-     */
-    public static long toMillisecondYMDH(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy-MM-dd HH", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH'
-     */
-    public static long toMillisecondYMDH(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMDH(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm'
-     */
-    public static long toMillisecondYMDHM(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy-MM-dd HH:mm", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm'
-     */
-    public static long toMillisecondYMDHM(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMDHM(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss'
-     */
-    public static long toMillisecondYMDHMS(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy-MM-dd HH:mm:ss", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss'
-     */
-    public static long toMillisecondYMDHMS(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMDHMS(formattedDate, null);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss SSS'
-     */
-    public static long toMillisecondYMDHMSM(@NotNull String formattedDate, @Nullable Locale locale) throws ParseException {
-        return toMillisecond(formattedDate, "yyyy-MM-dd HH:mm:ss SSS", locale);
-    }
-
-    /**
-     * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss SSS'
-     */
-    public static long toMillisecondYMDHMSM(@NotNull String formattedDate) throws ParseException {
-        return toMillisecondYMDHMSM(formattedDate, null);
+        return toDate(formattedDate, "yyyy-MM-dd HH:mm:ss SSS");
     }
 
 
@@ -440,8 +260,8 @@ public class Datex {
      * Convert Date to a formatted string
      */
     @NotNull
-    public static String format(@NotNull Date date, @NotNull String pattern, @Nullable Locale locale) {
-        return format(date, locale != null ? new SimpleDateFormat(pattern, locale) : new SimpleDateFormat(pattern));
+    public static String format(@NotNull Date date, @NotNull String pattern, @NotNull Locale locale) {
+        return format(date, new SimpleDateFormat(pattern, locale));
     }
 
     /**
@@ -449,14 +269,14 @@ public class Datex {
      */
     @NotNull
     public static String format(@NotNull Date date, @NotNull String pattern) {
-        return format(date, pattern, null);
+        return format(date, new SimpleDateFormat(pattern));
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy'
      */
     @NotNull
-    public static String formatY(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatY(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy", locale);
     }
 
@@ -465,14 +285,14 @@ public class Datex {
      */
     @NotNull
     public static String formatY(@NotNull Date date) {
-        return formatY(date, null);
+        return format(date, "yyyy");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy-MM'
      */
     @NotNull
-    public static String formatYM(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYM(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy-MM", locale);
     }
 
@@ -481,14 +301,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYM(@NotNull Date date) {
-        return formatYM(date, null);
+        return format(date, "yyyy-MM");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyyMM'
      */
     @NotNull
-    public static String formatYMCompact(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMCompact(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyyMM", locale);
     }
 
@@ -497,14 +317,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYMCompact(@NotNull Date date) {
-        return formatYMCompact(date, null);
+        return format(date, "yyyyMM");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy-MM-dd'
      */
     @NotNull
-    public static String formatYMD(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMD(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy-MM-dd", locale);
     }
 
@@ -513,14 +333,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYMD(@NotNull Date date) {
-        return formatYMD(date, null);
+        return format(date, "yyyy-MM-dd");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyyMMdd'
      */
     @NotNull
-    public static String formatYMDCompact(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMDCompact(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyyMMdd", locale);
     }
 
@@ -529,14 +349,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYMDCompact(@NotNull Date date) {
-        return formatYMDCompact(date, null);
+        return format(date, "yyyyMMdd");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH'
      */
     @NotNull
-    public static String formatYMDH(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMDH(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy-MM-dd HH", locale);
     }
 
@@ -545,14 +365,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYMDH(@NotNull Date date) {
-        return formatYMDH(date, null);
+        return format(date, "yyyy-MM-dd HH");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm'
      */
     @NotNull
-    public static String formatYMDHM(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMDHM(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy-MM-dd HH:mm", locale);
     }
 
@@ -561,14 +381,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYMDHM(@NotNull Date date) {
-        return formatYMDHM(date, null);
+        return format(date, "yyyy-MM-dd HH:mm");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
      */
     @NotNull
-    public static String formatYMDHMS(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMDHMS(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy-MM-dd HH:mm:ss", locale);
     }
 
@@ -577,14 +397,14 @@ public class Datex {
      */
     @NotNull
     public static String formatYMDHMS(@NotNull Date date) {
-        return formatYMDHMS(date, null);
+        return format(date, "yyyy-MM-dd HH:mm:ss");
     }
 
     /**
      * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
      */
     @NotNull
-    public static String formatYMDHMSM(@NotNull Date date, @Nullable Locale locale) {
+    public static String formatYMDHMSM(@NotNull Date date, @NotNull Locale locale) {
         return format(date, "yyyy-MM-dd HH:mm:ss SSS", locale);
     }
 
@@ -593,176 +413,7 @@ public class Datex {
      */
     @NotNull
     public static String formatYMDHMSM(@NotNull Date date) {
-        return formatYMDHMSM(date, null);
-    }
-
-
-    /**
-     * Convert millisecond to a formatted string
-     */
-    @NotNull
-    public static String format(long millisecondValue, @NotNull SimpleDateFormat format) {
-        return format(new Date(millisecondValue), format);
-    }
-
-    /**
-     * Convert millisecond to a formatted string
-     */
-    @NotNull
-    public static String format(long millisecondValue, @NotNull String pattern, @Nullable Locale locale) {
-        return format(millisecondValue, locale != null ? new SimpleDateFormat(pattern, locale) : new SimpleDateFormat(pattern));
-    }
-
-    /**
-     * Convert millisecond to a formatted string
-     */
-    @NotNull
-    public static String format(long millisecondValue, @NotNull String pattern) {
-        return format(millisecondValue, pattern, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy'
-     */
-    @NotNull
-    public static String formatY(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy'
-     */
-    @NotNull
-    public static String formatY(long millisecondValue) {
-        return formatY(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM'
-     */
-    @NotNull
-    public static String formatYM(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy-MM", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM'
-     */
-    @NotNull
-    public static String formatYM(long millisecondValue) {
-        return formatYM(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyyMM'
-     */
-    @NotNull
-    public static String formatYMCompact(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyyMM", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyyMM'
-     */
-    @NotNull
-    public static String formatYMCompact(long millisecondValue) {
-        return formatYMCompact(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd'
-     */
-    @NotNull
-    public static String formatYMD(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy-MM-dd", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd'
-     */
-    @NotNull
-    public static String formatYMD(long millisecondValue) {
-        return formatYMD(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyyMMdd'
-     */
-    @NotNull
-    public static String formatYMDCompact(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyyMMdd", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyyMMdd'
-     */
-    @NotNull
-    public static String formatYMDCompact(long millisecondValue) {
-        return formatYMDCompact(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH'
-     */
-    @NotNull
-    public static String formatYMDH(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy-MM-dd HH", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH'
-     */
-    @NotNull
-    public static String formatYMDH(long millisecondValue) {
-        return formatYMDH(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm'
-     */
-    @NotNull
-    public static String formatYMDHM(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy-MM-dd HH:mm", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm'
-     */
-    @NotNull
-    public static String formatYMDHM(long millisecondValue) {
-        return formatYMDHM(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
-     */
-    @NotNull
-    public static String formatYMDHMS(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy-MM-dd HH:mm:ss", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
-     */
-    @NotNull
-    public static String formatYMDHMS(long millisecondValue) {
-        return formatYMDHMS(millisecondValue, null);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
-     */
-    @NotNull
-    public static String formatYMDHMSM(long millisecondValue, @Nullable Locale locale) {
-        return format(millisecondValue, "yyyy-MM-dd HH:mm:ss SSS", locale);
-    }
-
-    /**
-     * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
-     */
-    @NotNull
-    public static String formatYMDHMSM(long millisecondValue) {
-        return formatYMDHMSM(millisecondValue, null);
+        return format(date, "yyyy-MM-dd HH:mm:ss SSS");
     }
 
 
@@ -866,35 +517,35 @@ public class Datex {
     /**
      * Get calendar field from millisecond
      */
-    public static int getCalendarField(@NotNull Date date, int field, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static int getCalendarField(@NotNull Date date, int field, int firstDayOfWeek, @NotNull Locale locale) {
         return createCalendar(date, firstDayOfWeek, locale).get(field);
     }
 
     /**
      * Get calendar field from millisecond
      */
-    public static int getCalendarField(@NotNull Date date, int field, @Nullable Integer firstDayOfWeek) {
-        return getCalendarField(date, field, firstDayOfWeek, null);
+    public static int getCalendarField(@NotNull Date date, int field, int firstDayOfWeek) {
+        return createCalendar(date, firstDayOfWeek).get(field);
     }
 
     /**
      * Get calendar field from millisecond
      */
-    public static int getCalendarField(@NotNull Date date, int field, @Nullable Locale locale) {
-        return getCalendarField(date, field, null, locale);
+    public static int getCalendarField(@NotNull Date date, int field, @NotNull Locale locale) {
+        return createCalendar(date, locale).get(field);
     }
 
     /**
      * Get calendar field from millisecond
      */
     public static int getCalendarField(@NotNull Date date, int field) {
-        return getCalendarField(date, field, null, null);
+        return createCalendar(date).get(field);
     }
 
     /**
      * Get year from date
      */
-    public static int getCalendarYear(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarYear(@NotNull Date date, @NotNull Locale locale) {
         return getYear(createCalendar(date, locale));
     }
 
@@ -902,13 +553,13 @@ public class Datex {
      * Get year from date
      */
     public static int getCalendarYear(@NotNull Date date) {
-        return getCalendarYear(date, null);
+        return getYear(createCalendar(date));
     }
 
     /**
      * Get month from date
      */
-    public static int getCalendarMonth(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarMonth(@NotNull Date date, @NotNull Locale locale) {
         return getMonth(createCalendar(date, locale));
     }
 
@@ -916,69 +567,69 @@ public class Datex {
      * Get month from date
      */
     public static int getCalendarMonth(@NotNull Date date) {
-        return getCalendarMonth(date, null);
+        return getMonth(createCalendar(date));
     }
 
     /**
      * Get weekOfYear from date
      */
-    public static int getCalendarWeekOfYear(@NotNull Date date, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static int getCalendarWeekOfYear(@NotNull Date date, int firstDayOfWeek, @NotNull Locale locale) {
         return getWeekOfYear(createCalendar(date, firstDayOfWeek, locale));
     }
 
     /**
      * Get weekOfYear from date
      */
-    public static int getCalendarWeekOfYear(@NotNull Date date, @Nullable Integer firstDayOfWeek) {
-        return getCalendarWeekOfYear(date, firstDayOfWeek, null);
+    public static int getCalendarWeekOfYear(@NotNull Date date, int firstDayOfWeek) {
+        return getWeekOfYear(createCalendar(date, firstDayOfWeek));
     }
 
     /**
      * Get weekOfYear from date
      */
-    public static int getCalendarWeekOfYear(@NotNull Date date, @Nullable Locale locale) {
-        return getCalendarWeekOfYear(date, null, locale);
+    public static int getCalendarWeekOfYear(@NotNull Date date, @NotNull Locale locale) {
+        return getWeekOfYear(createCalendar(date, locale));
     }
 
     /**
      * Get weekOfYear from date
      */
     public static int getCalendarWeekOfYear(@NotNull Date date) {
-        return getCalendarWeekOfYear(date, null, null);
+        return getWeekOfYear(createCalendar(date));
     }
 
     /**
      * Get weekOfMonth from date
      */
-    public static int getCalendarWeekOfMonth(@NotNull Date date, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static int getCalendarWeekOfMonth(@NotNull Date date, int firstDayOfWeek, @NotNull Locale locale) {
         return getWeekOfMonth(createCalendar(date, firstDayOfWeek, locale));
     }
 
     /**
      * Get weekOfMonth from date
      */
-    public static int getCalendarWeekOfMonth(@NotNull Date date, @Nullable Integer firstDayOfWeek) {
-        return getCalendarWeekOfMonth(date, firstDayOfWeek, null);
+    public static int getCalendarWeekOfMonth(@NotNull Date date, int firstDayOfWeek) {
+        return getWeekOfMonth(createCalendar(date, firstDayOfWeek));
     }
 
     /**
      * Get weekOfMonth from date
      */
-    public static int getCalendarWeekOfMonth(@NotNull Date date, @Nullable Locale locale) {
-        return getCalendarWeekOfMonth(date, null, locale);
+    public static int getCalendarWeekOfMonth(@NotNull Date date, @NotNull Locale locale) {
+        return getWeekOfMonth(createCalendar(date, locale));
     }
 
     /**
      * Get weekOfMonth from date
      */
     public static int getCalendarWeekOfMonth(@NotNull Date date) {
-        return getCalendarWeekOfMonth(date, null, null);
+        return getWeekOfMonth(createCalendar(date));
     }
 
     /**
      * Get dayOfYear from date
      */
-    public static int getCalendarDayOfYear(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarDayOfYear(@NotNull Date date, @NotNull Locale locale) {
         return getDayOfYear(createCalendar(date, locale));
     }
 
@@ -986,13 +637,13 @@ public class Datex {
      * Get dayOfYear from date
      */
     public static int getCalendarDayOfYear(@NotNull Date date) {
-        return getCalendarDayOfYear(date, null);
+        return getDayOfYear(createCalendar(date));
     }
 
     /**
      * Get dayOfMonth from date
      */
-    public static int getCalendarDayOfMonth(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarDayOfMonth(@NotNull Date date, @NotNull Locale locale) {
         return getDayOfMonth(createCalendar(date, locale));
     }
 
@@ -1000,69 +651,69 @@ public class Datex {
      * Get dayOfMonth from date
      */
     public static int getCalendarDayOfMonth(@NotNull Date date) {
-        return getCalendarDayOfMonth(date, null);
+        return getDayOfMonth(createCalendar(date));
     }
 
     /**
      * Get dayOfWeek from date
      */
-    public static int getCalendarDayOfWeek(@NotNull Date date, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static int getCalendarDayOfWeek(@NotNull Date date, int firstDayOfWeek, @NotNull Locale locale) {
         return getDayOfWeek(createCalendar(date, firstDayOfWeek, locale));
     }
 
     /**
      * Get dayOfWeek from date
      */
-    public static int getCalendarDayOfWeek(@NotNull Date date, @Nullable Integer firstDayOfWeek) {
-        return getCalendarDayOfWeek(date, firstDayOfWeek, null);
+    public static int getCalendarDayOfWeek(@NotNull Date date, int firstDayOfWeek) {
+        return getDayOfWeek(createCalendar(date, firstDayOfWeek));
     }
 
     /**
      * Get dayOfWeek from date
      */
-    public static int getCalendarDayOfWeek(@NotNull Date date, @Nullable Locale locale) {
-        return getCalendarDayOfWeek(date, null, locale);
+    public static int getCalendarDayOfWeek(@NotNull Date date, @NotNull Locale locale) {
+        return getDayOfWeek(createCalendar(date, locale));
     }
 
     /**
      * Get dayOfWeek from date
      */
     public static int getCalendarDayOfWeek(@NotNull Date date) {
-        return getCalendarDayOfWeek(date, null, null);
+        return getDayOfWeek(createCalendar(date));
     }
 
     /**
      * Get dayOfWeekInMonth from date
      */
-    public static int getCalendarDayOfWeekInMonth(@NotNull Date date, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static int getCalendarDayOfWeekInMonth(@NotNull Date date, int firstDayOfWeek, @NotNull Locale locale) {
         return getDayOfWeekInMonth(createCalendar(date, firstDayOfWeek, locale));
     }
 
     /**
      * Get dayOfWeekInMonth from date
      */
-    public static int getCalendarDayOfWeekInMonth(@NotNull Date date, @Nullable Integer firstDayOfWeek) {
-        return getCalendarDayOfWeekInMonth(date, firstDayOfWeek, null);
+    public static int getCalendarDayOfWeekInMonth(@NotNull Date date, int firstDayOfWeek) {
+        return getDayOfWeekInMonth(createCalendar(date, firstDayOfWeek));
     }
 
     /**
      * Get dayOfWeekInMonth from date
      */
-    public static int getCalendarDayOfWeekInMonth(@NotNull Date date, @Nullable Locale locale) {
-        return getCalendarDayOfWeekInMonth(date, null, locale);
+    public static int getCalendarDayOfWeekInMonth(@NotNull Date date, @NotNull Locale locale) {
+        return getDayOfWeekInMonth(createCalendar(date, locale));
     }
 
     /**
      * Get dayOfWeekInMonth from date
      */
     public static int getCalendarDayOfWeekInMonth(@NotNull Date date) {
-        return getCalendarDayOfWeekInMonth(date, null, null);
+        return getDayOfWeekInMonth(createCalendar(date));
     }
 
     /**
      * Get hourOfDay from date
      */
-    public static int getCalendarHourOfDay(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarHourOfDay(@NotNull Date date, @NotNull Locale locale) {
         return getHourOfDay(createCalendar(date, locale));
     }
 
@@ -1070,13 +721,13 @@ public class Datex {
      * Get hourOfDay from date
      */
     public static int getCalendarHourOfDay(@NotNull Date date) {
-        return getCalendarHourOfDay(date, null);
+        return getHourOfDay(createCalendar(date));
     }
 
     /**
      * Get hour from date
      */
-    public static int getCalendarHour(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarHour(@NotNull Date date, @NotNull Locale locale) {
         return getHour(createCalendar(date, locale));
     }
 
@@ -1084,13 +735,13 @@ public class Datex {
      * Get hour from date
      */
     public static int getCalendarHour(@NotNull Date date) {
-        return getCalendarHour(date, null);
+        return getHour(createCalendar(date));
     }
 
     /**
      * Get minute from date
      */
-    public static int getCalendarMinute(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarMinute(@NotNull Date date, @NotNull Locale locale) {
         return getMinute(createCalendar(date, locale));
     }
 
@@ -1098,13 +749,13 @@ public class Datex {
      * Get minute from date
      */
     public static int getCalendarMinute(@NotNull Date date) {
-        return getCalendarMinute(date, null);
+        return getMinute(createCalendar(date));
     }
 
     /**
      * Get second from date
      */
-    public static int getCalendarSecond(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarSecond(@NotNull Date date, @NotNull Locale locale) {
         return getSecond(createCalendar(date, locale));
     }
 
@@ -1112,13 +763,13 @@ public class Datex {
      * Get second from date
      */
     public static int getCalendarSecond(@NotNull Date date) {
-        return getCalendarSecond(date, null);
+        return getSecond(createCalendar(date));
     }
 
     /**
      * Get millisecond from date
      */
-    public static int getCalendarMillisecond(@NotNull Date date, @Nullable Locale locale) {
+    public static int getCalendarMillisecond(@NotNull Date date, @NotNull Locale locale) {
         return getMillisecond(createCalendar(date, locale));
     }
 
@@ -1126,274 +777,7 @@ public class Datex {
      * Get millisecond from date
      */
     public static int getCalendarMillisecond(@NotNull Date date) {
-        return getCalendarMillisecond(date, null);
-    }
-
-
-    /**
-     * Get calendar field from millisecond
-     */
-    public static int getCalendarField(long millisecondValue, int field, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return createCalendar(millisecondValue, firstDayOfWeek, locale).get(field);
-    }
-
-    /**
-     * Get calendar field from millisecond
-     */
-    public static int getCalendarField(long millisecondValue, int field, @Nullable Integer firstDayOfWeek) {
-        return getCalendarField(millisecondValue, field, firstDayOfWeek, null);
-    }
-
-    /**
-     * Get calendar field from millisecond
-     */
-    public static int getCalendarField(long millisecondValue, int field, @Nullable Locale locale) {
-        return getCalendarField(millisecondValue, field, null, locale);
-    }
-
-    /**
-     * Get calendar field from millisecond
-     */
-    public static int getCalendarField(long millisecondValue, int field) {
-        return getCalendarField(millisecondValue, field, null, null);
-    }
-
-    /**
-     * Get year from millisecond
-     */
-    public static int getYear(long millisecondValue, @Nullable Locale locale) {
-        return getYear(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get year from millisecond
-     */
-    public static int getYear(long millisecondValue) {
-        return getYear(millisecondValue, null);
-    }
-
-    /**
-     * Get month from millisecond
-     */
-    public static int getMonth(long millisecondValue, @Nullable Locale locale) {
-        return getMonth(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get month from millisecond
-     */
-    public static int getMonth(long millisecondValue) {
-        return getMonth(millisecondValue, null);
-    }
-
-    /**
-     * Get weekOfYear from millisecond
-     */
-    public static int getWeekOfYear(long millisecondValue, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return getWeekOfYear(createCalendar(millisecondValue, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Get weekOfYear from millisecond
-     */
-    public static int getWeekOfYear(long millisecondValue, @Nullable Integer firstDayOfWeek) {
-        return getWeekOfYear(millisecondValue, firstDayOfWeek, null);
-    }
-
-    /**
-     * Get weekOfYear from millisecond
-     */
-    public static int getWeekOfYear(long millisecondValue, @Nullable Locale locale) {
-        return getWeekOfYear(millisecondValue, null, locale);
-    }
-
-    /**
-     * Get weekOfYear from millisecond
-     */
-    public static int getWeekOfYear(long millisecondValue) {
-        return getWeekOfYear(millisecondValue, null, null);
-    }
-
-    /**
-     * Get weekOfMonth from millisecond
-     */
-    public static int getWeekOfMonth(long millisecondValue, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return getWeekOfMonth(createCalendar(millisecondValue, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Get weekOfMonth from millisecond
-     */
-    public static int getWeekOfMonth(long millisecondValue, @Nullable Integer firstDayOfWeek) {
-        return getWeekOfMonth(millisecondValue, firstDayOfWeek, null);
-    }
-
-    /**
-     * Get weekOfMonth from millisecond
-     */
-    public static int getWeekOfMonth(long millisecondValue, @Nullable Locale locale) {
-        return getWeekOfMonth(millisecondValue, null, locale);
-    }
-
-    /**
-     * Get weekOfMonth from millisecond
-     */
-    public static int getWeekOfMonth(long millisecondValue) {
-        return getWeekOfMonth(millisecondValue, null, null);
-    }
-
-    /**
-     * Get dayOfYear from millisecond
-     */
-    public static int getDayOfYear(long millisecondValue, @Nullable Locale locale) {
-        return getDayOfYear(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get dayOfYear from millisecond
-     */
-    public static int getDayOfYear(long millisecondValue) {
-        return getDayOfYear(millisecondValue, null);
-    }
-
-    /**
-     * Get dayOfMonth from millisecond
-     */
-    public static int getDayOfMonth(long millisecondValue, @Nullable Locale locale) {
-        return getDayOfMonth(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get dayOfMonth from millisecond
-     */
-    public static int getDayOfMonth(long millisecondValue) {
-        return getDayOfMonth(millisecondValue, null);
-    }
-
-    /**
-     * Get dayOfWeek from millisecond
-     */
-    public static int getDayOfWeek(long millisecondValue, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return getDayOfWeek(createCalendar(millisecondValue, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Get dayOfWeek from millisecond
-     */
-    public static int getDayOfWeek(long millisecondValue, @Nullable Integer firstDayOfWeek) {
-        return getDayOfWeek(millisecondValue, firstDayOfWeek, null);
-    }
-
-    /**
-     * Get dayOfWeek from millisecond
-     */
-    public static int getDayOfWeek(long millisecondValue, @Nullable Locale locale) {
-        return getDayOfWeek(millisecondValue, null, locale);
-    }
-
-    /**
-     * Get dayOfWeek from millisecond
-     */
-    public static int getDayOfWeek(long millisecondValue) {
-        return getDayOfWeek(millisecondValue, null, null);
-    }
-
-    /**
-     * Get dayOfWeekInMonth from millisecond
-     */
-    public static int getDayOfWeekInMonth(long millisecondValue, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return getDayOfWeekInMonth(createCalendar(millisecondValue, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Get dayOfWeekInMonth from millisecond
-     */
-    public static int getDayOfWeekInMonth(long millisecondValue, @Nullable Integer firstDayOfWeek) {
-        return getDayOfWeekInMonth(millisecondValue, firstDayOfWeek, null);
-    }
-
-    /**
-     * Get dayOfWeekInMonth from millisecond
-     */
-    public static int getDayOfWeekInMonth(long millisecondValue, @Nullable Locale locale) {
-        return getDayOfWeekInMonth(millisecondValue, null, locale);
-    }
-
-    /**
-     * Get dayOfWeekInMonth from millisecond
-     */
-    public static int getDayOfWeekInMonth(long millisecondValue) {
-        return getDayOfWeekInMonth(millisecondValue, null, null);
-    }
-
-    /**
-     * Get hourOfDay from millisecond
-     */
-    public static int getHourOfDay(long millisecondValue, @Nullable Locale locale) {
-        return getHourOfDay(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get hourOfDay from millisecond
-     */
-    public static int getHourOfDay(long millisecondValue) {
-        return getHourOfDay(millisecondValue, null);
-    }
-
-    /**
-     * Get hour from millisecond
-     */
-    public static int getHour(long millisecondValue, @Nullable Locale locale) {
-        return getHour(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get hour from millisecond
-     */
-    public static int getHour(long millisecondValue) {
-        return getHour(millisecondValue, null);
-    }
-
-    /**
-     * Get minute from millisecond
-     */
-    public static int getMinute(long millisecondValue, @Nullable Locale locale) {
-        return getMinute(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get minute from millisecond
-     */
-    public static int getMinute(long millisecondValue) {
-        return getMinute(millisecondValue, null);
-    }
-
-    /**
-     * Get second from millisecond
-     */
-    public static int getSecond(long millisecondValue, @Nullable Locale locale) {
-        return getSecond(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get second from millisecond
-     */
-    public static int getSecond(long millisecondValue) {
-        return getSecond(millisecondValue, null);
-    }
-
-    /**
-     * Get millisecond from millisecond
-     */
-    public static int getMillisecond(long millisecondValue, @Nullable Locale locale) {
-        return getMillisecond(createCalendar(millisecondValue, locale));
-    }
-
-    /**
-     * Get millisecond from millisecond
-     */
-    public static int getMillisecond(long millisecondValue) {
-        return getMillisecond(millisecondValue, null);
+        return getMillisecond(createCalendar(date));
     }
 
 
@@ -1411,20 +795,12 @@ public class Datex {
         return new Date(calendar.getTimeInMillis());
     }
 
-    /**
-     * Increase the specified calendar field and return to millisecond
-     */
-    public static long addToMillisecond(@NotNull Calendar calendar, int field, int amount) {
-        calendar.add(field, amount);
-        return calendar.getTimeInMillis();
-    }
-
 
     /**
      * Increase the specified calendar field
      */
     @NotNull
-    public static Date addCalendarField(@NotNull Date date, int field, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static Date addCalendarField(@NotNull Date date, int field, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return addToDate(createCalendar(date, firstDayOfWeek, locale), field, amount);
     }
 
@@ -1432,16 +808,16 @@ public class Datex {
      * Increase the specified calendar field
      */
     @NotNull
-    public static Date addCalendarField(@NotNull Date date, int field, int amount, @Nullable Integer firstDayOfWeek) {
-        return addCalendarField(date, field, amount, firstDayOfWeek, null);
+    public static Date addCalendarField(@NotNull Date date, int field, int amount, int firstDayOfWeek) {
+        return addToDate(createCalendar(date, firstDayOfWeek), field, amount);
     }
 
     /**
      * Increase the specified calendar field
      */
     @NotNull
-    public static Date addCalendarField(@NotNull Date date, int field, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, field, amount, null, locale);
+    public static Date addCalendarField(@NotNull Date date, int field, int amount, @NotNull Locale locale) {
+        return addToDate(createCalendar(date, locale), field, amount);
     }
 
     /**
@@ -1449,15 +825,15 @@ public class Datex {
      */
     @NotNull
     public static Date addCalendarField(@NotNull Date date, int field, int amount) {
-        return addCalendarField(date, field, amount, null, null);
+        return addToDate(createCalendar(date), field, amount);
     }
 
     /**
      * Increase the YEAR field
      */
     @NotNull
-    public static Date addYear(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.YEAR, amount, null, locale);
+    public static Date addYear(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.YEAR, amount, locale);
     }
 
     /**
@@ -1465,15 +841,15 @@ public class Datex {
      */
     @NotNull
     public static Date addYear(@NotNull Date date, int amount) {
-        return addCalendarField(date, Calendar.YEAR, amount, null, null);
+        return addCalendarField(date, Calendar.YEAR, amount);
     }
 
     /**
      * Increase the MONTH field
      */
     @NotNull
-    public static Date addMonth(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.MONTH, amount, null, locale);
+    public static Date addMonth(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.MONTH, amount, locale);
     }
 
     /**
@@ -1481,14 +857,14 @@ public class Datex {
      */
     @NotNull
     public static Date addMonth(@NotNull Date date, int amount) {
-        return addCalendarField(date, Calendar.MONTH, amount, null, null);
+        return addCalendarField(date, Calendar.MONTH, amount);
     }
 
     /**
      * Increase the WEEK_OF_YEAR field
      */
     @NotNull
-    public static Date addWeekOfYear(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static Date addWeekOfYear(@NotNull Date date, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return addCalendarField(date, Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek, locale);
     }
 
@@ -1496,16 +872,16 @@ public class Datex {
      * Increase the WEEK_OF_YEAR field
      */
     @NotNull
-    public static Date addWeekOfYear(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek) {
-        return addWeekOfYear(date, amount, firstDayOfWeek, null);
+    public static Date addWeekOfYear(@NotNull Date date, int amount, int firstDayOfWeek) {
+        return addCalendarField(date, Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek);
     }
 
     /**
      * Increase the WEEK_OF_YEAR field
      */
     @NotNull
-    public static Date addWeekOfYear(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addWeekOfYear(date, amount, null, locale);
+    public static Date addWeekOfYear(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.WEEK_OF_YEAR, amount, locale);
     }
 
     /**
@@ -1513,14 +889,14 @@ public class Datex {
      */
     @NotNull
     public static Date addWeekOfYear(@NotNull Date date, int amount) {
-        return addWeekOfYear(date, amount, null, null);
+        return addCalendarField(date, Calendar.WEEK_OF_YEAR, amount);
     }
 
     /**
      * Increase the WEEK_OF_MONTH field
      */
     @NotNull
-    public static Date addWeekOfMonth(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static Date addWeekOfMonth(@NotNull Date date, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return addCalendarField(date, Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek, locale);
     }
 
@@ -1528,16 +904,16 @@ public class Datex {
      * Increase the WEEK_OF_MONTH field
      */
     @NotNull
-    public static Date addWeekOfMonth(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek) {
-        return addWeekOfMonth(date, amount, firstDayOfWeek, null);
+    public static Date addWeekOfMonth(@NotNull Date date, int amount, int firstDayOfWeek) {
+        return addCalendarField(date, Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek);
     }
 
     /**
      * Increase the WEEK_OF_MONTH field
      */
     @NotNull
-    public static Date addWeekOfMonth(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addWeekOfMonth(date, amount, null, locale);
+    public static Date addWeekOfMonth(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.WEEK_OF_MONTH, amount, locale);
     }
 
     /**
@@ -1545,15 +921,15 @@ public class Datex {
      */
     @NotNull
     public static Date addWeekOfMonth(@NotNull Date date, int amount) {
-        return addWeekOfMonth(date, amount, null, null);
+        return addCalendarField(date, Calendar.WEEK_OF_MONTH, amount);
     }
 
     /**
      * Increase the DAY_OF_YEAR field
      */
     @NotNull
-    public static Date addDayOfYear(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.DAY_OF_YEAR, amount, null, locale);
+    public static Date addDayOfYear(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.DAY_OF_YEAR, amount, locale);
     }
 
     /**
@@ -1561,15 +937,15 @@ public class Datex {
      */
     @NotNull
     public static Date addDayOfYear(@NotNull Date date, int amount) {
-        return addDayOfYear(date, amount, null);
+        return addCalendarField(date, Calendar.DAY_OF_YEAR, amount);
     }
 
     /**
      * Increase the DAY_OF_MONTH field
      */
     @NotNull
-    public static Date addDayOfMonth(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.DAY_OF_MONTH, amount, null, locale);
+    public static Date addDayOfMonth(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.DAY_OF_MONTH, amount, locale);
     }
 
     /**
@@ -1584,7 +960,7 @@ public class Datex {
      * Increase the DAY_OF_WEEK_IN_MONTH field
      */
     @NotNull
-    public static Date addDayOfWeekInMonth(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static Date addDayOfWeekInMonth(@NotNull Date date, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return addCalendarField(date, Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek, locale);
     }
 
@@ -1592,16 +968,16 @@ public class Datex {
      * Increase the DAY_OF_WEEK_IN_MONTH field
      */
     @NotNull
-    public static Date addDayOfWeekInMonth(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek) {
-        return addDayOfWeekInMonth(date, amount, firstDayOfWeek, null);
+    public static Date addDayOfWeekInMonth(@NotNull Date date, int amount, int firstDayOfWeek) {
+        return addCalendarField(date, Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek);
     }
 
     /**
      * Increase the DAY_OF_WEEK_IN_MONTH field
      */
     @NotNull
-    public static Date addDayOfWeekInMonth(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addDayOfWeekInMonth(date, amount, null, locale);
+    public static Date addDayOfWeekInMonth(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.DAY_OF_WEEK_IN_MONTH, amount, locale);
     }
 
     /**
@@ -1609,14 +985,14 @@ public class Datex {
      */
     @NotNull
     public static Date addDayOfWeekInMonth(@NotNull Date date, int amount) {
-        return addDayOfWeekInMonth(date, amount, null, null);
+        return addCalendarField(date, Calendar.DAY_OF_WEEK_IN_MONTH, amount);
     }
 
     /**
      * Increase the DAY_OF_WEEK field
      */
     @NotNull
-    public static Date addDayOfWeek(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static Date addDayOfWeek(@NotNull Date date, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return addCalendarField(date, Calendar.DAY_OF_WEEK, amount, firstDayOfWeek, locale);
     }
 
@@ -1624,16 +1000,16 @@ public class Datex {
      * Increase the DAY_OF_WEEK field
      */
     @NotNull
-    public static Date addDayOfWeek(@NotNull Date date, int amount, @Nullable Integer firstDayOfWeek) {
-        return addDayOfWeek(date, amount, firstDayOfWeek, null);
+    public static Date addDayOfWeek(@NotNull Date date, int amount, int firstDayOfWeek) {
+        return addCalendarField(date, Calendar.DAY_OF_WEEK, amount, firstDayOfWeek);
     }
 
     /**
      * Increase the DAY_OF_WEEK field
      */
     @NotNull
-    public static Date addDayOfWeek(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addDayOfWeek(date, amount, null, locale);
+    public static Date addDayOfWeek(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.DAY_OF_WEEK, amount, locale);
     }
 
     /**
@@ -1641,15 +1017,15 @@ public class Datex {
      */
     @NotNull
     public static Date addDayOfWeek(@NotNull Date date, int amount) {
-        return addDayOfWeek(date, amount, null, null);
+        return addCalendarField(date, Calendar.DAY_OF_WEEK, amount);
     }
 
     /**
      * Increase the HOUR_OF_DAY field
      */
     @NotNull
-    public static Date addHourOfDay(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.HOUR_OF_DAY, amount, null, locale);
+    public static Date addHourOfDay(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.HOUR_OF_DAY, amount, locale);
     }
 
     /**
@@ -1664,8 +1040,8 @@ public class Datex {
      * Increase the HOUR field
      */
     @NotNull
-    public static Date addHour(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.HOUR, amount, null, locale);
+    public static Date addHour(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.HOUR, amount, locale);
     }
 
     /**
@@ -1680,8 +1056,8 @@ public class Datex {
      * Increase the MINUTE field
      */
     @NotNull
-    public static Date addMinute(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.MINUTE, amount, null, locale);
+    public static Date addMinute(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.MINUTE, amount, locale);
     }
 
     /**
@@ -1696,8 +1072,8 @@ public class Datex {
      * Increase the SECOND field
      */
     @NotNull
-    public static Date addSecond(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.SECOND, amount, null, locale);
+    public static Date addSecond(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.SECOND, amount, locale);
     }
 
     /**
@@ -1712,8 +1088,8 @@ public class Datex {
      * Increase the MILLISECOND field
      */
     @NotNull
-    public static Date addMillisecond(@NotNull Date date, int amount, @Nullable Locale locale) {
-        return addCalendarField(date, Calendar.MILLISECOND, amount, null, locale);
+    public static Date addMillisecond(@NotNull Date date, int amount, @NotNull Locale locale) {
+        return addCalendarField(date, Calendar.MILLISECOND, amount, locale);
     }
 
     /**
@@ -1722,273 +1098,6 @@ public class Datex {
     @NotNull
     public static Date addMillisecond(@NotNull Date date, int amount) {
         return addCalendarField(date, Calendar.MILLISECOND, amount);
-    }
-
-
-    /**
-     * Increase the specified calendar field
-     */
-    public static long addCalendarField(long millisecondValue, int field, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return addToMillisecond(createCalendar(millisecondValue, firstDayOfWeek, locale), field, amount);
-    }
-
-    /**
-     * Increase the specified calendar field
-     */
-    public static long addCalendarField(long millisecondValue, int field, int amount, @Nullable Integer firstDayOfWeek) {
-        return addCalendarField(millisecondValue, field, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Increase the specified calendar field
-     */
-    public static long addCalendarField(long millisecondValue, int field, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, field, amount, null, locale);
-    }
-
-    /**
-     * Increase the specified calendar field
-     */
-    public static long addCalendarField(long millisecondValue, int field, int amount) {
-        return addCalendarField(millisecondValue, field, amount, null, null);
-    }
-
-    /**
-     * Increase the YEAR field
-     */
-    public static long addYear(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.YEAR, amount, null, locale);
-    }
-
-    /**
-     * Increase the YEAR field
-     */
-    public static long addYear(long millisecondValue, int amount) {
-        return addYear(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the MONTH field
-     */
-    public static long addMonth(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.MONTH, amount, null, locale);
-    }
-
-    /**
-     * Increase the MONTH field
-     */
-    public static long addMonth(long millisecondValue, int amount) {
-        return addMonth(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the WEEK_OF_YEAR field
-     */
-    public static long addWeekOfYear(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.WEEK_OF_YEAR, amount, firstDayOfWeek, locale);
-    }
-
-    /**
-     * Increase the WEEK_OF_YEAR field
-     */
-    public static long addWeekOfYear(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek) {
-        return addWeekOfYear(millisecondValue, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Increase the WEEK_OF_YEAR field
-     */
-    public static long addWeekOfYear(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addWeekOfYear(millisecondValue, amount, null, locale);
-    }
-
-    /**
-     * Increase the WEEK_OF_YEAR field
-     */
-    public static long addWeekOfYear(long millisecondValue, int amount) {
-        return addWeekOfYear(millisecondValue, amount, null, null);
-    }
-
-    /**
-     * Increase the WEEK_OF_MONTH field
-     */
-    public static long addWeekOfMonth(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.WEEK_OF_MONTH, amount, firstDayOfWeek, locale);
-    }
-
-    /**
-     * Increase the WEEK_OF_MONTH field
-     */
-    public static long addWeekOfMonth(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek) {
-        return addWeekOfMonth(millisecondValue, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Increase the WEEK_OF_MONTH field
-     */
-    public static long addWeekOfMonth(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addWeekOfMonth(millisecondValue, amount, null, locale);
-    }
-
-    /**
-     * Increase the WEEK_OF_MONTH field
-     */
-    public static long addWeekOfMonth(long millisecondValue, int amount) {
-        return addWeekOfMonth(millisecondValue, amount, null, null);
-    }
-
-    /**
-     * Increase the DAY_OF_YEAR field
-     */
-    public static long addDayOfYear(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.DAY_OF_YEAR, amount, null, locale);
-    }
-
-    /**
-     * Increase the DAY_OF_YEAR field
-     */
-    public static long addDayOfYear(long millisecondValue, int amount) {
-        return addDayOfYear(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the DAY_OF_MONTH field
-     */
-    public static long addDayOfMonth(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.DAY_OF_MONTH, amount, null, locale);
-    }
-
-    /**
-     * Increase the DAY_OF_MONTH field
-     */
-    public static long addDayOfMonth(long millisecondValue, int amount) {
-        return addDayOfMonth(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK_IN_MONTH field
-     */
-    public static long addDayOfWeekInMonth(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.DAY_OF_WEEK_IN_MONTH, amount, firstDayOfWeek, locale);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK_IN_MONTH field
-     */
-    public static long addDayOfWeekInMonth(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek) {
-        return addDayOfWeekInMonth(millisecondValue, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK_IN_MONTH field
-     */
-    public static long addDayOfWeekInMonth(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addDayOfWeekInMonth(millisecondValue, amount, null, locale);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK_IN_MONTH field
-     */
-    public static long addDayOfWeekInMonth(long millisecondValue, int amount) {
-        return addDayOfWeekInMonth(millisecondValue, amount, null, null);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK field
-     */
-    public static long addDayOfWeek(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.DAY_OF_WEEK, amount, firstDayOfWeek, locale);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK field
-     */
-    public static long addDayOfWeek(long millisecondValue, int amount, @Nullable Integer firstDayOfWeek) {
-        return addDayOfWeek(millisecondValue, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK field
-     */
-    public static long addDayOfWeek(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addDayOfWeek(millisecondValue, amount, null, locale);
-    }
-
-    /**
-     * Increase the DAY_OF_WEEK field
-     */
-    public static long addDayOfWeek(long millisecondValue, int amount) {
-        return addDayOfWeek(millisecondValue, amount, null, null);
-    }
-
-    /**
-     * Increase the HOUR_OF_DAY field
-     */
-    public static long addHourOfDay(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.HOUR_OF_DAY, amount, null, locale);
-    }
-
-    /**
-     * Increase the HOUR_OF_DAY field
-     */
-    public static long addHourOfDay(long millisecondValue, int amount) {
-        return addHourOfDay(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the HOUR field
-     */
-    public static long addHour(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.HOUR, amount, null, locale);
-    }
-
-    /**
-     * Increase the HOUR field
-     */
-    public static long addHour(long millisecondValue, int amount) {
-        return addHour(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the MINUTE field
-     */
-    public static long addMinute(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.MINUTE, amount, null, locale);
-    }
-
-    /**
-     * Increase the MINUTE field
-     */
-    public static long addMinute(long millisecondValue, int amount) {
-        return addMinute(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the SECOND field
-     */
-    public static long addSecond(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.SECOND, amount, null, locale);
-    }
-
-    /**
-     * Increase the SECOND field
-     */
-    public static long addSecond(long millisecondValue, int amount) {
-        return addSecond(millisecondValue, amount, null);
-    }
-
-    /**
-     * Increase the MILLISECOND field
-     */
-    public static long addMillisecond(long millisecondValue, int amount, @Nullable Locale locale) {
-        return addCalendarField(millisecondValue, Calendar.MILLISECOND, amount, null, locale);
-    }
-
-    /**
-     * Increase the MILLISECOND field
-     */
-    public static long addMillisecond(long millisecondValue, int amount) {
-        return addMillisecond(millisecondValue, amount, null);
     }
 
 
@@ -2164,7 +1273,7 @@ public class Datex {
     /**
      * Return true if the year is the same
      */
-    public static boolean isSameYear(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameYear(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameYear(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2172,13 +1281,13 @@ public class Datex {
      * Return true if the year is the same
      */
     public static boolean isSameYear(@NotNull Date date, @NotNull Date target) {
-        return isSameYear(date, target, null);
+        return isSameYear(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year and month are the same
      */
-    public static boolean isSameMonth(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameMonth(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameMonth(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2186,13 +1295,13 @@ public class Datex {
      * Returns true if the year and month are the same
      */
     public static boolean isSameMonth(@NotNull Date date, @NotNull Date target) {
-        return isSameMonth(date, target, null);
+        return isSameMonth(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the months is the same
      */
-    public static boolean isSameMonthOfYear(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameMonthOfYear(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameMonthOfYear(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2200,97 +1309,97 @@ public class Datex {
      * Return true if the months is the same
      */
     public static boolean isSameMonthOfYear(@NotNull Date date, @NotNull Date target) {
-        return isSameMonthOfYear(date, target, null);
+        return isSameMonthOfYear(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year, month, and week are the same
      */
-    public static boolean isSameWeek(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean isSameWeek(@NotNull Date date, @NotNull Date target, int firstDayOfWeek, @NotNull Locale locale) {
         return isSameWeek(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
     }
 
     /**
      * Returns true if the year, month, and week are the same
      */
-    public static boolean isSameWeek(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek) {
-        return isSameWeek(date, target, firstDayOfWeek, null);
+    public static boolean isSameWeek(@NotNull Date date, @NotNull Date target, int firstDayOfWeek) {
+        return isSameWeek(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek));
     }
 
     /**
      * Returns true if the year, month, and week are the same
      */
-    public static boolean isSameWeek(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
-        return isSameWeek(date, target, null, locale);
+    public static boolean isSameWeek(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
+        return isSameWeek(createCalendar(date, locale), createCalendar(target, locale));
     }
 
     /**
      * Returns true if the year, month, and week are the same
      */
     public static boolean isSameWeek(@NotNull Date date, @NotNull Date target) {
-        return isSameWeek(date, target, null, null);
+        return isSameWeek(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the weekOfYear is the same
      */
-    public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target, int firstDayOfWeek, @NotNull Locale locale) {
         return isSameWeekOfYear(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
     }
 
     /**
      * Return true if the weekOfYear is the same
      */
-    public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek) {
-        return isSameWeekOfYear(date, target, firstDayOfWeek, null);
+    public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target, int firstDayOfWeek) {
+        return isSameWeekOfYear(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek));
     }
 
     /**
      * Return true if the weekOfYear is the same
      */
-    public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
-        return isSameWeekOfYear(date, target, null, locale);
+    public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
+        return isSameWeekOfYear(createCalendar(date, locale), createCalendar(target, locale));
     }
 
     /**
      * Return true if the weekOfYear is the same
      */
     public static boolean isSameWeekOfYear(@NotNull Date date, @NotNull Date target) {
-        return isSameWeekOfYear(date, target, null, null);
+        return isSameWeekOfYear(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the weekOfMonth is the same
      */
-    public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target, int firstDayOfWeek, @NotNull Locale locale) {
         return isSameWeekOfMonth(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
     }
 
     /**
      * Return true if the weekOfMonth is the same
      */
-    public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek) {
-        return isSameWeekOfMonth(date, target, firstDayOfWeek, null);
+    public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target, int firstDayOfWeek) {
+        return isSameWeekOfMonth(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek));
     }
 
     /**
      * Return true if the weekOfMonth is the same
      */
-    public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
-        return isSameWeekOfMonth(date, target, null, locale);
+    public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
+        return isSameWeekOfMonth(createCalendar(date, locale), createCalendar(target, locale));
     }
 
     /**
      * Return true if the weekOfMonth is the same
      */
     public static boolean isSameWeekOfMonth(@NotNull Date date, @NotNull Date target) {
-        return isSameWeekOfMonth(date, target, null, null);
+        return isSameWeekOfMonth(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year, month, week and day are the same
      */
-    public static boolean isSameDay(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameDay(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameDay(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2298,13 +1407,13 @@ public class Datex {
      * Returns true if the year, month, week and day are the same
      */
     public static boolean isSameDay(@NotNull Date date, @NotNull Date target) {
-        return isSameDay(date, target, null);
+        return isSameDay(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the dayOfYear is the same
      */
-    public static boolean isSameDayOfYear(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameDayOfYear(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameDayOfYear(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2312,13 +1421,13 @@ public class Datex {
      * Return true if the dayOfYear is the same
      */
     public static boolean isSameDayOfYear(@NotNull Date date, @NotNull Date target) {
-        return isSameDayOfYear(date, target, null);
+        return isSameDayOfYear(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the dayOfMonth is the same
      */
-    public static boolean isSameDayOfMonth(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameDayOfMonth(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameDayOfMonth(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2326,69 +1435,69 @@ public class Datex {
      * Return true if the dayOfMonth is the same
      */
     public static boolean isSameDayOfMonth(@NotNull Date date, @NotNull Date target) {
-        return isSameDayOfMonth(date, target, null);
+        return isSameDayOfMonth(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the dayOfWeek is the same
      */
-    public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target, int firstDayOfWeek, @NotNull Locale locale) {
         return isSameDayOfWeek(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
     }
 
     /**
      * Return true if the dayOfWeek is the same
      */
-    public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek) {
-        return isSameDayOfWeek(date, target, firstDayOfWeek, null);
+    public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target, int firstDayOfWeek) {
+        return isSameDayOfWeek(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek));
     }
 
     /**
      * Return true if the dayOfWeek is the same
      */
-    public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
-        return isSameDayOfWeek(date, target, null, locale);
+    public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
+        return isSameDayOfWeek(createCalendar(date, locale), createCalendar(target, locale));
     }
 
     /**
      * Return true if the dayOfWeek is the same
      */
     public static boolean isSameDayOfWeek(@NotNull Date date, @NotNull Date target) {
-        return isSameDayOfWeek(date, target, null, null);
+        return isSameDayOfWeek(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the dayOfWeekInMonth is the same
      */
-    public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int firstDayOfWeek, @NotNull Locale locale) {
         return isSameDayOfWeekInMonth(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
     }
 
     /**
      * Return true if the dayOfWeekInMonth is the same
      */
-    public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, @Nullable Integer firstDayOfWeek) {
-        return isSameDayOfWeekInMonth(date, target, firstDayOfWeek, null);
+    public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int firstDayOfWeek) {
+        return isSameDayOfWeekInMonth(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek));
     }
 
     /**
      * Return true if the dayOfWeekInMonth is the same
      */
-    public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
-        return isSameDayOfWeekInMonth(date, target, null, locale);
+    public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
+        return isSameDayOfWeekInMonth(createCalendar(date, locale), createCalendar(target, locale));
     }
 
     /**
      * Return true if the dayOfWeekInMonth is the same
      */
     public static boolean isSameDayOfWeekInMonth(@NotNull Date date, @NotNull Date target) {
-        return isSameDayOfWeekInMonth(date, target, null, null);
+        return isSameDayOfWeekInMonth(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year, month, week, day and hour are the same
      */
-    public static boolean isSameHour(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameHour(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameHour(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2396,13 +1505,13 @@ public class Datex {
      * Returns true if the year, month, week, day and hour are the same
      */
     public static boolean isSameHour(@NotNull Date date, @NotNull Date target) {
-        return isSameHour(date, target, null);
+        return isSameHour(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the 24H hour is the same
      */
-    public static boolean isSameHourOf24H(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameHourOf24H(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameHourOf24H(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2410,13 +1519,13 @@ public class Datex {
      * Return true if the 24H hour is the same
      */
     public static boolean isSameHourOf24H(@NotNull Date date, @NotNull Date target) {
-        return isSameHourOf24H(date, target, null);
+        return isSameHourOf24H(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the 12H hour is the same
      */
-    public static boolean isSameHourOf12H(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameHourOf12H(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameHourOf12H(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2424,13 +1533,13 @@ public class Datex {
      * Return true if the 12H hour is the same
      */
     public static boolean isSameHourOf12H(@NotNull Date date, @NotNull Date target) {
-        return isSameHourOf12H(date, target, null);
+        return isSameHourOf12H(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year, month, week, day, hour and minute are the same
      */
-    public static boolean isSameMinute(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameMinute(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameMinute(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2438,13 +1547,13 @@ public class Datex {
      * Returns true if the year, month, week, day, hour and minute are the same
      */
     public static boolean isSameMinute(@NotNull Date date, @NotNull Date target) {
-        return isSameMinute(date, target, null);
+        return isSameMinute(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the minuteOfHour is the same
      */
-    public static boolean isSameMinuteOfHour(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameMinuteOfHour(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameMinuteOfHour(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2452,13 +1561,13 @@ public class Datex {
      * Return true if the minuteOfHour is the same
      */
     public static boolean isSameMinuteOfHour(@NotNull Date date, @NotNull Date target) {
-        return isSameMinuteOfHour(date, target, null);
+        return isSameMinuteOfHour(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year, month, week, day, hour, minute and second are the same
      */
-    public static boolean isSameSecond(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameSecond(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameSecond(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2466,13 +1575,13 @@ public class Datex {
      * Returns true if the year, month, week, day, hour, minute and second are the same
      */
     public static boolean isSameSecond(@NotNull Date date, @NotNull Date target) {
-        return isSameSecond(date, target, null);
+        return isSameSecond(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the secondOfMinute is the same
      */
-    public static boolean isSameSecondOfMinute(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameSecondOfMinute(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameSecondOfMinute(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2480,13 +1589,13 @@ public class Datex {
      * Return true if the secondOfMinute is the same
      */
     public static boolean isSameSecondOfMinute(@NotNull Date date, @NotNull Date target) {
-        return isSameSecondOfMinute(date, target, null);
+        return isSameSecondOfMinute(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
      */
-    public static boolean isSameMillisecond(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameMillisecond(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameMillisecond(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2494,13 +1603,13 @@ public class Datex {
      * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
      */
     public static boolean isSameMillisecond(@NotNull Date date, @NotNull Date target) {
-        return isSameMillisecond(date, target, null);
+        return isSameMillisecond(createCalendar(date), createCalendar(target));
     }
 
     /**
      * Return true if the millisecondOfSecond is the same
      */
-    public static boolean isSameMillisecondOfSecond(@NotNull Date date, @NotNull Date target, @Nullable Locale locale) {
+    public static boolean isSameMillisecondOfSecond(@NotNull Date date, @NotNull Date target, @NotNull Locale locale) {
         return isSameMillisecondOfSecond(createCalendar(date, locale), createCalendar(target, locale));
     }
 
@@ -2508,358 +1617,7 @@ public class Datex {
      * Return true if the millisecondOfSecond is the same
      */
     public static boolean isSameMillisecondOfSecond(@NotNull Date date, @NotNull Date target) {
-        return isSameMillisecondOfSecond(date, target, null);
-    }
-
-
-    /**
-     * Return true if the year is the same
-     */
-    public static boolean isSameYear(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameYear(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the year is the same
-     */
-    public static boolean isSameYear(long millisecondValue, long target) {
-        return isSameYear(millisecondValue, target, null);
-    }
-
-    /**
-     * Returns true if the year and month are the same
-     */
-    public static boolean isSameMonth(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameMonth(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Returns true if the year and month are the same
-     */
-    public static boolean isSameMonth(long millisecondValue, long target) {
-        return isSameMonth(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the months is the same
-     */
-    public static boolean isSameMonthOfYear(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameMonthOfYear(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the months is the same
-     */
-    public static boolean isSameMonthOfYear(long millisecondValue, long target) {
-        return isSameMonthOfYear(millisecondValue, target, null);
-    }
-
-    /**
-     * Returns true if the year, month, and week are the same
-     */
-    public static boolean isSameWeek(long millisecondValue, long target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return isSameWeek(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Returns true if the year, month, and week are the same
-     */
-    public static boolean isSameWeek(long millisecondValue, long target, @Nullable Integer firstDayOfWeek) {
-        return isSameWeek(millisecondValue, target, firstDayOfWeek, null);
-    }
-
-    /**
-     * Returns true if the year, month, and week are the same
-     */
-    public static boolean isSameWeek(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameWeek(millisecondValue, target, null, locale);
-    }
-
-    /**
-     * Returns true if the year, month, and week are the same
-     */
-    public static boolean isSameWeek(long millisecondValue, long target) {
-        return isSameWeek(millisecondValue, target, null, null);
-    }
-
-    /**
-     * Return true if the weekOfYear is the same
-     */
-    public static boolean isSameWeekOfYear(long millisecondValue, long target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return isSameWeekOfYear(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Return true if the weekOfYear is the same
-     */
-    public static boolean isSameWeekOfYear(long millisecondValue, long target, @Nullable Integer firstDayOfWeek) {
-        return isSameWeekOfYear(millisecondValue, target, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the weekOfYear is the same
-     */
-    public static boolean isSameWeekOfYear(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameWeekOfYear(millisecondValue, target, null, locale);
-    }
-
-    /**
-     * Return true if the weekOfYear is the same
-     */
-    public static boolean isSameWeekOfYear(long millisecondValue, long target) {
-        return isSameWeekOfYear(millisecondValue, target, null, null);
-    }
-
-    /**
-     * Return true if the weekOfMonth is the same
-     */
-    public static boolean isSameWeekOfMonth(long millisecondValue, long target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return isSameWeekOfMonth(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Return true if the weekOfMonth is the same
-     */
-    public static boolean isSameWeekOfMonth(long millisecondValue, long target, @Nullable Integer firstDayOfWeek) {
-        return isSameWeekOfMonth(millisecondValue, target, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the weekOfMonth is the same
-     */
-    public static boolean isSameWeekOfMonth(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameWeekOfMonth(millisecondValue, target, null, locale);
-    }
-
-    /**
-     * Return true if the weekOfMonth is the same
-     */
-    public static boolean isSameWeekOfMonth(long millisecondValue, long target) {
-        return isSameWeekOfMonth(millisecondValue, target, null, null);
-    }
-
-    /**
-     * Returns true if the year, month, week and day are the same
-     */
-    public static boolean isSameDay(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameDay(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Returns true if the year, month, week and day are the same
-     */
-    public static boolean isSameDay(long millisecondValue, long target) {
-        return isSameDay(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the dayOfYear is the same
-     */
-    public static boolean isSameDayOfYear(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameDayOfYear(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the dayOfYear is the same
-     */
-    public static boolean isSameDayOfYear(long millisecondValue, long target) {
-        return isSameDayOfYear(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the dayOfMonth is the same
-     */
-    public static boolean isSameDayOfMonth(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameDayOfMonth(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the dayOfMonth is the same
-     */
-    public static boolean isSameDayOfMonth(long millisecondValue, long target) {
-        return isSameDayOfMonth(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the dayOfWeek is the same
-     */
-    public static boolean isSameDayOfWeek(long millisecondValue, long target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return isSameDayOfWeek(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Return true if the dayOfWeek is the same
-     */
-    public static boolean isSameDayOfWeek(long millisecondValue, long target, @Nullable Integer firstDayOfWeek) {
-        return isSameDayOfWeek(millisecondValue, target, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the dayOfWeek is the same
-     */
-    public static boolean isSameDayOfWeek(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameDayOfWeek(millisecondValue, target, null, locale);
-    }
-
-    /**
-     * Return true if the dayOfWeek is the same
-     */
-    public static boolean isSameDayOfWeek(long millisecondValue, long target) {
-        return isSameDayOfWeek(millisecondValue, target, null, null);
-    }
-
-    /**
-     * Return true if the dayOfWeekInMonth is the same
-     */
-    public static boolean isSameDayOfWeekInMonth(long millisecondValue, long target, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return isSameDayOfWeekInMonth(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale));
-    }
-
-    /**
-     * Return true if the dayOfWeekInMonth is the same
-     */
-    public static boolean isSameDayOfWeekInMonth(long millisecondValue, long target, @Nullable Integer firstDayOfWeek) {
-        return isSameDayOfWeekInMonth(millisecondValue, target, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the dayOfWeekInMonth is the same
-     */
-    public static boolean isSameDayOfWeekInMonth(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameDayOfWeekInMonth(millisecondValue, target, null, locale);
-    }
-
-    /**
-     * Return true if the dayOfWeekInMonth is the same
-     */
-    public static boolean isSameDayOfWeekInMonth(long millisecondValue, long target) {
-        return isSameDayOfWeekInMonth(millisecondValue, target, null, null);
-    }
-
-    /**
-     * Returns true if the year, month, week, day and hour are the same
-     */
-    public static boolean isSameHour(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameHour(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Returns true if the year, month, week, day and hour are the same
-     */
-    public static boolean isSameHour(long millisecondValue, long target) {
-        return isSameHour(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the 24H hour is the same
-     */
-    public static boolean isSameHourOf24H(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameHourOf24H(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the 24H hour is the same
-     */
-    public static boolean isSameHourOf24H(long millisecondValue, long target) {
-        return isSameHourOf24H(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the 12H hour is the same
-     */
-    public static boolean isSameHourOf12H(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameHourOf12H(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the 12H hour is the same
-     */
-    public static boolean isSameHourOf12H(long millisecondValue, long target) {
-        return isSameHourOf12H(millisecondValue, target, null);
-    }
-
-    /**
-     * Returns true if the year, month, week, day, hour and minute are the same
-     */
-    public static boolean isSameMinute(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameMinute(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Returns true if the year, month, week, day, hour and minute are the same
-     */
-    public static boolean isSameMinute(long millisecondValue, long target) {
-        return isSameMinute(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the minuteOfHour is the same
-     */
-    public static boolean isSameMinuteOfHour(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameMinuteOfHour(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the minuteOfHour is the same
-     */
-    public static boolean isSameMinuteOfHour(long millisecondValue, long target) {
-        return isSameMinuteOfHour(millisecondValue, target, null);
-    }
-
-    /**
-     * Returns true if the year, month, week, day, hour, minute and second are the same
-     */
-    public static boolean isSameSecond(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameSecond(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Returns true if the year, month, week, day, hour, minute and second are the same
-     */
-    public static boolean isSameSecond(long millisecondValue, long target) {
-        return isSameSecond(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the secondOfMinute is the same
-     */
-    public static boolean isSameSecondOfMinute(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameSecondOfMinute(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the secondOfMinute is the same
-     */
-    public static boolean isSameSecondOfMinute(long millisecondValue, long target) {
-        return isSameSecondOfMinute(millisecondValue, target, null);
-    }
-
-    /**
-     * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
-     */
-    public static boolean isSameMillisecond(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameMillisecond(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
-     */
-    public static boolean isSameMillisecond(long millisecondValue, long target) {
-        return isSameMillisecond(millisecondValue, target, null);
-    }
-
-    /**
-     * Return true if the millisecondOfSecond is the same
-     */
-    public static boolean isSameMillisecondOfSecond(long millisecondValue, long target, @Nullable Locale locale) {
-        return isSameMillisecondOfSecond(createCalendar(millisecondValue, locale), createCalendar(target, locale));
-    }
-
-    /**
-     * Return true if the millisecondOfSecond is the same
-     */
-    public static boolean isSameMillisecondOfSecond(long millisecondValue, long target) {
-        return isSameMillisecondOfSecond(millisecondValue, target, null);
+        return isSameMillisecondOfSecond(createCalendar(date), createCalendar(target));
     }
 
 
@@ -2871,7 +1629,7 @@ public class Datex {
     /**
      * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
      */
-    public static boolean differFiled(@NotNull Calendar calendar, @NotNull Calendar target, int field, int amount) {
+    public static boolean differField(@NotNull Calendar calendar, @NotNull Calendar target, int field, int amount) {
         if (amount == 0) {
             return true;
         } else {
@@ -2888,126 +1646,126 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] year
      */
     public static boolean differYear(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.YEAR, amount);
+        return differField(calendar, target, Calendar.YEAR, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] month
      */
     public static boolean differMonth(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.MONTH, amount);
+        return differField(calendar, target, Calendar.MONTH, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
      */
     public static boolean differWeekOfYear(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.WEEK_OF_YEAR, amount);
+        return differField(calendar, target, Calendar.WEEK_OF_YEAR, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
      */
     public static boolean differWeekOfMonth(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.WEEK_OF_MONTH, amount);
+        return differField(calendar, target, Calendar.WEEK_OF_MONTH, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
      */
     public static boolean differDayOfYear(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.DAY_OF_YEAR, amount);
+        return differField(calendar, target, Calendar.DAY_OF_YEAR, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
      */
     public static boolean differDayOfMonth(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.DAY_OF_MONTH, amount);
+        return differField(calendar, target, Calendar.DAY_OF_MONTH, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
      */
     public static boolean differDayOfWeek(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.DAY_OF_WEEK, amount);
+        return differField(calendar, target, Calendar.DAY_OF_WEEK, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
      */
     public static boolean differDayOfWeekInMonth(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.DAY_OF_WEEK_IN_MONTH, amount);
+        return differField(calendar, target, Calendar.DAY_OF_WEEK_IN_MONTH, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
      */
     public static boolean differHourOfDay(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.HOUR_OF_DAY, amount);
+        return differField(calendar, target, Calendar.HOUR_OF_DAY, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] hour
      */
     public static boolean differHour(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.HOUR, amount);
+        return differField(calendar, target, Calendar.HOUR, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] minute
      */
     public static boolean differMinute(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.MINUTE, amount);
+        return differField(calendar, target, Calendar.MINUTE, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] second
      */
     public static boolean differSecond(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.SECOND, amount);
+        return differField(calendar, target, Calendar.SECOND, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] millisecond
      */
     public static boolean differMillisecond(@NotNull Calendar calendar, @NotNull Calendar target, int amount) {
-        return differFiled(calendar, target, Calendar.MILLISECOND, amount);
+        return differField(calendar, target, Calendar.MILLISECOND, amount);
     }
 
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
      */
-    public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return differFiled(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), field, amount);
+    public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount, int firstDayOfWeek, @NotNull Locale locale) {
+        return differField(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), field, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
      */
-    public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount, @Nullable Integer firstDayOfWeek) {
-        return differCalendarField(date, target, field, amount, firstDayOfWeek, null);
+    public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount, int firstDayOfWeek) {
+        return differField(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek), field, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
      */
-    public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount, @Nullable Locale locale) {
-        return differCalendarField(date, target, field, amount, null, locale);
+    public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount, @NotNull Locale locale) {
+        return differField(createCalendar(date, locale), createCalendar(target, locale), field, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
      */
     public static boolean differCalendarField(@NotNull Date date, @NotNull Date target, int field, int amount) {
-        return differCalendarField(date, target, field, amount, null, null);
+        return differField(createCalendar(date), createCalendar(target), field, amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] year
      */
-    public static boolean differYear(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differYear(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differYear(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3015,13 +1773,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] year
      */
     public static boolean differYear(@NotNull Date date, @NotNull Date target, int amount) {
-        return differYear(date, target, amount, null);
+        return differYear(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] month
      */
-    public static boolean differMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differMonth(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differMonth(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3029,27 +1787,27 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] month
      */
     public static boolean differMonth(@NotNull Date date, @NotNull Date target, int amount) {
-        return differMonth(date, target, amount, null);
+        return differMonth(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
      */
-    public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return differWeekOfYear(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
      */
-    public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek) {
+    public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek) {
         return differWeekOfYear(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
      */
-    public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differWeekOfYear(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3057,27 +1815,27 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
      */
     public static boolean differWeekOfYear(@NotNull Date date, @NotNull Date target, int amount) {
-        return differWeekOfYear(date, target, amount, null, null);
+        return differWeekOfYear(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
      */
-    public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return differWeekOfMonth(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
      */
-    public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek) {
+    public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek) {
         return differWeekOfMonth(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
      */
-    public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differWeekOfMonth(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3085,13 +1843,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
      */
     public static boolean differWeekOfMonth(@NotNull Date date, @NotNull Date target, int amount) {
-        return differWeekOfMonth(date, target, amount, null, null);
+        return differWeekOfMonth(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
      */
-    public static boolean differDayOfYear(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differDayOfYear(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differDayOfYear(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3099,13 +1857,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
      */
     public static boolean differDayOfYear(@NotNull Date date, @NotNull Date target, int amount) {
-        return differDayOfYear(date, target, amount, null);
+        return differDayOfYear(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
      */
-    public static boolean differDayOfMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differDayOfMonth(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differDayOfMonth(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3113,27 +1871,27 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
      */
     public static boolean differDayOfMonth(@NotNull Date date, @NotNull Date target, int amount) {
-        return differDayOfMonth(date, target, amount, null);
+        return differDayOfMonth(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
      */
-    public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return differDayOfWeek(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
      */
-    public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek) {
+    public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek) {
         return differDayOfWeek(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
      */
-    public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differDayOfWeek(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3141,27 +1899,27 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
      */
     public static boolean differDayOfWeek(@NotNull Date date, @NotNull Date target, int amount) {
-        return differDayOfWeek(date, target, amount, null, null);
+        return differDayOfWeek(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
      */
-    public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
+    public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek, @NotNull Locale locale) {
         return differDayOfWeekInMonth(createCalendar(date, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
      */
-    public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Integer firstDayOfWeek) {
+    public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount, int firstDayOfWeek) {
         return differDayOfWeekInMonth(createCalendar(date, firstDayOfWeek), createCalendar(target, firstDayOfWeek), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
      */
-    public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differDayOfWeekInMonth(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3169,13 +1927,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
      */
     public static boolean differDayOfWeekInMonth(@NotNull Date date, @NotNull Date target, int amount) {
-        return differDayOfWeekInMonth(date, target, amount, null, null);
+        return differDayOfWeekInMonth(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
      */
-    public static boolean differHourOfDay(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differHourOfDay(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differHourOfDay(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3183,13 +1941,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
      */
     public static boolean differHourOfDay(@NotNull Date date, @NotNull Date target, int amount) {
-        return differHourOfDay(date, target, amount, null);
+        return differHourOfDay(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] hour
      */
-    public static boolean differHour(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differHour(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differHour(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3197,13 +1955,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] hour
      */
     public static boolean differHour(@NotNull Date date, @NotNull Date target, int amount) {
-        return differHour(date, target, amount, null);
+        return differHour(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] minute
      */
-    public static boolean differMinute(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differMinute(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differMinute(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3211,13 +1969,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] minute
      */
     public static boolean differMinute(@NotNull Date date, @NotNull Date target, int amount) {
-        return differMinute(date, target, amount, null);
+        return differMinute(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] second
      */
-    public static boolean differSecond(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differSecond(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differSecond(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3225,13 +1983,13 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] second
      */
     public static boolean differSecond(@NotNull Date date, @NotNull Date target, int amount) {
-        return differSecond(date, target, amount, null);
+        return differSecond(createCalendar(date), createCalendar(target), amount);
     }
 
     /**
      * Return true if the difference from the [target] does not exceed the [amount] millisecond
      */
-    public static boolean differMillisecond(@NotNull Date date, @NotNull Date target, int amount, @Nullable Locale locale) {
+    public static boolean differMillisecond(@NotNull Date date, @NotNull Date target, int amount, @NotNull Locale locale) {
         return differMillisecond(createCalendar(date, locale), createCalendar(target, locale), amount);
     }
 
@@ -3239,273 +1997,6 @@ public class Datex {
      * Return true if the difference from the [target] does not exceed the [amount] millisecond
      */
     public static boolean differMillisecond(@NotNull Date date, @NotNull Date target, int amount) {
-        return differMillisecond(date, target, amount, null);
-    }
-
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] year
-     */
-    public static boolean differCalendarField(long millisecondValue, long target, int field, int amount, @Nullable Integer firstDayOfWee, @Nullable Locale locale) {
-        return differFiled(createCalendar(millisecondValue, firstDayOfWee, locale), createCalendar(target, firstDayOfWee, locale), field, amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] year
-     */
-    public static boolean differCalendarField(long millisecondValue, long target, int field, int amount, @Nullable Integer firstDayOfWee) {
-        return differCalendarField(millisecondValue, target, field, amount, firstDayOfWee, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] year
-     */
-    public static boolean differCalendarField(long millisecondValue, long target, int field, int amount, @Nullable Locale locale) {
-        return differCalendarField(millisecondValue, target, field, amount, null, locale);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] year
-     */
-    public static boolean differCalendarField(long millisecondValue, long target, int field, int amount) {
-        return differCalendarField(millisecondValue, target, field, amount, null, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] year
-     */
-    public static boolean differYear(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differYear(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] year
-     */
-    public static boolean differYear(long millisecondValue, long target, int amount) {
-        return differYear(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] month
-     */
-    public static boolean differMonth(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differMonth(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] month
-     */
-    public static boolean differMonth(long millisecondValue, long target, int amount) {
-        return differMonth(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
-     */
-    public static boolean differWeekOfYear(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return differWeekOfYear(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
-     */
-    public static boolean differWeekOfYear(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek) {
-        return differWeekOfYear(millisecondValue, target, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
-     */
-    public static boolean differWeekOfYear(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differWeekOfYear(millisecondValue, target, amount, null, locale);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
-     */
-    public static boolean differWeekOfYear(long millisecondValue, long target, int amount) {
-        return differWeekOfYear(millisecondValue, target, amount, null, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
-     */
-    public static boolean differWeekOfMonth(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return differWeekOfMonth(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
-     */
-    public static boolean differWeekOfMonth(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek) {
-        return differWeekOfMonth(millisecondValue, target, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
-     */
-    public static boolean differWeekOfMonth(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differWeekOfMonth(millisecondValue, target, amount, null, locale);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
-     */
-    public static boolean differWeekOfMonth(long millisecondValue, long target, int amount) {
-        return differWeekOfMonth(millisecondValue, target, amount, null, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
-     */
-    public static boolean differDayOfYear(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differDayOfYear(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
-     */
-    public static boolean differDayOfYear(long millisecondValue, long target, int amount) {
-        return differDayOfYear(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
-     */
-    public static boolean differDayOfMonth(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differDayOfMonth(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
-     */
-    public static boolean differDayOfMonth(long millisecondValue, long target, int amount) {
-        return differDayOfMonth(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
-     */
-    public static boolean differDayOfWeek(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return differDayOfWeek(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
-     */
-    public static boolean differDayOfWeek(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek) {
-        return differDayOfWeek(millisecondValue, target, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
-     */
-    public static boolean differDayOfWeek(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differDayOfWeek(millisecondValue, target, amount, null, locale);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
-     */
-    public static boolean differDayOfWeek(long millisecondValue, long target, int amount) {
-        return differDayOfWeek(millisecondValue, target, amount, null, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
-     */
-    public static boolean differDayOfWeekInMonth(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek, @Nullable Locale locale) {
-        return differDayOfWeekInMonth(createCalendar(millisecondValue, firstDayOfWeek, locale), createCalendar(target, firstDayOfWeek, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
-     */
-    public static boolean differDayOfWeekInMonth(long millisecondValue, long target, int amount, @Nullable Integer firstDayOfWeek) {
-        return differDayOfWeekInMonth(millisecondValue, target, amount, firstDayOfWeek, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
-     */
-    public static boolean differDayOfWeekInMonth(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differDayOfWeekInMonth(millisecondValue, target, amount, null, locale);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
-     */
-    public static boolean differDayOfWeekInMonth(long millisecondValue, long target, int amount) {
-        return differDayOfWeekInMonth(millisecondValue, target, amount, null, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
-     */
-    public static boolean differHourOfDay(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differHourOfDay(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
-     */
-    public static boolean differHourOfDay(long millisecondValue, long target, int amount) {
-        return differHourOfDay(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] hour
-     */
-    public static boolean differHour(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differHour(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] hour
-     */
-    public static boolean differHour(long millisecondValue, long target, int amount) {
-        return differHour(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] minute
-     */
-    public static boolean differMinute(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differMinute(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] minute
-     */
-    public static boolean differMinute(long millisecondValue, long target, int amount) {
-        return differMinute(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] second
-     */
-    public static boolean differSecond(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differSecond(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] second
-     */
-    public static boolean differSecond(long millisecondValue, long target, int amount) {
-        return differSecond(millisecondValue, target, amount, null);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] millisecond
-     */
-    public static boolean differMillisecond(long millisecondValue, long target, int amount, @Nullable Locale locale) {
-        return differMillisecond(createCalendar(millisecondValue, locale), createCalendar(target, locale), amount);
-    }
-
-    /**
-     * Return true if the difference from the [target] does not exceed the [amount] millisecond
-     */
-    public static boolean differMillisecond(long millisecondValue, long target, int amount) {
-        return differMillisecond(millisecondValue, target, amount, null);
+        return differMillisecond(createCalendar(date), createCalendar(target), amount);
     }
 }

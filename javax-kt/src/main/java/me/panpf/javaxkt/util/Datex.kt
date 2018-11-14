@@ -31,22 +31,22 @@ import java.util.*
 /**
  * Create a Calendar
  */
-inline fun Long.createCalendar(firstDayOfWeek: Int? = null, locale: Locale? = null): Calendar = Datex.createCalendar(this, firstDayOfWeek, locale)
+inline fun Date.createCalendar(firstDayOfWeek: Int, locale: Locale): Calendar = Datex.createCalendar(this, firstDayOfWeek, locale)
 
 /**
  * Create a Calendar
  */
-inline fun Long.createCalendar(locale: Locale? = null): Calendar = Datex.createCalendar(this, locale)
+inline fun Date.createCalendar(firstDayOfWeek: Int): Calendar = Datex.createCalendar(this, firstDayOfWeek)
 
 /**
  * Create a Calendar
  */
-inline fun Date.createCalendar(firstDayOfWeek: Int? = null, locale: Locale? = null): Calendar = Datex.createCalendar(this, firstDayOfWeek, locale)
+inline fun Date.createCalendar(locale: Locale): Calendar = Datex.createCalendar(this, locale)
 
 /**
  * Create a Calendar
  */
-inline fun Date.createCalendar(locale: Locale? = null): Calendar = Datex.createCalendar(this, locale)
+inline fun Date.createCalendar(): Calendar = Datex.createCalendar(this)
 
 
 /*
@@ -69,133 +69,121 @@ inline fun String.toDate(format: SimpleDateFormat): Date = Datex.toDate(this, fo
  * Convert formatted date string to Date
  */
 @Throws(ParseException::class)
-inline fun String.toDate(pattern: String, locale: Locale? = null): Date = Datex.toDate(this, pattern, locale)
+inline fun String.toDate(pattern: String, locale: Locale): Date = Datex.toDate(this, pattern, locale)
+
+/**
+ * Convert formatted date string to Date
+ */
+@Throws(ParseException::class)
+inline fun String.toDate(pattern: String): Date = Datex.toDate(this, pattern)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy'
  */
 @Throws(ParseException::class)
-inline fun String.toDateY(locale: Locale? = null): Date = Datex.toDateY(this, locale)
+inline fun String.toDateY(locale: Locale): Date = Datex.toDateY(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyy'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateY(): Date = Datex.toDateY(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy-MM'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYM(locale: Locale? = null): Date = Datex.toDateYM(this, locale)
+inline fun String.toDateYM(locale: Locale): Date = Datex.toDateYM(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyy-MM'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYM(): Date = Datex.toDateYM(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyyMM'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMCompact(locale: Locale? = null): Date = Datex.toDateYMCompact(this, locale)
+inline fun String.toDateYMCompact(locale: Locale): Date = Datex.toDateYMCompact(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyyMM'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYMCompact(): Date = Datex.toDateYMCompact(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy-MM-dd'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMD(locale: Locale? = null): Date = Datex.toDateYMD(this, locale)
+inline fun String.toDateYMD(locale: Locale): Date = Datex.toDateYMD(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYMD(): Date = Datex.toDateYMD(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyyMMdd'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMDCompact(locale: Locale? = null): Date = Datex.toDateYMDCompact(this, locale)
+inline fun String.toDateYMDCompact(locale: Locale): Date = Datex.toDateYMDCompact(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyyMMdd'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYMDCompact(): Date = Datex.toDateYMDCompact(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMDH(locale: Locale? = null): Date = Datex.toDateYMDH(this, locale)
+inline fun String.toDateYMDH(locale: Locale): Date = Datex.toDateYMDH(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYMDH(): Date = Datex.toDateYMDH(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMDHM(locale: Locale? = null): Date = Datex.toDateYMDHM(this, locale)
+inline fun String.toDateYMDHM(locale: Locale): Date = Datex.toDateYMDHM(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYMDHM(): Date = Datex.toDateYMDHM(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMDHMS(locale: Locale? = null): Date = Datex.toDateYMDHMS(this, locale)
+inline fun String.toDateYMDHMS(locale: Locale): Date = Datex.toDateYMDHMS(this, locale)
+
+/**
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss'
+ */
+@Throws(ParseException::class)
+inline fun String.toDateYMDHMS(): Date = Datex.toDateYMDHMS(this)
 
 /**
  * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss SSS'
  */
 @Throws(ParseException::class)
-inline fun String.toDateYMDHMSM(locale: Locale? = null): Date = Datex.toDateYMDHMSM(this, locale)
-
-
-/*
- * toMillisecond
- */
-
+inline fun String.toDateYMDHMSM(locale: Locale): Date = Datex.toDateYMDHMSM(this, locale)
 
 /**
- * Convert formatted date string to millisecond
+ * Convert formatted date string to Date using pattern 'yyyy-MM-dd HH:mm:ss SSS'
  */
 @Throws(ParseException::class)
-inline fun String.toMillisecond(format: SimpleDateFormat): Long = Datex.toMillisecond(this, format)
-
-/**
- * Convert formatted date string to millisecond
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecond(pattern: String, locale: Locale? = null): Long = Datex.toMillisecond(this, pattern, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondY(locale: Locale? = null): Long = Datex.toMillisecondY(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy-MM'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYM(locale: Locale? = null): Long = Datex.toMillisecondYM(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyyMM'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMCompact(locale: Locale? = null): Long = Datex.toMillisecondYMCompact(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMD(locale: Locale? = null): Long = Datex.toMillisecondYMD(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyyMMdd'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMDCompact(locale: Locale? = null): Long = Datex.toMillisecondYMDCompact(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMDH(locale: Locale? = null): Long = Datex.toMillisecondYMDH(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMDHM(locale: Locale? = null): Long = Datex.toMillisecondYMDHM(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMDHMS(locale: Locale? = null): Long = Datex.toMillisecondYMDHMS(this, locale)
-
-/**
- * Convert formatted date string to millisecond using pattern 'yyyy-MM-dd HH:mm:ss SSS'
- */
-@Throws(ParseException::class)
-inline fun String.toMillisecondYMDHMSM(locale: Locale? = null): Long = Datex.toMillisecondYMDHMSM(this, locale)
+inline fun String.toDateYMDHMSM(): Date = Datex.toDateYMDHMSM(this)
 
 
 /*
@@ -211,108 +199,102 @@ inline fun Date.format(format: SimpleDateFormat): String = Datex.format(this, fo
 /**
  * Convert Date to a formatted string
  */
-inline fun Date.format(pattern: String, locale: Locale? = null): String = Datex.format(this, pattern, locale)
+inline fun Date.format(pattern: String, locale: Locale): String = Datex.format(this, pattern, locale)
+
+/**
+ * Convert Date to a formatted string
+ */
+inline fun Date.format(pattern: String): String = Datex.format(this, pattern)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy'
  */
-inline fun Date.formatY(locale: Locale? = null): String = Datex.formatY(this, locale)
+inline fun Date.formatY(locale: Locale): String = Datex.formatY(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyy'
+ */
+inline fun Date.formatY(): String = Datex.formatY(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy-MM'
  */
-inline fun Date.formatYM(locale: Locale? = null): String = Datex.formatYM(this, locale)
+inline fun Date.formatYM(locale: Locale): String = Datex.formatYM(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM'
+ */
+inline fun Date.formatYM(): String = Datex.formatYM(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyyMM'
  */
-inline fun Date.formatYMCompact(locale: Locale? = null): String = Datex.formatYMCompact(this, locale)
+inline fun Date.formatYMCompact(locale: Locale): String = Datex.formatYMCompact(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyyMM'
+ */
+inline fun Date.formatYMCompact(): String = Datex.formatYMCompact(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy-MM-dd'
  */
-inline fun Date.formatYMD(locale: Locale? = null): String = Datex.formatYMD(this, locale)
+inline fun Date.formatYMD(locale: Locale): String = Datex.formatYMD(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd'
+ */
+inline fun Date.formatYMD(): String = Datex.formatYMD(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyyMMdd'
  */
-inline fun Date.formatYMDCompact(locale: Locale? = null): String = Datex.formatYMDCompact(this, locale)
+inline fun Date.formatYMDCompact(locale: Locale): String = Datex.formatYMDCompact(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyyMMdd'
+ */
+inline fun Date.formatYMDCompact(): String = Datex.formatYMDCompact(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH'
  */
-inline fun Date.formatYMDH(locale: Locale? = null): String = Datex.formatYMDH(this, locale)
+inline fun Date.formatYMDH(locale: Locale): String = Datex.formatYMDH(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH'
+ */
+inline fun Date.formatYMDH(): String = Datex.formatYMDH(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm'
  */
-inline fun Date.formatYMDHM(locale: Locale? = null): String = Datex.formatYMDHM(this, locale)
+inline fun Date.formatYMDHM(locale: Locale): String = Datex.formatYMDHM(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm'
+ */
+inline fun Date.formatYMDHM(): String = Datex.formatYMDHM(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
  */
-inline fun Date.formatYMDHMS(locale: Locale? = null): String = Datex.formatYMDHMS(this, locale)
+inline fun Date.formatYMDHMS(locale: Locale): String = Datex.formatYMDHMS(this, locale)
+
+/**
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
+ */
+inline fun Date.formatYMDHMS(): String = Datex.formatYMDHMS(this)
 
 /**
  * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
  */
-inline fun Date.formatYMDHMSM(locale: Locale? = null): String = Datex.formatYMDHMSM(this, locale)
-
-
-/**
- * Convert millisecond to a formatted string
- */
-inline fun Long.format(format: SimpleDateFormat): String = Datex.format(this, format)
+inline fun Date.formatYMDHMSM(locale: Locale): String = Datex.formatYMDHMSM(this, locale)
 
 /**
- * Convert millisecond to a formatted string
+ * Convert Date to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
  */
-inline fun Long.format(pattern: String, locale: Locale? = null): String = Datex.format(this, pattern, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy'
- */
-inline fun Long.formatY(locale: Locale? = null): String = Datex.formatY(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy-MM'
- */
-inline fun Long.formatYM(locale: Locale? = null): String = Datex.formatYM(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyyMM'
- */
-inline fun Long.formatYMCompact(locale: Locale? = null): String = Datex.formatYMCompact(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd'
- */
-inline fun Long.formatYMD(locale: Locale? = null): String = Datex.formatYMD(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyyMMdd'
- */
-inline fun Long.formatYMDCompact(locale: Locale? = null): String = Datex.formatYMDCompact(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH'
- */
-inline fun Long.formatYMDH(locale: Locale? = null): String = Datex.formatYMDH(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm'
- */
-inline fun Long.formatYMDHM(locale: Locale? = null): String = Datex.formatYMDHM(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss'
- */
-inline fun Long.formatYMDHMS(locale: Locale? = null): String = Datex.formatYMDHMS(this, locale)
-
-/**
- * Convert millisecond to a formatted string using pattern 'yyyy-MM-dd HH:mm:ss SSS'
- */
-inline fun Long.formatYMDHMSM(locale: Locale? = null): String = Datex.formatYMDHMSM(this, locale)
+inline fun Date.formatYMDHMSM(): String = Datex.formatYMDHMSM(this)
 
 
 /*
@@ -389,143 +371,193 @@ inline fun Calendar.getMillisecond(): Int = Datex.getMillisecond(this)
 /**
  * Get calendar field from millisecond
  */
-inline fun Date.getCalendarField(field: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getCalendarField(this, field, firstDayOfWeek, locale)
-
-/**
- * Get year from date
- */
-inline fun Date.getCalendarYear(locale: Locale? = null): Int = Datex.getCalendarYear(this, locale)
-
-/**
- * Get month from date
- */
-inline fun Date.getCalendarMonth(locale: Locale? = null): Int = Datex.getCalendarMonth(this, locale)
-
-/**
- * Get weekOfYear from date
- */
-inline fun Date.getCalendarWeekOfYear(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getCalendarWeekOfYear(this, firstDayOfWeek, locale)
-
-/**
- * Get weekOfMonth from date
- */
-inline fun Date.getCalendarWeekOfMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getCalendarWeekOfMonth(this, firstDayOfWeek, locale)
-
-/**
- * Get dayOfYear from date
- */
-inline fun Date.getCalendarDayOfYear(locale: Locale? = null): Int = Datex.getCalendarDayOfYear(this, locale)
-
-/**
- * Get dayOfMonth from date
- */
-inline fun Date.getCalendarDayOfMonth(locale: Locale? = null): Int = Datex.getCalendarDayOfMonth(this, locale)
-
-/**
- * Get dayOfWeek from date
- */
-inline fun Date.getCalendarDayOfWeek(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getCalendarDayOfWeek(this, firstDayOfWeek, locale)
-
-/**
- * Get dayOfWeekInMonth from date
- */
-inline fun Date.getCalendarDayOfWeekInMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getCalendarDayOfWeekInMonth(this, firstDayOfWeek, locale)
-
-/**
- * Get hourOfDay from date
- */
-inline fun Date.getCalendarHourOfDay(locale: Locale? = null): Int = Datex.getCalendarHourOfDay(this, locale)
-
-/**
- * Get hour from date
- */
-inline fun Date.getCalendarHour(locale: Locale? = null): Int = Datex.getCalendarHour(this, locale)
-
-/**
- * Get minute from date
- */
-inline fun Date.getCalendarMinute(locale: Locale? = null): Int = Datex.getCalendarMinute(this, locale)
-
-/**
- * Get second from date
- */
-inline fun Date.getCalendarSecond(locale: Locale? = null): Int = Datex.getCalendarSecond(this, locale)
-
-/**
- * Get millisecond from date
- */
-inline fun Date.getCalendarMillisecond(locale: Locale? = null): Int = Datex.getCalendarMillisecond(this, locale)
-
+inline fun Date.getCalendarField(field: Int, firstDayOfWeek: Int, locale: Locale): Int = Datex.getCalendarField(this, field, firstDayOfWeek, locale)
 
 /**
  * Get calendar field from millisecond
  */
-inline fun Long.getCalendarField(field: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getCalendarField(this, field, firstDayOfWeek, locale)
+inline fun Date.getCalendarField(field: Int, firstDayOfWeek: Int): Int = Datex.getCalendarField(this, field, firstDayOfWeek)
 
 /**
- * Get year from millisecond
+ * Get calendar field from millisecond
  */
-inline fun Long.getYear(locale: Locale? = null): Int = Datex.getYear(this, locale)
+inline fun Date.getCalendarField(field: Int, locale: Locale): Int = Datex.getCalendarField(this, field, locale)
 
 /**
- * Get month from millisecond
+ * Get calendar field from millisecond
  */
-inline fun Long.getMonth(locale: Locale? = null): Int = Datex.getMonth(this, locale)
+inline fun Date.getCalendarField(field: Int): Int = Datex.getCalendarField(this, field)
 
 /**
- * Get weekOfYear from millisecond
+ * Get year from date
  */
-inline fun Long.getWeekOfYear(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getWeekOfYear(this, firstDayOfWeek, locale)
+inline fun Date.getCalendarYear(locale: Locale): Int = Datex.getCalendarYear(this, locale)
 
 /**
- * Get weekOfMonth from millisecond
+ * Get year from date
  */
-inline fun Long.getWeekOfMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getWeekOfMonth(this, firstDayOfWeek, locale)
+inline fun Date.getCalendarYear(): Int = Datex.getCalendarYear(this)
 
 /**
- * Get dayOfYear from millisecond
+ * Get month from date
  */
-inline fun Long.getDayOfYear(locale: Locale? = null): Int = Datex.getDayOfYear(this, locale)
+inline fun Date.getCalendarMonth(locale: Locale): Int = Datex.getCalendarMonth(this, locale)
 
 /**
- * Get dayOfMonth from millisecond
+ * Get month from date
  */
-inline fun Long.getDayOfMonth(locale: Locale? = null): Int = Datex.getDayOfMonth(this, locale)
+inline fun Date.getCalendarMonth(): Int = Datex.getCalendarMonth(this)
 
 /**
- * Get dayOfWeek from millisecond
+ * Get weekOfYear from date
  */
-inline fun Long.getDayOfWeek(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getDayOfWeek(this, firstDayOfWeek, locale)
+inline fun Date.getCalendarWeekOfYear(firstDayOfWeek: Int, locale: Locale): Int = Datex.getCalendarWeekOfYear(this, firstDayOfWeek, locale)
 
 /**
- * Get dayOfWeekInMonth from millisecond
+ * Get weekOfYear from date
  */
-inline fun Long.getDayOfWeekInMonth(firstDayOfWeek: Int? = null, locale: Locale? = null): Int = Datex.getDayOfWeekInMonth(this, firstDayOfWeek, locale)
+inline fun Date.getCalendarWeekOfYear(firstDayOfWeek: Int): Int = Datex.getCalendarWeekOfYear(this, firstDayOfWeek)
 
 /**
- * Get hourOfDay from millisecond
+ * Get weekOfYear from date
  */
-inline fun Long.getHourOfDay(locale: Locale? = null): Int = Datex.getHourOfDay(this, locale)
+inline fun Date.getCalendarWeekOfYear(locale: Locale): Int = Datex.getCalendarWeekOfYear(this, locale)
 
 /**
- * Get hour from millisecond
+ * Get weekOfYear from date
  */
-inline fun Long.getHour(locale: Locale? = null): Int = Datex.getHour(this, locale)
+inline fun Date.getCalendarWeekOfYear(): Int = Datex.getCalendarWeekOfYear(this)
 
 /**
- * Get minute from millisecond
+ * Get weekOfMonth from date
  */
-inline fun Long.getMinute(locale: Locale? = null): Int = Datex.getMinute(this, locale)
+inline fun Date.getCalendarWeekOfMonth(firstDayOfWeek: Int, locale: Locale): Int = Datex.getCalendarWeekOfMonth(this, firstDayOfWeek, locale)
 
 /**
- * Get second from millisecond
+ * Get weekOfMonth from date
  */
-inline fun Long.getSecond(locale: Locale? = null): Int = Datex.getSecond(this, locale)
+inline fun Date.getCalendarWeekOfMonth(firstDayOfWeek: Int): Int = Datex.getCalendarWeekOfMonth(this, firstDayOfWeek)
 
 /**
- * Get millisecond from millisecond
+ * Get weekOfMonth from date
  */
-inline fun Long.getMillisecond(locale: Locale? = null): Int = Datex.getMillisecond(this, locale)
+inline fun Date.getCalendarWeekOfMonth(locale: Locale): Int = Datex.getCalendarWeekOfMonth(this, locale)
+
+/**
+ * Get weekOfMonth from date
+ */
+inline fun Date.getCalendarWeekOfMonth(): Int = Datex.getCalendarWeekOfMonth(this)
+
+/**
+ * Get dayOfYear from date
+ */
+inline fun Date.getCalendarDayOfYear(locale: Locale): Int = Datex.getCalendarDayOfYear(this, locale)
+
+/**
+ * Get dayOfYear from date
+ */
+inline fun Date.getCalendarDayOfYear(): Int = Datex.getCalendarDayOfYear(this)
+
+/**
+ * Get dayOfMonth from date
+ */
+inline fun Date.getCalendarDayOfMonth(locale: Locale): Int = Datex.getCalendarDayOfMonth(this, locale)
+
+/**
+ * Get dayOfMonth from date
+ */
+inline fun Date.getCalendarDayOfMonth(): Int = Datex.getCalendarDayOfMonth(this)
+
+/**
+ * Get dayOfWeek from date
+ */
+inline fun Date.getCalendarDayOfWeek(firstDayOfWeek: Int, locale: Locale): Int = Datex.getCalendarDayOfWeek(this, firstDayOfWeek, locale)
+
+/**
+ * Get dayOfWeek from date
+ */
+inline fun Date.getCalendarDayOfWeek(firstDayOfWeek: Int): Int = Datex.getCalendarDayOfWeek(this, firstDayOfWeek)
+
+/**
+ * Get dayOfWeek from date
+ */
+inline fun Date.getCalendarDayOfWeek(locale: Locale): Int = Datex.getCalendarDayOfWeek(this, locale)
+
+/**
+ * Get dayOfWeek from date
+ */
+inline fun Date.getCalendarDayOfWeek(): Int = Datex.getCalendarDayOfWeek(this)
+
+/**
+ * Get dayOfWeekInMonth from date
+ */
+inline fun Date.getCalendarDayOfWeekInMonth(firstDayOfWeek: Int, locale: Locale): Int = Datex.getCalendarDayOfWeekInMonth(this, firstDayOfWeek, locale)
+
+/**
+ * Get dayOfWeekInMonth from date
+ */
+inline fun Date.getCalendarDayOfWeekInMonth(firstDayOfWeek: Int): Int = Datex.getCalendarDayOfWeekInMonth(this, firstDayOfWeek)
+
+/**
+ * Get dayOfWeekInMonth from date
+ */
+inline fun Date.getCalendarDayOfWeekInMonth(locale: Locale): Int = Datex.getCalendarDayOfWeekInMonth(this, locale)
+
+/**
+ * Get dayOfWeekInMonth from date
+ */
+inline fun Date.getCalendarDayOfWeekInMonth(): Int = Datex.getCalendarDayOfWeekInMonth(this)
+
+/**
+ * Get hourOfDay from date
+ */
+inline fun Date.getCalendarHourOfDay(locale: Locale): Int = Datex.getCalendarHourOfDay(this, locale)
+
+/**
+ * Get hourOfDay from date
+ */
+inline fun Date.getCalendarHourOfDay(): Int = Datex.getCalendarHourOfDay(this)
+
+/**
+ * Get hour from date
+ */
+inline fun Date.getCalendarHour(locale: Locale): Int = Datex.getCalendarHour(this, locale)
+
+/**
+ * Get hour from date
+ */
+inline fun Date.getCalendarHour(): Int = Datex.getCalendarHour(this)
+
+/**
+ * Get minute from date
+ */
+inline fun Date.getCalendarMinute(locale: Locale): Int = Datex.getCalendarMinute(this, locale)
+
+
+/**
+ * Get minute from date
+ */
+inline fun Date.getCalendarMinute(): Int = Datex.getCalendarMinute(this)
+
+/**
+ * Get second from date
+ */
+inline fun Date.getCalendarSecond(locale: Locale): Int = Datex.getCalendarSecond(this, locale)
+
+/**
+ * Get second from date
+ */
+inline fun Date.getCalendarSecond(): Int = Datex.getCalendarSecond(this)
+
+/**
+ * Get millisecond from date
+ */
+inline fun Date.getCalendarMillisecond(locale: Locale): Int = Datex.getCalendarMillisecond(this, locale)
+
+/**
+ * Get millisecond from date
+ */
+inline fun Date.getCalendarMillisecond(): Int = Datex.getCalendarMillisecond(this)
 
 
 /*
@@ -538,152 +570,196 @@ inline fun Long.getMillisecond(locale: Locale? = null): Int = Datex.getMilliseco
  */
 inline fun Calendar.addToDate(field: Int, amount: Int): Date = Datex.addToDate(this, field, amount)
 
-/**
- * Increase the specified calendar field and return to millisecond
- */
-inline fun Calendar.addToMillisecond(field: Int, amount: Int): Long = Datex.addToMillisecond(this, field, amount)
-
 
 /**
  * Increase the specified calendar field
  */
-inline fun Date.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date = Datex.addCalendarField(this, field, amount, firstDayOfWeek, locale)
-
-/**
- * Increase the YEAR field
- */
-inline fun Date.addYear(amount: Int, locale: Locale? = null): Date = Datex.addYear(this, amount, locale)
-
-/**
- * Increase the MONTH field
- */
-inline fun Date.addMonth(amount: Int, locale: Locale? = null): Date = Datex.addMonth(this, amount, locale)
-
-/**
- * Increase the WEEK_OF_YEAR field
- */
-inline fun Date.addWeekOfYear(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date = Datex.addWeekOfYear(this, amount, firstDayOfWeek, locale)
-
-/**
- * Increase the WEEK_OF_MONTH field
- */
-inline fun Date.addWeekOfMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date = Datex.addWeekOfMonth(this, amount, firstDayOfWeek, locale)
-
-/**
- * Increase the DAY_OF_YEAR field
- */
-inline fun Date.addDayOfYear(amount: Int, locale: Locale? = null): Date = Datex.addDayOfYear(this, amount, locale)
-
-/**
- * Increase the DAY_OF_MONTH field
- */
-inline fun Date.addDayOfMonth(amount: Int, locale: Locale? = null): Date = Datex.addDayOfMonth(this, amount, locale)
-
-/**
- * Increase the DAY_OF_WEEK_IN_MONTH field
- */
-inline fun Date.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date = Datex.addDayOfWeekInMonth(this, amount, firstDayOfWeek, locale)
-
-/**
- * Increase the DAY_OF_WEEK field
- */
-inline fun Date.addDayOfWeek(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Date = Datex.addDayOfWeek(this, amount, firstDayOfWeek, locale)
-
-/**
- * Increase the HOUR_OF_DAY field
- */
-inline fun Date.addHourOfDay(amount: Int, locale: Locale? = null): Date = Datex.addHourOfDay(this, amount, locale)
-
-/**
- * Increase the HOUR field
- */
-inline fun Date.addHour(amount: Int, locale: Locale? = null): Date = Datex.addHour(this, amount, locale)
-
-/**
- * Increase the MINUTE field
- */
-inline fun Date.addMinute(amount: Int, locale: Locale? = null): Date = Datex.addMinute(this, amount, locale)
-
-/**
- * Increase the SECOND field
- */
-inline fun Date.addSecond(amount: Int, locale: Locale? = null): Date = Datex.addSecond(this, amount, locale)
-
-/**
- * Increase the MILLISECOND field
- */
-inline fun Date.addMillisecond(amount: Int, locale: Locale? = null): Date = Datex.addMillisecond(this, amount, locale)
-
+inline fun Date.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int, locale: Locale): Date = Datex.addCalendarField(this, field, amount, firstDayOfWeek, locale)
 
 /**
  * Increase the specified calendar field
  */
-inline fun Long.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long = Datex.addCalendarField(this, field, amount, firstDayOfWeek, locale)
+inline fun Date.addCalendarField(field: Int, amount: Int, firstDayOfWeek: Int): Date = Datex.addCalendarField(this, field, amount, firstDayOfWeek)
+
+/**
+ * Increase the specified calendar field
+ */
+inline fun Date.addCalendarField(field: Int, amount: Int, locale: Locale): Date = Datex.addCalendarField(this, field, amount, locale)
+
+/**
+ * Increase the specified calendar field
+ */
+inline fun Date.addCalendarField(field: Int, amount: Int): Date = Datex.addCalendarField(this, field, amount)
 
 /**
  * Increase the YEAR field
  */
-inline fun Long.addYear(amount: Int, locale: Locale? = null): Long = Datex.addYear(this, amount, locale)
+inline fun Date.addYear(amount: Int, locale: Locale): Date = Datex.addYear(this, amount, locale)
+
+/**
+ * Increase the YEAR field
+ */
+inline fun Date.addYear(amount: Int): Date = Datex.addYear(this, amount)
 
 /**
  * Increase the MONTH field
  */
-inline fun Long.addMonth(amount: Int, locale: Locale? = null): Long = Datex.addMonth(this, amount, locale)
+inline fun Date.addMonth(amount: Int, locale: Locale): Date = Datex.addMonth(this, amount, locale)
+
+/**
+ * Increase the MONTH field
+ */
+inline fun Date.addMonth(amount: Int): Date = Datex.addMonth(this, amount)
 
 /**
  * Increase the WEEK_OF_YEAR field
  */
-inline fun Long.addWeekOfYear(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long = Datex.addWeekOfYear(this, amount, firstDayOfWeek, locale)
+inline fun Date.addWeekOfYear(amount: Int, firstDayOfWeek: Int, locale: Locale): Date = Datex.addWeekOfYear(this, amount, firstDayOfWeek, locale)
+
+/**
+ * Increase the WEEK_OF_YEAR field
+ */
+inline fun Date.addWeekOfYear(amount: Int, firstDayOfWeek: Int): Date = Datex.addWeekOfYear(this, amount, firstDayOfWeek)
+
+/**
+ * Increase the WEEK_OF_YEAR field
+ */
+inline fun Date.addWeekOfYear(amount: Int, locale: Locale): Date = Datex.addWeekOfYear(this, amount, locale)
+
+/**
+ * Increase the WEEK_OF_YEAR field
+ */
+inline fun Date.addWeekOfYear(amount: Int): Date = Datex.addWeekOfYear(this, amount)
 
 /**
  * Increase the WEEK_OF_MONTH field
  */
-inline fun Long.addWeekOfMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long = Datex.addWeekOfMonth(this, amount, firstDayOfWeek, locale)
+inline fun Date.addWeekOfMonth(amount: Int, firstDayOfWeek: Int, locale: Locale): Date = Datex.addWeekOfMonth(this, amount, firstDayOfWeek, locale)
+
+/**
+ * Increase the WEEK_OF_MONTH field
+ */
+inline fun Date.addWeekOfMonth(amount: Int, firstDayOfWeek: Int): Date = Datex.addWeekOfMonth(this, amount, firstDayOfWeek)
+
+/**
+ * Increase the WEEK_OF_MONTH field
+ */
+inline fun Date.addWeekOfMonth(amount: Int, locale: Locale): Date = Datex.addWeekOfMonth(this, amount, locale)
+
+/**
+ * Increase the WEEK_OF_MONTH field
+ */
+inline fun Date.addWeekOfMonth(amount: Int): Date = Datex.addWeekOfMonth(this, amount)
 
 /**
  * Increase the DAY_OF_YEAR field
  */
-inline fun Long.addDayOfYear(amount: Int, locale: Locale? = null): Long = Datex.addDayOfYear(this, amount, locale)
+inline fun Date.addDayOfYear(amount: Int, locale: Locale): Date = Datex.addDayOfYear(this, amount, locale)
+
+/**
+ * Increase the DAY_OF_YEAR field
+ */
+inline fun Date.addDayOfYear(amount: Int): Date = Datex.addDayOfYear(this, amount)
 
 /**
  * Increase the DAY_OF_MONTH field
  */
-inline fun Long.addDayOfMonth(amount: Int, locale: Locale? = null): Long = Datex.addDayOfMonth(this, amount, locale)
+inline fun Date.addDayOfMonth(amount: Int, locale: Locale): Date = Datex.addDayOfMonth(this, amount, locale)
+
+/**
+ * Increase the DAY_OF_MONTH field
+ */
+inline fun Date.addDayOfMonth(amount: Int): Date = Datex.addDayOfMonth(this, amount)
 
 /**
  * Increase the DAY_OF_WEEK_IN_MONTH field
  */
-inline fun Long.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long = Datex.addDayOfWeekInMonth(this, amount, firstDayOfWeek, locale)
+inline fun Date.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int, locale: Locale): Date = Datex.addDayOfWeekInMonth(this, amount, firstDayOfWeek, locale)
+
+/**
+ * Increase the DAY_OF_WEEK_IN_MONTH field
+ */
+inline fun Date.addDayOfWeekInMonth(amount: Int, firstDayOfWeek: Int): Date = Datex.addDayOfWeekInMonth(this, amount, firstDayOfWeek)
+
+/**
+ * Increase the DAY_OF_WEEK_IN_MONTH field
+ */
+inline fun Date.addDayOfWeekInMonth(amount: Int, locale: Locale): Date = Datex.addDayOfWeekInMonth(this, amount, locale)
+
+/**
+ * Increase the DAY_OF_WEEK_IN_MONTH field
+ */
+inline fun Date.addDayOfWeekInMonth(amount: Int): Date = Datex.addDayOfWeekInMonth(this, amount)
 
 /**
  * Increase the DAY_OF_WEEK field
  */
-inline fun Long.addDayOfWeek(amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Long = Datex.addDayOfWeek(this, amount, firstDayOfWeek, locale)
+inline fun Date.addDayOfWeek(amount: Int, firstDayOfWeek: Int, locale: Locale): Date = Datex.addDayOfWeek(this, amount, firstDayOfWeek, locale)
+
+/**
+ * Increase the DAY_OF_WEEK field
+ */
+inline fun Date.addDayOfWeek(amount: Int, firstDayOfWeek: Int): Date = Datex.addDayOfWeek(this, amount, firstDayOfWeek)
+
+/**
+ * Increase the DAY_OF_WEEK field
+ */
+inline fun Date.addDayOfWeek(amount: Int, locale: Locale): Date = Datex.addDayOfWeek(this, amount, locale)
+
+/**
+ * Increase the DAY_OF_WEEK field
+ */
+inline fun Date.addDayOfWeek(amount: Int): Date = Datex.addDayOfWeek(this, amount)
 
 /**
  * Increase the HOUR_OF_DAY field
  */
-inline fun Long.addHourOfDay(amount: Int, locale: Locale? = null): Long = Datex.addHourOfDay(this, amount, locale)
+inline fun Date.addHourOfDay(amount: Int, locale: Locale): Date = Datex.addHourOfDay(this, amount, locale)
+
+/**
+ * Increase the HOUR_OF_DAY field
+ */
+inline fun Date.addHourOfDay(amount: Int): Date = Datex.addHourOfDay(this, amount)
 
 /**
  * Increase the HOUR field
  */
-inline fun Long.addHour(amount: Int, locale: Locale? = null): Long = Datex.addHour(this, amount, locale)
+inline fun Date.addHour(amount: Int, locale: Locale): Date = Datex.addHour(this, amount, locale)
+
+/**
+ * Increase the HOUR field
+ */
+inline fun Date.addHour(amount: Int): Date = Datex.addHour(this, amount)
 
 /**
  * Increase the MINUTE field
  */
-inline fun Long.addMinute(amount: Int, locale: Locale? = null): Long = Datex.addMinute(this, amount, locale)
+inline fun Date.addMinute(amount: Int, locale: Locale): Date = Datex.addMinute(this, amount, locale)
+
+/**
+ * Increase the MINUTE field
+ */
+inline fun Date.addMinute(amount: Int): Date = Datex.addMinute(this, amount)
 
 /**
  * Increase the SECOND field
  */
-inline fun Long.addSecond(amount: Int, locale: Locale? = null): Long = Datex.addSecond(this, amount, locale)
+inline fun Date.addSecond(amount: Int, locale: Locale): Date = Datex.addSecond(this, amount, locale)
+
+/**
+ * Increase the SECOND field
+ */
+inline fun Date.addSecond(amount: Int): Date = Datex.addSecond(this, amount)
 
 /**
  * Increase the MILLISECOND field
  */
-inline fun Long.addMillisecond(amount: Int, locale: Locale? = null): Long = Datex.addMillisecond(this, amount, locale)
+inline fun Date.addMillisecond(amount: Int, locale: Locale): Date = Datex.addMillisecond(this, amount, locale)
+
+/**
+ * Increase the MILLISECOND field
+ */
+inline fun Date.addMillisecond(amount: Int): Date = Datex.addMillisecond(this, amount)
 
 
 /*
@@ -697,9 +773,29 @@ inline fun Long.addMillisecond(amount: Int, locale: Locale? = null): Long = Date
 inline fun Calendar.isSameYear(target: Calendar): Boolean = Datex.isSameYear(this, target)
 
 /**
+ * Return true if the year is the same
+ */
+inline fun Date.isSameYear(target: Date, locale: Locale): Boolean = Datex.isSameYear(this, target, locale)
+
+/**
+ * Return true if the year is the same
+ */
+inline fun Date.isSameYear(target: Date): Boolean = Datex.isSameYear(this, target)
+
+/**
  * Returns true if the year and month are the same
  */
 inline fun Calendar.isSameMonth(target: Calendar): Boolean = Datex.isSameMonth(this, target)
+
+/**
+ * Returns true if the year and month are the same
+ */
+inline fun Date.isSameMonth(target: Date, locale: Locale): Boolean = Datex.isSameMonth(this, target, locale)
+
+/**
+ * Returns true if the year and month are the same
+ */
+inline fun Date.isSameMonth(target: Date): Boolean = Datex.isSameMonth(this, target)
 
 /**
  * Return true if the months is the same
@@ -707,9 +803,39 @@ inline fun Calendar.isSameMonth(target: Calendar): Boolean = Datex.isSameMonth(t
 inline fun Calendar.isSameMonthOfYear(target: Calendar): Boolean = Datex.isSameMonthOfYear(this, target)
 
 /**
+ * Return true if the months is the same
+ */
+inline fun Date.isSameMonthOfYear(target: Date, locale: Locale): Boolean = Datex.isSameMonthOfYear(this, target, locale)
+
+/**
+ * Return true if the months is the same
+ */
+inline fun Date.isSameMonthOfYear(target: Date): Boolean = Datex.isSameMonthOfYear(this, target)
+
+/**
  * Returns true if the year, month, and week are the same
  */
 inline fun Calendar.isSameWeek(target: Calendar): Boolean = Datex.isSameWeek(this, target)
+
+/**
+ * Returns true if the year, month, and week are the same
+ */
+inline fun Date.isSameWeek(target: Date, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.isSameWeek(this, target, firstDayOfWeek, locale)
+
+/**
+ * Returns true if the year, month, and week are the same
+ */
+inline fun Date.isSameWeek(target: Date, firstDayOfWeek: Int): Boolean = Datex.isSameWeek(this, target, firstDayOfWeek)
+
+/**
+ * Returns true if the year, month, and week are the same
+ */
+inline fun Date.isSameWeek(target: Date, locale: Locale): Boolean = Datex.isSameWeek(this, target, locale)
+
+/**
+ * Returns true if the year, month, and week are the same
+ */
+inline fun Date.isSameWeek(target: Date): Boolean = Datex.isSameWeek(this, target)
 
 /**
  * Return true if the weekOfYear is the same
@@ -717,9 +843,49 @@ inline fun Calendar.isSameWeek(target: Calendar): Boolean = Datex.isSameWeek(thi
 inline fun Calendar.isSameWeekOfYear(target: Calendar): Boolean = Datex.isSameWeekOfYear(this, target)
 
 /**
+ * Return true if the weekOfYear is the same
+ */
+inline fun Date.isSameWeekOfYear(target: Date, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.isSameWeekOfYear(this, target, firstDayOfWeek, locale)
+
+/**
+ * Return true if the weekOfYear is the same
+ */
+inline fun Date.isSameWeekOfYear(target: Date, firstDayOfWeek: Int): Boolean = Datex.isSameWeekOfYear(this, target, firstDayOfWeek)
+
+/**
+ * Return true if the weekOfYear is the same
+ */
+inline fun Date.isSameWeekOfYear(target: Date, locale: Locale): Boolean = Datex.isSameWeekOfYear(this, target, locale)
+
+/**
+ * Return true if the weekOfYear is the same
+ */
+inline fun Date.isSameWeekOfYear(target: Date): Boolean = Datex.isSameWeekOfYear(this, target)
+
+/**
  * Return true if the weekOfMonth is the same
  */
 inline fun Calendar.isSameWeekOfMonth(target: Calendar): Boolean = Datex.isSameWeekOfMonth(this, target)
+
+/**
+ * Return true if the weekOfMonth is the same
+ */
+inline fun Date.isSameWeekOfMonth(target: Date, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.isSameWeekOfMonth(this, target, firstDayOfWeek, locale)
+
+/**
+ * Return true if the weekOfMonth is the same
+ */
+inline fun Date.isSameWeekOfMonth(target: Date, firstDayOfWeek: Int): Boolean = Datex.isSameWeekOfMonth(this, target, firstDayOfWeek)
+
+/**
+ * Return true if the weekOfMonth is the same
+ */
+inline fun Date.isSameWeekOfMonth(target: Date, locale: Locale): Boolean = Datex.isSameWeekOfMonth(this, target, locale)
+
+/**
+ * Return true if the weekOfMonth is the same
+ */
+inline fun Date.isSameWeekOfMonth(target: Date): Boolean = Datex.isSameWeekOfMonth(this, target)
 
 /**
  * Returns true if the year, month, week and day are the same
@@ -727,9 +893,29 @@ inline fun Calendar.isSameWeekOfMonth(target: Calendar): Boolean = Datex.isSameW
 inline fun Calendar.isSameDay(target: Calendar): Boolean = Datex.isSameDay(this, target)
 
 /**
+ * Returns true if the year, month, week and day are the same
+ */
+inline fun Date.isSameDay(target: Date, locale: Locale): Boolean = Datex.isSameDay(this, target, locale)
+
+/**
+ * Returns true if the year, month, week and day are the same
+ */
+inline fun Date.isSameDay(target: Date): Boolean = Datex.isSameDay(this, target)
+
+/**
  * Return true if the dayOfYear is the same
  */
 inline fun Calendar.isSameDayOfYear(target: Calendar): Boolean = Datex.isSameDayOfYear(this, target)
+
+/**
+ * Return true if the dayOfYear is the same
+ */
+inline fun Date.isSameDayOfYear(target: Date, locale: Locale): Boolean = Datex.isSameDayOfYear(this, target, locale)
+
+/**
+ * Return true if the dayOfYear is the same
+ */
+inline fun Date.isSameDayOfYear(target: Date): Boolean = Datex.isSameDayOfYear(this, target)
 
 /**
  * Return true if the dayOfMonth is the same
@@ -737,9 +923,39 @@ inline fun Calendar.isSameDayOfYear(target: Calendar): Boolean = Datex.isSameDay
 inline fun Calendar.isSameDayOfMonth(target: Calendar): Boolean = Datex.isSameDayOfMonth(this, target)
 
 /**
+ * Return true if the dayOfMonth is the same
+ */
+inline fun Date.isSameDayOfMonth(target: Date, locale: Locale): Boolean = Datex.isSameDayOfMonth(this, target, locale)
+
+/**
+ * Return true if the dayOfMonth is the same
+ */
+inline fun Date.isSameDayOfMonth(target: Date): Boolean = Datex.isSameDayOfMonth(this, target)
+
+/**
  * Return true if the dayOfWeek is the same
  */
 inline fun Calendar.isSameDayOfWeek(target: Calendar): Boolean = Datex.isSameDayOfWeek(this, target)
+
+/**
+ * Return true if the dayOfWeek is the same
+ */
+inline fun Date.isSameDayOfWeek(target: Date, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.isSameDayOfWeek(this, target, firstDayOfWeek, locale)
+
+/**
+ * Return true if the dayOfWeek is the same
+ */
+inline fun Date.isSameDayOfWeek(target: Date, firstDayOfWeek: Int): Boolean = Datex.isSameDayOfWeek(this, target, firstDayOfWeek)
+
+/**
+ * Return true if the dayOfWeek is the same
+ */
+inline fun Date.isSameDayOfWeek(target: Date, locale: Locale): Boolean = Datex.isSameDayOfWeek(this, target, locale)
+
+/**
+ * Return true if the dayOfWeek is the same
+ */
+inline fun Date.isSameDayOfWeek(target: Date): Boolean = Datex.isSameDayOfWeek(this, target)
 
 /**
  * Return true if the dayOfWeekInMonth is the same
@@ -747,9 +963,39 @@ inline fun Calendar.isSameDayOfWeek(target: Calendar): Boolean = Datex.isSameDay
 inline fun Calendar.isSameDayOfWeekInMonth(target: Calendar): Boolean = Datex.isSameDayOfWeekInMonth(this, target)
 
 /**
+ * Return true if the dayOfWeekInMonth is the same
+ */
+inline fun Date.isSameDayOfWeekInMonth(target: Date, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.isSameDayOfWeekInMonth(this, target, firstDayOfWeek, locale)
+
+/**
+ * Return true if the dayOfWeekInMonth is the same
+ */
+inline fun Date.isSameDayOfWeekInMonth(target: Date, firstDayOfWeek: Int): Boolean = Datex.isSameDayOfWeekInMonth(this, target, firstDayOfWeek)
+
+/**
+ * Return true if the dayOfWeekInMonth is the same
+ */
+inline fun Date.isSameDayOfWeekInMonth(target: Date, locale: Locale): Boolean = Datex.isSameDayOfWeekInMonth(this, target, locale)
+
+/**
+ * Return true if the dayOfWeekInMonth is the same
+ */
+inline fun Date.isSameDayOfWeekInMonth(target: Date): Boolean = Datex.isSameDayOfWeekInMonth(this, target)
+
+/**
  * Returns true if the year, month, week, day and hour are the same
  */
 inline fun Calendar.isSameHour(target: Calendar): Boolean = Datex.isSameHour(this, target)
+
+/**
+ * Returns true if the year, month, week, day and hour are the same
+ */
+inline fun Date.isSameHour(target: Date, locale: Locale): Boolean = Datex.isSameHour(this, target, locale)
+
+/**
+ * Returns true if the year, month, week, day and hour are the same
+ */
+inline fun Date.isSameHour(target: Date): Boolean = Datex.isSameHour(this, target)
 
 /**
  * Return true if the 24H hour is the same
@@ -757,9 +1003,29 @@ inline fun Calendar.isSameHour(target: Calendar): Boolean = Datex.isSameHour(thi
 inline fun Calendar.isSameHourOf24H(target: Calendar): Boolean = Datex.isSameHourOf24H(this, target)
 
 /**
+ * Return true if the 24H hour is the same
+ */
+inline fun Date.isSameHourOf24H(target: Date, locale: Locale): Boolean = Datex.isSameHourOf24H(this, target, locale)
+
+/**
+ * Return true if the 24H hour is the same
+ */
+inline fun Date.isSameHourOf24H(target: Date): Boolean = Datex.isSameHourOf24H(this, target)
+
+/**
  * Return true if the 12H hour is the same
  */
 inline fun Calendar.isSameHourOf12H(target: Calendar): Boolean = Datex.isSameHourOf12H(this, target)
+
+/**
+ * Return true if the 12H hour is the same
+ */
+inline fun Date.isSameHourOf12H(target: Date, locale: Locale): Boolean = Datex.isSameHourOf12H(this, target, locale)
+
+/**
+ * Return true if the 12H hour is the same
+ */
+inline fun Date.isSameHourOf12H(target: Date): Boolean = Datex.isSameHourOf12H(this, target)
 
 /**
  * Returns true if the year, month, week, day, hour and minute are the same
@@ -767,9 +1033,29 @@ inline fun Calendar.isSameHourOf12H(target: Calendar): Boolean = Datex.isSameHou
 inline fun Calendar.isSameMinute(target: Calendar): Boolean = Datex.isSameMinute(this, target)
 
 /**
+ * Returns true if the year, month, week, day, hour and minute are the same
+ */
+inline fun Date.isSameMinute(target: Date, locale: Locale): Boolean = Datex.isSameMinute(this, target, locale)
+
+/**
+ * Returns true if the year, month, week, day, hour and minute are the same
+ */
+inline fun Date.isSameMinute(target: Date): Boolean = Datex.isSameMinute(this, target)
+
+/**
  * Return true if the minuteOfHour is the same
  */
 inline fun Calendar.isSameMinuteOfHour(target: Calendar): Boolean = Datex.isSameMinuteOfHour(this, target)
+
+/**
+ * Return true if the minuteOfHour is the same
+ */
+inline fun Date.isSameMinuteOfHour(target: Date, locale: Locale): Boolean = Datex.isSameMinuteOfHour(this, target, locale)
+
+/**
+ * Return true if the minuteOfHour is the same
+ */
+inline fun Date.isSameMinuteOfHour(target: Date): Boolean = Datex.isSameMinuteOfHour(this, target)
 
 /**
  * Returns true if the year, month, week, day, hour, minute and second are the same
@@ -777,9 +1063,29 @@ inline fun Calendar.isSameMinuteOfHour(target: Calendar): Boolean = Datex.isSame
 inline fun Calendar.isSameSecond(target: Calendar): Boolean = Datex.isSameSecond(this, target)
 
 /**
+ * Returns true if the year, month, week, day, hour, minute and second are the same
+ */
+inline fun Date.isSameSecond(target: Date, locale: Locale): Boolean = Datex.isSameSecond(this, target, locale)
+
+/**
+ * Returns true if the year, month, week, day, hour, minute and second are the same
+ */
+inline fun Date.isSameSecond(target: Date): Boolean = Datex.isSameSecond(this, target)
+
+/**
  * Return true if the secondOfMinute is the same
  */
 inline fun Calendar.isSameSecondOfMinute(target: Calendar): Boolean = Datex.isSameSecondOfMinute(this, target)
+
+/**
+ * Return true if the secondOfMinute is the same
+ */
+inline fun Date.isSameSecondOfMinute(target: Date, locale: Locale): Boolean = Datex.isSameSecondOfMinute(this, target, locale)
+
+/**
+ * Return true if the secondOfMinute is the same
+ */
+inline fun Date.isSameSecondOfMinute(target: Date): Boolean = Datex.isSameSecondOfMinute(this, target)
 
 /**
  * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
@@ -787,211 +1093,29 @@ inline fun Calendar.isSameSecondOfMinute(target: Calendar): Boolean = Datex.isSa
 inline fun Calendar.isSameMillisecond(target: Calendar): Boolean = Datex.isSameMillisecond(this, target)
 
 /**
+ * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
+ */
+inline fun Date.isSameMillisecond(target: Date, locale: Locale): Boolean = Datex.isSameMillisecond(this, target, locale)
+
+/**
+ * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
+ */
+inline fun Date.isSameMillisecond(target: Date): Boolean = Datex.isSameMillisecond(this, target)
+
+/**
  * Return true if the millisecondOfSecond is the same
  */
 inline fun Calendar.isSameMillisecondOfSecond(target: Calendar): Boolean = Datex.isSameMillisecondOfSecond(this, target)
 
-
 /**
- * Return true if the year is the same
+ * Return true if the millisecondOfSecond is the same
  */
-inline fun Date.isSameYear(target: Date, locale: Locale? = null): Boolean = Datex.isSameYear(this, target, locale)
-
-/**
- * Returns true if the year and month are the same
- */
-inline fun Date.isSameMonth(target: Date, locale: Locale? = null): Boolean = Datex.isSameMonth(this, target, locale)
-
-/**
- * Return true if the months is the same
- */
-inline fun Date.isSameMonthOfYear(target: Date, locale: Locale? = null): Boolean = Datex.isSameMonthOfYear(this, target, locale)
-
-/**
- * Returns true if the year, month, and week are the same
- */
-inline fun Date.isSameWeek(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameWeek(this, target, firstDayOfWeek, locale)
-
-/**
- * Return true if the weekOfYear is the same
- */
-inline fun Date.isSameWeekOfYear(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameWeekOfYear(this, target, firstDayOfWeek, locale)
-
-/**
- * Return true if the weekOfMonth is the same
- */
-inline fun Date.isSameWeekOfMonth(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameWeekOfMonth(this, target, firstDayOfWeek, locale)
-
-/**
- * Returns true if the year, month, week and day are the same
- */
-inline fun Date.isSameDay(target: Date, locale: Locale? = null): Boolean = Datex.isSameDay(this, target, locale)
-
-/**
- * Return true if the dayOfYear is the same
- */
-inline fun Date.isSameDayOfYear(target: Date, locale: Locale? = null): Boolean = Datex.isSameDayOfYear(this, target, locale)
-
-/**
- * Return true if the dayOfMonth is the same
- */
-inline fun Date.isSameDayOfMonth(target: Date, locale: Locale? = null): Boolean = Datex.isSameDayOfMonth(this, target, locale)
-
-/**
- * Return true if the dayOfWeek is the same
- */
-inline fun Date.isSameDayOfWeek(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameDayOfWeek(this, target, firstDayOfWeek, locale)
-
-/**
- * Return true if the dayOfWeekInMonth is the same
- */
-inline fun Date.isSameDayOfWeekInMonth(target: Date, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameDayOfWeekInMonth(this, target, firstDayOfWeek, locale)
-
-/**
- * Returns true if the year, month, week, day and hour are the same
- */
-inline fun Date.isSameHour(target: Date, locale: Locale? = null): Boolean = Datex.isSameHour(this, target, locale)
-
-/**
- * Return true if the 24H hour is the same
- */
-inline fun Date.isSameHourOf24H(target: Date, locale: Locale? = null): Boolean = Datex.isSameHourOf24H(this, target, locale)
-
-/**
- * Return true if the 12H hour is the same
- */
-inline fun Date.isSameHourOf12H(target: Date, locale: Locale? = null): Boolean = Datex.isSameHourOf12H(this, target, locale)
-
-/**
- * Returns true if the year, month, week, day, hour and minute are the same
- */
-inline fun Date.isSameMinute(target: Date, locale: Locale? = null): Boolean = Datex.isSameMinute(this, target, locale)
-
-/**
- * Return true if the minuteOfHour is the same
- */
-inline fun Date.isSameMinuteOfHour(target: Date, locale: Locale? = null): Boolean = Datex.isSameMinuteOfHour(this, target, locale)
-
-/**
- * Returns true if the year, month, week, day, hour, minute and second are the same
- */
-inline fun Date.isSameSecond(target: Date, locale: Locale? = null): Boolean = Datex.isSameSecond(this, target, locale)
-
-/**
- * Return true if the secondOfMinute is the same
- */
-inline fun Date.isSameSecondOfMinute(target: Date, locale: Locale? = null): Boolean = Datex.isSameSecondOfMinute(this, target, locale)
-
-/**
- * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
- */
-inline fun Date.isSameMillisecond(target: Date, locale: Locale? = null): Boolean = Datex.isSameMillisecond(this, target, locale)
+inline fun Date.isSameMillisecondOfSecond(target: Date, locale: Locale): Boolean = Datex.isSameMillisecondOfSecond(this, target, locale)
 
 /**
  * Return true if the millisecondOfSecond is the same
  */
-inline fun Date.isSameMillisecondOfSecond(target: Date, locale: Locale? = null): Boolean = Datex.isSameMillisecondOfSecond(this, target, locale)
-
-
-/**
- * Return true if the year is the same
- */
-inline fun Long.isSameYear(target: Long, locale: Locale? = null): Boolean = Datex.isSameYear(this, target, locale)
-
-/**
- * Returns true if the year and month are the same
- */
-inline fun Long.isSameMonth(target: Long, locale: Locale? = null): Boolean = Datex.isSameMonth(this, target, locale)
-
-/**
- * Return true if the months is the same
- */
-inline fun Long.isSameMonthOfYear(target: Long, locale: Locale? = null): Boolean = Datex.isSameMonthOfYear(this, target, locale)
-
-/**
- * Returns true if the year, month, and week are the same
- */
-inline fun Long.isSameWeek(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameWeek(this, target, firstDayOfWeek, locale)
-
-/**
- * Return true if the weekOfYear is the same
- */
-inline fun Long.isSameWeekOfYear(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameWeekOfYear(this, target, firstDayOfWeek, locale)
-
-/**
- * Return true if the weekOfMonth is the same
- */
-inline fun Long.isSameWeekOfMonth(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameWeekOfMonth(this, target, firstDayOfWeek, locale)
-
-/**
- * Returns true if the year, month, week and day are the same
- */
-inline fun Long.isSameDay(target: Long, locale: Locale? = null): Boolean = Datex.isSameDay(this, target, locale)
-
-/**
- * Return true if the dayOfYear is the same
- */
-inline fun Long.isSameDayOfYear(target: Long, locale: Locale? = null): Boolean = Datex.isSameDayOfYear(this, target, locale)
-
-/**
- * Return true if the dayOfMonth is the same
- */
-inline fun Long.isSameDayOfMonth(target: Long, locale: Locale? = null): Boolean = Datex.isSameDayOfMonth(this, target, locale)
-
-/**
- * Return true if the dayOfWeek is the same
- */
-inline fun Long.isSameDayOfWeek(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameDayOfWeek(this, target, firstDayOfWeek, locale)
-
-/**
- * Return true if the dayOfWeekInMonth is the same
- */
-inline fun Long.isSameDayOfWeekInMonth(target: Long, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.isSameDayOfWeekInMonth(this, target, firstDayOfWeek, locale)
-
-/**
- * Returns true if the year, month, week, day and hour are the same
- */
-inline fun Long.isSameHour(target: Long, locale: Locale? = null): Boolean = Datex.isSameHour(this, target, locale)
-
-/**
- * Return true if the 24H hour is the same
- */
-inline fun Long.isSameHourOf24H(target: Long, locale: Locale? = null): Boolean = Datex.isSameHourOf24H(this, target, locale)
-
-/**
- * Return true if the 12H hour is the same
- */
-inline fun Long.isSameHourOf12H(target: Long, locale: Locale? = null): Boolean = Datex.isSameHourOf12H(this, target, locale)
-
-/**
- * Returns true if the year, month, week, day, hour and minute are the same
- */
-inline fun Long.isSameMinute(target: Long, locale: Locale? = null): Boolean = Datex.isSameMinute(this, target, locale)
-
-/**
- * Return true if the minuteOfHour is the same
- */
-inline fun Long.isSameMinuteOfHour(target: Long, locale: Locale? = null): Boolean = Datex.isSameMinuteOfHour(this, target, locale)
-
-/**
- * Returns true if the year, month, week, day, hour, minute and second are the same
- */
-inline fun Long.isSameSecond(target: Long, locale: Locale? = null): Boolean = Datex.isSameSecond(this, target, locale)
-
-/**
- * Return true if the secondOfMinute is the same
- */
-inline fun Long.isSameSecondOfMinute(target: Long, locale: Locale? = null): Boolean = Datex.isSameSecondOfMinute(this, target, locale)
-
-/**
- * Returns true if the year, month, week, day, hour, minute, second and millisecond are the same
- */
-inline fun Long.isSameMillisecond(target: Long, locale: Locale? = null): Boolean = Datex.isSameMillisecond(this, target, locale)
-
-/**
- * Return true if the millisecondOfSecond is the same
- */
-inline fun Long.isSameMillisecondOfSecond(target: Long, locale: Locale? = null): Boolean = Datex.isSameMillisecondOfSecond(this, target, locale)
+inline fun Date.isSameMillisecondOfSecond(target: Date): Boolean = Datex.isSameMillisecondOfSecond(this, target)
 
 
 /*
@@ -1002,7 +1126,35 @@ inline fun Long.isSameMillisecondOfSecond(target: Long, locale: Locale? = null):
 /**
  * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
  */
-inline fun Calendar.differFiled(target: Calendar, field: Int, amount: Int): Boolean = Datex.differFiled(this, target, field, amount)
+inline fun Calendar.differField(target: Calendar, field: Int, amount: Int): Boolean = Datex.differField(this, target, field, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
+ */
+inline fun Date.differCalendarField(target: Date, field: Int, amount: Int, firstDayOfWeek: Int, locale: Locale): Boolean {
+    return Datex.differCalendarField(this, target, field, amount, firstDayOfWeek, locale)
+}
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
+ */
+inline fun Date.differCalendarField(target: Date, field: Int, amount: Int, firstDayOfWeek: Int): Boolean {
+    return Datex.differCalendarField(this, target, field, amount, firstDayOfWeek)
+}
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
+ */
+inline fun Date.differCalendarField(target: Date, field: Int, amount: Int, locale: Locale): Boolean {
+    return Datex.differCalendarField(this, target, field, amount, locale)
+}
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
+ */
+inline fun Date.differCalendarField(target: Date, field: Int, amount: Int): Boolean {
+    return Datex.differCalendarField(this, target, field, amount)
+}
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] year
@@ -1010,9 +1162,29 @@ inline fun Calendar.differFiled(target: Calendar, field: Int, amount: Int): Bool
 inline fun Calendar.differYear(target: Calendar, amount: Int): Boolean = Datex.differYear(this, target, amount)
 
 /**
+ * Return true if the difference from the [target] does not exceed the [amount] year
+ */
+inline fun Date.differYear(target: Date, amount: Int, locale: Locale): Boolean = Datex.differYear(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] year
+ */
+inline fun Date.differYear(target: Date, amount: Int): Boolean = Datex.differYear(this, target, amount)
+
+/**
  * Return true if the difference from the [target] does not exceed the [amount] month
  */
 inline fun Calendar.differMonth(target: Calendar, amount: Int): Boolean = Datex.differMonth(this, target, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] month
+ */
+inline fun Date.differMonth(target: Date, amount: Int, locale: Locale): Boolean = Datex.differMonth(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] month
+ */
+inline fun Date.differMonth(target: Date, amount: Int): Boolean = Datex.differMonth(this, target, amount)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
@@ -1020,9 +1192,49 @@ inline fun Calendar.differMonth(target: Calendar, amount: Int): Boolean = Datex.
 inline fun Calendar.differWeekOfYear(target: Calendar, amount: Int): Boolean = Datex.differWeekOfYear(this, target, amount)
 
 /**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
+ */
+inline fun Date.differWeekOfYear(target: Date, amount: Int, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.differWeekOfYear(this, target, amount, firstDayOfWeek, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
+ */
+inline fun Date.differWeekOfYear(target: Date, amount: Int, firstDayOfWeek: Int): Boolean = Datex.differWeekOfYear(this, target, amount, firstDayOfWeek)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
+ */
+inline fun Date.differWeekOfYear(target: Date, amount: Int, locale: Locale): Boolean = Datex.differWeekOfYear(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
+ */
+inline fun Date.differWeekOfYear(target: Date, amount: Int): Boolean = Datex.differWeekOfYear(this, target, amount)
+
+/**
  * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
  */
 inline fun Calendar.differWeekOfMonth(target: Calendar, amount: Int): Boolean = Datex.differWeekOfMonth(this, target, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
+ */
+inline fun Date.differWeekOfMonth(target: Date, amount: Int, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.differWeekOfMonth(this, target, amount, firstDayOfWeek, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
+ */
+inline fun Date.differWeekOfMonth(target: Date, amount: Int, firstDayOfWeek: Int): Boolean = Datex.differWeekOfMonth(this, target, amount, firstDayOfWeek)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
+ */
+inline fun Date.differWeekOfMonth(target: Date, amount: Int, locale: Locale): Boolean = Datex.differWeekOfMonth(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
+ */
+inline fun Date.differWeekOfMonth(target: Date, amount: Int): Boolean = Datex.differWeekOfMonth(this, target, amount)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
@@ -1030,9 +1242,29 @@ inline fun Calendar.differWeekOfMonth(target: Calendar, amount: Int): Boolean = 
 inline fun Calendar.differDayOfYear(target: Calendar, amount: Int): Boolean = Datex.differDayOfYear(this, target, amount)
 
 /**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
+ */
+inline fun Date.differDayOfYear(target: Date, amount: Int, locale: Locale): Boolean = Datex.differDayOfYear(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
+ */
+inline fun Date.differDayOfYear(target: Date, amount: Int): Boolean = Datex.differDayOfYear(this, target, amount)
+
+/**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
  */
 inline fun Calendar.differDayOfMonth(target: Calendar, amount: Int): Boolean = Datex.differDayOfMonth(this, target, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
+ */
+inline fun Date.differDayOfMonth(target: Date, amount: Int, locale: Locale): Boolean = Datex.differDayOfMonth(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
+ */
+inline fun Date.differDayOfMonth(target: Date, amount: Int): Boolean = Datex.differDayOfMonth(this, target, amount)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
@@ -1040,9 +1272,49 @@ inline fun Calendar.differDayOfMonth(target: Calendar, amount: Int): Boolean = D
 inline fun Calendar.differDayOfWeek(target: Calendar, amount: Int): Boolean = Datex.differDayOfWeek(this, target, amount)
 
 /**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
+ */
+inline fun Date.differDayOfWeek(target: Date, amount: Int, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.differDayOfWeek(this, target, amount, firstDayOfWeek, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
+ */
+inline fun Date.differDayOfWeek(target: Date, amount: Int, firstDayOfWeek: Int): Boolean = Datex.differDayOfWeek(this, target, amount, firstDayOfWeek)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
+ */
+inline fun Date.differDayOfWeek(target: Date, amount: Int, locale: Locale): Boolean = Datex.differDayOfWeek(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
+ */
+inline fun Date.differDayOfWeek(target: Date, amount: Int): Boolean = Datex.differDayOfWeek(this, target, amount)
+
+/**
  * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
  */
 inline fun Calendar.differDayOfWeekInMonth(target: Calendar, amount: Int): Boolean = Datex.differDayOfWeekInMonth(this, target, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
+ */
+inline fun Date.differDayOfWeekInMonth(target: Date, amount: Int, firstDayOfWeek: Int, locale: Locale): Boolean = Datex.differDayOfWeekInMonth(this, target, amount, firstDayOfWeek, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
+ */
+inline fun Date.differDayOfWeekInMonth(target: Date, amount: Int, firstDayOfWeek: Int): Boolean = Datex.differDayOfWeekInMonth(this, target, amount, firstDayOfWeek)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
+ */
+inline fun Date.differDayOfWeekInMonth(target: Date, amount: Int, locale: Locale): Boolean = Datex.differDayOfWeekInMonth(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
+ */
+inline fun Date.differDayOfWeekInMonth(target: Date, amount: Int): Boolean = Datex.differDayOfWeekInMonth(this, target, amount)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
@@ -1050,9 +1322,29 @@ inline fun Calendar.differDayOfWeekInMonth(target: Calendar, amount: Int): Boole
 inline fun Calendar.differHourOfDay(target: Calendar, amount: Int): Boolean = Datex.differHourOfDay(this, target, amount)
 
 /**
+ * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
+ */
+inline fun Date.differHourOfDay(target: Date, amount: Int, locale: Locale): Boolean = Datex.differHourOfDay(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
+ */
+inline fun Date.differHourOfDay(target: Date, amount: Int): Boolean = Datex.differHourOfDay(this, target, amount)
+
+/**
  * Return true if the difference from the [target] does not exceed the [amount] hour
  */
 inline fun Calendar.differHour(target: Calendar, amount: Int): Boolean = Datex.differHour(this, target, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] hour
+ */
+inline fun Date.differHour(target: Date, amount: Int, locale: Locale): Boolean = Datex.differHour(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] hour
+ */
+inline fun Date.differHour(target: Date, amount: Int): Boolean = Datex.differHour(this, target, amount)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] minute
@@ -1060,157 +1352,41 @@ inline fun Calendar.differHour(target: Calendar, amount: Int): Boolean = Datex.d
 inline fun Calendar.differMinute(target: Calendar, amount: Int): Boolean = Datex.differMinute(this, target, amount)
 
 /**
+ * Return true if the difference from the [target] does not exceed the [amount] minute
+ */
+inline fun Date.differMinute(target: Date, amount: Int, locale: Locale): Boolean = Datex.differMinute(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] minute
+ */
+inline fun Date.differMinute(target: Date, amount: Int): Boolean = Datex.differMinute(this, target, amount)
+
+/**
  * Return true if the difference from the [target] does not exceed the [amount] second
  */
 inline fun Calendar.differSecond(target: Calendar, amount: Int): Boolean = Datex.differSecond(this, target, amount)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] second
+ */
+inline fun Date.differSecond(target: Date, amount: Int, locale: Locale): Boolean = Datex.differSecond(this, target, amount, locale)
+
+/**
+ * Return true if the difference from the [target] does not exceed the [amount] second
+ */
+inline fun Date.differSecond(target: Date, amount: Int): Boolean = Datex.differSecond(this, target, amount)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] millisecond
  */
 inline fun Calendar.differMillisecond(target: Calendar, amount: Int): Boolean = Datex.differMillisecond(this, target, amount)
 
-
 /**
- * Return true if the difference from the [target] does not exceed the [amount] specified calendar field
+ * Return true if the difference from the [target] does not exceed the [amount] millisecond
  */
-inline fun Date.differCalendarField(target: Date, field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
-    return Datex.differCalendarField(this, target, field, amount, firstDayOfWeek, locale)
-}
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] year
- */
-inline fun Date.differYear(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differYear(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] month
- */
-inline fun Date.differMonth(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differMonth(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
- */
-inline fun Date.differWeekOfYear(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differWeekOfYear(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
- */
-inline fun Date.differWeekOfMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differWeekOfMonth(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
- */
-inline fun Date.differDayOfYear(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differDayOfYear(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
- */
-inline fun Date.differDayOfMonth(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differDayOfMonth(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
- */
-inline fun Date.differDayOfWeek(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differDayOfWeek(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
- */
-inline fun Date.differDayOfWeekInMonth(target: Date, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differDayOfWeekInMonth(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
- */
-inline fun Date.differHourOfDay(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differHourOfDay(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] hour
- */
-inline fun Date.differHour(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differHour(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] minute
- */
-inline fun Date.differMinute(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differMinute(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] second
- */
-inline fun Date.differSecond(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differSecond(this, target, amount, locale)
+inline fun Date.differMillisecond(target: Date, amount: Int, locale: Locale): Boolean = Datex.differMillisecond(this, target, amount, locale)
 
 /**
  * Return true if the difference from the [target] does not exceed the [amount] millisecond
  */
-inline fun Date.differMillisecond(target: Date, amount: Int, locale: Locale? = null): Boolean = Datex.differMillisecond(this, target, amount, locale)
-
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] year
- */
-inline fun Long.differCalendarField(target: Long, field: Int, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean {
-    return Datex.differCalendarField(this, target, field, amount, firstDayOfWeek, locale)
-}
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] year
- */
-inline fun Long.differYear(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differYear(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] month
- */
-inline fun Long.differMonth(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differMonth(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] weekOfYear
- */
-inline fun Long.differWeekOfYear(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differWeekOfYear(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] weekOfMonth
- */
-inline fun Long.differWeekOfMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differWeekOfMonth(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfYear
- */
-inline fun Long.differDayOfYear(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differDayOfYear(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfMonth
- */
-inline fun Long.differDayOfMonth(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differDayOfMonth(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfWeek
- */
-inline fun Long.differDayOfWeek(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differDayOfWeek(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] dayOfWeekInMonth
- */
-inline fun Long.differDayOfWeekInMonth(target: Long, amount: Int, firstDayOfWeek: Int? = null, locale: Locale? = null): Boolean = Datex.differDayOfWeekInMonth(this, target, amount, firstDayOfWeek, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] hourOfDay
- */
-inline fun Long.differHourOfDay(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differHourOfDay(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] hour
- */
-inline fun Long.differHour(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differHour(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] minute
- */
-inline fun Long.differMinute(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differMinute(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] second
- */
-inline fun Long.differSecond(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differSecond(this, target, amount, locale)
-
-/**
- * Return true if the difference from the [target] does not exceed the [amount] millisecond
- */
-inline fun Long.differMillisecond(target: Long, amount: Int, locale: Locale? = null): Boolean = Datex.differMillisecond(this, target, amount, locale)
+inline fun Date.differMillisecond(target: Date, amount: Int): Boolean = Datex.differMillisecond(this, target, amount)
