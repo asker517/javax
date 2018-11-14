@@ -32,26 +32,26 @@ import java.util.List;
 public class ClassxTest {
 
     public static class TestField1 {
-        public String testFiled11 = "field11";
-        public String testFiled12 = "field12";
+        public String testField11 = "field11";
+        public String testField12 = "field12";
     }
 
     public static class TestField2 extends TestField1 {
-        public String testFiled21 = "field21";
-        public String testFiled22 = "field22";
+        public String testField21 = "field21";
+        public String testField22 = "field22";
     }
 
     public static class TestField3 extends TestField2 {
-        public String testFiled31 = "field31";
-        public String testFiled32 = "field32";
+        public String testField31 = "field31";
+        public String testField32 = "field32";
     }
 
     @SuppressWarnings("WeakerAccess")
     public static class TestStatic {
-        public static String filed1 = "filed11";
+        public static String field1 = "field11";
 
         public static String test() {
-            return filed1;
+            return field1;
         }
     }
 
@@ -91,23 +91,23 @@ public class ClassxTest {
         /*
          * getFieldWithParent
          */
-        Assert.assertNotNull(Classx.getFieldWithParent(TestStatic.class, "filed1"));
+        Assert.assertNotNull(Classx.getFieldWithParent(TestStatic.class, "field1"));
         try {
-            Classx.getFieldWithParent(TestStatic.class, "filed_no");
+            Classx.getFieldWithParent(TestStatic.class, "field_no");
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Assert.assertNotNull(Classx.getFieldWithParent(new TestStatic(), "filed1"));
+        Assert.assertNotNull(Classx.getFieldWithParent(new TestStatic(), "field1"));
         try {
-            Classx.getFieldWithParent(new TestStatic(), "filed_no");
+            Classx.getFieldWithParent(new TestStatic(), "field_no");
             Assert.fail();
         } catch (Exception ignored) {
         }
 
-        Assert.assertNotNull(Classx.getFieldWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1"));
+        Assert.assertNotNull(Classx.getFieldWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "field1"));
         try {
-            Classx.getFieldWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed_no");
+            Classx.getFieldWithParent("me.panpf.javax.test.lang.ClassxTest$TestStatic", "field_no");
             Assert.fail();
         } catch (Exception ignored) {
         }
@@ -115,21 +115,21 @@ public class ClassxTest {
         /*
          * getFieldsWithParent
          */
-        Predicate<Field> filterJacocoFiledPredicate = new Predicate<Field>() {
+        Predicate<Field> filterJacocoFieldPredicate = new Predicate<Field>() {
             @Override
             public boolean accept(@NotNull Field field) {
                 return !field.getName().equals("$jacocoData");
             }
         };
 
-        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(TestField3.class, 1), filterJacocoFiledPredicate).toArray(new Field[0]).length, 4);
-        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(TestField3.class), filterJacocoFiledPredicate).toArray(new Field[0]).length, 6);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(TestField3.class, 1), filterJacocoFieldPredicate).toArray(new Field[0]).length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(TestField3.class), filterJacocoFieldPredicate).toArray(new Field[0]).length, 6);
 
-        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(new TestField3(), 1), filterJacocoFiledPredicate).toArray(new Field[0]).length, 4);
-        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(new TestField3()), filterJacocoFiledPredicate).toArray(new Field[0]).length, 6);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(new TestField3(), 1), filterJacocoFieldPredicate).toArray(new Field[0]).length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent(new TestField3()), filterJacocoFieldPredicate).toArray(new Field[0]).length, 6);
 
-        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent("me.panpf.javax.test.lang.ClassxTest$TestField3", 1), filterJacocoFiledPredicate).toArray(new Field[0]).length, 4);
-        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent("me.panpf.javax.test.lang.ClassxTest$TestField3"), filterJacocoFiledPredicate).toArray(new Field[0]).length, 6);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent("me.panpf.javax.test.lang.ClassxTest$TestField3", 1), filterJacocoFieldPredicate).toArray(new Field[0]).length, 4);
+        Assert.assertEquals(Arrayx.filter(Classx.getFieldsWithParent("me.panpf.javax.test.lang.ClassxTest$TestField3"), filterJacocoFieldPredicate).toArray(new Field[0]).length, 6);
 
 
         /*
@@ -138,25 +138,25 @@ public class ClassxTest {
 
         TestField1 testField1 = new TestField1();
 
-        Classx.setFieldValue(testField1, Classx.getFieldWithParent(testField1, "testFiled11"), "field11x");
-        Assert.assertEquals(Classx.getFieldValue(testField1, Classx.getFieldWithParent(testField1, "testFiled11")), "field11x");
+        Classx.setFieldValue(testField1, Classx.getFieldWithParent(testField1, "testField11"), "field11x");
+        Assert.assertEquals(Classx.getFieldValue(testField1, Classx.getFieldWithParent(testField1, "testField11")), "field11x");
 
-        Classx.setFieldValue(testField1, "testFiled11", "field11y");
-        Assert.assertEquals(Classx.getFieldValue(testField1, "testFiled11"), "field11y");
+        Classx.setFieldValue(testField1, "testField11", "field11y");
+        Assert.assertEquals(Classx.getFieldValue(testField1, "testField11"), "field11y");
 
 
         /*
-         * get and set static filed value
+         * get and set static field value
          */
 
-        Classx.setStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1"), "filed12");
-        Assert.assertEquals(Classx.getStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "filed1")), "filed12");
+        Classx.setStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "field1"), "field12");
+        Assert.assertEquals(Classx.getStaticFieldValue(Classx.getFieldWithParent(TestStatic.class, "field1")), "field12");
 
-        Classx.setStaticFieldValue(TestStatic.class, "filed1", "filed13");
-        Assert.assertEquals(Classx.getStaticFieldValue(TestStatic.class, "filed1"), "filed13");
+        Classx.setStaticFieldValue(TestStatic.class, "field1", "field13");
+        Assert.assertEquals(Classx.getStaticFieldValue(TestStatic.class, "field1"), "field13");
 
-        Classx.setStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1", "filed15");
-        Assert.assertEquals(Classx.getStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "filed1"), "filed15");
+        Classx.setStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "field1", "field15");
+        Assert.assertEquals(Classx.getStaticFieldValue("me.panpf.javax.test.lang.ClassxTest$TestStatic", "field1"), "field15");
     }
 
     @Test
@@ -222,11 +222,11 @@ public class ClassxTest {
         /*
          * callStaticMethod
          */
-        Classx.setStaticFieldValue(TestStatic.class, "filed1", "filedx");
+        Classx.setStaticFieldValue(TestStatic.class, "field1", "fieldx");
 
-        Assert.assertEquals(Classx.callStaticMethod(Classx.getMethodWithParent(TestStatic.class, "test")), "filedx");
-        Assert.assertEquals(Classx.callStaticMethod(TestStatic.class, "test"), "filedx");
-        Assert.assertEquals(Classx.callStaticMethod("me.panpf.javax.test.lang.ClassxTest$TestStatic", "test"), "filedx");
+        Assert.assertEquals(Classx.callStaticMethod(Classx.getMethodWithParent(TestStatic.class, "test")), "fieldx");
+        Assert.assertEquals(Classx.callStaticMethod(TestStatic.class, "test"), "fieldx");
+        Assert.assertEquals(Classx.callStaticMethod("me.panpf.javax.test.lang.ClassxTest$TestStatic", "test"), "fieldx");
     }
 
     @Test

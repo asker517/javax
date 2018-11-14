@@ -28,20 +28,20 @@ import java.util.*
 class ClassxTest {
 
     open class TestField1 {
-        var testFiled11 = "field11"
-        var testFiled12 = "field12"
+        var testField11 = "field11"
+        var testField12 = "field12"
     }
 
     @Suppress("unused")
     open class TestField2 : TestField1() {
-        var testFiled21 = "field21"
-        var testFiled22 = "field22"
+        var testField21 = "field21"
+        var testField22 = "field22"
     }
 
     @Suppress("unused")
     class TestField3 : TestField2() {
-        var testFiled31 = "field31"
-        var testFiled32 = "field32"
+        var testField31 = "field31"
+        var testField32 = "field32"
     }
 
     @Suppress("unused")
@@ -52,10 +52,10 @@ class ClassxTest {
     @Suppress("unused")
     class TestStatic {
         companion object {
-            var filed1 = "filed11"
+            var field1 = "field11"
 
             @JvmStatic
-            fun test() = filed1
+            fun test() = field1
         }
     }
 
@@ -82,23 +82,23 @@ class ClassxTest {
         /*
          * getFieldWithParent
          */
-        Assert.assertNotNull(TestStatic::class.java.getFieldWithParent("filed1"))
+        Assert.assertNotNull(TestStatic::class.java.getFieldWithParent("field1"))
         try {
-            TestStatic::class.java.getFieldWithParent("filed_no")
+            TestStatic::class.java.getFieldWithParent("field_no")
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        Assert.assertNotNull(TestStatic().getFieldWithParent("filed1"))
+        Assert.assertNotNull(TestStatic().getFieldWithParent("field1"))
         try {
-            TestStatic().getFieldWithParent("filed_no")
+            TestStatic().getFieldWithParent("field_no")
             Assert.fail()
         } catch (ignored: Exception) {
         }
 
-        Assert.assertNotNull("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getFieldWithParent("filed1"))
+        Assert.assertNotNull("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getFieldWithParent("field1"))
         try {
-            "me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getFieldWithParent("filed_no")
+            "me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getFieldWithParent("field_no")
             Assert.fail()
         } catch (ignored: Exception) {
         }
@@ -106,16 +106,16 @@ class ClassxTest {
         /*
          * getFieldsWithParent
          */
-        val filterJacocoFiledPredicate = Predicate<Field> { field -> field.name != "\$jacocoData" }
+        val filterJacocoFieldPredicate = Predicate<Field> { field -> field.name != "\$jacocoData" }
 
-        Assert.assertEquals(Arrayx.filter(TestField3::class.java.getFieldsWithParent(1), filterJacocoFiledPredicate).toTypedArray().size.toLong(), 4)
-        Assert.assertEquals(Arrayx.filter(TestField3::class.java.getFieldsWithParent(), filterJacocoFiledPredicate).toTypedArray().size.toLong(), 6)
+        Assert.assertEquals(Arrayx.filter(TestField3::class.java.getFieldsWithParent(1), filterJacocoFieldPredicate).toTypedArray().size.toLong(), 4)
+        Assert.assertEquals(Arrayx.filter(TestField3::class.java.getFieldsWithParent(), filterJacocoFieldPredicate).toTypedArray().size.toLong(), 6)
 
-        Assert.assertEquals(Arrayx.filter(TestField3().getFieldsWithParent(1), filterJacocoFiledPredicate).toTypedArray().size.toLong(), 4)
-        Assert.assertEquals(Arrayx.filter(TestField3().getFieldsWithParent(), filterJacocoFiledPredicate).toTypedArray().size.toLong(), 6)
+        Assert.assertEquals(Arrayx.filter(TestField3().getFieldsWithParent(1), filterJacocoFieldPredicate).toTypedArray().size.toLong(), 4)
+        Assert.assertEquals(Arrayx.filter(TestField3().getFieldsWithParent(), filterJacocoFieldPredicate).toTypedArray().size.toLong(), 6)
 
-        Assert.assertEquals(Arrayx.filter("me.panpf.javaxkt.test.lang.ClassxTest\$TestField3".getFieldsWithParent(1), filterJacocoFiledPredicate).toTypedArray().size.toLong(), 4)
-        Assert.assertEquals(Arrayx.filter("me.panpf.javaxkt.test.lang.ClassxTest\$TestField3".getFieldsWithParent(), filterJacocoFiledPredicate).toTypedArray().size.toLong(), 6)
+        Assert.assertEquals(Arrayx.filter("me.panpf.javaxkt.test.lang.ClassxTest\$TestField3".getFieldsWithParent(1), filterJacocoFieldPredicate).toTypedArray().size.toLong(), 4)
+        Assert.assertEquals(Arrayx.filter("me.panpf.javaxkt.test.lang.ClassxTest\$TestField3".getFieldsWithParent(), filterJacocoFieldPredicate).toTypedArray().size.toLong(), 6)
 
 
         /*
@@ -124,25 +124,25 @@ class ClassxTest {
 
         val testField1 = TestField1()
 
-        testField1.setFieldValue(testField1.getFieldWithParent("testFiled11"), "field11x")
-        Assert.assertEquals(testField1.getFieldValue(testField1.getFieldWithParent("testFiled11")), "field11x")
+        testField1.setFieldValue(testField1.getFieldWithParent("testField11"), "field11x")
+        Assert.assertEquals(testField1.getFieldValue(testField1.getFieldWithParent("testField11")), "field11x")
 
-        testField1.setFieldValue("testFiled11", "field11y")
-        Assert.assertEquals(testField1.getFieldValue("testFiled11"), "field11y")
+        testField1.setFieldValue("testField11", "field11y")
+        Assert.assertEquals(testField1.getFieldValue("testField11"), "field11y")
 
 
         /*
-         * get and set static filed value
+         * get and set static field value
          */
 
-        TestStatic::class.java.getFieldWithParent("filed1").setStaticValue("filed12")
-        Assert.assertEquals(TestStatic::class.java.getFieldWithParent("filed1").getStaticValue(), "filed12")
+        TestStatic::class.java.getFieldWithParent("field1").setStaticValue("field12")
+        Assert.assertEquals(TestStatic::class.java.getFieldWithParent("field1").getStaticValue(), "field12")
 
-        TestStatic::class.java.setStaticFieldValue("filed1", "filed13")
-        Assert.assertEquals(TestStatic::class.java.getStaticFieldValue("filed1"), "filed13")
+        TestStatic::class.java.setStaticFieldValue("field1", "field13")
+        Assert.assertEquals(TestStatic::class.java.getStaticFieldValue("field1"), "field13")
 
-        "me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".setStaticFieldValue("filed1", "filed15")
-        Assert.assertEquals("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getStaticFieldValue("filed1"), "filed15")
+        "me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".setStaticFieldValue("field1", "field15")
+        Assert.assertEquals("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".getStaticFieldValue("field1"), "field15")
     }
 
     @Test
@@ -204,11 +204,11 @@ class ClassxTest {
         /*
          * callStaticMethod
          */
-        TestStatic::class.java.setStaticFieldValue("filed1", "filedx")
+        TestStatic::class.java.setStaticFieldValue("field1", "fieldx")
 
-        Assert.assertEquals(TestStatic::class.java.getMethodWithParent("test").callStaticMethod(), "filedx")
-        Assert.assertEquals(TestStatic::class.java.callStaticMethod("test"), "filedx")
-        Assert.assertEquals("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".callStaticMethod("test"), "filedx")
+        Assert.assertEquals(TestStatic::class.java.getMethodWithParent("test").callStaticMethod(), "fieldx")
+        Assert.assertEquals(TestStatic::class.java.callStaticMethod("test"), "fieldx")
+        Assert.assertEquals("me.panpf.javaxkt.test.lang.ClassxTest\$TestStatic".callStaticMethod("test"), "fieldx")
     }
 
     @Test
