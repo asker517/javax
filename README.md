@@ -91,7 +91,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * walkBottomUp listCount, listCountRecursively, getAllExtension, getNameWithoutAllExtension,
     * createFileTree, compareFilePath, FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator
     * existOrAddNumber
-* IOStream: [IOStreamx.java] ([Test][IOStreamxTest.java]) | [IOStreamx.kt] ([Test][IOStreamxTest.kt])
+* Stream: [Streamx.java] ([Test][StreamxTest.java]) | [Streamx.kt] ([Test][StreamxTest.kt])
     * closeQuietly, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
     * readBytes, readBytesClose, readBytesCloseQuietly, readText, readTextClose, readTextCloseQuietly,
     * copyTo, lineSequence, useLines, forEachLine, readLines,
@@ -247,10 +247,10 @@ Please view the [CHANGELOG.md] file
 [Filex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/Filex.kt
 [FilexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/FilexTest.kt
 
-[IOStreamx.java]: javax/src/main/java/me/panpf/javax/io/IOStreamx.java
-[IOStreamxTest.java]: javax/src/test/java/me/panpf/javax/test/io/IOStreamxTest.kt
-[IOStreamx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/IOStreamx.kt
-[IOStreamxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/IOStreamxTest.kt
+[Streamx.java]: javax/src/main/java/me/panpf/javax/io/Streamx.java
+[StreamxTest.java]: javax/src/test/java/me/panpf/javax/test/io/StreamxTest.kt
+[Streamx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/io/Streamx.kt
+[StreamxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/io/StreamxTest.kt
 
 [Annotationx.java]: javax/src/main/java/me/panpf/javax/lang/Annotationx.java
 [AnnotationxTest.java]: javax/src/test/java/me/panpf/javax/test/lang/AnnotationxTest.java

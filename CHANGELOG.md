@@ -15,6 +15,7 @@
 * :fire: Datex year\*, month\*, etc. remove long and String overload methods
 * :fire: IOStreamx safeClose rename to closeQuietly
 * :sparkles: IOStreamx adds readBytesClose, readBytesCloseQuietly, readTextClose, readTextCloseQuietly method
+* :fire: IOStreamx rename to Streamx
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing

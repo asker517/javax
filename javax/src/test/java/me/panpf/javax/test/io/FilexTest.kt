@@ -862,15 +862,15 @@ class FilexTest {
         val file = File("/tmp/testInputStream.txt")
         Filex.writeText(file, "testInputStream")
         try {
-            IOStreamx.closeQuietly(Filex.inputStream(file))
-            IOStreamx.closeQuietly(Filex.bufferedInputStream(file, 1024 * 4))
-            IOStreamx.closeQuietly(Filex.bufferedInputStream(file))
-            IOStreamx.closeQuietly(Filex.reader(file, Charx.UTF_8))
-            IOStreamx.closeQuietly(Filex.reader(file))
-            IOStreamx.closeQuietly(Filex.bufferedReader(file, Charx.UTF_8, 1024 * 4))
-            IOStreamx.closeQuietly(Filex.bufferedReader(file, 1024 * 4))
-            IOStreamx.closeQuietly(Filex.bufferedReader(file, Charx.UTF_8))
-            IOStreamx.closeQuietly(Filex.bufferedReader(file))
+            Streamx.closeQuietly(Filex.inputStream(file))
+            Streamx.closeQuietly(Filex.bufferedInputStream(file, 1024 * 4))
+            Streamx.closeQuietly(Filex.bufferedInputStream(file))
+            Streamx.closeQuietly(Filex.reader(file, Charx.UTF_8))
+            Streamx.closeQuietly(Filex.reader(file))
+            Streamx.closeQuietly(Filex.bufferedReader(file, Charx.UTF_8, 1024 * 4))
+            Streamx.closeQuietly(Filex.bufferedReader(file, 1024 * 4))
+            Streamx.closeQuietly(Filex.bufferedReader(file, Charx.UTF_8))
+            Streamx.closeQuietly(Filex.bufferedReader(file))
         } finally {
             Filex.deleteRecursively(file)
         }
@@ -917,7 +917,7 @@ class FilexTest {
             }.toString(), content)
 
             Assert.assertEquals(StringBuilder().apply {
-                Filex.forEachBlock(file, IOStreamx.DEFAULT_BLOCK_SIZE) { data, size ->
+                Filex.forEachBlock(file, Streamx.DEFAULT_BLOCK_SIZE) { data, size ->
                     append(String(data, 0, size))
                 }
             }.toString(), content)
@@ -951,17 +951,17 @@ class FilexTest {
         val file = File("/tmp/testOutputStream.txt")
         Filex.writeText(file, "testOutputStream")
         try {
-            IOStreamx.closeQuietly(Filex.outputStream(file))
-            IOStreamx.closeQuietly(Filex.bufferedOutputStream(file, 1024 * 4))
-            IOStreamx.closeQuietly(Filex.bufferedOutputStream(file))
-            IOStreamx.closeQuietly(Filex.writer(file, Charx.UTF_8))
-            IOStreamx.closeQuietly(Filex.writer(file))
-            IOStreamx.closeQuietly(Filex.bufferedWriter(file, Charx.UTF_8, 1024 * 4 * 4))
-            IOStreamx.closeQuietly(Filex.bufferedWriter(file, 1024 * 4 * 4))
-            IOStreamx.closeQuietly(Filex.bufferedWriter(file, Charx.UTF_8))
-            IOStreamx.closeQuietly(Filex.bufferedWriter(file))
-            IOStreamx.closeQuietly(Filex.printWriter(file, Charx.UTF_8))
-            IOStreamx.closeQuietly(Filex.printWriter(file))
+            Streamx.closeQuietly(Filex.outputStream(file))
+            Streamx.closeQuietly(Filex.bufferedOutputStream(file, 1024 * 4))
+            Streamx.closeQuietly(Filex.bufferedOutputStream(file))
+            Streamx.closeQuietly(Filex.writer(file, Charx.UTF_8))
+            Streamx.closeQuietly(Filex.writer(file))
+            Streamx.closeQuietly(Filex.bufferedWriter(file, Charx.UTF_8, 1024 * 4 * 4))
+            Streamx.closeQuietly(Filex.bufferedWriter(file, 1024 * 4 * 4))
+            Streamx.closeQuietly(Filex.bufferedWriter(file, Charx.UTF_8))
+            Streamx.closeQuietly(Filex.bufferedWriter(file))
+            Streamx.closeQuietly(Filex.printWriter(file, Charx.UTF_8))
+            Streamx.closeQuietly(Filex.printWriter(file))
         } finally {
             Filex.deleteRecursively(file)
         }

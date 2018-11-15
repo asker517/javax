@@ -17,7 +17,7 @@
 package me.panpf.javax.security;
 
 import me.panpf.javax.io.Filex;
-import me.panpf.javax.io.IOStreamx;
+import me.panpf.javax.io.Streamx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,7 +54,7 @@ public class Digestx {
         }
         StringBuilder sb = new StringBuilder();
 
-        byte[] buffer = new byte[IOStreamx.DEFAULT_BUFFER_SIZE];
+        byte[] buffer = new byte[Streamx.DEFAULT_BUFFER_SIZE];
         int readLength;
         while (true) {
             readLength = inputStream.read(buffer);
@@ -277,13 +277,13 @@ public class Digestx {
      */
     @NotNull
     public static String getDigest(@NotNull byte[] data, @NotNull String algorithm) {
-        InputStream inputStream = IOStreamx.inputStream(data);
+        InputStream inputStream = Streamx.inputStream(data);
         try {
             return getDigest(inputStream, algorithm);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -292,13 +292,13 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull byte[] data) {
-        InputStream inputStream = IOStreamx.inputStream(data);
+        InputStream inputStream = Streamx.inputStream(data);
         try {
             return getMD5(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -307,13 +307,13 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull byte[] data) {
-        InputStream inputStream = IOStreamx.inputStream(data);
+        InputStream inputStream = Streamx.inputStream(data);
         try {
             return getMD5_16(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -322,13 +322,13 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull byte[] data) {
-        InputStream inputStream = IOStreamx.inputStream(data);
+        InputStream inputStream = Streamx.inputStream(data);
         try {
             return getSHA1(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -337,13 +337,13 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull byte[] data) {
-        InputStream inputStream = IOStreamx.inputStream(data);
+        InputStream inputStream = Streamx.inputStream(data);
         try {
             return getSHA256(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -352,13 +352,13 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull byte[] data) {
-        InputStream inputStream = IOStreamx.inputStream(data);
+        InputStream inputStream = Streamx.inputStream(data);
         try {
             return getSHA512(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -371,13 +371,13 @@ public class Digestx {
      */
     @NotNull
     public static String getDigest(@NotNull String text, @NotNull String algorithm) {
-        InputStream inputStream = IOStreamx.byteInputStream(text);
+        InputStream inputStream = Streamx.byteInputStream(text);
         try {
             return getDigest(inputStream, algorithm);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -386,13 +386,13 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5(@NotNull String text) {
-        InputStream inputStream = IOStreamx.byteInputStream(text);
+        InputStream inputStream = Streamx.byteInputStream(text);
         try {
             return getMD5(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -401,13 +401,13 @@ public class Digestx {
      */
     @NotNull
     public static String getMD5_16(@NotNull String text) {
-        InputStream inputStream = IOStreamx.byteInputStream(text);
+        InputStream inputStream = Streamx.byteInputStream(text);
         try {
             return getMD5_16(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -416,13 +416,13 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA1(@NotNull String text) {
-        InputStream inputStream = IOStreamx.byteInputStream(text);
+        InputStream inputStream = Streamx.byteInputStream(text);
         try {
             return getSHA1(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -431,13 +431,13 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA256(@NotNull String text) {
-        InputStream inputStream = IOStreamx.byteInputStream(text);
+        InputStream inputStream = Streamx.byteInputStream(text);
         try {
             return getSHA256(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -446,13 +446,13 @@ public class Digestx {
      */
     @NotNull
     public static String getSHA512(@NotNull String text) {
-        InputStream inputStream = IOStreamx.byteInputStream(text);
+        InputStream inputStream = Streamx.byteInputStream(text);
         try {
             return getSHA512(inputStream);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -470,7 +470,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getDigest(inputStream, algorithm);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -487,7 +487,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -504,7 +504,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -518,7 +518,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getMD5(inputStream);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -535,7 +535,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -552,7 +552,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -566,7 +566,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getMD5_16(inputStream);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -583,7 +583,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -600,7 +600,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -614,7 +614,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getSHA1(inputStream);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -631,7 +631,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -648,7 +648,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -662,7 +662,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getSHA256(inputStream);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -679,7 +679,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -696,7 +696,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -710,7 +710,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getSHA512(inputStream);
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -727,7 +727,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 
@@ -744,7 +744,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.closeQuietly(inputStream);
+            Streamx.closeQuietly(inputStream);
         }
     }
 }

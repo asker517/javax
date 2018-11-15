@@ -17,7 +17,7 @@
 package me.panpf.javaxkt.test.io
 
 import me.panpf.javax.io.CopyListener
-import me.panpf.javax.io.IOStreamx
+import me.panpf.javax.io.Streamx
 import me.panpf.javaxkt.io.*
 import org.junit.Assert
 import org.junit.Test
@@ -25,7 +25,7 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 
-class IOStreamxTest {
+class StreamxTest {
 
     @Test
     fun testSafeClose() {
@@ -52,11 +52,11 @@ class IOStreamxTest {
         val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
         file.writeText(content)
         try {
-            Assert.assertEquals(String(file.inputStream().readBytesClose(IOStreamx.DEFAULT_BUFFER_SIZE)), content)
+            Assert.assertEquals(String(file.inputStream().readBytesClose(Streamx.DEFAULT_BUFFER_SIZE)), content)
             Assert.assertEquals(String(file.inputStream().readBytesClose()), content)
             Assert.assertEquals(file.reader().readTextClose(), content)
 
-            Assert.assertEquals(String(file.inputStream().readBytesCloseQuietly(IOStreamx.DEFAULT_BUFFER_SIZE)), content)
+            Assert.assertEquals(String(file.inputStream().readBytesCloseQuietly(Streamx.DEFAULT_BUFFER_SIZE)), content)
             Assert.assertEquals(String(file.inputStream().readBytesCloseQuietly()), content)
             Assert.assertEquals(file.reader().readTextCloseQuietly(), content)
         } finally {

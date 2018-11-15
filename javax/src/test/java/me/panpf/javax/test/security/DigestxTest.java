@@ -17,7 +17,7 @@
 package me.panpf.javax.test.security;
 
 import me.panpf.javax.io.Filex;
-import me.panpf.javax.io.IOStreamx;
+import me.panpf.javax.io.Streamx;
 import me.panpf.javax.security.Digestx;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,29 +47,29 @@ public class DigestxTest {
 
     @Test
     public void testInputStreamDigest() throws IOException {
-        Assert.assertEquals(Digestx.getDigest(IOStreamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
-        Assert.assertEquals(Digestx.getDigestOrEmpty(IOStreamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
-        Assert.assertEquals(Digestx.getDigestOrNull(IOStreamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
+        Assert.assertEquals(Digestx.getDigest(Streamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
+        Assert.assertEquals(Digestx.getDigestOrEmpty(Streamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
+        Assert.assertEquals(Digestx.getDigestOrNull(Streamx.byteInputStream(TEST_TEXT), "MD2"), TEXT_MD2);
 
-        Assert.assertEquals(Digestx.getMD5(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
-        Assert.assertEquals(Digestx.getMD5OrEmpty(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
-        Assert.assertEquals(Digestx.getMD5OrNull(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
+        Assert.assertEquals(Digestx.getMD5(Streamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
+        Assert.assertEquals(Digestx.getMD5OrEmpty(Streamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
+        Assert.assertEquals(Digestx.getMD5OrNull(Streamx.byteInputStream(TEST_TEXT)), TEXT_MD5);
 
-        Assert.assertEquals(Digestx.getMD5_16(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
-        Assert.assertEquals(Digestx.getMD5_16OrEmpty(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
-        Assert.assertEquals(Digestx.getMD5_16OrNull(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
+        Assert.assertEquals(Digestx.getMD5_16(Streamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
+        Assert.assertEquals(Digestx.getMD5_16OrEmpty(Streamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
+        Assert.assertEquals(Digestx.getMD5_16OrNull(Streamx.byteInputStream(TEST_TEXT)), TEXT_MD5_16);
 
-        Assert.assertEquals(Digestx.getSHA1(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
-        Assert.assertEquals(Digestx.getSHA1OrEmpty(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
-        Assert.assertEquals(Digestx.getSHA1OrNull(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
+        Assert.assertEquals(Digestx.getSHA1(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
+        Assert.assertEquals(Digestx.getSHA1OrEmpty(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
+        Assert.assertEquals(Digestx.getSHA1OrNull(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA1);
 
-        Assert.assertEquals(Digestx.getSHA256(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
-        Assert.assertEquals(Digestx.getSHA256OrEmpty(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
-        Assert.assertEquals(Digestx.getSHA256OrNull(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
+        Assert.assertEquals(Digestx.getSHA256(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
+        Assert.assertEquals(Digestx.getSHA256OrEmpty(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
+        Assert.assertEquals(Digestx.getSHA256OrNull(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA256);
 
-        Assert.assertEquals(Digestx.getSHA512(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
-        Assert.assertEquals(Digestx.getSHA512OrEmpty(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
-        Assert.assertEquals(Digestx.getSHA512OrNull(IOStreamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
+        Assert.assertEquals(Digestx.getSHA512(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
+        Assert.assertEquals(Digestx.getSHA512OrEmpty(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
+        Assert.assertEquals(Digestx.getSHA512OrNull(Streamx.byteInputStream(TEST_TEXT)), TEXT_SHA512);
     }
 
     @Test

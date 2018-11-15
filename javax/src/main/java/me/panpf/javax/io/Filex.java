@@ -652,10 +652,10 @@ public class Filex {
             try {
                 inputStream = inputStream(source);
                 outputStream = outputStream(target);
-                IOStreamx.copyTo(inputStream, outputStream, bufferSize);
+                Streamx.copyTo(inputStream, outputStream, bufferSize);
             } finally {
-                IOStreamx.closeQuietly(inputStream);
-                IOStreamx.closeQuietly(outputStream);
+                Streamx.closeQuietly(inputStream);
+                Streamx.closeQuietly(outputStream);
             }
         }
 
@@ -683,7 +683,7 @@ public class Filex {
      */
     @NotNull
     public static File copyTo(@NotNull File source, @NotNull File target, boolean overwrite) throws IOException {
-        return copyTo(source, target, overwrite, IOStreamx.DEFAULT_BUFFER_SIZE);
+        return copyTo(source, target, overwrite, Streamx.DEFAULT_BUFFER_SIZE);
     }
 
     /**
@@ -729,7 +729,7 @@ public class Filex {
      */
     @NotNull
     public static File copyTo(@NotNull File source, @NotNull File target) throws IOException {
-        return copyTo(source, target, false, IOStreamx.DEFAULT_BUFFER_SIZE);
+        return copyTo(source, target, false, Streamx.DEFAULT_BUFFER_SIZE);
     }
 
     /**
@@ -1509,7 +1509,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedInputStream bufferedInputStream(@NotNull File file, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.buffered(inputStream(file), bufferSize);
+        return Streamx.buffered(inputStream(file), bufferSize);
     }
 
     /**
@@ -1517,7 +1517,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedInputStream bufferedInputStream(@NotNull File file) throws FileNotFoundException {
-        return IOStreamx.buffered(inputStream(file));
+        return Streamx.buffered(inputStream(file));
     }
 
     /**
@@ -1525,7 +1525,7 @@ public class Filex {
      */
     @NotNull
     public static InputStreamReader reader(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
-        return IOStreamx.reader(inputStream(file), charset);
+        return Streamx.reader(inputStream(file), charset);
     }
 
     /**
@@ -1533,7 +1533,7 @@ public class Filex {
      */
     @NotNull
     public static InputStreamReader reader(@NotNull File file) throws FileNotFoundException {
-        return IOStreamx.reader(inputStream(file));
+        return Streamx.reader(inputStream(file));
     }
 
     /**
@@ -1543,7 +1543,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, @NotNull Charset charset, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.bufferedReader(inputStream(file), charset, bufferSize);
+        return Streamx.bufferedReader(inputStream(file), charset, bufferSize);
     }
 
     /**
@@ -1553,7 +1553,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.bufferedReader(inputStream(file), bufferSize);
+        return Streamx.bufferedReader(inputStream(file), bufferSize);
     }
 
     /**
@@ -1561,7 +1561,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
-        return IOStreamx.bufferedReader(inputStream(file), charset);
+        return Streamx.bufferedReader(inputStream(file), charset);
     }
 
     /**
@@ -1569,7 +1569,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedReader bufferedReader(@NotNull File file) throws FileNotFoundException {
-        return IOStreamx.bufferedReader(inputStream(file));
+        return Streamx.bufferedReader(inputStream(file));
     }
 
 
@@ -1604,7 +1604,7 @@ public class Filex {
                 offset += read;
             }
         } finally {
-            IOStreamx.closeQuietly(input);
+            Streamx.closeQuietly(input);
         }
         return remaining == 0 ? result : Arrays.copyOf(result, offset);
     }
@@ -1682,9 +1682,9 @@ public class Filex {
         BufferedReader bufferedReader = bufferedReader(file, charset);
         T result;
         try {
-            result = block.transform(IOStreamx.lineSequence(bufferedReader));
+            result = block.transform(Streamx.lineSequence(bufferedReader));
         } finally {
-            IOStreamx.closeQuietly(bufferedReader);
+            Streamx.closeQuietly(bufferedReader);
         }
         return result;
     }
@@ -1710,7 +1710,7 @@ public class Filex {
      * @param blockSize size of a block, replaced by 512 if it's less, 4096 by default.
      */
     public static void forEachBlock(@NotNull File file, int blockSize, @NotNull Action2<byte[], Integer> action) throws IOException {
-        byte[] arr = new byte[Rangex.coerceAtLeast(blockSize, IOStreamx.MINIMUM_BLOCK_SIZE)];
+        byte[] arr = new byte[Rangex.coerceAtLeast(blockSize, Streamx.MINIMUM_BLOCK_SIZE)];
 
         InputStream input = inputStream(file);
         try {
@@ -1723,7 +1723,7 @@ public class Filex {
                 }
             } while (true);
         } finally {
-            IOStreamx.closeQuietly(input);
+            Streamx.closeQuietly(input);
         }
     }
 
@@ -1737,7 +1737,7 @@ public class Filex {
      * @param action function to process file blocks.
      */
     public static void forEachBlock(@NotNull File file, @NotNull Action2<byte[], Integer> action) throws IOException {
-        forEachBlock(file, IOStreamx.DEFAULT_BLOCK_SIZE, action);
+        forEachBlock(file, Streamx.DEFAULT_BLOCK_SIZE, action);
     }
 
     /**
@@ -1751,7 +1751,7 @@ public class Filex {
      */
     public static void forEachLine(@NotNull File file, @NotNull Charset charset, @NotNull Action<String> action) throws IOException {
         // Note: close is called at forEachLine
-        IOStreamx.forEachLine(new BufferedReader(new InputStreamReader(new FileInputStream(file), charset)), action);
+        Streamx.forEachLine(new BufferedReader(new InputStreamReader(new FileInputStream(file), charset)), action);
     }
 
     /**
@@ -1786,7 +1786,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedOutputStream bufferedOutputStream(@NotNull File file, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.buffered(outputStream(file), bufferSize);
+        return Streamx.buffered(outputStream(file), bufferSize);
     }
 
     /**
@@ -1794,7 +1794,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedOutputStream bufferedOutputStream(@NotNull File file) throws FileNotFoundException {
-        return IOStreamx.buffered(outputStream(file));
+        return Streamx.buffered(outputStream(file));
     }
 
     /**
@@ -1802,7 +1802,7 @@ public class Filex {
      */
     @NotNull
     public static OutputStreamWriter writer(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
-        return IOStreamx.writer(outputStream(file), charset);
+        return Streamx.writer(outputStream(file), charset);
     }
 
     /**
@@ -1810,7 +1810,7 @@ public class Filex {
      */
     @NotNull
     public static OutputStreamWriter writer(@NotNull File file) throws FileNotFoundException {
-        return IOStreamx.writer(outputStream(file));
+        return Streamx.writer(outputStream(file));
     }
 
     /**
@@ -1820,7 +1820,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, @NotNull Charset charset, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.bufferedWriter(outputStream(file), charset, bufferSize);
+        return Streamx.bufferedWriter(outputStream(file), charset, bufferSize);
     }
 
     /**
@@ -1830,7 +1830,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, int bufferSize) throws FileNotFoundException {
-        return IOStreamx.bufferedWriter(outputStream(file), bufferSize);
+        return Streamx.bufferedWriter(outputStream(file), bufferSize);
     }
 
     /**
@@ -1838,7 +1838,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file, @NotNull Charset charset) throws FileNotFoundException {
-        return IOStreamx.bufferedWriter(outputStream(file), charset);
+        return Streamx.bufferedWriter(outputStream(file), charset);
     }
 
     /**
@@ -1846,7 +1846,7 @@ public class Filex {
      */
     @NotNull
     public static BufferedWriter bufferedWriter(@NotNull File file) throws FileNotFoundException {
-        return IOStreamx.bufferedWriter(outputStream(file));
+        return Streamx.bufferedWriter(outputStream(file));
     }
 
     /**
@@ -1880,7 +1880,7 @@ public class Filex {
         try {
             outputStream.write(array);
         } finally {
-            IOStreamx.closeQuietly(outputStream);
+            Streamx.closeQuietly(outputStream);
         }
     }
 
@@ -1894,7 +1894,7 @@ public class Filex {
         try {
             outputStream.write(array);
         } finally {
-            IOStreamx.closeQuietly(outputStream);
+            Streamx.closeQuietly(outputStream);
         }
     }
 

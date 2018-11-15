@@ -37,7 +37,7 @@ import java.util.NoSuchElementException;
  * I/O tools
  */
 @SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
-public class IOStreamx {
+public class Streamx {
 
     /**
      * Returns the default buffer size when working with buffered streams.
@@ -54,7 +54,7 @@ public class IOStreamx {
      */
     public static final int MINIMUM_BLOCK_SIZE = 512;
 
-    private IOStreamx() {
+    private Streamx() {
     }
 
     /**
@@ -488,7 +488,7 @@ public class IOStreamx {
         try {
             t = block.transform(lineSequence(bufferedReader));
         } finally {
-            IOStreamx.closeQuietly(bufferedReader);
+            Streamx.closeQuietly(bufferedReader);
         }
         return t;
     }

@@ -16,7 +16,7 @@
 
 package me.panpf.javax.net;
 
-import me.panpf.javax.io.IOStreamx;
+import me.panpf.javax.io.Streamx;
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.util.Regexx;
 import org.jetbrains.annotations.NotNull;
@@ -132,7 +132,7 @@ public class Netx {
     @Nullable
     public static String getExternalIPV4AddressFrom(@NotNull URL url, @NotNull Pattern pattern) {
         try {
-            return Stringx.orEmpty(Regexx.getFirst(pattern, IOStreamx.readText(url)));
+            return Stringx.orEmpty(Regexx.getFirst(pattern, Streamx.readText(url)));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -175,7 +175,7 @@ public class Netx {
     public static City getCityFromSohu() {
         String response;
         try {
-            response = IOStreamx.readText(new URL("http://pv.sohu.com/cityjson?ie=utf-8"));
+            response = Streamx.readText(new URL("http://pv.sohu.com/cityjson?ie=utf-8"));
         } catch (IOException e) {
             e.printStackTrace();
             return null;

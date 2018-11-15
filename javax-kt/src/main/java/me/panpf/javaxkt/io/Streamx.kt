@@ -19,7 +19,7 @@
 package me.panpf.javaxkt.io
 
 import me.panpf.javax.io.CopyListener
-import me.panpf.javax.io.IOStreamx
+import me.panpf.javax.io.Streamx
 import java.io.*
 
 
@@ -31,32 +31,32 @@ import java.io.*
 /**
  * Quietly close
  */
-inline fun Closeable?.closeQuietly() = IOStreamx.closeQuietly(this)
+inline fun Closeable?.closeQuietly() = Streamx.closeQuietly(this)
 
 
 /**
  * Reads this stream completely into a byte array and Automatically close stream.
  */
 @Throws(IOException::class)
-inline fun InputStream.readBytesClose(estimatedSize: Int): ByteArray = IOStreamx.readBytesClose(this, estimatedSize)
+inline fun InputStream.readBytesClose(estimatedSize: Int): ByteArray = Streamx.readBytesClose(this, estimatedSize)
 
 /**
  * Reads this stream completely into a byte array and Automatically close stream.
  */
 @Throws(IOException::class)
-inline fun InputStream.readBytesCloseQuietly(estimatedSize: Int): ByteArray = IOStreamx.readBytesCloseQuietly(this, estimatedSize)
+inline fun InputStream.readBytesCloseQuietly(estimatedSize: Int): ByteArray = Streamx.readBytesCloseQuietly(this, estimatedSize)
 
 /**
  * Reads this stream completely into a byte array and Automatically close stream.
  */
 @Throws(IOException::class)
-inline fun InputStream.readBytesClose(): ByteArray = IOStreamx.readBytesClose(this)
+inline fun InputStream.readBytesClose(): ByteArray = Streamx.readBytesClose(this)
 
 /**
  * Reads this stream completely into a byte array and Automatically close stream.
  */
 @Throws(IOException::class)
-inline fun InputStream.readBytesCloseQuietly(): ByteArray = IOStreamx.readBytesCloseQuietly(this)
+inline fun InputStream.readBytesCloseQuietly(): ByteArray = Streamx.readBytesCloseQuietly(this)
 
 
 /**
@@ -65,7 +65,7 @@ inline fun InputStream.readBytesCloseQuietly(): ByteArray = IOStreamx.readBytesC
  * @return the string with corresponding file content.
  */
 @Throws(IOException::class)
-inline fun Reader.readTextClose(): String = IOStreamx.readTextClose(this)
+inline fun Reader.readTextClose(): String = Streamx.readTextClose(this)
 
 /**
  * Reads this reader completely as a String and Automatically close stream.
@@ -73,7 +73,7 @@ inline fun Reader.readTextClose(): String = IOStreamx.readTextClose(this)
  * @return the string with corresponding file content.
  */
 @Throws(IOException::class)
-inline fun Reader.readTextCloseQuietly(): String = IOStreamx.readTextCloseQuietly(this)
+inline fun Reader.readTextCloseQuietly(): String = Streamx.readTextCloseQuietly(this)
 
 
 /**
@@ -83,7 +83,7 @@ inline fun Reader.readTextCloseQuietly(): String = IOStreamx.readTextCloseQuietl
  */
 @Throws(IOException::class)
 inline fun InputStream.copyTo(out: OutputStream, bufferSize: Int, listener: CopyListener): Long =
-        IOStreamx.copyTo(this, out, bufferSize, listener)
+        Streamx.copyTo(this, out, bufferSize, listener)
 
 /**
  * Copies this stream to the given output stream, returning the number of bytes copied
@@ -92,7 +92,7 @@ inline fun InputStream.copyTo(out: OutputStream, bufferSize: Int, listener: Copy
  */
 @Throws(IOException::class)
 inline fun InputStream.copyTo(out: OutputStream, listener: CopyListener): Long =
-        IOStreamx.copyTo(this, out, listener)
+        Streamx.copyTo(this, out, listener)
 
 
 /**
@@ -105,7 +105,7 @@ inline fun InputStream.copyTo(out: OutputStream, listener: CopyListener): Long =
  */
 @Throws(IOException::class)
 inline fun Reader.copyTo(out: Writer, bufferSize: Int, listener: CopyListener): Long =
-        IOStreamx.copyTo(this, out, bufferSize, listener)
+        Streamx.copyTo(this, out, bufferSize, listener)
 
 
 /**
@@ -117,4 +117,4 @@ inline fun Reader.copyTo(out: Writer, bufferSize: Int, listener: CopyListener): 
  */
 @Throws(IOException::class)
 inline fun Reader.copyTo(out: Writer, listener: CopyListener): Long =
-        IOStreamx.copyTo(this, out, listener)
+        Streamx.copyTo(this, out, listener)

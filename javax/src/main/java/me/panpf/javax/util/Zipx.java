@@ -19,7 +19,7 @@ package me.panpf.javax.util;
 import me.panpf.javax.collections.Collectionx;
 import me.panpf.javax.io.CopyListener;
 import me.panpf.javax.io.Filex;
-import me.panpf.javax.io.IOStreamx;
+import me.panpf.javax.io.Streamx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,11 +99,11 @@ public class Zipx {
                     try {
                         inputStream = new BufferedInputStream(new FileInputStream(childFile));
                         if (listener != null) listener.onEntryStart(currentZipEntry[0]);
-                        IOStreamx.copyTo(inputStream, zipOutputStream, copyListener);
+                        Streamx.copyTo(inputStream, zipOutputStream, copyListener);
                         if (listener != null) listener.onEntryEnd(currentZipEntry[0]);
                     } finally {
                         zipOutputStream.closeEntry();
-                        IOStreamx.closeQuietly(inputStream);
+                        Streamx.closeQuietly(inputStream);
                     }
                 }
             }
@@ -113,7 +113,7 @@ public class Zipx {
             destinationFile.delete();
             throw e;
         } finally {
-            IOStreamx.closeQuietly(zipOutputStream);
+            Streamx.closeQuietly(zipOutputStream);
         }
 
         return destinationFile;
@@ -287,16 +287,16 @@ public class Zipx {
                         inputStream = zipFile.getInputStream(zipEntry);
                         outputStream = new FileOutputStream(file, false);
                         if (listener != null) listener.onEntryStart(currentZipEntry[0]);
-                        IOStreamx.copyTo(inputStream, outputStream, copyListener);
+                        Streamx.copyTo(inputStream, outputStream, copyListener);
                         if (listener != null) listener.onEntryEnd(currentZipEntry[0]);
                     } finally {
-                        IOStreamx.closeQuietly(outputStream);
-                        IOStreamx.closeQuietly(inputStream);
+                        Streamx.closeQuietly(outputStream);
+                        Streamx.closeQuietly(inputStream);
                     }
                 }
             }
         } finally {
-            IOStreamx.closeQuietly(zipFile);
+            Streamx.closeQuietly(zipFile);
         }
 
         return destinationDir;
