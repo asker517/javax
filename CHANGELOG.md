@@ -13,6 +13,7 @@
 * :fire: Rangex moved and related class to collections ranges
 * :fire: Rangex year\*, month\*, etc. remove long and String overload methods
 * :fire: Datex year\*, month\*, etc. remove long and String overload methods
+* :fire: IOStreamx safeClose rename to closeQuietly
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing

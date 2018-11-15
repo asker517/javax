@@ -29,9 +29,9 @@ import java.io.*
 
 
 /**
- * Close
+ * Quietly close
  */
-inline fun Closeable?.safeClose() = IOStreamx.safeClose(this)
+inline fun Closeable?.closeQuietly() = IOStreamx.closeQuietly(this)
 
 
 /**

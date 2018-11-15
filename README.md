@@ -92,7 +92,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * createFileTree, compareFilePath, FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator
     * existOrAddNumber
 * IOStream: [IOStreamx.java] ([Test][IOStreamxTest.java]) | [IOStreamx.kt] ([Test][IOStreamxTest.kt])
-    * safeClose, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
+    * closeQuietly, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
     * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,
 
 ### lang

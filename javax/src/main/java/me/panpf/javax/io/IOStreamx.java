@@ -58,9 +58,9 @@ public class IOStreamx {
     }
 
     /**
-     * Close
+     * Quietly close
      */
-    public static void safeClose(@Nullable Closeable closeable) {
+    public static void closeQuietly(@Nullable Closeable closeable) {
         if (closeable != null) {
             if (closeable instanceof OutputStream) {
                 try {
@@ -293,7 +293,7 @@ public class IOStreamx {
         try {
             return readBytes(inputStream);
         } finally {
-            safeClose(inputStream);
+            closeQuietly(inputStream);
         }
     }
 
@@ -348,7 +348,7 @@ public class IOStreamx {
         try {
             t = block.transform(lineSequence(bufferedReader));
         } finally {
-            IOStreamx.safeClose(bufferedReader);
+            IOStreamx.closeQuietly(bufferedReader);
         }
         return t;
     }

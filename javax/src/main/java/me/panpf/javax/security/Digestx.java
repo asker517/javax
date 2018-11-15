@@ -283,7 +283,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -298,7 +298,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -313,7 +313,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -328,7 +328,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -343,7 +343,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -358,7 +358,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -377,7 +377,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -392,7 +392,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -407,7 +407,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -422,7 +422,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -437,7 +437,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -452,7 +452,7 @@ public class Digestx {
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -470,7 +470,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getDigest(inputStream, algorithm);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -487,7 +487,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -504,7 +504,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -518,7 +518,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getMD5(inputStream);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -535,7 +535,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -552,7 +552,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -566,7 +566,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getMD5_16(inputStream);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -583,7 +583,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -600,7 +600,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -614,7 +614,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getSHA1(inputStream);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -631,7 +631,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -648,7 +648,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -662,7 +662,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getSHA256(inputStream);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -679,7 +679,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -696,7 +696,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -710,7 +710,7 @@ public class Digestx {
             inputStream = Filex.inputStream(file);
             return getSHA512(inputStream);
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -727,7 +727,7 @@ public class Digestx {
             e.printStackTrace();
             return "";
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 
@@ -744,7 +744,7 @@ public class Digestx {
             e.printStackTrace();
             return null;
         } finally {
-            IOStreamx.safeClose(inputStream);
+            IOStreamx.closeQuietly(inputStream);
         }
     }
 }

@@ -416,8 +416,8 @@ class FilexTest {
         val file = File("/tmp/testInputStream.txt")
         file.writeText("testInputStream")
         try {
-            file.bufferedInputStream(1024 * 4).safeClose()
-            file.bufferedInputStream().safeClose()
+            file.bufferedInputStream(1024 * 4).closeQuietly()
+            file.bufferedInputStream().closeQuietly()
         } finally {
             file.deleteRecursively()
         }
@@ -428,8 +428,8 @@ class FilexTest {
         val file = File("/tmp/testOutputStream.txt")
         file.writeText("testOutputStream")
         try {
-            file.bufferedOutputStream(1024 * 4).safeClose()
-            file.bufferedOutputStream().safeClose()
+            file.bufferedOutputStream(1024 * 4).closeQuietly()
+            file.bufferedOutputStream().closeQuietly()
         } finally {
             file.deleteRecursively()
         }

@@ -103,7 +103,7 @@ public class Zipx {
                         if (listener != null) listener.onEntryEnd(currentZipEntry[0]);
                     } finally {
                         zipOutputStream.closeEntry();
-                        IOStreamx.safeClose(inputStream);
+                        IOStreamx.closeQuietly(inputStream);
                     }
                 }
             }
@@ -113,7 +113,7 @@ public class Zipx {
             destinationFile.delete();
             throw e;
         } finally {
-            IOStreamx.safeClose(zipOutputStream);
+            IOStreamx.closeQuietly(zipOutputStream);
         }
 
         return destinationFile;
@@ -290,13 +290,13 @@ public class Zipx {
                         IOStreamx.copyTo(inputStream, outputStream, copyListener);
                         if (listener != null) listener.onEntryEnd(currentZipEntry[0]);
                     } finally {
-                        IOStreamx.safeClose(outputStream);
-                        IOStreamx.safeClose(inputStream);
+                        IOStreamx.closeQuietly(outputStream);
+                        IOStreamx.closeQuietly(inputStream);
                     }
                 }
             }
         } finally {
-            IOStreamx.safeClose(zipFile);
+            IOStreamx.closeQuietly(zipFile);
         }
 
         return destinationDir;

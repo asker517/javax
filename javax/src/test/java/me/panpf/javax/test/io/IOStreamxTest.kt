@@ -32,44 +32,44 @@ class IOStreamxTest {
 
     @Test
     fun testSafeClose() {
-        IOStreamx.safeClose(ByteArrayInputStream("1234567890".toByteArray()))
-        IOStreamx.safeClose(object : ByteArrayInputStream("1234567890".toByteArray()) {
+        IOStreamx.closeQuietly(ByteArrayInputStream("1234567890".toByteArray()))
+        IOStreamx.closeQuietly(object : ByteArrayInputStream("1234567890".toByteArray()) {
             override fun close() {
                 throw RuntimeException("test")
             }
         })
 
-        IOStreamx.safeClose(ByteArrayOutputStream())
-        IOStreamx.safeClose(object : ByteArrayOutputStream() {
+        IOStreamx.closeQuietly(ByteArrayOutputStream())
+        IOStreamx.closeQuietly(object : ByteArrayOutputStream() {
             override fun close() {
                 throw RuntimeException("test")
             }
         })
 
-        IOStreamx.safeClose(null)
+        IOStreamx.closeQuietly(null)
     }
 
     @Test
     fun testInputStream() {
-        IOStreamx.safeClose(IOStreamx.inputStream("1234567890".toByteArray()))
-        IOStreamx.safeClose(IOStreamx.inputStream("1234567890".toByteArray(), 0, 5))
+        IOStreamx.closeQuietly(IOStreamx.inputStream("1234567890".toByteArray()))
+        IOStreamx.closeQuietly(IOStreamx.inputStream("1234567890".toByteArray(), 0, 5))
 
-        IOStreamx.safeClose(IOStreamx.byteInputStream("1234567890", Charx.UTF_8))
-        IOStreamx.safeClose(IOStreamx.byteInputStream("1234567890"))
+        IOStreamx.closeQuietly(IOStreamx.byteInputStream("1234567890", Charx.UTF_8))
+        IOStreamx.closeQuietly(IOStreamx.byteInputStream("1234567890"))
 
-        IOStreamx.safeClose(IOStreamx.reader(IOStreamx.byteInputStream("1234567890"), Charx.UTF_8))
-        IOStreamx.safeClose(IOStreamx.reader(IOStreamx.byteInputStream("1234567890")))
-        IOStreamx.safeClose(IOStreamx.reader("1234567890"))
+        IOStreamx.closeQuietly(IOStreamx.reader(IOStreamx.byteInputStream("1234567890"), Charx.UTF_8))
+        IOStreamx.closeQuietly(IOStreamx.reader(IOStreamx.byteInputStream("1234567890")))
+        IOStreamx.closeQuietly(IOStreamx.reader("1234567890"))
 
-        IOStreamx.safeClose(IOStreamx.buffered(IOStreamx.byteInputStream("1234567890"), IOStreamx.DEFAULT_BUFFER_SIZE))
-        IOStreamx.safeClose(IOStreamx.buffered(IOStreamx.byteInputStream("1234567890")))
-        IOStreamx.safeClose(IOStreamx.buffered(IOStreamx.reader("1234567890"), IOStreamx.DEFAULT_BUFFER_SIZE))
-        IOStreamx.safeClose(IOStreamx.buffered(IOStreamx.reader("1234567890")))
+        IOStreamx.closeQuietly(IOStreamx.buffered(IOStreamx.byteInputStream("1234567890"), IOStreamx.DEFAULT_BUFFER_SIZE))
+        IOStreamx.closeQuietly(IOStreamx.buffered(IOStreamx.byteInputStream("1234567890")))
+        IOStreamx.closeQuietly(IOStreamx.buffered(IOStreamx.reader("1234567890"), IOStreamx.DEFAULT_BUFFER_SIZE))
+        IOStreamx.closeQuietly(IOStreamx.buffered(IOStreamx.reader("1234567890")))
 
-        IOStreamx.safeClose(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890"), Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE))
-        IOStreamx.safeClose(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890"), IOStreamx.DEFAULT_BUFFER_SIZE))
-        IOStreamx.safeClose(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890"), Charx.UTF_8))
-        IOStreamx.safeClose(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890")))
+        IOStreamx.closeQuietly(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890"), Charx.UTF_8, IOStreamx.DEFAULT_BUFFER_SIZE))
+        IOStreamx.closeQuietly(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890"), IOStreamx.DEFAULT_BUFFER_SIZE))
+        IOStreamx.closeQuietly(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890"), Charx.UTF_8))
+        IOStreamx.closeQuietly(IOStreamx.bufferedReader(IOStreamx.byteInputStream("1234567890")))
     }
 
     @Test
@@ -137,19 +137,19 @@ class IOStreamxTest {
 
     @Test
     fun testOutputStream() {
-        IOStreamx.safeClose(IOStreamx.writer(ByteArrayOutputStream(), Charx.UTF_8))
-        IOStreamx.safeClose(IOStreamx.writer(ByteArrayOutputStream()))
+        IOStreamx.closeQuietly(IOStreamx.writer(ByteArrayOutputStream(), Charx.UTF_8))
+        IOStreamx.closeQuietly(IOStreamx.writer(ByteArrayOutputStream()))
 
-        IOStreamx.safeClose(IOStreamx.buffered(ByteArrayOutputStream(), 1024 * 4))
-        IOStreamx.safeClose(IOStreamx.buffered(ByteArrayOutputStream()))
+        IOStreamx.closeQuietly(IOStreamx.buffered(ByteArrayOutputStream(), 1024 * 4))
+        IOStreamx.closeQuietly(IOStreamx.buffered(ByteArrayOutputStream()))
 
-        IOStreamx.safeClose(IOStreamx.buffered(IOStreamx.writer(ByteArrayOutputStream()), 1024 * 4))
-        IOStreamx.safeClose(IOStreamx.buffered(IOStreamx.writer(ByteArrayOutputStream())))
+        IOStreamx.closeQuietly(IOStreamx.buffered(IOStreamx.writer(ByteArrayOutputStream()), 1024 * 4))
+        IOStreamx.closeQuietly(IOStreamx.buffered(IOStreamx.writer(ByteArrayOutputStream())))
 
-        IOStreamx.safeClose(IOStreamx.bufferedWriter(ByteArrayOutputStream(), Charx.UTF_8, 1024 * 4))
-        IOStreamx.safeClose(IOStreamx.bufferedWriter(ByteArrayOutputStream(), Charx.UTF_8))
-        IOStreamx.safeClose(IOStreamx.bufferedWriter(ByteArrayOutputStream(), 1024 * 4))
-        IOStreamx.safeClose(IOStreamx.bufferedWriter(ByteArrayOutputStream()))
+        IOStreamx.closeQuietly(IOStreamx.bufferedWriter(ByteArrayOutputStream(), Charx.UTF_8, 1024 * 4))
+        IOStreamx.closeQuietly(IOStreamx.bufferedWriter(ByteArrayOutputStream(), Charx.UTF_8))
+        IOStreamx.closeQuietly(IOStreamx.bufferedWriter(ByteArrayOutputStream(), 1024 * 4))
+        IOStreamx.closeQuietly(IOStreamx.bufferedWriter(ByteArrayOutputStream()))
     }
 
     @Test
@@ -159,8 +159,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(inputStream, outputStream, 1024 * 4) {}
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -168,8 +168,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(inputStream, outputStream, 1024 * 4)
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -177,8 +177,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(inputStream, outputStream) {}
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -186,8 +186,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(inputStream, outputStream)
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -195,8 +195,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(IOStreamx.reader(inputStream), IOStreamx.writer(outputStream), 1024 * 4) {}
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -204,8 +204,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(IOStreamx.reader(inputStream), IOStreamx.writer(outputStream), 1024 * 4)
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -213,8 +213,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(IOStreamx.reader(inputStream), IOStreamx.writer(outputStream)) {}
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
 
         inputStream = IOStreamx.byteInputStream("1234567890")
@@ -222,8 +222,8 @@ class IOStreamxTest {
         try {
             IOStreamx.copyTo(IOStreamx.reader(inputStream), IOStreamx.writer(outputStream))
         } finally {
-            IOStreamx.safeClose(inputStream)
-            IOStreamx.safeClose(outputStream)
+            IOStreamx.closeQuietly(inputStream)
+            IOStreamx.closeQuietly(outputStream)
         }
     }
 }

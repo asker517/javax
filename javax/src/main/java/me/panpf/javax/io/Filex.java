@@ -654,8 +654,8 @@ public class Filex {
                 outputStream = outputStream(target);
                 IOStreamx.copyTo(inputStream, outputStream, bufferSize);
             } finally {
-                IOStreamx.safeClose(inputStream);
-                IOStreamx.safeClose(outputStream);
+                IOStreamx.closeQuietly(inputStream);
+                IOStreamx.closeQuietly(outputStream);
             }
         }
 
@@ -1604,7 +1604,7 @@ public class Filex {
                 offset += read;
             }
         } finally {
-            IOStreamx.safeClose(input);
+            IOStreamx.closeQuietly(input);
         }
         return remaining == 0 ? result : Arrays.copyOf(result, offset);
     }
@@ -1684,7 +1684,7 @@ public class Filex {
         try {
             result = block.transform(IOStreamx.lineSequence(bufferedReader));
         } finally {
-            IOStreamx.safeClose(bufferedReader);
+            IOStreamx.closeQuietly(bufferedReader);
         }
         return result;
     }
@@ -1723,7 +1723,7 @@ public class Filex {
                 }
             } while (true);
         } finally {
-            IOStreamx.safeClose(input);
+            IOStreamx.closeQuietly(input);
         }
     }
 
@@ -1880,7 +1880,7 @@ public class Filex {
         try {
             outputStream.write(array);
         } finally {
-            IOStreamx.safeClose(outputStream);
+            IOStreamx.closeQuietly(outputStream);
         }
     }
 
@@ -1894,7 +1894,7 @@ public class Filex {
         try {
             outputStream.write(array);
         } finally {
-            IOStreamx.safeClose(outputStream);
+            IOStreamx.closeQuietly(outputStream);
         }
     }
 

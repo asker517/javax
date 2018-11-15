@@ -18,7 +18,7 @@ package me.panpf.javaxkt.test.io
 
 import me.panpf.javax.io.CopyListener
 import me.panpf.javaxkt.io.copyTo
-import me.panpf.javaxkt.io.safeClose
+import me.panpf.javaxkt.io.closeQuietly
 import org.junit.Test
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
@@ -27,21 +27,21 @@ class IOStreamxTest {
 
     @Test
     fun testSafeClose() {
-        ByteArrayInputStream("1234567890".toByteArray()).safeClose()
+        ByteArrayInputStream("1234567890".toByteArray()).closeQuietly()
         object : ByteArrayInputStream("1234567890".toByteArray()) {
             override fun close() {
                 throw RuntimeException("test")
             }
-        }.safeClose()
+        }.closeQuietly()
 
-        ByteArrayOutputStream().safeClose()
+        ByteArrayOutputStream().closeQuietly()
         object : ByteArrayOutputStream() {
             override fun close() {
                 throw RuntimeException("test")
             }
-        }.safeClose()
+        }.closeQuietly()
 
-        null.safeClose()
+        null.closeQuietly()
     }
 
     @Test
@@ -51,8 +51,8 @@ class IOStreamxTest {
         try {
             inputStream.copyTo(outputStream, 1024 * 4, CopyListener { })
         } finally {
-            inputStream.safeClose()
-            outputStream.safeClose()
+            inputStream.closeQuietly()
+            outputStream.closeQuietly()
         }
 
         inputStream = "1234567890".byteInputStream()
@@ -60,8 +60,8 @@ class IOStreamxTest {
         try {
             inputStream.copyTo(outputStream, CopyListener { })
         } finally {
-            inputStream.safeClose()
-            outputStream.safeClose()
+            inputStream.closeQuietly()
+            outputStream.closeQuietly()
         }
 
         inputStream = "1234567890".byteInputStream()
@@ -69,8 +69,8 @@ class IOStreamxTest {
         try {
             inputStream.reader().copyTo(outputStream.writer(), 1024 * 4, CopyListener { })
         } finally {
-            inputStream.safeClose()
-            outputStream.safeClose()
+            inputStream.closeQuietly()
+            outputStream.closeQuietly()
         }
 
         inputStream = "1234567890".byteInputStream()
@@ -78,8 +78,8 @@ class IOStreamxTest {
         try {
             inputStream.reader().copyTo(outputStream.writer(), CopyListener { })
         } finally {
-            inputStream.safeClose()
-            outputStream.safeClose()
+            inputStream.closeQuietly()
+            outputStream.closeQuietly()
         }
     }
 }
