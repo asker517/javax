@@ -1,21 +1,30 @@
-## v...
+## v0.9.0
 
+Removed:
+* :fire: Zipx remove compressDirTo, compressDir method
+* :fire: Rangex remove rangeTo(float, float, step), until(float..), downTo(float..), downUntilTo(float..) method
+* :fire: Rangex remove rangeTo(double, double, step), until(double..), downTo(double..), downUntilTo(double..) method
+* :fire: Rangex year\*, month\*, etc. remove long and String overload methods
+* :fire: Datex year\*, month\*, etc. remove long and String overload methods
+
+Rename:
+* :fire: Formatx totalTimeShort rename to shortTotalTime, durationShort rename to shortDuration
+* :fire: IOStreamx safeClose rename to closeQuietly
+* :fire: IOStreamx rename to Streamx
+
+Behavior change:
+* :fire: The Zipx getDecompressDstDir method now returns `zipSourceFile.getParentFile()`
+
+Change package name:
+* :fire: Arrayx, Arrayx2, Mapx and related class moved to collections package
+* :fire: Rangex moved and related class to collections ranges
+
+Add:
 * :sparkles: Filex adds getAllExtension, getNameWithoutAllExtension, createFileTree, compareFilePath, existOrAddNumber method
 * :sparkles: Filex adds FilePredicate, DirectoryPredicate, FileComparator, FilePathComparator method
 * :sparkles: Zipx adds compressChildFileTo, compressChildFile, listEntry, listEntryName, size, ZipEntryNameTransformer
-* :fire: Zipx removed compressDirTo, compressDir method
-* :fire: The Zipx getDecompressDstDir method now returns `zipSourceFile.getParentFile()`
-* :fire: Formatx totalTimeShort rename to shortTotalTime, durationShort rename to shortDuration
 * :sparkles: Rangex adds coerceIn method
-* :fire: Rangex removed rangeTo(float, float, step), until(float..), downTo(float..), downUntilTo(float..) method
-* :fire: Rangex removed rangeTo(double, double, step), until(double..), downTo(double..), downUntilTo(double..) method
-* :fire: Arrayx, Arrayx2, Mapx and related class moved to collections package
-* :fire: Rangex moved and related class to collections ranges
-* :fire: Rangex year\*, month\*, etc. remove long and String overload methods
-* :fire: Datex year\*, month\*, etc. remove long and String overload methods
-* :fire: IOStreamx safeClose rename to closeQuietly
 * :sparkles: IOStreamx adds readBytesClose, readBytesCloseQuietly, readTextClose, readTextCloseQuietly method
-* :fire: IOStreamx rename to Streamx
 
 Perfect test:
 * :white_check_mark: Perfect Zipx testing
