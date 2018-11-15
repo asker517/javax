@@ -16,11 +16,11 @@
 
 package me.panpf.javax.io;
 
+import me.panpf.javax.collections.Sequence;
+import me.panpf.javax.collections.Sequencex;
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.util.Action;
-import me.panpf.javax.collections.Sequence;
-import me.panpf.javax.collections.Sequencex;
 import me.panpf.javax.util.Transformer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -76,6 +76,146 @@ public class IOStreamx {
                 e.printStackTrace();
             }
         }
+    }
+
+
+    /**
+     * Reads this stream completely into a byte array and Automatically close stream.
+     */
+    @NotNull
+    public static byte[] readBytesClose(@NotNull InputStream inputStream, int estimatedSize) throws IOException {
+        try {
+            return readBytes(inputStream, estimatedSize);
+        } finally {
+            inputStream.close();
+        }
+    }
+
+    /**
+     * Reads this stream completely into a byte array and Automatically close stream.
+     */
+    @NotNull
+    public static byte[] readBytesCloseQuietly(@NotNull InputStream inputStream, int estimatedSize) throws IOException {
+        try {
+            return readBytes(inputStream, estimatedSize);
+        } finally {
+            closeQuietly(inputStream);
+        }
+    }
+
+    /**
+     * Reads this stream completely into a byte array and Automatically close stream.
+     */
+    @NotNull
+    public static byte[] readBytesClose(@NotNull InputStream inputStream) throws IOException {
+        try {
+            return readBytes(inputStream);
+        } finally {
+            inputStream.close();
+        }
+    }
+
+    /**
+     * Reads this stream completely into a byte array and Automatically close stream.
+     */
+    @NotNull
+    public static byte[] readBytesCloseQuietly(@NotNull InputStream inputStream) throws IOException {
+        try {
+            return readBytes(inputStream);
+        } finally {
+            closeQuietly(inputStream);
+        }
+    }
+
+
+    /**
+     * Reads this reader completely as a String and Automatically close stream.
+     *
+     * @return the string with corresponding file content.
+     */
+    @NotNull
+    public static String readTextClose(@NotNull Reader reader) throws IOException {
+        try {
+            return readText(reader);
+        } finally {
+            reader.close();
+        }
+    }
+
+    /**
+     * Reads this reader completely as a String and Automatically close stream.
+     *
+     * @return the string with corresponding file content.
+     */
+    @NotNull
+    public static String readTextCloseQuietly(@NotNull Reader reader) throws IOException {
+        try {
+            return readText(reader);
+        } finally {
+            closeQuietly(reader);
+        }
+    }
+
+
+    /**
+     * Copies this stream to the given output stream, returning the number of bytes copied
+     * <p>
+     * **Note** It is the caller's responsibility to close both of these resources.
+     */
+    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, int bufferSize, @Nullable CopyListener listener) throws IOException {
+        long bytesCopied = 0;
+        byte[] buffer = new byte[bufferSize];
+        int bytes = inputStream.read(buffer);
+        while (bytes >= 0) {
+            out.write(buffer, 0, bytes);
+            bytesCopied += bytes;
+            if (listener != null) listener.onUpdateProgress(bytesCopied);
+            bytes = inputStream.read(buffer);
+        }
+        return bytesCopied;
+    }
+
+    /**
+     * Copies this stream to the given output stream, returning the number of bytes copied
+     * <p>
+     * **Note** It is the caller's responsibility to close both of these resources.
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, @Nullable CopyListener listener) throws IOException {
+        return copyTo(inputStream, out, DEFAULT_BUFFER_SIZE, listener);
+    }
+
+    /**
+     * Copies this reader to the given [out] writer, returning the number of characters copied.
+     * **Note** it is the caller's responsibility to close both of these resources.
+     *
+     * @param out        writer to write to.
+     * @param bufferSize size of character buffer to use in process.
+     * @return number of characters copied.
+     */
+    public static long copyTo(@NotNull Reader reader, @NotNull Writer out, int bufferSize, @Nullable CopyListener listener) throws IOException {
+        long charsCopied = 0;
+        char[] buffer = new char[bufferSize];
+        int chars = reader.read(buffer);
+        while (chars >= 0) {
+            out.write(buffer, 0, chars);
+            charsCopied += chars;
+            if (listener != null) listener.onUpdateProgress(charsCopied);
+            chars = reader.read(buffer);
+        }
+        return charsCopied;
+    }
+
+    /**
+     * Copies this reader to the given [out] writer, returning the number of characters copied.
+     * **Note** it is the caller's responsibility to close both of these resources.
+     *
+     * @param out writer to write to.
+     * @return number of characters copied.
+     */
+    @SuppressWarnings("UnusedReturnValue")
+    public static long copyTo(@NotNull Reader reader, @NotNull Writer out, @Nullable CopyListener listener) throws IOException {
+        return copyTo(reader, out, DEFAULT_BUFFER_SIZE, listener);
     }
 
 
@@ -481,36 +621,8 @@ public class IOStreamx {
      * <p>
      * **Note** It is the caller's responsibility to close both of these resources.
      */
-    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, int bufferSize, @Nullable CopyListener listener) throws IOException {
-        long bytesCopied = 0;
-        byte[] buffer = new byte[bufferSize];
-        int bytes = inputStream.read(buffer);
-        while (bytes >= 0) {
-            out.write(buffer, 0, bytes);
-            bytesCopied += bytes;
-            if (listener != null) listener.onUpdateProgress(bytesCopied);
-            bytes = inputStream.read(buffer);
-        }
-        return bytesCopied;
-    }
-
-    /**
-     * Copies this stream to the given output stream, returning the number of bytes copied
-     * <p>
-     * **Note** It is the caller's responsibility to close both of these resources.
-     */
     public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, int bufferSize) throws IOException {
         return copyTo(inputStream, out, bufferSize, null);
-    }
-
-    /**
-     * Copies this stream to the given output stream, returning the number of bytes copied
-     * <p>
-     * **Note** It is the caller's responsibility to close both of these resources.
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    public static long copyTo(@NotNull InputStream inputStream, @NotNull OutputStream out, @Nullable CopyListener listener) throws IOException {
-        return copyTo(inputStream, out, DEFAULT_BUFFER_SIZE, listener);
     }
 
     /**
@@ -531,41 +643,8 @@ public class IOStreamx {
      * @param bufferSize size of character buffer to use in process.
      * @return number of characters copied.
      */
-    public static long copyTo(@NotNull Reader reader, @NotNull Writer out, int bufferSize, @Nullable CopyListener listener) throws IOException {
-        long charsCopied = 0;
-        char[] buffer = new char[bufferSize];
-        int chars = reader.read(buffer);
-        while (chars >= 0) {
-            out.write(buffer, 0, chars);
-            charsCopied += chars;
-            if (listener != null) listener.onUpdateProgress(charsCopied);
-            chars = reader.read(buffer);
-        }
-        return charsCopied;
-    }
-
-    /**
-     * Copies this reader to the given [out] writer, returning the number of characters copied.
-     * **Note** it is the caller's responsibility to close both of these resources.
-     *
-     * @param out        writer to write to.
-     * @param bufferSize size of character buffer to use in process.
-     * @return number of characters copied.
-     */
     public static long copyTo(@NotNull Reader reader, @NotNull Writer out, int bufferSize) throws IOException {
         return copyTo(reader, out, bufferSize, null);
-    }
-
-    /**
-     * Copies this reader to the given [out] writer, returning the number of characters copied.
-     * **Note** it is the caller's responsibility to close both of these resources.
-     *
-     * @param out writer to write to.
-     * @return number of characters copied.
-     */
-    @SuppressWarnings("UnusedReturnValue")
-    public static long copyTo(@NotNull Reader reader, @NotNull Writer out, @Nullable CopyListener listener) throws IOException {
-        return copyTo(reader, out, DEFAULT_BUFFER_SIZE, listener);
     }
 
     /**

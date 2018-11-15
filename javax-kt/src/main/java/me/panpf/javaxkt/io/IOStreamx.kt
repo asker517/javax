@@ -35,6 +35,48 @@ inline fun Closeable?.closeQuietly() = IOStreamx.closeQuietly(this)
 
 
 /**
+ * Reads this stream completely into a byte array and Automatically close stream.
+ */
+@Throws(IOException::class)
+inline fun InputStream.readBytesClose(estimatedSize: Int): ByteArray = IOStreamx.readBytesClose(this, estimatedSize)
+
+/**
+ * Reads this stream completely into a byte array and Automatically close stream.
+ */
+@Throws(IOException::class)
+inline fun InputStream.readBytesCloseQuietly(estimatedSize: Int): ByteArray = IOStreamx.readBytesCloseQuietly(this, estimatedSize)
+
+/**
+ * Reads this stream completely into a byte array and Automatically close stream.
+ */
+@Throws(IOException::class)
+inline fun InputStream.readBytesClose(): ByteArray = IOStreamx.readBytesClose(this)
+
+/**
+ * Reads this stream completely into a byte array and Automatically close stream.
+ */
+@Throws(IOException::class)
+inline fun InputStream.readBytesCloseQuietly(): ByteArray = IOStreamx.readBytesCloseQuietly(this)
+
+
+/**
+ * Reads this reader completely as a String and Automatically close stream.
+ *
+ * @return the string with corresponding file content.
+ */
+@Throws(IOException::class)
+inline fun Reader.readTextClose(): String = IOStreamx.readTextClose(this)
+
+/**
+ * Reads this reader completely as a String and Automatically close stream.
+ *
+ * @return the string with corresponding file content.
+ */
+@Throws(IOException::class)
+inline fun Reader.readTextCloseQuietly(): String = IOStreamx.readTextCloseQuietly(this)
+
+
+/**
  * Copies this stream to the given output stream, returning the number of bytes copied
  *
  * **Note** It is the caller's responsibility to close both of these resources.

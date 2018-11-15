@@ -50,6 +50,24 @@ class IOStreamxTest {
     }
 
     @Test
+    fun testReadClose() {
+        val file = File("/tmp/testReadClose.txt")
+        val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
+        Filex.writeText(file, content)
+        try {
+            Assert.assertEquals(String(IOStreamx.readBytesClose(Filex.inputStream(file), IOStreamx.DEFAULT_BUFFER_SIZE)), content)
+            Assert.assertEquals(String(IOStreamx.readBytesClose(Filex.inputStream(file))), content)
+            Assert.assertEquals(IOStreamx.readTextClose(Filex.reader(file)), content)
+
+            Assert.assertEquals(String(IOStreamx.readBytesCloseQuietly(Filex.inputStream(file), IOStreamx.DEFAULT_BUFFER_SIZE)), content)
+            Assert.assertEquals(String(IOStreamx.readBytesCloseQuietly(Filex.inputStream(file))), content)
+            Assert.assertEquals(IOStreamx.readTextCloseQuietly(Filex.reader(file)), content)
+        } finally {
+            Filex.deleteRecursively(file)
+        }
+    }
+
+    @Test
     fun testInputStream() {
         IOStreamx.closeQuietly(IOStreamx.inputStream("1234567890".toByteArray()))
         IOStreamx.closeQuietly(IOStreamx.inputStream("1234567890".toByteArray(), 0, 5))
@@ -78,9 +96,9 @@ class IOStreamxTest {
         val content = "abcdefg\nhijklmn\nopqrst\nuvwxyz"
         Filex.writeText(file, content)
         try {
-            Assert.assertEquals(String(IOStreamx.readBytes(Filex.inputStream(file), IOStreamx.DEFAULT_BUFFER_SIZE)), content)
-            Assert.assertEquals(String(IOStreamx.readBytes(Filex.inputStream(file))), content)
-            Assert.assertEquals(IOStreamx.readText(Filex.reader(file)), content)
+            Assert.assertEquals(String(Filex.inputStream(file).use { IOStreamx.readBytes(it, IOStreamx.DEFAULT_BUFFER_SIZE) }), content)
+            Assert.assertEquals(String(Filex.inputStream(file).use { IOStreamx.readBytes(it) }), content)
+            Assert.assertEquals(Filex.reader(file).use { IOStreamx.readText(it) }, content)
 
             val resultBytes = IOStreamx.readBytes(URL("http://pv.sohu.com/cityjson"))
             Assert.assertTrue(Regexx.find(Regexx.IPV4, String(resultBytes)))

@@ -93,7 +93,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * existOrAddNumber
 * IOStream: [IOStreamx.java] ([Test][IOStreamxTest.java]) | [IOStreamx.kt] ([Test][IOStreamxTest.kt])
     * closeQuietly, byteInputStream, inputStream, reader, writer, buffered, bufferedReader, bufferedWriter,
-    * readBytes, readText, copyTo, lineSequence, useLines, forEachLine, readLines,
+    * readBytes, readBytesClose, readBytesCloseQuietly, readText, readTextClose, readTextCloseQuietly,
+    * copyTo, lineSequence, useLines, forEachLine, readLines,
 
 ### lang
 * Annotation: [Annotationx.java] ([Test][AnnotationxTest.java]) | [Annotationx.kt] ([Test][AnnotationxTest.kt])
