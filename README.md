@@ -158,7 +158,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Regex: [Regexx.java] ([Test][RegexxTest.java]) | [Regexx.kt] ([Test][RegexxTest.kt])
     * matches, find, lookingAt, getFirst, getAll, firstGroup, allGroup, replaceFirst, replaceAll
     * IPV4, IPV6, MAC_ADDRESS, CHINESE, CHINESE_SYMBOL, BLANK, EMAIL, URI, FLOAT_NUMBER, INTEGER
-* Zip: [Zipx.java] | [Zipx.kt]
+* Zip: [Zipx.java] ([Test][ZipxTest.java]) | [Zipx.kt] ([Test][ZipxTest.kt])
     * compressFilesTo, compressFilesTo, compressFileTo, compressFile, compressChildFileTo, compressChildFile,
     * decompressTo, decompress, getCompressDstFile, getDecompressDstDir, getTrueSize, listEntry, listEntryName,
     * size, ZipEntryNameTransformer
