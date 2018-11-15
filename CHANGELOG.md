@@ -31,6 +31,7 @@ Perfect test:
 * :white_check_mark: Perfect Formatx testing
 * :white_check_mark: Perfect Rangex testing
 * :white_check_mark: Perfect Datex testing
+* :white_check_mark: Perfect Keyx testing
 
 
 ## v0.8.5

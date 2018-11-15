@@ -72,7 +72,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Des: [Desx.java] ([Test][DesxTest.java]) | [Desx.kt] ([Test][DesxTest.kt])
     * createKeyByPassword, encrypt, encryptToBase64,
     * decrypt, decryptFromBase64, decryptToString, decryptToStringFromBase64,
-* Key: [Keyx.java] ([Test][KeyTest.java]) | [Keyx.kt] ([Test][KeyxTest.kt])
+* Key: [Keyx.java] ([Test][KeyxTest.java]) | [Keyx.kt] ([Test][KeyxTest.kt])
     * toBase64, toBytes
 * Rsa: [Rsax.java] ([Test][RsaxTest.java]) | [Rsax.kt] ([Test][RsaxTest.kt])
     * createKey, pubKeyFromBase64, priKeyFromBase64, sign, signToBase64, verify, verifyFromBase64,
