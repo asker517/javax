@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("PrivatePropertyName")
+
 package me.panpf.javaxkt.test.lang
 
 import me.panpf.javaxkt.lang.*
@@ -31,10 +33,15 @@ class StringxTest {
     private val WRAP = "\n"
     private val EMPTY = ""
     private val YES = "yes"
+    private val YES_CHAR_SEQUENCE: CharSequence = "*%￥#@"
     private val DIGIT = "8"
+    private val DIGIT_CHAR_SEQUENCE: CharSequence = "8"
     private val LETTER = "a飞"
+    private val LETTER_CHAR_SEQUENCE: CharSequence = "a飞"
     private val CHINESE = "飞"
+    private val CHINESE_CHAR_SEQUENCE: CharSequence = "飞"
     private val LETTER_OR_DIGIT = "a飞8"
+    private val LETTER_OR_DIGIT_CHAR_SEQUENCE: CharSequence = "a飞8"
     private val SYMBOL = "*%￥#@"
 
     @Test
@@ -51,6 +58,7 @@ class StringxTest {
 
         assertEquals(EMPTY.isNotSafeOr("default"), "default")
         assertEquals(YES.isNotSafeOr("default"), YES)
+        assertEquals(YES_CHAR_SEQUENCE.isNotSafeOr("default"), YES_CHAR_SEQUENCE)
     }
 
     @Test
@@ -85,11 +93,15 @@ class StringxTest {
 
         assertEquals(BLANK.isBlankOr("default"), "default")
         assertEquals(YES.isBlankOr("default"), YES)
+        assertEquals(YES_CHAR_SEQUENCE.isBlankOr("default"), YES_CHAR_SEQUENCE)
 
 
         assertTrue(null.isNullOrBlank())
+        @Suppress("UselessCallOnNotNull")
         assertTrue(BLANK.isNullOrBlank())
+        @Suppress("UselessCallOnNotNull")
         assertTrue(EMPTY.isNullOrBlank())
+        @Suppress("UselessCallOnNotNull")
         assertFalse(YES.isNullOrBlank())
 
         assertTrue(YES.isNotNullOrBlank())
@@ -100,6 +112,7 @@ class StringxTest {
         assertEquals(BLANK.isNullOrBlankOr("default"), "default")
         assertEquals(null.isNullOrBlankOr("default"), "default")
         assertEquals(YES.isNullOrBlankOr("default"), YES)
+        assertEquals(YES_CHAR_SEQUENCE.isNullOrBlankOr("default"), YES_CHAR_SEQUENCE)
     }
 
     @Test
@@ -116,10 +129,13 @@ class StringxTest {
 
         assertEquals(EMPTY.isEmptyOr("default"), "default")
         assertEquals(YES.isEmptyOr("default"), YES)
+        assertEquals(YES_CHAR_SEQUENCE.isEmptyOr("default"), YES_CHAR_SEQUENCE)
 
 
         assertTrue(null.isNullOrEmpty())
+        @Suppress("UselessCallOnNotNull")
         assertTrue(EMPTY.isNullOrEmpty())
+        @Suppress("UselessCallOnNotNull")
         assertFalse(YES.isNullOrEmpty())
 
         assertTrue(YES.isNotNullOrEmpty())
@@ -129,6 +145,7 @@ class StringxTest {
         assertEquals(EMPTY.isNullOrEmptyOr("default"), "default")
         assertEquals(null.isNullOrEmptyOr("default"), "default")
         assertEquals(YES.isNullOrEmptyOr("default"), YES)
+        assertEquals(YES_CHAR_SEQUENCE.isNullOrEmptyOr("default"), YES_CHAR_SEQUENCE)
     }
 
     @Test
@@ -150,6 +167,7 @@ class StringxTest {
         assertEquals(LETTER.isNotChineseOr("default"), "default")
         assertEquals(null.isNotChineseOr("default"), "default")
         assertEquals(CHINESE.isNotChineseOr("default"), CHINESE)
+        assertEquals(CHINESE_CHAR_SEQUENCE.isNotChineseOr("default"), CHINESE_CHAR_SEQUENCE)
     }
 
     @Test
@@ -171,6 +189,7 @@ class StringxTest {
         assertEquals(LETTER.isNotDigitOr("3"), "3")
         assertEquals(null.isNotDigitOr("3"), "3")
         assertEquals(DIGIT.isNotDigitOr("3"), DIGIT)
+        assertEquals(DIGIT_CHAR_SEQUENCE.isNotDigitOr("3"), DIGIT_CHAR_SEQUENCE)
     }
 
     @Test
@@ -190,6 +209,7 @@ class StringxTest {
         assertEquals(DIGIT.isNotLetterOr("default"), "default")
         assertEquals(null.isNotLetterOr("default"), "default")
         assertEquals(LETTER.isNotLetterOr("default"), LETTER)
+        assertEquals(LETTER_CHAR_SEQUENCE.isNotLetterOr("default"), LETTER_CHAR_SEQUENCE)
     }
 
     @Test
@@ -209,6 +229,7 @@ class StringxTest {
         assertEquals(EMPTY.isNotLetterOrDigitOr("default"), "default")
         assertEquals(null.isNotLetterOrDigitOr("default"), "default")
         assertEquals(LETTER_OR_DIGIT.isNotLetterOrDigitOr("default"), LETTER_OR_DIGIT)
+        assertEquals(LETTER_OR_DIGIT_CHAR_SEQUENCE.isNotLetterOrDigitOr("default"), LETTER_OR_DIGIT_CHAR_SEQUENCE)
     }
 
     @Test
@@ -274,5 +295,19 @@ class StringxTest {
         val source = " 费劲啊是否将as\n\n\t523\t\tcxbv\r\r而乏味 贵公司   "
         Assert.assertEquals(source.filterBlank(), "费劲啊是否将as523cxbv而乏味贵公司")
         Assert.assertEquals(StringBuilder(source).filterBlank().toString(), "费劲啊是否将as523cxbv而乏味贵公司")
+    }
+
+    @Test
+    fun testRemoveChar() {
+        Assert.assertEquals("012456789", "0123456789".removeChar('3'))
+        Assert.assertEquals("123456789", "0123456789".removeChar('0'))
+        Assert.assertEquals("012345678", "0123456789".removeChar('9'))
+
+        Assert.assertEquals("021456789", "0121456789".removeFirstChar('1'))
+        Assert.assertEquals("012456789", "0121456789".removeLastChar('1'))
+
+        Assert.assertEquals("012456789", "0123456789".removeIndex(3))
+        Assert.assertEquals("123456789", "0123456789".removeIndex(0))
+        Assert.assertEquals("012345678", "0123456789".removeIndex(9))
     }
 }

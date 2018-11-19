@@ -35,10 +35,15 @@ public class StringxTest {
     private static final String WRAP = "\n";
     private static final String EMPTY = "";
     private static final String YES = "yes";
+    private static final CharSequence YES_CHAR_SEQUENCE = "yes";
     private static final String DIGIT = "8";
+    private static final CharSequence DIGIT_CHAR_SEQUENCE = "8";
     private static final String LETTER = "a飞";
+    private static final CharSequence LETTER_CHAR_SEQUENCE = "a飞";
     private static final String CHINESE = "飞";
+    private static final CharSequence CHINESE_CHAR_SEQUENCE = "飞";
     private static final String LETTER_OR_DIGIT = "a飞8";
+    private static final CharSequence LETTER_OR_DIGIT_CHAR_SEQUENCE = "a飞8";
     private static final String SYMBOL = "*%￥#@";
 
     @Test
@@ -55,6 +60,7 @@ public class StringxTest {
 
         assertEquals(Stringx.isNotSafeOr(EMPTY, "default"), "default");
         assertEquals(Stringx.isNotSafeOr(YES, "default"), YES);
+        assertEquals(Stringx.isNotSafeOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE);
     }
 
     @Test
@@ -89,6 +95,7 @@ public class StringxTest {
 
         assertEquals(Stringx.isBlankOr(BLANK, "default"), "default");
         assertEquals(Stringx.isBlankOr(YES, "default"), YES);
+        assertEquals(Stringx.isBlankOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE);
 
 
         assertTrue(Stringx.isNullOrBlank(null));
@@ -104,6 +111,7 @@ public class StringxTest {
         assertEquals(Stringx.isNullOrBlankOr(BLANK, "default"), "default");
         assertEquals(Stringx.isNullOrBlankOr(null, "default"), "default");
         assertEquals(Stringx.isNullOrBlankOr(YES, "default"), YES);
+        assertEquals(Stringx.isNullOrBlankOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE);
     }
 
     @Test
@@ -120,6 +128,7 @@ public class StringxTest {
 
         assertEquals(Stringx.isEmptyOr(EMPTY, "default"), "default");
         assertEquals(Stringx.isEmptyOr(YES, "default"), YES);
+        assertEquals(Stringx.isEmptyOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE);
 
 
         assertTrue(Stringx.isNullOrEmpty(null));
@@ -133,6 +142,7 @@ public class StringxTest {
         assertEquals(Stringx.isNullOrEmptyOr(EMPTY, "default"), "default");
         assertEquals(Stringx.isNullOrEmptyOr(null, "default"), "default");
         assertEquals(Stringx.isNullOrEmptyOr(YES, "default"), YES);
+        assertEquals(Stringx.isNullOrEmptyOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE);
     }
 
     @Test
@@ -154,6 +164,7 @@ public class StringxTest {
         assertEquals(Stringx.isNotChineseOr(LETTER, "default"), "default");
         assertEquals(Stringx.isNotChineseOr(null, "default"), "default");
         assertEquals(Stringx.isNotChineseOr(CHINESE, "default"), CHINESE);
+        assertEquals(Stringx.isNotChineseOr(CHINESE_CHAR_SEQUENCE, "default"), CHINESE_CHAR_SEQUENCE);
     }
 
     @Test
@@ -175,6 +186,7 @@ public class StringxTest {
         assertEquals(Stringx.isNotDigitOr(LETTER, "3"), "3");
         assertEquals(Stringx.isNotDigitOr(null, "3"), "3");
         assertEquals(Stringx.isNotDigitOr(DIGIT, "3"), DIGIT);
+        assertEquals(Stringx.isNotDigitOr(DIGIT_CHAR_SEQUENCE, "3"), DIGIT_CHAR_SEQUENCE);
     }
 
     @Test
@@ -194,6 +206,7 @@ public class StringxTest {
         assertEquals(Stringx.isNotLetterOr(DIGIT, "default"), "default");
         assertEquals(Stringx.isNotLetterOr(null, "default"), "default");
         assertEquals(Stringx.isNotLetterOr(LETTER, "default"), LETTER);
+        assertEquals(Stringx.isNotLetterOr(LETTER_CHAR_SEQUENCE, "default"), LETTER_CHAR_SEQUENCE);
     }
 
     @Test
@@ -213,6 +226,7 @@ public class StringxTest {
         assertEquals(Stringx.isNotLetterOrDigitOr(EMPTY, "default"), "default");
         assertEquals(Stringx.isNotLetterOrDigitOr(null, "default"), "default");
         assertEquals(Stringx.isNotLetterOrDigitOr(LETTER_OR_DIGIT, "default"), LETTER_OR_DIGIT);
+        assertEquals(Stringx.isNotLetterOrDigitOr(LETTER_OR_DIGIT_CHAR_SEQUENCE, "default"), LETTER_OR_DIGIT_CHAR_SEQUENCE);
     }
 
     @Test
@@ -249,6 +263,28 @@ public class StringxTest {
         assertFalse(Stringx.containsAll("HAHA", Collectionx.listOf("h", "a")));
         assertTrue(Stringx.containsAll("HAHA", Collectionx.listOf("h", "a"), true));
     }
+
+    @Test
+    public void testRemoveChar() {
+        Assert.assertEquals("012456789", Stringx.removeChar("0123456789", '3'));
+        Assert.assertEquals("123456789", Stringx.removeChar("0123456789", '0'));
+        Assert.assertEquals("012345678", Stringx.removeChar("0123456789", '9'));
+
+        Assert.assertEquals("021456789", Stringx.removeFirstChar("0121456789", '1'));
+        Assert.assertEquals("012456789", Stringx.removeLastChar("0121456789", '1'));
+
+        Assert.assertEquals("012456789", Stringx.removeIndex("0123456789", 3));
+        Assert.assertEquals("123456789", Stringx.removeIndex("0123456789", 0));
+        Assert.assertEquals("012345678", Stringx.removeIndex("0123456789", 9));
+    }
+
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
 
     @Test
     public void testStartsWith() {
@@ -292,14 +328,6 @@ public class StringxTest {
 
         assertEquals(Stringx.blankToNull("JavaBean"), "JavaBean");
         assertNull(Stringx.blankToNull("    "));
-    }
-
-    @Test
-    public void testRemoveChar() {
-        assertEquals(Stringx.removeChar("JavaBean", 'a'), "JvBen");
-        assertEquals(Stringx.removeFirstChar("JavaBean", 'a'), "JvaBean");
-        assertEquals(Stringx.removeLastChar("JavaBean", 'a'), "JavaBen");
-        assertEquals(Stringx.removeIndex("JavaBean", 4), "Javaean");
     }
 
     @Test
