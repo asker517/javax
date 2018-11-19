@@ -361,3 +361,31 @@ inline fun String.removeLastChar(ch: Char): String = Stringx.removeLastChar(this
  * Delete the character at the specified position in the string and return the new string
  */
 inline fun String.removeIndex(removeIndex: Int): String = Stringx.removeIndex(this, removeIndex)
+
+
+/* ******************************************* limit *******************************************/
+
+
+/**
+ * If the length of the character sequences exceeds the specified length, the character sequences is intercepted
+ * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
+ */
+inline fun CharSequence?.limit(length: Int, suffix: String?): CharSequence = Stringx.limit(this, length, suffix)
+
+/**
+ * If the length of the character sequences exceeds the specified length, the character sequences is intercepted
+ * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
+ */
+inline fun CharSequence?.limit(length: Int): CharSequence = Stringx.limit(this, length)
+
+/**
+ * If the length of the string exceeds the specified length, the string is intercepted and the specified suffix
+ * is ​​returned to return the new string, otherwise it return itself.
+ */
+inline fun String?.limit(length: Int, suffix: String?): String = Stringx.limit(this, length, suffix)
+
+/**
+ * If the length of the string exceeds the specified length, the string is intercepted and the specified suffix
+ * is ​​returned to return the new string, otherwise it return itself.
+ */
+inline fun String?.limit(length: Int): String = Stringx.limit(this, length)

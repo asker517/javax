@@ -2,6 +2,7 @@
 
 * :fire: Stringx orContains rename to containsAny and andContains rename to containsAll
 * :bug: Fix Stringx startsWith, endsWith, findAnyOf, indexOf, regionMatchesImpl method throw IndexOutOfBoundsException exception bug
+* :sparkles: Stringx.kt adds limit method
 
 
 

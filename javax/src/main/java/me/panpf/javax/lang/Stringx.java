@@ -613,6 +613,61 @@ public class Stringx {
     }
 
 
+    /* ******************************************* limit *******************************************/
+
+
+    /**
+     * If the length of the character sequences exceeds the specified length, the character sequences is intercepted
+     * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
+     */
+    @NotNull
+    public static CharSequence limit(@Nullable CharSequence charSequence, final int length, @Nullable String suffix) {
+        if (charSequence == null) return "";
+        Premisex.require(length >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return String.format("Desired length %d is less than zero.", length);
+            }
+        });
+        if (count(charSequence) <= length) return charSequence;
+
+        CharSequence limitString = charSequence.subSequence(0, length);
+        if (suffix != null) {
+            return limitString + suffix;
+        } else {
+            return limitString;
+        }
+    }
+
+    /**
+     * If the length of the character sequences exceeds the specified length, the character sequences is intercepted
+     * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
+     */
+    @NotNull
+    public static CharSequence limit(@Nullable CharSequence charSequence, int length) {
+        return limit(charSequence, length, null);
+    }
+
+    /**
+     * If the length of the string exceeds the specified length, the string is intercepted and the specified suffix
+     * is ​​returned to return the new string, otherwise it return itself.
+     */
+    @NotNull
+    public static String limit(@Nullable String string, int length, @Nullable String suffix) {
+        return limit((CharSequence) string, length, suffix).toString();
+    }
+
+    /**
+     * If the length of the string exceeds the specified length, the string is intercepted and the specified suffix
+     * is ​​returned to return the new string, otherwise it return itself.
+     */
+    @NotNull
+    public static String limit(@Nullable String string, int length) {
+        return limit((CharSequence) string, length, null).toString();
+    }
+
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
@@ -990,61 +1045,6 @@ public class Stringx {
     @NotNull
     public static String decapitalize(@Nullable String string) {
         return isNotEmpty(string) && isUpperCase(string.charAt(0)) ? string.substring(0, 1).toLowerCase() + string.substring(1) : orEmpty(string);
-    }
-
-
-    /* ******************************************* limit *******************************************/
-
-
-    /**
-     * If the length of the character sequences exceeds the specified length, the character sequences is intercepted
-     * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
-     */
-    @NotNull
-    public static CharSequence limit(@Nullable CharSequence charSequence, final int length, @Nullable String suffix) {
-        if (charSequence == null) return "";
-        Premisex.require(length >= 0, new LazyValue<String>() {
-            @NotNull
-            @Override
-            public String get() {
-                return String.format("Desired length %d is less than zero.", length);
-            }
-        });
-        if (count(charSequence) <= length) return charSequence;
-
-        CharSequence limitString = charSequence.subSequence(0, length);
-        if (suffix != null) {
-            return limitString + suffix;
-        } else {
-            return limitString;
-        }
-    }
-
-    /**
-     * If the length of the character sequences exceeds the specified length, the character sequences is intercepted
-     * and the specified suffix is ​​returned to return the new character sequences, otherwise it return itself.
-     */
-    @NotNull
-    public static CharSequence limit(@Nullable CharSequence charSequence, int length) {
-        return limit(charSequence, length, null);
-    }
-
-    /**
-     * If the length of the string exceeds the specified length, the string is intercepted and the specified suffix
-     * is ​​returned to return the new string, otherwise it return itself.
-     */
-    @NotNull
-    public static String limit(@Nullable String string, int length, @Nullable String suffix) {
-        return limit((CharSequence) string, length, suffix).toString();
-    }
-
-    /**
-     * If the length of the string exceeds the specified length, the string is intercepted and the specified suffix
-     * is ​​returned to return the new string, otherwise it return itself.
-     */
-    @NotNull
-    public static String limit(@Nullable String string, int length) {
-        return limit((CharSequence) string, length, null).toString();
     }
 
 
