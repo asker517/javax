@@ -114,7 +114,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr
     * isEmpty, isNotEmpty, isEmptyOr, isNullOrEmpty, isNotNullOrEmpty, isNullOrEmptyOr,
     * isDigit, isNotDigit, isNotDigitOr, isLetter, isNotLetter, isNotLetterOr,
-    * isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr, orContains, andContains,
+    * isLetterOrDigit, isNotLetterOrDigit, isNotLetterOrDigitOr, containsAny, containsAll,
     * startsWith, endsWith, equals, orEmpty, orDefault, emptyToNull, blankToNull, remove,
     * capitalize, decapitalize, limit, pad, regionMatches, find, indexOf, substring, subSequence, toByteArray
     * reversed, filter, first, last, getOrElse, getOrNull, iterator, iterable, indices, lastIndex, trim,

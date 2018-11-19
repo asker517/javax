@@ -236,48 +236,48 @@ inline fun CharSequence?.isNotLetterOrDigitOr(defaultValue: CharSequence): CharS
 inline fun String?.isNotLetterOrDigitOr(defaultValue: String): String = Stringx.isNotLetterOrDigitOr(this, defaultValue)
 
 
-/* ******************************************* orContains and andContains *******************************************/
+/* ******************************************* containsAny and containsAll *******************************************/
 
 
 /**
- * Return true if the specified string contains one of the strings in [params]
+ * Return true if the specified string contains any of the strings in [params]
  */
-inline fun String?.orContains(params: Array<String>?, ignoreCase: Boolean): Boolean = Stringx.orContains(this, params, ignoreCase)
+inline fun String?.containsAny(params: Array<String>?, ignoreCase: Boolean): Boolean = Stringx.containsAny(this, params, ignoreCase)
 
 /**
- * Return true if the specified string contains one of the strings in [params]
+ * Return true if the specified string contains any of the strings in [params]
  */
-inline fun String?.orContains(params: Array<String>?): Boolean = Stringx.orContains(this, params)
+inline fun String?.containsAny(params: Array<String>?): Boolean = Stringx.containsAny(this, params)
 
 /**
- * Return true if the specified string contains one of the strings in [params]
+ * Return true if the specified string contains any of the strings in [params]
  */
-inline fun String?.orContains(params: Collection<String>?, ignoreCase: Boolean): Boolean = Stringx.orContains(this, params, ignoreCase)
+inline fun String?.containsAny(params: Collection<String>?, ignoreCase: Boolean): Boolean = Stringx.containsAny(this, params, ignoreCase)
 
 /**
- * Return true if the specified string contains one of the strings in [params]
+ * Return true if the specified string contains any of the strings in [params]
  */
-inline fun String?.orContains(params: Collection<String>?): Boolean = Stringx.orContains(this, params)
-
-/**
- * Return true if the specified string contains all the strings in[params]
- */
-inline fun String?.andContains(params: Array<String>?, ignoreCase: Boolean): Boolean = Stringx.andContains(this, params, ignoreCase)
+inline fun String?.containsAny(params: Collection<String>?): Boolean = Stringx.containsAny(this, params)
 
 /**
  * Return true if the specified string contains all the strings in[params]
  */
-inline fun String?.andContains(params: Array<String>?): Boolean = Stringx.andContains(this, params)
+inline fun String?.containsAll(params: Array<String>?, ignoreCase: Boolean): Boolean = Stringx.containsAll(this, params, ignoreCase)
 
 /**
  * Return true if the specified string contains all the strings in[params]
  */
-inline fun String?.andContains(params: Collection<String>?, ignoreCase: Boolean): Boolean = Stringx.andContains(this, params, ignoreCase)
+inline fun String?.containsAll(params: Array<String>?): Boolean = Stringx.containsAll(this, params)
 
 /**
  * Return true if the specified string contains all the strings in[params]
  */
-inline fun String?.andContains(params: Collection<String>?): Boolean = Stringx.andContains(this, params)
+inline fun String?.containsAll(params: Collection<String>?, ignoreCase: Boolean): Boolean = Stringx.containsAll(this, params, ignoreCase)
+
+/**
+ * Return true if the specified string contains all the strings in[params]
+ */
+inline fun String?.containsAll(params: Collection<String>?): Boolean = Stringx.containsAll(this, params)
 
 
 /* ******************************************* or and to *******************************************/

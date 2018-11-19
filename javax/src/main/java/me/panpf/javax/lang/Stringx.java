@@ -372,71 +372,71 @@ public class Stringx {
     }
 
 
-    /* ******************************************* orContains and andContains *******************************************/
+    /* ******************************************* containsAny and containsAll *******************************************/
 
 
     /**
-     * Return true if the specified string contains one of the strings in [params]
+     * Return true if the specified string contains any of the strings in [params]
      */
-    public static boolean orContains(@Nullable String string, @Nullable String[] params, boolean ignoreCase) {
+    public static boolean containsAny(@Nullable String string, @Nullable String[] params, boolean ignoreCase) {
         if (string == null || params == null || params.length == 0) return false;
         for (String param : params) if (contains(string, param, ignoreCase)) return true;
         return false;
     }
 
     /**
-     * Return true if the specified string contains one of the strings in [params]
+     * Return true if the specified string contains any of the strings in [params]
      */
-    public static boolean orContains(@Nullable String string, @Nullable String[] params) {
-        return orContains(string, params, false);
+    public static boolean containsAny(@Nullable String string, @Nullable String[] params) {
+        return containsAny(string, params, false);
     }
 
     /**
-     * Return true if the specified string contains one of the strings in [params]
+     * Return true if the specified string contains any of the strings in [params]
      */
-    public static boolean orContains(@Nullable String string, @Nullable Collection<String> params, boolean ignoreCase) {
+    public static boolean containsAny(@Nullable String string, @Nullable Collection<String> params, boolean ignoreCase) {
         if (string == null || params == null || params.size() == 0) return false;
         for (String param : params) if (contains(string, param, ignoreCase)) return true;
         return false;
     }
 
     /**
-     * Return true if the specified string contains one of the strings in [params]
+     * Return true if the specified string contains any of the strings in [params]
      */
-    public static boolean orContains(@Nullable String string, @Nullable Collection<String> params) {
-        return orContains(string, params, false);
+    public static boolean containsAny(@Nullable String string, @Nullable Collection<String> params) {
+        return containsAny(string, params, false);
     }
 
     /**
-     * Return true if the specified string contains all the strings in[params]
+     * Return true if the specified string contains all the strings in [params]
      */
-    public static boolean andContains(@Nullable String string, @Nullable String[] params, boolean ignoreCase) {
+    public static boolean containsAll(@Nullable String string, @Nullable String[] params, boolean ignoreCase) {
         if (string == null || params == null || params.length == 0) return false;
         for (String param : params) if (!contains(string, param, ignoreCase)) return false;
         return true;
     }
 
     /**
-     * Return true if the specified string contains all the strings in[params]
+     * Return true if the specified string contains all the strings in [params]
      */
-    public static boolean andContains(@Nullable String string, @Nullable String[] params) {
-        return andContains(string, params, false);
+    public static boolean containsAll(@Nullable String string, @Nullable String[] params) {
+        return containsAll(string, params, false);
     }
 
     /**
-     * Return true if the specified string contains all the strings in[params]
+     * Return true if the specified string contains all the strings in [params]
      */
-    public static boolean andContains(@Nullable String string, @Nullable Collection<String> params, boolean ignoreCase) {
+    public static boolean containsAll(@Nullable String string, @Nullable Collection<String> params, boolean ignoreCase) {
         if (string == null || params == null || params.size() == 0) return false;
         for (String param : params) if (!contains(string, param, ignoreCase)) return false;
         return true;
     }
 
     /**
-     * Return true if the specified string contains all the strings in[params]
+     * Return true if the specified string contains all the strings in [params]
      */
-    public static boolean andContains(@Nullable String string, @Nullable Collection<String> params) {
-        return andContains(string, params, false);
+    public static boolean containsAll(@Nullable String string, @Nullable Collection<String> params) {
+        return containsAll(string, params, false);
     }
 
 

@@ -217,37 +217,37 @@ public class StringxTest {
 
     @Test
     public void testContains() {
-        assertTrue(Stringx.orContains("今天天气晴", new String[]{"哈", "天"}));
-        assertFalse(Stringx.orContains("今天天气晴", new String[]{"哈"}));
-        assertTrue(Stringx.orContains("今天天气晴", Collectionx.listOf("哈", "天")));
-        assertFalse(Stringx.orContains("今天天气晴", Collectionx.listOf("哈")));
-        assertFalse(Stringx.orContains("今天天气晴", (String[]) null));
-        assertFalse(Stringx.orContains(null, (String[]) null));
-        assertFalse(Stringx.orContains("今天天气晴", (Collection<String>) null));
-        assertFalse(Stringx.orContains(null, (Collection<String>) null));
-        assertFalse(Stringx.orContains("今天天气晴", new String[0]));
-        assertFalse(Stringx.orContains("今天天气晴", new LinkedList<String>()));
+        assertTrue(Stringx.containsAny("今天天气晴", new String[]{"哈", "天"}));
+        assertFalse(Stringx.containsAny("今天天气晴", new String[]{"哈"}));
+        assertTrue(Stringx.containsAny("今天天气晴", Collectionx.listOf("哈", "天")));
+        assertFalse(Stringx.containsAny("今天天气晴", Collectionx.listOf("哈")));
+        assertFalse(Stringx.containsAny("今天天气晴", (String[]) null));
+        assertFalse(Stringx.containsAny(null, (String[]) null));
+        assertFalse(Stringx.containsAny("今天天气晴", (Collection<String>) null));
+        assertFalse(Stringx.containsAny(null, (Collection<String>) null));
+        assertFalse(Stringx.containsAny("今天天气晴", new String[0]));
+        assertFalse(Stringx.containsAny("今天天气晴", new LinkedList<String>()));
 
-        assertTrue(Stringx.andContains("今天天气晴", new String[]{"晴", "天"}));
-        assertFalse(Stringx.andContains("今天天气晴", new String[]{"哈", "天"}));
-        assertTrue(Stringx.andContains("今天天气晴", Collectionx.listOf("晴", "天")));
-        assertFalse(Stringx.andContains("今天天气晴", Collectionx.listOf("哈", "天")));
-        assertFalse(Stringx.andContains("今天天气晴", (String[]) null));
-        assertFalse(Stringx.andContains(null, (String[]) null));
-        assertFalse(Stringx.andContains("今天天气晴", (Collection<String>) null));
-        assertFalse(Stringx.andContains(null, (Collection<String>) null));
-        assertFalse(Stringx.andContains("今天天气晴", new String[0]));
-        assertFalse(Stringx.andContains("今天天气晴", new LinkedList<String>()));
+        assertTrue(Stringx.containsAll("今天天气晴", new String[]{"晴", "天"}));
+        assertFalse(Stringx.containsAll("今天天气晴", new String[]{"哈", "天"}));
+        assertTrue(Stringx.containsAll("今天天气晴", Collectionx.listOf("晴", "天")));
+        assertFalse(Stringx.containsAll("今天天气晴", Collectionx.listOf("哈", "天")));
+        assertFalse(Stringx.containsAll("今天天气晴", (String[]) null));
+        assertFalse(Stringx.containsAll(null, (String[]) null));
+        assertFalse(Stringx.containsAll("今天天气晴", (Collection<String>) null));
+        assertFalse(Stringx.containsAll(null, (Collection<String>) null));
+        assertFalse(Stringx.containsAll("今天天气晴", new String[0]));
+        assertFalse(Stringx.containsAll("今天天气晴", new LinkedList<String>()));
 
-        assertFalse(Stringx.orContains("HCHC", new String[]{"h", "a"}));
-        assertTrue(Stringx.orContains("HCHC", new String[]{"h", "a"}, true));
-        assertFalse(Stringx.orContains("HCHC", Collectionx.listOf("h", "a")));
-        assertTrue(Stringx.orContains("HCHC", Collectionx.listOf("h", "a"), true));
+        assertFalse(Stringx.containsAny("HCHC", new String[]{"h", "a"}));
+        assertTrue(Stringx.containsAny("HCHC", new String[]{"h", "a"}, true));
+        assertFalse(Stringx.containsAny("HCHC", Collectionx.listOf("h", "a")));
+        assertTrue(Stringx.containsAny("HCHC", Collectionx.listOf("h", "a"), true));
 
-        assertFalse(Stringx.andContains("HAHA", new String[]{"h", "a"}));
-        assertTrue(Stringx.andContains("HAHA", new String[]{"h", "a"}, true));
-        assertFalse(Stringx.andContains("HAHA", Collectionx.listOf("h", "a")));
-        assertTrue(Stringx.andContains("HAHA", Collectionx.listOf("h", "a"), true));
+        assertFalse(Stringx.containsAll("HAHA", new String[]{"h", "a"}));
+        assertTrue(Stringx.containsAll("HAHA", new String[]{"h", "a"}, true));
+        assertFalse(Stringx.containsAll("HAHA", Collectionx.listOf("h", "a")));
+        assertTrue(Stringx.containsAll("HAHA", Collectionx.listOf("h", "a"), true));
     }
 
     @Test

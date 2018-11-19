@@ -1,3 +1,9 @@
+## v...
+
+* :fire: Stringx orContains rename to containsAny and andContains rename to containsAll
+
+
+
 ## v0.9.0
 
 Removed:

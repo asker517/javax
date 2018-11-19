@@ -79,7 +79,7 @@ public class Netx {
         }
         // fe80::7063:1bff:feb3:2dfc%dummy0 from android
         // fe80:0:0:0:0:0:0:1%lo0 from java on mac
-        if (Stringx.andContains(ipAddress, new String[]{"fe80:", "%"}, true)) {
+        if (Stringx.containsAll(ipAddress, new String[]{"fe80:", "%"}, true)) {
             ipAddress = null;
         }
         return Stringx.isSafe(ipAddress) ? ipAddress : null;
