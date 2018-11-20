@@ -27,7 +27,7 @@ public class Pair<A, B> {
     }
 
     public String toString() {
-        return "Pair[" + this.first + "," + this.second + "]";
+        return "(" + this.first + ", " + this.second + ")";
     }
 
     public boolean equals(Object var1) {

@@ -277,7 +277,7 @@ Please view the [CHANGELOG.md] file
 [NumberxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/NumberxTest.kt
 
 [Stringx.java]: javax/src/main/java/me/panpf/javax/lang/Stringx.java
-[StringxTest.java]: javax/src/test/java/me/panpf/javax/test/lang/StringxTest.java
+[StringxTest.java]: javax/src/test/java/me/panpf/javax/test/lang/StringxTest.kt
 [Stringx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/lang/Stringx.kt
 [StringxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/lang/StringxTest.kt
 

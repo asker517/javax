@@ -310,4 +310,19 @@ class StringxTest {
         Assert.assertEquals("123456789", "0123456789".removeIndex(0))
         Assert.assertEquals("012345678", "0123456789".removeIndex(9))
     }
+
+    @Test
+    fun testLimit() {
+        assertEquals("今天天气晴", "今天天气晴".limit(6))
+        assertEquals("今天天气晴", "今天天气晴".limit(6))
+        assertEquals("今天天气晴", "今天天气晴".limit(6, "..."))
+        assertEquals("今天天气晴朗", "今天天气晴朗，万里无云".limit(6))
+        assertEquals("今天天气晴朗...", "今天天气晴朗，万里无云".limit(6, "..."))
+
+        assertEquals("今天天气晴", ("今天天气晴" as CharSequence).limit(6))
+        assertEquals("今天天气晴", ("今天天气晴" as CharSequence).limit(6))
+        assertEquals("今天天气晴", ("今天天气晴" as CharSequence).limit(6, "..."))
+        assertEquals("今天天气晴朗", ("今天天气晴朗，万里无云" as CharSequence).limit(6))
+        assertEquals("今天天气晴朗...", ("今天天气晴朗，万里无云" as CharSequence).limit(6, "..."))
+    }
 }

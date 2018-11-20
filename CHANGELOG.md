@@ -3,6 +3,9 @@
 * :fire: Stringx orContains rename to containsAny and andContains rename to containsAll
 * :bug: Fix Stringx startsWith, endsWith, findAnyOf, indexOf, regionMatchesImpl method throw IndexOutOfBoundsException exception bug
 * :sparkles: Stringx.kt adds limit method
+* :fire: Stringx indAnyOf rename to findAnyOf
+* :sparkles: Stringx findAnyOf adds overload method
+* :bug: Fix Stringx lastIndexOf method default startIndex is 0, should be length - 1 bug
 
 
 

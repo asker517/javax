@@ -1310,8 +1310,54 @@ public class Stringx {
      * that matches this string at that position.
      */
     @Nullable
-    public static Pair<Integer, String> indAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
+    public static Pair<Integer, String> findAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
         return findAnyOf(charSequence, strings, startIndex, ignoreCase, false);
+    }
+
+    /**
+     * Finds the first occurrence of any of the specified [strings] in this char sequence,
+     * starting from the specified [startIndex] and optionally ignoring the case.
+     *
+     * @param ignoreCase `true` to ignore character case when matching a string. By default `false`.
+     * @return A pair of an index of the first occurrence of matched string from [strings] and the string matched
+     * or `null` if none of [strings] are found.
+     * To avoid ambiguous results when strings in [strings] have characters in common, this method proceeds from
+     * the beginning to the end of this string, and finds at each position the first element in [strings]
+     * that matches this string at that position.
+     */
+    @Nullable
+    public static Pair<Integer, String> findAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, boolean ignoreCase) {
+        return findAnyOf(charSequence, strings, 0, ignoreCase, false);
+    }
+
+    /**
+     * Finds the first occurrence of any of the specified [strings] in this char sequence,
+     * starting from the specified [startIndex] and optionally ignoring the case.
+     *
+     * @return A pair of an index of the first occurrence of matched string from [strings] and the string matched
+     * or `null` if none of [strings] are found.
+     * To avoid ambiguous results when strings in [strings] have characters in common, this method proceeds from
+     * the beginning to the end of this string, and finds at each position the first element in [strings]
+     * that matches this string at that position.
+     */
+    @Nullable
+    public static Pair<Integer, String> findAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, int startIndex) {
+        return findAnyOf(charSequence, strings, startIndex, false, false);
+    }
+
+    /**
+     * Finds the first occurrence of any of the specified [strings] in this char sequence,
+     * starting from the specified [startIndex] and optionally ignoring the case.
+     *
+     * @return A pair of an index of the first occurrence of matched string from [strings] and the string matched
+     * or `null` if none of [strings] are found.
+     * To avoid ambiguous results when strings in [strings] have characters in common, this method proceeds from
+     * the beginning to the end of this string, and finds at each position the first element in [strings]
+     * that matches this string at that position.
+     */
+    @Nullable
+    public static Pair<Integer, String> findAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings) {
+        return findAnyOf(charSequence, strings, 0, false, false);
     }
 
     /**
@@ -1328,6 +1374,50 @@ public class Stringx {
     @Nullable
     public static Pair<Integer, String> findLastAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, boolean ignoreCase) {
         return findAnyOf(charSequence, strings, startIndex, ignoreCase, true);
+    }
+
+    /**
+     * Finds the last occurrence of any of the specified [strings] in this char sequence,
+     * starting from the specified [startIndex] and optionally ignoring the case.
+     *
+     * @param startIndex The index of character to start searching at. The search proceeds backward toward the beginning of the string.
+     * @return A pair of an index of the last occurrence of matched string from [strings] and the string matched or `null` if none of [strings] are found.
+     * To avoid ambiguous results when strings in [strings] have characters in common, this method proceeds from
+     * the end toward the beginning of this string, and finds at each position the first element in [strings]
+     * that matches this string at that position.
+     */
+    @Nullable
+    public static Pair<Integer, String> findLastAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, int startIndex) {
+        return findAnyOf(charSequence, strings, startIndex, false, true);
+    }
+
+    /**
+     * Finds the last occurrence of any of the specified [strings] in this char sequence,
+     * starting from the specified [startIndex] and optionally ignoring the case.
+     *
+     * @param ignoreCase `true` to ignore character case when matching a string. By default `false`.
+     * @return A pair of an index of the last occurrence of matched string from [strings] and the string matched or `null` if none of [strings] are found.
+     * To avoid ambiguous results when strings in [strings] have characters in common, this method proceeds from
+     * the end toward the beginning of this string, and finds at each position the first element in [strings]
+     * that matches this string at that position.
+     */
+    @Nullable
+    public static Pair<Integer, String> findLastAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, boolean ignoreCase) {
+        return findAnyOf(charSequence, strings, count(charSequence) - 1, ignoreCase, true);
+    }
+
+    /**
+     * Finds the last occurrence of any of the specified [strings] in this char sequence,
+     * starting from the specified [startIndex] and optionally ignoring the case.
+     *
+     * @return A pair of an index of the last occurrence of matched string from [strings] and the string matched or `null` if none of [strings] are found.
+     * To avoid ambiguous results when strings in [strings] have characters in common, this method proceeds from
+     * the end toward the beginning of this string, and finds at each position the first element in [strings]
+     * that matches this string at that position.
+     */
+    @Nullable
+    public static Pair<Integer, String> findLastAnyOf(@Nullable CharSequence charSequence, @NotNull Collection<String> strings) {
+        return findAnyOf(charSequence, strings, count(charSequence) - 1, false, true);
     }
 
 
@@ -1750,7 +1840,7 @@ public class Stringx {
      * @return An index of the first occurrence of [char] or -1 if none is found.
      */
     public static int lastIndexOf(@Nullable CharSequence charSequence, char charr, boolean ignoreCase) {
-        return lastIndexOf(charSequence, charr, 0, ignoreCase);
+        return lastIndexOf(charSequence, charr, count(charSequence) - 1, ignoreCase);
     }
 
     /**
@@ -1760,7 +1850,7 @@ public class Stringx {
      * @return An index of the first occurrence of [char] or -1 if none is found.
      */
     public static int lastIndexOf(@Nullable CharSequence charSequence, char charr) {
-        return lastIndexOf(charSequence, charr, 0, false);
+        return lastIndexOf(charSequence, charr, count(charSequence) - 1, false);
     }
 
     /**
@@ -1798,7 +1888,7 @@ public class Stringx {
      * @return An index of the first occurrence of [string] or -1 if none is found.
      */
     public static int lastIndexOf(@Nullable CharSequence charSequence, @NotNull String string, boolean ignoreCase) {
-        return lastIndexOf(charSequence, string, 0, ignoreCase);
+        return lastIndexOf(charSequence, string, count(charSequence) - 1, ignoreCase);
     }
 
     /**
@@ -1808,7 +1898,7 @@ public class Stringx {
      * @return An index of the first occurrence of [string] or -1 if none is found.
      */
     public static int lastIndexOf(@Nullable CharSequence charSequence, @NotNull String string) {
-        return lastIndexOf(charSequence, string, 0, false);
+        return lastIndexOf(charSequence, string, count(charSequence) - 1, false);
     }
 
 
@@ -1862,7 +1952,7 @@ public class Stringx {
      * @return An index of the last occurrence of matched character from [chars] or -1 if none of [chars] are found.
      */
     public static int lastIndexOfAny(@Nullable CharSequence charSequence, char[] chars, final boolean ignoreCase) {
-        return lastIndexOfAny(charSequence, chars, 0, ignoreCase);
+        return lastIndexOfAny(charSequence, chars, count(charSequence) - 1, ignoreCase);
     }
 
     /**
@@ -1872,7 +1962,7 @@ public class Stringx {
      * @return An index of the last occurrence of matched character from [chars] or -1 if none of [chars] are found.
      */
     public static int lastIndexOfAny(@Nullable CharSequence charSequence, char[] chars) {
-        return lastIndexOfAny(charSequence, chars, 0, false);
+        return lastIndexOfAny(charSequence, chars, count(charSequence) - 1, false);
     }
 
     /**
@@ -1916,7 +2006,7 @@ public class Stringx {
      * that matches this string at that position.
      */
     public static int lastIndexOfAny(@Nullable CharSequence charSequence, @NotNull Collection<String> strings, boolean ignoreCase) {
-        return lastIndexOfAny(charSequence, strings, 0, ignoreCase);
+        return lastIndexOfAny(charSequence, strings, count(charSequence) - 1, ignoreCase);
     }
 
     /**
@@ -1929,7 +2019,7 @@ public class Stringx {
      * that matches this string at that position.
      */
     public static int lastIndexOfAny(@Nullable CharSequence charSequence, @NotNull Collection<String> strings) {
-        return lastIndexOfAny(charSequence, strings, 0, false);
+        return lastIndexOfAny(charSequence, strings, count(charSequence) - 1, false);
     }
 
 
@@ -1937,19 +2027,19 @@ public class Stringx {
 
 
     /**
-     * Returns a substring specified by the given [range] of indices.
-     */
-    @NotNull
-    public static String substring(@Nullable String string, @NotNull IntRange range) {
-        return orEmpty(string).substring(range.getStart(), range.getEndInclusive() + 1);
-    }
-
-    /**
      * Returns a subsequence of this char sequence specified by the given [range] of indices.
      */
     @NotNull
     public static CharSequence subSequence(@Nullable CharSequence charSequence, @NotNull IntRange range) {
         return orEmpty(charSequence).subSequence(range.getStart(), range.getEndInclusive() + 1);
+    }
+
+    /**
+     * Returns a substring specified by the given [range] of indices.
+     */
+    @NotNull
+    public static String substring(@Nullable String string, @NotNull IntRange range) {
+        return orEmpty(string).substring(range.getStart(), range.getEndInclusive() + 1);
     }
 
     /**
@@ -2099,6 +2189,26 @@ public class Stringx {
 
 
     /**
+     * Appends all characters matching the given [predicate] to the given [destination].
+     */
+    @NotNull
+    public static <C extends Appendable> C filterTo(@Nullable CharSequence sequence, @NotNull C destination, @NotNull Predicate<Character> predicate) {
+        if (sequence != null) {
+            for (int index : Rangex.until(0, sequence.length())) {
+                char element = sequence.charAt(index);
+                if (predicate.accept(element)) {
+                    try {
+                        destination.append(element);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return destination;
+    }
+
+    /**
      * Returns a char sequence containing only those characters from the original char sequence that match the given [predicate].
      */
     @NotNull
@@ -2112,28 +2222,6 @@ public class Stringx {
     @NotNull
     public static String filter(@Nullable String string, @NotNull Predicate<Character> predicate) {
         return filterTo(string, new StringBuilder(), predicate).toString();
-    }
-
-    /**
-     * Returns a char sequence containing only those characters from the original char sequence that match the given [predicate].
-     *
-     * @param predicate function that takes the index of a character and the character itself
-     *                  and returns the result of predicate evaluation on the character.
-     */
-    @NotNull
-    public static CharSequence filterIndexed(@Nullable CharSequence sequence, @NotNull IndexedPredicate<Character> predicate) {
-        return filterIndexedTo(sequence, new StringBuilder(), predicate);
-    }
-
-    /**
-     * Returns a string containing only those characters from the original string that match the given [predicate].
-     *
-     * @param predicate function that takes the index of a character and the character itself
-     *                  and returns the result of predicate evaluation on the character.
-     */
-    @NotNull
-    public static String filterIndexed(@Nullable String string, @NotNull IndexedPredicate<Character> predicate) {
-        return filterIndexedTo(string, new StringBuilder(), predicate).toString();
     }
 
     /**
@@ -2160,19 +2248,25 @@ public class Stringx {
     }
 
     /**
-     * Returns a char sequence containing only those characters from the original char sequence that do not match the given [predicate].
+     * Returns a char sequence containing only those characters from the original char sequence that match the given [predicate].
+     *
+     * @param predicate function that takes the index of a character and the character itself
+     *                  and returns the result of predicate evaluation on the character.
      */
     @NotNull
-    public static CharSequence filterNot(@Nullable CharSequence sequence, @NotNull Predicate<Character> predicate) {
-        return filterNotTo(sequence, new StringBuilder(), predicate);
+    public static CharSequence filterIndexed(@Nullable CharSequence sequence, @NotNull IndexedPredicate<Character> predicate) {
+        return filterIndexedTo(sequence, new StringBuilder(), predicate);
     }
 
     /**
-     * Returns a string containing only those characters from the original string that do not match the given [predicate].
+     * Returns a string containing only those characters from the original string that match the given [predicate].
+     *
+     * @param predicate function that takes the index of a character and the character itself
+     *                  and returns the result of predicate evaluation on the character.
      */
     @NotNull
-    public static String filterNot(@Nullable String string, @NotNull Predicate<Character> predicate) {
-        return filterNotTo(string, new StringBuilder(), predicate).toString();
+    public static String filterIndexed(@Nullable String string, @NotNull IndexedPredicate<Character> predicate) {
+        return filterIndexedTo(string, new StringBuilder(), predicate).toString();
     }
 
     /**
@@ -2196,23 +2290,19 @@ public class Stringx {
     }
 
     /**
-     * Appends all characters matching the given [predicate] to the given [destination].
+     * Returns a char sequence containing only those characters from the original char sequence that do not match the given [predicate].
      */
     @NotNull
-    public static <C extends Appendable> C filterTo(@Nullable CharSequence sequence, @NotNull C destination, @NotNull Predicate<Character> predicate) {
-        if (sequence != null) {
-            for (int index : Rangex.until(0, sequence.length())) {
-                char element = sequence.charAt(index);
-                if (predicate.accept(element)) {
-                    try {
-                        destination.append(element);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-        return destination;
+    public static CharSequence filterNot(@Nullable CharSequence sequence, @NotNull Predicate<Character> predicate) {
+        return filterNotTo(sequence, new StringBuilder(), predicate);
+    }
+
+    /**
+     * Returns a string containing only those characters from the original string that do not match the given [predicate].
+     */
+    @NotNull
+    public static String filterNot(@Nullable String string, @NotNull Predicate<Character> predicate) {
+        return filterNotTo(string, new StringBuilder(), predicate).toString();
     }
 
 
@@ -2259,52 +2349,6 @@ public class Stringx {
     }
 
     /**
-     * Returns a sub sequence of this char sequence having leading characters matching the [predicate] removed.
-     */
-    @NotNull
-    public static CharSequence trimStart(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
-        if (charSequence == null) return "";
-
-        for (int index : indices(charSequence)) {
-            if (!predicate.accept(charSequence.charAt(index))) {
-                return charSequence.subSequence(index, count(charSequence));
-            }
-        }
-        return "";
-    }
-
-    /**
-     * Returns a string having leading characters matching the [predicate] removed.
-     */
-    @NotNull
-    public static String trimStart(@Nullable String string, @NotNull Predicate<Character> predicate) {
-        return trimStart((CharSequence) string, predicate).toString();
-    }
-
-    /**
-     * Returns a sub sequence of this char sequence having trailing characters matching the [predicate] removed.
-     */
-    @NotNull
-    public static CharSequence trimEnd(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
-        if (charSequence == null) return "";
-
-        for (int index : Collectionx.reversed(indices(charSequence))) {
-            if (!predicate.accept(charSequence.charAt(index))) {
-                return charSequence.subSequence(0, index + 1);
-            }
-        }
-        return "";
-    }
-
-    /**
-     * Returns a string having trailing characters matching the [predicate] removed.
-     */
-    @NotNull
-    public static String trimEnd(@Nullable String string, @NotNull Predicate<Character> predicate) {
-        return trimEnd((CharSequence) string, predicate).toString();
-    }
-
-    /**
      * Returns a sub sequence of this char sequence having leading and trailing characters from the [chars] array removed.
      */
     @NotNull
@@ -2323,58 +2367,6 @@ public class Stringx {
     @NotNull
     public static String trim(@Nullable String string, final char... chars) {
         return trim(string, new Predicate<Character>() {
-            @Override
-            public boolean accept(@NotNull Character character) {
-                return Arrayx.contains(chars, character);
-            }
-        });
-    }
-
-    /**
-     * Returns a sub sequence of this char sequence having leading characters from the [chars] array removed.
-     */
-    @NotNull
-    public static CharSequence trimStart(@Nullable CharSequence charSequence, final char... chars) {
-        return trimStart(charSequence, new Predicate<Character>() {
-            @Override
-            public boolean accept(@NotNull Character character) {
-                return Arrayx.contains(chars, character);
-            }
-        });
-    }
-
-    /**
-     * Returns a string having leading characters from the [chars] array removed.
-     */
-    @NotNull
-    public static String trimStart(@Nullable String string, final char... chars) {
-        return trimStart(string, new Predicate<Character>() {
-            @Override
-            public boolean accept(@NotNull Character character) {
-                return Arrayx.contains(chars, character);
-            }
-        });
-    }
-
-    /**
-     * Returns a sub sequence of this char sequence having trailing characters from the [chars] array removed.
-     */
-    @NotNull
-    public static CharSequence trimEnd(@Nullable CharSequence charSequence, final char... chars) {
-        return trimEnd(charSequence, new Predicate<Character>() {
-            @Override
-            public boolean accept(@NotNull Character character) {
-                return Arrayx.contains(chars, character);
-            }
-        });
-    }
-
-    /**
-     * Returns a string having trailing characters from the [chars] array removed.
-     */
-    @NotNull
-    public static String trimEnd(@Nullable String string, final char... chars) {
-        return trimEnd(string, new Predicate<Character>() {
             @Override
             public boolean accept(@NotNull Character character) {
                 return Arrayx.contains(chars, character);
@@ -2404,6 +2396,55 @@ public class Stringx {
     }
 
     /**
+     * Returns a sub sequence of this char sequence having leading characters matching the [predicate] removed.
+     */
+    @NotNull
+    public static CharSequence trimStart(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        if (charSequence == null) return "";
+
+        for (int index : indices(charSequence)) {
+            if (!predicate.accept(charSequence.charAt(index))) {
+                return charSequence.subSequence(index, count(charSequence));
+            }
+        }
+        return "";
+    }
+
+    /**
+     * Returns a string having leading characters matching the [predicate] removed.
+     */
+    @NotNull
+    public static String trimStart(@Nullable String string, @NotNull Predicate<Character> predicate) {
+        return trimStart((CharSequence) string, predicate).toString();
+    }
+
+    /**
+     * Returns a sub sequence of this char sequence having leading characters from the [chars] array removed.
+     */
+    @NotNull
+    public static CharSequence trimStart(@Nullable CharSequence charSequence, final char... chars) {
+        return trimStart(charSequence, new Predicate<Character>() {
+            @Override
+            public boolean accept(@NotNull Character character) {
+                return Arrayx.contains(chars, character);
+            }
+        });
+    }
+
+    /**
+     * Returns a string having leading characters from the [chars] array removed.
+     */
+    @NotNull
+    public static String trimStart(@Nullable String string, final char... chars) {
+        return trimStart(string, new Predicate<Character>() {
+            @Override
+            public boolean accept(@NotNull Character character) {
+                return Arrayx.contains(chars, character);
+            }
+        });
+    }
+
+    /**
      * Returns a sub sequence of this char sequence having leading whitespace removed.
      */
     @NotNull
@@ -2422,6 +2463,55 @@ public class Stringx {
     @NotNull
     public static String trimStart(@Nullable String string) {
         return trimStart((CharSequence) string).toString();
+    }
+
+    /**
+     * Returns a sub sequence of this char sequence having trailing characters matching the [predicate] removed.
+     */
+    @NotNull
+    public static CharSequence trimEnd(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
+        if (charSequence == null) return "";
+
+        for (int index : Collectionx.reversed(indices(charSequence))) {
+            if (!predicate.accept(charSequence.charAt(index))) {
+                return charSequence.subSequence(0, index + 1);
+            }
+        }
+        return "";
+    }
+
+    /**
+     * Returns a string having trailing characters matching the [predicate] removed.
+     */
+    @NotNull
+    public static String trimEnd(@Nullable String string, @NotNull Predicate<Character> predicate) {
+        return trimEnd((CharSequence) string, predicate).toString();
+    }
+
+    /**
+     * Returns a sub sequence of this char sequence having trailing characters from the [chars] array removed.
+     */
+    @NotNull
+    public static CharSequence trimEnd(@Nullable CharSequence charSequence, final char... chars) {
+        return trimEnd(charSequence, new Predicate<Character>() {
+            @Override
+            public boolean accept(@NotNull Character character) {
+                return Arrayx.contains(chars, character);
+            }
+        });
+    }
+
+    /**
+     * Returns a string having trailing characters from the [chars] array removed.
+     */
+    @NotNull
+    public static String trimEnd(@Nullable String string, final char... chars) {
+        return trimEnd(string, new Predicate<Character>() {
+            @Override
+            public boolean accept(@NotNull Character character) {
+                return Arrayx.contains(chars, character);
+            }
+        });
     }
 
     /**
@@ -2544,6 +2634,30 @@ public class Stringx {
     }
 
     /**
+     * Replace part of string before the last occurrence of given delimiter with the [replacement] string.
+     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
+     */
+    @NotNull
+    public static String replaceBeforeLast(@Nullable String string, char delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
+        if (string == null) return "";
+        int index = string.lastIndexOf(delimiter);
+        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
+        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
+    }
+
+    /**
+     * Replace part of string before the last occurrence of given delimiter with the [replacement] string.
+     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
+     */
+    @NotNull
+    public static String replaceBeforeLast(@Nullable String string, @NotNull String delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
+        if (string == null) return "";
+        int index = string.lastIndexOf(delimiter);
+        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
+        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
+    }
+
+    /**
      * Replace part of string after the first occurrence of given delimiter with the [replacement] string.
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
@@ -2591,30 +2705,6 @@ public class Stringx {
         return index == -1 ? finalMissingDelimiterValue : replaceRange(string, index + 1, count(string), replacement);
     }
 
-    /**
-     * Replace part of string before the last occurrence of given delimiter with the [replacement] string.
-     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
-     */
-    @NotNull
-    public static String replaceBeforeLast(@Nullable String string, char delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.lastIndexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
-    }
-
-    /**
-     * Replace part of string before the last occurrence of given delimiter with the [replacement] string.
-     * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
-     */
-    @NotNull
-    public static String replaceBeforeLast(@Nullable String string, @NotNull String delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.lastIndexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
-    }
-
 
 // public static String.replace(oldChar: Character, newChar: Character, ignoreCase: Boolean): String // JVM- and JS-specific
 // public static String.replace(oldValue: String, newValue: String, ignoreCase: Boolean): String // JVM- and JS-specific
@@ -2637,9 +2727,29 @@ public class Stringx {
 // * with the result of the given function [transform] that takes [MatchResult] and returns a string to be used as a
 // * replacement for that match.
 // */
-//    @kotlin.internal.InlineOnly
-//    public static CharSequence.replace(regex: Regex, noinline transform: (MatchResult) -> CharSequence): String =
-//            regex.replace(this, transform)
+//    public static String replace(CharSequence charSequence, Pattern pattern, Transformer<MatchResult, CharSequence> transform{
+//        regex.replace(this, transform)
+//        MatchResult match = pattern.matcher(charSequence).findNext(0, charSequence);
+//        if(match == null) return charSequence.toString();
+//
+//        var lastStart = 0
+//        val length = charSequence.length
+//        val sb = StringBuilder(length)
+//        do {
+//            val foundMatch = match!!
+//                    sb.append(charSequence, lastStart, foundMatch.range.start)
+//            sb.append(transform(foundMatch))
+//            lastStart = foundMatch.range.endInclusive + 1
+//            match = foundMatch.next()
+//        } while (lastStart < length && match != null)
+//
+//        if (lastStart < length) {
+//            sb.append(charSequence, lastStart, length)
+//        }
+//
+//        return sb.toString()
+//    }
+
 
     /**
      * Replaces the first occurrence of the given regular expression [regex] in this char sequence with specified [replacement] expression.
