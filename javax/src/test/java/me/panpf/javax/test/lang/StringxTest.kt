@@ -234,7 +234,7 @@ class StringxTest {
     }
 
     @Test
-    fun testContains() {
+    fun testContainsAnyAndAll() {
         assertTrue(Stringx.containsAny("今天天气晴", arrayOf("哈", "天")))
         assertFalse(Stringx.containsAny("今天天气晴", arrayOf("哈")))
         assertTrue(Stringx.containsAny("今天天气晴", Collectionx.listOf("哈", "天")))
@@ -861,5 +861,180 @@ class StringxTest {
         val sourceTextFirstPattern = "fasfjs hello@gmail.com fasf hello@outlook.com"
         val resultTextFirstPattern = "fasfjs http://google.com fasf hello@outlook.com"
         assertThreeEquals(resultTextFirstPattern, Stringx.replaceFirst(sourceTextFirstPattern, Regexx.EMAIL, "http://google.com"), sourceTextFirstPattern.replaceFirst(Regex(Regexx.EMAIL.pattern()), "http://google.com"))
+    }
+
+    @Test
+    fun testCommonWith() {
+        val self = "startYourPerformance"
+        val other = "startyourTrip"
+        assertThreeEquals("start", Stringx.commonPrefixWith(self, other), self.commonPrefixWith(other))
+        assertThreeEquals("startYour", Stringx.commonPrefixWith(self, other, true), self.commonPrefixWith(other, true))
+        assertThreeEquals("startyour", Stringx.commonPrefixWith(other, self, true), other.commonPrefixWith(self, true))
+        assertThreeEquals("", Stringx.commonPrefixWith(self, "unknown", true), self.commonPrefixWith("unknown", true))
+        assertEquals("", Stringx.commonPrefixWith(null, other, true))
+        assertEquals("", Stringx.commonPrefixWith(self, null, true))
+
+        val self2 = "GoFromHome"
+        val other2 = "LeavefromHome"
+        assertThreeEquals("romHome", Stringx.commonSuffixWith(self2, other2), self2.commonSuffixWith(other2))
+        assertThreeEquals("FromHome", Stringx.commonSuffixWith(self2, other2, true), self2.commonSuffixWith(other2, true))
+        assertThreeEquals("fromHome", Stringx.commonSuffixWith(other2, self2, true), other2.commonSuffixWith(self2, true))
+        assertThreeEquals("", Stringx.commonSuffixWith(self2, "unknown", true), self2.commonSuffixWith("unknown", true))
+        assertEquals("", Stringx.commonSuffixWith(null, other2, true))
+        assertEquals("", Stringx.commonSuffixWith(self2, null, true))
+    }
+
+    @Test
+    fun testContains() {
+        val self = "abcdefg"
+
+        assertThreeEquals(true, Stringx.contains(self, "cd"), self.contains("cd"))
+        assertThreeEquals(false, Stringx.contains(self, "cD"), self.contains("cD"))
+        assertThreeEquals(true, Stringx.contains(self, "cD", true), self.contains("cD", true))
+
+        assertThreeEquals(true, Stringx.contains(StringBuilder(self), "cd"), StringBuilder(self).contains("cd"))
+        assertThreeEquals(false, Stringx.contains(StringBuilder(self), "cD"), StringBuilder(self).contains("cD"))
+        assertThreeEquals(true, Stringx.contains(StringBuilder(self), "cD", true), StringBuilder(self).contains("cD", true))
+
+        assertThreeEquals(true, Stringx.contains(self, 'd'), self.contains('d'))
+        assertThreeEquals(false, Stringx.contains(self, 'D'), self.contains('D'))
+        assertThreeEquals(true, Stringx.contains(self, 'D', true), self.contains('D', true))
+
+        val self2 = "abc hello@gmail.com defg"
+
+        assertThreeEquals(true, Stringx.contains(self2, Regexx.EMAIL), self2.contains(Regex(Regexx.EMAIL.pattern())))
+        assertThreeEquals(false, Stringx.contains(self2, Regexx.IPV4), self2.contains(Regex(Regexx.IPV4.pattern())))
+        assertFalse(Stringx.contains(null, Regexx.IPV4))
+    }
+
+    @Test
+    fun testElementAt() {
+        val self = "abcdefg"
+
+        assertThreeEquals('e', Stringx.elementAt(self, 4), self.elementAt(4))
+        try {
+            Stringx.elementAt(self, 9)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals('e', Stringx.elementAtOrElse(self, 4) { 'g' }, self.elementAtOrElse(4) { 'g' })
+        assertThreeEquals('g', Stringx.elementAtOrElse(self, 9) { 'g' }, self.elementAtOrElse(9) { 'g' })
+
+
+        assertThreeEquals('e', Stringx.elementAtOrNull(self, 4), self.elementAtOrNull(4))
+        assertThreeEquals(null, Stringx.elementAtOrNull(self, 9), self.elementAtOrNull(9))
+    }
+
+    @Test
+    fun testSingle() {
+        assertThreeEquals('a', Stringx.single("a"), "a".single())
+        try {
+            Stringx.single("ab")
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.single(null)
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.single("")
+            fail()
+        } catch (e: Exception) {
+        }
+        assertThreeEquals(null, Stringx.singleOrNull("ab"), "ab".singleOrNull())
+        assertThreeEquals(null, Stringx.singleOrNull(""), "".singleOrNull())
+        assertNull(Stringx.singleOrNull(null))
+
+
+        assertThreeEquals('b', Stringx.single("ab") { it == 'b' }, "ab".single { it == 'b' })
+        try {
+            Stringx.single("abcb") { it == 'b' }
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.single("ac") { it == 'b' }
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.single("") { it == 'b' }
+            fail()
+        } catch (e: Exception) {
+        }
+        assertThreeEquals(null, Stringx.singleOrNull("abcb") { it == 'b' }, "abcb".singleOrNull { it == 'b' })
+        assertThreeEquals(null, Stringx.singleOrNull("ac") { it == 'b' }, "ac".singleOrNull { it == 'b' })
+        assertThreeEquals(null, Stringx.singleOrNull("") { it == 'b' }, "".singleOrNull { it == 'b' })
+    }
+
+    @Test
+    fun testDrop() {
+        val self = "abcdefg"
+
+        assertThreeEquals("defg", Stringx.drop(self, 3), self.drop(3))
+        assertThreeEquals("", Stringx.drop(self, self.length + 1), self.drop(self.length + 1))
+        assertThreeEquals(self, Stringx.drop(self, 0), self.drop(0))
+        try {
+            Stringx.drop(self, -1)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals("defg", Stringx.drop(StringBuilder(self), 3).toString(), StringBuilder(self).drop(3).toString())
+        assertThreeEquals("", Stringx.drop(StringBuilder(self), self.length + 1).toString(), StringBuilder(self).drop(self.length + 1).toString())
+        assertThreeEquals(self, Stringx.drop(StringBuilder(self), 0).toString(), StringBuilder(self).drop(0).toString())
+        try {
+            Stringx.drop(StringBuilder(self), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals("abcd", Stringx.dropLast(self, 3), self.dropLast(3))
+        assertThreeEquals("", Stringx.dropLast(self, self.length + 1), self.dropLast(self.length + 1))
+        assertThreeEquals(self, Stringx.dropLast(self, 0), self.dropLast(0))
+        try {
+            Stringx.dropLast(self, -1)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals("abcd", Stringx.dropLast(StringBuilder(self), 3).toString(), StringBuilder(self).dropLast(3).toString())
+        assertThreeEquals("", Stringx.dropLast(StringBuilder(self), self.length + 1).toString(), StringBuilder(self).dropLast(self.length + 1).toString())
+        assertThreeEquals(self, Stringx.dropLast(StringBuilder(self), 0).toString(), StringBuilder(self).dropLast(0).toString())
+        try {
+            Stringx.dropLast(StringBuilder(self), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals("abcdef", Stringx.dropLastWhile(StringBuilder(self)) { it != 'f' }.toString(), StringBuilder(self).dropLastWhile { it != 'f' }.toString())
+        assertEquals("", Stringx.dropLastWhile(null as StringBuilder?) { it != 'f' }.toString())
+
+        assertThreeEquals("abcdef", Stringx.dropLastWhile(self) { it != 'f' }, self.dropLastWhile { it != 'f' })
+        assertEquals("", Stringx.dropLastWhile(null as String?) { it != 'f' })
+
+        assertThreeEquals("bcdefg", Stringx.dropWhile(StringBuilder(self)) { it != 'b' }.toString(), StringBuilder(self).dropWhile { it != 'b' }.toString())
+        assertEquals("", Stringx.dropWhile(null as StringBuilder?) { it != 'b' }.toString())
+
+        assertThreeEquals("bcdefg", Stringx.dropWhile(self) { it != 'b' }, self.dropWhile { it != 'b' })
+        assertEquals("", Stringx.dropWhile(null as String?) { it != 'b' })
+    }
+
+    @Test
+    fun testSlice() {
+        val source = "0123456789"
+
+        assertThreeEquals("34567", Stringx.slice(source, Rangex.rangeTo(3, 7)), source.slice(3..7))
+        assertThreeEquals("", Stringx.slice(source, Rangex.rangeTo(3, 2)), source.slice(3..2))
+        assertThreeEquals("34567", Stringx.slice(StringBuilder(source), Rangex.rangeTo(3, 7)).toString(), StringBuilder(source).slice(3..7).toString())
+        assertThreeEquals("", Stringx.slice(StringBuilder(source), Rangex.rangeTo(3, 2)).toString(), StringBuilder(source).slice(3..2).toString())
+
+        assertThreeEquals("158", Stringx.slice(source, Collectionx.listOf(1, 5, 8)), source.slice(listOf(1, 5, 8)))
+        assertThreeEquals("", Stringx.slice(source, Collectionx.listOf()), source.slice(listOf()))
+        assertThreeEquals("158", Stringx.slice(StringBuilder(source), Collectionx.listOf(1, 5, 8)).toString(), StringBuilder(source).slice(listOf(1, 5, 8)).toString())
+        assertThreeEquals("", Stringx.slice(StringBuilder(source), Collectionx.listOf()).toString(), StringBuilder(source).slice(listOf()).toString())
     }
 }

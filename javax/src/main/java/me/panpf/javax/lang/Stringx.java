@@ -2788,6 +2788,17 @@ public class Stringx {
         return charSequence.subSequence(0, i).toString();
     }
 
+
+    /**
+     * Returns the longest string `prefix` such that this char sequence and [other] char sequence both start with this prefix,
+     * taking care not to split surrogate pairs.
+     * If this and [other] have no common prefix, returns the empty string.
+     */
+    @NotNull
+    public static String commonPrefixWith(@Nullable CharSequence charSequence, @Nullable CharSequence other) {
+        return commonPrefixWith(charSequence, other, false);
+    }
+
     /**
      * Returns the longest string `suffix` such that this char sequence and [other] char sequence both end with this suffix,
      * taking care not to split surrogate pairs.
@@ -2811,6 +2822,15 @@ public class Stringx {
         return charSequence.subSequence(thisLength - i, thisLength).toString();
     }
 
+    /**
+     * Returns the longest string `suffix` such that this char sequence and [other] char sequence both end with this suffix,
+     * taking care not to split surrogate pairs.
+     * If this and [other] have no common suffix, returns the empty string.
+     */
+    public static String commonSuffixWith(@Nullable CharSequence charSequence, @Nullable CharSequence other) {
+        return commonSuffixWith(charSequence, other, false);
+    }
+
 
     /* ******************************************* contains *******************************************/
 
@@ -2829,12 +2849,26 @@ public class Stringx {
     }
 
     /**
+     * Returns `true` if this char sequence contains the specified [other] sequence of characters as a substring.
+     */
+    public static boolean contains(@Nullable CharSequence charSequence, @NotNull CharSequence other) {
+        return contains(charSequence, other, false);
+    }
+
+    /**
      * Returns `true` if this char sequence contains the specified character [char].
      *
      * @param ignoreCase `true` to ignore character case when comparing characters. By default `false`.
      */
     public static boolean contains(@Nullable CharSequence charSequence, char cha, boolean ignoreCase) {
         return indexOf(charSequence, cha, ignoreCase) >= 0;
+    }
+
+    /**
+     * Returns `true` if this char sequence contains the specified character [char].
+     */
+    public static boolean contains(@Nullable CharSequence charSequence, char cha) {
+        return contains(charSequence, cha, false);
     }
 
     /**
