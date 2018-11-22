@@ -3115,8 +3115,7 @@ public class Stringx {
                 found = true;
             }
         }
-        if (!found) return null;
-        return single;
+        return found ? single : null;
     }
 
 
@@ -3418,6 +3417,22 @@ public class Stringx {
 
 
     /**
+     * Populates and returns the [destination] mutable map with key-value pairs
+     * provided by [transform] function applied to each character of the given char sequence.
+     * <p>
+     * If any of two pairs would have the same key the last one gets added to the map.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable CharSequence charSequence, @NotNull M destination,
+                                                            @NotNull Transformer<Character, Pair<K, V>> transform) {
+        for (char element : iterable(charSequence)) {
+            Pair<K, V> pair = transform.transform(element);
+            destination.put(pair.first, pair.second);
+        }
+        return destination;
+    }
+
+    /**
      * Returns a [Map] containing key-value pairs provided by [transform] function
      * applied to characters of the given char sequence.
      * <p>
@@ -3429,33 +3444,6 @@ public class Stringx {
     public static <K, V> Map<K, V> associate(@Nullable CharSequence charSequence, @NotNull Transformer<Character, Pair<K, V>> transform) {
         int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
         return associateTo(charSequence, new LinkedHashMap<K, V>(capacity), transform);
-    }
-
-    /**
-     * Returns a [Map] containing the characters from the given char sequence indexed by the key
-     * returned from [keySelector] function applied to each character.
-     * <p>
-     * If any two characters would have the same key returned by [keySelector] the last one gets added to the map.
-     * <p>
-     * The returned map preserves the entry iteration order of the original char sequence.
-     */
-    @NotNull
-    public static <K> Map<K, Character> associateBy(@Nullable CharSequence charSequence, @NotNull Transformer<Character, K> keySelector) {
-        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
-        return associateByTo(charSequence, new LinkedHashMap<K, Character>(capacity), keySelector);
-    }
-
-    /**
-     * Returns a [Map] containing the values provided by [valueTransform] and indexed by [keySelector] functions applied to characters of the given char sequence.
-     * <p>
-     * If any two characters would have the same key returned by [keySelector] the last one gets added to the map.
-     * <p>
-     * The returned map preserves the entry iteration order of the original char sequence.
-     */
-    @NotNull
-    public static <K, V> Map<K, V> associateBy(@Nullable CharSequence charSequence, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
-        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
-        return associateByTo(charSequence, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
     /**
@@ -3471,6 +3459,20 @@ public class Stringx {
             destination.put(keySelector.transform(element), element);
         }
         return destination;
+    }
+
+    /**
+     * Returns a [Map] containing the characters from the given char sequence indexed by the key
+     * returned from [keySelector] function applied to each character.
+     * <p>
+     * If any two characters would have the same key returned by [keySelector] the last one gets added to the map.
+     * <p>
+     * The returned map preserves the entry iteration order of the original char sequence.
+     */
+    @NotNull
+    public static <K> Map<K, Character> associateBy(@Nullable CharSequence charSequence, @NotNull Transformer<Character, K> keySelector) {
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
+        return associateByTo(charSequence, new LinkedHashMap<K, Character>(capacity), keySelector);
     }
 
     /**
@@ -3490,20 +3492,18 @@ public class Stringx {
     }
 
     /**
-     * Populates and returns the [destination] mutable map with key-value pairs
-     * provided by [transform] function applied to each character of the given char sequence.
+     * Returns a [Map] containing the values provided by [valueTransform] and indexed by [keySelector] functions applied to characters of the given char sequence.
      * <p>
-     * If any of two pairs would have the same key the last one gets added to the map.
+     * If any two characters would have the same key returned by [keySelector] the last one gets added to the map.
+     * <p>
+     * The returned map preserves the entry iteration order of the original char sequence.
      */
     @NotNull
-    public static <K, V, M extends Map<K, V>> M associateTo(@Nullable CharSequence charSequence, @NotNull M destination,
-                                                            @NotNull Transformer<Character, Pair<K, V>> transform) {
-        for (char element : iterable(charSequence)) {
-            Pair<K, V> pair = transform.transform(element);
-            destination.put(pair.first, pair.second);
-        }
-        return destination;
+    public static <K, V> Map<K, V> associateBy(@Nullable CharSequence charSequence, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
+        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
+        return associateByTo(charSequence, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
+
 
     /* ******************************************* to *******************************************/
 

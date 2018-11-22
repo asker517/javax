@@ -345,22 +345,22 @@ inline fun String?.filterBlank(): String = Stringx.filterBlank(this)
 /**
  * Delete all specified characters in the string and return the new string
  */
-inline fun String.removeChar(ch: Char): String = Stringx.removeChar(this, ch)
+inline fun String?.removeChar(ch: Char): String = Stringx.removeChar(this, ch)
 
 /**
  * Delete the first occurrence of the specified character in the string and return the new string
  */
-inline fun String.removeFirstChar(ch: Char): String = Stringx.removeFirstChar(this, ch)
+inline fun String?.removeFirstChar(ch: Char): String = Stringx.removeFirstChar(this, ch)
 
 /**
  * Delete the last specified character in the string and return the new string
  */
-inline fun String.removeLastChar(ch: Char): String = Stringx.removeLastChar(this, ch)
+inline fun String?.removeLastChar(ch: Char): String = Stringx.removeLastChar(this, ch)
 
 /**
  * Delete the character at the specified position in the string and return the new string
  */
-inline fun String.removeIndex(removeIndex: Int): String = Stringx.removeIndex(this, removeIndex)
+inline fun String?.removeIndex(removeIndex: Int): String = Stringx.removeIndex(this, removeIndex)
 
 
 /* ******************************************* limit *******************************************/

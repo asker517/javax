@@ -31,23 +31,25 @@ import java.util.*
 class StringxTest {
 
     companion object {
-        private const val BLANK = "     "
-        private const val SPACE = " "
-        private const val ENTRY = "\r"
-        private const val TAB = "\t"
-        private const val WRAP = "\n"
-        private const val EMPTY = ""
-        private const val YES = "yes"
-        private const val YES_CHAR_SEQUENCE = "yes"
-        private const val DIGIT = "8"
-        private const val DIGIT_CHAR_SEQUENCE = "8"
-        private const val LETTER = "a飞"
-        private const val LETTER_CHAR_SEQUENCE = "a飞"
-        private const val CHINESE = "飞"
-        private const val CHINESE_CHAR_SEQUENCE = "飞"
-        private const val LETTER_OR_DIGIT = "a飞8"
-        private const val LETTER_OR_DIGIT_CHAR_SEQUENCE = "a飞8"
-        private const val SYMBOL = "*%￥#@"
+        private val BLANK = "     "
+        private val BLANK_CHAR_SEQUENCE: CharSequence = "     "
+        private val SPACE = " "
+        private val ENTRY = "\r"
+        private val TAB = "\t"
+        private val WRAP = "\n"
+        private val EMPTY = ""
+        private val EMPTY_CHAR_SEQUENCE: CharSequence = ""
+        private val YES = "yes"
+        private val YES_CHAR_SEQUENCE: CharSequence = "yes"
+        private val DIGIT = "8"
+        private val DIGIT_CHAR_SEQUENCE: CharSequence = "8"
+        private val LETTER = "a飞"
+        private val LETTER_CHAR_SEQUENCE: CharSequence = "a飞"
+        private val CHINESE = "飞"
+        private val CHINESE_CHAR_SEQUENCE: CharSequence = "飞"
+        private val LETTER_OR_DIGIT = "a飞8"
+        private val LETTER_OR_DIGIT_CHAR_SEQUENCE: CharSequence = "a飞8"
+        private val SYMBOL = "*%￥#@"
     }
 
     @Test
@@ -63,6 +65,7 @@ class StringxTest {
         assertFalse(Stringx.isNotSafe(YES))
 
         assertEquals(Stringx.isNotSafeOr(EMPTY, "default"), "default")
+        assertEquals(Stringx.isNotSafeOr(EMPTY_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isNotSafeOr(YES, "default"), YES)
         assertEquals(Stringx.isNotSafeOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE)
     }
@@ -98,8 +101,10 @@ class StringxTest {
         assertFalse(Stringx.isNotBlank(WRAP))
 
         assertEquals(Stringx.isBlankOr(BLANK, "default"), "default")
+        assertEquals(Stringx.isBlankOr(BLANK_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isBlankOr(YES, "default"), YES)
         assertEquals(Stringx.isBlankOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE)
+        assertEquals(Stringx.isBlankOr(null, "default"), "default")
 
 
         assertTrue(Stringx.isNullOrBlank(null))
@@ -113,6 +118,7 @@ class StringxTest {
         assertFalse(Stringx.isNotNullOrBlank(EMPTY))
 
         assertEquals(Stringx.isNullOrBlankOr(BLANK, "default"), "default")
+        assertEquals(Stringx.isNullOrBlankOr(BLANK_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isNullOrBlankOr(null, "default"), "default")
         assertEquals(Stringx.isNullOrBlankOr(YES, "default"), YES)
         assertEquals(Stringx.isNullOrBlankOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE)
@@ -131,6 +137,7 @@ class StringxTest {
         assertFalse(Stringx.isNotEmpty(EMPTY))
 
         assertEquals(Stringx.isEmptyOr(EMPTY, "default"), "default")
+        assertEquals(Stringx.isEmptyOr(EMPTY_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isEmptyOr(YES, "default"), YES)
         assertEquals(Stringx.isEmptyOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE)
 
@@ -144,6 +151,7 @@ class StringxTest {
         assertFalse(Stringx.isNotNullOrEmpty(EMPTY))
 
         assertEquals(Stringx.isNullOrEmptyOr(EMPTY, "default"), "default")
+        assertEquals(Stringx.isNullOrEmptyOr(EMPTY_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isNullOrEmptyOr(null, "default"), "default")
         assertEquals(Stringx.isNullOrEmptyOr(YES, "default"), YES)
         assertEquals(Stringx.isNullOrEmptyOr(YES_CHAR_SEQUENCE, "default"), YES_CHAR_SEQUENCE)
@@ -166,6 +174,7 @@ class StringxTest {
         assertFalse(Stringx.isNotChinese(CHINESE))
 
         assertEquals(Stringx.isNotChineseOr(LETTER, "default"), "default")
+        assertEquals(Stringx.isNotChineseOr(LETTER_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isNotChineseOr(null, "default"), "default")
         assertEquals(Stringx.isNotChineseOr(CHINESE, "default"), CHINESE)
         assertEquals(Stringx.isNotChineseOr(CHINESE_CHAR_SEQUENCE, "default"), CHINESE_CHAR_SEQUENCE)
@@ -188,6 +197,7 @@ class StringxTest {
         assertFalse(Stringx.isNotDigit(DIGIT))
 
         assertEquals(Stringx.isNotDigitOr(LETTER, "3"), "3")
+        assertEquals(Stringx.isNotDigitOr(LETTER_CHAR_SEQUENCE, "3"), "3")
         assertEquals(Stringx.isNotDigitOr(null, "3"), "3")
         assertEquals(Stringx.isNotDigitOr(DIGIT, "3"), DIGIT)
         assertEquals(Stringx.isNotDigitOr(DIGIT_CHAR_SEQUENCE, "3"), DIGIT_CHAR_SEQUENCE)
@@ -208,6 +218,7 @@ class StringxTest {
         assertFalse(Stringx.isNotLetter(LETTER))
 
         assertEquals(Stringx.isNotLetterOr(DIGIT, "default"), "default")
+        assertEquals(Stringx.isNotLetterOr(DIGIT_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isNotLetterOr(null, "default"), "default")
         assertEquals(Stringx.isNotLetterOr(LETTER, "default"), LETTER)
         assertEquals(Stringx.isNotLetterOr(LETTER_CHAR_SEQUENCE, "default"), LETTER_CHAR_SEQUENCE)
@@ -228,6 +239,7 @@ class StringxTest {
         assertFalse(Stringx.isNotLetterOrDigit(LETTER_OR_DIGIT))
 
         assertEquals(Stringx.isNotLetterOrDigitOr(EMPTY, "default"), "default")
+        assertEquals(Stringx.isNotLetterOrDigitOr(EMPTY_CHAR_SEQUENCE, "default"), "default")
         assertEquals(Stringx.isNotLetterOrDigitOr(null, "default"), "default")
         assertEquals(Stringx.isNotLetterOrDigitOr(LETTER_OR_DIGIT, "default"), LETTER_OR_DIGIT)
         assertEquals(Stringx.isNotLetterOrDigitOr(LETTER_OR_DIGIT_CHAR_SEQUENCE, "default"), LETTER_OR_DIGIT_CHAR_SEQUENCE)
@@ -311,13 +323,17 @@ class StringxTest {
         Assert.assertEquals("012456789", Stringx.removeChar("0123456789", '3'))
         Assert.assertEquals("123456789", Stringx.removeChar("0123456789", '0'))
         Assert.assertEquals("012345678", Stringx.removeChar("0123456789", '9'))
+        Assert.assertEquals("", Stringx.removeChar(null, '9'))
 
         Assert.assertEquals("021456789", Stringx.removeFirstChar("0121456789", '1'))
+        Assert.assertEquals("", Stringx.removeFirstChar(null, '1'))
         Assert.assertEquals("012456789", Stringx.removeLastChar("0121456789", '1'))
+        Assert.assertEquals("", Stringx.removeLastChar(null, '1'))
 
         Assert.assertEquals("012456789", Stringx.removeIndex("0123456789", 3))
         Assert.assertEquals("123456789", Stringx.removeIndex("0123456789", 0))
         Assert.assertEquals("012345678", Stringx.removeIndex("0123456789", 9))
+        Assert.assertEquals("", Stringx.removeIndex(null, 9))
     }
 
     @Test
@@ -333,6 +349,13 @@ class StringxTest {
         assertEquals("今天天气晴", Stringx.limit(StringBuilder("今天天气晴"), 6, "...").toString())
         assertEquals("今天天气晴朗", Stringx.limit(StringBuilder("今天天气晴朗，万里无云"), 6).toString())
         assertEquals("今天天气晴朗...", Stringx.limit(StringBuilder("今天天气晴朗，万里无云"), 6, "...").toString())
+
+        assertEquals("", Stringx.limit(null, 6, "..."))
+        try {
+            Stringx.limit("今天天气晴", -1, "...")
+            fail()
+        } catch (e: Exception) {
+        }
     }
 
 
@@ -345,54 +368,38 @@ class StringxTest {
 
     @Test
     fun testStartsWith() {
-        assertTrue(Stringx.startsWith("JavaBean", 'J'))
-        assertTrue("JavaBean".startsWith('J'))
-        assertFalse(Stringx.startsWith("javaBean", 'b'))
-        assertFalse("javaBean".startsWith('b'))
-        assertFalse(Stringx.startsWith("javaBean", 'J'))
-        assertFalse("javaBean".startsWith('J'))
-        assertTrue(Stringx.startsWith("javaBean", 'J', true))
-        assertTrue("javaBean".startsWith('J', true))
+        assertThreeEquals(true, Stringx.startsWith("JavaBean", 'J'), "JavaBean".startsWith('J'))
+        assertThreeEquals(false, Stringx.startsWith("javaBean", 'b'), "javaBean".startsWith('b'))
+        assertThreeEquals(false, Stringx.startsWith("javaBean", 'J'), "javaBean".startsWith('J'))
+        assertThreeEquals(true, Stringx.startsWith("javaBean", 'J', true), "javaBean".startsWith('J', true))
 
-        assertTrue(Stringx.startsWith("JavaBean", "Java"))
-        assertTrue("JavaBean".startsWith("Java"))
-        assertFalse(Stringx.startsWith("JavaBean", "Jave"))
-        assertFalse("JavaBean".startsWith("Jave"))
-        assertFalse(Stringx.startsWith("JavaBean", "java"))
-        assertFalse("JavaBean".startsWith("java"))
-        assertTrue(Stringx.startsWith("JavaBean", "java", true))
-        assertTrue("JavaBean".startsWith("java", true))
+        assertThreeEquals(true, Stringx.startsWith("JavaBean", "Java"), "JavaBean".startsWith("Java"))
+        assertThreeEquals(false, Stringx.startsWith("JavaBean", "Jave"), "JavaBean".startsWith("Jave"))
+        assertThreeEquals(false, Stringx.startsWith("JavaBean", "java"), "JavaBean".startsWith("java"))
+        assertThreeEquals(true, Stringx.startsWith("JavaBean", "java", true), "JavaBean".startsWith("java", true))
+        assertEquals(false, Stringx.startsWith(null, "java"))
 
-        assertTrue(Stringx.startsWith("HeaderJavaBean", "Java", 6))
-        assertTrue("HeaderJavaBean".startsWith("Java", 6))
-        assertFalse(Stringx.startsWith("HeaderJavaBean", "Jave", 6))
-        assertFalse("HeaderJavaBean".startsWith("Jave", 6))
-        assertFalse(Stringx.startsWith("HeaderJavaBean", "java", 6))
-        assertFalse("HeaderJavaBean".startsWith("java", 6))
-        assertTrue(Stringx.startsWith("HeaderJavaBean", "java", 6, true))
-        assertTrue("HeaderJavaBean".startsWith("java", 6, true))
+        assertThreeEquals(true, Stringx.startsWith("HeaderJavaBean", "Java", 6), "HeaderJavaBean".startsWith("Java", 6))
+        assertThreeEquals(false, Stringx.startsWith("HeaderJavaBean", "Jave", 6), "HeaderJavaBean".startsWith("Jave", 6))
+        assertThreeEquals(false, Stringx.startsWith("HeaderJavaBean", "java", 6), "HeaderJavaBean".startsWith("java", 6))
+        assertThreeEquals(true, Stringx.startsWith("HeaderJavaBean", "java", 6, true), "HeaderJavaBean".startsWith("java", 6, true))
+        assertEquals(false, Stringx.startsWith(null, "java", 6))
 
-        assertTrue(Stringx.startsWith(StringBuilder("HeaderJavaBean"), "Java", 6))
-        assertTrue((StringBuilder("HeaderJavaBean")).startsWith("Java", 6))
-        assertFalse(Stringx.startsWith(StringBuilder("HeaderJavaBean"), "Jave", 6))
-        assertFalse((StringBuilder("HeaderJavaBean")).startsWith("Jave", 6))
-        assertFalse(Stringx.startsWith(StringBuilder("HeaderJavaBean"), "java", 6))
-        assertFalse((StringBuilder("HeaderJavaBean")).startsWith("java", 6))
-        assertTrue(Stringx.startsWith(StringBuilder("HeaderJavaBean"), "java", 6, true))
-        assertTrue((StringBuilder("HeaderJavaBean")).startsWith("java", 6, true))
+        assertThreeEquals(true, Stringx.startsWith(StringBuilder("HeaderJavaBean"), "Java", 6), (StringBuilder("HeaderJavaBean")).startsWith("Java", 6))
+        assertThreeEquals(false, Stringx.startsWith(StringBuilder("HeaderJavaBean"), "Jave", 6), (StringBuilder("HeaderJavaBean")).startsWith("Jave", 6))
+        assertThreeEquals(false, Stringx.startsWith(StringBuilder("HeaderJavaBean"), "java", 6), (StringBuilder("HeaderJavaBean")).startsWith("java", 6))
+        assertThreeEquals(true, Stringx.startsWith(StringBuilder("HeaderJavaBean"), "java", 6, true), (StringBuilder("HeaderJavaBean")).startsWith("java", 6, true))
+        assertThreeEquals(true, Stringx.startsWith("HeaderJavaBean" as CharSequence, "Java"  as CharSequence, 6), (StringBuilder("HeaderJavaBean")).startsWith("Java", 6))
     }
 
     @Test
     fun testEndsWith() {
-        assertTrue(Stringx.endsWith("JavaBean", "Bean"))
-        assertTrue("JavaBean".endsWith("Bean"))
-        assertFalse(Stringx.endsWith("JavaBean", "Bea"))
-        assertFalse("JavaBean".endsWith("Bea"))
+        assertThreeEquals(true, Stringx.endsWith("JavaBean", "Bean"), "JavaBean".endsWith("Bean"))
+        assertThreeEquals(false, Stringx.endsWith("JavaBean", "Bea"), "JavaBean".endsWith("Bea"))
+        assertEquals(false, Stringx.endsWith(null, "Bea"))
 
-        assertFalse(Stringx.endsWith("JavaBean", "bean"))
-        assertFalse("JavaBean".endsWith("bean"))
-        assertTrue(Stringx.endsWith("JavaBean", "bean", true))
-        assertTrue("JavaBean".endsWith("bean", true))
+        assertThreeEquals(false, Stringx.endsWith("JavaBean", "bean"), "JavaBean".endsWith("bean"))
+        assertThreeEquals(true, Stringx.endsWith("JavaBean", "bean", true), "JavaBean".endsWith("bean", true))
     }
 
     @Test
@@ -411,6 +418,13 @@ class StringxTest {
     fun testRemoveRange() {
         assertThreeEquals("0126789", Stringx.removeRange("0123456789", 3, 6), "0123456789".removeRange(3, 6))
         assertThreeEquals("0126789", Stringx.removeRange("0123456789", Rangex.rangeTo(3, 5)), "0123456789".removeRange(3..5))
+        assertEquals("0123456789", Stringx.removeRange("0123456789", Rangex.rangeTo(3, 2)))
+        assertEquals("", Stringx.removeRange(null, Rangex.rangeTo(3, 5)))
+        try {
+            Stringx.removeRange("0123456789", Rangex.rangeTo(3, 1))
+            fail()
+        } catch (e: Exception) {
+        }
 
         assertThreeEquals("3456789", Stringx.removePrefix(StringBuilder("0123456789"), "012"), "0123456789".removePrefix("012"))
         assertThreeEquals("0123456789", Stringx.removePrefix("0123456789", "210"), "0123456789".removePrefix("210"))
@@ -442,6 +456,11 @@ class StringxTest {
         assertThreeEquals(".....今天天气晴", Stringx.padStart("今天天气晴", 10, '.'), ".....今天天气晴".padStart(10, '.'))
         assertThreeEquals("     今天天气晴", Stringx.padStart(StringBuilder("今天天气晴"), 10).toString(), (StringBuilder("今天天气晴")).padStart(10).toString())
         assertThreeEquals(".....今天天气晴", Stringx.padStart(StringBuilder("今天天气晴"), 10, '.').toString(), (StringBuilder(".....今天天气晴")).padStart(10, '.').toString())
+        try {
+            Stringx.padStart("今天天气晴", -1)
+            fail()
+        } catch (e: Exception) {
+        }
 
         assertThreeEquals("今天天气晴", Stringx.padEnd("今天天气晴", 4), "今天天气晴".padEnd(4))
         assertThreeEquals("今天天气晴", Stringx.padEnd("今天天气晴", 5), "今天天气晴".padEnd(5))
@@ -449,6 +468,11 @@ class StringxTest {
         assertThreeEquals("今天天气晴.....", Stringx.padEnd("今天天气晴", 10, '.'), "今天天气晴.....".padEnd(10, '.'))
         assertThreeEquals("今天天气晴     ", Stringx.padEnd(StringBuilder("今天天气晴"), 10).toString(), (StringBuilder("今天天气晴")).padEnd(10).toString())
         assertThreeEquals("今天天气晴.....", Stringx.padEnd(StringBuilder("今天天气晴"), 10, '.').toString(), (StringBuilder("今天天气晴")).padEnd(10, '.').toString())
+        try {
+            Stringx.padEnd("今天天气晴", -1)
+            fail()
+        } catch (e: Exception) {
+        }
     }
 
     @Test
@@ -464,6 +488,8 @@ class StringxTest {
         assertThreeEquals(Pair(8, "8").toString(), Stringx.findAnyOf("0123456789", listOf("a", "8"), 0).toString(), "0123456789".findAnyOf(listOf("a", "8"), 0).toString())
         assertThreeEquals("null", Stringx.findAnyOf("abcdefg", listOf("F", "8")).toString(), "abcdefg".findAnyOf(listOf("F", "8")).toString())
         assertThreeEquals(Pair(5, "F").toString(), Stringx.findAnyOf("abcdefg", listOf("F", "8"), true).toString(), "abcdefg".findAnyOf(listOf("F", "8"), ignoreCase = true).toString())
+        assertNull(Stringx.findAnyOf(null, listOf("3", "8"), 0, false))
+        assertThreeEquals(Pair(3, "3").toString(), Stringx.findAnyOf(StringBuilder("0123456789"), listOf("3", "8"), 0, false).toString(), StringBuilder("0123456789").findAnyOf(listOf("3", "8"), 0, false).toString())
 
         assertThreeEquals(Pair(6, "d").toString(), Stringx.findLastAnyOf("android", listOf("d", "a"), Stringx.count("android") - 1, false).toString(), "android".findLastAnyOf(listOf("d", "a"), "android".lastIndex, false).toString())
         assertThreeEquals(Pair(6, "d").toString(), Stringx.findLastAnyOf("android", listOf("a", "d"), Stringx.count("android") - 1, false).toString(), "android".findLastAnyOf(listOf("a", "d"), "android".lastIndex, false).toString())
@@ -821,6 +847,11 @@ class StringxTest {
         assertThreeEquals(resultTextRange, Stringx.replaceRange(sourceTextRange, 2, 8, "aaaaaa"), sourceTextRange.replaceRange(2, 8, "aaaaaa"))
         assertThreeEquals(resultTextRange, Stringx.replaceRange(StringBuilder(sourceTextRange), Rangex.rangeTo(2, 7), "aaaaaa").toString(), StringBuilder(sourceTextRange).replaceRange(2..7, "aaaaaa").toString())
         assertThreeEquals(resultTextRange, Stringx.replaceRange(sourceTextRange, Rangex.rangeTo(2, 7), "aaaaaa"), sourceTextRange.replaceRange(2..7, "aaaaaa"))
+        try {
+            Stringx.replaceRange(sourceTextRange, 2, 1, "aaaa")
+            fail()
+        } catch (e: Exception) {
+        }
 
         val sourceTextBefore = "test.txt"
         val sourceTextBeforeError = "testtxt"
@@ -829,6 +860,7 @@ class StringxTest {
         assertThreeEquals(resultTextBefore, Stringx.replaceBefore(sourceTextBeforeError, '.', "simple", resultTextBefore), sourceTextBeforeError.replaceBefore('.', "simple", resultTextBefore))
         assertThreeEquals(resultTextBefore, Stringx.replaceBefore(sourceTextBefore, ".", "simple", sourceTextBefore), sourceTextBefore.replaceBefore(".", "simple", sourceTextBefore))
         assertThreeEquals(resultTextBefore, Stringx.replaceBefore(sourceTextBeforeError, ".", "simple", resultTextBefore), sourceTextBeforeError.replaceBefore(".", "simple", resultTextBefore))
+        assertEquals("", Stringx.replaceBefore(null, '.', "simple", sourceTextBefore))
 
         val sourceTextBeforeLast = "test.txt.zip"
         val sourceTextBeforeLastError = "testtxtzip"
@@ -837,6 +869,7 @@ class StringxTest {
         assertThreeEquals(resultTextBeforeLast, Stringx.replaceBeforeLast(sourceTextBeforeLastError, '.', "simple.txt", resultTextBeforeLast), sourceTextBeforeLastError.replaceBeforeLast('.', "simple.txt", resultTextBeforeLast))
         assertThreeEquals(resultTextBeforeLast, Stringx.replaceBeforeLast(sourceTextBeforeLast, ".", "simple.txt", sourceTextBeforeLast), sourceTextBeforeLast.replaceBeforeLast(".", "simple.txt", sourceTextBeforeLast))
         assertThreeEquals(resultTextBeforeLast, Stringx.replaceBeforeLast(sourceTextBeforeLastError, ".", "simple.txt", resultTextBeforeLast), sourceTextBeforeLastError.replaceBeforeLast(".", "simple.txt", resultTextBeforeLast))
+        assertEquals("", Stringx.replaceBeforeLast(null, '.', "simple.txt", sourceTextBefore))
 
         val sourceTextAfter = "test.txt"
         val sourceTextAfterError = "testtxt"
@@ -845,6 +878,7 @@ class StringxTest {
         assertThreeEquals(resultTextAfter, Stringx.replaceAfter(sourceTextAfterError, '.', "zip", resultTextAfter), sourceTextAfterError.replaceAfter('.', "zip", resultTextAfter))
         assertThreeEquals(resultTextAfter, Stringx.replaceAfter(sourceTextAfter, ".", "zip", sourceTextAfter), sourceTextAfter.replaceAfter(".", "zip", sourceTextAfter))
         assertThreeEquals(resultTextAfter, Stringx.replaceAfter(sourceTextAfterError, ".", "zip", resultTextAfter), sourceTextAfterError.replaceAfter(".", "zip", resultTextAfter))
+        assertEquals("", Stringx.replaceAfter(null, '.', "zip", sourceTextAfter))
 
         val sourceTextAfterLast = "test.txt.zip"
         val sourceTextAfterLastError = "testtxtzip"
@@ -853,14 +887,17 @@ class StringxTest {
         assertThreeEquals(resultTextAfterLast, Stringx.replaceAfterLast(sourceTextAfterLastError, '.', "rar", resultTextAfterLast), sourceTextAfterLastError.replaceAfterLast('.', "rar", resultTextAfterLast))
         assertThreeEquals(resultTextAfterLast, Stringx.replaceAfterLast(sourceTextAfterLast, ".", "rar", sourceTextAfterLast), sourceTextAfterLast.replaceAfterLast(".", "rar", sourceTextAfterLast))
         assertThreeEquals(resultTextAfterLast, Stringx.replaceAfterLast(sourceTextAfterLastError, ".", "rar", resultTextAfterLast), sourceTextAfterLastError.replaceAfterLast(".", "rar", resultTextAfterLast))
+        assertEquals("", Stringx.replaceAfterLast(null, '.', "rar", sourceTextAfterLast))
 
         val sourceTextPattern = "fasfjs hello@gmail.com fasf hello@outlook.com"
         val resultTextPattern = "fasfjs http://google.com fasf http://google.com"
         assertThreeEquals(resultTextPattern, Stringx.replace(sourceTextPattern, Regexx.EMAIL, "http://google.com"), sourceTextPattern.replace(Regex(Regexx.EMAIL.pattern()), "http://google.com"))
+        assertEquals("", Stringx.replace(null, Regexx.EMAIL, "http://google.com"))
 
         val sourceTextFirstPattern = "fasfjs hello@gmail.com fasf hello@outlook.com"
         val resultTextFirstPattern = "fasfjs http://google.com fasf hello@outlook.com"
         assertThreeEquals(resultTextFirstPattern, Stringx.replaceFirst(sourceTextFirstPattern, Regexx.EMAIL, "http://google.com"), sourceTextFirstPattern.replaceFirst(Regex(Regexx.EMAIL.pattern()), "http://google.com"))
+        assertEquals("", Stringx.replaceFirst(null, Regexx.EMAIL, "http://google.com"))
     }
 
     @Test
@@ -892,9 +929,9 @@ class StringxTest {
         assertThreeEquals(false, Stringx.contains(self, "cD"), self.contains("cD"))
         assertThreeEquals(true, Stringx.contains(self, "cD", true), self.contains("cD", true))
 
-        assertThreeEquals(true, Stringx.contains(StringBuilder(self), "cd"), StringBuilder(self).contains("cd"))
-        assertThreeEquals(false, Stringx.contains(StringBuilder(self), "cD"), StringBuilder(self).contains("cD"))
-        assertThreeEquals(true, Stringx.contains(StringBuilder(self), "cD", true), StringBuilder(self).contains("cD", true))
+        assertThreeEquals(true, Stringx.contains(StringBuilder(self), StringBuilder("cd")), StringBuilder(self).contains("cd"))
+        assertThreeEquals(false, Stringx.contains(StringBuilder(self), StringBuilder("cD")), StringBuilder(self).contains("cD"))
+        assertThreeEquals(true, Stringx.contains(StringBuilder(self), StringBuilder("cD"), true), StringBuilder(self).contains("cD", true))
 
         assertThreeEquals(true, Stringx.contains(self, 'd'), self.contains('d'))
         assertThreeEquals(false, Stringx.contains(self, 'D'), self.contains('D'))
@@ -1028,13 +1065,90 @@ class StringxTest {
         val source = "0123456789"
 
         assertThreeEquals("34567", Stringx.slice(source, Rangex.rangeTo(3, 7)), source.slice(3..7))
+        @Suppress("EmptyRange")
         assertThreeEquals("", Stringx.slice(source, Rangex.rangeTo(3, 2)), source.slice(3..2))
         assertThreeEquals("34567", Stringx.slice(StringBuilder(source), Rangex.rangeTo(3, 7)).toString(), StringBuilder(source).slice(3..7).toString())
+        @Suppress("EmptyRange")
         assertThreeEquals("", Stringx.slice(StringBuilder(source), Rangex.rangeTo(3, 2)).toString(), StringBuilder(source).slice(3..2).toString())
 
         assertThreeEquals("158", Stringx.slice(source, Collectionx.listOf(1, 5, 8)), source.slice(listOf(1, 5, 8)))
         assertThreeEquals("", Stringx.slice(source, Collectionx.listOf()), source.slice(listOf()))
         assertThreeEquals("158", Stringx.slice(StringBuilder(source), Collectionx.listOf(1, 5, 8)).toString(), StringBuilder(source).slice(listOf(1, 5, 8)).toString())
         assertThreeEquals("", Stringx.slice(StringBuilder(source), Collectionx.listOf()).toString(), StringBuilder(source).slice(listOf()).toString())
+        assertEquals("", Stringx.slice(null, Collectionx.listOf()))
+    }
+
+    @Test
+    fun testTake() {
+        val source = "0123456789"
+
+        assertThreeEquals("0123456", Stringx.take(source, 7), source.take(7))
+        assertThreeEquals(source, Stringx.take(source, 15), source.take(15))
+        assertThreeEquals("", Stringx.take(source, 0), source.take(0))
+        try {
+            Stringx.take(source, -1)
+            fail()
+        } catch (e: Exception) {
+        }
+        assertThreeEquals(StringBuilder("0123456").toString(), Stringx.take(StringBuilder(source), 7).toString(), StringBuilder(source).take(7).toString())
+        assertThreeEquals(StringBuilder(source).toString(), Stringx.take(StringBuilder(source), 15).toString(), StringBuilder(source).take(15).toString())
+        assertThreeEquals(StringBuilder("").toString(), Stringx.take(StringBuilder(source), 0).toString(), StringBuilder(source).take(0).toString())
+        try {
+            Stringx.take(StringBuilder(source), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals("3456789", Stringx.takeLast(source, 7), source.takeLast(7))
+        assertThreeEquals(source, Stringx.takeLast(source, 15), source.takeLast(15))
+        assertThreeEquals("", Stringx.takeLast(source, 0), source.takeLast(0))
+        try {
+            Stringx.takeLast(source, -1)
+            fail()
+        } catch (e: Exception) {
+        }
+        assertThreeEquals(StringBuilder("3456789").toString(), Stringx.takeLast(StringBuilder(source), 7).toString(), StringBuilder(source).takeLast(7).toString())
+        assertThreeEquals(StringBuilder(source).toString(), Stringx.takeLast(StringBuilder(source), 15).toString(), StringBuilder(source).takeLast(15).toString())
+        assertThreeEquals(StringBuilder("").toString(), Stringx.takeLast(StringBuilder(source), 0).toString(), StringBuilder(source).takeLast(0).toString())
+        try {
+            Stringx.takeLast(StringBuilder(source), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals("012345", Stringx.takeWhile(source) { it != '6' }, source.takeWhile { it != '6' })
+        assertEquals("", Stringx.takeWhile(null) { it != '6' })
+        assertThreeEquals(StringBuilder("012345").toString(), Stringx.takeWhile(StringBuilder(source)) { it != '6' }.toString(), StringBuilder(source).takeWhile { it != '6' }.toString())
+        assertEquals(StringBuilder("").toString(), Stringx.takeWhile(null) { it != '6' })
+        assertThreeEquals(source, Stringx.takeWhile(source) { it != 'a' }, source.takeWhile { it != 'a' })
+
+        assertThreeEquals("789", Stringx.takeLastWhile(source) { it != '6' }, source.takeLastWhile { it != '6' })
+        assertEquals("", Stringx.takeLastWhile(null) { it != '6' })
+        assertThreeEquals(StringBuilder("789").toString(), Stringx.takeLastWhile(StringBuilder(source)) { it != '6' }.toString(), StringBuilder(source).takeLastWhile { it != '6' }.toString())
+        assertEquals(StringBuilder("").toString(), Stringx.takeLastWhile(null) { it != '6' })
+        assertThreeEquals(source, Stringx.takeLastWhile(source) { it != 'a' }, source.takeLastWhile { it != 'a' })
+    }
+
+    @Test
+    fun testAssociate() {
+        val source = "0123456789"
+        assertEquals(source.associate { Pair(it.toString(), it.toInt()) }.toList(), Stringx.associate(source) { me.panpf.javax.util.Pair<String, Int>(it.toString(), it.toInt()) }.toList())
+        assertEquals(source.associateBy { it.toString() }.toList(), Stringx.associateBy(source) { it.toString() }.toList())
+        assertEquals(source.associateBy({ it.toString() }) { it.toInt() }.toList(), Stringx.associateBy(source, { it.toString() }) { it.toInt() }.toList())
+        assertEquals(source.associateTo(LinkedHashMap()) { Pair(it.toString(), it.toInt()) }.toList(), Stringx.associateTo(source, LinkedHashMap()) { me.panpf.javax.util.Pair<String, Int>(it.toString(), it.toInt()) }.toList())
+        assertEquals(source.associateByTo(LinkedHashMap()) { it.toString() }.toList(), Stringx.associateByTo(source, LinkedHashMap()) { it.toString() }.toList())
+        assertEquals(source.associateByTo(LinkedHashMap(), { it.toString() }) { it.toInt() }.toList(), Stringx.associateByTo(source, LinkedHashMap(), { it.toString() }) { it.toInt() }.toList())
+    }
+
+    @Test
+    fun testTo() {
+        val source = "0123456789"
+        assertThreeEquals(source, Collectionx.joinToString(Stringx.toList(source), ""), source.toList().joinToString(""))
+        assertThreeEquals(source, Collectionx.joinToString(Stringx.toSet(source), ""), source.toSet().joinToString(""))
+        assertThreeEquals("", Collectionx.joinToString(Stringx.toSet(""), ""), "".toSet().joinToString(""))
+        assertEquals("", Collectionx.joinToString(Stringx.toSet(null), ""))
+        assertThreeEquals(source, Collectionx.joinToString(Stringx.toHashSet(source), ""), source.toHashSet().joinToString(""))
+        assertThreeEquals(source, Collectionx.joinToString(Stringx.toSortedSet(source), ""), source.toSortedSet().joinToString(""))
+        assertThreeEquals(source, Collectionx.joinToString(Stringx.toCollection(source, LinkedList<Char>()), ""), source.toCollection(LinkedList()).joinToString(""))
     }
 }
