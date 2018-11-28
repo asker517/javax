@@ -46,72 +46,6 @@ public class Mapx {
         return new MapBuilder<>(k, v);
     }
 
-    /**
-     * Returns an empty readable and writable Map<K, V>.
-     */
-    @NotNull
-    public static <K, V> Map<K, V> createEmptyMap() {
-        return new HashMap<>(0);
-    }
-
-    /**
-     * Returns an empty readable and writable HashMap<K, V>.
-     */
-    @NotNull
-    public static <K, V> HashMap<K, V> createEmptyHashMap() {
-        return new HashMap<>(0);
-    }
-
-    /**
-     * Returns an empty readable and writable WeakHashMap<K, V>.
-     */
-    @NotNull
-    public static <K, V> WeakHashMap<K, V> createEmptyWeakHashMap() {
-        return new WeakHashMap<>(0);
-    }
-
-    /**
-     * Returns an empty readable and writable LinkedHashMap<K, V>.
-     */
-    @NotNull
-    public static <K, V> LinkedHashMap<K, V> createEmptyLinkedHashMap() {
-        return new LinkedHashMap<>(0);
-    }
-
-    /**
-     * Returns an empty readable and writable Hashtable<K, V>.
-     */
-    @NotNull
-    public static <K, V> Hashtable<K, V> createEmptyHashtable() {
-        return new Hashtable<>(0);
-    }
-
-    /**
-     * Returns an empty readable and writable TreeMap<K, V>.
-     */
-    @NotNull
-    public static <K, V> TreeMap<K, V> createEmptyTreeMap() {
-        return new TreeMap<>();
-    }
-
-    /**
-     * Returns an empty readable and writable TreeMap<K, V>.
-     */
-    @NotNull
-    public static <K, V> TreeMap<K, V> createEmptySortedMap() {
-        return new TreeMap<>();
-    }
-
-
-    /**
-     * Returns an empty only readable Map<K, T>.
-     */
-    @NotNull
-    public static <K, T> Map<K, T> onlyReadEmptyMap() {
-        //noinspection unchecked
-        return Collections.EMPTY_MAP;
-    }
-
 
     /*
      * *****************************************************************************************************************
@@ -122,29 +56,136 @@ public class Mapx {
 
     // TODO: 2018/11/28 转换成 java
 
-//    /**
-//     * Returns a new read-only map with the specified contents, given as a list of pairs
-//     * where the first value is the key and the second is the value.
-//     *
-//     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
-//     *
-//     * Entries of the map are iterated in the order they were specified.
-//     *
-//     * The returned map is serializable (JVM).
-//     *
-//     * @sample samples.collections.Maps.Instantiation.mapFromPairs
-//     */
-//    public fun <K, V> mapOf(vararg pairs: Pair<K, V>): Map<K, V> =
-//            if (pairs.size > 0) pairs.toMap(LinkedHashMap(mapCapacity(pairs.size))) else emptyMap()
-//
-///**
-// * Returns an empty read-only map.
-// *
-// * The returned map is serializable (JVM).
-// * @sample samples.collections.Maps.Instantiation.emptyReadOnlyMap
-// */
-//    @kotlin.internal.InlineOnly
-//    public inline fun <K, V> mapOf(): Map<K, V> = emptyMap()
+    /**
+     * Returns an empty read-only map.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    public static <K, V> Map<K, V> immutableMapOf() {
+        //noinspection unchecked
+        return Collections.EMPTY_MAP;
+    }
+
+    /**
+     * Returns an empty read-only map.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    public static <K, V> Map<K, V> immutableMapOf(@NotNull Pair<K, V> pair) {
+        return Collections.singletonMap(pair.first, pair.second);
+    }
+
+    /**
+     * Returns an empty read-only map.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    @SafeVarargs
+    public static <K, V> Map<K, V> immutableMapOf(@NotNull Pair<K, V>... pairs) {
+        //noinspection unchecked
+        return pairs.length > 0 ? toMap(pairs, new LinkedHashMap<K, V>(capacity(pairs.length))) : (Map<K, V>) Collections.EMPTY_MAP;
+    }
+
+    /**
+     * Returns an empty read-only map.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    public static <K, V> Map<K, V> mutableMapOf() {
+        return new LinkedHashMap<>(0);
+    }
+
+    /**
+     * Returns a new read-only map with the specified contents, given as a list of pairs
+     * where the first value is the key and the second is the value.
+     * <p>
+     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
+     * <p>
+     * Entries of the map are iterated in the order they were specified.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    @SafeVarargs
+    public static <K, V> Map<K, V> mutableMapOf(@NotNull Pair<K, V>... pairs) {
+        //noinspection unchecked
+        return pairs.length > 0 ? toMap(pairs, new LinkedHashMap<K, V>(capacity(pairs.length))) : (Map<K, V>) mutableMapOf();
+    }
+
+    /**
+     * Returns an empty read-only map.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    public static <K, V> HashMap<K, V> hashMapOf() {
+        return new HashMap<>(0);
+    }
+
+    /**
+     * Returns a new read-only map with the specified contents, given as a list of pairs
+     * where the first value is the key and the second is the value.
+     * <p>
+     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
+     * <p>
+     * Entries of the map are iterated in the order they were specified.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    @SafeVarargs
+    public static <K, V> HashMap<K, V> hashMapOf(@NotNull Pair<K, V>... pairs) {
+        HashMap<K, V> map = new HashMap<>(capacity(pairs.length));
+        putAll(map, pairs);
+        return map;
+    }
+
+    /**
+     * Returns an empty read-only map.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    public static <K, V> LinkedHashMap<K, V> linkedMapOf() {
+        return new LinkedHashMap<>(0);
+    }
+
+    /**
+     * Returns a new read-only map with the specified contents, given as a list of pairs
+     * where the first value is the key and the second is the value.
+     * <p>
+     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
+     * <p>
+     * Entries of the map are iterated in the order they were specified.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    @SafeVarargs
+    public static <K, V> LinkedHashMap<K, V> linkedMapOf(@NotNull Pair<K, V>... pairs) {
+        LinkedHashMap<K, V> map = new LinkedHashMap<>(capacity(pairs.length));
+        putAll(map, pairs);
+        return map;
+    }
+
+    /**
+     * Returns a new read-only map with the specified contents, given as a list of pairs
+     * where the first value is the key and the second is the value.
+     * <p>
+     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
+     * <p>
+     * Entries of the map are iterated in the order they were specified.
+     * <p>
+     * The returned map is serializable (JVM).
+     */
+    @NotNull
+    @SafeVarargs
+    public static <K extends Comparable<K>, V> SortedMap<K, V> sortedMapOf(@NotNull Pair<K, V>... pairs) {
+        TreeMap<K, V> map = new TreeMap<>();
+        putAll(map, pairs);
+        return map;
+    }
 //
 ///**
 // * Returns an empty new [MutableMap].
@@ -398,24 +439,29 @@ public class Mapx {
 //        return entries.associateByTo(destination, transform, { it.value })
 //    }
 //
-//    /**
-//     * Puts all the given [pairs] into this [MutableMap] with the first component in the pair being the key and the second the value.
-//     */
-//    public fun <K, V> MutableMap<in K, in V>.putAll(pairs: Array<out Pair<K, V>>): Unit {
-//        for ((key, value) in pairs) {
-//            put(key, value)
-//        }
-//    }
-//
-//    /**
-//     * Puts all the elements of the given collection into this [MutableMap] with the first component in the pair being the key and the second the value.
-//     */
-//    public fun <K, V> MutableMap<in K, in V>.putAll(pairs: Iterable<Pair<K, V>>): Unit {
-//        for ((key, value) in pairs) {
-//            put(key, value)
-//        }
-//    }
-//
+
+    /**
+     * Puts all the given [pairs] into this [MutableMap] with the first component in the pair being the key and the second the value.
+     */
+    public static <K, V> void putAll(@NotNull Map<K, V> map, @Nullable Pair<K, V>... pairs) {
+        if (pairs != null) {
+            for (Pair<K, V> pair : pairs) {
+                map.put(pair.first, pair.second);
+            }
+        }
+    }
+
+    /**
+     * Puts all the elements of the given collection into this [MutableMap] with the first component in the pair being the key and the second the value.
+     */
+    public static <K, V> void putAll(@NotNull Map<K, V> map, @Nullable Iterable<Pair<K, V>> pairs) {
+        if (pairs != null) {
+            for (Pair<K, V> pair : pairs) {
+                map.put(pair.first, pair.second);
+            }
+        }
+    }
+
 //    /**
 //     * Puts all the elements of the given sequence into this [MutableMap] with the first component in the pair being the key and the second the value.
 //     */
@@ -557,22 +603,29 @@ public class Mapx {
 //    public fun <K, V, M : MutableMap<in K, in V>> Iterable<Pair<K, V>>.toMap(destination: M): M =
 //    destination.apply { putAll(this@toMap) }
 //
-//    /**
-//     * Returns a new map containing all key-value pairs from the given array of pairs.
-//     *
-//     * The returned map preserves the entry iteration order of the original array.
-//     */
-//    public fun <K, V> Array<out Pair<K, V>>.toMap(): Map<K, V> = when (size) {
-//        0 -> emptyMap()
-//        1 -> mapOf(this[0])
-//    else -> toMap(LinkedHashMap<K, V>(mapCapacity(size)))
-//    }
-//
-///**
-// *  Populates and returns the [destination] mutable map with key-value pairs from the given array of pairs.
-// */
-//    public fun <K, V, M : MutableMap<in K, in V>> Array<out Pair<K, V>>.toMap(destination: M): M =
-//    destination.apply { putAll(this@toMap) }
+
+    /**
+     * Returns a new map containing all key-value pairs from the given array of pairs.
+     * <p>
+     * The returned map preserves the entry iteration order of the original array.
+     */
+    public static <K, V> Map<K, V> toMap(@Nullable Pair<K, V>... pairs) {
+        if (pairs == null || pairs.length == 0) {
+            return mutableMapOf();
+        } else if (pairs.length == 1) {
+            return mutableMapOf(pairs[0]);
+        } else {
+            return toMap(pairs, new LinkedHashMap<K, V>(capacity(pairs.length)));
+        }
+    }
+
+    /**
+     * Populates and returns the [destination] mutable map with key-value pairs from the given array of pairs.
+     */
+    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Pair<K, V>[] paris, @NotNull M destination) {
+        putAll(destination, paris);
+        return destination;
+    }
 //
 //    /**
 //     * Returns a new map containing all key-value pairs from the given sequence of pairs.

@@ -62,9 +62,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
     * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
 * Map: [Mapx.java]
-    * builder, createEmptyMap, createEmptyHashMap, createEmptyWeakHashMap, createEmptyLinkedHashMap,
-    * createEmptyHashtable, createEmptyTreeMap, createEmptySortedMap, onlyReadEmptyMap,
-    * capacity, getOrPut, plusAssign, forEach, map, mapTo
+    * builder, immutableMapOf, mutableMapOf, hashMapOf, linkedMapOf, sortedMapOf, capacity, getOrPut,
+    * plusAssign, forEach, map, mapTo
 
 ### crypto
 * Aes: [Aesx.java] ([Test][AesxTest.java]) | [Aesx.kt] ([Test][AesxTest.kt])

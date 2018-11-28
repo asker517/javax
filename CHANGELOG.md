@@ -14,6 +14,8 @@
 * :fire: Collectionx listOf rename to mutableListOf, onlyReadListOf rename to immutableListOf
 * :fire: Collectionx remove all createEmpty* method
 * :fire: Refactoring Collectionx listOf and setOf method
+* :fire: Mapx remove all createEmpty* method
+* :sparkles: Mapx add mapOf method
 
 
 

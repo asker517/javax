@@ -1,12 +1,17 @@
+@file:Suppress("RemoveRedundantSpreadOperator")
+
 package me.panpf.javax.test.collections
 
 import me.panpf.javax.collections.Collectionx
 import me.panpf.javax.collections.Mapx
 import me.panpf.javax.test.Assertx.assertThreeEquals
-import me.panpf.javax.util.Pair
 import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.fail
 import org.junit.Test
 import java.util.*
+import kotlin.collections.HashMap
+import kotlin.collections.LinkedHashMap
 
 class MapxTest {
 
@@ -31,38 +36,106 @@ class MapxTest {
         Assert.assertEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("3", "333").put("1", "111").put("2", "222").buildSorted()) { entry -> entry.key }), "1, 2, 3")
     }
 
+
+    /*
+     * *****************************************************************************************************************
+     * From kotlin standard library
+     * *****************************************************************************************************************
+     */
+
+
     @Test
-    fun testCreate() {
-        Assert.assertTrue(Mapx.createEmptyMap<Any, Any>() is HashMap<*, *>)
-        Assert.assertTrue(Mapx.createEmptyMap<Any, Any>().isEmpty())
-        Mapx.createEmptyMap<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.createEmptyHashMap<Any, Any>().isEmpty())
-        Mapx.createEmptyHashMap<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.createEmptyWeakHashMap<Any, Any>().isEmpty())
-        Mapx.createEmptyWeakHashMap<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.createEmptyLinkedHashMap<Any, Any>().isEmpty())
-        Mapx.createEmptyLinkedHashMap<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.createEmptyHashtable<Any, Any>().isEmpty)
-        Mapx.createEmptyHashtable<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.createEmptyTreeMap<Any, Any>().isEmpty())
-        Mapx.createEmptyTreeMap<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.createEmptySortedMap<Any, Any>().isEmpty())
-        Mapx.createEmptySortedMap<Any, Any>()["key"] = "value"
-
-        Assert.assertTrue(Mapx.onlyReadEmptyMap<Any, Any>().isEmpty())
+    fun testMapOf() {
+        assertThreeEquals(0, Mapx.immutableMapOf<String, String>().size, mapOf<String, String>().size)
+        assertEquals(Collections.EMPTY_MAP::class.java.name, Mapx.immutableMapOf<String, String>()::class.java.name)
+        assertEquals(emptyMap<String, String>()::class.java.name, mapOf<String, String>()::class.java.name)
         try {
-            Mapx.onlyReadEmptyMap<Any, Any>()["key"] = "value"
-            Assert.fail()
+            Mapx.immutableMapOf<String, String>()["key3"] = "value3"
+            fail()
         } catch (e: Exception) {
-            e.printStackTrace()
         }
 
+        assertThreeEquals(1, Mapx.immutableMapOf(me.panpf.javax.util.Pair("key", "value")).size,
+                mapOf(kotlin.Pair("key", "value")).size)
+        assertThreeEquals(Collections.singletonMap("key", "value")::class.java.name,
+                Mapx.immutableMapOf(me.panpf.javax.util.Pair("key", "value"))::class.java.name,
+                mapOf(kotlin.Pair("key", "value"))::class.java.name)
+        try {
+            Mapx.immutableMapOf(me.panpf.javax.util.Pair("key", "value"))["key3"] = "value3"
+            fail()
+        } catch (e: Exception) {
+        }
+
+        assertThreeEquals(2, Mapx.immutableMapOf(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).size,
+                mapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).size)
+        assertThreeEquals(LinkedHashMap::class.java.name,
+                Mapx.immutableMapOf(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2"))::class.java.name,
+                mapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2"))::class.java.name)
+        Mapx.immutableMapOf(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2"))["key3"] = "value3"
+        (mapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")) as LinkedHashMap)["key3"] = "value3"
+
+        assertThreeEquals(0, Mapx.immutableMapOf(*arrayOf<me.panpf.javax.util.Pair<String, String>>()).size,
+                mapOf(*arrayOf<Pair<String, String>>()).size)
+        assertEquals(Collections.EMPTY_MAP::class.java.name, Mapx.immutableMapOf(*arrayOf<me.panpf.javax.util.Pair<String, String>>())::class.java.name)
+        assertEquals(emptyMap<String, String>()::class.java.name, mapOf(*arrayOf<Pair<String, String>>())::class.java.name)
+        try {
+            Mapx.immutableMapOf(*arrayOf<me.panpf.javax.util.Pair<String, String>>())["key3"] = "value3"
+            fail()
+        } catch (e: Exception) {
+        }
+
+        try {
+            Mapx.immutableMapOf<String, String>(null)
+            fail()
+        } catch (e: Exception) {
+        }
+
+
+        assertThreeEquals(0, Mapx.mutableMapOf<String, String>().size, mutableMapOf<String, String>().size)
+        assertThreeEquals(LinkedHashMap::class.java.name, Mapx.mutableMapOf<String, String>()::class.java.name, mutableMapOf<String, String>()::class.java.name)
+        assertThreeEquals(1, Mapx.mutableMapOf<String, String>().apply { put("key3", "value3") }.size, mutableMapOf<String, String>().apply { put("key3", "value3") }.size)
+
+        assertThreeEquals(2, Mapx.mutableMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).size,
+                mutableMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).size)
+        assertThreeEquals(LinkedHashMap::class.java.name, Mapx.mutableMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2"))::class.java.name,
+                mutableMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2"))::class.java.name)
+        assertThreeEquals(3, Mapx.mutableMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).apply { put("key3", "value3") }.size,
+                mutableMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).apply { put("key3", "value3") }.size)
+
+
+        assertThreeEquals(0, Mapx.hashMapOf<String, String>().size, hashMapOf<String, String>().size)
+        assertThreeEquals(java.util.HashMap::class.java.name, Mapx.hashMapOf<String, String>()::class.java.name, hashMapOf<String, String>()::class.java.name)
+        assertThreeEquals(1, Mapx.hashMapOf<String, String>().apply { put("key3", "value3") }.size, hashMapOf<String, String>().apply { put("key3", "value3") }.size)
+
+        assertThreeEquals(2, Mapx.hashMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).size,
+                hashMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).size)
+        assertThreeEquals(java.util.HashMap::class.java.name, Mapx.hashMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2"))::class.java.name,
+                hashMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2"))::class.java.name)
+        assertThreeEquals(3, Mapx.hashMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).apply { put("key3", "value3") }.size,
+                hashMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).apply { put("key3", "value3") }.size)
+
+
+        assertThreeEquals(0, Mapx.linkedMapOf<String, String>().size, linkedMapOf<String, String>().size)
+        assertThreeEquals(LinkedHashMap::class.java.name, Mapx.linkedMapOf<String, String>()::class.java.name, linkedMapOf<String, String>()::class.java.name)
+        assertThreeEquals(1, Mapx.linkedMapOf<String, String>().apply { put("key3", "value3") }.size, linkedMapOf<String, String>().apply { put("key3", "value3") }.size)
+
+        assertThreeEquals(2, Mapx.linkedMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).size,
+                linkedMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).size)
+        assertThreeEquals(LinkedHashMap::class.java.name, Mapx.linkedMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2"))::class.java.name,
+                linkedMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2"))::class.java.name)
+        assertThreeEquals(3, Mapx.linkedMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).apply { put("key3", "value3") }.size,
+                linkedMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).apply { put("key3", "value3") }.size)
+
+
+        assertThreeEquals(2, Mapx.sortedMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).size,
+                sortedMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).size)
+        assertThreeEquals(TreeMap::class.java.name, Mapx.sortedMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2"))::class.java.name,
+                sortedMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2"))::class.java.name)
+        assertThreeEquals(3, Mapx.sortedMapOf<String, String>(me.panpf.javax.util.Pair("key", "value"), me.panpf.javax.util.Pair("key2", "value2")).apply { put("key3", "value3") }.size,
+                sortedMapOf(kotlin.Pair("key", "value"), kotlin.Pair("key2", "value2")).apply { put("key3", "value3") }.size)
+
+        assertThreeEquals("{key=value, key2=value2}", Mapx.sortedMapOf<String, String>(me.panpf.javax.util.Pair("key2", "value2"), me.panpf.javax.util.Pair("key", "value")).toString(),
+                sortedMapOf(kotlin.Pair("key2", "value2"), kotlin.Pair("key", "value")).toString())
     }
 
     @Test
@@ -77,7 +150,7 @@ class MapxTest {
 
     @Test
     fun testGetOrPut() {
-        val map = Mapx.createEmptyMap<String, String>()
+        val map = HashMap<String, String>()
 
         Assert.assertEquals(0, map.size.toLong())
         Assert.assertNull(map["key"])
@@ -99,12 +172,12 @@ class MapxTest {
 
     @Test
     fun testPlusAssign() {
-        val map = Mapx.createEmptyMap<String, String>()
+        val map = HashMap<String, String>()
 
         Assert.assertEquals(0, map.size.toLong())
         Assert.assertNull(map["key"])
 
-        Mapx.plusAssign(map, Pair("key", "value"))
+        Mapx.plusAssign(map, me.panpf.javax.util.Pair("key", "value"))
         Assert.assertEquals(1, map.size.toLong())
         Assert.assertNotNull(map["key"])
 
@@ -113,7 +186,7 @@ class MapxTest {
         Assert.assertNotNull(map["key"])
 
         Assert.assertNull(map["key1"])
-        Mapx.plusAssign(map, Pair("key1", "value1"))
+        Mapx.plusAssign(map, me.panpf.javax.util.Pair("key1", "value1"))
         Assert.assertEquals(2, map.size.toLong())
         Assert.assertNotNull(map["key1"])
     }
