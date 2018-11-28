@@ -16,6 +16,8 @@
 
 package me.panpf.javax.collections;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Iterator;
 
 /**
@@ -35,5 +37,6 @@ public interface Sequence<T> extends Iterable<T> {
      * <p>
      * Throws an exception if the sequence is constrained to be iterated once and `iterator` is invoked the second time.
      */
+    @NotNull
     Iterator<T> iterator();
 }

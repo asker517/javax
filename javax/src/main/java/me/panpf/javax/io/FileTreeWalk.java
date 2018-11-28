@@ -66,6 +66,7 @@ public class FileTreeWalk implements Sequence<File> {
     /**
      * Returns an iterator walking through files.
      */
+    @NotNull
     @Override
     public Iterator<File> iterator() {
         return new FileTreeWalkIterator();

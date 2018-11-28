@@ -29,6 +29,7 @@ import java.util.*;
  * Map tool method
  */
 public class Mapx {
+    // TODO: 2018/11/28 测试
 
     public static final int INT_MAX_POWER_OF_TWO = Integer.MAX_VALUE / 2 + 1;
 

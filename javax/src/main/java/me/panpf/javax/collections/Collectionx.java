@@ -28,6 +28,7 @@ import java.util.concurrent.*;
  */
 @SuppressWarnings({"WeakerAccess"})
 public class Collectionx {
+    // TODO: 2018/11/28 测试
 
     private Collectionx() {
     }
