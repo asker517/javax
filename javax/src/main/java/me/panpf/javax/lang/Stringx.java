@@ -42,7 +42,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isSafe *******************************************/
+    /* ******************************************* isSafe ****************************************** */
 
 
     /**
@@ -76,7 +76,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isBlank *******************************************/
+    /* ******************************************* isBlank ****************************************** */
 
 
     /**
@@ -147,7 +147,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isEmpty *******************************************/
+    /* ******************************************* isEmpty ****************************************** */
 
 
     /**
@@ -212,7 +212,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isChinese *******************************************/
+    /* ******************************************* isChinese ****************************************** */
 
 
     /**
@@ -252,7 +252,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isDigit *******************************************/
+    /* ******************************************* isDigit ****************************************** */
 
 
     /**
@@ -292,7 +292,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isLetter *******************************************/
+    /* ******************************************* isLetter ****************************************** */
 
 
     /**
@@ -332,7 +332,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* isLetterOrDigit *******************************************/
+    /* ******************************************* isLetterOrDigit ****************************************** */
 
 
     /**
@@ -372,7 +372,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* containsAny and containsAll *******************************************/
+    /* ******************************************* containsAny and containsAll ****************************************** */
 
 
     /**
@@ -440,7 +440,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* or and to *******************************************/
+    /* ******************************************* or and to ****************************************** */
 
 
     /**
@@ -508,7 +508,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* filterBlank *******************************************/
+    /* ******************************************* filterBlank ****************************************** */
 
 
     /**
@@ -533,7 +533,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* remove *******************************************/
+    /* ******************************************* remove ****************************************** */
 
 
     /**
@@ -599,13 +599,10 @@ public class Stringx {
     public static String removeIndex(@Nullable String string, int removeIndex) {
         StringBuilder sb = new StringBuilder();
         if (string != null) {
-            boolean removed = false;
             for (int index = 0, size = count(string); index < size; index++) {
                 char cha = string.charAt(index);
-                if (index != removeIndex || removed) {
+                if (index != removeIndex) {
                     sb.append(cha);
-                } else {
-                    removed = true;
                 }
             }
         }
@@ -613,7 +610,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* limit *******************************************/
+    /* ******************************************* limit ****************************************** */
 
 
     /**
@@ -622,7 +619,6 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence limit(@Nullable CharSequence charSequence, final int length, @Nullable String suffix) {
-        if (charSequence == null) return "";
         Premisex.require(length >= 0, new LazyValue<String>() {
             @NotNull
             @Override
@@ -630,9 +626,9 @@ public class Stringx {
                 return String.format("Desired length %d is less than zero.", length);
             }
         });
-        if (count(charSequence) <= length) return charSequence;
+        if (count(charSequence) <= length) return Stringx.orEmpty(charSequence);
 
-        CharSequence limitString = charSequence.subSequence(0, length);
+        CharSequence limitString = Stringx.orEmpty(charSequence).subSequence(0, length);
         if (suffix != null) {
             return limitString + suffix;
         } else {
@@ -675,7 +671,7 @@ public class Stringx {
      */
 
 
-    /* ******************************************* other *******************************************/
+    /* ******************************************* other ****************************************** */
 
 
     /**
@@ -703,7 +699,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* startsWith *******************************************/
+    /* ******************************************* startsWith ****************************************** */
 
 
     /**
@@ -795,7 +791,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* endsWith *******************************************/
+    /* ******************************************* endsWith ****************************************** */
 
 
     /**
@@ -850,7 +846,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* startsWith *******************************************/
+    /* ******************************************* startsWith ****************************************** */
 
 
     /**
@@ -876,7 +872,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* remove *******************************************/
+    /* ******************************************* remove ****************************************** */
 
 
     /**
@@ -889,14 +885,15 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence removeRange(@Nullable CharSequence charSequence, int startIndex, int endIndex) {
-        if (charSequence == null) return "";
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
+        if (finalCharSequence.length() <= 0) return "";
         if (endIndex < startIndex)
             throw new IndexOutOfBoundsException("End index (" + endIndex + ") is less than start index (" + startIndex + ").");
-        if (endIndex == startIndex) return charSequence.subSequence(0, count(charSequence));
+        if (endIndex == startIndex) return finalCharSequence.subSequence(0, count(finalCharSequence));
 
-        StringBuilder sb = new StringBuilder(count(charSequence) - (endIndex - startIndex));
-        sb.append(charSequence, 0, startIndex);
-        sb.append(charSequence, endIndex, count(charSequence));
+        StringBuilder sb = new StringBuilder();
+        sb.append(finalCharSequence, 0, startIndex);
+        sb.append(finalCharSequence, endIndex, count(finalCharSequence));
         return sb;
     }
 
@@ -939,9 +936,10 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence removePrefix(@Nullable CharSequence charSequence, @NotNull CharSequence prefix) {
-        if (charSequence == null) return "";
-        if (startsWith(charSequence, prefix)) return charSequence.subSequence(prefix.length(), count(charSequence));
-        return charSequence.subSequence(0, count(charSequence));
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
+        if (startsWith(finalCharSequence, prefix))
+            return finalCharSequence.subSequence(prefix.length(), count(finalCharSequence));
+        return finalCharSequence.subSequence(0, count(finalCharSequence));
     }
 
     /**
@@ -950,9 +948,9 @@ public class Stringx {
      */
     @NotNull
     public static String removePrefix(@Nullable String string, @NotNull CharSequence prefix) {
-        if (string == null) return "";
-        if (startsWith(string, prefix)) return string.substring(prefix.length());
-        return string;
+        final String finalString = Stringx.orEmpty(string);
+        if (startsWith(finalString, prefix)) return finalString.substring(prefix.length());
+        return finalString;
     }
 
     /**
@@ -961,9 +959,10 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence removeSuffix(@Nullable CharSequence charSequence, @NotNull CharSequence suffix) {
-        if (charSequence == null) return "";
-        if (endsWith(charSequence, suffix)) return charSequence.subSequence(0, count(charSequence) - suffix.length());
-        return charSequence.subSequence(0, count(charSequence));
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
+        if (endsWith(charSequence, suffix))
+            return finalCharSequence.subSequence(0, count(finalCharSequence) - suffix.length());
+        return finalCharSequence.subSequence(0, count(finalCharSequence));
     }
 
     /**
@@ -972,9 +971,9 @@ public class Stringx {
      */
     @NotNull
     public static String removeSuffix(@Nullable String string, @NotNull CharSequence suffix) {
-        if (string == null) return "";
-        if (endsWith(string, suffix)) return string.substring(0, count(string) - suffix.length());
-        return string;
+        final String finalString = Stringx.orEmpty(string);
+        if (endsWith(finalString, suffix)) return finalString.substring(0, count(finalString) - suffix.length());
+        return finalString;
     }
 
     /**
@@ -984,11 +983,11 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence removeSurrounding(@Nullable CharSequence charSequence, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
-        if (charSequence == null) return "";
-        if ((count(charSequence) >= prefix.length() + suffix.length()) && startsWith(charSequence, prefix) && endsWith(charSequence, suffix)) {
-            return charSequence.subSequence(prefix.length(), count(charSequence) - suffix.length());
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
+        if ((count(finalCharSequence) >= prefix.length() + suffix.length()) && startsWith(finalCharSequence, prefix) && endsWith(finalCharSequence, suffix)) {
+            return finalCharSequence.subSequence(prefix.length(), count(finalCharSequence) - suffix.length());
         }
-        return charSequence.subSequence(0, count(charSequence));
+        return finalCharSequence.subSequence(0, count(finalCharSequence));
     }
 
     /**
@@ -998,11 +997,11 @@ public class Stringx {
      */
     @NotNull
     public static String removeSurrounding(@Nullable String string, @NotNull CharSequence prefix, @NotNull CharSequence suffix) {
-        if (string == null) return "";
-        if ((count(string) >= prefix.length() + suffix.length()) && startsWith(string, prefix) && endsWith(string, suffix)) {
-            return string.substring(prefix.length(), count(string) - suffix.length());
+        final String finalString = Stringx.orEmpty(string);
+        if ((count(finalString) >= prefix.length() + suffix.length()) && startsWith(finalString, prefix) && endsWith(finalString, suffix)) {
+            return finalString.substring(prefix.length(), count(finalString) - suffix.length());
         }
-        return string;
+        return finalString;
     }
 
     /**
@@ -1026,7 +1025,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* capitalize *******************************************/
+    /* ******************************************* capitalize ****************************************** */
 
 
     /**
@@ -1048,7 +1047,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* pad *******************************************/
+    /* ******************************************* pad ****************************************** */
 
 
     /**
@@ -1069,14 +1068,15 @@ public class Stringx {
                 return String.format("Desired length %d is less than zero.", length);
             }
         });
-        if (charSequence != null && length <= count(charSequence))
-            return charSequence.subSequence(0, count(charSequence));
+        final CharSequence finalCharSequence = orEmpty(charSequence);
+        if (length <= count(finalCharSequence))
+            return finalCharSequence.subSequence(0, count(finalCharSequence));
 
         StringBuilder sb = new StringBuilder(length);
-        for (int i = 0, size = length - count(charSequence); i < size; i++) {
+        for (int i = 0, size = length - count(finalCharSequence); i < size; i++) {
             sb.append(padChar);
         }
-        sb.append(charSequence);
+        sb.append(finalCharSequence);
         return sb;
     }
 
@@ -1137,12 +1137,13 @@ public class Stringx {
                 return String.format("Desired length %d is less than zero.", length);
             }
         });
-        if (charSequence != null && length <= count(charSequence))
-            return charSequence.subSequence(0, count(charSequence));
+        final CharSequence finalCharSequence = orEmpty(charSequence);
+        if (length <= count(finalCharSequence))
+            return finalCharSequence.subSequence(0, count(finalCharSequence));
 
         StringBuilder sb = new StringBuilder(length);
-        sb.append(charSequence);
-        for (int i = 0, size = length - count(charSequence); i < size; i++) {
+        sb.append(finalCharSequence);
+        for (int i = 0, size = length - count(finalCharSequence); i < size; i++) {
             sb.append(padChar);
         }
         return sb;
@@ -1187,7 +1188,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* matches *******************************************/
+    /* ******************************************* matches ****************************************** */
 
 
     /**
@@ -1206,13 +1207,24 @@ public class Stringx {
      * @param length      the length of the substring to compare.
      */
     public static boolean regionMatches(@Nullable String self, int thisOffset, @Nullable String other, int otherOffset, int length, boolean ignoreCase) {
-        if (self == null || other == null) return false;
         if (!ignoreCase) {
-            return self.regionMatches(thisOffset, other, otherOffset, length);
+            return orEmpty(self).regionMatches(thisOffset, orEmpty(other), otherOffset, length);
         } else {
             //noinspection ConstantConditions
-            return self.regionMatches(ignoreCase, thisOffset, other, otherOffset, length);
+            return orEmpty(self).regionMatches(ignoreCase, thisOffset, orEmpty(other), otherOffset, length);
         }
+    }
+
+    /**
+     * Returns `true` if the specified range in this string is equal to the specified range in another string.
+     *
+     * @param thisOffset  the start offset in this string of the substring to compare.
+     * @param other       the string against a substring of which the comparison is performed.
+     * @param otherOffset the start offset in the other string of the substring to compare.
+     * @param length      the length of the substring to compare.
+     */
+    public static boolean regionMatches(@Nullable String self, int thisOffset, @Nullable String other, int otherOffset, int length) {
+        return regionMatches(self, thisOffset, other, otherOffset, length, false);
     }
 
     /**
@@ -1220,23 +1232,31 @@ public class Stringx {
      * Invoked when it's already known that arguments are not Strings, so that no additional type checks are performed.
      */
     public static boolean regionMatchesImpl(@Nullable CharSequence self, int thisOffset, @Nullable CharSequence other, int otherOffset, int length, boolean ignoreCase) {
-        if (self == null || other == null) return false;
-
-        if ((otherOffset < 0) || (thisOffset < 0) || (thisOffset > self.length() - length)
-                || (otherOffset > other.length() - length)) {
+        final CharSequence finalSelf = orEmpty(self);
+        final CharSequence finalOther = orEmpty(other);
+        if ((otherOffset < 0) || (thisOffset < 0) || (thisOffset > finalSelf.length() - length)
+                || (otherOffset > finalOther.length() - length)) {
             return false;
         }
 
         for (int index : Rangex.until(0, length)) {
-            if (!Charx.equals(self.charAt(thisOffset + index), (other.charAt(otherOffset + index)), ignoreCase)) {
+            if (!Charx.equals(finalSelf.charAt(thisOffset + index), (finalOther.charAt(otherOffset + index)), ignoreCase)) {
                 return false;
             }
         }
         return true;
     }
 
+    /**
+     * Implementation of [regionMatches] for CharSequences.
+     * Invoked when it's already known that arguments are not Strings, so that no additional type checks are performed.
+     */
+    public static boolean regionMatchesImpl(@Nullable CharSequence self, int thisOffset, @Nullable CharSequence other, int otherOffset, int length) {
+        return regionMatchesImpl(self, thisOffset, other, otherOffset, length, false);
+    }
 
-    /* ******************************************* find *******************************************/
+
+    /* ******************************************* find ****************************************** */
 
 
     /**
@@ -1258,23 +1278,23 @@ public class Stringx {
 
     @Nullable
     private static Pair<Integer, String> findAnyOf(@Nullable final CharSequence charSequence, @NotNull Collection<String> strings, int startIndex, final boolean ignoreCase, boolean last) {
-        if (charSequence == null) return null;
+        final CharSequence finalCharSequence = orEmpty(charSequence);
 
         if (!ignoreCase && strings.size() == 1) {
             String string = Collectionx.single(strings);
-            int index = !last ? indexOf(charSequence, string, startIndex, false) : lastIndexOf(charSequence, string, startIndex, false);
+            int index = !last ? indexOf(finalCharSequence, string, startIndex, false) : lastIndexOf(finalCharSequence, string, startIndex, false);
             return index < 0 ? null : Pair.of(index, string);
         }
 
-        IntProgression indices = !last ? Rangex.rangeTo(Rangex.coerceAtLeast(startIndex, 0), count(charSequence))
-                : Rangex.downTo(Rangex.coerceAtMost(startIndex, count(charSequence) - 1), 0);
+        IntProgression indices = !last ? Rangex.rangeTo(Rangex.coerceAtLeast(startIndex, 0), count(finalCharSequence))
+                : Rangex.downTo(Rangex.coerceAtMost(startIndex, count(finalCharSequence) - 1), 0);
 
-        if (charSequence instanceof String) {
+        if (finalCharSequence instanceof String) {
             for (final int index : indices) {
                 String matchingString = Collectionx.firstOrNull(strings, new Predicate<String>() {
                     @Override
                     public boolean accept(@Nullable String s) {
-                        return regionMatches(s, 0, (String) charSequence, index, count(s), ignoreCase);
+                        return regionMatches(s, 0, (String) finalCharSequence, index, count(s), ignoreCase);
                     }
                 });
                 if (matchingString != null) {
@@ -1286,7 +1306,7 @@ public class Stringx {
                 String matchingString = Collectionx.firstOrNull(strings, new Predicate<String>() {
                     @Override
                     public boolean accept(@Nullable String s) {
-                        return regionMatchesImpl(s, 0, charSequence, index, count(s), ignoreCase);
+                        return regionMatchesImpl(s, 0, finalCharSequence, index, count(s), ignoreCase);
                     }
                 });
                 if (matchingString != null) {
@@ -1421,7 +1441,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* first *******************************************/
+    /* ******************************************* first ****************************************** */
 
 
     /**
@@ -1464,7 +1484,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* last *******************************************/
+    /* ******************************************* last ****************************************** */
 
 
     /**
@@ -1518,7 +1538,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* get *******************************************/
+    /* ******************************************* get ****************************************** */
 
 
     /**
@@ -1538,34 +1558,29 @@ public class Stringx {
     }
 
 
-    /* ******************************************* indexOf *******************************************/
+    /* ******************************************* indexOf ****************************************** */
 
 
     private static int indexOf(@Nullable CharSequence self, @Nullable CharSequence other, int startIndex, int endIndex, boolean ignoreCase, boolean last) {
-        if (self == null || other == null) return -1;
-        int finalStartIndex;
-        int finalEndIndex;
-        int step;
+        final CharSequence finalSelf = orEmpty(self);
+        final CharSequence finalOther = orEmpty(other);
 
+        IntProgression indices;
         if (!last) {
-            finalStartIndex = Rangex.coerceAtLeast(startIndex, 0);
-            finalEndIndex = Rangex.coerceAtMost(endIndex, count(self));
-            step = 1;
+            indices = Rangex.rangeTo(Rangex.coerceAtLeast(startIndex, 0), Rangex.coerceAtMost(endIndex, count(finalSelf)), 1);
         } else {
-            finalStartIndex = Rangex.coerceAtMost(startIndex, count(self) - 1);
-            finalEndIndex = Rangex.coerceAtLeast(endIndex, 0);
-            step = -1;
+            indices = Rangex.rangeTo(Rangex.coerceAtMost(startIndex, count(finalSelf) - 1), Rangex.coerceAtLeast(endIndex, 0), -1);
         }
 
-        if (self instanceof String && other instanceof String) {
-            for (int index : Rangex.rangeTo(finalStartIndex, finalEndIndex, step)) {
-                if (regionMatches((String) other, 0, (String) self, index, other.length(), ignoreCase)) {
+        if (finalSelf instanceof String && finalOther instanceof String) {
+            for (int index : indices) {
+                if (regionMatches((String) finalOther, 0, (String) finalSelf, index, finalOther.length(), ignoreCase)) {
                     return index;
                 }
             }
         } else {
-            for (int index : Rangex.rangeTo(finalStartIndex, finalEndIndex, step)) {
-                if (regionMatchesImpl(other, 0, self, index, other.length(), ignoreCase))
+            for (int index : indices) {
+                if (regionMatchesImpl(finalOther, 0, finalSelf, index, finalOther.length(), ignoreCase))
                     return index;
             }
         }
@@ -2023,7 +2038,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* substring *******************************************/
+    /* ******************************************* substring ****************************************** */
 
 
     /**
@@ -2086,12 +2101,9 @@ public class Stringx {
      * If the string does not contain the delimiter, returns [missingDelimiterValue] which defaults to the original string.
      */
     @NotNull
-    public static String substringAfter(@NotNull String string, char delimiter, @Nullable String missingDelimiterValue) {
-        if (missingDelimiterValue == null) {
-            missingDelimiterValue = string;
-        }
+    public static String substringAfter(@Nullable String string, char delimiter, @Nullable String missingDelimiterValue) {
         int index = indexOf(string, delimiter, 0, false);
-        return index == -1 ? missingDelimiterValue : string.substring(index + 1);
+        return index == -1 ? orDefault(missingDelimiterValue, orEmpty(string)) : orEmpty(string).substring(index + 1);
     }
 
     /**
@@ -2145,7 +2157,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* toByteArray *******************************************/
+    /* ******************************************* toByteArray ****************************************** */
 
 
     /**
@@ -2165,7 +2177,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* reversed *******************************************/
+    /* ******************************************* reversed ****************************************** */
 
 
     /**
@@ -2185,7 +2197,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* filter *******************************************/
+    /* ******************************************* filter ****************************************** */
 
 
     /**
@@ -2306,7 +2318,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* trim *******************************************/
+    /* ******************************************* trim ****************************************** */
 
 
     /**
@@ -2314,15 +2326,15 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence trim(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
-        if (charSequence == null) return "";
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
 
         int startIndex = 0;
-        int endIndex = count(charSequence) - 1;
+        int endIndex = count(finalCharSequence) - 1;
         boolean startFound = false;
 
         while (startIndex <= endIndex) {
             int index = !startFound ? startIndex : endIndex;
-            boolean match = predicate.accept(charSequence.charAt(index));
+            boolean match = predicate.accept(finalCharSequence.charAt(index));
 
             if (!startFound) {
                 if (!match)
@@ -2337,7 +2349,7 @@ public class Stringx {
             }
         }
 
-        return charSequence.subSequence(startIndex, endIndex + 1);
+        return finalCharSequence.subSequence(startIndex, endIndex + 1);
     }
 
     /**
@@ -2400,11 +2412,11 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence trimStart(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
-        if (charSequence == null) return "";
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
 
-        for (int index : indices(charSequence)) {
-            if (!predicate.accept(charSequence.charAt(index))) {
-                return charSequence.subSequence(index, count(charSequence));
+        for (int index : indices(finalCharSequence)) {
+            if (!predicate.accept(finalCharSequence.charAt(index))) {
+                return finalCharSequence.subSequence(index, count(finalCharSequence));
             }
         }
         return "";
@@ -2470,11 +2482,10 @@ public class Stringx {
      */
     @NotNull
     public static CharSequence trimEnd(@Nullable CharSequence charSequence, @NotNull Predicate<Character> predicate) {
-        if (charSequence == null) return "";
-
-        for (int index : Collectionx.reversed(indices(charSequence))) {
-            if (!predicate.accept(charSequence.charAt(index))) {
-                return charSequence.subSequence(0, index + 1);
+        final CharSequence finalCharSequence = Stringx.orEmpty(charSequence);
+        for (int index : Collectionx.reversed(indices(finalCharSequence))) {
+            if (!predicate.accept(finalCharSequence.charAt(index))) {
+                return finalCharSequence.subSequence(0, index + 1);
             }
         }
         return "";
@@ -2536,7 +2547,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* iterator *******************************************/
+    /* ******************************************* iterator ****************************************** */
 
 
     /**
@@ -2556,7 +2567,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* replace *******************************************/
+    /* ******************************************* replace ****************************************** */
 
 
     /**
@@ -2615,10 +2626,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceBefore(@Nullable String string, char delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.indexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
+        int index = Stringx.orEmpty(string).indexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, 0, index, replacement);
     }
 
     /**
@@ -2627,10 +2636,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceBefore(@Nullable String string, @NotNull String delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.indexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
+        int index = Stringx.orEmpty(string).indexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, 0, index, replacement);
     }
 
     /**
@@ -2639,10 +2646,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceBeforeLast(@Nullable String string, char delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.lastIndexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
+        int index = Stringx.orEmpty(string).lastIndexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, 0, index, replacement);
     }
 
     /**
@@ -2651,10 +2656,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceBeforeLast(@Nullable String string, @NotNull String delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.lastIndexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, 0, index, replacement);
+        int index = Stringx.orEmpty(string).lastIndexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, 0, index, replacement);
     }
 
     /**
@@ -2663,10 +2666,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceAfter(@Nullable String string, char delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.indexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, index + 1, count(string), replacement);
+        int index = Stringx.orEmpty(string).indexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, index + 1, count(string), replacement);
     }
 
     /**
@@ -2675,10 +2676,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceAfter(@Nullable String string, @NotNull String delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.indexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, index + delimiter.length(), count(string), replacement);
+        int index = Stringx.orEmpty(string).indexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, index + delimiter.length(), count(string), replacement);
     }
 
     /**
@@ -2687,10 +2686,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceAfterLast(@Nullable String string, @NotNull String delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.lastIndexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, index + delimiter.length(), count(string), replacement);
+        int index = Stringx.orEmpty(string).lastIndexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, index + delimiter.length(), count(string), replacement);
     }
 
     /**
@@ -2699,10 +2696,8 @@ public class Stringx {
      */
     @NotNull
     public static String replaceAfterLast(@Nullable String string, char delimiter, @NotNull String replacement, @Nullable String missingDelimiterValue) {
-        if (string == null) return "";
-        int index = string.lastIndexOf(delimiter);
-        String finalMissingDelimiterValue = missingDelimiterValue != null ? missingDelimiterValue : string;
-        return index == -1 ? finalMissingDelimiterValue : replaceRange(string, index + 1, count(string), replacement);
+        int index = Stringx.orEmpty(string).lastIndexOf(delimiter);
+        return index == -1 ? Stringx.orDefault(missingDelimiterValue, Stringx.orEmpty(string)) : replaceRange(string, index + 1, count(string), replacement);
     }
 
 
@@ -2718,8 +2713,7 @@ public class Stringx {
      */
     @NotNull
     public static String replace(@Nullable final CharSequence charSequence, @NotNull Pattern regex, @NotNull String replacement) {
-        if (charSequence == null) return "";
-        return regex.matcher(charSequence).replaceAll(replacement);
+        return regex.matcher(Stringx.orEmpty(charSequence)).replaceAll(replacement);
     }
 
 ///**
@@ -2758,12 +2752,11 @@ public class Stringx {
      */
     @NotNull
     public static String replaceFirst(@Nullable final CharSequence charSequence, @NotNull Pattern regex, @NotNull String replacement) {
-        if (charSequence == null) return "";
-        return regex.matcher(charSequence).replaceFirst(replacement);
+        return regex.matcher(Stringx.orEmpty(charSequence)).replaceFirst(replacement);
     }
 
 
-    /* ******************************************* commonWith *******************************************/
+    /* ******************************************* commonWith ****************************************** */
 
 
     /**
@@ -2832,7 +2825,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* contains *******************************************/
+    /* ******************************************* contains ****************************************** */
 
 
     /**
@@ -3030,7 +3023,7 @@ public class Stringx {
 //    public static CharSequence.lines(): List<String> = lineSequence().toList()
 
 
-    /* ******************************************* elementAt *******************************************/
+    /* ******************************************* elementAt ****************************************** */
 
 
     /**
@@ -3056,7 +3049,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* single *******************************************/
+    /* ******************************************* single ****************************************** */
 
 
     /**
@@ -3119,7 +3112,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* drop *******************************************/
+    /* ******************************************* drop ****************************************** */
 
 
     /**
@@ -3243,7 +3236,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* slice *******************************************/
+    /* ******************************************* slice ****************************************** */
 
 
     /**
@@ -3287,7 +3280,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* take *******************************************/
+    /* ******************************************* take ****************************************** */
 
 
     /**
@@ -3413,7 +3406,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* associate *******************************************/
+    /* ******************************************* associate ****************************************** */
 
 
     /**
@@ -3505,7 +3498,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* to *******************************************/
+    /* ******************************************* to ****************************************** */
 
 
     /**
@@ -3560,7 +3553,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* flatMap *******************************************/
+    /* ******************************************* flatMap ****************************************** */
 
 
     /**
@@ -3583,7 +3576,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* group *******************************************/
+    /* ******************************************* group ****************************************** */
 
 
     /**
@@ -3676,8 +3669,20 @@ public class Stringx {
     }
 
 
-    /* ******************************************* map *******************************************/
+    /* ******************************************* map ****************************************** */
 
+
+    /**
+     * Applies the given [transform] function to each character of the original char sequence
+     * and appends the results to the given [destination].
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C mapTo(@Nullable CharSequence charSequence, @NotNull C destination, @NotNull Transformer<Character, R> transform) {
+        for (char item : iterable(charSequence)) {
+            destination.add(transform.transform(item));
+        }
+        return destination;
+    }
 
     /**
      * Returns a list containing the results of applying the given [transform] function
@@ -3686,6 +3691,22 @@ public class Stringx {
     @NotNull
     public static <R> List<R> map(@Nullable CharSequence charSequence, @NotNull Transformer<Character, R> transform) {
         return mapTo(charSequence, new ArrayList<R>(count(charSequence)), transform);
+    }
+
+    /**
+     * Applies the given [transform] function to each character and its index in the original char sequence
+     * and appends the results to the given [destination].
+     *
+     * @param transform function that takes the index of a character and the character itself
+     *                  and returns the result of the transform applied to the character.
+     */
+    @NotNull
+    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable CharSequence charSequence, @NotNull C destination, @NotNull IndexedTransformer<Character, R> transform) {
+        int index = 0;
+        for (char item : iterable(charSequence)) {
+            destination.add(transform.transform(index++, item));
+        }
+        return destination;
     }
 
     /**
@@ -3701,15 +3722,28 @@ public class Stringx {
     }
 
     /**
-     * Returns a list containing only the non-null results of applying the given [transform] function
-     * to each character and its index in the original char sequence.
-     *
-     * @param transform function that takes the index of a character and the character itself
-     *                  and returns the result of the transform applied to the character.
+     * Applies the given [transform] function to each character in the original char sequence
+     * and appends only the non-null results to the given [destination].
      */
     @NotNull
-    public static <R> List<R> mapIndexedNotNull(@Nullable CharSequence charSequence, @NotNull NullableIndexedTransformer<Character, R> transform) {
-        return mapIndexedNotNullTo(charSequence, new ArrayList<R>(), transform);
+    public static <R, C extends Collection<R>> C mapNotNullTo(@Nullable CharSequence charSequence, @NotNull final C destination, @NotNull final NullableTransformer<Character, R> transform) {
+        forEach(charSequence, new Action<Character>() {
+            @Override
+            public void action(@NotNull Character character) {
+                R r = transform.transform(character);
+                if (r != null) destination.add(r);
+            }
+        });
+        return destination;
+    }
+
+    /**
+     * Returns a list containing only the non-null results of applying the given [transform] function
+     * to each character in the original char sequence.
+     */
+    @NotNull
+    public static <R> List<R> mapNotNull(@Nullable CharSequence charSequence, @NotNull NullableTransformer<Character, R> transform) {
+        return mapNotNullTo(charSequence, new ArrayList<R>(), transform);
     }
 
     /**
@@ -3732,60 +3766,19 @@ public class Stringx {
     }
 
     /**
-     * Applies the given [transform] function to each character and its index in the original char sequence
-     * and appends the results to the given [destination].
+     * Returns a list containing only the non-null results of applying the given [transform] function
+     * to each character and its index in the original char sequence.
      *
      * @param transform function that takes the index of a character and the character itself
      *                  and returns the result of the transform applied to the character.
      */
     @NotNull
-    public static <R, C extends Collection<R>> C mapIndexedTo(@Nullable CharSequence charSequence, @NotNull C destination, @NotNull IndexedTransformer<Character, R> transform) {
-        int index = 0;
-        for (char item : iterable(charSequence)) {
-            destination.add(transform.transform(index++, item));
-        }
-        return destination;
-    }
-
-    /**
-     * Returns a list containing only the non-null results of applying the given [transform] function
-     * to each character in the original char sequence.
-     */
-    @NotNull
-    public static <R> List<R> mapNotNull(@Nullable CharSequence charSequence, @NotNull NullableTransformer<Character, R> transform) {
-        return mapNotNullTo(charSequence, new ArrayList<R>(), transform);
-    }
-
-    /**
-     * Applies the given [transform] function to each character in the original char sequence
-     * and appends only the non-null results to the given [destination].
-     */
-    @NotNull
-    public static <R, C extends Collection<R>> C mapNotNullTo(@Nullable CharSequence charSequence, @NotNull final C destination, @NotNull final NullableTransformer<Character, R> transform) {
-        forEach(charSequence, new Action<Character>() {
-            @Override
-            public void action(@NotNull Character character) {
-                R r = transform.transform(character);
-                if (r != null) destination.add(r);
-            }
-        });
-        return destination;
-    }
-
-    /**
-     * Applies the given [transform] function to each character of the original char sequence
-     * and appends the results to the given [destination].
-     */
-    @NotNull
-    public static <R, C extends Collection<R>> C mapTo(@Nullable CharSequence charSequence, @NotNull C destination, @NotNull Transformer<Character, R> transform) {
-        for (char item : iterable(charSequence)) {
-            destination.add(transform.transform(item));
-        }
-        return destination;
+    public static <R> List<R> mapIndexedNotNull(@Nullable CharSequence charSequence, @NotNull NullableIndexedTransformer<Character, R> transform) {
+        return mapIndexedNotNullTo(charSequence, new ArrayList<R>(), transform);
     }
 
 
-    /* ******************************************* withIndex *******************************************/
+    /* ******************************************* withIndex ****************************************** */
 
 
     /**
@@ -3803,7 +3796,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* all *******************************************/
+    /* ******************************************* all ****************************************** */
 
 
     /**
@@ -3815,7 +3808,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* any *******************************************/
+    /* ******************************************* any ****************************************** */
 
 
     /**
@@ -3834,7 +3827,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* count *******************************************/
+    /* ******************************************* count ****************************************** */
 
 
     /**
@@ -3856,7 +3849,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* fold *******************************************/
+    /* ******************************************* fold ****************************************** */
 
 
     /**
@@ -3920,7 +3913,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* forEach *******************************************/
+    /* ******************************************* forEach ****************************************** */
 
 
     /**
@@ -3942,7 +3935,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* max *******************************************/
+    /* ******************************************* max ****************************************** */
 
 
     /**
@@ -3993,7 +3986,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* min *******************************************/
+    /* ******************************************* min ****************************************** */
 
 
     /**
@@ -4044,7 +4037,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* none *******************************************/
+    /* ******************************************* none ****************************************** */
 
 
     /**
@@ -4063,7 +4056,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* onEach *******************************************/
+    /* ******************************************* onEach ****************************************** */
 
 
     /**
@@ -4077,7 +4070,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* reduce *******************************************/
+    /* ******************************************* reduce ****************************************** */
 
 
     /**
@@ -4148,7 +4141,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* sum *******************************************/
+    /* ******************************************* sum ****************************************** */
 
 
     /**
@@ -4174,7 +4167,7 @@ public class Stringx {
     }
 
 
-    /* ******************************************* chunked *******************************************/
+    /* ******************************************* chunked ****************************************** */
 
 
     /**
@@ -4205,6 +4198,7 @@ public class Stringx {
         return windowed(charSequence, size, size, true, transform);
     }
 
+    // TODO: 2018/11/26 补充
 ///**
 // * Splits this char sequence into a sequence of strings each not exceeding the given [size].
 // *
@@ -4239,7 +4233,7 @@ public class Stringx {
 //    }
 
 
-    /* ******************************************* partition *******************************************/
+    /* ******************************************* partition ****************************************** */
 
 
     /**
@@ -4279,33 +4273,8 @@ public class Stringx {
     }
 
 
-    /* ******************************************* windowed *******************************************/
+    /* ******************************************* windowed ****************************************** */
 
-
-    /**
-     * Returns a list of snapshots of the window of the given [size]
-     * sliding along this char sequence with the given [step], where each
-     * snapshot is a string.
-     * <p>
-     * Several last strings may have less characters than the given [size].
-     * <p>
-     * Both [size] and [step] must be positive and can be greater than the number of elements in this char sequence.
-     *
-     * @param size           the number of elements to take in each window
-     * @param step           the number of elements to move the window forward by on an each step, by default 1
-     * @param partialWindows controls whether or not to keep partial windows in the end if any,
-     *                       by default `false` which means partial windows won't be preserved
-     */
-    @NotNull
-    public static List<String> windowed(@Nullable CharSequence charSequence, int size, int step, boolean partialWindows) {
-        return windowed(charSequence, size, step, partialWindows, new Transformer<CharSequence, String>() {
-            @NotNull
-            @Override
-            public String transform(@Nullable CharSequence t) {
-                return orEmpty(t).toString();
-            }
-        });
-    }
 
     /**
      * Returns a list of results of applying the given [transform] function to
@@ -4355,6 +4324,32 @@ public class Stringx {
         return result;
     }
 
+    /**
+     * Returns a list of snapshots of the window of the given [size]
+     * sliding along this char sequence with the given [step], where each
+     * snapshot is a string.
+     * <p>
+     * Several last strings may have less characters than the given [size].
+     * <p>
+     * Both [size] and [step] must be positive and can be greater than the number of elements in this char sequence.
+     *
+     * @param size           the number of elements to take in each window
+     * @param step           the number of elements to move the window forward by on an each step, by default 1
+     * @param partialWindows controls whether or not to keep partial windows in the end if any,
+     *                       by default `false` which means partial windows won't be preserved
+     */
+    @NotNull
+    public static List<String> windowed(@Nullable CharSequence charSequence, int size, int step, boolean partialWindows) {
+        return windowed(charSequence, size, step, partialWindows, new Transformer<CharSequence, String>() {
+            @NotNull
+            @Override
+            public String transform(@Nullable CharSequence t) {
+                return orEmpty(t).toString();
+            }
+        });
+    }
+
+    // TODO: 2018/11/26 补充
 ///**
 // * Returns a sequence of snapshots of the window of the given [size]
 // * sliding along this char sequence with the given [step], where each
@@ -4400,23 +4395,8 @@ public class Stringx {
 //    }
 
 
-    /* ******************************************* zip *******************************************/
+    /* ******************************************* zip ****************************************** */
 
-
-    /**
-     * Returns a list of pairs built from the characters of `this` and the [other] char sequences with the same index
-     * The returned list has length of the shortest char sequence.
-     */
-    @NotNull
-    public static List<Pair<Character, Character>> zip(@Nullable CharSequence charSequence, @NotNull CharSequence other) {
-        return zip(charSequence, other, new Transformer2<Character, Character, Pair<Character, Character>>() {
-            @NotNull
-            @Override
-            public Pair<Character, Character> transform(@NotNull Character character, @NotNull Character character2) {
-                return new Pair<>(character, character2);
-            }
-        });
-    }
 
     /**
      * Returns a list of values built from the characters of `this` and the [other] char sequences with the same index
@@ -4436,13 +4416,12 @@ public class Stringx {
     }
 
     /**
-     * Returns a list of pairs of each two adjacent characters in this char sequence.
-     * <p>
-     * The returned list is empty if this char sequence contains less than two characters.
+     * Returns a list of pairs built from the characters of `this` and the [other] char sequences with the same index
+     * The returned list has length of the shortest char sequence.
      */
     @NotNull
-    public static List<Pair<Character, Character>> zipWithNext(@Nullable CharSequence charSequence) {
-        return zipWithNext(charSequence, new Transformer2<Character, Character, Pair<Character, Character>>() {
+    public static List<Pair<Character, Character>> zip(@Nullable CharSequence charSequence, @Nullable CharSequence other) {
+        return zip(charSequence, other, new Transformer2<Character, Character, Pair<Character, Character>>() {
             @NotNull
             @Override
             public Pair<Character, Character> transform(@NotNull Character character, @NotNull Character character2) {
@@ -4468,8 +4447,24 @@ public class Stringx {
         return result;
     }
 
+    /**
+     * Returns a list of pairs of each two adjacent characters in this char sequence.
+     * <p>
+     * The returned list is empty if this char sequence contains less than two characters.
+     */
+    @NotNull
+    public static List<Pair<Character, Character>> zipWithNext(@Nullable CharSequence charSequence) {
+        return zipWithNext(charSequence, new Transformer2<Character, Character, Pair<Character, Character>>() {
+            @NotNull
+            @Override
+            public Pair<Character, Character> transform(@NotNull Character character, @NotNull Character character2) {
+                return new Pair<>(character, character2);
+            }
+        });
+    }
 
-    /* ******************************************* as *******************************************/
+
+    /* ******************************************* as ****************************************** */
 
 
     /**
@@ -4481,6 +4476,7 @@ public class Stringx {
             return Collectionx.createEmptyList();
         return new CharSequenceIterable(charSequence);
     }
+    // TODO: 2018/11/26 补充
 //
 //    /**
 //     * Creates a [Sequence] instance that wraps the original char sequence returning its characters when being iterated.

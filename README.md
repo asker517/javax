@@ -4,7 +4,6 @@
 [![Platform][platform_kotlin_icon]][platform_kotlin_link]
 ![SourceCompatibility][source_compatibility_icon]
 ![TargetCompatibility][target_compatibility_icon]
-![converage_java][converage_java]
 [![License][license_icon]][license_link]
 
 Extensions to the Java standard library, some tool methods related to File, IO, primitive types, String, Array, and Collection
@@ -109,7 +108,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * divide, divideToInt, divideToLong, scale, proportion, percent
 * Number: [Numberx.java] ([Test][NumberxTest.java]) | [Numberx.kt] ([Test][NumberxTest.kt])
     * to\*OrDefault, to\*OrZero, orZero(Kt)
-* String: [Stringx.java] | [Stringx.kt]
+* String: [Stringx.java] ([Test][StringxTest.java]) | [Stringx.kt] ([Test][StringxTest.kt])
     * isSafe, isNotSafe, isNotSafeOr, isChinese, isNotChinese, isNotChineseOr,
     * isBlank, isNotBlank, isBlankOr, isNullOrBlank, isNotNullOrBlank, isNullOrBlankOr
     * isEmpty, isNotEmpty, isEmptyOr, isNullOrEmpty, isNotNullOrEmpty, isNullOrEmptyOr,
@@ -196,8 +195,6 @@ Please view the [CHANGELOG.md] file
 [version_kotlin_link]: https://bintray.com/panpf/maven/javax-kt/_latestVersion
 [source_compatibility_icon]: https://img.shields.io/badge/SourceCompatibility-1.7-red.svg
 [target_compatibility_icon]: https://img.shields.io/badge/TargetCompatibility-1.7-red.svg
-[converage_java]: https://img.shields.io/badge/ConverageJava-31%25-orange.svg
-[converage_kotlin]: https://img.shields.io/badge/ConverageKotlin-88%25-orange.svg
 
 [CHANGELOG.md]: CHANGELOG.md
 
