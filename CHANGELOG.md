@@ -9,6 +9,8 @@
 * :sparkles: MapBuilder adds buildSorted method
 * :white_check_mark: Perfect Stringx testing
 * :fire: Collectionx createOnlyReadEmptyList rename to onlyReadEmptyList, createOnlyReadEmptySet rename to onlyReadEmptySet
+* :fire: Mapx createOnlyReadEmptyMap rename to onlyReadEmptyMap, mapCapacity rename to capacity, put rename to plusAssign
+* :fire: Mapx remove forEachIndexed, mapIndexed, mapToIndexed method
 
 
 

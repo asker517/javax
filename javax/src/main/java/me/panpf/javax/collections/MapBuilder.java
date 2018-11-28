@@ -17,6 +17,8 @@
 package me.panpf.javax.collections;
 
 import me.panpf.javax.util.Pair;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -24,15 +26,17 @@ public class MapBuilder<K, V> {
 
     private List<Pair<K, V>> list = new LinkedList<>();
 
-    public MapBuilder(K k, V v) {
+    public MapBuilder(@NotNull K k, @Nullable V v) {
         put(k, v);
     }
 
-    public MapBuilder<K, V> put(K k, V v) {
+    @NotNull
+    public MapBuilder<K, V> put(@NotNull K k, @Nullable V v) {
         list.add(new Pair<>(k, v));
         return this;
     }
 
+    @NotNull
     public Map<K, V> build() {
         Map<K, V> map = new HashMap<>();
         for (Pair<K, V> pair : list) {
@@ -41,6 +45,7 @@ public class MapBuilder<K, V> {
         return map;
     }
 
+    @NotNull
     public WeakHashMap<K, V> buildWeak() {
         WeakHashMap<K, V> map = new WeakHashMap<>();
         for (Pair<K, V> pair : list) {
@@ -49,6 +54,7 @@ public class MapBuilder<K, V> {
         return map;
     }
 
+    @NotNull
     public LinkedHashMap<K, V> buildLinked() {
         LinkedHashMap<K, V> map = new LinkedHashMap<>();
         for (Pair<K, V> pair : list) {
@@ -57,6 +63,7 @@ public class MapBuilder<K, V> {
         return map;
     }
 
+    @NotNull
     public Hashtable<K, V> buildTable() {
         Hashtable<K, V> map = new Hashtable<>();
         for (Pair<K, V> pair : list) {
@@ -65,6 +72,7 @@ public class MapBuilder<K, V> {
         return map;
     }
 
+    @NotNull
     public TreeMap<K, V> buildTree() {
         TreeMap<K, V> map = new TreeMap<>();
         for (Pair<K, V> pair : list) {
@@ -73,6 +81,7 @@ public class MapBuilder<K, V> {
         return map;
     }
 
+    @NotNull
     public TreeMap<K, V> buildSorted() {
         return buildTree();
     }

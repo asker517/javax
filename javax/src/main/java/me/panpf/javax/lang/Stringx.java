@@ -3435,7 +3435,7 @@ public class Stringx {
      */
     @NotNull
     public static <K, V> Map<K, V> associate(@Nullable CharSequence charSequence, @NotNull Transformer<Character, Pair<K, V>> transform) {
-        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.capacity(count(charSequence)), 16);
         return associateTo(charSequence, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -3464,7 +3464,7 @@ public class Stringx {
      */
     @NotNull
     public static <K> Map<K, Character> associateBy(@Nullable CharSequence charSequence, @NotNull Transformer<Character, K> keySelector) {
-        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.capacity(count(charSequence)), 16);
         return associateByTo(charSequence, new LinkedHashMap<K, Character>(capacity), keySelector);
     }
 
@@ -3493,7 +3493,7 @@ public class Stringx {
      */
     @NotNull
     public static <K, V> Map<K, V> associateBy(@Nullable CharSequence charSequence, @NotNull Transformer<Character, K> keySelector, @NotNull Transformer<Character, V> valueTransform) {
-        int capacity = Rangex.coerceAtLeast(Mapx.mapCapacity(count(charSequence)), 16);
+        int capacity = Rangex.coerceAtLeast(Mapx.capacity(count(charSequence)), 16);
         return associateByTo(charSequence, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -3517,7 +3517,7 @@ public class Stringx {
      */
     @NotNull
     public static HashSet<Character> toHashSet(@Nullable CharSequence charSequence) {
-        return toCollection(charSequence, new HashSet<Character>(Mapx.mapCapacity(count(charSequence))));
+        return toCollection(charSequence, new HashSet<Character>(Mapx.capacity(count(charSequence))));
     }
 
     /**
@@ -3540,7 +3540,7 @@ public class Stringx {
         } else if (count(charSequence) == 1) {
             return Collectionx.setOf(charSequence.charAt(0));
         } else {
-            return toCollection(charSequence, new LinkedHashSet<Character>(Mapx.mapCapacity(count(charSequence))));
+            return toCollection(charSequence, new LinkedHashSet<Character>(Mapx.capacity(count(charSequence))));
         }
     }
 
@@ -4198,7 +4198,7 @@ public class Stringx {
         return windowed(charSequence, size, size, true, transform);
     }
 
-    // TODO: 2018/11/26 补充
+    // TODO: 2018/11/26 转换成 java
 ///**
 // * Splits this char sequence into a sequence of strings each not exceeding the given [size].
 // *
@@ -4349,7 +4349,7 @@ public class Stringx {
         });
     }
 
-    // TODO: 2018/11/26 补充
+    // TODO: 2018/11/26 转换成 java
 ///**
 // * Returns a sequence of snapshots of the window of the given [size]
 // * sliding along this char sequence with the given [step], where each
@@ -4476,7 +4476,7 @@ public class Stringx {
             return Collectionx.createEmptyList();
         return new CharSequenceIterable(charSequence);
     }
-    // TODO: 2018/11/26 补充
+    // TODO: 2018/11/26 转换成 java
 //
 //    /**
 //     * Creates a [Sequence] instance that wraps the original char sequence returning its characters when being iterated.

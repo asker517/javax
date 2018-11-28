@@ -62,7 +62,9 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct, intersect,
     * retainAll, associate, drop, single, elementAt, fill, shuffle
 * Map: [Mapx.java]
-    * createEmptyMap, mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
+    * builder, createEmptyMap, createEmptyHashMap, createEmptyWeakHashMap, createEmptyLinkedHashMap,
+    * createEmptyHashtable, createEmptyTreeMap, createEmptySortedMap, onlyReadEmptyMap,
+    * capacity, getOrPut, plusAssign, forEach, map, mapTo
 
 ### crypto
 * Aes: [Aesx.java] ([Test][AesxTest.java]) | [Aesx.kt] ([Test][AesxTest.kt])
@@ -214,7 +216,7 @@ Please view the [CHANGELOG.md] file
 [CollectionxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/CollectionxTest.kt
 
 [Mapx.java]: javax/src/main/java/me/panpf/javax/collections/Map.java
-[MapxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/MapxTest.java
+[MapxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/MapxTest.kt
 [Mapx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Mapx.kt
 [MapxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/MapxTest.kt
 

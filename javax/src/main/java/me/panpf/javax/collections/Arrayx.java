@@ -906,7 +906,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> Set<T> toSet(@Nullable T[] elements) {
-        return toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<T>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -916,7 +916,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Byte> toSet(@Nullable byte[] elements) {
-        return toCollection(elements, new LinkedHashSet<Byte>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Byte>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -926,7 +926,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Short> toSet(@Nullable short[] elements) {
-        return toCollection(elements, new LinkedHashSet<Short>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Short>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -936,7 +936,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Integer> toSet(@Nullable int[] elements) {
-        return toCollection(elements, new LinkedHashSet<Integer>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Integer>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -946,7 +946,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Long> toSet(@Nullable long[] elements) {
-        return toCollection(elements, new LinkedHashSet<Long>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Long>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -956,7 +956,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Float> toSet(@Nullable float[] elements) {
-        return toCollection(elements, new LinkedHashSet<Float>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Float>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -966,7 +966,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Double> toSet(@Nullable double[] elements) {
-        return toCollection(elements, new LinkedHashSet<Double>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Double>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -976,7 +976,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Boolean> toSet(@Nullable boolean[] elements) {
-        return toCollection(elements, new LinkedHashSet<Boolean>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Boolean>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -986,7 +986,7 @@ public class Arrayx {
      */
     @NotNull
     public static Set<Character> toSet(@Nullable char[] elements) {
-        return toCollection(elements, new LinkedHashSet<Character>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new LinkedHashSet<Character>(Mapx.capacity(count(elements))));
     }
 
 
@@ -998,7 +998,7 @@ public class Arrayx {
      */
     @NotNull
     public static <T> HashSet<T> toHashSet(@Nullable T[] elements) {
-        return toCollection(elements, new HashSet<T>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<T>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1006,7 +1006,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Byte> toHashSet(@Nullable byte[] elements) {
-        return toCollection(elements, new HashSet<Byte>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Byte>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1014,7 +1014,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Short> toHashSet(@Nullable short[] elements) {
-        return toCollection(elements, new HashSet<Short>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Short>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1022,7 +1022,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Integer> toHashSet(@Nullable int[] elements) {
-        return toCollection(elements, new HashSet<Integer>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Integer>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1030,7 +1030,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Long> toHashSet(@Nullable long[] elements) {
-        return toCollection(elements, new HashSet<Long>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Long>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1038,7 +1038,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Float> toHashSet(@Nullable float[] elements) {
-        return toCollection(elements, new HashSet<Float>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Float>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1046,7 +1046,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Double> toHashSet(@Nullable double[] elements) {
-        return toCollection(elements, new HashSet<Double>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Double>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1054,7 +1054,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Boolean> toHashSet(@Nullable boolean[] elements) {
-        return toCollection(elements, new HashSet<Boolean>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Boolean>(Mapx.capacity(count(elements))));
     }
 
     /**
@@ -1062,7 +1062,7 @@ public class Arrayx {
      */
     @NotNull
     public static HashSet<Character> toHashSet(@Nullable char[] elements) {
-        return toCollection(elements, new HashSet<Character>(Mapx.mapCapacity(count(elements))));
+        return toCollection(elements, new HashSet<Character>(Mapx.capacity(count(elements))));
     }
 
 

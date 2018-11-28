@@ -529,7 +529,7 @@ public class Collectionx {
     @NotNull
     @SafeVarargs
     public static <T> HashSet<T> hashSetOf(@Nullable T... elements) {
-        return Arrayx.toCollection(elements, new HashSet<T>(Mapx.mapCapacity(elements != null ? elements.length : 0)));
+        return Arrayx.toCollection(elements, new HashSet<T>(Mapx.capacity(elements != null ? elements.length : 0)));
     }
 
     /**
@@ -538,7 +538,7 @@ public class Collectionx {
     @NotNull
     @SafeVarargs
     public static <T> LinkedHashSet<T> linkedHashSetOf(@Nullable T... elements) {
-        return Arrayx.toCollection(elements, new LinkedHashSet<T>(Mapx.mapCapacity(elements != null ? elements.length : 0)));
+        return Arrayx.toCollection(elements, new LinkedHashSet<T>(Mapx.capacity(elements != null ? elements.length : 0)));
     }
 
 
@@ -1819,7 +1819,7 @@ public class Collectionx {
     @NotNull
     public static <T> Set<T> toSet(@Nullable Iterable<T> iterable) {
         if (iterable instanceof Collection) {
-            return toCollection(iterable, new LinkedHashSet<T>(Mapx.mapCapacity(collectionSizeOrDefault(iterable, ((Collection) iterable).size()))));
+            return toCollection(iterable, new LinkedHashSet<T>(Mapx.capacity(collectionSizeOrDefault(iterable, ((Collection) iterable).size()))));
         } else {
             return toCollection(iterable, new LinkedHashSet<T>());
         }
@@ -1849,7 +1849,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T> HashSet<T> toHashSet(@Nullable Iterable<T> iterable) {
-        return toCollection(iterable, new HashSet<T>(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 12))));
+        return toCollection(iterable, new HashSet<T>(Mapx.capacity(collectionSizeOrDefault(iterable, 12))));
     }
 
     /**
@@ -3061,7 +3061,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, K, V> Map<K, V> associate(@Nullable Iterable<T> iterable, @NotNull Transformer<T, Pair<K, V>> transform) {
-        int capacity = Math.max(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 10)), 16);
+        int capacity = Math.max(Mapx.capacity(collectionSizeOrDefault(iterable, 10)), 16);
         return associateTo(iterable, new LinkedHashMap<K, V>(capacity), transform);
     }
 
@@ -3088,7 +3088,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, K, V> Map<K, V> associateBy(@Nullable Iterable<T> iterable, @NotNull Transformer<T, K> keySelector, @NotNull Transformer<T, V> valueTransform) {
-        int capacity = Math.max(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 10)), 16);
+        int capacity = Math.max(Mapx.capacity(collectionSizeOrDefault(iterable, 10)), 16);
         return associateByTo(iterable, new LinkedHashMap<K, V>(capacity), keySelector, valueTransform);
     }
 
@@ -3116,7 +3116,7 @@ public class Collectionx {
      */
     @NotNull
     public static <T, K> Map<K, T> associateBy(@Nullable Iterable<T> iterable, @NotNull Transformer<T, K> keySelector) {
-        int capacity = Math.max(Mapx.mapCapacity(collectionSizeOrDefault(iterable, 10)), 16);
+        int capacity = Math.max(Mapx.capacity(collectionSizeOrDefault(iterable, 10)), 16);
         return associateByTo(iterable, new LinkedHashMap<K, T>(capacity), keySelector);
     }
 
