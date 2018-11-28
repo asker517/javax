@@ -157,7 +157,7 @@ class FilexTest {
 
             Assert.assertEquals(Filex.lengthRecursively(dir), 6)
             Assert.assertEquals(Filex.lengthRecursively(Arrayx.arrayOf(dir)), 6)
-            Assert.assertEquals(Filex.lengthRecursively(Collectionx.listOf(dir)), 6)
+            Assert.assertEquals(Filex.lengthRecursively(Collectionx.mutableListOf(dir)), 6)
         } finally {
             Filex.deleteRecursively(dir)
         }

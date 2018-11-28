@@ -20,6 +20,7 @@ package me.panpf.javaxkt.collections
 
 import me.panpf.javax.collections.Collectionx
 import me.panpf.javax.util.Transformer
+import java.util.*
 
 
 /*
@@ -52,3 +53,12 @@ inline fun <T> Iterable<T>?.joinToArrayString(transform: Transformer<T, CharSequ
  * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
  */
 inline fun <T> Iterable<T>?.joinToArrayString(): String = Collectionx.joinToArrayString(this)
+
+
+/* ******************************************* listOf ******************************************* */
+
+/**
+ * Returns a new readable and writable linked list of given elements
+ */
+@SafeVarargs
+inline fun <T> linkedListOf(vararg elements: T): LinkedList<T> = Collectionx.linkedListOf(*elements)

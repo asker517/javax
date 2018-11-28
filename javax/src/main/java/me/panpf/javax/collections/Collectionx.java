@@ -260,24 +260,6 @@ public class Collectionx {
     }
 
 
-    /* ******************************************* empty ******************************************* */
-
-
-    /**
-     * Returns `true` if the collection is not null and empty (contains no elements), `false` otherwise.
-     */
-    public static <T> boolean isEmpty(@Nullable Collection<T> collection) {
-        return collection != null && collection.size() == 0;
-    }
-
-    /**
-     * Returns `true` if the collection is not null and not empty.
-     */
-    public static <T> boolean isNotEmpty(@Nullable Collection<T> collection) {
-        return collection != null && collection.size() > 0;
-    }
-
-
     /* ******************************************* create empty ******************************************* */
 
 
@@ -424,6 +406,24 @@ public class Collectionx {
     }
 
 
+    /* ******************************************* listOf ******************************************* */
+
+    /**
+     * Returns a new readable and writable linked list of given elements
+     */
+    @NotNull
+    @SafeVarargs
+    public static <T> LinkedList<T> linkedListOf(@Nullable T... elements) {
+        if (elements != null && elements.length > 0) {
+            LinkedList<T> list = new LinkedList<>();
+            addAll(list, elements);
+            return list;
+        } else {
+            return createEmptyLinkedList();
+        }
+    }
+
+
     /*
      * *****************************************************************************************************************
      * From kotlin standard library
@@ -434,6 +434,24 @@ public class Collectionx {
     public static int collectionSizeOrDefault(@Nullable Iterable iterable, int defaultValue) {
         if (iterable == null) return 0;
         return iterable instanceof Collection ? ((Collection) iterable).size() : defaultValue;
+    }
+
+
+    /* ******************************************* empty ******************************************* */
+
+
+    /**
+     * Returns `true` if the collection is not null and empty (contains no elements), `false` otherwise.
+     */
+    public static <T> boolean isEmpty(@NotNull Collection<T> collection) {
+        return collection.size() == 0;
+    }
+
+    /**
+     * Returns `true` if the collection is not null and not empty.
+     */
+    public static <T> boolean isNotEmpty(@NotNull Collection<T> collection) {
+        return collection.size() > 0;
     }
 
 
@@ -466,7 +484,7 @@ public class Collectionx {
      */
     @NotNull
     @SafeVarargs
-    public static <T> List<T> listOf(@Nullable T... elements) {
+    public static <T> List<T> mutableListOf(@Nullable T... elements) {
         return arrayListOf(elements);
     }
 
@@ -484,22 +502,6 @@ public class Collectionx {
             return createEmptyArrayList();
         }
     }
-
-    /**
-     * Returns a new readable and writable linked list of given elements
-     */
-    @NotNull
-    @SafeVarargs
-    public static <T> LinkedList<T> linkedListOf(@Nullable T... elements) {
-        if (elements != null && elements.length > 0) {
-            LinkedList<T> list = new LinkedList<>();
-            addAll(list, elements);
-            return list;
-        } else {
-            return createEmptyLinkedList();
-        }
-    }
-
 
     /**
      * Returns a new read-only list of given elements.
@@ -520,7 +522,7 @@ public class Collectionx {
      */
     @NotNull
     @SafeVarargs
-    public static <T> Set<T> setOf(@Nullable T... elements) {
+    public static <T> Set<T> mutableSetOf(@Nullable T... elements) {
         return hashSetOf(elements);
     }
 
@@ -2830,7 +2832,7 @@ public class Collectionx {
                 return toList(iterable);
             }
             if (n == 1) {
-                return listOf(first(iterable));
+                return mutableListOf(first(iterable));
             }
         }
         int count = 0;
@@ -2867,7 +2869,7 @@ public class Collectionx {
             return toList(list);
         }
         if (n == 1) {
-            return listOf(last(list));
+            return mutableListOf(last(list));
         }
         ArrayList<T> resultList = new ArrayList<>(n);
         if (list instanceof RandomAccess) {
@@ -3147,7 +3149,7 @@ public class Collectionx {
                 return createEmptyArrayList();
             }
             if (resultSize == 1) {
-                return listOf(last(collection));
+                return mutableListOf(last(collection));
             }
 
             list = new ArrayList<>(resultSize);

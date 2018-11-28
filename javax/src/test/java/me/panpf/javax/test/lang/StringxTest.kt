@@ -253,8 +253,8 @@ class StringxTest {
     fun testContainsAnyAndAll() {
         assertTrue(Stringx.containsAny("今天天气晴", arrayOf("哈", "天")))
         assertFalse(Stringx.containsAny("今天天气晴", arrayOf("哈")))
-        assertTrue(Stringx.containsAny("今天天气晴", Collectionx.listOf("哈", "天")))
-        assertFalse(Stringx.containsAny("今天天气晴", Collectionx.listOf("哈")))
+        assertTrue(Stringx.containsAny("今天天气晴", Collectionx.mutableListOf("哈", "天")))
+        assertFalse(Stringx.containsAny("今天天气晴", Collectionx.mutableListOf("哈")))
         assertFalse(Stringx.containsAny("今天天气晴", null as Array<String>?))
         assertFalse(Stringx.containsAny(null, null as Array<String>?))
         assertFalse(Stringx.containsAny("今天天气晴", null as Collection<String>?))
@@ -264,8 +264,8 @@ class StringxTest {
 
         assertTrue(Stringx.containsAll("今天天气晴", arrayOf("晴", "天")))
         assertFalse(Stringx.containsAll("今天天气晴", arrayOf("哈", "天")))
-        assertTrue(Stringx.containsAll("今天天气晴", Collectionx.listOf("晴", "天")))
-        assertFalse(Stringx.containsAll("今天天气晴", Collectionx.listOf("哈", "天")))
+        assertTrue(Stringx.containsAll("今天天气晴", Collectionx.mutableListOf("晴", "天")))
+        assertFalse(Stringx.containsAll("今天天气晴", Collectionx.mutableListOf("哈", "天")))
         assertFalse(Stringx.containsAll("今天天气晴", null as Array<String>?))
         assertFalse(Stringx.containsAll(null, null as Array<String>?))
         assertFalse(Stringx.containsAll("今天天气晴", null as Collection<String>?))
@@ -275,13 +275,13 @@ class StringxTest {
 
         assertFalse(Stringx.containsAny("HCHC", arrayOf("h", "a")))
         assertTrue(Stringx.containsAny("HCHC", arrayOf("h", "a"), true))
-        assertFalse(Stringx.containsAny("HCHC", Collectionx.listOf("h", "a")))
-        assertTrue(Stringx.containsAny("HCHC", Collectionx.listOf("h", "a"), true))
+        assertFalse(Stringx.containsAny("HCHC", Collectionx.mutableListOf("h", "a")))
+        assertTrue(Stringx.containsAny("HCHC", Collectionx.mutableListOf("h", "a"), true))
 
         assertFalse(Stringx.containsAll("HAHA", arrayOf("h", "a")))
         assertTrue(Stringx.containsAll("HAHA", arrayOf("h", "a"), true))
-        assertFalse(Stringx.containsAll("HAHA", Collectionx.listOf("h", "a")))
-        assertTrue(Stringx.containsAll("HAHA", Collectionx.listOf("h", "a"), true))
+        assertFalse(Stringx.containsAll("HAHA", Collectionx.mutableListOf("h", "a")))
+        assertTrue(Stringx.containsAll("HAHA", Collectionx.mutableListOf("h", "a"), true))
     }
 
     @Test
@@ -1200,11 +1200,11 @@ class StringxTest {
         @Suppress("EmptyRange")
         assertThreeEquals("", Stringx.slice(StringBuilder(source), Rangex.rangeTo(3, 2)).toString(), StringBuilder(source).slice(3..2).toString())
 
-        assertThreeEquals("158", Stringx.slice(source, Collectionx.listOf(1, 5, 8)), source.slice(listOf(1, 5, 8)))
-        assertThreeEquals("", Stringx.slice(source, Collectionx.listOf()), source.slice(listOf()))
-        assertThreeEquals("158", Stringx.slice(StringBuilder(source), Collectionx.listOf(1, 5, 8)).toString(), StringBuilder(source).slice(listOf(1, 5, 8)).toString())
-        assertThreeEquals("", Stringx.slice(StringBuilder(source), Collectionx.listOf()).toString(), StringBuilder(source).slice(listOf()).toString())
-        assertThreeEquals("", Stringx.slice(null, Collectionx.listOf()), "".slice(Collectionx.listOf()))
+        assertThreeEquals("158", Stringx.slice(source, Collectionx.mutableListOf(1, 5, 8)), source.slice(listOf(1, 5, 8)))
+        assertThreeEquals("", Stringx.slice(source, Collectionx.mutableListOf()), source.slice(listOf()))
+        assertThreeEquals("158", Stringx.slice(StringBuilder(source), Collectionx.mutableListOf(1, 5, 8)).toString(), StringBuilder(source).slice(listOf(1, 5, 8)).toString())
+        assertThreeEquals("", Stringx.slice(StringBuilder(source), Collectionx.mutableListOf()).toString(), StringBuilder(source).slice(listOf()).toString())
+        assertThreeEquals("", Stringx.slice(null, Collectionx.mutableListOf()), "".slice(Collectionx.mutableListOf()))
     }
 
     @Test

@@ -3538,7 +3538,7 @@ public class Stringx {
         if (charSequence == null || count(charSequence) == 0) {
             return Collectionx.createEmptySet();
         } else if (count(charSequence) == 1) {
-            return Collectionx.setOf(charSequence.charAt(0));
+            return Collectionx.mutableSetOf(charSequence.charAt(0));
         } else {
             return toCollection(charSequence, new LinkedHashSet<Character>(Mapx.capacity(count(charSequence))));
         }

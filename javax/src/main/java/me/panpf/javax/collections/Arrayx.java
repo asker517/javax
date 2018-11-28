@@ -13425,7 +13425,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<T> list = new ArrayList<>(n);
         for (T item : elements) {
@@ -13450,7 +13450,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Byte> list = new ArrayList<>(n);
         for (byte item : elements) {
@@ -13475,7 +13475,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Short> list = new ArrayList<>(n);
         for (short item : elements) {
@@ -13500,7 +13500,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Integer> list = new ArrayList<>(n);
         for (int item : elements) {
@@ -13525,7 +13525,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Long> list = new ArrayList<>(n);
         for (long item : elements) {
@@ -13550,7 +13550,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Float> list = new ArrayList<>(n);
         for (float item : elements) {
@@ -13575,7 +13575,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Double> list = new ArrayList<>(n);
         for (double item : elements) {
@@ -13600,7 +13600,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Boolean> list = new ArrayList<>(n);
         for (boolean item : elements) {
@@ -13625,7 +13625,7 @@ public class Arrayx {
         });
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         if (n >= elements.length) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[0]);
+        if (n == 1) return Collectionx.mutableListOf(elements[0]);
         int count = 0;
         List<Character> list = new ArrayList<>(n);
         for (char item : elements) {
@@ -13651,7 +13651,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<T> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13673,7 +13673,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Byte> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13695,7 +13695,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Short> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13717,7 +13717,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Integer> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13739,7 +13739,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Long> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13761,7 +13761,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Float> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13783,7 +13783,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Double> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13805,7 +13805,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Boolean> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
@@ -13827,7 +13827,7 @@ public class Arrayx {
         if (elements == null || n == 0) return Collectionx.createEmptyArrayList();
         int size = elements.length;
         if (n >= size) return Arrayx.toList(elements);
-        if (n == 1) return Collectionx.listOf(elements[size - 1]);
+        if (n == 1) return Collectionx.mutableListOf(elements[size - 1]);
         List<Character> list = new ArrayList<>(n);
         for (int index : Rangex.until(size - n, elements.length))
             list.add(elements[index]);
