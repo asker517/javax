@@ -1939,6 +1939,7 @@ public class Arrayx2 {
         if (elements != null) for (char element : elements) Mapx.put(destination, transform.transform(element));
         return destination;
     }
+    // TODO: 2018/11/26 补充
 
 //    /**
 //     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.

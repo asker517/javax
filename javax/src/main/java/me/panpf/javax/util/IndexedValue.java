@@ -5,10 +5,10 @@ import org.jetbrains.annotations.NotNull;
 public class IndexedValue<T> {
     public int index;
     @NotNull
-    public T valued;
+    public T value;
 
-    public IndexedValue(int index, @NotNull T valued) {
+    public IndexedValue(int index, @NotNull T value) {
         this.index = index;
-        this.valued = valued;
+        this.value = value;
     }
 }

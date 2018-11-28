@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.panpf.javax.util;
+package me.panpf.javax.collections;
 
 import java.util.Iterator;
 

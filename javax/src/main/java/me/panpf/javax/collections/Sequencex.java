@@ -78,4 +78,5 @@ public class Sequencex {
             action.action(aSequence);
         }
     }
+    // TODO: 2018/11/26 补充
 }

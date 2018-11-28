@@ -6,6 +6,7 @@
 * :fire: Stringx indAnyOf rename to findAnyOf
 * :sparkles: Stringx findAnyOf adds overload method
 * :bug: Fix Stringx lastIndexOf method default startIndex is 0, should be length - 1 bug
+* :sparkles: MapBuilder adds buildSorted method
 
 
 
