@@ -12,6 +12,8 @@
 * :fire: Mapx createOnlyReadEmptyMap rename to onlyReadEmptyMap, mapCapacity rename to capacity, put rename to plusAssign
 * :fire: Mapx remove forEachIndexed, mapIndexed, mapToIndexed method
 * :fire: Collectionx listOf rename to mutableListOf, onlyReadListOf rename to immutableListOf
+* :fire: Collectionx remove all createEmpty* method
+* :fire: Refactoring Collectionx listOf and setOf method
 
 
 

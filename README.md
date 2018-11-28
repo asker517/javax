@@ -55,12 +55,12 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
     * contentEquals, binarySearch, copyOf, slice, associate
 * Collection: [Collectionx.java] | [Collectionx.kt]
-    * ieEmpty, isNotEmpty, isNullEmpty, isNotNullEmpty, orEmpty, mutableListOf, arrayListOf, immutableListOf, setOf, createEmptyList, createEmptySet,
-    * createEmptyStack, createEmptyQueue, createEmptyDeque, onlyReadEmptyList, onlyReadEmptySet, collectionSizeOrDefault,
-    * filter, map, flatMap, join, count, average, sum, first, last, find, get, max, min, addAll, removeAll,
-    * partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked,
-    * minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct, intersect,
-    * retainAll, associate, drop, single, elementAt, fill, shuffle
+    * isNullOrEmpty, isNotNullEmpty, joinToArrayString, to*Array, collectionSizeOrDefault, isEmpty, isNotEmpty,
+    * orEmpty, immutableListOf, mutableListOf, arrayListOf, immutableSetOf, mutableSetOf, hashSetOf, linkedSetOf,
+    * sortedSetOf, filter, map, flatMap, join, count, average, sum, first, last, find, get, max, min, addAll,
+    * removeAll, partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains,
+    * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
+    * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
 * Map: [Mapx.java]
     * builder, createEmptyMap, createEmptyHashMap, createEmptyWeakHashMap, createEmptyLinkedHashMap,
     * createEmptyHashtable, createEmptyTreeMap, createEmptySortedMap, onlyReadEmptyMap,

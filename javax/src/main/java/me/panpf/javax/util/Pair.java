@@ -45,6 +45,6 @@ public class Pair<A, B> {
     }
 
     public static <A, B> Pair<A, B> of(A var0, B var1) {
-        return new Pair<A, B>(var0, var1);
+        return new Pair<>(var0, var1);
     }
 }

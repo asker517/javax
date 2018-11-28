@@ -799,7 +799,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static <T> List<T> slice(@Nullable T[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -808,7 +808,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Byte> slice(@Nullable byte[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -817,7 +817,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Short> slice(@Nullable short[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -826,7 +826,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Integer> slice(@Nullable int[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -835,7 +835,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Long> slice(@Nullable long[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -844,7 +844,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Float> slice(@Nullable float[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -853,7 +853,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Double> slice(@Nullable double[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -862,7 +862,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Boolean> slice(@Nullable boolean[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -871,7 +871,7 @@ public class Arrayx2 {
      */
     @NotNull
     public static List<Character> slice(@Nullable char[] elements, @NotNull IntRange indices) {
-        if (indices.isEmpty()) return Collectionx.createEmptyArrayList();
+        if (indices.isEmpty()) return Collectionx.arrayListOf();
         return Arrayx.asList(Arrayx2.copyOfRange(elements, indices.getStart(), indices.getEndInclusive() + 1));
     }
 
@@ -881,7 +881,7 @@ public class Arrayx2 {
     @NotNull
     public static <T> List<T> slice(@Nullable T[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0) return Collectionx.createEmptyArrayList();
+        if (size == 0) return Collectionx.arrayListOf();
         List<T> list = new ArrayList<>(size);
         for (int index : indices) {
             if (elements != null) {
@@ -897,7 +897,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Byte> slice(@Nullable byte[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Byte> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -911,7 +911,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Short> slice(@Nullable short[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Short> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -925,7 +925,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Integer> slice(@Nullable int[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Integer> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -939,7 +939,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Long> slice(@Nullable long[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Long> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -953,7 +953,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Float> slice(@Nullable float[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Float> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -967,7 +967,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Double> slice(@Nullable double[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Double> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -981,7 +981,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Boolean> slice(@Nullable boolean[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Boolean> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);
@@ -995,7 +995,7 @@ public class Arrayx2 {
     @NotNull
     public static List<Character> slice(@Nullable char[] elements, @NotNull Iterable<Integer> indices) {
         int size = Collectionx.collectionSizeOrDefault(indices, 10);
-        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.createEmptyArrayList();
+        if (size == 0 || Arrayx.isNullOrEmpty(elements)) return Collectionx.arrayListOf();
         List<Character> list = new ArrayList<>(size);
         for (int index : indices) {
             list.add(elements[index]);

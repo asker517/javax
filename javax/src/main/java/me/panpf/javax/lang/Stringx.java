@@ -3536,7 +3536,7 @@ public class Stringx {
     @NotNull
     public static Set<Character> toSet(@Nullable CharSequence charSequence) {
         if (charSequence == null || count(charSequence) == 0) {
-            return Collectionx.createEmptySet();
+            return Collectionx.mutableSetOf();
         } else if (count(charSequence) == 1) {
             return Collectionx.mutableSetOf(charSequence.charAt(0));
         } else {
@@ -4439,7 +4439,7 @@ public class Stringx {
     @NotNull
     public static <R> List<R> zipWithNext(@Nullable CharSequence charSequence, @NotNull Transformer2<Character, Character, R> transform) {
         int size = count(charSequence) - 1;
-        if (charSequence == null || size < 1) return Collectionx.createEmptyList();
+        if (charSequence == null || size < 1) return Collectionx.arrayListOf();
         List<R> result = new ArrayList<>(size);
         for (int index : Rangex.until(0, size)) {
             result.add(transform.transform(charSequence.charAt(index), charSequence.charAt(index + 1)));
@@ -4473,7 +4473,7 @@ public class Stringx {
     @NotNull
     public static Iterable<Character> asIterable(@Nullable CharSequence charSequence) {
         if (charSequence == null || charSequence instanceof String && isEmpty(charSequence))
-            return Collectionx.createEmptyList();
+            return Collectionx.arrayListOf();
         return new CharSequenceIterable(charSequence);
     }
     // TODO: 2018/11/26 转换成 java
