@@ -308,7 +308,7 @@ public class Collectionx {
      * Returns an empty only readable List<T>.
      */
     @NotNull
-    public static <T> List<T> createOnlyReadEmptyList() {
+    public static <T> List<T> onlyReadEmptyList() {
         //noinspection unchecked
         return Collections.EMPTY_LIST;
     }
@@ -342,7 +342,7 @@ public class Collectionx {
      * Returns an empty only readable Set<T>.
      */
     @NotNull
-    public static <T> Set<T> createOnlyReadEmptySet() {
+    public static <T> Set<T> onlyReadEmptySet() {
         //noinspection unchecked
         return Collections.EMPTY_SET;
     }

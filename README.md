@@ -56,11 +56,11 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * contentEquals, binarySearch, copyOf, slice, associate
 * Collection: [Collectionx.java] | [Collectionx.kt]
     * ieEmpty, isNotEmpty, isNullEmpty, isNotNullEmpty, orEmpty, listOf, setOf, createEmptyList, createEmptySet,
-    * createEmptyStack, createEmptyQueue, createEmptyDeque, collectionSizeOrDefault, filter, map, flatMap, join,
-    * count, average, sum, first, last, find, get, max, min, addAll, removeAll, partition, toCollection, toList,
-    * toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked, minus, plus, group, sort, reverse,
-    * indexOf, fold, reduce, slice, take, take, distinct, intersect, retainAll, associate, drop, single, elementAt,
-    * fill, shuffle
+    * createEmptyStack, createEmptyQueue, createEmptyDeque, onlyReadEmptyList, onlyReadEmptySet, collectionSizeOrDefault,
+    * filter, map, flatMap, join, count, average, sum, first, last, find, get, max, min, addAll, removeAll,
+    * partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked,
+    * minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct, intersect,
+    * retainAll, associate, drop, single, elementAt, fill, shuffle
 * Map: [Mapx.java]
     * createEmptyMap, mapCapacity, getOrPut, builder, forEach, forEachIndexed, map, mapTo, mapIndexed, mapIndexedTo
 

@@ -8,6 +8,7 @@
 * :bug: Fix Stringx lastIndexOf method default startIndex is 0, should be length - 1 bug
 * :sparkles: MapBuilder adds buildSorted method
 * :white_check_mark: Perfect Stringx testing
+* :fire: Collectionx createOnlyReadEmptyList rename to onlyReadEmptyList, createOnlyReadEmptySet rename to onlyReadEmptySet
 
 
 
