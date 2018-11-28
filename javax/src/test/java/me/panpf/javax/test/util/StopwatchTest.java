@@ -11,7 +11,7 @@ public final class StopwatchTest {
     @Test
     public void testStartTime() throws InterruptedException {
         /*
-         * 允许有 10 毫秒的误差
+         * 允许有 100 毫秒的误差
          */
 
         long time = System.currentTimeMillis();
@@ -19,7 +19,7 @@ public final class StopwatchTest {
         Thread.sleep(1000L);
 
         Stopwatch stopwatch = new Stopwatch();
-        Assert.assertTrue(Rangex.in(stopwatch.startTime, time + 1000L, time + 1010L));
+        Assert.assertTrue(Rangex.in(stopwatch.startTime, time + 1000L, time + 1100L));
     }
 
     @Test
