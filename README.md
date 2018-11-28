@@ -55,7 +55,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
     * contentEquals, binarySearch, copyOf, slice, associate
 * Collection: [Collectionx.java] | [Collectionx.kt]
-    * ieEmpty, isNotEmpty, isNullEmpty, isNotNullEmpty, orEmpty, listOf, setOf, createEmptyList, createEmptySet,
+    * ieEmpty, isNotEmpty, isNullEmpty, isNotNullEmpty, orEmpty, mutableListOf, arrayListOf, immutableListOf, setOf, createEmptyList, createEmptySet,
     * createEmptyStack, createEmptyQueue, createEmptyDeque, onlyReadEmptyList, onlyReadEmptySet, collectionSizeOrDefault,
     * filter, map, flatMap, join, count, average, sum, first, last, find, get, max, min, addAll, removeAll,
     * partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains, forEach, chunked,

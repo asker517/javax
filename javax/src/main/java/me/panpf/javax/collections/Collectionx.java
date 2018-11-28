@@ -508,7 +508,7 @@ public class Collectionx {
      */
     @NotNull
     @SafeVarargs
-    public static <T> List<T> onlyReadListOf(@Nullable T... elements) {
+    public static <T> List<T> immutableListOf(@Nullable T... elements) {
         //noinspection unchecked
         return elements != null && elements.length > 0 ? Arrays.asList(elements) : (List<T>) createEmptyArrayList();
     }
