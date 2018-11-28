@@ -65,6 +65,14 @@ public class MapxTest {
                 return s;
             }
         })), "1, 2, 3");
+
+        Assert.assertEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("3", "333").put("1", "111").put("2", "222").buildSorted(), new Transformer2<String, String, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull String s, @NotNull String s2) {
+                return s;
+            }
+        })), "1, 2, 3");
     }
 
     @Test

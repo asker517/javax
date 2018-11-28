@@ -20,7 +20,6 @@ import me.panpf.javax.util.Pair;
 
 import java.util.*;
 
-@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 public class MapBuilder<K, V> {
 
     private List<Pair<K, V>> list = new LinkedList<>();
@@ -72,5 +71,9 @@ public class MapBuilder<K, V> {
             map.put(pair.first, pair.second);
         }
         return map;
+    }
+
+    public TreeMap<K, V> buildSorted() {
+        return buildTree();
     }
 }

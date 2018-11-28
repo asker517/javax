@@ -82,6 +82,13 @@ public class Mapx {
         return new TreeMap<>();
     }
 
+    /**
+     * Returns an empty readable and writable TreeMap<K, V>.
+     */
+    public static <K, V> TreeMap<K, V> createEmptySortedMap() {
+        return new TreeMap<>();
+    }
+
 
     /**
      * Returns an empty only readable Map<K, T>.
