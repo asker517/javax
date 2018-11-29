@@ -19,4 +19,24 @@ public class Assertx {
         Assert.assertEquals("actual1", expected, actual1);
         Assert.assertEquals("actual2", expected, actual2);
     }
+
+    public static void assertAllNotNull(Object... values) {
+        int index = 0;
+        for (Object value : values) {
+            if (value == null) {
+                Assert.fail("The index is " + index + " value is null");
+            }
+            index++;
+        }
+    }
+
+    public static void assertAllNull(Object... values) {
+        int index = 0;
+        for (Object value : values) {
+            if (value != null) {
+                Assert.fail("The index is " + index + " value is not null");
+            }
+            index++;
+        }
+    }
 }
