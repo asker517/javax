@@ -17,17 +17,18 @@ class MapxTest {
 
     @Test
     fun testBuilder() {
-        Assert.assertEquals(Mapx.builder("1", "111").build().size.toLong(), 1)
-        Assert.assertEquals(Mapx.builder("1", "111").put("2", "222").put("3", "333").build().size.toLong(), 3)
-        Assert.assertEquals(Mapx.builder("1", "111").put("2", "222").put("3", "333").build()["3"], "333")
+        assertEquals(1, Mapx.builder("1", "111").buildHashMap().size.toLong())
+        assertEquals(3, Mapx.builder("1", "111").put("2", "222").put("3", "333").buildHashMap().size.toLong())
+        assertEquals("333", Mapx.builder("1", "111").put("2", "222").put("3", "333").buildHashMap()["3"])
 
-        Assert.assertNotEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("1", "111").put("3", "333").put("2", "222").build()) { entry -> entry.key }), "1, 3, 2")
-
-        Assert.assertNotEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("1", "111").put("3", "333").put("2", "222").buildWeak()) { entry -> entry.key }), "1, 3, 2")
-
-        Assert.assertNotEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("1", "111").put("3", "333").put("2", "222").buildTable()) { entry -> entry.key }), "1, 3, 2")
-
-        Assert.assertEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("1", "111").put("3", "333").put("2", "222").buildLinked()) { entry -> entry.key }), "1, 3, 2")
+        assertNotEquals("1, 3, 2", Mapx.builder("1", "111").put("3", "333").put("2", "222").buildHashMap().map { entry -> entry.key }.joinToString())
+        assertNotEquals("1, 3, 2", Mapx.builder("1", "111").put("3", "333").put("2", "222").buildWeakHashMap().map { entry -> entry.key }.joinToString())
+        assertNotEquals("1, 3, 2", Mapx.builder("1", "111").put("3", "333").put("2", "222").buildHashtable().map { entry -> entry.key }.joinToString())
+        assertEquals("1, 3, 2", Mapx.builder("1", "111").put("3", "333").put("2", "222").buildLinkedHashMap().map { entry -> entry.key }.joinToString())
+        assertEquals("1, 2, 3", Mapx.builder("1", "111").put("3", "333").put("2", "222").buildTreeMap().map { entry -> entry.key }.joinToString())
+        assertEquals("1, 2, 3", Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap().map { entry -> entry.key }.joinToString())
+        assertEquals("1, 2, 3", Mapx.builder("3", "333").put("1", "111").put("2", "222").buildSortedMap().map { entry -> entry.key }.joinToString())
+    }
 
         Assert.assertEquals(Collectionx.joinToString(Mapx.map(Mapx.builder("1", "111").put("3", "333").put("2", "222").buildTree()) { entry -> entry.key }), "1, 2, 3")
 

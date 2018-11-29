@@ -24,6 +24,7 @@ import java.util.*;
 
 public class MapBuilder<K, V> {
 
+    @NotNull
     private List<Pair<K, V>> list = new LinkedList<>();
 
     public MapBuilder(@NotNull K k, @Nullable V v) {
@@ -37,7 +38,7 @@ public class MapBuilder<K, V> {
     }
 
     @NotNull
-    public Map<K, V> build() {
+    public Map<K, V> buildHashMap() {
         Map<K, V> map = new HashMap<>();
         for (Pair<K, V> pair : list) {
             map.put(pair.first, pair.second);
@@ -46,7 +47,7 @@ public class MapBuilder<K, V> {
     }
 
     @NotNull
-    public WeakHashMap<K, V> buildWeak() {
+    public WeakHashMap<K, V> buildWeakHashMap() {
         WeakHashMap<K, V> map = new WeakHashMap<>();
         for (Pair<K, V> pair : list) {
             map.put(pair.first, pair.second);
@@ -55,7 +56,7 @@ public class MapBuilder<K, V> {
     }
 
     @NotNull
-    public LinkedHashMap<K, V> buildLinked() {
+    public LinkedHashMap<K, V> buildLinkedHashMap() {
         LinkedHashMap<K, V> map = new LinkedHashMap<>();
         for (Pair<K, V> pair : list) {
             map.put(pair.first, pair.second);
@@ -64,7 +65,7 @@ public class MapBuilder<K, V> {
     }
 
     @NotNull
-    public Hashtable<K, V> buildTable() {
+    public Hashtable<K, V> buildHashtable() {
         Hashtable<K, V> map = new Hashtable<>();
         for (Pair<K, V> pair : list) {
             map.put(pair.first, pair.second);
@@ -73,7 +74,7 @@ public class MapBuilder<K, V> {
     }
 
     @NotNull
-    public TreeMap<K, V> buildTree() {
+    public TreeMap<K, V> buildTreeMap() {
         TreeMap<K, V> map = new TreeMap<>();
         for (Pair<K, V> pair : list) {
             map.put(pair.first, pair.second);
@@ -82,7 +83,7 @@ public class MapBuilder<K, V> {
     }
 
     @NotNull
-    public TreeMap<K, V> buildSorted() {
-        return buildTree();
+    public SortedMap<K, V> buildSortedMap() {
+        return buildTreeMap();
     }
 }

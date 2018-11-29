@@ -19,6 +19,7 @@
 * :sparkles: Arrayx adds asSequence method
 * :sparkles: Collectionx adds asSequence method
 * :sparkles: Stringx adds asSequence method
+* :fire: MapBuilder rename build\* method
 
 
 
