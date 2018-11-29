@@ -1334,7 +1334,7 @@ class StringxTest {
                 .put("6", listOf('6', '6', '6'))
                 .put("7", listOf('7'))
                 .put("8", listOf('8', '8', '8'))
-                .put("9", listOf('9', '9')).build().toSortedMap()
+                .put("9", listOf('9', '9')).buildHashMap().toSortedMap()
         val map2 = MapBuilder<String, List<String>>("0", listOf("0"))
                 .put("1", listOf("1"))
                 .put("2", listOf("2", "2", "2"))
@@ -1344,7 +1344,7 @@ class StringxTest {
                 .put("6", listOf("6", "6", "6"))
                 .put("7", listOf("7"))
                 .put("8", listOf("8", "8", "8"))
-                .put("9", listOf("9", "9")).build().toSortedMap()
+                .put("9", listOf("9", "9")).buildHashMap().toSortedMap()
 
         assertThreeEquals(map, Stringx.groupBy(source) { it.toString() }.toSortedMap(), source.groupBy { it.toString() }.toSortedMap())
         assertThreeEquals(map2, Stringx.groupBy(source, { it.toString() }) { it.toString() }.toSortedMap(), source.groupBy({ it.toString() }) { it.toString() }.toSortedMap())
@@ -1678,11 +1678,16 @@ class StringxTest {
     }
 
     @Test
-    fun testAsIterable() {
+    fun testAs() {
         val source = "0123456789"
         assertThreeEquals("0,1,2,3,4,5,6,7,8,9", Stringx.asIterable(source).joinToString(","), source.asIterable().joinToString(","))
         assertThreeEquals("", Stringx.asIterable(StringBuilder("")).joinToString(","), StringBuilder("").asIterable().joinToString(","))
         assertEquals(listOf<Char>(), Stringx.asIterable(null))
         assertEquals(listOf<Char>(), Stringx.asIterable(""))
+
+        assertThreeEquals("0,1,2,3,4,5,6,7,8,9", Stringx.asSequence(source).joinToString(","), source.asSequence().joinToString(","))
+        assertThreeEquals("", Stringx.asSequence(StringBuilder("")).joinToString(","), StringBuilder("").asSequence().joinToString(","))
+        assertEquals("", Stringx.asSequence(null).joinToString(","))
+        assertEquals("", Stringx.asSequence("").joinToString(","))
     }
 }

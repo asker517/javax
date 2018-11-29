@@ -2871,6 +2871,7 @@ public class Stringx {
         return charSequence != null && regex.matcher(charSequence).find();
     }
 
+    // TODO: 2018/11/30 Sequence
 //    /**
 //     * Returns a sequence of index ranges of substrings in this char sequence around occurrences of the specified [delimiters].
 //     *
@@ -4476,13 +4477,18 @@ public class Stringx {
             return Collectionx.arrayListOf();
         return new CharSequenceIterable(charSequence);
     }
-    // TODO: 2018/11/26 Sequence
-//
-//    /**
-//     * Creates a [Sequence] instance that wraps the original char sequence returning its characters when being iterated.
-//     */
-//    public static asSequence(@Nullable CharSequence charSequence): Sequence<Character> {
-//        if (this is String && isEmpty()) return emptySequence()
-//        return Sequence { this.iterator() }
-//    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original char sequence returning its characters when being iterated.
+     */
+    @NotNull
+    public static Sequence<Character> asSequence(@Nullable final CharSequence charSequence) {
+        return new Sequence<Character>(){
+            @NotNull
+            @Override
+            public Iterator<Character> iterator() {
+                return Stringx.iterator(charSequence);
+            }
+        };
+    }
 }

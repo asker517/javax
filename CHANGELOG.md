@@ -18,6 +18,7 @@
 * :sparkles: Mapx add mapOf method
 * :sparkles: Arrayx adds asSequence method
 * :sparkles: Collectionx adds asSequence method
+* :sparkles: Stringx adds asSequence method
 
 
 
