@@ -60,7 +60,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * sortedSetOf, filter, map, flatMap, join, count, average, sum, first, last, find, get, max, min, addAll,
     * removeAll, partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains,
     * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
-    * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
+    * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle, asSequence
 * Map: [Mapx.java] | [Mapx.kt] ([Test][MapxTest.kt])
     * builder, immutableMapOf, mutableMapOf, hashMapOf, linkedMapOf, sortedMapOf, capacity, getOrPut,
     * plusAssign, forEach, map, mapTo
