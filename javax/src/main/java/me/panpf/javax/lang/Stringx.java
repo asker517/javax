@@ -4198,7 +4198,7 @@ public class Stringx {
         return windowed(charSequence, size, size, true, transform);
     }
 
-    // TODO: 2018/11/26 转换成 java
+    // TODO: 2018/11/26 Sequence
 ///**
 // * Splits this char sequence into a sequence of strings each not exceeding the given [size].
 // *
@@ -4349,7 +4349,7 @@ public class Stringx {
         });
     }
 
-    // TODO: 2018/11/26 转换成 java
+    // TODO: 2018/11/26 Sequence
 ///**
 // * Returns a sequence of snapshots of the window of the given [size]
 // * sliding along this char sequence with the given [step], where each
@@ -4476,7 +4476,7 @@ public class Stringx {
             return Collectionx.arrayListOf();
         return new CharSequenceIterable(charSequence);
     }
-    // TODO: 2018/11/26 转换成 java
+    // TODO: 2018/11/26 Sequence
 //
 //    /**
 //     * Creates a [Sequence] instance that wraps the original char sequence returning its characters when being iterated.

@@ -1940,7 +1940,7 @@ public class Arrayx2 {
         if (elements != null) for (char element : elements) Mapx.plusAssign(destination, transform.transform(element));
         return destination;
     }
-    // TODO: 2018/11/26 转换成 java
+    // TODO: 2018/11/26 Sequence
 
 //    /**
 //     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
