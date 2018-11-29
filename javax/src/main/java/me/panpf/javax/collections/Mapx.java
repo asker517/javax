@@ -68,9 +68,10 @@ public class Mapx {
     }
 
     /**
-     * Returns an empty read-only map.
+     * Returns an immutable map, mapping only the specified key to the
+     * specified value.
      * <p>
-     * The returned map is serializable (JVM).
+     * The returned map is serializable.
      */
     @NotNull
     public static <K, V> Map<K, V> immutableMapOf(@NotNull Pair<K, V> pair) {
@@ -78,7 +79,12 @@ public class Mapx {
     }
 
     /**
-     * Returns an empty read-only map.
+     * Returns a new read-only map with the specified contents, given as a list of pairs
+     * where the first value is the key and the second is the value.
+     * <p>
+     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
+     * <p>
+     * Entries of the map are iterated in the order they were specified.
      * <p>
      * The returned map is serializable (JVM).
      */
@@ -90,23 +96,21 @@ public class Mapx {
     }
 
     /**
-     * Returns an empty read-only map.
+     * Returns an empty new [Map].
      * <p>
-     * The returned map is serializable (JVM).
+     * The returned map preserves the entry iteration order.
      */
     public static <K, V> Map<K, V> mutableMapOf() {
         return new LinkedHashMap<>(0);
     }
 
     /**
-     * Returns a new read-only map with the specified contents, given as a list of pairs
-     * where the first value is the key and the second is the value.
+     * Returns a new [Map] with the specified contents, given as a list of pairs
+     * where the first component is the key and the second is the value.
      * <p>
      * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
      * <p>
      * Entries of the map are iterated in the order they were specified.
-     * <p>
-     * The returned map is serializable (JVM).
      */
     @NotNull
     @SafeVarargs
@@ -116,23 +120,15 @@ public class Mapx {
     }
 
     /**
-     * Returns an empty read-only map.
-     * <p>
-     * The returned map is serializable (JVM).
+     * Returns an empty new [HashMap].
      */
     public static <K, V> HashMap<K, V> hashMapOf() {
         return new HashMap<>(0);
     }
 
     /**
-     * Returns a new read-only map with the specified contents, given as a list of pairs
-     * where the first value is the key and the second is the value.
-     * <p>
-     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
-     * <p>
-     * Entries of the map are iterated in the order they were specified.
-     * <p>
-     * The returned map is serializable (JVM).
+     * Returns a new [HashMap] with the specified contents, given as a list of pairs
+     * where the first component is the key and the second is the value.
      */
     @NotNull
     @SafeVarargs
@@ -143,23 +139,19 @@ public class Mapx {
     }
 
     /**
-     * Returns an empty read-only map.
-     * <p>
-     * The returned map is serializable (JVM).
+     * Returns an empty new [LinkedHashMap].
      */
     public static <K, V> LinkedHashMap<K, V> linkedMapOf() {
         return new LinkedHashMap<>(0);
     }
 
     /**
-     * Returns a new read-only map with the specified contents, given as a list of pairs
-     * where the first value is the key and the second is the value.
+     * Returns a new [LinkedHashMap] with the specified contents, given as a list of pairs
+     * where the first component is the key and the second is the value.
      * <p>
      * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
      * <p>
      * Entries of the map are iterated in the order they were specified.
-     * <p>
-     * The returned map is serializable (JVM).
      */
     @NotNull
     @SafeVarargs
@@ -170,14 +162,8 @@ public class Mapx {
     }
 
     /**
-     * Returns a new read-only map with the specified contents, given as a list of pairs
+     * Returns a new [SortedMap] with the specified contents, given as a list of pairs
      * where the first value is the key and the second is the value.
-     * <p>
-     * If multiple pairs have the same key, the resulting map will contain the value from the last of those pairs.
-     * <p>
-     * Entries of the map are iterated in the order they were specified.
-     * <p>
-     * The returned map is serializable (JVM).
      */
     @NotNull
     @SafeVarargs
