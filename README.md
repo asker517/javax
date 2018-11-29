@@ -50,7 +50,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * toHashSet, asList, map, reverse, sort, single, any, iterator, asIterable, groupBy, groupingBy, count,
     * max, min, join, sum, plus, indices, indexOf, contains, forEach, filter, zip, partition, all, first, last,
     * find, get, elementAt, flatMap, average, none, reduce, fold, intersect, subtract, drop, take, distinct,
-    * withIndex, orEmpty
+    * withIndex, orEmpty, asSequence
 * Array2: [Arrayx2.java]
     * contentHashCode, contentDeepEquals, contentDeepHashCode, contentDeepToString, contentToString,
     * contentEquals, binarySearch, copyOf, slice, associate
@@ -61,7 +61,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * removeAll, partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains,
     * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
     * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle
-* Map: [Mapx.java]
+* Map: [Mapx.java] | [Mapx.kt] ([Test][MapxTest.kt])
     * builder, immutableMapOf, mutableMapOf, hashMapOf, linkedMapOf, sortedMapOf, capacity, getOrPut,
     * plusAssign, forEach, map, mapTo
 

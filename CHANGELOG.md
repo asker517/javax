@@ -16,6 +16,7 @@
 * :fire: Refactoring Collectionx listOf and setOf method
 * :fire: Mapx remove all createEmpty* method
 * :sparkles: Mapx add mapOf method
+* :sparkles: Arrayx adds asSequence method
 
 
 

@@ -14506,4 +14506,134 @@ public class Arrayx {
             }
         });
     }
+
+
+    /* ******************************************* asSequence ******************************************* */
+
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static <T> Sequence<T> asSequence(@Nullable final T[] elements) {
+        return new Sequence<T>(){
+            @NotNull
+            @Override
+            public Iterator<T> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Byte> asSequence(@Nullable final byte[] elements) {
+        return new Sequence<Byte>(){
+            @NotNull
+            @Override
+            public Iterator<Byte> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Short> asSequence(@Nullable final short[] elements) {
+        return new Sequence<Short>(){
+            @NotNull
+            @Override
+            public Iterator<Short> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Integer> asSequence(@Nullable final int[] elements) {
+        return new Sequence<Integer>(){
+            @NotNull
+            @Override
+            public Iterator<Integer> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Long> asSequence(@Nullable final long[] elements) {
+        return new Sequence<Long>(){
+            @NotNull
+            @Override
+            public Iterator<Long> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Float> asSequence(@Nullable final float[] elements) {
+        return new Sequence<Float>(){
+            @NotNull
+            @Override
+            public Iterator<Float> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Double> asSequence(@Nullable final double[] elements) {
+        return new Sequence<Double>(){
+            @NotNull
+            @Override
+            public Iterator<Double> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Boolean> asSequence(@Nullable final boolean[] elements) {
+        return new Sequence<Boolean>(){
+            @NotNull
+            @Override
+            public Iterator<Boolean> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
+
+    /**
+     * Creates a [Sequence] instance that wraps the original array returning its elements when being iterated.
+     */
+    @NotNull
+    public static Sequence<Character> asSequence(@Nullable final char[] elements) {
+        return new Sequence<Character>(){
+            @NotNull
+            @Override
+            public Iterator<Character> iterator() {
+                return Arrayx.iterator(elements);
+            }
+        };
+    }
 }
