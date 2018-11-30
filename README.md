@@ -120,7 +120,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * reversed, filter, first, last, getOrElse, getOrNull, iterator, iterable, indices, lastIndex, trim,
     * replace, commonWith, contains, elementAt, single, drop, slice, take, associate, toCollection, toHashSet,
     * toList, toSet, toSortedSet, flatMap, group, map, withIndex, all, any, count, fold, forEach, max, min,
-    * none, onEach, reduce, sum, chunked, partition, windowed, zip, asIterable, asSequence
+    * none, onEach, reduce, sum, chunked, partition, windowed, zip, asIterable, asSequence,
+    * splitToSequence, split, lineSequence, lines, chunkedSequence, windowedSequence
 * Throwable: [Throwablex.java] ([Test][ThrowablexTest.java]) | [Throwablex.kt] ([Test][ThrowablexTest.kt])
     * stackTraceToString
 

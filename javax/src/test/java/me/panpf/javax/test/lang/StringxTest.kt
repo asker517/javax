@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("RemoveRedundantSpreadOperator")
+
 package me.panpf.javax.test.lang
 
 import me.panpf.javax.collections.Collectionx
@@ -22,6 +24,7 @@ import me.panpf.javax.collections.Mapx
 import me.panpf.javax.lang.Charx
 import me.panpf.javax.lang.Stringx
 import me.panpf.javax.ranges.Rangex
+import me.panpf.javax.sequences.Sequencex
 import me.panpf.javax.test.Assertx.assertThreeEquals
 import me.panpf.javax.util.Base64x
 import me.panpf.javax.util.DefaultValue
@@ -31,6 +34,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import java.nio.charset.Charset
 import java.util.*
+import java.util.regex.Pattern
 
 class StringxTest {
 
@@ -1063,6 +1067,138 @@ class StringxTest {
     }
 
     @Test
+    fun testSplit() {
+        assertThreeEquals("112:135:678:345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678,345", arrayOf(".", ","))).joinToString(":"),
+                "112.135.678,345".splitToSequence(*arrayOf(".", ",")).toList().joinToString(":"))
+        assertThreeEquals("112:135:678,345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678,345", arrayOf(".", ","), 3)).joinToString(":"),
+                "112.135.678,345".splitToSequence(*arrayOf(".", ","), limit = 3).toList().joinToString(":"))
+        assertThreeEquals("112a135a678b345",
+                Sequencex.toList(Stringx.splitToSequence("112a135a678b345", arrayOf("A", "B"), 3)).joinToString(":"),
+                "112a135a678b345".splitToSequence(*arrayOf("A", "B"), limit = 3).toList().joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Sequencex.toList(Stringx.splitToSequence("112a135a678a345", arrayOf("A", "B"), true)).joinToString(":"),
+                "112a135a678a345".splitToSequence(*arrayOf("A", "B"), ignoreCase = true).toList().joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", arrayOf("."))).joinToString(":"),
+                "112.135.678.345".splitToSequence(*arrayOf(".")).toList().joinToString(":"))
+        assertThreeEquals("112:135:678.345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", arrayOf("."), 3)).joinToString(":"),
+                "112.135.678.345".splitToSequence(*arrayOf("."), limit = 3).toList().joinToString(":"))
+        assertThreeEquals(":1:1:2:.:1:3:5:.:6:7:8:.:3:4:5:",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", arrayOf(""))).joinToString(":"),
+                "112.135.678.345".splitToSequence(*arrayOf("")).toList().joinToString(":"))
+        assertThreeEquals("112.135.678.345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", arrayOf(" "))).joinToString(":"),
+                "112.135.678.345".splitToSequence(*arrayOf(" ")).toList().joinToString(":"))
+
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112.135.678,345", arrayOf(".", ",")).joinToString(":"),
+                "112.135.678,345".split(*arrayOf(".", ",")).joinToString(":"))
+        assertThreeEquals("112:135:678,345",
+                Stringx.split("112.135.678,345", arrayOf(".", ","), 3).joinToString(":"),
+                "112.135.678,345".split(*arrayOf(".", ","), limit = 3).joinToString(":"))
+        assertThreeEquals("112a135a678b345",
+                Stringx.split("112a135a678b345", arrayOf("A", "B"), 3).joinToString(":"),
+                "112a135a678b345".split(*arrayOf("A", "B"), limit = 3).joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112a135a678a345", arrayOf("A", "B"), true).joinToString(":"),
+                "112a135a678a345".split(*arrayOf("A", "B"), ignoreCase = true).joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112.135.678.345", arrayOf(".")).joinToString(":"),
+                "112.135.678.345".split(*arrayOf(".")).joinToString(":"))
+        assertThreeEquals("112:135:678.345",
+                Stringx.split("112.135.678.345", arrayOf("."), 3).joinToString(":"),
+                "112.135.678.345".split(*arrayOf("."), limit = 3).joinToString(":"))
+        assertThreeEquals(":1:1:2:.:1:3:5:.:6:7:8:.:3:4:5:",
+                Stringx.split("112.135.678.345", arrayOf("")).joinToString(":"),
+                "112.135.678.345".split(*arrayOf("")).joinToString(":"))
+        assertThreeEquals("112.135.678.345",
+                Stringx.split("112.135.678.345", arrayOf(" ")).joinToString(":"),
+                "112.135.678.345".split(*arrayOf(" ")).joinToString(":"))
+
+        assertThreeEquals("112:135:678:345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678,345", charArrayOf('.', ','))).joinToString(":"),
+                "112.135.678,345".splitToSequence(*charArrayOf('.', ',')).toList().joinToString(":"))
+        assertThreeEquals("112:135:678,345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678,345", charArrayOf('.', ','), 3)).joinToString(":"),
+                "112.135.678,345".splitToSequence(*charArrayOf('.', ','), limit = 3).toList().joinToString(":"))
+        assertThreeEquals("112a135a678b345",
+                Sequencex.toList(Stringx.splitToSequence("112a135a678b345", charArrayOf('A', 'B'), 3)).joinToString(":"),
+                "112a135a678b345".splitToSequence(*charArrayOf('A', 'B'), limit = 3).toList().joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Sequencex.toList(Stringx.splitToSequence("112a135a678a345", charArrayOf('A', 'B'), true)).joinToString(":"),
+                "112a135a678a345".splitToSequence(*charArrayOf('A', 'B'), ignoreCase = true).toList().joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", charArrayOf('.'))).joinToString(":"),
+                "112.135.678.345".splitToSequence(*charArrayOf('.')).toList().joinToString(":"))
+        assertThreeEquals("112:135:678.345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", charArrayOf('.'), 3)).joinToString(":"),
+                "112.135.678.345".splitToSequence(*charArrayOf('.'), limit = 3).toList().joinToString(":"))
+        assertThreeEquals("112.135.678.345",
+                Sequencex.toList(Stringx.splitToSequence("112.135.678.345", charArrayOf(' '))).joinToString(":"),
+                "112.135.678.345".splitToSequence(*charArrayOf(' ')).toList().joinToString(":"))
+
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112.135.678,345", charArrayOf('.', ',')).joinToString(":"),
+                "112.135.678,345".split(*charArrayOf('.', ',')).joinToString(":"))
+        assertThreeEquals("112:135:678,345",
+                Stringx.split("112.135.678,345", charArrayOf('.', ','), 3).joinToString(":"),
+                "112.135.678,345".split(*charArrayOf('.', ','), limit = 3).joinToString(":"))
+        assertThreeEquals("112a135a678b345",
+                Stringx.split("112a135a678b345", charArrayOf('A', 'B'), 3).joinToString(":"),
+                "112a135a678b345".split(*charArrayOf('A', 'B'), limit = 3).joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112a135a678a345", charArrayOf('A', 'B'), true).joinToString(":"),
+                "112a135a678a345".split(*charArrayOf('A', 'B'), ignoreCase = true).joinToString(":"))
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112.135.678.345", charArrayOf('.')).joinToString(":"),
+                "112.135.678.345".split(*charArrayOf('.')).joinToString(":"))
+        assertThreeEquals("112:135:678.345",
+                Stringx.split("112.135.678.345", charArrayOf('.'), 3).joinToString(":"),
+                "112.135.678.345".split(*charArrayOf('.'), limit = 3).joinToString(":"))
+        assertThreeEquals("112.135.678.345",
+                Stringx.split("112.135.678.345", charArrayOf(' ')).joinToString(":"),
+                "112.135.678.345".split(*charArrayOf(' ')).joinToString(":"))
+        assertThreeEquals("112.135.678.345",
+                Stringx.split("112.135.678.345", charArrayOf('a')).joinToString(":"),
+                "112.135.678.345".split(*charArrayOf('a')).joinToString(":"))
+        assertThreeEquals("112.135.678.345",
+                Stringx.split("112.135.678.345", charArrayOf('.'), 1).joinToString(":"),
+                "112.135.678.345".split(*charArrayOf('.'), limit = 1).joinToString(":"))
+
+        assertThreeEquals("112:135:678:345",
+                Stringx.split("112.135.678,345", Pattern.compile("[.,]")).joinToString(":"),
+                "112.135.678,345".split(Regex("[.,]")).joinToString(":"))
+        assertThreeEquals("112:135:678,345",
+                Stringx.split("112.135.678,345", Pattern.compile("[.,]"), 3).joinToString(":"),
+                "112.135.678,345".split(Regex("[.,]"), 3).joinToString(":"))
+
+        try {
+            Stringx.splitToSequence("112.135.678,345", arrayOf(".", ","), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.splitToSequence("112.135.678,345", charArrayOf('.', ','), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.split("112.135.678,345", charArrayOf('.'), -1)
+            fail()
+        } catch (e: Exception) {
+        }
+    }
+
+    @Test
+    fun testLines() {
+        assertThreeEquals(mutableListOf("1", "2", "3", "4"), Stringx.lines("1\n2\n3\n4"), "1\n2\n3\n4".lines())
+        assertThreeEquals(mutableListOf("1", "2", "3", "4"), Sequencex.toList(Stringx.lineSequence("1\n2\n3\n4")), "1\n2\n3\n4".lineSequence().toMutableList())
+    }
+
+    @Test
     fun testElementAt() {
         val self = "abcdefg"
 
@@ -1612,9 +1748,19 @@ class StringxTest {
     @Test
     fun testChunked() {
         val source = "0123456789"
-        assertThreeEquals(listOf("012", "345", "678", "9"), Stringx.chunked(source, 3), source.chunked(3))
-        assertThreeEquals(listOf(3, 12, 21, 9), Stringx.chunked(source, 3) { partial -> partial.sumBy { it.toString().toInt() } },
+        assertThreeEquals(listOf("012", "345", "678", "9"),
+                Stringx.chunked(source, 3),
+                source.chunked(3))
+        assertThreeEquals(listOf(3, 12, 21, 9),
+                Stringx.chunked(source, 3) { partial -> partial.sumBy { it.toString().toInt() } },
                 source.chunked(3) { partial -> partial.sumBy { it.toString().toInt() } })
+
+        assertThreeEquals(listOf("012", "345", "678", "9"),
+                Sequencex.toList(Stringx.chunkedSequence(source, 3)),
+                source.chunkedSequence(3).toMutableList())
+        assertThreeEquals(listOf(3, 12, 21, 9),
+                Sequencex.toList(Stringx.chunkedSequence(source, 3) { partial -> partial.sumBy { it.toString().toInt() } }),
+                source.chunkedSequence(3) { partial -> partial.sumBy { it.toString().toInt() } }.toMutableList())
     }
 
     @Test
@@ -1637,6 +1783,13 @@ class StringxTest {
 
         assertEquals(listOf<String>(), Stringx.windowed(null, 3, 2, false) { partial -> partial.sumBy { it.toString().toInt() } })
 
+        assertThreeEquals(listOf("012", "234", "456", "678"),
+                Sequencex.toList(Stringx.windowedSequence(source, 3, 2, false)),
+                source.windowedSequence(3, 2, false).toMutableList())
+        assertThreeEquals(listOf(3, 9, 15, 21),
+                Sequencex.toList(Stringx.windowedSequence(source, 3, 2, false) { partial -> partial.sumBy { it.toString().toInt() } }),
+                source.windowedSequence(3, 2, false) { partial -> partial.sumBy { it.toString().toInt() } }.toMutableList())
+
         try {
             Stringx.windowed(source, 3, 0, false)
             fail()
@@ -1649,6 +1802,21 @@ class StringxTest {
         }
         try {
             Stringx.windowed(source, 0, 0, false)
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.windowedSequence(source, 3, 0, false)
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.windowedSequence(source, 0, 3, false)
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Stringx.windowedSequence(source, 0, 0, false)
             fail()
         } catch (e: Exception) {
         }

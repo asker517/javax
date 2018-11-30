@@ -20,6 +20,8 @@ import me.panpf.javax.collections.*;
 import me.panpf.javax.ranges.IntProgression;
 import me.panpf.javax.ranges.IntRange;
 import me.panpf.javax.ranges.Rangex;
+import me.panpf.javax.sequences.Sequence;
+import me.panpf.javax.sequences.Sequencex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -2871,157 +2873,380 @@ public class Stringx {
         return charSequence != null && regex.matcher(charSequence).find();
     }
 
-    // TODO: 2018/11/30 Sequence
-//    /**
-//     * Returns a sequence of index ranges of substrings in this char sequence around occurrences of the specified [delimiters].
-//     *
-//     * @param delimiters One or more characters to be used as delimiters.
-//     * @param startIndex The index to start searching delimiters from.
-//     *  No range having its start value less than [startIndex] is returned.
-//     *  [startIndex] is coerced to be non-negative and not greater than length of this string.
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return. Zero by default means no limit is set.
-//     */
-//    private static CharSequence.rangesDelimitedBy(delimiters: CharArray,int startIndex = 0, ignoreCase: Boolean = false, limit: Int = 0): Sequence<IntRange> {
-//        require(limit >= 0, { "Limit must be non-negative, but was $limit." })
-//
-//        return DelimitedRangesSequence(this, startIndex, limit, { startIndex ->
-//                indexOfAny(delimiters, startIndex, ignoreCase = ignoreCase).let { if (it < 0) null else it to 1 }
-//    })
-//    }
-//
-//    /**
-//     * Returns a sequence of index ranges of substrings in this char sequence around occurrences of the specified [delimiters].
-//     *
-//     * @param delimiters One or more strings to be used as delimiters.
-//     * @param startIndex The index to start searching delimiters from.
-//     *  No range having its start value less than [startIndex] is returned.
-//     *  [startIndex] is coerced to be non-negative and not greater than length of this string.
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return. Zero by default means no limit is set.
-//     *
-//     * To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
-//     * the beginning to the end of this string, and finds at each position the first element in [delimiters]
-//     * that matches this string at that position.
-//     */
-//    private static CharSequence.rangesDelimitedBy(delimiters: Array<out String>,int startIndex = 0, ignoreCase: Boolean = false, limit: Int = 0): Sequence<IntRange> {
-//        require(limit >= 0, { "Limit must be non-negative, but was $limit." } )
-//        val delimitersList = delimiters.asList()
-//
-//        return DelimitedRangesSequence(this, startIndex, limit, { startIndex -> findAnyOf(delimitersList, startIndex, ignoreCase = ignoreCase, last = false)?.let { it.first to it.second.length } })
-//
-//    }
-//
-//    /**
-//     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
-//     *
-//     * @param delimiters One or more strings to be used as delimiters.
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return. Zero by default means no limit is set.
-//     *
-//     * To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
-//     * the beginning to the end of this string, and finds at each position the first element in [delimiters]
-//     * that matches this string at that position.
-//     */
-//    public static CharSequence.splitToSequence(vararg delimiters: String, ignoreCase: Boolean = false, limit: Int = 0): Sequence<String> =
-//    rangesDelimitedBy(delimiters, ignoreCase = ignoreCase, limit = limit).map { substring(it) }
-//
-//    /**
-//     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
-//     *
-//     * @param delimiters One or more strings to be used as delimiters.
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return. Zero by default means no limit is set.
-//     *
-//     * To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
-//     * the beginning to the end of this string, and matches at each position the first element in [delimiters]
-//     * that is equal to a delimiter in this instance at that position.
-//     */
-//    public static CharSequence.split(vararg delimiters: String, ignoreCase: Boolean = false, limit: Int = 0): List<String> {
-//        if (delimiters.size == 1) {
-//            val delimiter = delimiters[0]
-//            if (!delimiter.isEmpty()) {
-//                return split(delimiter, ignoreCase, limit)
-//            }
-//        }
-//
-//        return rangesDelimitedBy(delimiters, ignoreCase = ignoreCase, limit = limit).asIterable().map { substring(it) }
-//    }
-//
-//    /**
-//     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
-//     *
-//     * @param delimiters One or more characters to be used as delimiters.
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return.
-//     */
-//    public static CharSequence.splitToSequence(vararg delimiters: Character, ignoreCase: Boolean = false, limit: Int = 0): Sequence<String> =
-//    rangesDelimitedBy(delimiters, ignoreCase = ignoreCase, limit = limit).map { substring(it) }
-//
-//    /**
-//     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
-//     *
-//     * @param delimiters One or more characters to be used as delimiters.
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return.
-//     */
-//    public static CharSequence.split(vararg delimiters: Character, ignoreCase: Boolean = false, limit: Int = 0): List<String> {
-//        if (delimiters.size == 1) {
-//            return split(delimiters[0].toString(), ignoreCase, limit)
-//        }
-//
-//        return rangesDelimitedBy(delimiters, ignoreCase = ignoreCase, limit = limit).asIterable().map { substring(it) }
-//    }
-//
-//    /**
-//     * Splits this char sequence to a list of strings around occurrences of the specified [delimiter].
-//     * This is specialized version of split which receives single non-empty delimiter and offers better performance
-//     *
-//     * @param delimiter String used as delimiter
-//     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
-//     * @param limit The maximum number of substrings to return.
-//     */
-//    private static List<String> CharSequence.split(@Nullable String delimiter, ignoreCase: Boolean, limit: Int):  {
-//        require(limit >= 0, { "Limit must be non-negative, but was $limit." })
-//
-//        var currentOffset = 0
-//        var nextIndex = indexOf(delimiter, currentOffset, ignoreCase)
-//        if (nextIndex == -1 || limit == 1) {
-//            return listOf(this.toString())
-//        }
-//
-//        val isLimited = limit > 0
-//        val result = ArrayList<String>(if (isLimited) limit.coerceAtMost(10) else 10)
-//        do {
-//            result.add(substring(currentOffset, nextIndex))
-//            currentOffset = nextIndex + delimiter.length
-//            // Do not search for next occurrence if we're reaching limit
-//            if (isLimited && result.size == limit - 1) break
-//            nextIndex = indexOf(delimiter, currentOffset, ignoreCase)
-//        } while (nextIndex != -1)
-//
-//        result.add(substring(currentOffset, length))
-//        return result
-//    }
-//
-///**
-// * Splits this char sequence around matches of the given regular expression.
-// *
-// * @param limit Non-negative value specifying the maximum number of substrings to return.
-// * Zero by default means no limit is set.
-// */
-//    @kotlin.internal.InlineOnly
-//    public static List<String> CharSequence.split(Regex regex, limit: Int = 0):  = regex.split(this, limit)
-//
-//    /**
-//     * Splits this char sequence to a sequence of lines delimited by any of the following character sequences: CRLF, LF or CR.
-//     */
-//    public static CharSequence.lineSequence(): Sequence<String> = splitToSequence("\r\n", "\n", "\r")
-//
-//    /**
-//     * * Splits this char sequence to a list of lines delimited by any of the following character sequences: CRLF, LF or CR.
-//     */
-//    public static CharSequence.lines(): List<String> = lineSequence().toList()
+
+    /* ******************************************* split ****************************************** */
+
+    /**
+     * Returns a sequence of index ranges of substrings in this char sequence around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param startIndex The index to start searching delimiters from.
+     *                   No range having its start value less than [startIndex] is returned.
+     *                   [startIndex] is coerced to be non-negative and not greater than length of this string.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return. Zero by default means no limit is set.
+     */
+    @NotNull
+    private static Sequence<IntRange> rangesDelimitedBy(@Nullable CharSequence charSequence, @NotNull final char[] delimiters,
+                                                        @SuppressWarnings("SameParameterValue") int startIndex, final boolean ignoreCase, final int limit) {
+        Premisex.require(limit >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Limit must be non-negative, but was " + limit + ".";
+            }
+        });
+        return new DelimitedRangesSequence(orEmpty(charSequence), startIndex, limit, new NextMatch() {
+            @Nullable
+            @Override
+            public Pair<Integer, Integer> getNextMatch(@NotNull CharSequence charSequence, int startIndex) {
+                int nextIndex = indexOfAny(charSequence, delimiters, startIndex, ignoreCase);
+                return nextIndex < 0 ? null : Pair.of(nextIndex, 1);
+            }
+        });
+    }
+
+    /**
+     * Returns a sequence of index ranges of substrings in this char sequence around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param startIndex The index to start searching delimiters from.
+     *                   No range having its start value less than [startIndex] is returned.
+     *                   [startIndex] is coerced to be non-negative and not greater than length of this string.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return. Zero by default means no limit is set.
+     *                   <p>
+     *                   To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
+     *                   the beginning to the end of this string, and finds at each position the first element in [delimiters]
+     *                   that matches this string at that position.
+     */
+    @NotNull
+    private static Sequence<IntRange> rangesDelimitedBy(@Nullable CharSequence charSequence, @NotNull String[] delimiters,
+                                                        @SuppressWarnings("SameParameterValue") int startIndex, final boolean ignoreCase, final int limit) {
+        Premisex.require(limit >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Limit must be non-negative, but was " + limit + ".";
+            }
+        });
+        final List<String> delimitersList = Arrayx.asList(delimiters);
+        return new DelimitedRangesSequence(orEmpty(charSequence), startIndex, limit, new NextMatch() {
+            @Nullable
+            @Override
+            public Pair<Integer, Integer> getNextMatch(@NotNull CharSequence charSequence, int startIndex) {
+                Pair<Integer, String> next = findAnyOf(charSequence, delimitersList, startIndex, ignoreCase, false);
+                return next != null ? Pair.of(next.first, next.second.length()) : null;
+            }
+        });
+    }
+
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return. Zero by default means no limit is set.
+     *                   <p>
+     *                   To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
+     *                   the beginning to the end of this string, and finds at each position the first element in [delimiters]
+     *                   that matches this string at that position.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull String[] delimiters, boolean ignoreCase, int limit) {
+        return Sequencex.map(rangesDelimitedBy(charSequence, delimiters, 0, ignoreCase, limit), new Transformer<IntRange, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull IntRange range) {
+                return Stringx.substring(charSequence, range);
+            }
+        });
+    }
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull String[] delimiters, boolean ignoreCase) {
+        return splitToSequence(charSequence, delimiters, ignoreCase, 0);
+    }
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param limit      The maximum number of substrings to return. Zero by default means no limit is set.
+     *                   <p>
+     *                   To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
+     *                   the beginning to the end of this string, and finds at each position the first element in [delimiters]
+     *                   that matches this string at that position.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull String[] delimiters, int limit) {
+        return splitToSequence(charSequence, delimiters, false, limit);
+    }
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull String[] delimiters) {
+        return splitToSequence(charSequence, delimiters, false, 0);
+    }
+
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return. Zero by default means no limit is set.
+     *                   <p>
+     *                   To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
+     *                   the beginning to the end of this string, and matches at each position the first element in [delimiters]
+     *                   that is equal to a delimiter in this instance at that position.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull String[] delimiters, boolean ignoreCase, int limit) {
+        if (delimiters.length == 1) {
+            String delimiter = delimiters[0];
+            if (!delimiter.isEmpty()) {
+                return split(charSequence, delimiter, ignoreCase, limit);
+            }
+        }
+        return Collectionx.map(Sequencex.asIterable(rangesDelimitedBy(charSequence, delimiters, 0, ignoreCase, limit)), new Transformer<IntRange, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull IntRange range) {
+                return Stringx.substring(charSequence, range);
+            }
+        });
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull String[] delimiters, boolean ignoreCase) {
+        return split(charSequence, delimiters, ignoreCase, 0);
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     * @param limit      The maximum number of substrings to return. Zero by default means no limit is set.
+     *                   <p>
+     *                   To avoid ambiguous results when strings in [delimiters] have characters in common, this method proceeds from
+     *                   the beginning to the end of this string, and matches at each position the first element in [delimiters]
+     *                   that is equal to a delimiter in this instance at that position.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull String[] delimiters, int limit) {
+        return split(charSequence, delimiters, false, limit);
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more strings to be used as delimiters.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull String[] delimiters) {
+        return split(charSequence, delimiters, false, 0);
+    }
+
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull char[] delimiters, boolean ignoreCase, int limit) {
+        return Sequencex.map(rangesDelimitedBy(charSequence, delimiters, 0, ignoreCase, limit), new Transformer<IntRange, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull IntRange range) {
+                return Stringx.substring(charSequence, range);
+            }
+        });
+    }
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull char[] delimiters, boolean ignoreCase) {
+        return splitToSequence(charSequence, delimiters, ignoreCase, 0);
+    }
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param limit      The maximum number of substrings to return.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull char[] delimiters, int limit) {
+        return splitToSequence(charSequence, delimiters, false, limit);
+    }
+
+    /**
+     * Splits this char sequence to a sequence of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     */
+    @NotNull
+    public static Sequence<String> splitToSequence(@Nullable final CharSequence charSequence, @NotNull char[] delimiters) {
+        return splitToSequence(charSequence, delimiters, false, 0);
+    }
+
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull char[] delimiters, boolean ignoreCase, int limit) {
+        if (delimiters.length == 1) {
+            return split(charSequence, String.valueOf(delimiters[0]), ignoreCase, limit);
+        }
+        return Collectionx.map(Sequencex.asIterable(rangesDelimitedBy(charSequence, delimiters, 0, ignoreCase, limit)), new Transformer<IntRange, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull IntRange range) {
+                return Stringx.substring(charSequence, range);
+            }
+        });
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull char[] delimiters, boolean ignoreCase) {
+        return split(charSequence, delimiters, ignoreCase, 0);
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     * @param limit      The maximum number of substrings to return.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull char[] delimiters, int limit) {
+        return split(charSequence, delimiters, false, limit);
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiters].
+     *
+     * @param delimiters One or more characters to be used as delimiters.
+     */
+    @NotNull
+    public static List<String> split(@Nullable final CharSequence charSequence, @NotNull char[] delimiters) {
+        return split(charSequence, delimiters, false, 0);
+    }
+
+    /**
+     * Splits this char sequence to a list of strings around occurrences of the specified [delimiter].
+     * This is specialized version of split which receives single non-empty delimiter and offers better performance
+     *
+     * @param delimiter  String used as delimiter
+     * @param ignoreCase `true` to ignore character case when matching a delimiter. By default `false`.
+     * @param limit      The maximum number of substrings to return.
+     */
+    @NotNull
+    private static List<String> split(@Nullable CharSequence charSequence, @NotNull String delimiter, boolean ignoreCase, final int limit) {
+        Premisex.require(limit >= 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "Limit must be non-negative, but was " + limit + ".";
+            }
+        });
+
+        int currentOffset = 0;
+        int nextIndex = indexOf(charSequence, delimiter, currentOffset, ignoreCase);
+        if (nextIndex == -1 || limit == 1) {
+            return Collectionx.mutableListOf(orEmpty(charSequence).toString());
+        }
+
+        boolean isLimited = limit > 0;
+        ArrayList<String> result = new ArrayList<>(isLimited ? Rangex.coerceAtMost(limit, 10) : 10);
+        do {
+            result.add(substring(charSequence, currentOffset, nextIndex));
+            currentOffset = nextIndex + delimiter.length();
+            // Do not search for next occurrence if we're reaching limit
+            if (isLimited && result.size() == limit - 1) break;
+            nextIndex = indexOf(charSequence, delimiter, currentOffset, ignoreCase);
+        } while (nextIndex != -1);
+
+        result.add(substring(charSequence, currentOffset, orEmpty(charSequence).length()));
+        return result;
+    }
+
+
+    /**
+     * Splits this char sequence around matches of the given regular expression.
+     *
+     * @param limit Non-negative value specifying the maximum number of substrings to return.
+     *              Zero by default means no limit is set.
+     */
+    @NotNull
+    public static List<String> split(@Nullable CharSequence charSequence, @NotNull Pattern regex, int limit) {
+        return Arrayx.asList(regex.split(orEmpty(charSequence), limit == 0 ? -1 : limit));
+    }
+
+    /**
+     * Splits this char sequence around matches of the given regular expression.
+     */
+    @NotNull
+    public static List<String> split(@Nullable CharSequence charSequence, @NotNull Pattern regex) {
+        return split(charSequence, regex, 0);
+    }
+
+
+    /* ******************************************* lines ****************************************** */
+
+
+    /**
+     * Splits this char sequence to a sequence of lines delimited by any of the following character sequences: CRLF, LF or CR.
+     */
+    @NotNull
+    public static Sequence<String> lineSequence(@Nullable CharSequence charSequence) {
+        return splitToSequence(charSequence, new String[]{"\r\n", "\n", "\r"}, false, 0);
+    }
+
+    /**
+     * Splits this char sequence to a list of lines delimited by any of the following character sequences: CRLF, LF or CR.
+     */
+    @NotNull
+    public static List<String> lines(@Nullable CharSequence charSequence) {
+        return Sequencex.toList(lineSequence(charSequence));
+    }
 
 
     /* ******************************************* elementAt ****************************************** */
@@ -4199,39 +4424,37 @@ public class Stringx {
         return windowed(charSequence, size, size, true, transform);
     }
 
-    // TODO: 2018/11/26 Sequence
-///**
-// * Splits this char sequence into a sequence of strings each not exceeding the given [size].
-// *
-// * The last string in the resulting sequence may have less characters than the given [size].
-// *
-// * @param size the number of elements to take in each string, must be positive and can be greater than the number of elements in this char sequence.
-// *
-// * @sample samples.collections.Collections.Transformations.chunked
-// */
-//    @SinceKotlin("1.2")
-//    public static Sequence<String> chunkedSequence(@Nullable CharSequence charSequence, size: Int): {
-//        return chunkedSequence(size) { it.toString() }
-//    }
-//
-///**
-// * Splits this char sequence into several char sequences each not exceeding the given [size]
-// * and applies the given [transform] function to an each.
-// *
-// * @return sequence of results of the [transform] applied to an each char sequence.
-// *
-// * Note that the char sequence passed to the [transform] function is ephemeral and is valid only inside that function.
-// * You should not store it or allow it to escape in some way, unless you made a snapshot of it.
-// * The last char sequence may have less characters than the given [size].
-// *
-// * @param size the number of elements to take in each char sequence, must be positive and can be greater than the number of elements in this char sequence.
-// *
-// * @sample samples.text.Strings.chunkedTransformToSequence
-// */
-//    @SinceKotlin("1.2")
-//    public static <R> Sequence<R> chunkedSequence(@Nullable CharSequence charSequence, size: Int, transform: (CharSequence) -> R): {
-//        return windowedSequence(size, size, partialWindows = true, transform = transform)
-//    }
+    /**
+     * Splits this char sequence into a sequence of strings each not exceeding the given [size].
+     * <p>
+     * The last string in the resulting sequence may have less characters than the given [size].
+     *
+     * @param size the number of elements to take in each string, must be positive and can be greater than the number of elements in this char sequence.
+     */
+    public static Sequence<String> chunkedSequence(@Nullable CharSequence charSequence, int size) {
+        return chunkedSequence(charSequence, size, new Transformer<CharSequence, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull CharSequence charSequence) {
+                return charSequence.toString();
+            }
+        });
+    }
+
+    /**
+     * Splits this char sequence into several char sequences each not exceeding the given [size]
+     * and applies the given [transform] function to an each.
+     *
+     * @param size the number of elements to take in each char sequence, must be positive and can be greater than the number of elements in this char sequence.
+     * @return sequence of results of the [transform] applied to an each char sequence.
+     * <p>
+     * Note that the char sequence passed to the [transform] function is ephemeral and is valid only inside that function.
+     * You should not store it or allow it to escape in some way, unless you made a snapshot of it.
+     * The last char sequence may have less characters than the given [size].
+     */
+    public static <R> Sequence<R> chunkedSequence(@Nullable CharSequence charSequence, int size, @NotNull Transformer<CharSequence, R> transform) {
+        return windowedSequence(charSequence, size, size, true, transform);
+    }
 
 
     /* ******************************************* partition ****************************************** */
@@ -4350,50 +4573,65 @@ public class Stringx {
         });
     }
 
-    // TODO: 2018/11/26 Sequence
-///**
-// * Returns a sequence of snapshots of the window of the given [size]
-// * sliding along this char sequence with the given [step], where each
-// * snapshot is a string.
-// *
-// * Several last strings may have less characters than the given [size].
-// *
-// * Both [size] and [step] must be positive and can be greater than the number of elements in this char sequence.
-// * @param size the number of elements to take in each window
-// * @param step the number of elements to move the window forward by on an each step, by default 1
-// * @param partialWindows controls whether or not to keep partial windows in the end if any,
-// * by default `false` which means partial windows won't be preserved
-// *
-// * @sample samples.collections.Sequences.Transformations.takeWindows
-// */
-//    @SinceKotlin("1.2")
-//    public static windowedSequence(@Nullable CharSequence charSequence, size: Int, step: Int = 1, partialWindows: Boolean = false): Sequence<String> {
-//        return windowedSequence(size, step, partialWindows) { it.toString() }
-//    }
-//
-///**
-// * Returns a sequence of results of applying the given [transform] function to
-// * an each char sequence representing a view over the window of the given [size]
-// * sliding along this char sequence with the given [step].
-// *
-// * Note that the char sequence passed to the [transform] function is ephemeral and is valid only inside that function.
-// * You should not store it or allow it to escape in some way, unless you made a snapshot of it.
-// * Several last char sequences may have less characters than the given [size].
-// *
-// * Both [size] and [step] must be positive and can be greater than the number of elements in this char sequence.
-// * @param size the number of elements to take in each window
-// * @param step the number of elements to move the window forward by on an each step, by default 1
-// * @param partialWindows controls whether or not to keep partial windows in the end if any,
-// * by default `false` which means partial windows won't be preserved
-// *
-// * @sample samples.collections.Sequences.Transformations.averageWindows
-// */
-//    @SinceKotlin("1.2")
-//    public static <R> windowedSequence(@Nullable CharSequence charSequence, size: Int, step: Int = 1, partialWindows: Boolean = false, transform: (CharSequence) -> R): Sequence<R> {
-//        checkWindowSizeStep(size, step)
-//        val windows = (if (partialWindows) indices else 0 until length - size + 1) step step
-//        return windows.asSequence().map { index -> transform(subSequence(index, (index + size).coerceAtMost(length))) }
-//    }
+    /**
+     * Returns a sequence of results of applying the given [transform] function to
+     * an each char sequence representing a view over the window of the given [size]
+     * sliding along this char sequence with the given [step].
+     * <p>
+     * Note that the char sequence passed to the [transform] function is ephemeral and is valid only inside that function.
+     * You should not store it or allow it to escape in some way, unless you made a snapshot of it.
+     * Several last char sequences may have less characters than the given [size].
+     * <p>
+     * Both [size] and [step] must be positive and can be greater than the number of elements in this char sequence.
+     *
+     * @param size           the number of elements to take in each window
+     * @param step           the number of elements to move the window forward by on an each step, by default 1
+     * @param partialWindows controls whether or not to keep partial windows in the end if any,
+     *                       by default `false` which means partial windows won't be preserved
+     */
+    @NotNull
+    public static <R> Sequence<R> windowedSequence(@Nullable final CharSequence charSequence, final int size, final int step, boolean partialWindows, @NotNull final Transformer<CharSequence, R> transform) {
+        Premisex.require(size > 0 && step > 0, new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return size != step ? "Both size $size and step $step must be greater than zero." : "size $size must be greater than zero.";
+            }
+        });
+        IntProgression windows = Rangex.step((partialWindows ? Stringx.indices(charSequence) : Rangex.until(0, Stringx.count(charSequence) - size + 1)), step);
+        return Sequencex.map(Collectionx.asSequence(windows), new Transformer<Integer, R>() {
+            @NotNull
+            @Override
+            public R transform(@NotNull Integer index) {
+                return transform.transform(orEmpty(charSequence).subSequence(index, Rangex.coerceAtMost((index + size), Stringx.count(charSequence))));
+            }
+        });
+    }
+
+    /**
+     * Returns a sequence of snapshots of the window of the given [size]
+     * sliding along this char sequence with the given [step], where each
+     * snapshot is a string.
+     * <p>
+     * Several last strings may have less characters than the given [size].
+     * <p>
+     * Both [size] and [step] must be positive and can be greater than the number of elements in this char sequence.
+     *
+     * @param size           the number of elements to take in each window
+     * @param step           the number of elements to move the window forward by on an each step, by default 1
+     * @param partialWindows controls whether or not to keep partial windows in the end if any,
+     *                       by default `false` which means partial windows won't be preserved
+     */
+    @NotNull
+    public static Sequence<String> windowedSequence(@Nullable CharSequence charSequence, int size, int step, boolean partialWindows) {
+        return windowedSequence(charSequence, size, step, partialWindows, new Transformer<CharSequence, String>() {
+            @NotNull
+            @Override
+            public String transform(@NotNull CharSequence charSequence) {
+                return charSequence.toString();
+            }
+        });
+    }
 
 
     /* ******************************************* zip ****************************************** */
@@ -4483,12 +4721,97 @@ public class Stringx {
      */
     @NotNull
     public static Sequence<Character> asSequence(@Nullable final CharSequence charSequence) {
-        return new Sequence<Character>(){
+        return new Sequence<Character>() {
             @NotNull
             @Override
             public Iterator<Character> iterator() {
                 return Stringx.iterator(charSequence);
             }
         };
+    }
+
+    private static class DelimitedRangesSequence implements Sequence<IntRange> {
+
+        @NotNull
+        private CharSequence input;
+        private int startIndex;
+        private int limit;
+        @NotNull
+        private NextMatch getNextMatch;
+
+        public DelimitedRangesSequence(@NotNull CharSequence input, int startIndex, int limit, @NotNull NextMatch getNextMatch) {
+            this.input = input;
+            this.startIndex = startIndex;
+            this.limit = limit;
+            this.getNextMatch = getNextMatch;
+        }
+
+        @NotNull
+        @Override
+        public Iterator<IntRange> iterator() {
+            return new Iterator<IntRange>() {
+                int nextState = -1; // -1 for unknown, 0 for done, 1 for continue
+                int currentStartIndex = Rangex.coerceIn(startIndex, 0, input.length());
+                int nextSearchIndex = currentStartIndex;
+                @Nullable
+                IntRange nextItem = null;
+                int counter = 0;
+
+                private void calcNext() {
+                    if (nextSearchIndex < 0) {
+                        nextState = 0;
+                        nextItem = null;
+                    } else {
+                        if (limit > 0 && ++counter >= limit || nextSearchIndex > input.length()) {
+                            nextItem = Rangex.rangeTo(currentStartIndex, input.length() - 1);
+                            nextSearchIndex = -1;
+                        } else {
+                            Pair<Integer, Integer> match = getNextMatch.getNextMatch(input, nextSearchIndex);
+                            if (match == null) {
+                                nextItem = Rangex.rangeTo(currentStartIndex, input.length() - 1);
+                                nextSearchIndex = -1;
+                            } else {
+                                int index = match.first;
+                                int length = match.second;
+                                nextItem = Rangex.until(currentStartIndex, index);
+                                currentStartIndex = index + length;
+                                nextSearchIndex = currentStartIndex + (length == 0 ? 1 : 0);
+                            }
+                        }
+                        nextState = 1;
+                    }
+                }
+
+                @Override
+                public IntRange next() {
+                    if (nextState == -1)
+                        calcNext();
+                    if (nextState == 0)
+                        throw new NoSuchElementException();
+                    IntRange result = nextItem;
+                    // Clean next to avoid keeping reference on yielded instance
+                    nextItem = null;
+                    nextState = -1;
+                    return result;
+                }
+
+                @Override
+                public boolean hasNext() {
+                    if (nextState == -1)
+                        calcNext();
+                    return nextState == 1;
+                }
+
+                @Override
+                public void remove() {
+
+                }
+            };
+        }
+    }
+
+    private interface NextMatch {
+        @Nullable
+        Pair<Integer, Integer> getNextMatch(@NotNull CharSequence charSequence, int startIndex);
     }
 }

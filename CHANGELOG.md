@@ -22,6 +22,7 @@
 * :fire: MapBuilder rename build\* method
 * :fire: Rangex.until method now return \*Range
 * :sparkles: Add Sequencex
+* :sparkles: Stringx adds splitToSequence, split, lineSequence, lines, chunkedSequence, windowedSequence
 
 
 
