@@ -494,7 +494,7 @@ public class Rangex {
      * Create a positive-order char range that does not contain [end]
      */
     public static CharRange until(char start, char end) {
-        return new CharRange(start, (char) (end - 1));
+        return new CharRange(start, (char) Math.max(Math.min(end - 1, Character.MAX_VALUE), Character.MIN_VALUE));
     }
 
     /**
