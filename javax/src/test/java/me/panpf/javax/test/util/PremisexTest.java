@@ -13,6 +13,154 @@ import java.io.FileNotFoundException;
 public class PremisexTest {
 
     @Test
+    public void testRequire() {
+        Premisex.require(true);
+
+        try {
+            Premisex.require(false);
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        try {
+            Premisex.require(false, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is false";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        try {
+            Premisex.require(true, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is true";
+                }
+            });
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testCheck() {
+        Premisex.check(true);
+
+        try {
+            Premisex.check(false);
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        try {
+            Premisex.check(false, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is false";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        try {
+            Premisex.check(true, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is true";
+                }
+            });
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testNotNull() {
+        Premisex.requireNotNull("", new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "is null";
+            }
+        });
+        try {
+            Premisex.requireNotNull(null, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is null";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+        Premisex.requireNotNull("");
+        try {
+            Premisex.requireNotNull(null);
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        Premisex.requireNotNull("", "param");
+        try {
+            Premisex.requireNotNull(null, "param");
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+
+        Premisex.checkNotNull("", new LazyValue<String>() {
+            @NotNull
+            @Override
+            public String get() {
+                return "is null";
+            }
+        });
+        try {
+            Premisex.checkNotNull(null, new LazyValue<String>() {
+                @NotNull
+                @Override
+                public String get() {
+                    return "is null";
+                }
+            });
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+        Premisex.checkNotNull("");
+        try {
+            Premisex.checkNotNull(null);
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+
+        Premisex.checkNotNull("", "param");
+        try {
+            Premisex.checkNotNull(null, "param");
+            Assert.fail();
+        } catch (Exception e) {
+            // e.printStackTrace();
+        }
+    }
+
+    @Test
     public void testRequireFileExist() {
         File testFile = new File("/tmp/testRequireFileExist");
         testFile.delete();
@@ -240,154 +388,6 @@ public class PremisexTest {
             Premisex.requireNotInRange(2d, 0d, 5d);
             Assert.fail();
         } catch (Exception ignored) {
-        }
-    }
-
-    @Test
-    public void testRequire() {
-        Premisex.require(true);
-
-        try {
-            Premisex.require(false);
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.require(false, new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is false";
-                }
-            });
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.require(true, new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is true";
-                }
-            });
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testRequireNotNull() {
-        Premisex.requireNotNull("", "param");
-
-        try {
-            Premisex.requireNotNull(null);
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.requireNotNull(null, new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is null";
-                }
-            });
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.requireNotNull("", new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is not null";
-                }
-            });
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testCheck() {
-        Premisex.check(true);
-
-        try {
-            Premisex.check(false);
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.check(false, new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is false";
-                }
-            });
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.check(true, new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is true";
-                }
-            });
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testCheckNotNull() {
-        Premisex.checkNotNull("", "param");
-
-        try {
-            Premisex.checkNotNull(null);
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.checkNotNull(null, new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is null";
-                }
-            });
-            Assert.fail();
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-
-        try {
-            Premisex.checkNotNull("", new LazyValue<String>() {
-                @NotNull
-                @Override
-                public String get() {
-                    return "is not null";
-                }
-            });
-        } catch (Exception e) {
-            // e.printStackTrace();
         }
     }
 
