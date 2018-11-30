@@ -357,7 +357,6 @@ public class Mapx {
 
     /* ******************************************* remove ****************************************** */
 
-    // TODO: 2018/11/28 测试
 
     /**
      * Removes the specified key and its corresponding value from this map.
@@ -388,11 +387,11 @@ public class Mapx {
 
     /**
      * Returns a map containing all entries of the original map except those entries
-     * the keys of which are contained in the given [keys] collection.
+     * the keys of which are contained in the given [keys] array.
      * <p>
      * The returned map preserves the entry iteration order of the original map.
      */
-    public static <K, V> Map<K, V> minus(@Nullable Map<K, V> map, @Nullable Iterable<K> keys) {
+    public static <K, V> Map<K, V> minus(@Nullable Map<K, V> map, @Nullable K[] keys) {
         Map<K, V> newMap = toMap(map);
         minusAssign(newMap, keys);
         return newMap;
@@ -400,11 +399,11 @@ public class Mapx {
 
     /**
      * Returns a map containing all entries of the original map except those entries
-     * the keys of which are contained in the given [keys] array.
+     * the keys of which are contained in the given [keys] collection.
      * <p>
      * The returned map preserves the entry iteration order of the original map.
      */
-    public static <K, V> Map<K, V> minus(@Nullable Map<K, V> map, @Nullable K[] keys) {
+    public static <K, V> Map<K, V> minus(@Nullable Map<K, V> map, @Nullable Iterable<K> keys) {
         Map<K, V> newMap = toMap(map);
         minusAssign(newMap, keys);
         return newMap;
@@ -426,36 +425,28 @@ public class Mapx {
      * Removes the entry with the given [key] from this mutable map.
      */
     public static <K, V> void minusAssign(@Nullable Map<K, V> map, @NotNull K key) {
-        if (map != null) {
-            map.remove(key);
-        }
-    }
-
-    /**
-     * Removes all entries the keys of which are contained in the given [keys] collection from this mutable map.
-     */
-    public static <K, V> void minusAssign(@Nullable Map<K, V> map, @Nullable Iterable<K> keys) {
-        if (map != null) {
-            Collectionx.removeAll(map.keySet(), keys);
-        }
+        if (map != null) map.remove(key);
     }
 
     /**
      * Removes all entries the keys of which are contained in the given [keys] array from this mutable map.
      */
     public static <K, V> void minusAssign(@Nullable Map<K, V> map, @Nullable K[] keys) {
-        if (map != null) {
-            Collectionx.removeAll(map.keySet(), keys);
-        }
+        if (map != null) Collectionx.removeAll(map.keySet(), keys);
+    }
+
+    /**
+     * Removes all entries the keys of which are contained in the given [keys] collection from this mutable map.
+     */
+    public static <K, V> void minusAssign(@Nullable Map<K, V> map, @Nullable Iterable<K> keys) {
+        if (map != null) Collectionx.removeAll(map.keySet(), keys);
     }
 
     /**
      * Removes all entries from the keys of which are contained in the given [keys] sequence from this mutable map.
      */
     public static <K, V> void minusAssign(@Nullable Map<K, V> map, @Nullable Sequence<K> keys) {
-        if (map != null) {
-            Collectionx.removeAll(map.keySet(), keys);
-        }
+        if (map != null) Collectionx.removeAll(map.keySet(), keys);
     }
 
 
@@ -471,6 +462,7 @@ public class Mapx {
 
 
     /* ******************************************* get ****************************************** */
+
 
     /**
      * Returns the value corresponding to the given [key], or `null` if such a key is not present in the map.
@@ -488,7 +480,6 @@ public class Mapx {
         V v = map != null ? map.get(key) : null;
         return v != null ? v : defaultValue.get();
     }
-
 
     @NotNull
     private static <K, V> V getOrElseNullable(@Nullable Map<K, V> map, @NotNull K key, @NotNull DefaultValue<V> defaultValue) {
@@ -554,6 +545,7 @@ public class Mapx {
 
     /* ******************************************* contains ****************************************** */
 
+
     /**
      * Checks if the map contains the given key.
      * <p>
@@ -583,6 +575,7 @@ public class Mapx {
 
 
     /* ******************************************* all ****************************************** */
+    // TODO: 2018/11/28 测试
 
     /**
      * Returns `true` if all entries match the given [predicate].

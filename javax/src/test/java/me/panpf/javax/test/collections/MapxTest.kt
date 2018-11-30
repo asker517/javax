@@ -197,31 +197,31 @@ class MapxTest {
         val newMap1 = Mapx.plus(map, me.panpf.javax.util.Pair("key2", "value2"))
         assertEquals(2, newMap1.size)
         assertAllNotNull(newMap1["key1"], newMap1["key2"])
-        assertTrue(newMap1 != map)
+        assertTrue(newMap1 !== map)
         assertNull(map["key2"])
 
         val newMap2 = Mapx.plus(map, Arrayx.arrayOf(me.panpf.javax.util.Pair("key2", "value2"), me.panpf.javax.util.Pair("key3", "value3")))
         assertEquals(3, newMap2.size)
         assertAllNotNull(newMap2["key1"], newMap2["key2"], newMap2["key3"])
-        assertTrue(newMap2 != map)
+        assertTrue(newMap2 !== map)
         assertAllNull(map["key2"], map["key3"])
 
         val newMap3 = Mapx.plus(map, Collectionx.immutableListOf(me.panpf.javax.util.Pair("key2", "value2"), me.panpf.javax.util.Pair("key3", "value3")))
         assertEquals(3, newMap3.size)
         assertAllNotNull(newMap3["key1"], newMap3["key2"], newMap3["key3"])
-        assertTrue(newMap3 != map)
+        assertTrue(newMap3 !== map)
         assertAllNull(map["key2"], map["key3"])
 
         val newMap4 = Mapx.plus(map, Collectionx.asSequence(Collectionx.immutableListOf(me.panpf.javax.util.Pair("key2", "value2"), me.panpf.javax.util.Pair("key3", "value3"))))
         assertEquals(3, newMap4.size)
         assertAllNotNull(newMap4["key1"], newMap4["key2"], newMap4["key3"])
-        assertTrue(newMap4 != map)
+        assertTrue(newMap4 !== map)
         assertAllNull(map["key2"], map["key3"])
 
         val newMap5 = Mapx.plus(map, Mapx.builder("key2", "value2").put("key3", "value3").buildHashMap())
         assertEquals(3, newMap5.size)
         assertAllNotNull(newMap5["key1"], newMap5["key2"], newMap5["key3"])
-        assertTrue(newMap5 != map)
+        assertTrue(newMap5 !== map)
         assertAllNull(map["key2"], map["key3"])
         assertEquals(1, Mapx.plus(map, null as Map<String, String>?).size)
 
@@ -257,25 +257,142 @@ class MapxTest {
     }
 
     @Test
-    fun testGetOrPut() {
-        val map = HashMap<String, String>()
+    fun testRemove() {
+        val map = Mapx.builder("key1", "value1").buildHashMap()
+        assertEquals(1, map.size.toLong())
+        assertNotNull(map["key1"])
 
+        Mapx.remove(null as Map<String, String>?, "key1")
+        assertEquals(1, map.size.toLong())
+        assertNotNull(map["key1"])
+
+        Mapx.remove(map, "key1")
         assertEquals(0, map.size.toLong())
-        assertNull(map["key"])
-
-        Mapx.getOrPut(map, "key") { "value" }
-        assertEquals(1, map.size.toLong())
-        assertNotNull(map["key"])
-
-        Mapx.getOrPut(map, "key") { "value" }
-        assertEquals(1, map.size.toLong())
-        assertNotNull(map["key"])
-
         assertNull(map["key1"])
+    }
+
+    @Test
+    fun testMinus() {
+        val map = Mapx.builder("key1", "value1").put("key2", "value2").put("key3", "value3").buildHashMap()
+        assertEquals(3, map.size.toLong())
+        assertAllNotNull(map["key1"], map["key2"], map["key3"])
+
+        val newMap1 = Mapx.minus(map, "key3")
+        assertTrue(newMap1 !== map)
+        assertEquals(3, map.size.toLong())
+        assertAllNotNull(map["key1"], map["key2"], map["key3"])
+        assertEquals(2, newMap1.size.toLong())
+        assertAllNotNull(newMap1["key1"], newMap1["key2"])
+
+        val newMap2 = Mapx.minus(map, arrayOf("key2", "key3"))
+        assertTrue(newMap2 !== map)
+        assertEquals(3, map.size.toLong())
+        assertAllNotNull(map["key1"], map["key2"], map["key3"])
+        assertEquals(1, newMap2.size.toLong())
+        assertAllNotNull(newMap2["key1"])
+
+        val newMap3 = Mapx.minus(map, listOf("key2", "key3"))
+        assertTrue(newMap3 !== map)
+        assertEquals(3, map.size.toLong())
+        assertAllNotNull(map["key1"], map["key2"], map["key3"])
+        assertEquals(1, newMap3.size.toLong())
+        assertAllNotNull(newMap3["key1"])
+
+        val newMap4 = Mapx.minus(map, Collectionx.asSequence(listOf("key2", "key3")))
+        assertTrue(newMap4 !== map)
+        assertEquals(3, map.size.toLong())
+        assertAllNotNull(map["key1"], map["key2"], map["key3"])
+        assertEquals(1, newMap4.size.toLong())
+        assertAllNotNull(newMap4["key1"])
+
+        val map2 = Mapx.builder("key1", "value1").put("key2", "value2").put("key3", "value3").put("key4", "value4").put("key5", "value5").put("key6", "value6").put("key7", "value7").put("key8", "value8").put("key9", "value9").put("key10", "value10").buildHashMap()
+        assertEquals(10, map2.size.toLong())
+        assertAllNotNull(map2["key1"], map2["key2"], map2["key3"], map2["key4"], map2["key5"], map2["key6"], map2["key7"], map2["key8"], map2["key9"], map2["key10"])
+
+        Mapx.minusAssign(map2, "key10")
+        Mapx.minusAssign(null as Map<String, String>?, "key9")
+        assertEquals(9, map2.size.toLong())
+        assertAllNotNull(map2["key1"], map2["key2"], map2["key3"], map2["key4"], map2["key5"], map2["key6"], map2["key7"], map2["key8"], map2["key9"])
+
+        Mapx.minusAssign(map2, arrayOf("key8", "key9"))
+        Mapx.minusAssign(null as Map<String, String>?, arrayOf("key6", "key7"))
+        assertEquals(7, map2.size.toLong())
+        assertAllNotNull(map2["key1"], map2["key2"], map2["key3"], map2["key4"], map2["key5"], map2["key6"], map2["key7"])
+
+        Mapx.minusAssign(map2, listOf("key6", "key7"))
+        Mapx.minusAssign(null as Map<String, String>?, listOf("key4", "key5"))
+        assertEquals(5, map2.size.toLong())
+        assertAllNotNull(map2["key1"], map2["key2"], map2["key3"], map2["key4"], map2["key5"])
+
+        Mapx.minusAssign(map2, Collectionx.asSequence(listOf("key4", "key5")))
+        Mapx.minusAssign(null as Map<String, String>?, Collectionx.asSequence(listOf("key2", "key3")))
+        assertEquals(3, map2.size.toLong())
+        assertAllNotNull(map2["key1"], map2["key2"], map2["key3"])
+    }
+
+    @Test
+    fun testSet() {
+        val map = Mapx.builder("key1", "value1").buildHashMap()
+        assertEquals(1, map.size.toLong())
+        assertAllNotNull(map["key1"])
+        assertEquals("value1", map["key1"])
+
+        Mapx.set(map, "key1", "value2")
+        assertEquals("value2", map["key1"])
+
+        Mapx.set(null as Map<String, String>?, "key1", "value3")
+        assertEquals("value2", map["key1"])
+    }
+
+    @Test
+    fun testGet() {
+        val map = Mapx.builder("key1", "value1").buildHashMap()
+        assertEquals(1, map.size.toLong())
+        assertAllNotNull(map["key1"])
+
+        assertEquals("value1", Mapx.get(map, "key1"))
+        assertNull(Mapx.get(null as Map<String, String>?, "key1"))
+
+        assertEquals("value1", Mapx.getOrElse(map, "key1") { "valueDefault" })
+        assertEquals("valueDefault", Mapx.getOrElse(map, "key2") { "valueDefault" })
+        assertEquals("valueDefault", Mapx.getOrElse(null as Map<String, String>?, "key1") { "valueDefault" })
+
+        assertEquals("value1", Mapx.getValue(map, "key1"))
+        try {
+            Mapx.getValue(map, "key2")
+            fail()
+        } catch (e: Exception) {
+        }
+        try {
+            Mapx.getValue(null as Map<String, String>?, "key1")
+            fail()
+        } catch (e: Exception) {
+        }
 
         Mapx.getOrPut(map, "key1") { "value1" }
-        assertEquals(2, map.size.toLong())
+        assertEquals(1, map.size.toLong())
         assertNotNull(map["key1"])
+
+        Mapx.getOrPut(map, "key2") { "value2" }
+        assertEquals(2, map.size.toLong())
+        assertNotNull(map["key2"])
+    }
+
+    @Test
+    fun testContains() {
+        val map = Mapx.builder("key1", "value1").buildHashMap()
+
+        assertThreeEquals(true, Mapx.contains(map, "key1"), map.contains("key1"))
+        assertThreeEquals(false, Mapx.contains(map, "key2"), map.contains("key2"))
+        assertThreeEquals(false, Mapx.contains(null as Map<String, String>?, "key1"), HashMap<String, String>().contains("key1"))
+
+        assertThreeEquals(true, Mapx.containsKey(map, "key1"), map.containsKey("key1"))
+        assertThreeEquals(false, Mapx.containsKey(map, "key2"), map.containsKey("key2"))
+        assertThreeEquals(false, Mapx.containsKey(null as Map<String, String>?, "key1"), HashMap<String, String>().containsKey("key1"))
+
+        assertThreeEquals(true, Mapx.containsValue(map, "value1"), map.containsValue("value1"))
+        assertThreeEquals(false, Mapx.containsValue(map, "value2"), map.containsValue("value2"))
+        assertThreeEquals(false, Mapx.containsValue(null as Map<String, String>?, "value2"), HashMap<String, String>().containsValue("value2"))
     }
 
     @Test
