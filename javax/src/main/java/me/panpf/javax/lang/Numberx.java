@@ -39,9 +39,7 @@ public class Numberx {
      * Convert a String to an byte, returning a default value if the conversion fails.
      */
     public static byte toByteOrDefault(@Nullable String str, byte defaultValue) {
-        if (str == null || str.length() == 0) {
-            return defaultValue;
-        }
+        if (Stringx.isNotSafe(str)) return defaultValue;
         try {
             return Byte.parseByte(str);
         } catch (NumberFormatException nfe) {
@@ -60,9 +58,7 @@ public class Numberx {
      * Convert a String to an short, returning a default value if the conversion fails.
      */
     public static short toShortOrDefault(@Nullable String str, short defaultValue) {
-        if (str == null) {
-            return defaultValue;
-        }
+        if (Stringx.isNotSafe(str)) return defaultValue;
         try {
             return Short.parseShort(str);
         } catch (NumberFormatException nfe) {
@@ -81,9 +77,7 @@ public class Numberx {
      * Convert a String to an int, returning a default value if the conversion fails.
      */
     public static int toIntOrDefault(@Nullable String str, int defaultValue) {
-        if (str == null || str.length() == 0) {
-            return defaultValue;
-        }
+        if (Stringx.isNotSafe(str)) return defaultValue;
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException nfe) {
@@ -102,9 +96,7 @@ public class Numberx {
      * Convert a String to an long, returning a default value if the conversion fails.
      */
     public static long toLongOrDefault(@Nullable String str, long defaultValue) {
-        if (str == null) {
-            return defaultValue;
-        }
+        if (Stringx.isNotSafe(str)) return defaultValue;
         try {
             return Long.parseLong(str);
         } catch (NumberFormatException nfe) {
@@ -123,9 +115,7 @@ public class Numberx {
      * Convert a String to an float, returning a default value if the conversion fails.
      */
     public static float toFloatOrDefault(@Nullable String str, float defaultValue) {
-        if (str == null) {
-            return defaultValue;
-        }
+        if (Stringx.isNotSafe(str)) return defaultValue;
         try {
             return Float.parseFloat(str);
         } catch (NumberFormatException nfe) {
@@ -144,9 +134,7 @@ public class Numberx {
      * Convert a String to an double, returning a default value if the conversion fails.
      */
     public static double toDoubleOrDefault(@Nullable String str, double defaultValue) {
-        if (str == null) {
-            return defaultValue;
-        }
+        if (Stringx.isNotSafe(str)) return defaultValue;
         try {
             return Double.parseDouble(str);
         } catch (NumberFormatException nfe) {

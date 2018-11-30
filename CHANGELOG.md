@@ -24,6 +24,7 @@
 * :sparkles: Add Sequencex
 * :sparkles: Stringx adds splitToSequence, split, lineSequence, lines, chunkedSequence, windowedSequence
 * :white_check_mark: Perfect Mathx testing
+* :white_check_mark: Perfect Numberx testing
 
 
 
