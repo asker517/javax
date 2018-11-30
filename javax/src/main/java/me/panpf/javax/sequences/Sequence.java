@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.panpf.javax.collections;
+package me.panpf.javax.sequences;
 
 import org.jetbrains.annotations.NotNull;
 

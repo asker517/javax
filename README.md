@@ -140,6 +140,10 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
 * Digest: [Digestx.java] ([Test][DigestxTest.java]) | [Digestx.kt] ([Test][DigestxTest.kt])
     * getDigest, getMD5, getMD5_16, getSHA1, getSHA256, getSHA512
 
+### sequences
+* Sequence: [Sequencex.java]
+    * constrainOnce, forEach, toCollection, toList, map, asIterable
+
 ### util
 * Date: [Datex.java] ([Test][DatexTest.java]) | [Datex.kt] ([Test][DatexTest.kt])
     * createCalendar, toDate, toMillisecond, format, getYear, getMonth, get\*, addYear, addMonth, add\*,
@@ -298,6 +302,11 @@ Please view the [CHANGELOG.md] file
 [DigestxTest.java]: javax/src/test/java/me/panpf/javax/test/security/DigestxTest.java
 [Digestx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/security/Digestx.kt
 [DigestxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/security/DigestxTest.kt
+
+[Sequencex.java]: javax/src/main/java/me/panpf/javax/sequences/Sequencex.java
+[SequencexTest.java]: javax/src/test/java/me/panpf/javax/test/sequences/SequencexTest.java
+[Sequencex.kt]: javax-kt/src/main/java/me/panpf/javaxkt/sequences/Sequencex.kt
+[SequencexTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/sequences/SequencexTest.kt
 
 [Datex.java]: javax/src/main/java/me/panpf/javax/util/Datex.java
 [DatexTest.java]: javax/src/test/java/me/panpf/javax/test/util/DatexTest.java

@@ -18,7 +18,7 @@ package me.panpf.javax.io;
 
 import me.panpf.javax.collections.Arrayx;
 import me.panpf.javax.collections.Collectionx;
-import me.panpf.javax.collections.Sequence;
+import me.panpf.javax.sequences.Sequence;
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.ranges.Rangex;

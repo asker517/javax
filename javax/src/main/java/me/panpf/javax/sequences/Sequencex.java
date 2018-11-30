@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-package me.panpf.javax.collections;
+package me.panpf.javax.sequences;
 
 import me.panpf.javax.util.Action;
+import me.panpf.javax.util.Transformer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -55,7 +60,7 @@ public class Sequencex {
         private AtomicReference<Sequence<T>> sequenceRef;
 
         ConstrainedOnceSequence(Sequence<T> sequence) {
-            this.sequenceRef = new AtomicReference<Sequence<T>>(sequence);
+            this.sequenceRef = new AtomicReference<>(sequence);
         }
 
         @NotNull
@@ -1348,17 +1353,20 @@ public class Sequencex {
 //        return destination
 //    }
 //
-///**
-// * Appends all elements to the given [destination] collection.
-// *
-// * The operation is _terminal_.
-// */
-//    public fun <T, C : MutableCollection<in T>> Sequence<T>.toCollection(destination: C): C {
-//        for (item in this) {
-//            destination.add(item)
-//        }
-//        return destination
-//    }
+
+    /**
+     * Appends all elements to the given [destination] collection.
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T, C extends Collection<T>> C toCollection(@Nullable Sequence<T> sequence, @NotNull C destination) {
+        if (sequence != null) {
+            for (T item : sequence) {
+                destination.add(item);
+            }
+        }
+        return destination;
+    }
 //
 //    /**
 //     * Returns a [HashSet] of all elements.
@@ -1369,23 +1377,23 @@ public class Sequencex {
 //        return toCollection(HashSet<T>())
 //    }
 //
-//    /**
-//     * Returns a [List] containing all elements.
-//     *
-//     * The operation is _terminal_.
-//     */
-//    public fun <T> Sequence<T>.toList(): List<T> {
-//        return this.toMutableList().optimizeReadOnlyList()
-//    }
-//
-//    /**
-//     * Returns a [MutableList] filled with all elements of this sequence.
-//     *
-//     * The operation is _terminal_.
-//     */
-//    public fun <T> Sequence<T>.toMutableList(): MutableList<T> {
-//        return toCollection(ArrayList<T>())
-//    }
+    /**
+     * Returns a [List] containing all elements.
+     *
+     * The operation is _terminal_.
+     */
+    public static <T> List<T> toList(@NotNull Sequence<T> sequence) {
+        return toCollection(sequence, new ArrayList<T>());
+    }
+
+    /**
+     * Returns a [MutableList] filled with all elements of this sequence.
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> List<T> toMutableList(@NotNull Sequence<T> sequence) {
+        return toCollection(sequence, new ArrayList<T>());
+    }
 //
 //    /**
 //     * Returns a [Set] of all elements.
@@ -1504,15 +1512,17 @@ public class Sequencex {
 //        }
 //    }
 //
-//    /**
-//     * Returns a sequence containing the results of applying the given [transform] function
-//     * to each element in the original sequence.
-//     *
-//     * The operation is _intermediate_ and _stateless_.
-//     */
-//    public fun <T, R> Sequence<T>.map(transform: (T) -> R): Sequence<R> {
-//        return TransformingSequence(this, transform)
-//    }
+
+    /**
+     * Returns a sequence containing the results of applying the given [transform] function
+     * to each element in the original sequence.
+     * <p>
+     * The operation is _intermediate_ and _stateless_.
+     */
+    @NotNull
+    public static <T, R> Sequence<R> map(@NotNull Sequence<T> sequence, @NotNull Transformer<T, R> transform) {
+        return new TransformingSequence<>(sequence, transform);
+    }
 //
 //    /**
 //     * Returns a sequence containing the results of applying the given [transform] function
@@ -2380,13 +2390,21 @@ public class Sequencex {
 //        return joinTo(StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString()
 //    }
 //
-//    /**
-//     * Creates an [Iterable] instance that wraps the original sequence returning its elements when being iterated.
-//     */
-//    public fun <T> Sequence<T>.asIterable(): Iterable<T> {
-//        return Iterable { this.iterator() }
-//    }
-//
+
+    /**
+     * Creates an [Iterable] instance that wraps the original sequence returning its elements when being iterated.
+     */
+    @NotNull
+    public static <T> Iterable<T> asIterable(@NotNull final Sequence<T> sequence) {
+        return new Iterable<T>() {
+            @NotNull
+            @Override
+            public Iterator<T> iterator() {
+                return sequence.iterator();
+            }
+        };
+    }
+
 ///**
 // * Returns this sequence as a [Sequence].
 // */

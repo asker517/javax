@@ -16,6 +16,7 @@
 
 package me.panpf.javax.collections;
 
+import me.panpf.javax.sequences.Sequence;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
