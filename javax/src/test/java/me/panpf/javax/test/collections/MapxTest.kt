@@ -5,6 +5,7 @@ package me.panpf.javax.test.collections
 import me.panpf.javax.collections.Arrayx
 import me.panpf.javax.collections.Collectionx
 import me.panpf.javax.collections.Mapx
+import me.panpf.javax.lang.Stringx
 import me.panpf.javax.test.Assertx.*
 import org.junit.Assert.*
 import org.junit.Test
@@ -396,12 +397,203 @@ class MapxTest {
     }
 
     @Test
-    fun testForEach() {
+    fun testAll() {
+        val map = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
+        assertThreeEquals(true, Mapx.all(map) { Stringx.isDigit(it.key) }, map.all { Stringx.isDigit(it.key) })
+
+        val map2 = Mapx.builder("3", "333").put("1", "111").put("a", "222").buildTreeMap()
+        assertThreeEquals(false, Mapx.all(map2) { Stringx.isDigit(it.key) }, map2.all { Stringx.isDigit(it.key) })
+
+        val map3 = mutableMapOf<String, String>()
+        assertThreeEquals(true, Mapx.all(map3) { Stringx.isDigit(it.key) }, map3.all { Stringx.isDigit(it.key) })
+
+        val map4: Map<String, String>? = null
+        assertThreeEquals(true, Mapx.all(map4) { Stringx.isDigit(it.key) }, mutableMapOf<String, String>().all { Stringx.isDigit(it.key) })
+    }
+
+    @Test
+    fun testAny() {
+        val map1 = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
+        assertThreeEquals(true, Mapx.any(map1) { Stringx.isDigit(it.key) }, map1.any { Stringx.isDigit(it.key) })
+        assertThreeEquals(true, Mapx.any(map1), map1.any())
+
+        val map2 = Mapx.builder("a", "333").put("b", "111").put("c", "222").buildTreeMap()
+        assertThreeEquals(false, Mapx.any(map2) { Stringx.isDigit(it.key) }, map2.any { Stringx.isDigit(it.key) })
+
+        val map3 = mutableMapOf<String, String>()
+        assertThreeEquals(false, Mapx.any(map3) { Stringx.isDigit(it.key) }, map3.any { Stringx.isDigit(it.key) })
+        assertThreeEquals(false, Mapx.any(map3), map3.any())
+
+        val map4: Map<String, String>? = null
+        assertThreeEquals(false, Mapx.any(map4) { Stringx.isDigit(it.key) }, mutableMapOf<String, String>().any { Stringx.isDigit(it.key) })
+        assertThreeEquals(false, Mapx.any(map4), mutableMapOf<String, String>().any())
+    }
+
+    @Test
+    fun testCount() {
+        val map1 = Mapx.builder("3", "333").put("1", "111").put("a", "222").buildTreeMap()
+        assertThreeEquals(3, Mapx.count(map1), map1.count())
+        assertThreeEquals(2, Mapx.count(map1) { Stringx.isDigit(it.key) }, map1.count { Stringx.isDigit(it.key) })
+
+        val map2 = mutableMapOf<String, String>()
+        assertThreeEquals(0, Mapx.count(map2), map2.count())
+        assertThreeEquals(0, Mapx.count(map2) { Stringx.isDigit(it.key) }, map2.count { Stringx.isDigit(it.key) })
+
+        val map3: Map<String, String>? = null
+        assertThreeEquals(0, Mapx.count(map3), mutableMapOf<String, String>().count())
+        assertThreeEquals(0, Mapx.count(map3) { Stringx.isDigit(it.key) }, mutableMapOf<String, String>().count { Stringx.isDigit(it.key) })
+    }
+
+    @Test
+    fun testEach() {
         val map = Mapx.builder("1", "111").put("2", "222").put("3", "333").buildHashMap()
 
         assertThreeEquals("1, 2, 3",
                 ArrayList<String>().apply { Mapx.forEach(map) { entry -> add(entry.key) } }.joinToString(),
                 ArrayList<String>().apply { map.forEach { entry -> add(entry.key) } }.joinToString())
+
+        assertThreeEquals("",
+                ArrayList<String>().apply { Mapx.forEach(null as Map<String, String>?) { entry -> add(entry.key) } }.joinToString(),
+                ArrayList<String>().apply { mutableMapOf<String, String>().forEach { entry -> add(entry.key) } }.joinToString())
+
+        assertThreeEquals("1, 2, 3",
+                ArrayList<String>().apply { Mapx.onEach(map) { entry -> add(entry.key) } }.joinToString(),
+                ArrayList<String>().apply { map.onEach { entry -> add(entry.key) } }.joinToString())
+    }
+
+    @Test
+    fun testMax() {
+        val map = Mapx.builder("1", "111").put("2", "222").put("3", "333").buildHashMap()
+
+        assertThreeEquals("3=333",
+                Mapx.maxBy(map) { it.key }.toString(),
+                map.maxBy { it.key }.toString())
+
+        assertThreeEquals(null,
+                Mapx.maxBy(null as Map<String, String>?) { it.key },
+                mutableMapOf<String, String>().maxBy { it.key })
+
+        assertThreeEquals("3=333",
+                Mapx.maxWith(map) { it1, it2 -> it1.key.compareTo(it2.key) }.toString(),
+                map.maxWith(Comparator { it1, it2 -> it1.key.compareTo(it2.key) }).toString())
+
+        assertThreeEquals(null,
+                Mapx.maxWith(null as Map<String, String>?) { it1, it2 -> it1.key.compareTo(it2.key) },
+                mutableMapOf<String, String>().maxWith(Comparator { it1, it2 -> it1.key.compareTo(it2.key) }))
+    }
+
+    @Test
+    fun testMin() {
+        val map = Mapx.builder("1", "111").put("2", "222").put("3", "333").buildHashMap()
+
+        assertThreeEquals("1=111",
+                Mapx.minBy(map) { it.key }.toString(),
+                map.minBy { it.key }.toString())
+
+        assertThreeEquals(null,
+                Mapx.minBy(null as Map<String, String>?) { it.key },
+                mutableMapOf<String, String>().minBy { it.key })
+
+        assertThreeEquals("1=111",
+                Mapx.minWith(map) { it1, it2 -> it1.key.compareTo(it2.key) }.toString(),
+                map.minWith(Comparator { it1, it2 -> it1.key.compareTo(it2.key) }).toString())
+
+        assertThreeEquals(null,
+                Mapx.minWith(null as Map<String, String>?) { it1, it2 -> it1.key.compareTo(it2.key) },
+                mutableMapOf<String, String>().minWith(Comparator { it1, it2 -> it1.key.compareTo(it2.key) }))
+    }
+
+    @Test
+    fun testNone() {
+        val map1 = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
+        assertThreeEquals(false, Mapx.none(map1) { Stringx.isDigit(it.key) }, map1.none { Stringx.isDigit(it.key) })
+        assertThreeEquals(false, Mapx.none(map1), map1.none())
+
+        val map2 = Mapx.builder("a", "333").put("b", "111").put("c", "222").buildTreeMap()
+        assertThreeEquals(true, Mapx.none(map2) { Stringx.isDigit(it.key) }, map2.none { Stringx.isDigit(it.key) })
+
+        val map3 = mutableMapOf<String, String>()
+        assertThreeEquals(true, Mapx.none(map3) { Stringx.isDigit(it.key) }, map3.none { Stringx.isDigit(it.key) })
+        assertThreeEquals(true, Mapx.none(map3), map3.none())
+
+        val map4: Map<String, String>? = null
+        assertThreeEquals(true, Mapx.none(map4) { Stringx.isDigit(it.key) }, mutableMapOf<String, String>().none { Stringx.isDigit(it.key) })
+        assertThreeEquals(true, Mapx.none(map4), mutableMapOf<String, String>().none())
+    }
+
+    @Test
+    fun testFilter() {
+        val map = Mapx.builder("3", "333").put("1", "111").put("a", "222").buildTreeMap()
+
+        assertThreeEquals(2,
+                Mapx.filterKeys(map) { Stringx.isDigit(it) }.size,
+                map.filterKeys { Stringx.isDigit(it) }.size)
+        assertThreeEquals(true,
+                map !== Mapx.filterKeys(map) { Stringx.isDigit(it) },
+                map !== map.filterKeys { Stringx.isDigit(it) })
+        assertThreeEquals(0,
+                Mapx.filterKeys(null as Map<String, String>?) { Stringx.isDigit(it) }.size,
+                mutableMapOf<String, String>().filterKeys { Stringx.isDigit(it) }.size)
+
+        val map2 = Mapx.builder("3", "333").put("1", "111").put("a", "aaa").buildTreeMap()
+
+        assertThreeEquals(2,
+                Mapx.filterValues(map2) { Stringx.isDigit(it) }.size,
+                map2.filterValues { Stringx.isDigit(it) }.size)
+        assertThreeEquals(true,
+                map2 !== Mapx.filterValues(map2) { Stringx.isDigit(it) },
+                map2 !== map2.filterValues { Stringx.isDigit(it) })
+        assertThreeEquals(0,
+                Mapx.filterValues(null as Map<String, String>?) { Stringx.isDigit(it) }.size,
+                mutableMapOf<String, String>().filterValues { Stringx.isDigit(it) }.size)
+
+        assertThreeEquals(2,
+                Mapx.filter(map) { Stringx.isDigit(it.key) }.size,
+                map.filter { Stringx.isDigit(it.key) }.size)
+        assertThreeEquals(true,
+                map !== Mapx.filter(map) { Stringx.isDigit(it.key) },
+                map !== map.filter { Stringx.isDigit(it.key) })
+        assertThreeEquals(0,
+                Mapx.filter(null as Map<String, String>?) { Stringx.isDigit(it.key) }.size,
+                mutableMapOf<String, String>().filter { Stringx.isDigit(it.key) }.size)
+
+        assertThreeEquals(2,
+                Mapx.filterTo(map, LinkedHashMap()) { Stringx.isDigit(it.key) }.size,
+                map.filterTo(LinkedHashMap()) { Stringx.isDigit(it.key) }.size)
+        assertThreeEquals(true,
+                map !== Mapx.filterTo(map, LinkedHashMap()) { Stringx.isDigit(it.key) },
+                map !== map.filterTo(LinkedHashMap()) { Stringx.isDigit(it.key) })
+        assertThreeEquals(0,
+                Mapx.filterTo(null as Map<String, String>?, LinkedHashMap()) { Stringx.isDigit(it.key) }.size,
+                mutableMapOf<String, String>().filterTo(LinkedHashMap()) { Stringx.isDigit(it.key) }.size)
+
+        assertThreeEquals(2,
+                Mapx.filterNot(map) { !Stringx.isDigit(it.key) }.size,
+                map.filterNot { !Stringx.isDigit(it.key) }.size)
+        assertThreeEquals(true,
+                map !== Mapx.filterNot(map) { !Stringx.isDigit(it.key) },
+                map !== map.filterNot { !Stringx.isDigit(it.key) })
+        assertThreeEquals(0,
+                Mapx.filterNot(null as Map<String, String>?) { !Stringx.isDigit(it.key) }.size,
+                mutableMapOf<String, String>().filterNot { !Stringx.isDigit(it.key) }.size)
+
+        assertThreeEquals(2,
+                Mapx.filterNotTo(map, LinkedHashMap()) { !Stringx.isDigit(it.key) }.size,
+                map.filterNotTo(LinkedHashMap()) { !Stringx.isDigit(it.key) }.size)
+        assertThreeEquals(true,
+                map !== Mapx.filterNotTo(map, LinkedHashMap()) { !Stringx.isDigit(it.key) },
+                map !== map.filterNotTo(LinkedHashMap()) { !Stringx.isDigit(it.key) })
+        assertThreeEquals(0,
+                Mapx.filterNotTo(null as Map<String, String>?, LinkedHashMap()) { !Stringx.isDigit(it.key) }.size,
+                mutableMapOf<String, String>().filterNotTo(LinkedHashMap()) { !Stringx.isDigit(it.key) }.size)
+    }
+
+    @Test
+    fun testIterator() {
+        val map = Mapx.builder("3", "333").put("1", "111").put("a", "222").buildSortedMap()
+        val list = LinkedList<Map.Entry<String, String>>()
+        for (char in Mapx.iterator(map)) list.add(char)
+        assertEquals("1=111, 3=333, a=222", list.joinToString())
     }
 
     @Test

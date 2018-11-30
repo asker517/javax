@@ -575,7 +575,7 @@ public class Mapx {
 
 
     /* ******************************************* all ****************************************** */
-    // TODO: 2018/11/28 测试
+
 
     /**
      * Returns `true` if all entries match the given [predicate].
@@ -588,6 +588,7 @@ public class Mapx {
 
 
     /* ******************************************* any ****************************************** */
+
 
     /**
      * Returns `true` if map has at least one entry.
@@ -607,6 +608,7 @@ public class Mapx {
 
 
     /* ******************************************* count ****************************************** */
+
 
     /**
      * Returns the number of entries in this map.
@@ -633,11 +635,7 @@ public class Mapx {
      * Performs the given [action] on each entry.
      */
     public static <K, V> void forEach(@Nullable Map<K, V> map, @NotNull Action<Map.Entry<K, V>> action) {
-        if (map != null) {
-            for (Map.Entry<K, V> entry : map.entrySet()) {
-                action.action(entry);
-            }
-        }
+        if (map != null) for (Map.Entry<K, V> entry : map.entrySet()) action.action(entry);
     }
 
     /**
@@ -645,14 +643,13 @@ public class Mapx {
      */
     @NotNull
     public static <K, V, M extends Map<K, V>> M onEach(@NotNull M m, Action<Map.Entry<K, V>> action) {
-        for (Map.Entry<K, V> element : m.entrySet()) {
-            action.action(element);
-        }
+        for (Map.Entry<K, V> element : m.entrySet()) action.action(element);
         return m;
     }
 
 
     /* ******************************************* max ****************************************** */
+
 
     /**
      * Returns the first entry yielding the largest value of the given function or `null` if there are no entries.
@@ -692,6 +689,7 @@ public class Mapx {
 
     /* ******************************************* none ****************************************** */
 
+
     /**
      * Returns `true` if the map has no entries.
      */
@@ -713,6 +711,7 @@ public class Mapx {
 
 
     /* ******************************************* filter ****************************************** */
+
 
     /**
      * Returns a map containing all key-value pairs with keys matching the given [predicate].
@@ -815,7 +814,7 @@ public class Mapx {
 
 
     /* ******************************************* to ****************************************** */
-
+// TODO: 2018/11/28 测试
 
     /**
      * Converts entry to [Pair] with key being first component and value being second.
