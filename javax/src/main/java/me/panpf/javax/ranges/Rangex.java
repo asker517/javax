@@ -20,7 +20,6 @@ import me.panpf.javax.util.Datex;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -190,8 +189,8 @@ public class Rangex {
     /**
      * Create a positive-order byte range that does not contain [end]
      */
-    public static IntProgression until(byte start, byte end) {
-        return until(start, end, 1);
+    public static IntRange until(byte start, byte end) {
+        return new IntRange(start, end - 1);
     }
 
     /**
@@ -250,8 +249,8 @@ public class Rangex {
     /**
      * Create a positive-order short range that does not contain [end]
      */
-    public static IntProgression until(short start, short end) {
-        return until(start, end, 1);
+    public static IntRange until(short start, short end) {
+        return new IntRange(start, end - 1);
     }
 
     /**
@@ -310,8 +309,8 @@ public class Rangex {
     /**
      * Create a positive-order int range that does not contain [end]
      */
-    public static IntProgression until(int start, int end) {
-        return until(start, end, 1);
+    public static IntRange until(int start, int end) {
+        return new IntRange(start, end - 1);
     }
 
     /**
@@ -370,8 +369,8 @@ public class Rangex {
     /**
      * Create a positive-order long range that does not contain [end]
      */
-    public static LongProgression until(long start, long end) {
-        return until(start, end, 1);
+    public static LongRange until(long start, long end) {
+        return new LongRange(start, end - 1);
     }
 
     /**
@@ -494,8 +493,8 @@ public class Rangex {
     /**
      * Create a positive-order char range that does not contain [end]
      */
-    public static CharProgression until(char start, char end) {
-        return until(start, end, 1);
+    public static CharRange until(char start, char end) {
+        return new CharRange(start, (char) (end - 1));
     }
 
     /**
@@ -524,6 +523,63 @@ public class Rangex {
      */
     public static CharProgression downUntilTo(char start, char end) {
         return downUntilTo(start, end, -1);
+    }
+
+
+    /* ******************************************* reversed *******************************************/
+
+    /**
+     * Returns a progression that goes over the same range in the opposite direction with the same step.
+     */
+    @NotNull
+    public static IntProgression reversed(@NotNull IntProgression progression) {
+        return IntProgression.fromClosedRange(progression.getLast(), progression.getFirst(), -progression.getStep());
+    }
+
+    /**
+     * Returns a progression that goes over the same range in the opposite direction with the same step.
+     */
+    @NotNull
+    public static LongProgression reversed(@NotNull LongProgression progression) {
+        return LongProgression.fromClosedRange(progression.getLast(), progression.getFirst(), -progression.getStep());
+    }
+
+    /**
+     * Returns a progression that goes over the same range in the opposite direction with the same step.
+     */
+    @NotNull
+    public static CharProgression reversed(@NotNull CharProgression progression) {
+        return CharProgression.fromClosedRange(progression.getLast(), progression.getFirst(), -progression.getStep());
+    }
+
+
+    /* ******************************************* step *******************************************/
+
+    /**
+     * Returns a progression that goes over the same range with the given step.
+     */
+    @NotNull
+    public static IntProgression step(@NotNull IntProgression progression, int step) {
+        if (step <= 0) throw new IllegalArgumentException("Step must be positive, was: " + step + ".");
+        return IntProgression.fromClosedRange(progression.getFirst(), progression.getLast(), progression.getStep() > 0 ? step : -step);
+    }
+
+    /**
+     * Returns a progression that goes over the same range with the given step.
+     */
+    @NotNull
+    public static LongProgression step(@NotNull LongProgression progression, long step) {
+        if (step <= 0) throw new IllegalArgumentException("Step must be positive, was: " + step + ".");
+        return LongProgression.fromClosedRange(progression.getFirst(), progression.getLast(), progression.getStep() > 0 ? step : -step);
+    }
+
+    /**
+     * Returns a progression that goes over the same range with the given step.
+     */
+    @NotNull
+    public static CharProgression step(@NotNull CharProgression progression, int step) {
+        if (step <= 0) throw new IllegalArgumentException("Step must be positive, was: " + step + ".");
+        return CharProgression.fromClosedRange(progression.getFirst(), progression.getLast(), progression.getStep() > 0 ? step : -step);
     }
 
 

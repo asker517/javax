@@ -22,7 +22,6 @@ import me.panpf.javax.ranges.*
 import me.panpf.javax.ranges.CharProgression
 import me.panpf.javax.ranges.IntProgression
 import me.panpf.javax.ranges.LongProgression
-import java.text.ParseException
 import java.util.*
 
 
@@ -52,7 +51,7 @@ inline fun Byte.until(end: Byte, step: Int): IntProgression = Rangex.until(this,
 ///**
 // * Create a positive-order byte ranges that does not contain [end]
 // */
-//inline infix fun Byte.until(end: Byte): IntProgression = Rangex.until(this, end)
+//inline infix fun Byte.until(end: Byte): IntRange = Rangex.until(this, end)
 
 /**
  * Create a reversed byte range
@@ -111,7 +110,7 @@ inline fun Short.until(end: Short, step: Int): IntProgression = Rangex.until(thi
 ///**
 // * Create a positive-order short ranges that does not contain [end]
 // */
-//inline infix fun Short.until(end: Short): IntProgression = Rangex.until(this, end)
+//inline infix fun Short.until(end: Short): IntRange = Rangex.until(this, end)
 
 /**
  * Create a reversed short range
@@ -170,7 +169,7 @@ inline fun Int.until(end: Int, step: Int): IntProgression = Rangex.until(this, e
 ///**
 // * Create a positive-order int ranges that does not contain [end]
 // */
-//inline infix fun Int.until(end: Int): IntProgression = Rangex.until(this, end)
+//inline infix fun Int.until(end: Int): IntRange = Rangex.until(this, end)
 
 /**
  * Create a reversed int range
@@ -229,7 +228,7 @@ inline fun Long.until(end: Long, step: Long): LongProgression = Rangex.until(thi
 ///**
 // * Create a positive-order long ranges that does not contain [end]
 // */
-//inline infix fun Long.until(end: Long): LongProgression = Rangex.until(this, end)
+//inline infix fun Long.until(end: Long): LongRange = Rangex.until(this, end)
 
 /**
  * Create a reversed long range
@@ -336,7 +335,7 @@ inline fun Char.until(end: Char, step: Int): CharProgression = Rangex.until(this
 ///**
 // * Create a positive-order char ranges that does not contain [end]
 // */
-//inline infix fun Char.until(end: Char): CharProgression = Rangex.until(this, end)
+//inline infix fun Char.until(end: Char): CharRange = Rangex.until(this, end)
 
 /**
  * Create a reversed char range
