@@ -161,78 +161,126 @@ public class MathxTest {
     @Test
     public final void testProportion() {
         Assert.assertEquals(Mathx.proportion((byte) 30, (byte) 11, 4), 2.7273f, 0f);
+        Assert.assertEquals(Mathx.proportion((byte) 30, (byte) 0, 4), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion((byte) 0, (byte) 11, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.proportion((byte) 0, (byte) 0, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.proportion((byte) 30, (byte) 11), 2.73f, 0f);
-        Assert.assertEquals(Mathx.proportion((byte) 0, (byte) 11), 0f, 0f);
         Assert.assertEquals(Mathx.proportion((byte) 30, (byte) 0), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion((byte) 0, (byte) 11), 0f, 0f);
         Assert.assertEquals(Mathx.proportion((byte) 0, (byte) 0), 0f, 0f);
 
         Assert.assertEquals(Mathx.proportion((short) 30, (short) 11, 4), 2.7273f, 0f);
+        Assert.assertEquals(Mathx.proportion((short) 30, (short) 0, 4), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion((short) 0, (short) 11, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.proportion((short) 0, (short) 0, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.proportion((short) 30, (short) 11), 2.73f, 0f);
-        Assert.assertEquals(Mathx.proportion((short) 0, (short) 11), 0f, 0f);
         Assert.assertEquals(Mathx.proportion((short) 30, (short) 0), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion((short) 0, (short) 11), 0f, 0f);
         Assert.assertEquals(Mathx.proportion((short) 0, (short) 0), 0f, 0f);
 
         Assert.assertEquals(Mathx.proportion(30, 11, 4), 2.7273f, 0f);
+        Assert.assertEquals(Mathx.proportion(30, 0, 4), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0, 11, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.proportion(0, 0, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.proportion(30, 11), 2.73f, 0f);
-        Assert.assertEquals(Mathx.proportion(0, 11), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(30, 0), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0, 11), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(0, 0), 0f, 0f);
 
         Assert.assertEquals(Mathx.proportion(30L, 11L, 4), 2.7273f, 0f);
+        Assert.assertEquals(Mathx.proportion(30L, 0L, 4), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0L, 11L, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.proportion(0L, 0L, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.proportion(30L, 11L), 2.73f, 0f);
-        Assert.assertEquals(Mathx.proportion(0L, 11L), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(30L, 0L), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0L, 11L), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(0L, 0L), 0f, 0f);
 
         Assert.assertEquals(Mathx.proportion(30f, 11f, 4), 2.7273f, 0f);
+        Assert.assertEquals(Mathx.proportion(30f, 0f, 4), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0f, 11f, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.proportion(0f, 0f, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.proportion(30f, 11f), 2.73f, 0f);
-        Assert.assertEquals(Mathx.proportion(0f, 11f), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(30f, 0f), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0f, 11f), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(0f, 0f), 0f, 0f);
 
         Assert.assertEquals(Mathx.proportion(30d, 11d, 4), 2.7273f, 0f);
+        Assert.assertEquals(Mathx.proportion(30d, 0d, 4), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0d, 11d, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.proportion(0d, 0d, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.proportion(30d, 11d), 2.73f, 0f);
-        Assert.assertEquals(Mathx.proportion(0d, 11d), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(30d, 0d), 1f, 0f);
+        Assert.assertEquals(Mathx.proportion(0d, 11d), 0f, 0f);
         Assert.assertEquals(Mathx.proportion(0d, 0d), 0f, 0f);
     }
 
     @Test
     public final void testPercent() {
         Assert.assertEquals(Mathx.percent((byte) 11, (byte) 30, 4), 36.6667f, 0f);
+        Assert.assertEquals(Mathx.percent((byte) 11, (byte) 0, 4), 100f, 0f);
+        Assert.assertEquals(Mathx.percent((byte) 0, (byte) 30, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.percent((byte) 0, (byte) 0, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.percent((byte) 11, (byte) 30), 36.67f, 0f);
-        Assert.assertEquals(Mathx.percent((byte) 0, (byte) 30), 0f, 0f);
         Assert.assertEquals(Mathx.percent((byte) 11, (byte) 0), 100f, 0f);
+        Assert.assertEquals(Mathx.percent((byte) 0, (byte) 30), 0f, 0f);
         Assert.assertEquals(Mathx.percent((byte) 0, (byte) 0), 0f, 0f);
 
         Assert.assertEquals(Mathx.percent((short) 11, (short) 30, 4), 36.6667f, 0f);
+        Assert.assertEquals(Mathx.percent((short) 11, (short) 0, 4), 100f, 0f);
+        Assert.assertEquals(Mathx.percent((short) 0, (short) 30, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.percent((short) 0, (short) 0, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.percent((short) 11, (short) 30), 36.67f, 0f);
-        Assert.assertEquals(Mathx.percent((short) 0, (short) 30), 0f, 0f);
         Assert.assertEquals(Mathx.percent((short) 11, (short) 0), 100f, 0f);
+        Assert.assertEquals(Mathx.percent((short) 0, (short) 30), 0f, 0f);
         Assert.assertEquals(Mathx.percent((short) 0, (short) 0), 0f, 0f);
 
         Assert.assertEquals(Mathx.percent(11, 30, 4), 36.6667f, 0f);
+        Assert.assertEquals(Mathx.percent(11, 0, 4), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0, 30, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.percent(0, 0, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.percent(11, 30), 36.67f, 0f);
-        Assert.assertEquals(Mathx.percent(0, 30), 0f, 0f);
         Assert.assertEquals(Mathx.percent(11, 0), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0, 30), 0f, 0f);
         Assert.assertEquals(Mathx.percent(0, 0), 0f, 0f);
 
         Assert.assertEquals(Mathx.percent(11L, 30L, 4), 36.6667f, 0f);
+        Assert.assertEquals(Mathx.percent(11L, 0L, 4), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0L, 30L, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.percent(0L, 0L, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.percent(11L, 30L), 36.67f, 0f);
-        Assert.assertEquals(Mathx.percent(0L, 30L), 0f, 0f);
         Assert.assertEquals(Mathx.percent(11L, 0L), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0L, 30L), 0f, 0f);
         Assert.assertEquals(Mathx.percent(0L, 0L), 0f, 0f);
 
         Assert.assertEquals(Mathx.percent(11f, 30f, 4), 36.6667f, 0f);
+        Assert.assertEquals(Mathx.percent(11f, 0f, 4), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0f, 30f, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.percent(0f, 0f, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.percent(11f, 30f), 36.67f, 0f);
-        Assert.assertEquals(Mathx.percent(0f, 30f), 0f, 0f);
         Assert.assertEquals(Mathx.percent(11f, 0f), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0f, 30f), 0f, 0f);
         Assert.assertEquals(Mathx.percent(0f, 0f), 0f, 0f);
 
         Assert.assertEquals(Mathx.percent(11d, 30d, 4), 36.6667f, 0f);
+        Assert.assertEquals(Mathx.percent(11d, 0d, 4), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0d, 30d, 4), 0f, 0f);
+        Assert.assertEquals(Mathx.percent(0d, 0d, 4), 0f, 0f);
+
         Assert.assertEquals(Mathx.percent(11d, 30d), 36.67f, 0f);
-        Assert.assertEquals(Mathx.percent(0d, 30d), 0f, 0f);
         Assert.assertEquals(Mathx.percent(11d, 0d), 100f, 0f);
+        Assert.assertEquals(Mathx.percent(0d, 30d), 0f, 0f);
         Assert.assertEquals(Mathx.percent(0d, 0d), 0f, 0f);
     }
 }

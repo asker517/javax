@@ -161,78 +161,126 @@ class MathxTest {
     @Test
     fun testProportion() {
         Assert.assertEquals(30.toByte().proportion(11.toByte(), 4), 2.7273f, 0f)
+        Assert.assertEquals(30.toByte().proportion(0.toByte(), 4), 1f, 0f)
+        Assert.assertEquals(0.toByte().proportion(11.toByte(), 4), 0f, 0f)
+        Assert.assertEquals(0.toByte().proportion(0.toByte(), 4), 0f, 0f)
+
         Assert.assertEquals(30.toByte().proportion(11.toByte()), 2.73f, 0f)
-        Assert.assertEquals((null as Byte?).proportion(11.toByte()), 0f, 0f)
         Assert.assertEquals(30.toByte().proportion((null as Byte?)), 1f, 0f)
+        Assert.assertEquals((null as Byte?).proportion(11.toByte()), 0f, 0f)
         Assert.assertEquals((null as Byte?).proportion((null as Byte?)), 0f, 0f)
 
         Assert.assertEquals(30.toShort().proportion(11.toShort(), 4), 2.7273f, 0f)
+        Assert.assertEquals(30.toShort().proportion(0.toShort(), 4), 1f, 0f)
+        Assert.assertEquals(0.toShort().proportion(11.toShort(), 4), 0f, 0f)
+        Assert.assertEquals(0.toShort().proportion(0.toShort(), 4), 0f, 0f)
+
         Assert.assertEquals(30.toShort().proportion(11.toShort()), 2.73f, 0f)
-        Assert.assertEquals((null as Short?).proportion(11.toShort()), 0f, 0f)
         Assert.assertEquals(30.toShort().proportion((null as Short?)), 1f, 0f)
+        Assert.assertEquals((null as Short?).proportion(11.toShort()), 0f, 0f)
         Assert.assertEquals((null as Short?).proportion((null as Short?)), 0f, 0f)
 
         Assert.assertEquals(30.proportion(11, 4), 2.7273f, 0f)
+        Assert.assertEquals(30.proportion(0, 4), 1f, 0f)
+        Assert.assertEquals(0.proportion(11, 4), 0f, 0f)
+        Assert.assertEquals(0.proportion(0, 4), 0f, 0f)
+
         Assert.assertEquals(30.proportion(11), 2.73f, 0f)
-        Assert.assertEquals((null as Int?).proportion(11), 0f, 0f)
         Assert.assertEquals(30.proportion((null as Int?)), 1f, 0f)
+        Assert.assertEquals((null as Int?).proportion(11), 0f, 0f)
         Assert.assertEquals((null as Int?).proportion((null as Int?)), 0f, 0f)
 
         Assert.assertEquals(30.toLong().proportion(11.toLong(), 4), 2.7273f, 0f)
+        Assert.assertEquals(30.toLong().proportion(0.toLong(), 4), 1f, 0f)
+        Assert.assertEquals(0.toLong().proportion(11.toLong(), 4), 0f, 0f)
+        Assert.assertEquals(0.toLong().proportion(0.toLong(), 4), 0f, 0f)
+
         Assert.assertEquals(30.toLong().proportion(11.toLong()), 2.73f, 0f)
-        Assert.assertEquals((null as Long?).proportion(11.toLong()), 0f, 0f)
         Assert.assertEquals(30.toLong().proportion((null as Long?)), 1f, 0f)
+        Assert.assertEquals((null as Long?).proportion(11.toLong()), 0f, 0f)
         Assert.assertEquals((null as Long?).proportion((null as Long?)), 0f, 0f)
 
         Assert.assertEquals(30.toFloat().proportion(11.toFloat(), 4), 2.7273f, 0f)
+        Assert.assertEquals(30.toFloat().proportion(0.toFloat(), 4), 1f, 0f)
+        Assert.assertEquals(0.toFloat().proportion(11.toFloat(), 4), 0f, 0f)
+        Assert.assertEquals(0.toFloat().proportion(0.toFloat(), 4), 0f, 0f)
+
         Assert.assertEquals(30.toFloat().proportion(11.toFloat()), 2.73f, 0f)
-        Assert.assertEquals((null as Float?).proportion(11.toFloat()), 0f, 0f)
         Assert.assertEquals(30.toFloat().proportion((null as Float?)), 1f, 0f)
+        Assert.assertEquals((null as Float?).proportion(11.toFloat()), 0f, 0f)
         Assert.assertEquals((null as Float?).proportion((null as Float?)), 0f, 0f)
 
         Assert.assertEquals(30.toDouble().proportion(11.toDouble(), 4), 2.7273f, 0f)
+        Assert.assertEquals(30.toDouble().proportion(0.toDouble(), 4), 1f, 0f)
+        Assert.assertEquals(0.toDouble().proportion(11.toDouble(), 4), 0f, 0f)
+        Assert.assertEquals(0.toDouble().proportion(0.toDouble(), 4), 0f, 0f)
+
         Assert.assertEquals(30.toDouble().proportion(11.toDouble()), 2.73f, 0f)
-        Assert.assertEquals((null as Double?).proportion(11.toDouble()), 0f, 0f)
         Assert.assertEquals(30.toDouble().proportion((null as Double?)), 1f, 0f)
+        Assert.assertEquals((null as Double?).proportion(11.toDouble()), 0f, 0f)
         Assert.assertEquals((null as Double?).proportion((null as Double?)), 0f, 0f)
     }
 
     @Test
     fun testPercent() {
         Assert.assertEquals(11.toByte().percent(30.toByte(), 4), 36.6667f, 0f)
+        Assert.assertEquals(11.toByte().percent(0.toByte(), 4), 100f, 0f)
+        Assert.assertEquals(0.toByte().percent(30.toByte(), 4), 0f, 0f)
+        Assert.assertEquals(0.toByte().percent(0.toByte(), 4), 0f, 0f)
+
         Assert.assertEquals(11.toByte().percent(30.toByte()), 36.67f, 0f)
-        Assert.assertEquals((null as Byte?).percent(30.toByte()), 0f, 0f)
         Assert.assertEquals(11.toByte().percent((null as Byte?)), 100f, 0f)
+        Assert.assertEquals((null as Byte?).percent(30.toByte()), 0f, 0f)
         Assert.assertEquals((null as Byte?).percent((null as Byte?)), 0f, 0f)
 
         Assert.assertEquals(11.toShort().percent(30.toShort(), 4), 36.6667f, 0f)
+        Assert.assertEquals(11.toShort().percent(0.toShort(), 4), 100f, 0f)
+        Assert.assertEquals(0.toShort().percent(30.toShort(), 4), 0f, 0f)
+        Assert.assertEquals(0.toShort().percent(0.toShort(), 4), 0f, 0f)
+
         Assert.assertEquals(11.toShort().percent(30.toShort()), 36.67f, 0f)
-        Assert.assertEquals((null as Short?).percent(30.toShort()), 0f, 0f)
         Assert.assertEquals(11.toShort().percent((null as Short?)), 100f, 0f)
+        Assert.assertEquals((null as Short?).percent(30.toShort()), 0f, 0f)
         Assert.assertEquals((null as Short?).percent((null as Short?)), 0f, 0f)
 
         Assert.assertEquals(11.percent(30, 4), 36.6667f, 0f)
+        Assert.assertEquals(11.percent(0, 4), 100f, 0f)
+        Assert.assertEquals(0.percent(30, 4), 0f, 0f)
+        Assert.assertEquals(0.percent(0, 4), 0f, 0f)
+
         Assert.assertEquals(11.percent(30), 36.67f, 0f)
-        Assert.assertEquals((null as Int?).percent(30), 0f, 0f)
         Assert.assertEquals(11.percent((null as Int?)), 100f, 0f)
+        Assert.assertEquals((null as Int?).percent(30), 0f, 0f)
         Assert.assertEquals((null as Int?).percent((null as Int?)), 0f, 0f)
 
         Assert.assertEquals(11.toLong().percent(30.toLong(), 4), 36.6667f, 0f)
+        Assert.assertEquals(11.toLong().percent(0.toLong(), 4), 100f, 0f)
+        Assert.assertEquals(0.toLong().percent(30.toLong(), 4), 0f, 0f)
+        Assert.assertEquals(0.toLong().percent(0.toLong(), 4), 0f, 0f)
+
         Assert.assertEquals(11.toLong().percent(30.toLong()), 36.67f, 0f)
-        Assert.assertEquals((null as Long?).percent(30.toLong()), 0f, 0f)
         Assert.assertEquals(11.toLong().percent((null as Long?)), 100f, 0f)
+        Assert.assertEquals((null as Long?).percent(30.toLong()), 0f, 0f)
         Assert.assertEquals((null as Long?).percent((null as Long?)), 0f, 0f)
 
         Assert.assertEquals(11.toFloat().percent(30.toFloat(), 4), 36.6667f, 0f)
+        Assert.assertEquals(11.toFloat().percent(0.toFloat(), 4), 100f, 0f)
+        Assert.assertEquals(0.toFloat().percent(30.toFloat(), 4), 0f, 0f)
+        Assert.assertEquals(0.toFloat().percent(0.toFloat(), 4), 0f, 0f)
+
         Assert.assertEquals(11.toFloat().percent(30.toFloat()), 36.67f, 0f)
-        Assert.assertEquals((null as Float?).percent(30.toFloat()), 0f, 0f)
         Assert.assertEquals(11.toFloat().percent((null as Float?)), 100f, 0f)
+        Assert.assertEquals((null as Float?).percent(30.toFloat()), 0f, 0f)
         Assert.assertEquals((null as Float?).percent((null as Float?)), 0f, 0f)
 
         Assert.assertEquals(11.toDouble().percent(30.toDouble(), 4), 36.6667f, 0f)
+        Assert.assertEquals(11.toDouble().percent(0.toDouble(), 4), 100f, 0f)
+        Assert.assertEquals(0.toDouble().percent(30.toDouble(), 4), 0f, 0f)
+        Assert.assertEquals(0.toDouble().percent(0.toDouble(), 4), 0f, 0f)
+
         Assert.assertEquals(11.toDouble().percent(30.toDouble()), 36.67f, 0f)
-        Assert.assertEquals((null as Double?).percent(30.toDouble()), 0f, 0f)
         Assert.assertEquals(11.toDouble().percent((null as Double?)), 100f, 0f)
+        Assert.assertEquals((null as Double?).percent(30.toDouble()), 0f, 0f)
         Assert.assertEquals((null as Double?).percent((null as Double?)), 0f, 0f)
     }
 }
