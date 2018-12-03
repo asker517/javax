@@ -17,6 +17,7 @@
 package me.panpf.javax.collections;
 
 import me.panpf.javax.sequences.Sequence;
+import me.panpf.javax.sequences.Sequencex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -876,6 +877,17 @@ public class Collectionx {
     }
 
     /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    @NotNull
+    public static <T, A extends Appendable> A joinTo(@Nullable Iterable<T> iterable, @NotNull A buffer) {
+        return joinTo(iterable, buffer, null, null, null, -1, null, null);
+    }
+
+    /**
      * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
      * <p>
      * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
@@ -1720,6 +1732,14 @@ public class Collectionx {
      */
     public static <T> boolean removeAll(@Nullable Collection<T> collection, @Nullable Collection<T> elements) {
         return collection != null && elements != null && collection.removeAll(elements);
+    }
+
+    /**
+     * Removes all elements from this [MutableCollection] that are also contained in the given [elements] collection.
+     */
+    public static <T> boolean removeAll(@Nullable Collection<T> collection, @Nullable Sequence<T> elements) {
+        HashSet<T> set = Sequencex.toHashSet(elements);
+        return isNotEmpty(set) && removeAll(collection, set);
     }
 
 

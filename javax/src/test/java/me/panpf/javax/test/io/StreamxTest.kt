@@ -19,6 +19,8 @@ package me.panpf.javax.test.io
 import me.panpf.javax.io.Filex
 import me.panpf.javax.io.Streamx
 import me.panpf.javax.lang.Charx
+import me.panpf.javax.sequences.Sequencex
+import me.panpf.javax.util.Action
 import me.panpf.javax.util.Regexx
 import org.junit.Assert
 import org.junit.Test
@@ -127,18 +129,18 @@ class StreamxTest {
         Filex.writeText(file, content)
         try {
             Assert.assertEquals(StringBuilder().apply {
-                Streamx.lineSequence(Filex.bufferedReader(file)).forEach { lineString ->
+                Sequencex.forEach(Streamx.lineSequence(Filex.bufferedReader(file)), Action{ lineString ->
                     if (length > 0) append("\n")
                     append(lineString)
-                }
+                })
             }.toString(), content)
 
             Assert.assertEquals(StringBuilder().apply {
                 Streamx.useLines(Filex.reader(file)) { sequence ->
-                    sequence.forEach { lineString ->
+                    Sequencex.forEach(sequence, Action { lineString ->
                         if (length > 0) append("\n")
                         append(lineString)
-                    }
+                    })
                 }
             }.toString(), content)
 

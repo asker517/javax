@@ -243,7 +243,9 @@ public class Mapx {
      */
     public static <K, V> void putAll(@NotNull Map<K, V> map, @Nullable Sequence<Pair<K, V>> pairs) {
         if (pairs != null) {
-            for (Pair<K, V> pair : pairs) {
+            Iterator<Pair<K, V>> iterator = pairs.iterator();
+            while (iterator.hasNext()) {
+                Pair<K, V> pair = iterator.next();
                 map.put(pair.first, pair.second);
             }
         }
@@ -819,6 +821,7 @@ public class Mapx {
     /**
      * Converts entry to [Pair] with key being first component and value being second.
      */
+    @NotNull
     public static <K, V> Pair<K, V> toPair(@NotNull Map.Entry<K, V> entry) {
         return new Pair<>(entry.getKey(), entry.getValue());
     }
@@ -828,6 +831,7 @@ public class Mapx {
      * <p>
      * The returned map preserves the entry iteration order of the original collection.
      */
+    @NotNull
     public static <K, V> Map<K, V> toMap(@Nullable Iterable<Pair<K, V>> pairs) {
         if (pairs instanceof Collection) {
             int size = Collectionx.count(pairs);
@@ -857,13 +861,14 @@ public class Mapx {
      * <p>
      * The returned map preserves the entry iteration order of the original array.
      */
-    public static <K, V> Map<K, V> toMap(@Nullable Pair<K, V>... pairs) {
-        if (pairs == null || pairs.length == 0) {
+    public static <K, V> Map<K, V> toMap(@Nullable Pair<K, V>[] pairs) {
+        int size = Arrayx.count(pairs);
+        if (size == 0) {
             return mutableMapOf();
-        } else if (pairs.length == 1) {
-            return mutableMapOf(pairs[0]);
+        } else if (size == 1) {
+            return mutableMapOf(Arrayx.first(pairs));
         } else {
-            return toMap(pairs, new LinkedHashMap<K, V>(capacity(pairs.length)));
+            return toMap(pairs, new LinkedHashMap<K, V>(capacity(size)));
         }
     }
 
@@ -874,6 +879,7 @@ public class Mapx {
         putAll(destination, pairs);
         return destination;
     }
+
 
     /**
      * Returns a new map containing all key-value pairs from the given sequence of pairs.

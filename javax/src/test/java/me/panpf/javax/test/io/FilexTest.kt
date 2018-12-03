@@ -21,6 +21,8 @@ import me.panpf.javax.lang.Charx
 import me.panpf.javax.security.Digestx
 import me.panpf.javax.collections.Arrayx
 import me.panpf.javax.collections.Collectionx
+import me.panpf.javax.sequences.Sequencex
+import me.panpf.javax.util.Action
 import org.junit.Assert
 import org.junit.Test
 import java.io.File
@@ -900,19 +902,19 @@ class FilexTest {
         try {
             Assert.assertEquals(StringBuilder().apply {
                 Filex.useLines(file, Charx.UTF_8) { sequence ->
-                    sequence.forEach { lineString ->
+                    Sequencex.forEach(sequence, Action { lineString ->
                         if (length > 0) append("\n")
                         append(lineString)
-                    }
+                    })
                 }
             }.toString(), content)
 
             Assert.assertEquals(StringBuilder().apply {
                 Filex.useLines(file) { sequence ->
-                    sequence.forEach { lineString ->
+                    Sequencex.forEach(sequence, Action { lineString ->
                         if (length > 0) append("\n")
                         append(lineString)
-                    }
+                    })
                 }
             }.toString(), content)
 

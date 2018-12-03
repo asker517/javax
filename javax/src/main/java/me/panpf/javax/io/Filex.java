@@ -22,6 +22,7 @@ import me.panpf.javax.sequences.Sequence;
 import me.panpf.javax.lang.Charx;
 import me.panpf.javax.lang.Stringx;
 import me.panpf.javax.ranges.Rangex;
+import me.panpf.javax.sequences.Sequencex;
 import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -145,7 +146,7 @@ public class Filex {
      * @return If true, the clean is successful, otherwise the clean fails.
      */
     public static boolean cleanRecursively(@NotNull final File dir) {
-        return Collectionx.fold(walkBottomUp(dir), true, new Operation<File, Boolean>() {
+        return Sequencex.fold(walkBottomUp(dir), true, new Operation<File, Boolean>() {
             @NotNull
             @Override
             public Boolean operation(@NotNull Boolean aBoolean, @NotNull File file) {
@@ -463,7 +464,7 @@ public class Filex {
     public static int listCountRecursively(@NotNull final File dir, @NotNull final FileFilter fileFilter) {
         if (!dir.exists()) return 0;
         if (dir.isFile()) return 0;
-        return Collectionx.count(walkTopDown(dir), new Predicate<File>() {
+        return Sequencex.count(walkTopDown(dir), new Predicate<File>() {
             @Override
             public boolean accept(@NotNull File file) {
                 return !file.equals(dir) && fileFilter.accept(file);
@@ -477,7 +478,7 @@ public class Filex {
     public static int listCountRecursively(@NotNull final File dir, @NotNull final FilenameFilter filenameFilter) {
         if (!dir.exists()) return 0;
         if (dir.isFile()) return 0;
-        return Collectionx.count(walkTopDown(dir), new Predicate<File>() {
+        return Sequencex.count(walkTopDown(dir), new Predicate<File>() {
             @Override
             public boolean accept(@NotNull File file) {
                 return !file.equals(dir) && filenameFilter.accept(file.getParentFile(), file.getName());
@@ -491,7 +492,7 @@ public class Filex {
     public static int listCountRecursively(@NotNull final File dir) {
         if (!dir.exists()) return 0;
         if (dir.isFile()) return 0;
-        return Collectionx.count(walkTopDown(dir), new Predicate<File>() {
+        return Sequencex.count(walkTopDown(dir), new Predicate<File>() {
             @Override
             public boolean accept(@NotNull File file) {
                 return !file.equals(dir);
@@ -774,7 +775,9 @@ public class Filex {
                     }
                 }
             });
-            for (File src : sequence) {
+            Iterator<File> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                File src = iterator.next();
                 if (!src.exists()) {
                     if (onError.onError(src, new NoSuchFileException(src, null, "The source file doesn't exist.")) == OnErrorAction.TERMINATE) {
                         return false;
@@ -936,7 +939,7 @@ public class Filex {
      * @return `true` if the file or directory is successfully deleted, `false` otherwise.
      */
     public static boolean deleteRecursively(@NotNull File file) {
-        return Collectionx.fold(walkBottomUp(file), true, new Operation<File, Boolean>() {
+        return Sequencex.fold(walkBottomUp(file), true, new Operation<File, Boolean>() {
             @NotNull
             @Override
             public Boolean operation(@NotNull Boolean aBoolean, @NotNull File file) {

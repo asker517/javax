@@ -1853,9 +1853,9 @@ class StringxTest {
         assertEquals(listOf<Char>(), Stringx.asIterable(null))
         assertEquals(listOf<Char>(), Stringx.asIterable(""))
 
-        assertThreeEquals("0,1,2,3,4,5,6,7,8,9", Stringx.asSequence(source).joinToString(","), source.asSequence().joinToString(","))
-        assertThreeEquals("", Stringx.asSequence(StringBuilder("")).joinToString(","), StringBuilder("").asSequence().joinToString(","))
-        assertEquals("", Stringx.asSequence(null).joinToString(","))
-        assertEquals("", Stringx.asSequence("").joinToString(","))
+        assertThreeEquals("0,1,2,3,4,5,6,7,8,9", Sequencex.joinToString(Stringx.asSequence(source), ","), source.asSequence().joinToString(","))
+        assertThreeEquals("", Sequencex.joinToString(Stringx.asSequence(StringBuilder("")), ","), StringBuilder("").asSequence().joinToString(","))
+        assertEquals("", Sequencex.joinToString(Stringx.asSequence(null), ","))
+        assertEquals("", Sequencex.joinToString(Stringx.asSequence(""), ","))
     }
 }

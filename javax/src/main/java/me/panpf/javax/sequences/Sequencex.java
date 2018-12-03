@@ -16,15 +16,12 @@
 
 package me.panpf.javax.sequences;
 
-import me.panpf.javax.util.Action;
-import me.panpf.javax.util.Transformer;
+import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -34,6 +31,26 @@ public class Sequencex {
     // TODO: 2018/11/28 测试
 
     private Sequencex() {
+    }
+
+
+    /* ******************************************* joinToArrayString ******************************************* */
+
+
+    /**
+     * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+     */
+    @NotNull
+    public static <T> String joinToArrayString(@Nullable Sequence<T> sequence, @Nullable Transformer<T, CharSequence> transform) {
+        return joinToString(sequence, ", ", "[", "]", -1, "...", transform);
+    }
+
+    /**
+     * Creates a string from all the elements separated using ', ' and using the given '[' and ']' if supplied.
+     */
+    @NotNull
+    public static <T> String joinToArrayString(@Nullable Sequence<T> sequence) {
+        return joinToString(sequence, ", ", "[", "]", -1, "...", null);
     }
 
 
@@ -79,9 +96,13 @@ public class Sequencex {
      * <p>
      * The operation is _terminal_.
      */
-    public static <T> void forEach(@NotNull Sequence<T> sequence, @NotNull Action<T> action) {
-        for (T aSequence : sequence) {
-            action.action(aSequence);
+    public static <T> void forEach(@Nullable Sequence<T> sequence, @NotNull Action<T> action) {
+        if (sequence != null) {
+            Iterator<T> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                action.action(element);
+            }
         }
     }
 
@@ -1361,25 +1382,27 @@ public class Sequencex {
      */
     public static <T, C extends Collection<T>> C toCollection(@Nullable Sequence<T> sequence, @NotNull C destination) {
         if (sequence != null) {
-            for (T item : sequence) {
-                destination.add(item);
+            Iterator<T> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                destination.add(element);
             }
         }
         return destination;
     }
-//
-//    /**
-//     * Returns a [HashSet] of all elements.
-//     *
-//     * The operation is _terminal_.
-//     */
-//    public fun <T> Sequence<T>.toHashSet(): HashSet<T> {
-//        return toCollection(HashSet<T>())
-//    }
-//
+
+    /**
+     * Returns a [HashSet] of all elements.
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> HashSet<T> toHashSet(@Nullable Sequence<T> sequence) {
+        return toCollection(sequence, new HashSet<T>());
+    }
+
     /**
      * Returns a [List] containing all elements.
-     *
+     * <p>
      * The operation is _terminal_.
      */
     public static <T> List<T> toList(@NotNull Sequence<T> sequence) {
@@ -1689,39 +1712,60 @@ public class Sequencex {
 //        return false
 //    }
 //
-//    /**
-//     * Returns the number of elements in this sequence.
-//     *
-//     * The operation is _terminal_.
-//     */
-//    public fun <T> Sequence<T>.count(): Int {
-//        var count = 0
-//        for (element in this) count++
-//        return count
-//    }
-//
-//    /**
-//     * Returns the number of elements matching the given [predicate].
-//     *
-//     * The operation is _terminal_.
-//     */
-//    public inline fun <T> Sequence<T>.count(predicate: (T) -> Boolean): Int {
-//        var count = 0
-//        for (element in this) if (predicate(element)) count++
-//        return count
-//    }
-//
-//    /**
-//     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
-//     *
-//     * The operation is _terminal_.
-//     */
-//    public inline fun <T, R> Sequence<T>.fold(initial: R, operation: (acc: R, T) -> R): R {
-//        var accumulator = initial
-//        for (element in this) accumulator = operation(accumulator, element)
-//        return accumulator
-//    }
-//
+
+    /**
+     * Returns the number of elements in this sequence.
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> int count(@Nullable Sequence<T> sequence) {
+        int count = 0;
+        if (sequence != null) {
+            Iterator<T> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                iterator.next();
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Returns the number of elements matching the given [predicate].
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> int count(@Nullable Sequence<T> sequence, @NotNull Predicate<T> predicate) {
+        int count = 0;
+        if (sequence != null) {
+            Iterator<T> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                if (predicate.accept(element)) count++;
+            }
+        }
+        return count;
+    }
+
+
+    /**
+     * Accumulates value starting with [initial] value and applying [operation] from left to right to current accumulator value and each element.
+     * <p>
+     * The operation is _terminal_.
+     */
+    @NotNull
+    public static <T, R> R fold(@Nullable Sequence<T> sequence, @NotNull R initial, @NotNull Operation<T, R> operation) {
+        R accumulator = initial;
+        if (sequence != null) {
+            Iterator<T> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                accumulator = operation.operation(accumulator, element);
+            }
+        }
+        return accumulator;
+    }
+
 //    /**
 //     * Accumulates value starting with [initial] value and applying [operation] from left to right
 //     * to current accumulator value and each element with its index in the original sequence.
@@ -2352,44 +2396,148 @@ public class Sequencex {
 //        }
 //    }
 //
-///**
-// * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-// *
-// * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-// * elements will be appended, followed by the [truncated] string (which defaults to "...").
-// *
-// * The operation is _terminal_.
-// *
-// * @sample samples.collections.Collections.Transformations.joinTo
-// */
-//    public fun <T, A : Appendable> Sequence<T>.joinTo(buffer: A, separator: CharSequence = ", ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): A {
-//        buffer.append(prefix)
-//        var count = 0
-//        for (element in this) {
-//            if (++count > 1) buffer.append(separator)
-//            if (limit < 0 || count <= limit) {
-//                buffer.appendElement(element, transform)
-//            } else break
-//        }
-//        if (limit >= 0 && count > limit) buffer.append(truncated)
-//        buffer.append(postfix)
-//        return buffer
-//    }
-//
-//    /**
-//     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
-//     *
-//     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
-//     * elements will be appended, followed by the [truncated] string (which defaults to "...").
-//     *
-//     * The operation is _terminal_.
-//     *
-//     * @sample samples.collections.Collections.Transformations.joinToString
-//     */
-//    public fun <T> Sequence<T>.joinToString(separator: CharSequence = ", ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
-//        return joinTo(StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString()
-//    }
-//
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T, A extends Appendable> A joinTo(@Nullable Sequence<T> sequence, @NotNull A buffer, @Nullable CharSequence separator,
+                                                     @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                                     @Nullable CharSequence truncated, @Nullable Transformer<T, CharSequence> transform) {
+        if (separator == null) separator = ", ";
+        if (prefix == null) prefix = "";
+        if (postfix == null) postfix = "";
+        if (truncated == null) truncated = "...";
+
+        try {
+            buffer.append(prefix);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int count = 0;
+        if (sequence != null) {
+            Iterator<T> iterator = sequence.iterator();
+            while (iterator.hasNext()) {
+                T element = iterator.next();
+                if (++count > 1) {
+                    try {
+                        buffer.append(separator);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (limit < 0 || count <= limit) {
+                    StringBuilderx.appendElement(buffer, element, transform);
+                } else {
+                    break;
+                }
+            }
+        }
+        if (limit >= 0 && count > limit) {
+            try {
+                buffer.append(truncated);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            buffer.append(postfix);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer;
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T, A extends Appendable> A joinTo(@Nullable Sequence<T> sequence, @NotNull A buffer, @Nullable Transformer<T, CharSequence> transform) {
+        return joinTo(sequence, buffer, null, null, null, -1, null, transform);
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T, A extends Appendable> A joinTo(@Nullable Sequence<T> sequence, @NotNull A buffer, @Nullable CharSequence separator) {
+        return joinTo(sequence, buffer, separator, null, null, -1, null, null);
+    }
+
+    /**
+     * Appends the string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T, A extends Appendable> A joinTo(@Nullable Sequence<T> sequence, @NotNull A buffer) {
+        return joinTo(sequence, buffer, null, null, null, -1, null, null);
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> String joinToString(@Nullable Sequence<T> sequence, @Nullable CharSequence separator,
+                                          @Nullable CharSequence prefix, @Nullable CharSequence postfix, int limit,
+                                          @Nullable CharSequence truncated, @Nullable Transformer<T, CharSequence> transform) {
+        return joinTo(sequence, new StringBuilder(), separator, prefix, postfix, limit, truncated, transform).toString();
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> String joinToString(@Nullable Sequence<T> sequence, @Nullable Transformer<T, CharSequence> transform) {
+        return joinTo(sequence, new StringBuilder(), null, null, null, -1, null, transform).toString();
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> String joinToString(@Nullable Sequence<T> sequence, @Nullable CharSequence separator) {
+        return joinTo(sequence, new StringBuilder(), separator, null, null, -1, null, null).toString();
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     * <p>
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     * <p>
+     * The operation is _terminal_.
+     */
+    public static <T> String joinToString(@Nullable Sequence<T> sequence) {
+        return joinTo(sequence, new StringBuilder(), null, null, null, -1, null, null).toString();
+    }
+
 
     /**
      * Creates an [Iterable] instance that wraps the original sequence returning its elements when being iterated.

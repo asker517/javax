@@ -31,7 +31,7 @@ import java.util.Iterator;
  * Sequence operations, like [Sequence.map], [Sequence.filter] etc, generally preserve that property of a sequence, and
  * again it's documented for an operation if it doesn't.
  */
-public interface Sequence<T> extends Iterable<T> {
+public interface Sequence<T> {
     /**
      * Returns an [Iterator] that returns the values from the sequence.
      * <p>
