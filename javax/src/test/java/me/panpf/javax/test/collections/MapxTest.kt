@@ -5,8 +5,12 @@ package me.panpf.javax.test.collections
 import me.panpf.javax.collections.Arrayx
 import me.panpf.javax.collections.Collectionx
 import me.panpf.javax.collections.Mapx
+import me.panpf.javax.lang.Classx
 import me.panpf.javax.lang.Stringx
+import me.panpf.javax.sequences.Sequencex
 import me.panpf.javax.test.Assertx.*
+import me.panpf.javax.util.DefaultValue
+import me.panpf.javax.util.Transformer
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
@@ -184,7 +188,7 @@ class MapxTest {
         assertEquals(4, map.size)
         assertAllNull(map["key5"], map["key6"])
         Mapx.putAll(map, Collectionx.asSequence(Collectionx.immutableListOf(me.panpf.javax.util.Pair("key5", "value5"), me.panpf.javax.util.Pair("key6", "value6"))))
-        Mapx.putAll(map, null as List<me.panpf.javax.util.Pair<String, String>>?)
+        Mapx.putAll(map, null as me.panpf.javax.sequences.Sequence<me.panpf.javax.util.Pair<String, String>>?)
         assertEquals(6, map.size)
         assertAllNotNull(map["key5"], map["key6"])
     }
@@ -364,6 +368,9 @@ class MapxTest {
             fail()
         } catch (e: Exception) {
         }
+//        val defaultValue: DefaultValue<String> = DefaultValue { "valueDefault" }
+//        val method = Classx.getMethodWithParent(Mapx::class.java, "getOrElseNullable", Map::class.java, Object::class.java, DefaultValue::class.java)
+//        assertEquals("valueDefault", Classx.callStaticMethod(method, map, "key2", defaultValue))
         try {
             Mapx.getValue(null as Map<String, String>?, "key1")
             fail()
@@ -597,13 +604,158 @@ class MapxTest {
     }
 
     @Test
+    fun testToPair() {
+        val map = Mapx.builder("3", "333").put("1", "111").put("a", "222").buildSortedMap()
+        assertThreeEquals("(1, 111)",
+                Mapx.toPair(map.entries.first()).toString(),
+                map.entries.first().toPair().toString())
+    }
+
+    @Test
+    fun testToMap() {
+        assertThreeEquals(mutableMapOf<String, String>(),
+                Mapx.toMap(listOf<me.panpf.javax.util.Pair<String, String>>()),
+                listOf<kotlin.Pair<String, String>>().toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").buildLinkedHashMap(),
+                Mapx.toMap(listOf(me.panpf.javax.util.Pair("key1", "value1"))),
+                listOf(kotlin.Pair("key1", "value1")).toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap(listOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2"))),
+                listOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2")).toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap((TestIterable(listOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2"))))),
+                TestIterable(listOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2"))).toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap(listOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2")), LinkedHashMap<String, String>()),
+                listOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2")).toMap(LinkedHashMap()))
+
+        assertThreeEquals(mutableMapOf<String, String>(),
+                Mapx.toMap(arrayOf<me.panpf.javax.util.Pair<String, String>>()),
+                arrayOf<kotlin.Pair<String, String>>().toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").buildLinkedHashMap(),
+                Mapx.toMap(arrayOf(me.panpf.javax.util.Pair("key1", "value1"))),
+                arrayOf(kotlin.Pair("key1", "value1")).toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap(arrayOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2"))),
+                arrayOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2")).toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap(arrayOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2")), LinkedHashMap<String, String>()),
+                arrayOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2")).toMap(LinkedHashMap()))
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap(Collectionx.asSequence(listOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2")))),
+                listOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2")).asSequence().toMap())
+
+        assertThreeEquals(Mapx.builder("key1", "value1").put("key2", "value2").buildLinkedHashMap(),
+                Mapx.toMap(Collectionx.asSequence(listOf(me.panpf.javax.util.Pair("key1", "value1"), me.panpf.javax.util.Pair("key2", "value2"))), LinkedHashMap()),
+                listOf(kotlin.Pair("key1", "value1"), kotlin.Pair("key2", "value2")).asSequence().toMap(LinkedHashMap()))
+
+        val map = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
+        assertThreeEquals(map, Mapx.toMap(map), map.toMap())
+        assertThreeEquals(true, Mapx.toMap(map) !== map, map.toMap() !== map)
+        assertThreeEquals(LinkedHashMap<String, String>(), Mapx.toMap(LinkedHashMap<String, String>()), LinkedHashMap<String, String>().toMap())
+        assertThreeEquals(LinkedHashMap<String, String>(), Mapx.toMap(null as LinkedHashMap<String, String>?), LinkedHashMap<String, String>().toMap())
+
+        assertThreeEquals(map, Mapx.toMap(map), map.toMap())
+        assertThreeEquals(true, Mapx.toMap(map, LinkedHashMap()) !== map, map.toMap(LinkedHashMap()) !== map)
+        assertThreeEquals(LinkedHashMap<String, String>(),
+                Mapx.toMap(LinkedHashMap<String, String>(), LinkedHashMap()),
+                LinkedHashMap<String, String>().toMap(LinkedHashMap()))
+        assertThreeEquals(LinkedHashMap<String, String>(),
+                Mapx.toMap(null as LinkedHashMap<String, String>?, LinkedHashMap()),
+                LinkedHashMap<String, String>().toMap(LinkedHashMap()))
+    }
+
+    @Test
+    fun testToList() {
+        val map = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
+        assertThreeEquals(listOf(kotlin.Pair("1", "111"), kotlin.Pair("2", "222"), kotlin.Pair("3", "333")).toString(),
+                Mapx.toList(map).toString(),
+                map.toList().toString())
+
+        assertThreeEquals(listOf<kotlin.Pair<String, String>>().toString(),
+                Mapx.toList(LinkedHashMap<String, String>()).toString(),
+                LinkedHashMap<String, String>().toList().toString())
+
+        assertThreeEquals(listOf<kotlin.Pair<String, String>>().toString(),
+                Mapx.toList(null as LinkedHashMap<String, String>?).toString(),
+                LinkedHashMap<String, String>().toList().toString())
+    }
+
+    @Test
+    fun testAs() {
+        val map = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
+        assertThreeEquals(listOf(kotlin.Pair("1", "111"), kotlin.Pair("2", "222"), kotlin.Pair("3", "333")).toString(),
+                Mapx.asIterable(map).map { kotlin.Pair(it.key, it.value) }.toString(),
+                map.asIterable().map { kotlin.Pair(it.key, it.value) }.toString())
+
+        assertThreeEquals(listOf(kotlin.Pair("1", "111"), kotlin.Pair("2", "222"), kotlin.Pair("3", "333")).toString(),
+                Sequencex.toList(Sequencex.map(Mapx.asSequence(map), Transformer<Map.Entry<String, String>, kotlin.Pair<String, String>> { kotlin.Pair(it.key, it.value) })).toString(),
+                map.asSequence().map { kotlin.Pair(it.key, it.value) }.toList().toString())
+    }
+
+    @Test
     fun testMap() {
         val map = Mapx.builder("3", "333").put("1", "111").put("2", "222").buildTreeMap()
 
-        assertThreeEquals("1, 2, 3", Mapx.map(map) { entry -> entry.key }.joinToString(), map.map { entry -> entry.key }.joinToString())
+        assertThreeEquals(Mapx.builder("3", 3).put("1", 3).put("2", 3).buildTreeMap(),
+                Mapx.mapValuesTo(map, LinkedHashMap<String, Int>()) { it.value.length },
+                map.mapValuesTo(LinkedHashMap<String, Int>()) { it.value.length })
 
-        assertThreeEquals("1, 2, 3", Mapx.mapTo(map, ArrayList<String>()) { entry -> entry.key }.joinToString(),
-                map.mapTo(ArrayList<String>()) { entry -> entry.key }.joinToString())
+        assertThreeEquals(LinkedHashMap<String, Int>(),
+                Mapx.mapValuesTo(null as LinkedHashMap<String, String>?, LinkedHashMap<String, Int>()) { it.value.length },
+                LinkedHashMap<String, String>().mapValuesTo(LinkedHashMap()) { it.value.length })
+
+        assertThreeEquals(Mapx.builder("3", 3).put("1", 3).put("2", 3).buildTreeMap(),
+                Mapx.mapValues(map) { it.value.length },
+                map.mapValues { it.value.length })
+
+        assertThreeEquals(Mapx.builder(333, "333").put(111, "111").put(222, "222").buildTreeMap(),
+                Mapx.mapKeysTo(map, LinkedHashMap<Int, String>()) { (it.key + it.key + it.key).toInt() },
+                map.mapKeysTo(LinkedHashMap<Int, String>()) { (it.key + it.key + it.key).toInt() })
+
+        assertThreeEquals(LinkedHashMap<String, Int>(),
+                Mapx.mapKeysTo(null as LinkedHashMap<String, String>?, LinkedHashMap<Int, String>()) { (it.key + it.key + it.key).toInt() },
+                LinkedHashMap<String, String>().mapKeysTo(LinkedHashMap()) { (it.key + it.key + it.key).toInt() })
+
+        assertThreeEquals(Mapx.builder(333, "333").put(111, "111").put(222, "222").buildTreeMap(),
+                Mapx.mapKeys(map) { (it.key + it.key + it.key).toInt() },
+                map.mapKeys { (it.key + it.key + it.key).toInt() })
+
+        assertThreeEquals("1, 2, 3",
+                Mapx.mapTo(map, ArrayList<String>()) { it.key }.joinToString(),
+                map.mapTo(ArrayList<String>()) { it.key }.joinToString())
+
+        assertThreeEquals("1, 2, 3",
+                Mapx.map(map) { it.key }.joinToString(),
+                map.map { it.key }.joinToString())
+
+        assertThreeEquals("1, 3",
+                Mapx.mapNotNullTo(map, ArrayList()) { if (it.key != "2") it.key else null }.joinToString(),
+                map.mapNotNullTo(ArrayList()) { if (it.key != "2") it.key else null }.joinToString())
+
+        assertThreeEquals("1, 3",
+                Mapx.mapNotNull(map) { if (it.key != "2") it.key else null }.joinToString(),
+                map.mapNotNull { if (it.key != "2") it.key else null }.joinToString())
+
+        assertThreeEquals("1, 1, 1, 2, 2, 2, 3, 3, 3",
+                Mapx.flatMapTo(map, ArrayList<String>()) { it.value.toList().map { it.toString() } }.joinToString(),
+                map.flatMapTo(ArrayList()) { it.value.toList().map { it.toString() } }.joinToString())
+
+        assertThreeEquals("",
+                Mapx.flatMapTo(null as LinkedHashMap<String, String>?, ArrayList<String>()) { it.value.toList().map { it.toString() } }.joinToString(),
+                LinkedHashMap<String, String>().flatMapTo(ArrayList()) { it.value.toList().map { it.toString() } }.joinToString())
+
+        assertThreeEquals("1, 1, 1, 2, 2, 2, 3, 3, 3",
+                Mapx.flatMap(map) { it.value.toList().map { it.toString() } }.joinToString(),
+                map.flatMap { it.value.toList().map { it.toString() } }.joinToString())
     }
 
     @Test
@@ -614,5 +766,10 @@ class MapxTest {
         assertEquals((101 + 101 / 3).toLong(), Mapx.capacity(101).toLong())
         assertEquals((Mapx.INT_MAX_POWER_OF_TWO - 1 + (Mapx.INT_MAX_POWER_OF_TWO - 1) / 3).toLong(), Mapx.capacity(Mapx.INT_MAX_POWER_OF_TWO - 1).toLong())
         assertEquals(Integer.MAX_VALUE.toLong(), Mapx.capacity(Mapx.INT_MAX_POWER_OF_TWO).toLong())
+    }
+
+    private class TestIterable<T>(val list: List<T>) : Iterable<T>{
+
+        override fun iterator(): Iterator<T> = list.iterator()
     }
 }

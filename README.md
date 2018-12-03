@@ -61,7 +61,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * removeAll, partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains,
     * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
     * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle, asSequence
-* Map: [Mapx.java] | [Mapx.kt] ([Test][MapxTest.kt])
+* Map: [Mapx.java] ([Test][MapxTest.java]) | [Mapx.kt] ([Test][MapxTest.kt])
     * builder, immutableMapOf, mutableMapOf, hashMapOf, linkedMapOf, sortedMapOf, capacity, getOrPut,
     * plusAssign, forEach, map, mapTo
 
@@ -219,7 +219,7 @@ Please view the [CHANGELOG.md] file
 [Collectionx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Collectionx.kt
 [CollectionxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/CollectionxTest.kt
 
-[Mapx.java]: javax/src/main/java/me/panpf/javax/collections/Map.java
+[Mapx.java]: javax/src/main/java/me/panpf/javax/collections/Mapx.java
 [MapxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/MapxTest.kt
 [Mapx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Mapx.kt
 [MapxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/MapxTest.kt

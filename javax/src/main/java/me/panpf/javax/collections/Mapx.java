@@ -483,36 +483,36 @@ public class Mapx {
         return v != null ? v : defaultValue.get();
     }
 
-    @NotNull
-    private static <K, V> V getOrElseNullable(@Nullable Map<K, V> map, @NotNull K key, @NotNull DefaultValue<V> defaultValue) {
-        V value = map != null ? map.get(key) : null;
-        if (value == null && !containsKey(map, key)) {
-            return defaultValue.get();
-        } else {
-            //noinspection ConstantConditions
-            return value;
-        }
-    }
-
-    /**
-     * Returns the value for the given key, or the implicit default value for this map.
-     * By default no implicit value is provided for maps and a [NoSuchElementException] is thrown.
-     * To create a map with implicit default value use [withDefault] method.
-     *
-     * @throws NoSuchElementException when the map doesn't contain a value for the specified key and no implicit default was provided for that map.
-     */
-    @NotNull
-    private static <K, V> V getOrImplicitDefault(@Nullable Map<K, V> map, @NotNull K key) {
-//        if (this is MapWithDefault)
-//        return this.getOrImplicitDefault(key)
-        return getOrElseNullable(map, key, new DefaultValue<V>() {
-            @NotNull
-            @Override
-            public V get() {
-                throw new NoSuchElementException("Key $key is missing in the map.");
-            }
-        });
-    }
+//    @NotNull
+//    private static <K, V> V getOrElseNullable(@Nullable Map<K, V> map, @NotNull K key, @NotNull DefaultValue<V> defaultValue) {
+//        V value = map != null ? map.get(key) : null;
+//        if (value == null && !containsKey(map, key)) {
+//            return defaultValue.get();
+//        } else {
+//            //noinspection ConstantConditions
+//            return value;
+//        }
+//    }
+//
+//    /**
+//     * Returns the value for the given key, or the implicit default value for this map.
+//     * By default no implicit value is provided for maps and a [NoSuchElementException] is thrown.
+//     * To create a map with implicit default value use [withDefault] method.
+//     *
+//     * @throws NoSuchElementException when the map doesn't contain a value for the specified key and no implicit default was provided for that map.
+//     */
+//    @NotNull
+//    private static <K, V> V getOrImplicitDefault(@Nullable Map<K, V> map, @NotNull K key) {
+////        if (this is MapWithDefault)
+////        return this.getOrImplicitDefault(key)
+//        return getOrElseNullable(map, key, new DefaultValue<V>() {
+//            @NotNull
+//            @Override
+//            public V get() {
+//                throw new NoSuchElementException("Key " + key + " is missing in the map.");
+//            }
+//        });
+//    }
 
     /**
      * Returns the value for the given [key] or throws an exception if there is no such key in the map.
@@ -525,7 +525,13 @@ public class Mapx {
      */
     @NotNull
     public static <K, V> V getValue(@Nullable Map<K, V> map, @NotNull K key) {
-        return getOrImplicitDefault(map, key);
+//        return getOrImplicitDefault(map, key);
+        V value = map != null ? map.get(key) : null;
+        if (value == null) {
+            throw new NoSuchElementException("Key " + key + " is missing in the map.");
+        } else {
+            return value;
+        }
     }
 
     /**
@@ -827,6 +833,15 @@ public class Mapx {
     }
 
     /**
+     * Populates and returns the [destination] mutable map with key-value pairs from the given collection of pairs.
+     */
+    @NotNull
+    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Iterable<Pair<K, V>> pairs, @NotNull M destination) {
+        putAll(destination, pairs);
+        return destination;
+    }
+
+    /**
      * Returns a new map containing all key-value pairs from the given collection of pairs.
      * <p>
      * The returned map preserves the entry iteration order of the original collection.
@@ -848,10 +863,9 @@ public class Mapx {
     }
 
     /**
-     * Populates and returns the [destination] mutable map with key-value pairs from the given collection of pairs.
+     * Populates and returns the [destination] mutable map with key-value pairs from the given array of pairs.
      */
-    @NotNull
-    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Iterable<Pair<K, V>> pairs, @NotNull M destination) {
+    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Pair<K, V>[] pairs, @NotNull M destination) {
         putAll(destination, pairs);
         return destination;
     }
@@ -872,14 +886,14 @@ public class Mapx {
         }
     }
 
+
     /**
-     * Populates and returns the [destination] mutable map with key-value pairs from the given array of pairs.
+     * Populates and returns the [destination] mutable map with key-value pairs from the given sequence of pairs.
      */
-    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Pair<K, V>[] pairs, @NotNull M destination) {
+    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Sequence<Pair<K, V>> pairs, @NotNull M destination) {
         putAll(destination, pairs);
         return destination;
     }
-
 
     /**
      * Returns a new map containing all key-value pairs from the given sequence of pairs.
@@ -891,10 +905,11 @@ public class Mapx {
     }
 
     /**
-     * Populates and returns the [destination] mutable map with key-value pairs from the given sequence of pairs.
+     * Populates and returns the [destination] mutable map with key-value pairs from the given map.
      */
-    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Sequence<Pair<K, V>> pairs, @NotNull M destination) {
-        putAll(destination, pairs);
+    @NotNull
+    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Map<K, V> map, @NotNull M destination) {
+        if (map != null) destination.putAll(map);
         return destination;
     }
 
@@ -914,29 +929,20 @@ public class Mapx {
         }
     }
 
-    /**
-     * Populates and returns the [destination] mutable map with key-value pairs from the given map.
-     */
-    @NotNull
-    public static <K, V, M extends Map<K, V>> M toMap(@Nullable Map<K, V> map, @NotNull M destination) {
-        if (map != null) destination.putAll(map);
-        return destination;
-    }
-
-    /**
-     * creates a singleton copy of map, if there is specialization available in target platform, otherwise returns itself
-     */
-    public static <K, V> Map<K, V> toSingletonMapOrSelf(Map<K, V> map) {
-        return toSingletonMap(map);
-    }
-
-    /**
-     * creates a singleton copy of map
-     */
-    public static <K, V> Map<K, V> toSingletonMap(@NotNull Map<K, V> map) {
-        Map.Entry<K, V> entry = map.entrySet().iterator().next();
-        return Collections.singletonMap(entry.getKey(), entry.getValue());
-    }
+//    /**
+//     * creates a singleton copy of map, if there is specialization available in target platform, otherwise returns itself
+//     */
+//    public static <K, V> Map<K, V> toSingletonMapOrSelf(Map<K, V> map) {
+//        return toSingletonMap(map);
+//    }
+//
+//    /**
+//     * creates a singleton copy of map
+//     */
+//    public static <K, V> Map<K, V> toSingletonMap(@NotNull Map<K, V> map) {
+//        Map.Entry<K, V> entry = map.entrySet().iterator().next();
+//        return Collections.singletonMap(entry.getKey(), entry.getValue());
+//    }
 
 
     /**
@@ -946,16 +952,19 @@ public class Mapx {
         if (map == null || map.size() == 0) return Collectionx.arrayListOf();
 
         Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
-        if (!iterator.hasNext()) return Collectionx.arrayListOf();
-
-        Map.Entry<K, V> first = iterator.next();
-        if (!iterator.hasNext()) return Collectionx.mutableListOf(toPair(first));
+//        if (!iterator.hasNext()) return Collectionx.arrayListOf();
+//
+//        Map.Entry<K, V> first = iterator.next();
+//        if (!iterator.hasNext()) return Collectionx.arrayListOf(toPair(first));
 
         ArrayList<Pair<K, V>> result = new ArrayList<>(count(map));
-        result.add(toPair(first));
-        do {
+//        result.add(toPair(first));
+//        do {
+//            result.add(toPair(iterator.next()));
+//        } while (iterator.hasNext());
+        while (iterator.hasNext()) {
             result.add(toPair(iterator.next()));
-        } while (iterator.hasNext());
+        }
         return result;
     }
 
@@ -986,6 +995,7 @@ public class Mapx {
      * Populates the given [destination] map with entries having the keys of this map and the values obtained
      * by applying the [transform] function to each entry in this [Map].
      */
+    @NotNull
     public static <K, V, R, M extends Map<K, R>> M mapValuesTo(@Nullable Map<K, V> map, @NotNull M destination, @NotNull Transformer<Map.Entry<K, V>, R> transform) {
         return Collectionx.associateByTo(map != null ? map.entrySet() : null, destination, new Transformer<Map.Entry<K, V>, K>() {
             @NotNull
@@ -995,6 +1005,18 @@ public class Mapx {
             }
         }, transform);
     }
+
+    /**
+     * Returns a new map with entries having the keys of this map and the values obtained by applying the [transform]
+     * function to each entry in this [Map].
+     * <p>
+     * The returned map preserves the entry iteration order of the original map.
+     */
+    @NotNull
+    public static <K, V, R> Map<K, R> mapValues(@Nullable Map<K, V> map, @NotNull Transformer<Map.Entry<K, V>, R> transform) {
+        return mapValuesTo(map, new LinkedHashMap<K, R>(capacity(count(map))), transform); // .optimizeReadOnlyMap()
+    }
+
 
     /**
      * Populates the given [destination] map with entries having the keys obtained
@@ -1015,17 +1037,6 @@ public class Mapx {
     }
 
     /**
-     * Returns a new map with entries having the keys of this map and the values obtained by applying the [transform]
-     * function to each entry in this [Map].
-     * <p>
-     * The returned map preserves the entry iteration order of the original map.
-     */
-    @NotNull
-    public static <K, V, R> Map<K, R> mapValues(@Nullable Map<K, V> map, @NotNull Transformer<Map.Entry<K, V>, R> transform) {
-        return mapValuesTo(map, new LinkedHashMap<K, R>(capacity(count(map))), transform); // .optimizeReadOnlyMap()
-    }
-
-    /**
      * Returns a new Map with entries having the keys obtained by applying the [transform] function to each entry in this
      * [Map] and the values of this map.
      * <p>
@@ -1041,27 +1052,16 @@ public class Mapx {
 
 
     /**
-     * Returns a single list of all elements yielded from results of [transform] function being invoked on each entry of original map.
+     * Applies the given [transform] function to each entry of the original map
+     * and appends the results to the given [destination].
      */
     @NotNull
-    public static <K, V, R> List<R> flatMap(@Nullable Map<K, V> map, @NotNull Transformer<Map.Entry<K, V>, Iterable<R>> transform) {
-        return flatMapTo(map, new ArrayList<R>(), transform);
-    }
-
-    /**
-     * Appends all elements yielded from results of [transform] function being invoked on each entry of original map, to the given [destination].
-     */
-    @NotNull
-    public static <K, V, R, C extends Collection<R>> C flatMapTo(@Nullable Map<K, V> map, @NotNull C destination, Transformer<Map.Entry<K, V>, Iterable<R>> transform) {
-        if (map != null) {
-            for (Map.Entry<K, V> element : map.entrySet()) {
-                Iterable<R> list = transform.transform(element);
-                Collectionx.addAll(destination, list);
-            }
+    public static <K, V, R, C extends Collection<R>> C mapTo(@NotNull Map<K, V> map, @NotNull C destination, @NotNull Transformer<Map.Entry<K, V>, R> transformer) {
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            destination.add(transformer.transform(entry));
         }
         return destination;
     }
-
 
     /**
      * Returns a list containing the results of applying the given [transform] function
@@ -1072,13 +1072,6 @@ public class Mapx {
         return mapTo(map, new ArrayList<R>(count(map)), transformer);
     }
 
-    /**
-     * Returns a list containing only the non-null results of applying the given [transform] function
-     * to each entry in the original map.
-     */
-    public static <K, V, R> List<R> mapNotNull(@Nullable Map<K, V> map, @NotNull NullableTransformer<Map.Entry<K, V>, R> transform) {
-        return mapNotNullTo(map, new ArrayList<R>(), transform);
-    }
 
     /**
      * Applies the given [transform] function to each entry in the original map
@@ -1097,15 +1090,34 @@ public class Mapx {
     }
 
     /**
-     * Applies the given [transform] function to each entry of the original map
-     * and appends the results to the given [destination].
+     * Returns a list containing only the non-null results of applying the given [transform] function
+     * to each entry in the original map.
+     */
+    public static <K, V, R> List<R> mapNotNull(@Nullable Map<K, V> map, @NotNull NullableTransformer<Map.Entry<K, V>, R> transform) {
+        return mapNotNullTo(map, new ArrayList<R>(), transform);
+    }
+
+
+    /**
+     * Appends all elements yielded from results of [transform] function being invoked on each entry of original map, to the given [destination].
      */
     @NotNull
-    public static <K, V, R, C extends Collection<R>> C mapTo(@NotNull Map<K, V> map, @NotNull C destination, @NotNull Transformer<Map.Entry<K, V>, R> transformer) {
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            destination.add(transformer.transform(entry));
+    public static <K, V, R, C extends Collection<R>> C flatMapTo(@Nullable Map<K, V> map, @NotNull C destination, Transformer<Map.Entry<K, V>, Iterable<R>> transform) {
+        if (map != null) {
+            for (Map.Entry<K, V> element : map.entrySet()) {
+                Iterable<R> list = transform.transform(element);
+                Collectionx.addAll(destination, list);
+            }
         }
         return destination;
+    }
+
+    /**
+     * Returns a single list of all elements yielded from results of [transform] function being invoked on each entry of original map.
+     */
+    @NotNull
+    public static <K, V, R> List<R> flatMap(@Nullable Map<K, V> map, @NotNull Transformer<Map.Entry<K, V>, Iterable<R>> transform) {
+        return flatMapTo(map, new ArrayList<R>(), transform);
     }
 
 
