@@ -60,7 +60,7 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * sortedSetOf, filter, map, flatMap, join, count, average, sum, first, last, find, get, max, min, addAll,
     * removeAll, partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains,
     * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
-    * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle, asSequence
+    * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle, asSequence, zip, zipWithNext
 * Grouping: [Groupingx.java]
     * aggregate, aggregateTo, fold, foldTo, fold, foldTo, reduce, reduceTo, eachCount, eachCountTo
 * Map: [Mapx.java] ([Test][MapxTest.java]) | [Mapx.kt] ([Test][MapxTest.kt])

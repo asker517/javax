@@ -3503,8 +3503,6 @@ public class Collectionx {
         };
     }
 
-    // TODO 转成 java
-
 
     /* ******************************************* window ******************************************* */
 
@@ -3590,92 +3588,105 @@ public class Collectionx {
     /* ******************************************* zip ******************************************* */
 
 
-//    /**
-//     * Returns a list of pairs built from the elements of `this` collection and the [other] array with the same index.
-//     * The returned list has length of the shortest collection.
-//     *
-//     * @sample samples.collections.Iterables.Operations.zipIterable
-//     */
-//    public infix fun <T, R> Iterable<T>.zip(other: Array<out R>): List<Pair<T, R>> {
-//        return zip(other) { t1, t2 -> t1 to t2 }
-//    }
-//
-//    /**
-//     * Returns a list of values built from the elements of `this` collection and the [other] array with the same index
-//     * using the provided [transform] function applied to each pair of elements.
-//     * The returned list has length of the shortest collection.
-//     *
-//     * @sample samples.collections.Iterables.Operations.zipIterableWithTransform
-//     */
-//    public inline fun <T, R, V> Iterable<T>.zip(other: Array<out R>, transform: (a: T, b: R) -> V): List<V> {
-//        val arraySize = other.size
-//        val list = ArrayList<V>(minOf(collectionSizeOrDefault(10), arraySize))
-//        var i = 0
-//        for (element in this) {
-//            if (i >= arraySize) break
-//            list.add(transform(element, other[i++]))
-//        }
-//        return list
-//    }
-//
-//    /**
-//     * Returns a list of pairs built from the elements of `this` collection and [other] collection with the same index.
-//     * The returned list has length of the shortest collection.
-//     *
-//     * @sample samples.collections.Iterables.Operations.zipIterable
-//     */
-//    public infix fun <T, R> Iterable<T>.zip(other: Iterable<R>): List<Pair<T, R>> {
-//        return zip(other) { t1, t2 -> t1 to t2 }
-//    }
-//
-//    /**
-//     * Returns a list of values built from the elements of `this` collection and the [other] collection with the same index
-//     * using the provided [transform] function applied to each pair of elements.
-//     * The returned list has length of the shortest collection.
-//     *
-//     * @sample samples.collections.Iterables.Operations.zipIterableWithTransform
-//     */
-//    public inline fun <T, R, V> Iterable<T>.zip(other: Iterable<R>, transform: (a: T, b: R) -> V): List<V> {
-//        val first = iterator()
-//        val second = other.iterator()
-//        val list = ArrayList<V>(minOf(collectionSizeOrDefault(10), other.collectionSizeOrDefault(10)))
-//        while (first.hasNext() && second.hasNext()) {
-//            list.add(transform(first.next(), second.next()))
-//        }
-//        return list
-//    }
-//
-///**
-// * Returns a list of pairs of each two adjacent elements in this collection.
-// *
-// * The returned list is empty if this collection contains less than two elements.
-// *
-// * @sample samples.collections.Collections.Transformations.zipWithNext
-// */
-//    @SinceKotlin("1.2")
-//    public fun <T> Iterable<T>.zipWithNext(): List<Pair<T, T>> {
-//        return zipWithNext { a, b -> a to b }
-//    }
-//
-///**
-// * Returns a list containing the results of applying the given [transform] function
-// * to an each pair of two adjacent elements in this collection.
-// *
-// * The returned list is empty if this collection contains less than two elements.
-// *
-// * @sample samples.collections.Collections.Transformations.zipWithNextToFindDeltas
-// */
-//    @SinceKotlin("1.2")
-//    public inline fun <T, R> Iterable<T>.zipWithNext(transform: (a: T, b: T) -> R): List<R> {
-//        val iterator = iterator()
-//        if (!iterator.hasNext()) return emptyList()
-//        val result = mutableListOf<R>()
-//        var current = iterator.next()
-//        while (iterator.hasNext()) {
-//            val next = iterator.next()
-//            result.add(transform(current, next))
-//            current = next
-//        }
-//        return result
-//    }
+    /**
+     * Returns a list of pairs built from the elements of `this` collection and the [other] array with the same index.
+     * The returned list has length of the shortest collection.
+     */
+    @NotNull
+    public static <T, R> List<Pair<T, R>> zip(@NotNull Iterable<T> iterable, @NotNull R[] other) {
+        return zip(iterable, other, new Transformer2<T, R, Pair<T, R>>() {
+            @NotNull
+            @Override
+            public Pair<T, R> transform(@NotNull T t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of values built from the elements of `this` collection and the [other] array with the same index
+     * using the provided [transform] function applied to each pair of elements.
+     * The returned list has length of the shortest collection.
+     */
+    @NotNull
+    public static <T, R, V> List<V> zip(@NotNull Iterable<T> iterable, @NotNull R[] other, @NotNull Transformer2<T, R, V> transform) {
+        int arraySize = other.length;
+        List<V> list = new ArrayList<V>(Math.min(collectionSizeOrDefault(iterable, 10), arraySize));
+        int i = 0;
+        for (T element : iterable) {
+            if (i >= arraySize) {
+                break;
+            } else {
+                list.add(transform.transform(element, other[i++]));
+            }
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of pairs built from the elements of `this` collection and [other] collection with the same index.
+     * The returned list has length of the shortest collection.
+     */
+    @NotNull
+    public static <T, R> List<Pair<T, R>> zip(@NotNull Iterable<T> iterable, @NotNull Iterable<R> other) {
+        return zip(iterable, other, new Transformer2<T, R, Pair<T, R>>() {
+            @NotNull
+            @Override
+            public Pair<T, R> transform(@NotNull T t, @NotNull R r) {
+                return Pair.of(t, r);
+            }
+        });
+    }
+
+    /**
+     * Returns a list of values built from the elements of `this` collection and the [other] collection with the same index
+     * using the provided [transform] function applied to each pair of elements.
+     * The returned list has length of the shortest collection.
+     */
+    @NotNull
+    public static <T, R, V> List<V> zip(@NotNull Iterable<T> iterable, Iterable<R> other, @NotNull Transformer2<T, R, V> transform) {
+        Iterator<T> first = iterable.iterator();
+        Iterator<R> second = other.iterator();
+        List<V> list = new ArrayList<V>(Math.min(collectionSizeOrDefault(iterable, 10), collectionSizeOrDefault(other, 10)));
+        while (first.hasNext() && second.hasNext()) {
+            list.add(transform.transform(first.next(), second.next()));
+        }
+        return list;
+    }
+
+    /**
+     * Returns a list of pairs of each two adjacent elements in this collection.
+     * <p>
+     * The returned list is empty if this collection contains less than two elements.
+     */
+    @NotNull
+    public static <T> List<Pair<T, T>> zipWithNext(@NotNull Iterable<T> iterable) {
+        return zipWithNext(iterable, new Transformer2<T, T, Pair<T, T>>() {
+            @NotNull
+            @Override
+            public Pair<T, T> transform(@NotNull T t, @NotNull T t2) {
+                return Pair.of(t, t2);
+            }
+        });
+    }
+
+    /**
+     * Returns a list containing the results of applying the given [transform] function
+     * to an each pair of two adjacent elements in this collection.
+     * <p>
+     * The returned list is empty if this collection contains less than two elements.
+     */
+    @NotNull
+    public static <T, R> List<R> zipWithNext(@NotNull Iterable<T> iterable, @NotNull Transformer2<T, T, R> transform) {
+        Iterator<T> iterator = iterable.iterator();
+        if (!iterator.hasNext()) return Collectionx.mutableListOf();
+        List<R> result = Collectionx.mutableListOf();
+        T current = iterator.next();
+        while (iterator.hasNext()) {
+            T next = iterator.next();
+            result.add(transform.transform(current, next));
+            current = next;
+        }
+        return result;
+    }
 }
