@@ -16,261 +16,310 @@
 
 package me.panpf.javax.collections;
 
+import me.panpf.javax.util.Action;
+import me.panpf.javax.util.Premisex;
+import me.panpf.javax.util.Transformer;
+import me.panpf.javax.util.Transformer2;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Map;
+
 public class Groupingx {
     // TODO: 2018/11/28 测试
-    // TODO: 2018/11/26 转换成 java
-//    /**
-//     * Represents a source of elements with a [keyOf] function, which can be applied to each element to get its key.
-//     *
-//     * A [Grouping] structure serves as an intermediate step in group-and-fold operations:
-//     * they group elements by their keys and then fold each group with some aggregating operation.
-//     *
-//     * It is created by attaching `keySelector: (T) -> K` function to a source of elements.
-//     * To get an instance of [Grouping] use one of `groupingBy` extension functions:
-//     * - [Iterable.groupingBy]
-//     * - [Sequence.groupingBy]
-//     * - [Array.groupingBy]
-//     * - [CharSequence.groupingBy]
-//     *
-//     * For the list of group-and-fold operations available, see the [extension functions](#extension-functions) for `Grouping`.
-//     */
-//    @SinceKotlin("1.1")
-//    public interface Grouping<T, out K> {
-//        /** Returns an [Iterator] over the elements of the source of this grouping. */
-//        fun sourceIterator(): Iterator<T>
-//        /** Extracts the key of an [element]. */
-//        fun keyOf(element: T): K
-//    }
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
-// * passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
-// *
-// * The key for each element is provided by the [Grouping.keyOf] function.
-// *
-// * @param operation function is invoked on each element with the following parameters:
-// *  - `key`: the key of the group this element belongs to;
-// *  - `accumulator`: the current value of the accumulator of the group, can be `null` if it's the first `element` encountered in the group;
-// *  - `element`: the element from the source being aggregated;
-// *  - `first`: indicates whether it's the first `element` encountered in the group.
-// *
-// * @return a [Map] associating the key of each group with the result of aggregation of the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <T, K, R> Grouping<T, K>.aggregate(
-//    operation: (key: K, accumulator: R?, element: T, first: Boolean) -> R
-//): Map<K, R> {
-//        return aggregateTo(mutableMapOf<K, R>(), operation)
-//    }
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
-// * passing the previously accumulated value and the current element as arguments,
-// * and stores the results in the given [destination] map.
-// *
-// * The key for each element is provided by the [Grouping.keyOf] function.
-// *
-// * @param operation a function that is invoked on each element with the following parameters:
-// *  - `key`: the key of the group this element belongs to;
-// *  - `accumulator`: the current value of the accumulator of the group, can be `null` if it's the first `element` encountered in the group;
-// *  - `element`: the element from the source being aggregated;
-// *  - `first`: indicates whether it's the first `element` encountered in the group.
-// *
-// * If the [destination] map already has a value corresponding to some key,
-// * then the elements being aggregated for that key are never considered as `first`.
-// *
-// * @return the [destination] map associating the key of each group with the result of aggregation of the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <T, K, R, M : MutableMap<in K, R>> Grouping<T, K>.aggregateTo(
-//    destination: M,
-//    operation: (key: K, accumulator: R?, element: T, first: Boolean) -> R
-//): M {
-//        for (e in this.sourceIterator()) {
-//            val key = keyOf(e)
-//            val accumulator = destination[key]
-//            destination[key] = operation(key, accumulator, e, accumulator == null && !destination.containsKey(key))
-//        }
-//        return destination
-//    }
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
-// * passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
-// * An initial value of accumulator is provided by [initialValueSelector] function.
-// *
-// * @param initialValueSelector a function that provides an initial value of accumulator for each group.
-// *  It's invoked with parameters:
-// *  - `key`: the key of the group;
-// *  - `element`: the first element being encountered in that group.
-// *
-// * @param operation a function that is invoked on each element with the following parameters:
-// *  - `key`: the key of the group this element belongs to;
-// *  - `accumulator`: the current value of the accumulator of the group;
-// *  - `element`: the element from the source being accumulated.
-// *
-// * @return a [Map] associating the key of each group with the result of accumulating the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <T, K, R> Grouping<T, K>.fold(
-//    initialValueSelector: (key: K, element: T) -> R,
-//    operation: (key: K, accumulator: R, element: T) -> R
-//): Map<K, R> =
-//    @Suppress("UNCHECKED_CAST")
-//    aggregate { key, acc, e, first -> operation(key, if (first) initialValueSelector(key, e) else acc as R, e) }
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
-// * passing the previously accumulated value and the current element as arguments,
-// * and stores the results in the given [destination] map.
-// * An initial value of accumulator is provided by [initialValueSelector] function.
-// *
-// * @param initialValueSelector a function that provides an initial value of accumulator for each group.
-// *  It's invoked with parameters:
-// *  - `key`: the key of the group;
-// *  - `element`: the first element being encountered in that group.
-// *
-// * If the [destination] map already has a value corresponding to some key, that value is used as an initial value of
-// * the accumulator for that group and the [initialValueSelector] function is not called for that group.
-// *
-// * @param operation a function that is invoked on each element with the following parameters:
-// *  - `key`: the key of the group this element belongs to;
-// *  - `accumulator`: the current value of the accumulator of the group;
-// *  - `element`: the element from the source being accumulated.
-// *
-// * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <T, K, R, M : MutableMap<in K, R>> Grouping<T, K>.foldTo(
-//    destination: M,
-//    initialValueSelector: (key: K, element: T) -> R,
-//    operation: (key: K, accumulator: R, element: T) -> R
-//): M =
-//    @Suppress("UNCHECKED_CAST")
-//    aggregateTo(destination) { key, acc, e, first -> operation(key, if (first) initialValueSelector(key, e) else acc as R, e) }
-//
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
-// * passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
-// * An initial value of accumulator is the same [initialValue] for each group.
-// *
-// * @param operation a function that is invoked on each element with the following parameters:
-// *  - `accumulator`: the current value of the accumulator of the group;
-// *  - `element`: the element from the source being accumulated.
-// *
-// * @return a [Map] associating the key of each group with the result of accumulating the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <T, K, R> Grouping<T, K>.fold(
-//    initialValue: R,
-//    operation: (accumulator: R, element: T) -> R
-//): Map<K, R> =
-//    @Suppress("UNCHECKED_CAST")
-//    aggregate { _, acc, e, first -> operation(if (first) initialValue else acc as R, e) }
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
-// * passing the previously accumulated value and the current element as arguments,
-// * and stores the results in the given [destination] map.
-// * An initial value of accumulator is the same [initialValue] for each group.
-// *
-// * If the [destination] map already has a value corresponding to the key of some group,
-// * that value is used as an initial value of the accumulator for that group.
-// *
-// * @param operation a function that is invoked on each element with the following parameters:
-// *  - `accumulator`: the current value of the accumulator of the group;
-// *  - `element`: the element from the source being accumulated.
-// *
-// * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <T, K, R, M : MutableMap<in K, R>> Grouping<T, K>.foldTo(
-//    destination: M,
-//    initialValue: R,
-//    operation: (accumulator: R, element: T) -> R
-//): M =
-//    @Suppress("UNCHECKED_CAST")
-//    aggregateTo(destination) { _, acc, e, first -> operation(if (first) initialValue else acc as R, e) }
-//
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies the reducing [operation] to the elements of each group
-// * sequentially starting from the second element of the group,
-// * passing the previously accumulated value and the current element as arguments,
-// * and stores the results in a new map.
-// * An initial value of accumulator is the first element of the group.
-// *
-// * @param operation a function that is invoked on each subsequent element of the group with the following parameters:
-// *  - `key`: the key of the group this element belongs to;
-// *  - `accumulator`: the current value of the accumulator of the group;
-// *  - `element`: the element from the source being accumulated.
-// *
-// * @return a [Map] associating the key of each group with the result of accumulating the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <S, T : S, K> Grouping<T, K>.reduce(
-//    operation: (key: K, accumulator: S, element: T) -> S
-//): Map<K, S> =
-//    aggregate { key, acc, e, first ->
-//        @Suppress("UNCHECKED_CAST")
-//        if (first) e else operation(key, acc as S, e)
-//    }
-//
-///**
-// * Groups elements from the [Grouping] source by key and applies the reducing [operation] to the elements of each group
-// * sequentially starting from the second element of the group,
-// * passing the previously accumulated value and the current element as arguments,
-// * and stores the results in the given [destination] map.
-// * An initial value of accumulator is the first element of the group.
-// *
-// * If the [destination] map already has a value corresponding to the key of some group,
-// * that value is used as an initial value of the accumulator for that group and the first element of that group is also
-// * subjected to the [operation].
-//
-// * @param operation a function that is invoked on each subsequent element of the group with the following parameters:
-// *  - `accumulator`: the current value of the accumulator of the group;
-// *  - `element`: the element from the source being folded;
-// *
-// * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
-// */
-//    @SinceKotlin("1.1")
-//    public inline fun <S, T : S, K, M : MutableMap<in K, S>> Grouping<T, K>.reduceTo(
-//    destination: M,
-//    operation: (key: K, accumulator: S, element: T) -> S
-//): M =
-//    aggregateTo(destination) { key, acc, e, first ->
-//        @Suppress("UNCHECKED_CAST")
-//        if (first) e else operation(key, acc as S, e)
-//    }
-//
-//
-///**
-// * Groups elements from the [Grouping] source by key and counts elements in each group to the given [destination] map.
-// *
-// * If the [destination] map already has a value corresponding to the key of some group,
-// * that value is used as an initial value of the counter for that group.
-// *
-// * @return the [destination] map associating the key of each group with the count of elements in the group.
-// *
-// * @sample samples.collections.Collections.Transformations.groupingByEachCount
-// */
-//    @SinceKotlin("1.1")
-//    public fun <T, K, M : MutableMap<in K, Int>> Grouping<T, K>.eachCountTo(destination: M): M =
-//    foldTo(destination, 0) { acc, _ -> acc + 1 }
 
-//    /**
-//     * Groups elements from the [Grouping] source by key and counts elements in each group.
-//     *
-//     * @return a [Map] associating the key of each group with the count of elements in the group.
-//     *
-//     * @sample samples.collections.Collections.Transformations.groupingByEachCount
-//     */
-//    @SinceKotlin("1.1")
-//    public actual fun <T, K> Grouping<T, K>.eachCount(): Map<K, Int> =
-//    // fold(0) { acc, e -> acc + 1 } optimized for boxing
-//    foldTo(destination = mutableMapOf(),
-//    initialValueSelector = { _, _ -> kotlin.jvm.internal.Ref.IntRef() },
-//    operation = { _, acc, _ -> acc.apply { element += 1 } })
-//            .mapValuesInPlace { it.value.element }
+    /**
+     * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
+     * passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
+     * <p>
+     * The key for each element is provided by the [Grouping.keyOf] function.
+     *
+     * @param operation function is invoked on each element with the following parameters:
+     *                  - `key`: the key of the group this element belongs to;
+     *                  - `accumulator`: the current value of the accumulator of the group, can be `null` if it's the first `element` encountered in the group;
+     *                  - `element`: the element from the source being aggregated;
+     *                  - `first`: indicates whether it's the first `element` encountered in the group.
+     * @return a [Map] associating the key of each group with the result of aggregation of the group elements.
+     */
+    @NotNull
+    public static <T, K, R> Map<K, R> aggregate(@NotNull Grouping<T, K> grouping, @NotNull AggregateOperation<T, K, R> operation) {
+        return aggregateTo(grouping, Mapx.<K, R>mutableMapOf(), operation);
+    }
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
+     * passing the previously accumulated value and the current element as arguments,
+     * and stores the results in the given [destination] map.
+     * <p>
+     * The key for each element is provided by the [Grouping.keyOf] function.
+     *
+     * @param operation a function that is invoked on each element with the following parameters:
+     *                  - `key`: the key of the group this element belongs to;
+     *                  - `accumulator`: the current value of the accumulator of the group, can be `null` if it's the first `element` encountered in the group;
+     *                  - `element`: the element from the source being aggregated;
+     *                  - `first`: indicates whether it's the first `element` encountered in the group.
+     *                  <p>
+     *                  If the [destination] map already has a value corresponding to some key,
+     *                  then the elements being aggregated for that key are never considered as `first`.
+     * @return the [destination] map associating the key of each group with the result of aggregation of the group elements.
+     */
+    @NotNull
+    public static <T, K, R, M extends Map<K, R>> M aggregateTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull AggregateOperation<T, K, R> operation) {
+        Iterator<T> iterator = grouping.sourceIterator();
+        while (iterator.hasNext()) {
+            T e = iterator.next();
+            K key = grouping.keyOf(e);
+            R accumulator = destination.get(key);
+            destination.put(key, operation.operation(key, accumulator, e, accumulator == null && !destination.containsKey(key)));
+        }
+        return destination;
+    }
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
+     * passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
+     * An initial value of accumulator is provided by [initialValueSelector] function.
+     *
+     * @param initialValueSelector a function that provides an initial value of accumulator for each group.
+     *                             It's invoked with parameters:
+     *                             - `key`: the key of the group;
+     *                             - `element`: the first element being encountered in that group.
+     * @param operation            a function that is invoked on each element with the following parameters:
+     *                             - `key`: the key of the group this element belongs to;
+     *                             - `accumulator`: the current value of the accumulator of the group;
+     *                             - `element`: the element from the source being accumulated.
+     * @return a [Map] associating the key of each group with the result of accumulating the group elements.
+     */
+    @NotNull
+    public static <T, K, R> Map<K, R> fold(@NotNull Grouping<T, K> grouping, @NotNull final Transformer2<K, T, R> initialValueSelector, @NotNull final FoldOperation<T, K, R> operation) {
+        return aggregate(grouping, new AggregateOperation<T, K, R>() {
+            @NotNull
+            @Override
+            public R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first) {
+                return operation.operation(key, first ? initialValueSelector.transform(key, element) : accumulator, element);
+            }
+        });
+    }
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
+     * passing the previously accumulated value and the current element as arguments,
+     * and stores the results in the given [destination] map.
+     * An initial value of accumulator is provided by [initialValueSelector] function.
+     *
+     * @param initialValueSelector a function that provides an initial value of accumulator for each group.
+     *                             It's invoked with parameters:
+     *                             - `key`: the key of the group;
+     *                             - `element`: the first element being encountered in that group.
+     *                             <p>
+     *                             If the [destination] map already has a value corresponding to some key, that value is used as an initial value of
+     *                             the accumulator for that group and the [initialValueSelector] function is not called for that group.
+     * @param operation            a function that is invoked on each element with the following parameters:
+     *                             - `key`: the key of the group this element belongs to;
+     *                             - `accumulator`: the current value of the accumulator of the group;
+     *                             - `element`: the element from the source being accumulated.
+     * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
+     */
+    @NotNull
+    public static <T, K, R, M extends Map<K, R>> M foldTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull final Transformer2<K, T, R> initialValueSelector, @NotNull final FoldOperation<T, K, R> operation) {
+        return aggregateTo(grouping, destination, new AggregateOperation<T, K, R>() {
+            @NotNull
+            @Override
+            public R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first) {
+                return operation.operation(key, first ? initialValueSelector.transform(key, element) : accumulator, element);
+            }
+        });
+    }
+
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
+     * passing the previously accumulated value and the current element as arguments, and stores the results in a new map.
+     * An initial value of accumulator is the same [initialValue] for each group.
+     *
+     * @param operation a function that is invoked on each element with the following parameters:
+     *                  - `accumulator`: the current value of the accumulator of the group;
+     *                  - `element`: the element from the source being accumulated.
+     * @return a [Map] associating the key of each group with the result of accumulating the group elements.
+     */
+    @NotNull
+    public static <T, K, R> Map<K, R> fold(@NotNull Grouping<T, K> grouping, @NotNull final R initialValue, @NotNull final Transformer2<R, T, R> operation) {
+        return aggregate(grouping, new AggregateOperation<T, K, R>() {
+            @NotNull
+            @Override
+            public R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first) {
+                return operation.transform(Premisex.requireNotNull(first ? initialValue : accumulator), element);
+            }
+        });
+    }
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
+     * passing the previously accumulated value and the current element as arguments,
+     * and stores the results in the given [destination] map.
+     * An initial value of accumulator is the same [initialValue] for each group.
+     * <p>
+     * If the [destination] map already has a value corresponding to the key of some group,
+     * that value is used as an initial value of the accumulator for that group.
+     *
+     * @param operation a function that is invoked on each element with the following parameters:
+     *                  - `accumulator`: the current value of the accumulator of the group;
+     *                  - `element`: the element from the source being accumulated.
+     * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
+     */
+    @NotNull
+    public static <T, K, R, M extends Map<K, R>> M foldTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull final R initialValue, @NotNull final Transformer2<R, T, R> operation) {
+        return aggregateTo(grouping, destination, new AggregateOperation<T, K, R>() {
+            @NotNull
+            @Override
+            public R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first) {
+                return operation.transform(Premisex.requireNotNull(first ? initialValue : accumulator), element);
+            }
+        });
+    }
+
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies the reducing [operation] to the elements of each group
+     * sequentially starting from the second element of the group,
+     * passing the previously accumulated value and the current element as arguments,
+     * and stores the results in a new map.
+     * An initial value of accumulator is the first element of the group.
+     *
+     * @param operation a function that is invoked on each subsequent element of the group with the following parameters:
+     *                  - `key`: the key of the group this element belongs to;
+     *                  - `accumulator`: the current value of the accumulator of the group;
+     *                  - `element`: the element from the source being accumulated.
+     * @return a [Map] associating the key of each group with the result of accumulating the group elements.
+     */
+    @NotNull
+    public static <S, T extends S, K> Map<K, S> reduce(@NotNull Grouping<T, K> grouping, @NotNull final ReduceOperation<T, K, S> operation) {
+        return aggregate(grouping, new AggregateOperation<T, K, S>() {
+            @NotNull
+            @Override
+            public S operation(@NotNull K key, @Nullable S accumulator, @NotNull T element, boolean first) {
+                return first ? element : operation.operation(key, accumulator, element);
+            }
+        });
+    }
+
+    /**
+     * Groups elements from the [Grouping] source by key and applies the reducing [operation] to the elements of each group
+     * sequentially starting from the second element of the group,
+     * passing the previously accumulated value and the current element as arguments,
+     * and stores the results in the given [destination] map.
+     * An initial value of accumulator is the first element of the group.
+     * <p>
+     * If the [destination] map already has a value corresponding to the key of some group,
+     * that value is used as an initial value of the accumulator for that group and the first element of that group is also
+     * subjected to the [operation].
+     *
+     * @param operation a function that is invoked on each subsequent element of the group with the following parameters:
+     *                  - `accumulator`: the current value of the accumulator of the group;
+     *                  - `element`: the element from the source being folded;
+     * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
+     */
+    @NotNull
+    public static <S, T extends S, K, M extends Map<K, S>> M reduceTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull final ReduceOperation<T, K, S> operation) {
+        return aggregateTo(grouping, destination, new AggregateOperation<T, K, S>() {
+            @NotNull
+            @Override
+            public S operation(@NotNull K key, @Nullable S accumulator, @NotNull T element, boolean first) {
+                return first ? element : operation.operation(key, accumulator, element);
+            }
+        });
+    }
+
+
+    /**
+     * Groups elements from the [Grouping] source by key and counts elements in each group.
+     *
+     * @return a [Map] associating the key of each group with the count of elements in the group.
+     */
+    @NotNull
+    public static <T, K> Map<K, Integer> eachCount(@NotNull Grouping<T, K> grouping)// fold(0) { acc, e -> acc + 1 } optimized for boxing
+    {
+        return mapValuesInPlace(foldTo(grouping, Mapx.<K, IntRef>mutableMapOf(), new Transformer2<K, T, IntRef>() {
+            @NotNull
+            @Override
+            public IntRef transform(@NotNull K k, @NotNull T t) {
+                return new IntRef();
+            }
+        }, new FoldOperation<T, K, IntRef>() {
+            @NotNull
+            @Override
+            public IntRef operation(@NotNull K key, @Nullable IntRef accumulator, @NotNull T element) {
+                Premisex.requireNotNull(accumulator).element += 1;
+                return Premisex.requireNotNull(accumulator);
+            }
+        }), new Transformer<Map.Entry<K, IntRef>, Integer>() {
+            @NotNull
+            @Override
+            public Integer transform(@NotNull Map.Entry<K, IntRef> kIntRefEntry) {
+                return kIntRefEntry.getValue().element;
+            }
+        });
+    }
+
+    /**
+     * Groups elements from the [Grouping] source by key and counts elements in each group to the given [destination] map.
+     * <p>
+     * If the [destination] map already has a value corresponding to the key of some group,
+     * that value is used as an initial value of the counter for that group.
+     *
+     * @return the [destination] map associating the key of each group with the count of elements in the group.
+     */
+    @NotNull
+    public static <T, K, M extends Map<K, Integer>> M eachCountTo(@NotNull Grouping<T, K> grouping, @NotNull M destination) {
+        return foldTo(grouping, destination, 0, new Transformer2<Integer, T, Integer>() {
+            @NotNull
+            @Override
+            public Integer transform(@NotNull Integer accumulator, @NotNull T t) {
+                return accumulator + 1;
+            }
+        });
+    }
+
+    @NotNull
+    private static <K, V, R> Map<K, R> mapValuesInPlace(@NotNull Map<K, V> map, @NotNull final Transformer<Map.Entry<K, V>, R> f) {
+        // tricks with erased generics go here, do not repeat on reified platforms
+        Collectionx.forEach(map.entrySet(), new Action<Map.Entry<K, V>>() {
+            @Override
+            public void action(@NotNull Map.Entry<K, V> entry) {
+                //noinspection unchecked
+                ((Map.Entry<K, R>) entry).setValue(f.transform(entry));
+            }
+        });
+        //noinspection unchecked
+        return (Map<K, R>) map;
+    }
+
+    public interface ReduceOperation<T, K, S> {
+
+        @NotNull
+        S operation(@NotNull K key, @Nullable S accumulator, @NotNull T element);
+    }
+
+    public interface FoldOperation<T, K, R> {
+
+        @NotNull
+        R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element);
+    }
+
+    public interface AggregateOperation<T, K, R> {
+
+        @NotNull
+        R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first);
+    }
+
+    public static final class IntRef implements Serializable {
+        public int element;
+
+        @Override
+        public String toString() {
+            return String.valueOf(element);
+        }
+    }
 }

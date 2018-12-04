@@ -18,6 +18,21 @@ package me.panpf.javax.collections;
 
 import java.util.Iterator;
 
+/**
+ * Represents a source of elements with a [keyOf] function, which can be applied to each element to get its key.
+ *
+ * A [Grouping] structure serves as an intermediate step in group-and-fold operations:
+ * they group elements by their keys and then fold each group with some aggregating operation.
+ *
+ * It is created by attaching `keySelector: (T) -> K` function to a source of elements.
+ * To get an instance of [Grouping] use one of `groupingBy` extension functions:
+ * - [Iterable.groupingBy]
+ * - [Sequence.groupingBy]
+ * - [Array.groupingBy]
+ * - [CharSequence.groupingBy]
+ *
+ * For the list of group-and-fold operations available, see the [extension functions](#extension-functions) for `Grouping`.
+ */
 public interface Grouping<T, K> {
     /**
      * Returns an [Iterator] over the elements of the source of this grouping.

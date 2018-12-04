@@ -61,6 +61,8 @@ Please replace `$lastVersion` with the latest version: [![Download][version_kotl
     * removeAll, partition, toCollection, toList, toSet, toHashSet, convertToSet, union, all, any, contains,
     * forEach, chunked, minus, plus, group, sort, reverse, indexOf, fold, reduce, slice, take, take, distinct,
     * intersect, retainAll, associate, drop, single, elementAt, fill, shuffle, asSequence
+* Grouping: [Groupingx.java]
+    * aggregate, aggregateTo, fold, foldTo, fold, foldTo, reduce, reduceTo, eachCount, eachCountTo
 * Map: [Mapx.java] ([Test][MapxTest.java]) | [Mapx.kt] ([Test][MapxTest.kt])
     * builder, immutableMapOf, mutableMapOf, hashMapOf, linkedMapOf, sortedMapOf, capacity, getOrPut,
     * plusAssign, forEach, map, mapTo
@@ -218,6 +220,11 @@ Please view the [CHANGELOG.md] file
 [CollectionxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/CollectionxTest.kt
 [Collectionx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Collectionx.kt
 [CollectionxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/CollectionxTest.kt
+
+[Groupingx.java]: javax/src/main/java/me/panpf/javax/collections/Groupingx.java
+[GroupingxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/GroupingxTest.kt
+[Groupingx.kt]: javax-kt/src/main/java/me/panpf/javaxkt/collections/Groupingx.kt
+[GroupingxTest.kt]: javax-kt/src/test/java/me/panpf/javaxkt/test/collections/GroupingxTest.kt
 
 [Mapx.java]: javax/src/main/java/me/panpf/javax/collections/Mapx.java
 [MapxTest.java]: javax/src/test/java/me/panpf/javax/test/collections/MapxTest.kt

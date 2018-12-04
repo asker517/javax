@@ -27,6 +27,7 @@
 * :white_check_mark: Perfect Numberx testing
 * :fire: Sequence no longer inherits Iterable
 * :white_check_mark: Perfect Mapx testing
+* :sparkles: Add Groupingx
 
 
 
