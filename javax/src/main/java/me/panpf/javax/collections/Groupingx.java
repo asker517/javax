@@ -16,19 +16,17 @@
 
 package me.panpf.javax.collections;
 
-import me.panpf.javax.util.Action;
-import me.panpf.javax.util.Premisex;
-import me.panpf.javax.util.Transformer;
-import me.panpf.javax.util.Transformer2;
+import me.panpf.javax.util.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 
 public class Groupingx {
-    // TODO: 2018/11/28 测试
+
+    private Groupingx() {
+    }
 
     /**
      * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
@@ -44,7 +42,7 @@ public class Groupingx {
      * @return a [Map] associating the key of each group with the result of aggregation of the group elements.
      */
     @NotNull
-    public static <T, K, R> Map<K, R> aggregate(@NotNull Grouping<T, K> grouping, @NotNull AggregateOperation<T, K, R> operation) {
+    public static <T, K, R> Map<K, R> aggregate(@Nullable Grouping<T, K> grouping, @NotNull AggregateOperation<T, K, R> operation) {
         return aggregateTo(grouping, Mapx.<K, R>mutableMapOf(), operation);
     }
 
@@ -66,16 +64,19 @@ public class Groupingx {
      * @return the [destination] map associating the key of each group with the result of aggregation of the group elements.
      */
     @NotNull
-    public static <T, K, R, M extends Map<K, R>> M aggregateTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull AggregateOperation<T, K, R> operation) {
-        Iterator<T> iterator = grouping.sourceIterator();
-        while (iterator.hasNext()) {
-            T e = iterator.next();
-            K key = grouping.keyOf(e);
-            R accumulator = destination.get(key);
-            destination.put(key, operation.operation(key, accumulator, e, accumulator == null && !destination.containsKey(key)));
+    public static <T, K, R, M extends Map<K, R>> M aggregateTo(@Nullable Grouping<T, K> grouping, @NotNull M destination, @NotNull AggregateOperation<T, K, R> operation) {
+        if (grouping != null) {
+            Iterator<T> iterator = grouping.sourceIterator();
+            while (iterator.hasNext()) {
+                T e = iterator.next();
+                K key = grouping.keyOf(e);
+                R accumulator = destination.get(key);
+                destination.put(key, operation.operation(key, accumulator, e, accumulator == null && !destination.containsKey(key)));
+            }
         }
         return destination;
     }
+
 
     /**
      * Groups elements from the [Grouping] source by key and applies [operation] to the elements of each group sequentially,
@@ -93,12 +94,12 @@ public class Groupingx {
      * @return a [Map] associating the key of each group with the result of accumulating the group elements.
      */
     @NotNull
-    public static <T, K, R> Map<K, R> fold(@NotNull Grouping<T, K> grouping, @NotNull final Transformer2<K, T, R> initialValueSelector, @NotNull final FoldOperation<T, K, R> operation) {
+    public static <T, K, R> Map<K, R> fold(@Nullable Grouping<T, K> grouping, @NotNull final Transformer2<K, T, R> initialValueSelector, @NotNull final FoldOperation<T, K, R> operation) {
         return aggregate(grouping, new AggregateOperation<T, K, R>() {
             @NotNull
             @Override
             public R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first) {
-                return operation.operation(key, first ? initialValueSelector.transform(key, element) : accumulator, element);
+                return operation.operation(key, first ? initialValueSelector.transform(key, element) : Premisex.requireNotNull(accumulator), element);
             }
         });
     }
@@ -123,12 +124,12 @@ public class Groupingx {
      * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
      */
     @NotNull
-    public static <T, K, R, M extends Map<K, R>> M foldTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull final Transformer2<K, T, R> initialValueSelector, @NotNull final FoldOperation<T, K, R> operation) {
+    public static <T, K, R, M extends Map<K, R>> M foldTo(@Nullable Grouping<T, K> grouping, @NotNull M destination, @NotNull final Transformer2<K, T, R> initialValueSelector, @NotNull final FoldOperation<T, K, R> operation) {
         return aggregateTo(grouping, destination, new AggregateOperation<T, K, R>() {
             @NotNull
             @Override
             public R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first) {
-                return operation.operation(key, first ? initialValueSelector.transform(key, element) : accumulator, element);
+                return operation.operation(key, first ? initialValueSelector.transform(key, element) : Premisex.requireNotNull(accumulator), element);
             }
         });
     }
@@ -145,7 +146,7 @@ public class Groupingx {
      * @return a [Map] associating the key of each group with the result of accumulating the group elements.
      */
     @NotNull
-    public static <T, K, R> Map<K, R> fold(@NotNull Grouping<T, K> grouping, @NotNull final R initialValue, @NotNull final Transformer2<R, T, R> operation) {
+    public static <T, K, R> Map<K, R> fold(@Nullable Grouping<T, K> grouping, @NotNull final R initialValue, @NotNull final Transformer2<R, T, R> operation) {
         return aggregate(grouping, new AggregateOperation<T, K, R>() {
             @NotNull
             @Override
@@ -170,7 +171,7 @@ public class Groupingx {
      * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
      */
     @NotNull
-    public static <T, K, R, M extends Map<K, R>> M foldTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull final R initialValue, @NotNull final Transformer2<R, T, R> operation) {
+    public static <T, K, R, M extends Map<K, R>> M foldTo(@Nullable Grouping<T, K> grouping, @NotNull M destination, @NotNull final R initialValue, @NotNull final Transformer2<R, T, R> operation) {
         return aggregateTo(grouping, destination, new AggregateOperation<T, K, R>() {
             @NotNull
             @Override
@@ -195,12 +196,12 @@ public class Groupingx {
      * @return a [Map] associating the key of each group with the result of accumulating the group elements.
      */
     @NotNull
-    public static <S, T extends S, K> Map<K, S> reduce(@NotNull Grouping<T, K> grouping, @NotNull final ReduceOperation<T, K, S> operation) {
+    public static <S, T extends S, K> Map<K, S> reduce(@Nullable Grouping<T, K> grouping, @NotNull final ReduceOperation<T, K, S> operation) {
         return aggregate(grouping, new AggregateOperation<T, K, S>() {
             @NotNull
             @Override
             public S operation(@NotNull K key, @Nullable S accumulator, @NotNull T element, boolean first) {
-                return first ? element : operation.operation(key, accumulator, element);
+                return first ? element : operation.operation(key, Premisex.requireNotNull(accumulator), element);
             }
         });
     }
@@ -222,12 +223,12 @@ public class Groupingx {
      * @return the [destination] map associating the key of each group with the result of accumulating the group elements.
      */
     @NotNull
-    public static <S, T extends S, K, M extends Map<K, S>> M reduceTo(@NotNull Grouping<T, K> grouping, @NotNull M destination, @NotNull final ReduceOperation<T, K, S> operation) {
+    public static <S, T extends S, K, M extends Map<K, S>> M reduceTo(@Nullable Grouping<T, K> grouping, @NotNull M destination, @NotNull final ReduceOperation<T, K, S> operation) {
         return aggregateTo(grouping, destination, new AggregateOperation<T, K, S>() {
             @NotNull
             @Override
             public S operation(@NotNull K key, @Nullable S accumulator, @NotNull T element, boolean first) {
-                return first ? element : operation.operation(key, accumulator, element);
+                return first ? element : operation.operation(key, Premisex.requireNotNull(accumulator), element);
             }
         });
     }
@@ -239,25 +240,25 @@ public class Groupingx {
      * @return a [Map] associating the key of each group with the count of elements in the group.
      */
     @NotNull
-    public static <T, K> Map<K, Integer> eachCount(@NotNull Grouping<T, K> grouping)// fold(0) { acc, e -> acc + 1 } optimized for boxing
+    public static <T, K> Map<K, Integer> eachCount(@Nullable Grouping<T, K> grouping)// fold(0) { acc, e -> acc + 1 } optimized for boxing
     {
-        return mapValuesInPlace(foldTo(grouping, Mapx.<K, IntRef>mutableMapOf(), new Transformer2<K, T, IntRef>() {
+        return mapValuesInPlace(foldTo(grouping, Mapx.<K, Ref.IntRef>mutableMapOf(), new Transformer2<K, T, Ref.IntRef>() {
             @NotNull
             @Override
-            public IntRef transform(@NotNull K k, @NotNull T t) {
-                return new IntRef();
+            public Ref.IntRef transform(@NotNull K k, @NotNull T t) {
+                return new Ref.IntRef();
             }
-        }, new FoldOperation<T, K, IntRef>() {
+        }, new FoldOperation<T, K, Ref.IntRef>() {
             @NotNull
             @Override
-            public IntRef operation(@NotNull K key, @Nullable IntRef accumulator, @NotNull T element) {
+            public Ref.IntRef operation(@NotNull K key, @Nullable Ref.IntRef accumulator, @NotNull T element) {
                 Premisex.requireNotNull(accumulator).element += 1;
                 return Premisex.requireNotNull(accumulator);
             }
-        }), new Transformer<Map.Entry<K, IntRef>, Integer>() {
+        }), new Transformer<Map.Entry<K, Ref.IntRef>, Integer>() {
             @NotNull
             @Override
-            public Integer transform(@NotNull Map.Entry<K, IntRef> kIntRefEntry) {
+            public Integer transform(@NotNull Map.Entry<K, Ref.IntRef> kIntRefEntry) {
                 return kIntRefEntry.getValue().element;
             }
         });
@@ -272,7 +273,7 @@ public class Groupingx {
      * @return the [destination] map associating the key of each group with the count of elements in the group.
      */
     @NotNull
-    public static <T, K, M extends Map<K, Integer>> M eachCountTo(@NotNull Grouping<T, K> grouping, @NotNull M destination) {
+    public static <T, K, M extends Map<K, Integer>> M eachCountTo(@Nullable Grouping<T, K> grouping, @NotNull M destination) {
         return foldTo(grouping, destination, 0, new Transformer2<Integer, T, Integer>() {
             @NotNull
             @Override
@@ -294,32 +295,5 @@ public class Groupingx {
         });
         //noinspection unchecked
         return (Map<K, R>) map;
-    }
-
-    public interface ReduceOperation<T, K, S> {
-
-        @NotNull
-        S operation(@NotNull K key, @Nullable S accumulator, @NotNull T element);
-    }
-
-    public interface FoldOperation<T, K, R> {
-
-        @NotNull
-        R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element);
-    }
-
-    public interface AggregateOperation<T, K, R> {
-
-        @NotNull
-        R operation(@NotNull K key, @Nullable R accumulator, @NotNull T element, boolean first);
-    }
-
-    public static final class IntRef implements Serializable {
-        public int element;
-
-        @Override
-        public String toString() {
-            return String.valueOf(element);
-        }
     }
 }

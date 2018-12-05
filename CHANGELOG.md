@@ -29,6 +29,7 @@
 * :white_check_mark: Perfect Mapx testing
 * :sparkles: Add Groupingx
 * :sparkles: Collectionx adds zip, zipWithNext method
+* :white_check_mark: Perfect Groupingx testing
 
 
 
