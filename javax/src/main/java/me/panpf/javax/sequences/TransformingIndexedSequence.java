@@ -16,23 +16,24 @@
 
 package me.panpf.javax.sequences;
 
-import me.panpf.javax.util.Transformer;
+import me.panpf.javax.util.Transformer2;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
 /**
  * A sequence which returns the results of applying the given [transformer] function to the values
- * in the underlying [sequence].
+ * in the underlying [sequence], where the transformer function takes the index of the value in the underlying
+ * sequence along with the value itself.
  */
-public class TransformingSequence<T, R> implements Sequence<R> {
+public class TransformingIndexedSequence<T, R> implements Sequence<R> {
 
     @NotNull
     private Sequence<T> sequence;
     @NotNull
-    private Transformer<T, R> transformer;
+    private Transformer2<Integer, T, R> transformer;
 
-    public TransformingSequence(@NotNull Sequence<T> sequence, @NotNull Transformer<T, R> transformer) {
+    public TransformingIndexedSequence(@NotNull Sequence<T> sequence, @NotNull Transformer2<Integer, T, R> transformer) {
         this.sequence = sequence;
         this.transformer = transformer;
     }
@@ -44,9 +45,11 @@ public class TransformingSequence<T, R> implements Sequence<R> {
             @NotNull
             private Iterator<T> iterator = sequence.iterator();
 
+            int index = 0;
+
             @Override
             public R next() {
-                return transformer.transform(iterator.next());
+                return transformer.transform(index++, iterator.next());
             }
 
             @Override
@@ -59,9 +62,5 @@ public class TransformingSequence<T, R> implements Sequence<R> {
 
             }
         };
-    }
-
-    public <E> Sequence<E> flatten(@NotNull Transformer<R, Iterator<E>> iterator) {
-        return new FlatteningSequence<>(sequence, transformer, iterator);
     }
 }
